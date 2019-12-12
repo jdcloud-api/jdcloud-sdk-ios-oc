@@ -1,0 +1,1099 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scheme
+   LastUpgradeVersion = "1120"
+   version = "1.3">
+   <BuildAction
+      parallelizeBuildables = "YES"
+      buildImplicitDependencies = "YES">
+      <BuildActionEntries>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "25C23EA121E35C3C007A1471"
+               BuildableName = "JDCloudOCSDKCore.framework"
+               BlueprintName = "JDCloudOCSDKCore"
+               ReferencedContainer = "container:JDCloudOCSDK.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "NO"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "6C66F931C81D8C8590D18168"
+               BuildableName = "JDCloudOCSDKAg.framework"
+               BlueprintName = "JDCloudOCSDKAg"
+               ReferencedContainer = "container:JDCloudOCSDK.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "NO"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "6C66F931CEA08C8590D18168"
+               BuildableName = "JDCloudOCSDKAms.framework"
+               BlueprintName = "JDCloudOCSDKAms"
+               ReferencedContainer = "container:JDCloudOCSDK.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "NO"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "6C66F931C28C8C8590D18168"
+               BuildableName = "JDCloudOCSDKAntipro.framework"
+               BlueprintName = "JDCloudOCSDKAntipro"
+               ReferencedContainer = "container:JDCloudOCSDK.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "NO"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "6C66F931CA468C8590D18168"
+               BuildableName = "JDCloudOCSDKApigateway.framework"
+               BlueprintName = "JDCloudOCSDKApigateway"
+               ReferencedContainer = "container:JDCloudOCSDK.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "NO"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "6C66F931D54C8C8590D18168"
+               BuildableName = "JDCloudOCSDKBaseanti.framework"
+               BlueprintName = "JDCloudOCSDKBaseanti"
+               ReferencedContainer = "container:JDCloudOCSDK.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "NO"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "6C66F931C3BE8C8590D18168"
+               BuildableName = "JDCloudOCSDKBilling.framework"
+               BlueprintName = "JDCloudOCSDKBilling"
+               ReferencedContainer = "container:JDCloudOCSDK.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "NO"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "6C66F931C8EC8C8590D18168"
+               BuildableName = "JDCloudOCSDKCdn.framework"
+               BlueprintName = "JDCloudOCSDKCdn"
+               ReferencedContainer = "container:JDCloudOCSDK.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "NO"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "6C66F931D7CC8C8590D18168"
+               BuildableName = "JDCloudOCSDKCharge.framework"
+               BlueprintName = "JDCloudOCSDKCharge"
+               ReferencedContainer = "container:JDCloudOCSDK.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "NO"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "6C66F931C7B28C8590D18168"
+               BuildableName = "JDCloudOCSDKClouddnsservice.framework"
+               BlueprintName = "JDCloudOCSDKClouddnsservice"
+               ReferencedContainer = "container:JDCloudOCSDK.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "NO"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "6C66F931D2918C8590D18168"
+               BuildableName = "JDCloudOCSDKCommon.framework"
+               BlueprintName = "JDCloudOCSDKCommon"
+               ReferencedContainer = "container:JDCloudOCSDK.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "NO"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "6C66F931C4288C8590D18168"
+               BuildableName = "JDCloudOCSDKCompile.framework"
+               BlueprintName = "JDCloudOCSDKCompile"
+               ReferencedContainer = "container:JDCloudOCSDK.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "NO"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "6C66F931DB5E8C8590D18168"
+               BuildableName = "JDCloudOCSDKContainerregistry.framework"
+               BlueprintName = "JDCloudOCSDKContainerregistry"
+               ReferencedContainer = "container:JDCloudOCSDK.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "NO"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "6C66F931C87D8C8590D18168"
+               BuildableName = "JDCloudOCSDKCps.framework"
+               BlueprintName = "JDCloudOCSDKCps"
+               ReferencedContainer = "container:JDCloudOCSDK.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "NO"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "6C66F931DA958C8590D18168"
+               BuildableName = "JDCloudOCSDKCr.framework"
+               BlueprintName = "JDCloudOCSDKCr"
+               ReferencedContainer = "container:JDCloudOCSDK.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "NO"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "6C66F931D0D58C8590D18168"
+               BuildableName = "JDCloudOCSDKDatastar.framework"
+               BlueprintName = "JDCloudOCSDKDatastar"
+               ReferencedContainer = "container:JDCloudOCSDK.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "NO"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "6C66F931C35C8C8590D18168"
+               BuildableName = "JDCloudOCSDKDeploy.framework"
+               BlueprintName = "JDCloudOCSDKDeploy"
+               ReferencedContainer = "container:JDCloudOCSDK.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "NO"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "6C66F931D7488C8590D18168"
+               BuildableName = "JDCloudOCSDKDetection.framework"
+               BlueprintName = "JDCloudOCSDKDetection"
+               ReferencedContainer = "container:JDCloudOCSDK.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "NO"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "6C66F931CB2E8C8590D18168"
+               BuildableName = "JDCloudOCSDKDisk.framework"
+               BlueprintName = "JDCloudOCSDKDisk"
+               ReferencedContainer = "container:JDCloudOCSDK.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "NO"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "6C66F931C2F28C8590D18168"
+               BuildableName = "JDCloudOCSDKDomainservice.framework"
+               BlueprintName = "JDCloudOCSDKDomainservice"
+               ReferencedContainer = "container:JDCloudOCSDK.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "NO"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "6C66F931C5518C8590D18168"
+               BuildableName = "JDCloudOCSDKEdcps.framework"
+               BlueprintName = "JDCloudOCSDKEdcps"
+               ReferencedContainer = "container:JDCloudOCSDK.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "NO"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "6C66F931D1B88C8590D18168"
+               BuildableName = "JDCloudOCSDKElite.framework"
+               BlueprintName = "JDCloudOCSDKElite"
+               ReferencedContainer = "container:JDCloudOCSDK.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "NO"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "6C66F931C4EC8C8590D18168"
+               BuildableName = "JDCloudOCSDKFunction.framework"
+               BlueprintName = "JDCloudOCSDKFunction"
+               ReferencedContainer = "container:JDCloudOCSDK.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "NO"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "6C66F931C9E58C8590D18168"
+               BuildableName = "JDCloudOCSDKHttpdns.framework"
+               BlueprintName = "JDCloudOCSDKHttpdns"
+               ReferencedContainer = "container:JDCloudOCSDK.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "NO"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "6C66F931D2CD8C8590D18168"
+               BuildableName = "JDCloudOCSDKIam.framework"
+               BlueprintName = "JDCloudOCSDKIam"
+               ReferencedContainer = "container:JDCloudOCSDK.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "NO"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "6C66F931D4E58C8590D18168"
+               BuildableName = "JDCloudOCSDKIas.framework"
+               BlueprintName = "JDCloudOCSDKIas"
+               ReferencedContainer = "container:JDCloudOCSDK.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "NO"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "6C66F931DCF38C8590D18168"
+               BuildableName = "JDCloudOCSDKIndustrydata.framework"
+               BlueprintName = "JDCloudOCSDKIndustrydata"
+               ReferencedContainer = "container:JDCloudOCSDK.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "NO"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "6C66F931DC308C8590D18168"
+               BuildableName = "JDCloudOCSDKIotcard.framework"
+               BlueprintName = "JDCloudOCSDKIotcard"
+               ReferencedContainer = "container:JDCloudOCSDK.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "NO"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "6C66F931DC918C8590D18168"
+               BuildableName = "JDCloudOCSDKIotcloudgateway.framework"
+               BlueprintName = "JDCloudOCSDKIotcloudgateway"
+               ReferencedContainer = "container:JDCloudOCSDK.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "NO"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "6C66F931CDCD8C8590D18168"
+               BuildableName = "JDCloudOCSDKIotcore.framework"
+               BlueprintName = "JDCloudOCSDKIotcore"
+               ReferencedContainer = "container:JDCloudOCSDK.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "NO"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "6C66F931D3BC8C8590D18168"
+               BuildableName = "JDCloudOCSDKIothub.framework"
+               BlueprintName = "JDCloudOCSDKIothub"
+               ReferencedContainer = "container:JDCloudOCSDK.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "NO"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "6C66F931D7FD8C8590D18168"
+               BuildableName = "JDCloudOCSDKIotlink.framework"
+               BlueprintName = "JDCloudOCSDKIotlink"
+               ReferencedContainer = "container:JDCloudOCSDK.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "NO"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "6C66F931C1428C8590D18168"
+               BuildableName = "JDCloudOCSDKIpanti.framework"
+               BlueprintName = "JDCloudOCSDKIpanti"
+               ReferencedContainer = "container:JDCloudOCSDK.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "NO"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "6C66F931D4238C8590D18168"
+               BuildableName = "JDCloudOCSDKJcq.framework"
+               BlueprintName = "JDCloudOCSDKJcq"
+               ReferencedContainer = "container:JDCloudOCSDK.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "NO"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "6C66F931C7038C8590D18168"
+               BuildableName = "JDCloudOCSDKJdccs.framework"
+               BlueprintName = "JDCloudOCSDKJdccs"
+               ReferencedContainer = "container:JDCloudOCSDK.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "NO"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "6C66F931D6AB8C8590D18168"
+               BuildableName = "JDCloudOCSDKJdfusion.framework"
+               BlueprintName = "JDCloudOCSDKJdfusion"
+               ReferencedContainer = "container:JDCloudOCSDK.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "NO"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "6C66F931CF718C8590D18168"
+               BuildableName = "JDCloudOCSDKJdro.framework"
+               BlueprintName = "JDCloudOCSDKJdro"
+               ReferencedContainer = "container:JDCloudOCSDK.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "NO"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "6C66F931DD508C8590D18168"
+               BuildableName = "JDCloudOCSDKJdw.framework"
+               BlueprintName = "JDCloudOCSDKJdw"
+               ReferencedContainer = "container:JDCloudOCSDK.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "NO"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "6C66F931CE468C8590D18168"
+               BuildableName = "JDCloudOCSDKJke.framework"
+               BlueprintName = "JDCloudOCSDKJke"
+               ReferencedContainer = "container:JDCloudOCSDK.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "NO"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "6C66F931D13A8C8590D18168"
+               BuildableName = "JDCloudOCSDKKms.framework"
+               BlueprintName = "JDCloudOCSDKKms"
+               ReferencedContainer = "container:JDCloudOCSDK.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "NO"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "6C66F931C0038C8590D18168"
+               BuildableName = "JDCloudOCSDKKubernetes.framework"
+               BlueprintName = "JDCloudOCSDKKubernetes"
+               ReferencedContainer = "container:JDCloudOCSDK.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "NO"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "6C66F931D6138C8590D18168"
+               BuildableName = "JDCloudOCSDKLive.framework"
+               BlueprintName = "JDCloudOCSDKLive"
+               ReferencedContainer = "container:JDCloudOCSDK.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "NO"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "6C66F931C6948C8590D18168"
+               BuildableName = "JDCloudOCSDKLogs.framework"
+               BlueprintName = "JDCloudOCSDKLogs"
+               ReferencedContainer = "container:JDCloudOCSDK.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "NO"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "6C66F931D5B38C8590D18168"
+               BuildableName = "JDCloudOCSDKMongodb.framework"
+               BlueprintName = "JDCloudOCSDKMongodb"
+               ReferencedContainer = "container:JDCloudOCSDK.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "NO"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "6C66F931D9AB8C8590D18168"
+               BuildableName = "JDCloudOCSDKMonitor.framework"
+               BlueprintName = "JDCloudOCSDKMonitor"
+               ReferencedContainer = "container:JDCloudOCSDK.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "NO"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "6C66F931CAD28C8590D18168"
+               BuildableName = "JDCloudOCSDKMps.framework"
+               BlueprintName = "JDCloudOCSDKMps"
+               ReferencedContainer = "container:JDCloudOCSDK.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "NO"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "6C66F931CCD68C8590D18168"
+               BuildableName = "JDCloudOCSDKNativecontainer.framework"
+               BlueprintName = "JDCloudOCSDKNativecontainer"
+               ReferencedContainer = "container:JDCloudOCSDK.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "NO"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "6C66F931CBEF8C8590D18168"
+               BuildableName = "JDCloudOCSDKNc.framework"
+               BlueprintName = "JDCloudOCSDKNc"
+               ReferencedContainer = "container:JDCloudOCSDK.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "NO"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "6C66F931C7628C8590D18168"
+               BuildableName = "JDCloudOCSDKOrder.framework"
+               BlueprintName = "JDCloudOCSDKOrder"
+               ReferencedContainer = "container:JDCloudOCSDK.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "NO"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "6C66F931C2298C8590D18168"
+               BuildableName = "JDCloudOCSDKOss.framework"
+               BlueprintName = "JDCloudOCSDKOss"
+               ReferencedContainer = "container:JDCloudOCSDK.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "NO"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "6C66F931D2338C8590D18168"
+               BuildableName = "JDCloudOCSDKOssopenapi.framework"
+               BlueprintName = "JDCloudOCSDKOssopenapi"
+               ReferencedContainer = "container:JDCloudOCSDK.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "NO"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "6C66F931DBC98C8590D18168"
+               BuildableName = "JDCloudOCSDKPartner.framework"
+               BlueprintName = "JDCloudOCSDKPartner"
+               ReferencedContainer = "container:JDCloudOCSDK.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "NO"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "6C66F931DAF78C8590D18168"
+               BuildableName = "JDCloudOCSDKPipeline.framework"
+               BlueprintName = "JDCloudOCSDKPipeline"
+               ReferencedContainer = "container:JDCloudOCSDK.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "NO"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "6C66F931CD508C8590D18168"
+               BuildableName = "JDCloudOCSDKPod.framework"
+               BlueprintName = "JDCloudOCSDKPod"
+               ReferencedContainer = "container:JDCloudOCSDK.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "NO"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "6C66F931C62F8C8590D18168"
+               BuildableName = "JDCloudOCSDKPortal.framework"
+               BlueprintName = "JDCloudOCSDKPortal"
+               ReferencedContainer = "container:JDCloudOCSDK.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "NO"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "6C66F931BEF08C8590D18168"
+               BuildableName = "JDCloudOCSDKRds.framework"
+               BlueprintName = "JDCloudOCSDKRds"
+               ReferencedContainer = "container:JDCloudOCSDK.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "NO"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "6C66F931C1C58C8590D18168"
+               BuildableName = "JDCloudOCSDKRedis.framework"
+               BlueprintName = "JDCloudOCSDKRedis"
+               ReferencedContainer = "container:JDCloudOCSDK.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "NO"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "6C66F931D8608C8590D18168"
+               BuildableName = "JDCloudOCSDKRenewal.framework"
+               BlueprintName = "JDCloudOCSDKRenewal"
+               ReferencedContainer = "container:JDCloudOCSDK.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "NO"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "6C66F931D4898C8590D18168"
+               BuildableName = "JDCloudOCSDKResourcetag.framework"
+               BlueprintName = "JDCloudOCSDKResourcetag"
+               ReferencedContainer = "container:JDCloudOCSDK.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "NO"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "6C66F931C5CE8C8590D18168"
+               BuildableName = "JDCloudOCSDKRms.framework"
+               BlueprintName = "JDCloudOCSDKRms"
+               ReferencedContainer = "container:JDCloudOCSDK.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "NO"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "6C66F931D3588C8590D18168"
+               BuildableName = "JDCloudOCSDKSms.framework"
+               BlueprintName = "JDCloudOCSDKSms"
+               ReferencedContainer = "container:JDCloudOCSDK.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "NO"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "6C66F931C4898C8590D18168"
+               BuildableName = "JDCloudOCSDKSop.framework"
+               BlueprintName = "JDCloudOCSDKSop"
+               ReferencedContainer = "container:JDCloudOCSDK.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "NO"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "6C66F931C0E28C8590D18168"
+               BuildableName = "JDCloudOCSDKSsl.framework"
+               BlueprintName = "JDCloudOCSDKSsl"
+               ReferencedContainer = "container:JDCloudOCSDK.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "NO"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "6C66F931C9818C8590D18168"
+               BuildableName = "JDCloudOCSDKStreambus.framework"
+               BlueprintName = "JDCloudOCSDKStreambus"
+               ReferencedContainer = "container:JDCloudOCSDK.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "NO"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "6C66F931C07D8C8590D18168"
+               BuildableName = "JDCloudOCSDKStreamcomputer.framework"
+               BlueprintName = "JDCloudOCSDKStreamcomputer"
+               ReferencedContainer = "container:JDCloudOCSDK.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "NO"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "6C66F931CB968C8590D18168"
+               BuildableName = "JDCloudOCSDKSts.framework"
+               BlueprintName = "JDCloudOCSDKSts"
+               ReferencedContainer = "container:JDCloudOCSDK.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "6C66F931CC578C8590D18168"
+               BuildableName = "JDCloudOCSDKVm.framework"
+               BlueprintName = "JDCloudOCSDKVm"
+               ReferencedContainer = "container:JDCloudOCSDK.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "256977EE21DEFCD2003C525A"
+               BuildableName = "JDCloudOCSDKVmTests.xctest"
+               BlueprintName = "JDCloudOCSDKVmTests"
+               ReferencedContainer = "container:JDCloudOCSDK.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "NO"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "6C66F931CFD68C8590D18168"
+               BuildableName = "JDCloudOCSDKVod.framework"
+               BlueprintName = "JDCloudOCSDKVod"
+               ReferencedContainer = "container:JDCloudOCSDK.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "NO"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "6C66F931D9318C8590D18168"
+               BuildableName = "JDCloudOCSDKVpc.framework"
+               BlueprintName = "JDCloudOCSDKVpc"
+               ReferencedContainer = "container:JDCloudOCSDK.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "NO"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "6C66F931DA278C8590D18168"
+               BuildableName = "JDCloudOCSDKXdata.framework"
+               BlueprintName = "JDCloudOCSDKXdata"
+               ReferencedContainer = "container:JDCloudOCSDK.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "NO"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "6C66F931D8CD8C8590D18168"
+               BuildableName = "JDCloudOCSDKYunding.framework"
+               BlueprintName = "JDCloudOCSDKYunding"
+               ReferencedContainer = "container:JDCloudOCSDK.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "NO"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "6C66F931D06F8C8590D18168"
+               BuildableName = "JDCloudOCSDKYundingdatapush.framework"
+               BlueprintName = "JDCloudOCSDKYundingdatapush"
+               ReferencedContainer = "container:JDCloudOCSDK.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "NO"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "6C66F931CF078C8590D18168"
+               BuildableName = "JDCloudOCSDKZfs.framework"
+               BlueprintName = "JDCloudOCSDKZfs"
+               ReferencedContainer = "container:JDCloudOCSDK.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+      </BuildActionEntries>
+   </BuildAction>
+   <TestAction
+      buildConfiguration = "Debug"
+      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
+      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      shouldUseLaunchSchemeArgsEnv = "YES">
+      <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "25C23EA921E35C3D007A1471"
+               BuildableName = "JDCloudOCSDKCoreTests.xctest"
+               BlueprintName = "JDCloudOCSDKCoreTests"
+               ReferencedContainer = "container:JDCloudOCSDK.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+      </Testables>
+   </TestAction>
+   <LaunchAction
+      buildConfiguration = "Debug"
+      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
+      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      launchStyle = "0"
+      useCustomWorkingDirectory = "NO"
+      ignoresPersistentStateOnLaunch = "NO"
+      debugDocumentVersioning = "YES"
+      debugServiceExtension = "internal"
+      allowLocationSimulation = "YES">
+   </LaunchAction>
+   <ProfileAction
+      buildConfiguration = "Release"
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      savedToolIdentifier = ""
+      useCustomWorkingDirectory = "NO"
+      debugDocumentVersioning = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "25C23EA121E35C3C007A1471"
+            BuildableName = "JDCloudOCSDKCore.framework"
+            BlueprintName = "JDCloudOCSDKCore"
+            ReferencedContainer = "container:JDCloudOCSDK.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
+   </ProfileAction>
+   <AnalyzeAction
+      buildConfiguration = "Debug">
+   </AnalyzeAction>
+   <ArchiveAction
+      buildConfiguration = "Release"
+      revealArchiveInOrganizer = "YES">
+   </ArchiveAction>
+</Scheme>
