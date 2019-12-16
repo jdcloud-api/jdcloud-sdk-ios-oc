@@ -59,6 +59,843 @@ routeTableId:(NSString*)routeTableId;
 
 @end
 
+@interface VpcModifyRouteTableRequest:JDCloudRequest
+
+/// 路由表的名字。名称取值范围：1-32个中文、英文大小写的字母、数字和下划线分隔符
+@property (strong,nonatomic,nonnull)  NSString*  routeTableName;
+/// 路由表的描述，取值范围：0-256个UTF-8编码下的全部字符
+@property (strong,nonatomic,nonnull)  NSString*  descriptionValue;
+/// RouteTable ID
+@property (strong,nonatomic,nonnull)  NSString*  routeTableId;
+-(id) initWithRegion:(NSString *)regionId
+routeTableName:(NSString*)routeTableName
+descriptionValue:(NSString*)descriptionValue
+routeTableId:(NSString*)routeTableId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+routeTableName:(NSString*)routeTableName
+descriptionValue:(NSString*)descriptionValue
+routeTableId:(NSString*)routeTableId;
+
+@end
+
+@interface VpcCreateRouteTableRequest:JDCloudRequest
+
+/// 路由表所属的私有网络ID
+@property (strong,nonatomic,nonnull)  NSString*  vpcId;
+/// 路由表名称，只允许输入中文、数字、大小写字母、英文下划线“_”及中划线“-”，不允许为空且不超过32字符。
+@property (strong,nonatomic,nonnull)  NSString*  routeTableName;
+/// 描述,​ 允许输入UTF-8编码下的全部字符，不超过256字符
+@property (strong,nonatomic,nonnull)  NSString*  descriptionValue;
+-(id) initWithRegion:(NSString *)regionId
+vpcId:(NSString*)vpcId
+routeTableName:(NSString*)routeTableName
+descriptionValue:(NSString*)descriptionValue;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+vpcId:(NSString*)vpcId
+routeTableName:(NSString*)routeTableName
+descriptionValue:(NSString*)descriptionValue;
+
+@end
+
+@interface VpcAssociateRouteTableRequest:JDCloudRequest
+
+/// 路由表要绑定的子网ID列表, subnet已被其他路由表绑定时，自动解绑。
+@property (strong,nonatomic,nonnull)  NSArray<NSString*>*  subnetIds;
+/// RouteTable ID
+@property (strong,nonatomic,nonnull)  NSString*  routeTableId;
+-(id) initWithRegion:(NSString *)regionId
+subnetIds:(NSArray<NSString*>*)subnetIds
+routeTableId:(NSString*)routeTableId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+subnetIds:(NSArray<NSString*>*)subnetIds
+routeTableId:(NSString*)routeTableId;
+
+@end
+
+@interface VpcDescribeRouteTableRequest:JDCloudRequest
+
+/// RouteTable ID
+@property (strong,nonatomic,nonnull)  NSString*  routeTableId;
+-(id) initWithRegion:(NSString *)regionId
+routeTableId:(NSString*)routeTableId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+routeTableId:(NSString*)routeTableId;
+
+@end
+
+@interface VpcCreateRouteTableResult : NSObject
+/// 路由表ID
+ @property (strong,nonatomic,nonnull)  NSString*  routeTableId;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithRouteTableId:(NSString*) routeTableId;
+@end
+
+@interface VpcDisassociateRouteTableRequest:JDCloudRequest
+
+/// 路由表要解绑的子网ID，解绑后子网绑定默认路由表
+@property (strong,nonatomic,nonnull)  NSString*  subnetId;
+/// RouteTable ID
+@property (strong,nonatomic,nonnull)  NSString*  routeTableId;
+-(id) initWithRegion:(NSString *)regionId
+subnetId:(NSString*)subnetId
+routeTableId:(NSString*)routeTableId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+subnetId:(NSString*)subnetId
+routeTableId:(NSString*)routeTableId;
+
+@end
+
+@interface VpcDescribeQuotaRequest:JDCloudRequest
+
+/// 资源类型，取值范围：vpc、elastic_ip、subnet、security_group、vpcpeering、network_interface（配额只统计辅助网卡）
+@property (strong,nonatomic,nonnull)  NSString*  type;
+/// type为vpc、elastic_ip、network_interface不设置, type为subnet、security_group、vpcpeering设置为vpcId
+@property (strong,nonatomic,nonnull)  NSString*  parentResourceId;
+-(id) initWithRegion:(NSString *)regionId
+type:(NSString*)type
+parentResourceId:(NSString*)parentResourceId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+type:(NSString*)type
+parentResourceId:(NSString*)parentResourceId;
+
+@end
+
+@interface VpcDescribeQuotaResult : NSObject
+/// Quota
+ @property (strong,nonatomic,nonnull)  NSObject*  quota;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithQuota:(NSObject*) quota;
+@end
+
+@interface VpcCreateNetworkInterfaceResult : NSObject
+/// 弹性网卡Id
+ @property (strong,nonatomic,nonnull)  NSString*  networkInterfaceId;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithNetworkInterfaceId:(NSString*) networkInterfaceId;
+@end
+
+@interface VpcAssignSecondaryIpsRequest:JDCloudRequest
+
+/// secondary ip被其他接口占用时，是否抢占。false：非抢占重分配，true：抢占重分配，默认抢占重分配。默认值：true
+@property (strong,nonatomic,nonnull)  NSNumber*  force;
+/// 指定分配的secondaryIp地址
+@property (strong,nonatomic,nonnull)  NSArray<NSString*>*  secondaryIps;
+/// 指定自动分配的secondaryIp个数
+@property (strong,nonatomic,nonnull)  NSNumber*  secondaryIpCount;
+/// networkInterface ID
+@property (strong,nonatomic,nonnull)  NSString*  networkInterfaceId;
+-(id) initWithRegion:(NSString *)regionId
+force:(NSNumber*)force
+secondaryIps:(NSArray<NSString*>*)secondaryIps
+secondaryIpCount:(NSNumber*)secondaryIpCount
+networkInterfaceId:(NSString*)networkInterfaceId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+force:(NSNumber*)force
+secondaryIps:(NSArray<NSString*>*)secondaryIps
+secondaryIpCount:(NSNumber*)secondaryIpCount
+networkInterfaceId:(NSString*)networkInterfaceId;
+
+@end
+
+@interface VpcDeleteNetworkInterfaceRequest:JDCloudRequest
+
+/// networkInterface ID
+@property (strong,nonatomic,nonnull)  NSString*  networkInterfaceId;
+-(id) initWithRegion:(NSString *)regionId
+networkInterfaceId:(NSString*)networkInterfaceId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+networkInterfaceId:(NSString*)networkInterfaceId;
+
+@end
+
+@interface VpcCreateNetworkInterfaceRequest:JDCloudRequest
+
+/// 子网ID
+@property (strong,nonatomic,nonnull)  NSString*  subnetId;
+/// 可用区，用户的默认可用区
+@property (strong,nonatomic,nonnull)  NSString*  az;
+/// 网卡名称，只允许输入中文、数字、大小写字母、英文下划线“_”及中划线“-”，不允许为空且不超过32字符。
+@property (strong,nonatomic,nonnull)  NSString*  networkInterfaceName;
+/// 网卡主IP，如果不指定，会自动从子网中分配
+@property (strong,nonatomic,nonnull)  NSString*  primaryIpAddress;
+/// SecondaryIp列表
+@property (strong,nonatomic,nonnull)  NSArray<NSString*>*  secondaryIpAddresses;
+/// 自动分配的SecondaryIp数量
+@property (strong,nonatomic,nonnull)  NSNumber*  secondaryIpCount;
+/// 要绑定的安全组ID列表，最多指定5个安全组
+@property (strong,nonatomic,nonnull)  NSArray<NSString*>*  securityGroups;
+/// 源和目标IP地址校验，取值为0或者1,默认为1
+@property (strong,nonatomic,nonnull)  NSNumber*  sanityCheck;
+/// 描述,​ 允许输入UTF-8编码下的全部字符，不超过256字符
+@property (strong,nonatomic,nonnull)  NSString*  descriptionValue;
+-(id) initWithRegion:(NSString *)regionId
+subnetId:(NSString*)subnetId
+az:(NSString*)az
+networkInterfaceName:(NSString*)networkInterfaceName
+primaryIpAddress:(NSString*)primaryIpAddress
+secondaryIpAddresses:(NSArray<NSString*>*)secondaryIpAddresses
+secondaryIpCount:(NSNumber*)secondaryIpCount
+securityGroups:(NSArray<NSString*>*)securityGroups
+sanityCheck:(NSNumber*)sanityCheck
+descriptionValue:(NSString*)descriptionValue;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+subnetId:(NSString*)subnetId
+az:(NSString*)az
+networkInterfaceName:(NSString*)networkInterfaceName
+primaryIpAddress:(NSString*)primaryIpAddress
+secondaryIpAddresses:(NSArray<NSString*>*)secondaryIpAddresses
+secondaryIpCount:(NSNumber*)secondaryIpCount
+securityGroups:(NSArray<NSString*>*)securityGroups
+sanityCheck:(NSNumber*)sanityCheck
+descriptionValue:(NSString*)descriptionValue;
+
+@end
+
+@interface VpcAssociateElasticIpRequest:JDCloudRequest
+
+/// 绑定的弹性Ip Id
+@property (strong,nonatomic,nonnull)  NSString*  elasticIpId;
+/// 绑定弹性Ip到指定的privateIp
+@property (strong,nonatomic,nonnull)  NSString*  privateIpAddress;
+/// 绑定的弹性Ip地址
+@property (strong,nonatomic,nonnull)  NSString*  elasticIpAddress;
+/// networkInterface ID
+@property (strong,nonatomic,nonnull)  NSString*  networkInterfaceId;
+-(id) initWithRegion:(NSString *)regionId
+elasticIpId:(NSString*)elasticIpId
+privateIpAddress:(NSString*)privateIpAddress
+elasticIpAddress:(NSString*)elasticIpAddress
+networkInterfaceId:(NSString*)networkInterfaceId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+elasticIpId:(NSString*)elasticIpId
+privateIpAddress:(NSString*)privateIpAddress
+elasticIpAddress:(NSString*)elasticIpAddress
+networkInterfaceId:(NSString*)networkInterfaceId;
+
+@end
+
+@interface VpcDisassociateElasticIpRequest:JDCloudRequest
+
+/// 指定解绑的弹性Ip Id
+@property (strong,nonatomic,nonnull)  NSString*  elasticIpId;
+/// 指定解绑的弹性Ip地址
+@property (strong,nonatomic,nonnull)  NSString*  elasticIpAddress;
+/// networkInterface ID
+@property (strong,nonatomic,nonnull)  NSString*  networkInterfaceId;
+-(id) initWithRegion:(NSString *)regionId
+elasticIpId:(NSString*)elasticIpId
+elasticIpAddress:(NSString*)elasticIpAddress
+networkInterfaceId:(NSString*)networkInterfaceId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+elasticIpId:(NSString*)elasticIpId
+elasticIpAddress:(NSString*)elasticIpAddress
+networkInterfaceId:(NSString*)networkInterfaceId;
+
+@end
+
+@interface VpcUnassignSecondaryIpsRequest:JDCloudRequest
+
+/// 指定删除的secondaryIp地址
+@property (strong,nonatomic,nonnull)  NSArray<NSString*>*  secondaryIps;
+/// networkInterface ID
+@property (strong,nonatomic,nonnull)  NSString*  networkInterfaceId;
+-(id) initWithRegion:(NSString *)regionId
+secondaryIps:(NSArray<NSString*>*)secondaryIps
+networkInterfaceId:(NSString*)networkInterfaceId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+secondaryIps:(NSArray<NSString*>*)secondaryIps
+networkInterfaceId:(NSString*)networkInterfaceId;
+
+@end
+
+@interface VpcDescribeNetworkInterfaceRequest:JDCloudRequest
+
+/// networkInterface ID
+@property (strong,nonatomic,nonnull)  NSString*  networkInterfaceId;
+-(id) initWithRegion:(NSString *)regionId
+networkInterfaceId:(NSString*)networkInterfaceId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+networkInterfaceId:(NSString*)networkInterfaceId;
+
+@end
+
+@interface VpcModifyNetworkInterfaceRequest:JDCloudRequest
+
+/// 弹性网卡名称,只允许输入中文、数字、大小写字母、英文下划线“_”及中划线“-”，不允许为空且不超过32字符
+@property (strong,nonatomic,nonnull)  NSString*  networkInterfaceName;
+/// 描述,允许输入UTF-8编码下的全部字符，不超过256字符
+@property (strong,nonatomic,nonnull)  NSString*  descriptionValue;
+/// 以覆盖原有安全组的方式更新的安全组。如果更新安全组ID列表，最多5个安全组
+@property (strong,nonatomic,nonnull)  NSArray<NSString*>*  securityGroups;
+/// networkInterface ID
+@property (strong,nonatomic,nonnull)  NSString*  networkInterfaceId;
+-(id) initWithRegion:(NSString *)regionId
+networkInterfaceName:(NSString*)networkInterfaceName
+descriptionValue:(NSString*)descriptionValue
+securityGroups:(NSArray<NSString*>*)securityGroups
+networkInterfaceId:(NSString*)networkInterfaceId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+networkInterfaceName:(NSString*)networkInterfaceName
+descriptionValue:(NSString*)descriptionValue
+securityGroups:(NSArray<NSString*>*)securityGroups
+networkInterfaceId:(NSString*)networkInterfaceId;
+
+@end
+
+@interface VpcDescribeSubnetRequest:JDCloudRequest
+
+/// Subnet ID
+@property (strong,nonatomic,nonnull)  NSString*  subnetId;
+-(id) initWithRegion:(NSString *)regionId
+subnetId:(NSString*)subnetId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+subnetId:(NSString*)subnetId;
+
+@end
+
+@interface VpcCreateSubnetResult : NSObject
+/// 子网ID
+ @property (strong,nonatomic,nonnull)  NSString*  subnetId;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithSubnetId:(NSString*) subnetId;
+@end
+
+@interface VpcDeleteSubnetRequest:JDCloudRequest
+
+/// Subnet ID
+@property (strong,nonatomic,nonnull)  NSString*  subnetId;
+-(id) initWithRegion:(NSString *)regionId
+subnetId:(NSString*)subnetId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+subnetId:(NSString*)subnetId;
+
+@end
+
+@interface VpcCreateSubnetRequest:JDCloudRequest
+
+/// 子网所属vpc的Id
+@property (strong,nonatomic,nonnull)  NSString*  vpcId;
+/// 子网名称,只允许输入中文、数字、大小写字母、英文下划线“_”及中划线“-”，不允许为空且不超过32字符。
+@property (strong,nonatomic,nonnull)  NSString*  subnetName;
+/// 子网网段，vpc内子网网段不能重叠，cidr的取值范围：10.0.0.0/8、172.16.0.0/12和192.168.0.0/16及它们包含的子网，且子网掩码长度为16-28之间，如果vpc含有cidr，则必须为vpc所在cidr的子网
+@property (strong,nonatomic,nonnull)  NSString*  addressPrefix;
+/// 子网关联的路由表Id, 默认为vpc的默认路由表
+@property (strong,nonatomic,nonnull)  NSString*  routeTableId;
+/// 子网描述信息,允许输入UTF-8编码下的全部字符，不超过256字符。
+@property (strong,nonatomic,nonnull)  NSString*  descriptionValue;
+-(id) initWithRegion:(NSString *)regionId
+vpcId:(NSString*)vpcId
+subnetName:(NSString*)subnetName
+addressPrefix:(NSString*)addressPrefix
+routeTableId:(NSString*)routeTableId
+descriptionValue:(NSString*)descriptionValue;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+vpcId:(NSString*)vpcId
+subnetName:(NSString*)subnetName
+addressPrefix:(NSString*)addressPrefix
+routeTableId:(NSString*)routeTableId
+descriptionValue:(NSString*)descriptionValue;
+
+@end
+
+@interface VpcModifySubnetRequest:JDCloudRequest
+
+/// 子网名称,只允许输入中文、数字、大小写字母、英文下划线“_”及中划线“-”，不允许为空且不超过32字符。
+@property (strong,nonatomic,nonnull)  NSString*  subnetName;
+/// 子网描述信息，允许输入UTF-8编码下的全部字符，不超过256字符。
+@property (strong,nonatomic,nonnull)  NSString*  descriptionValue;
+/// Subnet ID
+@property (strong,nonatomic,nonnull)  NSString*  subnetId;
+-(id) initWithRegion:(NSString *)regionId
+subnetName:(NSString*)subnetName
+descriptionValue:(NSString*)descriptionValue
+subnetId:(NSString*)subnetId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+subnetName:(NSString*)subnetName
+descriptionValue:(NSString*)descriptionValue
+subnetId:(NSString*)subnetId;
+
+@end
+
+@interface VpcRemoveNetworkSecurityGroupRulesRequest:JDCloudRequest
+
+/// 安全组规则Id列表
+@property (strong,nonatomic,nonnull)  NSArray<NSString*>*  ruleIds;
+/// NetworkSecurityGroup ID
+@property (strong,nonatomic,nonnull)  NSString*  networkSecurityGroupId;
+-(id) initWithRegion:(NSString *)regionId
+ruleIds:(NSArray<NSString*>*)ruleIds
+networkSecurityGroupId:(NSString*)networkSecurityGroupId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+ruleIds:(NSArray<NSString*>*)ruleIds
+networkSecurityGroupId:(NSString*)networkSecurityGroupId;
+
+@end
+
+@interface VpcDeleteNetworkSecurityGroupRequest:JDCloudRequest
+
+/// NetworkSecurityGroup ID
+@property (strong,nonatomic,nonnull)  NSString*  networkSecurityGroupId;
+-(id) initWithRegion:(NSString *)regionId
+networkSecurityGroupId:(NSString*)networkSecurityGroupId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+networkSecurityGroupId:(NSString*)networkSecurityGroupId;
+
+@end
+
+@interface VpcCreateNetworkSecurityGroupRequest:JDCloudRequest
+
+/// 私有网络ID
+@property (strong,nonatomic,nonnull)  NSString*  vpcId;
+/// 安全组名称，只允许输入中文、数字、大小写字母、英文下划线“_”及中划线“-”，不允许为空且不超过32字符。
+@property (strong,nonatomic,nonnull)  NSString*  networkSecurityGroupName;
+/// 描述,​ 允许输入UTF-8编码下的全部字符，不超过256字符
+@property (strong,nonatomic,nonnull)  NSString*  descriptionValue;
+-(id) initWithRegion:(NSString *)regionId
+vpcId:(NSString*)vpcId
+networkSecurityGroupName:(NSString*)networkSecurityGroupName
+descriptionValue:(NSString*)descriptionValue;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+vpcId:(NSString*)vpcId
+networkSecurityGroupName:(NSString*)networkSecurityGroupName
+descriptionValue:(NSString*)descriptionValue;
+
+@end
+
+@interface VpcCreateNetworkSecurityGroupResult : NSObject
+/// 安全组ID
+ @property (strong,nonatomic,nonnull)  NSString*  networkSecurityGroupId;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithNetworkSecurityGroupId:(NSString*) networkSecurityGroupId;
+@end
+
+@interface VpcDescribeNetworkSecurityGroupRequest:JDCloudRequest
+
+/// NetworkSecurityGroup ID
+@property (strong,nonatomic,nonnull)  NSString*  networkSecurityGroupId;
+-(id) initWithRegion:(NSString *)regionId
+networkSecurityGroupId:(NSString*)networkSecurityGroupId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+networkSecurityGroupId:(NSString*)networkSecurityGroupId;
+
+@end
+
+@interface VpcModifyNetworkSecurityGroupRequest:JDCloudRequest
+
+/// 安全组的名字。名称取值范围：1-32个中文、英文大小写的字母、数字和下划线分隔符
+@property (strong,nonatomic,nonnull)  NSString*  networkSecurityGroupName;
+/// 安全组的描述，取值范围：0-256个UTF-8编码下的全部字符
+@property (strong,nonatomic,nonnull)  NSString*  descriptionValue;
+/// NetworkSecurityGroup ID
+@property (strong,nonatomic,nonnull)  NSString*  networkSecurityGroupId;
+-(id) initWithRegion:(NSString *)regionId
+networkSecurityGroupName:(NSString*)networkSecurityGroupName
+descriptionValue:(NSString*)descriptionValue
+networkSecurityGroupId:(NSString*)networkSecurityGroupId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+networkSecurityGroupName:(NSString*)networkSecurityGroupName
+descriptionValue:(NSString*)descriptionValue
+networkSecurityGroupId:(NSString*)networkSecurityGroupId;
+
+@end
+
+@interface VpcDescribeNetworkAclRequest:JDCloudRequest
+
+/// networkAclId ID
+@property (strong,nonatomic,nonnull)  NSString*  networkAclId;
+-(id) initWithRegion:(NSString *)regionId
+networkAclId:(NSString*)networkAclId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+networkAclId:(NSString*)networkAclId;
+
+@end
+
+@interface VpcCreateNetworkAclResult : NSObject
+/// networkAcl ID
+ @property (strong,nonatomic,nonnull)  NSString*  networkAclId;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithNetworkAclId:(NSString*) networkAclId;
+@end
+
+@interface VpcDisassociateNetworkAclRequest:JDCloudRequest
+
+/// networkAcl要解绑的子网ID
+@property (strong,nonatomic,nonnull)  NSString*  subnetId;
+/// networkAclId ID
+@property (strong,nonatomic,nonnull)  NSString*  networkAclId;
+-(id) initWithRegion:(NSString *)regionId
+subnetId:(NSString*)subnetId
+networkAclId:(NSString*)networkAclId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+subnetId:(NSString*)subnetId
+networkAclId:(NSString*)networkAclId;
+
+@end
+
+@interface VpcCreateNetworkAclRequest:JDCloudRequest
+
+/// 私有网络id
+@property (strong,nonatomic,nonnull)  NSString*  vpcId;
+/// networkAcl名称
+@property (strong,nonatomic,nonnull)  NSString*  networkAclName;
+/// 描述,允许输入UTF-8编码下的全部字符，不超过256字符
+@property (strong,nonatomic,nonnull)  NSString*  descriptionValue;
+-(id) initWithRegion:(NSString *)regionId
+vpcId:(NSString*)vpcId
+networkAclName:(NSString*)networkAclName
+descriptionValue:(NSString*)descriptionValue;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+vpcId:(NSString*)vpcId
+networkAclName:(NSString*)networkAclName
+descriptionValue:(NSString*)descriptionValue;
+
+@end
+
+@interface VpcRemoveNetworkAclRulesRequest:JDCloudRequest
+
+/// networkAcl规则ID列表
+@property (strong,nonatomic,nonnull)  NSArray<NSString*>*  ruleIds;
+/// networkAclId ID
+@property (strong,nonatomic,nonnull)  NSString*  networkAclId;
+-(id) initWithRegion:(NSString *)regionId
+ruleIds:(NSArray<NSString*>*)ruleIds
+networkAclId:(NSString*)networkAclId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+ruleIds:(NSArray<NSString*>*)ruleIds
+networkAclId:(NSString*)networkAclId;
+
+@end
+
+@interface VpcModifyNetworkAclRequest:JDCloudRequest
+
+/// networkAcl名称,只允许输入中文、数字、大小写字母、英文下划线“_”及中划线“-”，不允许为空且不超过32字符
+@property (strong,nonatomic,nonnull)  NSString*  networkAclName;
+/// 描述,允许输入UTF-8编码下的全部字符，不超过256字符
+@property (strong,nonatomic,nonnull)  NSString*  descriptionValue;
+/// networkAclId ID
+@property (strong,nonatomic,nonnull)  NSString*  networkAclId;
+-(id) initWithRegion:(NSString *)regionId
+networkAclName:(NSString*)networkAclName
+descriptionValue:(NSString*)descriptionValue
+networkAclId:(NSString*)networkAclId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+networkAclName:(NSString*)networkAclName
+descriptionValue:(NSString*)descriptionValue
+networkAclId:(NSString*)networkAclId;
+
+@end
+
+@interface VpcDeleteNetworkAclRequest:JDCloudRequest
+
+/// networkAclId ID
+@property (strong,nonatomic,nonnull)  NSString*  networkAclId;
+-(id) initWithRegion:(NSString *)regionId
+networkAclId:(NSString*)networkAclId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+networkAclId:(NSString*)networkAclId;
+
+@end
+
+@interface VpcAssociateNetworkAclRequest:JDCloudRequest
+
+/// networkAcl要绑定的子网ID列表, subnet已被其他networkAcl绑定时，自动解绑
+@property (strong,nonatomic,nonnull)  NSArray<NSString*>*  subnetIds;
+/// networkAclId ID
+@property (strong,nonatomic,nonnull)  NSString*  networkAclId;
+-(id) initWithRegion:(NSString *)regionId
+subnetIds:(NSArray<NSString*>*)subnetIds
+networkAclId:(NSString*)networkAclId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+subnetIds:(NSArray<NSString*>*)subnetIds
+networkAclId:(NSString*)networkAclId;
+
+@end
+
+@interface VpcDescribeElasticIpRequest:JDCloudRequest
+
+/// ElasticIp ID
+@property (strong,nonatomic,nonnull)  NSString*  elasticIpId;
+-(id) initWithRegion:(NSString *)regionId
+elasticIpId:(NSString*)elasticIpId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+elasticIpId:(NSString*)elasticIpId;
+
+@end
+
+@interface VpcDeleteElasticIpRequest:JDCloudRequest
+
+/// ElasticIp ID
+@property (strong,nonatomic,nonnull)  NSString*  elasticIpId;
+-(id) initWithRegion:(NSString *)regionId
+elasticIpId:(NSString*)elasticIpId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+elasticIpId:(NSString*)elasticIpId;
+
+@end
+
+@interface VpcModifyElasticIpRequest:JDCloudRequest
+
+/// 弹性公网IP的限速（单位：Mbps），取值范围为[1-200]
+@property (strong,nonatomic,nonnull)  NSNumber*  bandwidthMbps;
+/// ElasticIp ID
+@property (strong,nonatomic,nonnull)  NSString*  elasticIpId;
+-(id) initWithRegion:(NSString *)regionId
+bandwidthMbps:(NSNumber*)bandwidthMbps
+elasticIpId:(NSString*)elasticIpId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+bandwidthMbps:(NSNumber*)bandwidthMbps
+elasticIpId:(NSString*)elasticIpId;
+
+@end
+
+@interface VpcCreateElasticIpsResult : NSObject
+/// 弹性IP ID
+ @property (strong,nonatomic,nonnull)  NSArray<NSString*>*  elasticIpIds;
+/// 请求ID
+ @property (strong,nonatomic,nonnull)  NSString*  requestId;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithElasticIpIds:(NSArray<NSString*>*) elasticIpIds
+
+    requestId:(NSString*)requestId;
+@end
+
+@interface VpcModifyVpcPeeringRequest:JDCloudRequest
+
+/// VpcPeering的名字,不为空。名称取值范围：1-32个中文、英文大小写的字母、数字和下划线分隔符
+@property (strong,nonatomic,nonnull)  NSString*  vpcPeeringName;
+/// VpcPeering 描述，取值范围：0-256个中文、英文大小写的字母、数字和下划线分隔符
+@property (strong,nonatomic,nonnull)  NSString*  descriptionValue;
+/// vpcPeeringId ID
+@property (strong,nonatomic,nonnull)  NSString*  vpcPeeringId;
+-(id) initWithRegion:(NSString *)regionId
+vpcPeeringName:(NSString*)vpcPeeringName
+descriptionValue:(NSString*)descriptionValue
+vpcPeeringId:(NSString*)vpcPeeringId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+vpcPeeringName:(NSString*)vpcPeeringName
+descriptionValue:(NSString*)descriptionValue
+vpcPeeringId:(NSString*)vpcPeeringId;
+
+@end
+
+@interface VpcCreateVpcPeeringRequest:JDCloudRequest
+
+/// VpcPeering的名字,不为空。名称取值范围：1-32个中文、英文大小写的字母、数字和下划线分隔符
+@property (strong,nonatomic,nonnull)  NSString*  vpcPeeringName;
+/// VpcPeering本端Vpc的Id
+@property (strong,nonatomic,nonnull)  NSString*  vpcId;
+/// VpcPeering对端Vpc的Id
+@property (strong,nonatomic,nonnull)  NSString*  remoteVpcId;
+/// VpcPeering 描述，取值范围：0-256个中文、英文大小写的字母、数字和下划线分隔符
+@property (strong,nonatomic,nonnull)  NSString*  descriptionValue;
+-(id) initWithRegion:(NSString *)regionId
+vpcPeeringName:(NSString*)vpcPeeringName
+vpcId:(NSString*)vpcId
+remoteVpcId:(NSString*)remoteVpcId
+descriptionValue:(NSString*)descriptionValue;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+vpcPeeringName:(NSString*)vpcPeeringName
+vpcId:(NSString*)vpcId
+remoteVpcId:(NSString*)remoteVpcId
+descriptionValue:(NSString*)descriptionValue;
+
+@end
+
+@interface VpcDescribeVpcPeeringRequest:JDCloudRequest
+
+/// vpcPeeringId ID
+@property (strong,nonatomic,nonnull)  NSString*  vpcPeeringId;
+-(id) initWithRegion:(NSString *)regionId
+vpcPeeringId:(NSString*)vpcPeeringId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+vpcPeeringId:(NSString*)vpcPeeringId;
+
+@end
+
+@interface VpcDeleteVpcPeeringRequest:JDCloudRequest
+
+/// vpcPeeringId ID
+@property (strong,nonatomic,nonnull)  NSString*  vpcPeeringId;
+-(id) initWithRegion:(NSString *)regionId
+vpcPeeringId:(NSString*)vpcPeeringId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+vpcPeeringId:(NSString*)vpcPeeringId;
+
+@end
+
+@interface VpcDeleteVpcRequest:JDCloudRequest
+
+/// Vpc ID
+@property (strong,nonatomic,nonnull)  NSString*  vpcId;
+-(id) initWithRegion:(NSString *)regionId
+vpcId:(NSString*)vpcId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+vpcId:(NSString*)vpcId;
+
+@end
+
+@interface VpcDescribeVpcRequest:JDCloudRequest
+
+/// Vpc ID
+@property (strong,nonatomic,nonnull)  NSString*  vpcId;
+-(id) initWithRegion:(NSString *)regionId
+vpcId:(NSString*)vpcId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+vpcId:(NSString*)vpcId;
+
+@end
+
+@interface VpcCreateVpcRequest:JDCloudRequest
+
+/// 私有网络名称,只允许输入中文、数字、大小写字母、英文下划线“_”及中划线“-”，不允许为空且不超过32字符。
+@property (strong,nonatomic,nonnull)  NSString*  vpcName;
+/// 如果为空，则不限制网段，如果不为空，10.0.0.0/8、172.16.0.0/12和192.168.0.0/16及它们包含的子网，且子网掩码长度为16-28之间
+@property (strong,nonatomic,nonnull)  NSString*  addressPrefix;
+/// vpc描述，允许输入UTF-8编码下的全部字符，不超过256字符。
+@property (strong,nonatomic,nonnull)  NSString*  descriptionValue;
+-(id) initWithRegion:(NSString *)regionId
+vpcName:(NSString*)vpcName
+addressPrefix:(NSString*)addressPrefix
+descriptionValue:(NSString*)descriptionValue;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+vpcName:(NSString*)vpcName
+addressPrefix:(NSString*)addressPrefix
+descriptionValue:(NSString*)descriptionValue;
+
+@end
+
+@interface VpcModifyVpcRequest:JDCloudRequest
+
+/// 私有网络名称,只允许输入中文、数字、大小写字母、英文下划线“_”及中划线“-”，不允许为空且不超过32字符。
+@property (strong,nonatomic,nonnull)  NSString*  vpcName;
+/// vpc描述，允许输入UTF-8编码下的全部字符，不超过256字符。
+@property (strong,nonatomic,nonnull)  NSString*  descriptionValue;
+/// Vpc ID
+@property (strong,nonatomic,nonnull)  NSString*  vpcId;
+-(id) initWithRegion:(NSString *)regionId
+vpcName:(NSString*)vpcName
+descriptionValue:(NSString*)descriptionValue
+vpcId:(NSString*)vpcId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+vpcName:(NSString*)vpcName
+descriptionValue:(NSString*)descriptionValue
+vpcId:(NSString*)vpcId;
+
+@end
+
+@interface VpcCreateVpcResult : NSObject
+/// 私有网络ID
+ @property (strong,nonatomic,nonnull)  NSString*  vpcId;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithVpcId:(NSString*) vpcId;
+@end
+
 @interface VpcRemoveRouteTableRulesResult : NSObject
 
 -(NSMutableDictionary*) dictionary;
@@ -145,48 +982,6 @@ routeTableId:(NSString*)routeTableId;
     totalCount:(NSNumber*)totalCount;
 @end
 
-@interface VpcModifyRouteTableRequest:JDCloudRequest
-
-/// 路由表的名字。名称取值范围：1-32个中文、英文大小写的字母、数字和下划线分隔符
-@property (strong,nonatomic,nonnull)  NSString*  routeTableName;
-/// 路由表的描述，取值范围：0-256个UTF-8编码下的全部字符
-@property (strong,nonatomic,nonnull)  NSString*  descriptionValue;
-/// RouteTable ID
-@property (strong,nonatomic,nonnull)  NSString*  routeTableId;
--(id) initWithRegion:(NSString *)regionId
-routeTableName:(NSString*)routeTableName
-descriptionValue:(NSString*)descriptionValue
-routeTableId:(NSString*)routeTableId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-routeTableName:(NSString*)routeTableName
-descriptionValue:(NSString*)descriptionValue
-routeTableId:(NSString*)routeTableId;
-
-@end
-
-@interface VpcCreateRouteTableRequest:JDCloudRequest
-
-/// 路由表所属的私有网络ID
-@property (strong,nonatomic,nonnull)  NSString*  vpcId;
-/// 路由表名称，只允许输入中文、数字、大小写字母、英文下划线“_”及中划线“-”，不允许为空且不超过32字符。
-@property (strong,nonatomic,nonnull)  NSString*  routeTableName;
-/// 描述,​ 允许输入UTF-8编码下的全部字符，不超过256字符
-@property (strong,nonatomic,nonnull)  NSString*  descriptionValue;
--(id) initWithRegion:(NSString *)regionId
-vpcId:(NSString*)vpcId
-routeTableName:(NSString*)routeTableName
-descriptionValue:(NSString*)descriptionValue;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-vpcId:(NSString*)vpcId
-routeTableName:(NSString*)routeTableName
-descriptionValue:(NSString*)descriptionValue;
-
-@end
-
 @interface VpcDescribeRouteTableResult : NSObject
 /// 路由表资源信息
  @property (strong,nonatomic,nonnull)  RouteTable*  routeTable;
@@ -195,23 +990,6 @@ descriptionValue:(NSString*)descriptionValue;
 
 -(id) initWithDic:(NSDictionary*)dictionary;
 -(id) initWithRouteTable:(RouteTable*) routeTable;
-@end
-
-@interface VpcAssociateRouteTableRequest:JDCloudRequest
-
-/// 路由表要绑定的子网ID列表, subnet已被其他路由表绑定时，自动解绑。
-@property (strong,nonatomic,nonnull)  NSArray<NSString*>*  subnetIds;
-/// RouteTable ID
-@property (strong,nonatomic,nonnull)  NSString*  routeTableId;
--(id) initWithRegion:(NSString *)regionId
-subnetIds:(NSArray<NSString*>*)subnetIds
-routeTableId:(NSString*)routeTableId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-subnetIds:(NSArray<NSString*>*)subnetIds
-routeTableId:(NSString*)routeTableId;
-
 @end
 
 @interface VpcAssociateRouteTableResult : NSObject
@@ -243,19 +1021,6 @@ routeTableId:(NSString*)routeTableId;
 -(NSMutableDictionary*) dictionary;
 
 -(id) initWithDic:(NSDictionary*)dictionary;
-@end
-
-@interface VpcDescribeRouteTableRequest:JDCloudRequest
-
-/// RouteTable ID
-@property (strong,nonatomic,nonnull)  NSString*  routeTableId;
--(id) initWithRegion:(NSString *)regionId
-routeTableId:(NSString*)routeTableId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-routeTableId:(NSString*)routeTableId;
-
 @end
 
 @interface VpcModifyRouteTableRulesRequest:JDCloudRequest
@@ -338,16 +1103,6 @@ routeTableId:(NSString*)routeTableId;
 -(id) initWithRequestId:(NSString*) requestId
         error:(ServiceError*) error
         result:(VpcDescribeRouteTablesResult*) result;
-@end
-
-@interface VpcCreateRouteTableResult : NSObject
-/// 路由表ID
- @property (strong,nonatomic,nonnull)  NSString*  routeTableId;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithRouteTableId:(NSString*) routeTableId;
 @end
 
 @interface VpcModifyRouteTableResponse : NSObject
@@ -442,50 +1197,6 @@ routeTableId:(NSString*)routeTableId;
         result:(VpcAddRouteTableRulesResult*) result;
 @end
 
-@interface VpcDisassociateRouteTableRequest:JDCloudRequest
-
-/// 路由表要解绑的子网ID，解绑后子网绑定默认路由表
-@property (strong,nonatomic,nonnull)  NSString*  subnetId;
-/// RouteTable ID
-@property (strong,nonatomic,nonnull)  NSString*  routeTableId;
--(id) initWithRegion:(NSString *)regionId
-subnetId:(NSString*)subnetId
-routeTableId:(NSString*)routeTableId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-subnetId:(NSString*)subnetId
-routeTableId:(NSString*)routeTableId;
-
-@end
-
-@interface VpcDescribeQuotaRequest:JDCloudRequest
-
-/// 资源类型，取值范围：vpc、elastic_ip、subnet、security_group、vpcpeering、network_interface（配额只统计辅助网卡）
-@property (strong,nonatomic,nonnull)  NSString*  type;
-/// type为vpc、elastic_ip、network_interface不设置, type为subnet、security_group、vpcpeering设置为vpcId
-@property (strong,nonatomic,nonnull)  NSString*  parentResourceId;
--(id) initWithRegion:(NSString *)regionId
-type:(NSString*)type
-parentResourceId:(NSString*)parentResourceId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-type:(NSString*)type
-parentResourceId:(NSString*)parentResourceId;
-
-@end
-
-@interface VpcDescribeQuotaResult : NSObject
-/// Quota
- @property (strong,nonatomic,nonnull)  NSObject*  quota;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithQuota:(NSObject*) quota;
-@end
-
 @interface VpcDescribeQuotaResponse : NSObject
 
 @property NSString* requestId;
@@ -501,16 +1212,6 @@ parentResourceId:(NSString*)parentResourceId;
 -(id) initWithRequestId:(NSString*) requestId
         error:(ServiceError*) error
         result:(VpcDescribeQuotaResult*) result;
-@end
-
-@interface VpcCreateNetworkInterfaceResult : NSObject
-/// 弹性网卡Id
- @property (strong,nonatomic,nonnull)  NSString*  networkInterfaceId;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithNetworkInterfaceId:(NSString*) networkInterfaceId;
 @end
 
 @interface VpcUnassignSecondaryIpsResult : NSObject
@@ -633,44 +1334,6 @@ parentResourceId:(NSString*)parentResourceId;
         result:(VpcAssociateElasticIpResult*) result;
 @end
 
-@interface VpcAssignSecondaryIpsRequest:JDCloudRequest
-
-/// secondary ip被其他接口占用时，是否抢占。false：非抢占重分配，true：抢占重分配，默认抢占重分配。默认值：true
-@property (strong,nonatomic,nonnull)  NSNumber*  force;
-/// 指定分配的secondaryIp地址
-@property (strong,nonatomic,nonnull)  NSArray<NSString*>*  secondaryIps;
-/// 指定自动分配的secondaryIp个数
-@property (strong,nonatomic,nonnull)  NSNumber*  secondaryIpCount;
-/// networkInterface ID
-@property (strong,nonatomic,nonnull)  NSString*  networkInterfaceId;
--(id) initWithRegion:(NSString *)regionId
-force:(NSNumber*)force
-secondaryIps:(NSArray<NSString*>*)secondaryIps
-secondaryIpCount:(NSNumber*)secondaryIpCount
-networkInterfaceId:(NSString*)networkInterfaceId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-force:(NSNumber*)force
-secondaryIps:(NSArray<NSString*>*)secondaryIps
-secondaryIpCount:(NSNumber*)secondaryIpCount
-networkInterfaceId:(NSString*)networkInterfaceId;
-
-@end
-
-@interface VpcDeleteNetworkInterfaceRequest:JDCloudRequest
-
-/// networkInterface ID
-@property (strong,nonatomic,nonnull)  NSString*  networkInterfaceId;
--(id) initWithRegion:(NSString *)regionId
-networkInterfaceId:(NSString*)networkInterfaceId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-networkInterfaceId:(NSString*)networkInterfaceId;
-
-@end
-
 @interface VpcAssignSecondaryIpsResult : NSObject
 
 -(NSMutableDictionary*) dictionary;
@@ -712,76 +1375,6 @@ networkInterfaceId:(NSString*)networkInterfaceId;
         result:(VpcUnassignSecondaryIpsResult*) result;
 @end
 
-@interface VpcCreateNetworkInterfaceRequest:JDCloudRequest
-
-/// 子网ID
-@property (strong,nonatomic,nonnull)  NSString*  subnetId;
-/// 可用区，用户的默认可用区
-@property (strong,nonatomic,nonnull)  NSString*  az;
-/// 网卡名称，只允许输入中文、数字、大小写字母、英文下划线“_”及中划线“-”，不允许为空且不超过32字符。
-@property (strong,nonatomic,nonnull)  NSString*  networkInterfaceName;
-/// 网卡主IP，如果不指定，会自动从子网中分配
-@property (strong,nonatomic,nonnull)  NSString*  primaryIpAddress;
-/// SecondaryIp列表
-@property (strong,nonatomic,nonnull)  NSArray<NSString*>*  secondaryIpAddresses;
-/// 自动分配的SecondaryIp数量
-@property (strong,nonatomic,nonnull)  NSNumber*  secondaryIpCount;
-/// 要绑定的安全组ID列表，最多指定5个安全组
-@property (strong,nonatomic,nonnull)  NSArray<NSString*>*  securityGroups;
-/// 源和目标IP地址校验，取值为0或者1,默认为1
-@property (strong,nonatomic,nonnull)  NSNumber*  sanityCheck;
-/// 描述,​ 允许输入UTF-8编码下的全部字符，不超过256字符
-@property (strong,nonatomic,nonnull)  NSString*  descriptionValue;
--(id) initWithRegion:(NSString *)regionId
-subnetId:(NSString*)subnetId
-az:(NSString*)az
-networkInterfaceName:(NSString*)networkInterfaceName
-primaryIpAddress:(NSString*)primaryIpAddress
-secondaryIpAddresses:(NSArray<NSString*>*)secondaryIpAddresses
-secondaryIpCount:(NSNumber*)secondaryIpCount
-securityGroups:(NSArray<NSString*>*)securityGroups
-sanityCheck:(NSNumber*)sanityCheck
-descriptionValue:(NSString*)descriptionValue;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-subnetId:(NSString*)subnetId
-az:(NSString*)az
-networkInterfaceName:(NSString*)networkInterfaceName
-primaryIpAddress:(NSString*)primaryIpAddress
-secondaryIpAddresses:(NSArray<NSString*>*)secondaryIpAddresses
-secondaryIpCount:(NSNumber*)secondaryIpCount
-securityGroups:(NSArray<NSString*>*)securityGroups
-sanityCheck:(NSNumber*)sanityCheck
-descriptionValue:(NSString*)descriptionValue;
-
-@end
-
-@interface VpcAssociateElasticIpRequest:JDCloudRequest
-
-/// 绑定的弹性Ip Id
-@property (strong,nonatomic,nonnull)  NSString*  elasticIpId;
-/// 绑定弹性Ip到指定的privateIp
-@property (strong,nonatomic,nonnull)  NSString*  privateIpAddress;
-/// 绑定的弹性Ip地址
-@property (strong,nonatomic,nonnull)  NSString*  elasticIpAddress;
-/// networkInterface ID
-@property (strong,nonatomic,nonnull)  NSString*  networkInterfaceId;
--(id) initWithRegion:(NSString *)regionId
-elasticIpId:(NSString*)elasticIpId
-privateIpAddress:(NSString*)privateIpAddress
-elasticIpAddress:(NSString*)elasticIpAddress
-networkInterfaceId:(NSString*)networkInterfaceId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-elasticIpId:(NSString*)elasticIpId
-privateIpAddress:(NSString*)privateIpAddress
-elasticIpAddress:(NSString*)elasticIpAddress
-networkInterfaceId:(NSString*)networkInterfaceId;
-
-@end
-
 @interface VpcDescribeNetworkInterfacesResponse : NSObject
 
 @property NSString* requestId;
@@ -797,44 +1390,6 @@ networkInterfaceId:(NSString*)networkInterfaceId;
 -(id) initWithRequestId:(NSString*) requestId
         error:(ServiceError*) error
         result:(VpcDescribeNetworkInterfacesResult*) result;
-@end
-
-@interface VpcDisassociateElasticIpRequest:JDCloudRequest
-
-/// 指定解绑的弹性Ip Id
-@property (strong,nonatomic,nonnull)  NSString*  elasticIpId;
-/// 指定解绑的弹性Ip地址
-@property (strong,nonatomic,nonnull)  NSString*  elasticIpAddress;
-/// networkInterface ID
-@property (strong,nonatomic,nonnull)  NSString*  networkInterfaceId;
--(id) initWithRegion:(NSString *)regionId
-elasticIpId:(NSString*)elasticIpId
-elasticIpAddress:(NSString*)elasticIpAddress
-networkInterfaceId:(NSString*)networkInterfaceId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-elasticIpId:(NSString*)elasticIpId
-elasticIpAddress:(NSString*)elasticIpAddress
-networkInterfaceId:(NSString*)networkInterfaceId;
-
-@end
-
-@interface VpcUnassignSecondaryIpsRequest:JDCloudRequest
-
-/// 指定删除的secondaryIp地址
-@property (strong,nonatomic,nonnull)  NSArray<NSString*>*  secondaryIps;
-/// networkInterface ID
-@property (strong,nonatomic,nonnull)  NSString*  networkInterfaceId;
--(id) initWithRegion:(NSString *)regionId
-secondaryIps:(NSArray<NSString*>*)secondaryIps
-networkInterfaceId:(NSString*)networkInterfaceId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-secondaryIps:(NSArray<NSString*>*)secondaryIps
-networkInterfaceId:(NSString*)networkInterfaceId;
-
 @end
 
 @interface VpcCreateNetworkInterfaceResponse : NSObject
@@ -854,49 +1409,11 @@ networkInterfaceId:(NSString*)networkInterfaceId;
         result:(VpcCreateNetworkInterfaceResult*) result;
 @end
 
-@interface VpcDescribeNetworkInterfaceRequest:JDCloudRequest
-
-/// networkInterface ID
-@property (strong,nonatomic,nonnull)  NSString*  networkInterfaceId;
--(id) initWithRegion:(NSString *)regionId
-networkInterfaceId:(NSString*)networkInterfaceId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-networkInterfaceId:(NSString*)networkInterfaceId;
-
-@end
-
 @interface VpcDisassociateElasticIpResult : NSObject
 
 -(NSMutableDictionary*) dictionary;
 
 -(id) initWithDic:(NSDictionary*)dictionary;
-@end
-
-@interface VpcModifyNetworkInterfaceRequest:JDCloudRequest
-
-/// 弹性网卡名称,只允许输入中文、数字、大小写字母、英文下划线“_”及中划线“-”，不允许为空且不超过32字符
-@property (strong,nonatomic,nonnull)  NSString*  networkInterfaceName;
-/// 描述,允许输入UTF-8编码下的全部字符，不超过256字符
-@property (strong,nonatomic,nonnull)  NSString*  descriptionValue;
-/// 以覆盖原有安全组的方式更新的安全组。如果更新安全组ID列表，最多5个安全组
-@property (strong,nonatomic,nonnull)  NSArray<NSString*>*  securityGroups;
-/// networkInterface ID
-@property (strong,nonatomic,nonnull)  NSString*  networkInterfaceId;
--(id) initWithRegion:(NSString *)regionId
-networkInterfaceName:(NSString*)networkInterfaceName
-descriptionValue:(NSString*)descriptionValue
-securityGroups:(NSArray<NSString*>*)securityGroups
-networkInterfaceId:(NSString*)networkInterfaceId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-networkInterfaceName:(NSString*)networkInterfaceName
-descriptionValue:(NSString*)descriptionValue
-securityGroups:(NSArray<NSString*>*)securityGroups
-networkInterfaceId:(NSString*)networkInterfaceId;
-
 @end
 
 @interface VpcDescribeNetworkInterfacesRequest:JDCloudRequest
@@ -949,19 +1466,6 @@ filters:(NSArray<Filter*>*)filters;
 -(id) initWithDic:(NSDictionary*)dictionary;
 @end
 
-@interface VpcDescribeSubnetRequest:JDCloudRequest
-
-/// Subnet ID
-@property (strong,nonatomic,nonnull)  NSString*  subnetId;
--(id) initWithRegion:(NSString *)regionId
-subnetId:(NSString*)subnetId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-subnetId:(NSString*)subnetId;
-
-@end
-
 @interface VpcDescribeSubnetsResult : NSObject
 /// Subnets
  @property (strong,nonatomic,nonnull)  NSArray<Subnet*>*  subnets;
@@ -991,16 +1495,6 @@ subnetId:(NSString*)subnetId;
 -(id) initWithRequestId:(NSString*) requestId
         error:(ServiceError*) error
         result:(VpcDescribeSubnetsResult*) result;
-@end
-
-@interface VpcCreateSubnetResult : NSObject
-/// 子网ID
- @property (strong,nonatomic,nonnull)  NSString*  subnetId;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithSubnetId:(NSString*) subnetId;
 @end
 
 @interface VpcDescribeSubnetResult : NSObject
@@ -1073,48 +1567,6 @@ filters:(NSArray<Filter*>*)filters;
 
 @end
 
-@interface VpcDeleteSubnetRequest:JDCloudRequest
-
-/// Subnet ID
-@property (strong,nonatomic,nonnull)  NSString*  subnetId;
--(id) initWithRegion:(NSString *)regionId
-subnetId:(NSString*)subnetId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-subnetId:(NSString*)subnetId;
-
-@end
-
-@interface VpcCreateSubnetRequest:JDCloudRequest
-
-/// 子网所属vpc的Id
-@property (strong,nonatomic,nonnull)  NSString*  vpcId;
-/// 子网名称,只允许输入中文、数字、大小写字母、英文下划线“_”及中划线“-”，不允许为空且不超过32字符。
-@property (strong,nonatomic,nonnull)  NSString*  subnetName;
-/// 子网网段，vpc内子网网段不能重叠，cidr的取值范围：10.0.0.0/8、172.16.0.0/12和192.168.0.0/16及它们包含的子网，且子网掩码长度为16-28之间，如果vpc含有cidr，则必须为vpc所在cidr的子网
-@property (strong,nonatomic,nonnull)  NSString*  addressPrefix;
-/// 子网关联的路由表Id, 默认为vpc的默认路由表
-@property (strong,nonatomic,nonnull)  NSString*  routeTableId;
-/// 子网描述信息,允许输入UTF-8编码下的全部字符，不超过256字符。
-@property (strong,nonatomic,nonnull)  NSString*  descriptionValue;
--(id) initWithRegion:(NSString *)regionId
-vpcId:(NSString*)vpcId
-subnetName:(NSString*)subnetName
-addressPrefix:(NSString*)addressPrefix
-routeTableId:(NSString*)routeTableId
-descriptionValue:(NSString*)descriptionValue;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-vpcId:(NSString*)vpcId
-subnetName:(NSString*)subnetName
-addressPrefix:(NSString*)addressPrefix
-routeTableId:(NSString*)routeTableId
-descriptionValue:(NSString*)descriptionValue;
-
-@end
-
 @interface VpcModifySubnetResult : NSObject
 
 -(NSMutableDictionary*) dictionary;
@@ -1156,27 +1608,6 @@ descriptionValue:(NSString*)descriptionValue;
         result:(VpcModifySubnetResult*) result;
 @end
 
-@interface VpcModifySubnetRequest:JDCloudRequest
-
-/// 子网名称,只允许输入中文、数字、大小写字母、英文下划线“_”及中划线“-”，不允许为空且不超过32字符。
-@property (strong,nonatomic,nonnull)  NSString*  subnetName;
-/// 子网描述信息，允许输入UTF-8编码下的全部字符，不超过256字符。
-@property (strong,nonatomic,nonnull)  NSString*  descriptionValue;
-/// Subnet ID
-@property (strong,nonatomic,nonnull)  NSString*  subnetId;
--(id) initWithRegion:(NSString *)regionId
-subnetName:(NSString*)subnetName
-descriptionValue:(NSString*)descriptionValue
-subnetId:(NSString*)subnetId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-subnetName:(NSString*)subnetName
-descriptionValue:(NSString*)descriptionValue
-subnetId:(NSString*)subnetId;
-
-@end
-
 @interface VpcDescribeNetworkSecurityGroupsResult : NSObject
 /// NetworkSecurityGroups
  @property (strong,nonatomic,nonnull)  NSArray<NetworkSecurityGroup*>*  networkSecurityGroups;
@@ -1191,23 +1622,6 @@ subnetId:(NSString*)subnetId;
     totalCount:(NSNumber*)totalCount;
 @end
 
-@interface VpcRemoveNetworkSecurityGroupRulesRequest:JDCloudRequest
-
-/// 安全组规则Id列表
-@property (strong,nonatomic,nonnull)  NSArray<NSString*>*  ruleIds;
-/// NetworkSecurityGroup ID
-@property (strong,nonatomic,nonnull)  NSString*  networkSecurityGroupId;
--(id) initWithRegion:(NSString *)regionId
-ruleIds:(NSArray<NSString*>*)ruleIds
-networkSecurityGroupId:(NSString*)networkSecurityGroupId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-ruleIds:(NSArray<NSString*>*)ruleIds
-networkSecurityGroupId:(NSString*)networkSecurityGroupId;
-
-@end
-
 @interface VpcDescribeNetworkSecurityGroupResult : NSObject
 /// 安全组资源信息
  @property (strong,nonatomic,nonnull)  NetworkSecurityGroup*  networkSecurityGroup;
@@ -1216,40 +1630,6 @@ networkSecurityGroupId:(NSString*)networkSecurityGroupId;
 
 -(id) initWithDic:(NSDictionary*)dictionary;
 -(id) initWithNetworkSecurityGroup:(NetworkSecurityGroup*) networkSecurityGroup;
-@end
-
-@interface VpcDeleteNetworkSecurityGroupRequest:JDCloudRequest
-
-/// NetworkSecurityGroup ID
-@property (strong,nonatomic,nonnull)  NSString*  networkSecurityGroupId;
--(id) initWithRegion:(NSString *)regionId
-networkSecurityGroupId:(NSString*)networkSecurityGroupId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-networkSecurityGroupId:(NSString*)networkSecurityGroupId;
-
-@end
-
-@interface VpcCreateNetworkSecurityGroupRequest:JDCloudRequest
-
-/// 私有网络ID
-@property (strong,nonatomic,nonnull)  NSString*  vpcId;
-/// 安全组名称，只允许输入中文、数字、大小写字母、英文下划线“_”及中划线“-”，不允许为空且不超过32字符。
-@property (strong,nonatomic,nonnull)  NSString*  networkSecurityGroupName;
-/// 描述,​ 允许输入UTF-8编码下的全部字符，不超过256字符
-@property (strong,nonatomic,nonnull)  NSString*  descriptionValue;
--(id) initWithRegion:(NSString *)regionId
-vpcId:(NSString*)vpcId
-networkSecurityGroupName:(NSString*)networkSecurityGroupName
-descriptionValue:(NSString*)descriptionValue;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-vpcId:(NSString*)vpcId
-networkSecurityGroupName:(NSString*)networkSecurityGroupName
-descriptionValue:(NSString*)descriptionValue;
-
 @end
 
 @interface VpcAddNetworkSecurityGroupRulesResult : NSObject
@@ -1274,16 +1654,6 @@ descriptionValue:(NSString*)descriptionValue;
 -(id) initWithRequestId:(NSString*) requestId
         error:(ServiceError*) error
         result:(VpcAddNetworkSecurityGroupRulesResult*) result;
-@end
-
-@interface VpcCreateNetworkSecurityGroupResult : NSObject
-/// 安全组ID
- @property (strong,nonatomic,nonnull)  NSString*  networkSecurityGroupId;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithNetworkSecurityGroupId:(NSString*) networkSecurityGroupId;
 @end
 
 @interface VpcDescribeNetworkSecurityGroupsResponse : NSObject
@@ -1474,40 +1844,6 @@ filters:(NSArray<Filter*>*)filters;
         result:(VpcModifyNetworkSecurityGroupResult*) result;
 @end
 
-@interface VpcDescribeNetworkSecurityGroupRequest:JDCloudRequest
-
-/// NetworkSecurityGroup ID
-@property (strong,nonatomic,nonnull)  NSString*  networkSecurityGroupId;
--(id) initWithRegion:(NSString *)regionId
-networkSecurityGroupId:(NSString*)networkSecurityGroupId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-networkSecurityGroupId:(NSString*)networkSecurityGroupId;
-
-@end
-
-@interface VpcModifyNetworkSecurityGroupRequest:JDCloudRequest
-
-/// 安全组的名字。名称取值范围：1-32个中文、英文大小写的字母、数字和下划线分隔符
-@property (strong,nonatomic,nonnull)  NSString*  networkSecurityGroupName;
-/// 安全组的描述，取值范围：0-256个UTF-8编码下的全部字符
-@property (strong,nonatomic,nonnull)  NSString*  descriptionValue;
-/// NetworkSecurityGroup ID
-@property (strong,nonatomic,nonnull)  NSString*  networkSecurityGroupId;
--(id) initWithRegion:(NSString *)regionId
-networkSecurityGroupName:(NSString*)networkSecurityGroupName
-descriptionValue:(NSString*)descriptionValue
-networkSecurityGroupId:(NSString*)networkSecurityGroupId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-networkSecurityGroupName:(NSString*)networkSecurityGroupName
-descriptionValue:(NSString*)descriptionValue
-networkSecurityGroupId:(NSString*)networkSecurityGroupId;
-
-@end
-
 @interface VpcDescribeNetworkSecurityGroupResponse : NSObject
 
 @property NSString* requestId;
@@ -1545,46 +1881,6 @@ networkAclId:(NSString*)networkAclId;
 -(id) initWithRegion:(NSString *)regionId
              version:(NSString *)version
 modifyNetworkAclRuleSpecs:(NSArray<ModifyNetworkAclRuleSpec*>*)modifyNetworkAclRuleSpecs
-networkAclId:(NSString*)networkAclId;
-
-@end
-
-@interface VpcDescribeNetworkAclRequest:JDCloudRequest
-
-/// networkAclId ID
-@property (strong,nonatomic,nonnull)  NSString*  networkAclId;
--(id) initWithRegion:(NSString *)regionId
-networkAclId:(NSString*)networkAclId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-networkAclId:(NSString*)networkAclId;
-
-@end
-
-@interface VpcCreateNetworkAclResult : NSObject
-/// networkAcl ID
- @property (strong,nonatomic,nonnull)  NSString*  networkAclId;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithNetworkAclId:(NSString*) networkAclId;
-@end
-
-@interface VpcDisassociateNetworkAclRequest:JDCloudRequest
-
-/// networkAcl要解绑的子网ID
-@property (strong,nonatomic,nonnull)  NSString*  subnetId;
-/// networkAclId ID
-@property (strong,nonatomic,nonnull)  NSString*  networkAclId;
--(id) initWithRegion:(NSString *)regionId
-subnetId:(NSString*)subnetId
-networkAclId:(NSString*)networkAclId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-subnetId:(NSString*)subnetId
 networkAclId:(NSString*)networkAclId;
 
 @end
@@ -1654,27 +1950,6 @@ networkAclId:(NSString*)networkAclId;
         result:(VpcDescribeNetworkAclsResult*) result;
 @end
 
-@interface VpcCreateNetworkAclRequest:JDCloudRequest
-
-/// 私有网络id
-@property (strong,nonatomic,nonnull)  NSString*  vpcId;
-/// networkAcl名称
-@property (strong,nonatomic,nonnull)  NSString*  networkAclName;
-/// 描述,允许输入UTF-8编码下的全部字符，不超过256字符
-@property (strong,nonatomic,nonnull)  NSString*  descriptionValue;
--(id) initWithRegion:(NSString *)regionId
-vpcId:(NSString*)vpcId
-networkAclName:(NSString*)networkAclName
-descriptionValue:(NSString*)descriptionValue;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-vpcId:(NSString*)vpcId
-networkAclName:(NSString*)networkAclName
-descriptionValue:(NSString*)descriptionValue;
-
-@end
-
 @interface VpcModifyNetworkAclRulesResult : NSObject
 
 -(NSMutableDictionary*) dictionary;
@@ -1706,23 +1981,6 @@ descriptionValue:(NSString*)descriptionValue;
 -(id) initWithDic:(NSDictionary*)dictionary;
 @end
 
-@interface VpcRemoveNetworkAclRulesRequest:JDCloudRequest
-
-/// networkAcl规则ID列表
-@property (strong,nonatomic,nonnull)  NSArray<NSString*>*  ruleIds;
-/// networkAclId ID
-@property (strong,nonatomic,nonnull)  NSString*  networkAclId;
--(id) initWithRegion:(NSString *)regionId
-ruleIds:(NSArray<NSString*>*)ruleIds
-networkAclId:(NSString*)networkAclId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-ruleIds:(NSArray<NSString*>*)ruleIds
-networkAclId:(NSString*)networkAclId;
-
-@end
-
 @interface VpcAssociateNetworkAclResponse : NSObject
 
 @property NSString* requestId;
@@ -1745,40 +2003,6 @@ networkAclId:(NSString*)networkAclId;
 -(NSMutableDictionary*) dictionary;
 
 -(id) initWithDic:(NSDictionary*)dictionary;
-@end
-
-@interface VpcModifyNetworkAclRequest:JDCloudRequest
-
-/// networkAcl名称,只允许输入中文、数字、大小写字母、英文下划线“_”及中划线“-”，不允许为空且不超过32字符
-@property (strong,nonatomic,nonnull)  NSString*  networkAclName;
-/// 描述,允许输入UTF-8编码下的全部字符，不超过256字符
-@property (strong,nonatomic,nonnull)  NSString*  descriptionValue;
-/// networkAclId ID
-@property (strong,nonatomic,nonnull)  NSString*  networkAclId;
--(id) initWithRegion:(NSString *)regionId
-networkAclName:(NSString*)networkAclName
-descriptionValue:(NSString*)descriptionValue
-networkAclId:(NSString*)networkAclId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-networkAclName:(NSString*)networkAclName
-descriptionValue:(NSString*)descriptionValue
-networkAclId:(NSString*)networkAclId;
-
-@end
-
-@interface VpcDeleteNetworkAclRequest:JDCloudRequest
-
-/// networkAclId ID
-@property (strong,nonatomic,nonnull)  NSString*  networkAclId;
--(id) initWithRegion:(NSString *)regionId
-networkAclId:(NSString*)networkAclId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-networkAclId:(NSString*)networkAclId;
-
 @end
 
 @interface VpcAddNetworkAclRulesResponse : NSObject
@@ -1813,23 +2037,6 @@ networkAclId:(NSString*)networkAclId;
 -(id) initWithRequestId:(NSString*) requestId
         error:(ServiceError*) error
         result:(VpcCreateNetworkAclResult*) result;
-@end
-
-@interface VpcAssociateNetworkAclRequest:JDCloudRequest
-
-/// networkAcl要绑定的子网ID列表, subnet已被其他networkAcl绑定时，自动解绑
-@property (strong,nonatomic,nonnull)  NSArray<NSString*>*  subnetIds;
-/// networkAclId ID
-@property (strong,nonatomic,nonnull)  NSString*  networkAclId;
--(id) initWithRegion:(NSString *)regionId
-subnetIds:(NSArray<NSString*>*)subnetIds
-networkAclId:(NSString*)networkAclId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-subnetIds:(NSArray<NSString*>*)subnetIds
-networkAclId:(NSString*)networkAclId;
-
 @end
 
 @interface VpcDisassociateNetworkAclResult : NSObject
@@ -2000,19 +2207,6 @@ networkAclId:(NSString*)networkAclId;
         result:(VpcDeleteElasticIpResult*) result;
 @end
 
-@interface VpcDescribeElasticIpRequest:JDCloudRequest
-
-/// ElasticIp ID
-@property (strong,nonatomic,nonnull)  NSString*  elasticIpId;
--(id) initWithRegion:(NSString *)regionId
-elasticIpId:(NSString*)elasticIpId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-elasticIpId:(NSString*)elasticIpId;
-
-@end
-
 @interface VpcDescribeElasticIpResult : NSObject
 /// elasticIp资源信息
  @property (strong,nonatomic,nonnull)  ElasticIp*  elasticIp;
@@ -2081,19 +2275,6 @@ filters:(NSArray<Filter*>*)filters;
         result:(VpcDescribeElasticIpsResult*) result;
 @end
 
-@interface VpcDeleteElasticIpRequest:JDCloudRequest
-
-/// ElasticIp ID
-@property (strong,nonatomic,nonnull)  NSString*  elasticIpId;
--(id) initWithRegion:(NSString *)regionId
-elasticIpId:(NSString*)elasticIpId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-elasticIpId:(NSString*)elasticIpId;
-
-@end
-
 @interface VpcModifyElasticIpResponse : NSObject
 
 @property NSString* requestId;
@@ -2109,20 +2290,6 @@ elasticIpId:(NSString*)elasticIpId;
 -(id) initWithRequestId:(NSString*) requestId
         error:(ServiceError*) error
         result:(VpcModifyElasticIpResult*) result;
-@end
-
-@interface VpcCreateElasticIpsResult : NSObject
-/// 弹性IP ID
- @property (strong,nonatomic,nonnull)  NSArray<NSString*>*  elasticIpIds;
-/// 请求ID
- @property (strong,nonatomic,nonnull)  NSString*  requestId;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithElasticIpIds:(NSArray<NSString*>*) elasticIpIds
-
-    requestId:(NSString*)requestId;
 @end
 
 @interface VpcCreateElasticIpsResponse : NSObject
@@ -2160,23 +2327,6 @@ elasticIpSpec:(ElasticIpSpec*)elasticIpSpec;
 maxCount:(NSNumber*)maxCount
 elasticIpAddress:(NSString*)elasticIpAddress
 elasticIpSpec:(ElasticIpSpec*)elasticIpSpec;
-
-@end
-
-@interface VpcModifyElasticIpRequest:JDCloudRequest
-
-/// 弹性公网IP的限速（单位：Mbps），取值范围为[1-200]
-@property (strong,nonatomic,nonnull)  NSNumber*  bandwidthMbps;
-/// ElasticIp ID
-@property (strong,nonatomic,nonnull)  NSString*  elasticIpId;
--(id) initWithRegion:(NSString *)regionId
-bandwidthMbps:(NSNumber*)bandwidthMbps
-elasticIpId:(NSString*)elasticIpId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-bandwidthMbps:(NSNumber*)bandwidthMbps
-elasticIpId:(NSString*)elasticIpId;
 
 @end
 
@@ -2290,27 +2440,6 @@ filters:(NSArray<Filter*>*)filters;
         result:(VpcDeleteVpcPeeringResult*) result;
 @end
 
-@interface VpcModifyVpcPeeringRequest:JDCloudRequest
-
-/// VpcPeering的名字,不为空。名称取值范围：1-32个中文、英文大小写的字母、数字和下划线分隔符
-@property (strong,nonatomic,nonnull)  NSString*  vpcPeeringName;
-/// VpcPeering 描述，取值范围：0-256个中文、英文大小写的字母、数字和下划线分隔符
-@property (strong,nonatomic,nonnull)  NSString*  descriptionValue;
-/// vpcPeeringId ID
-@property (strong,nonatomic,nonnull)  NSString*  vpcPeeringId;
--(id) initWithRegion:(NSString *)regionId
-vpcPeeringName:(NSString*)vpcPeeringName
-descriptionValue:(NSString*)descriptionValue
-vpcPeeringId:(NSString*)vpcPeeringId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-vpcPeeringName:(NSString*)vpcPeeringName
-descriptionValue:(NSString*)descriptionValue
-vpcPeeringId:(NSString*)vpcPeeringId;
-
-@end
-
 @interface VpcModifyVpcPeeringResponse : NSObject
 
 @property NSString* requestId;
@@ -2326,57 +2455,6 @@ vpcPeeringId:(NSString*)vpcPeeringId;
 -(id) initWithRequestId:(NSString*) requestId
         error:(ServiceError*) error
         result:(VpcModifyVpcPeeringResult*) result;
-@end
-
-@interface VpcCreateVpcPeeringRequest:JDCloudRequest
-
-/// VpcPeering的名字,不为空。名称取值范围：1-32个中文、英文大小写的字母、数字和下划线分隔符
-@property (strong,nonatomic,nonnull)  NSString*  vpcPeeringName;
-/// VpcPeering本端Vpc的Id
-@property (strong,nonatomic,nonnull)  NSString*  vpcId;
-/// VpcPeering对端Vpc的Id
-@property (strong,nonatomic,nonnull)  NSString*  remoteVpcId;
-/// VpcPeering 描述，取值范围：0-256个中文、英文大小写的字母、数字和下划线分隔符
-@property (strong,nonatomic,nonnull)  NSString*  descriptionValue;
--(id) initWithRegion:(NSString *)regionId
-vpcPeeringName:(NSString*)vpcPeeringName
-vpcId:(NSString*)vpcId
-remoteVpcId:(NSString*)remoteVpcId
-descriptionValue:(NSString*)descriptionValue;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-vpcPeeringName:(NSString*)vpcPeeringName
-vpcId:(NSString*)vpcId
-remoteVpcId:(NSString*)remoteVpcId
-descriptionValue:(NSString*)descriptionValue;
-
-@end
-
-@interface VpcDescribeVpcPeeringRequest:JDCloudRequest
-
-/// vpcPeeringId ID
-@property (strong,nonatomic,nonnull)  NSString*  vpcPeeringId;
--(id) initWithRegion:(NSString *)regionId
-vpcPeeringId:(NSString*)vpcPeeringId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-vpcPeeringId:(NSString*)vpcPeeringId;
-
-@end
-
-@interface VpcDeleteVpcPeeringRequest:JDCloudRequest
-
-/// vpcPeeringId ID
-@property (strong,nonatomic,nonnull)  NSString*  vpcPeeringId;
--(id) initWithRegion:(NSString *)regionId
-vpcPeeringId:(NSString*)vpcPeeringId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-vpcPeeringId:(NSString*)vpcPeeringId;
-
 @end
 
 @interface VpcDescribeVpcPeeringsResult : NSObject
@@ -2433,19 +2511,6 @@ filters:(NSArray<Filter*>*)filters;
 
 @end
 
-@interface VpcDeleteVpcRequest:JDCloudRequest
-
-/// Vpc ID
-@property (strong,nonatomic,nonnull)  NSString*  vpcId;
--(id) initWithRegion:(NSString *)regionId
-vpcId:(NSString*)vpcId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-vpcId:(NSString*)vpcId;
-
-@end
-
 @interface VpcDescribeVpcsResult : NSObject
 /// Vpcs
  @property (strong,nonatomic,nonnull)  NSArray<Vpc*>*  vpcs;
@@ -2470,19 +2535,6 @@ vpcId:(NSString*)vpcId;
 -(id) initWithVpc:(Vpc*) vpc;
 @end
 
-@interface VpcDescribeVpcRequest:JDCloudRequest
-
-/// Vpc ID
-@property (strong,nonatomic,nonnull)  NSString*  vpcId;
--(id) initWithRegion:(NSString *)regionId
-vpcId:(NSString*)vpcId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-vpcId:(NSString*)vpcId;
-
-@end
-
 @interface VpcDescribeVpcResponse : NSObject
 
 @property NSString* requestId;
@@ -2498,48 +2550,6 @@ vpcId:(NSString*)vpcId;
 -(id) initWithRequestId:(NSString*) requestId
         error:(ServiceError*) error
         result:(VpcDescribeVpcResult*) result;
-@end
-
-@interface VpcCreateVpcRequest:JDCloudRequest
-
-/// 私有网络名称,只允许输入中文、数字、大小写字母、英文下划线“_”及中划线“-”，不允许为空且不超过32字符。
-@property (strong,nonatomic,nonnull)  NSString*  vpcName;
-/// 如果为空，则不限制网段，如果不为空，10.0.0.0/8、172.16.0.0/12和192.168.0.0/16及它们包含的子网，且子网掩码长度为16-28之间
-@property (strong,nonatomic,nonnull)  NSString*  addressPrefix;
-/// vpc描述，允许输入UTF-8编码下的全部字符，不超过256字符。
-@property (strong,nonatomic,nonnull)  NSString*  descriptionValue;
--(id) initWithRegion:(NSString *)regionId
-vpcName:(NSString*)vpcName
-addressPrefix:(NSString*)addressPrefix
-descriptionValue:(NSString*)descriptionValue;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-vpcName:(NSString*)vpcName
-addressPrefix:(NSString*)addressPrefix
-descriptionValue:(NSString*)descriptionValue;
-
-@end
-
-@interface VpcModifyVpcRequest:JDCloudRequest
-
-/// 私有网络名称,只允许输入中文、数字、大小写字母、英文下划线“_”及中划线“-”，不允许为空且不超过32字符。
-@property (strong,nonatomic,nonnull)  NSString*  vpcName;
-/// vpc描述，允许输入UTF-8编码下的全部字符，不超过256字符。
-@property (strong,nonatomic,nonnull)  NSString*  descriptionValue;
-/// Vpc ID
-@property (strong,nonatomic,nonnull)  NSString*  vpcId;
--(id) initWithRegion:(NSString *)regionId
-vpcName:(NSString*)vpcName
-descriptionValue:(NSString*)descriptionValue
-vpcId:(NSString*)vpcId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-vpcName:(NSString*)vpcName
-descriptionValue:(NSString*)descriptionValue
-vpcId:(NSString*)vpcId;
-
 @end
 
 @interface VpcDeleteVpcResult : NSObject
@@ -2571,16 +2581,6 @@ vpcId:(NSString*)vpcId;
 -(NSMutableDictionary*) dictionary;
 
 -(id) initWithDic:(NSDictionary*)dictionary;
-@end
-
-@interface VpcCreateVpcResult : NSObject
-/// 私有网络ID
- @property (strong,nonatomic,nonnull)  NSString*  vpcId;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithVpcId:(NSString*) vpcId;
 @end
 
 @interface VpcCreateVpcResponse : NSObject

@@ -77,37 +77,6 @@ queryId:(NSString*)queryId;
     data:(NSNumber*)data;
 @end
 
-@interface XdataGetRasQueryLogResult : NSObject
-/// Status
- @property (strong,nonatomic,nonnull)  NSNumber*  status;
-/// Message
- @property (strong,nonatomic,nonnull)  NSString*  message;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithStatus:(NSNumber*) status
-
-    message:(NSString*)message;
-@end
-
-@interface XdataGetRasQueryLogResponse : NSObject
-
-@property NSString* requestId;
-
-@property ServiceError* error;
-
-@property XdataGetRasQueryLogResult* result;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
-
--(id) initWithRequestId:(NSString*) requestId
-        error:(ServiceError*) error
-        result:(XdataGetRasQueryLogResult*) result;
-@end
-
 @interface XdataGetPySparkExecuteResultResult : NSObject
 /// Status
  @property (strong,nonatomic,nonnull)  NSNumber*  status;
@@ -120,37 +89,6 @@ queryId:(NSString*)queryId;
 -(id) initWithStatus:(NSNumber*) status
 
     message:(NSString*)message;
-@end
-
-@interface XdataCancelPySparkJobResult : NSObject
-/// Status
- @property (strong,nonatomic,nonnull)  NSNumber*  status;
-/// Message
- @property (strong,nonatomic,nonnull)  NSString*  message;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithStatus:(NSNumber*) status
-
-    message:(NSString*)message;
-@end
-
-@interface XdataCancelPySparkJobResponse : NSObject
-
-@property NSString* requestId;
-
-@property ServiceError* error;
-
-@property XdataCancelPySparkJobResult* result;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
-
--(id) initWithRequestId:(NSString*) requestId
-        error:(ServiceError*) error
-        result:(XdataCancelPySparkJobResult*) result;
 @end
 
 @interface XdataGetRasQueryResultRequest:JDCloudRequest
@@ -285,40 +223,6 @@ queryId:(NSString*)queryId;
 
 @end
 
-@interface XdataGetPySparkExecuteStateResponse : NSObject
-
-@property NSString* requestId;
-
-@property ServiceError* error;
-
-@property XdataGetPySparkExecuteStateResult* result;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
-
--(id) initWithRequestId:(NSString*) requestId
-        error:(ServiceError*) error
-        result:(XdataGetPySparkExecuteStateResult*) result;
-@end
-
-@interface XdataExecuteRasQueryResponse : NSObject
-
-@property NSString* requestId;
-
-@property ServiceError* error;
-
-@property XdataExecuteRasQueryResult* result;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
-
--(id) initWithRequestId:(NSString*) requestId
-        error:(ServiceError*) error
-        result:(XdataExecuteRasQueryResult*) result;
-@end
-
 @interface XdataCancelRasQueryResult : NSObject
 /// Status
  @property (strong,nonatomic,nonnull)  NSNumber*  status;
@@ -333,21 +237,18 @@ queryId:(NSString*)queryId;
     message:(NSString*)message;
 @end
 
-@interface XdataGetPySparkExecuteResultResponse : NSObject
-
-@property NSString* requestId;
-
-@property ServiceError* error;
-
-@property XdataGetPySparkExecuteResultResult* result;
+@interface XdataGetRasQueryLogResult : NSObject
+/// Status
+ @property (strong,nonatomic,nonnull)  NSNumber*  status;
+/// Message
+ @property (strong,nonatomic,nonnull)  NSString*  message;
 
 -(NSMutableDictionary*) dictionary;
 
 -(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithStatus:(NSNumber*) status
 
--(id) initWithRequestId:(NSString*) requestId
-        error:(ServiceError*) error
-        result:(XdataGetPySparkExecuteResultResult*) result;
+    message:(NSString*)message;
 @end
 
 @interface XdataGetRasQueryStateResult : NSObject
@@ -366,23 +267,6 @@ queryId:(NSString*)queryId;
     message:(NSString*)message
 
     data:(NSString*)data;
-@end
-
-@interface XdataGetRasQueryResultResponse : NSObject
-
-@property NSString* requestId;
-
-@property ServiceError* error;
-
-@property XdataGetRasQueryResultResult* result;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
-
--(id) initWithRequestId:(NSString*) requestId
-        error:(ServiceError*) error
-        result:(XdataGetRasQueryResultResult*) result;
 @end
 
 @interface XdataCancelRasQueryRequest:JDCloudRequest
@@ -419,23 +303,6 @@ queryId:(NSString*)queryId;
 
 @end
 
-@interface XdataGetRasQueryStateResponse : NSObject
-
-@property NSString* requestId;
-
-@property ServiceError* error;
-
-@property XdataGetRasQueryStateResult* result;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
-
--(id) initWithRequestId:(NSString*) requestId
-        error:(ServiceError*) error
-        result:(XdataGetRasQueryStateResult*) result;
-@end
-
 @interface XdataExecutePySparkQueryRequest:JDCloudRequest
 
 /// PySpark脚本
@@ -465,23 +332,6 @@ scriptType:(NSString*)scriptType;
 
 @end
 
-@interface XdataExecutePySparkQueryResponse : NSObject
-
-@property NSString* requestId;
-
-@property ServiceError* error;
-
-@property XdataExecutePySparkQueryResult* result;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
-
--(id) initWithRequestId:(NSString*) requestId
-        error:(ServiceError*) error
-        result:(XdataExecutePySparkQueryResult*) result;
-@end
-
 @interface XdataGetPySparkExecuteStateRequest:JDCloudRequest
 
 /// 用户名称
@@ -499,6 +349,343 @@ queryId:(NSString*)queryId;
 
 @end
 
+@interface XdataCancelPySparkJobResult : NSObject
+/// Status
+ @property (strong,nonatomic,nonnull)  NSNumber*  status;
+/// Message
+ @property (strong,nonatomic,nonnull)  NSString*  message;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithStatus:(NSNumber*) status
+
+    message:(NSString*)message;
+@end
+
+@interface XdataDeleteDatabaseResult : NSObject
+/// Status
+ @property (strong,nonatomic,nonnull)  NSNumber*  status;
+/// Message
+ @property (strong,nonatomic,nonnull)  NSString*  message;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithStatus:(NSNumber*) status
+
+    message:(NSString*)message;
+@end
+
+@interface XdataGetDatabaseInfoRequest:JDCloudRequest
+
+/// 实例名称
+@property (strong,nonatomic,nonnull)  NSString*  instanceName;
+/// 数据库名
+@property (strong,nonatomic,nonnull)  NSString*  databaseName;
+-(id) initWithRegion:(NSString *)regionId
+instanceName:(NSString*)instanceName
+databaseName:(NSString*)databaseName;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+instanceName:(NSString*)instanceName
+databaseName:(NSString*)databaseName;
+
+@end
+
+@interface XdataCreateDatabaseResult : NSObject
+/// Status
+ @property (strong,nonatomic,nonnull)  NSNumber*  status;
+/// Message
+ @property (strong,nonatomic,nonnull)  NSString*  message;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithStatus:(NSNumber*) status
+
+    message:(NSString*)message;
+@end
+
+@interface XdataListDatabaseInfoRequest:JDCloudRequest
+
+/// 实例名称
+@property (strong,nonatomic,nonnull)  NSString*  instanceName;
+-(id) initWithRegion:(NSString *)regionId
+instanceName:(NSString*)instanceName;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+instanceName:(NSString*)instanceName;
+
+@end
+
+@interface XdataCreateDatabaseRequest:JDCloudRequest
+
+/// 实例名称
+@property (strong,nonatomic,nonnull)  NSString*  instanceName;
+/// 数据库描述信息
+@property (strong,nonatomic,nonnull)  NSString*  descriptionValue;
+/// 数据库名
+@property (strong,nonatomic,nonnull)  NSString*  databaseName;
+-(id) initWithRegion:(NSString *)regionId
+instanceName:(NSString*)instanceName
+descriptionValue:(NSString*)descriptionValue
+databaseName:(NSString*)databaseName;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+instanceName:(NSString*)instanceName
+descriptionValue:(NSString*)descriptionValue
+databaseName:(NSString*)databaseName;
+
+@end
+
+@interface XdataDeleteDatabaseRequest:JDCloudRequest
+
+/// 实例名称
+@property (strong,nonatomic,nonnull)  NSString*  instanceName;
+/// 数据库名
+@property (strong,nonatomic,nonnull)  NSString*  databaseName;
+-(id) initWithRegion:(NSString *)regionId
+instanceName:(NSString*)instanceName
+databaseName:(NSString*)databaseName;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+instanceName:(NSString*)instanceName
+databaseName:(NSString*)databaseName;
+
+@end
+
+@interface XdataGetTableInfoRequest:JDCloudRequest
+
+/// 实例名称
+@property (strong,nonatomic,nonnull)  NSString*  instanceName;
+/// 数据库名称
+@property (strong,nonatomic,nonnull)  NSString*  databaseName;
+/// 数据表名
+@property (strong,nonatomic,nonnull)  NSString*  tableName;
+-(id) initWithRegion:(NSString *)regionId
+instanceName:(NSString*)instanceName
+databaseName:(NSString*)databaseName
+tableName:(NSString*)tableName;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+instanceName:(NSString*)instanceName
+databaseName:(NSString*)databaseName
+tableName:(NSString*)tableName;
+
+@end
+
+@interface XdataDeleteTableRequest:JDCloudRequest
+
+/// 实例名称
+@property (strong,nonatomic,nonnull)  NSString*  instanceName;
+/// 数据库名称
+@property (strong,nonatomic,nonnull)  NSString*  databaseName;
+/// 数据表名
+@property (strong,nonatomic,nonnull)  NSString*  tableName;
+-(id) initWithRegion:(NSString *)regionId
+instanceName:(NSString*)instanceName
+databaseName:(NSString*)databaseName
+tableName:(NSString*)tableName;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+instanceName:(NSString*)instanceName
+databaseName:(NSString*)databaseName
+tableName:(NSString*)tableName;
+
+@end
+
+@interface XdataDeleteTableResult : NSObject
+/// Status
+ @property (strong,nonatomic,nonnull)  NSNumber*  status;
+/// Message
+ @property (strong,nonatomic,nonnull)  NSString*  message;
+/// Data
+ @property (strong,nonatomic,nonnull)  NSObject*  data;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithStatus:(NSNumber*) status
+
+    message:(NSString*)message
+
+    data:(NSObject*)data;
+@end
+
+@interface XdataListTableInfoRequest:JDCloudRequest
+
+/// 实例名称
+@property (strong,nonatomic,nonnull)  NSString*  instanceName;
+/// 数据库名称
+@property (strong,nonatomic,nonnull)  NSString*  databaseName;
+-(id) initWithRegion:(NSString *)regionId
+instanceName:(NSString*)instanceName
+databaseName:(NSString*)databaseName;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+instanceName:(NSString*)instanceName
+databaseName:(NSString*)databaseName;
+
+@end
+
+@interface XdataCreateTableResult : NSObject
+/// Status
+ @property (strong,nonatomic,nonnull)  NSNumber*  status;
+/// Message
+ @property (strong,nonatomic,nonnull)  NSString*  message;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithStatus:(NSNumber*) status
+
+    message:(NSString*)message;
+@end
+
+@interface XdataGetRasQueryLogResponse : NSObject
+
+@property NSString* requestId;
+
+@property ServiceError* error;
+
+@property XdataGetRasQueryLogResult* result;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+
+-(id) initWithRequestId:(NSString*) requestId
+        error:(ServiceError*) error
+        result:(XdataGetRasQueryLogResult*) result;
+@end
+
+@interface XdataCancelPySparkJobResponse : NSObject
+
+@property NSString* requestId;
+
+@property ServiceError* error;
+
+@property XdataCancelPySparkJobResult* result;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+
+-(id) initWithRequestId:(NSString*) requestId
+        error:(ServiceError*) error
+        result:(XdataCancelPySparkJobResult*) result;
+@end
+
+@interface XdataGetPySparkExecuteStateResponse : NSObject
+
+@property NSString* requestId;
+
+@property ServiceError* error;
+
+@property XdataGetPySparkExecuteStateResult* result;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+
+-(id) initWithRequestId:(NSString*) requestId
+        error:(ServiceError*) error
+        result:(XdataGetPySparkExecuteStateResult*) result;
+@end
+
+@interface XdataExecuteRasQueryResponse : NSObject
+
+@property NSString* requestId;
+
+@property ServiceError* error;
+
+@property XdataExecuteRasQueryResult* result;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+
+-(id) initWithRequestId:(NSString*) requestId
+        error:(ServiceError*) error
+        result:(XdataExecuteRasQueryResult*) result;
+@end
+
+@interface XdataGetPySparkExecuteResultResponse : NSObject
+
+@property NSString* requestId;
+
+@property ServiceError* error;
+
+@property XdataGetPySparkExecuteResultResult* result;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+
+-(id) initWithRequestId:(NSString*) requestId
+        error:(ServiceError*) error
+        result:(XdataGetPySparkExecuteResultResult*) result;
+@end
+
+@interface XdataGetRasQueryResultResponse : NSObject
+
+@property NSString* requestId;
+
+@property ServiceError* error;
+
+@property XdataGetRasQueryResultResult* result;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+
+-(id) initWithRequestId:(NSString*) requestId
+        error:(ServiceError*) error
+        result:(XdataGetRasQueryResultResult*) result;
+@end
+
+@interface XdataGetRasQueryStateResponse : NSObject
+
+@property NSString* requestId;
+
+@property ServiceError* error;
+
+@property XdataGetRasQueryStateResult* result;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+
+-(id) initWithRequestId:(NSString*) requestId
+        error:(ServiceError*) error
+        result:(XdataGetRasQueryStateResult*) result;
+@end
+
+@interface XdataExecutePySparkQueryResponse : NSObject
+
+@property NSString* requestId;
+
+@property ServiceError* error;
+
+@property XdataExecutePySparkQueryResult* result;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+
+-(id) initWithRequestId:(NSString*) requestId
+        error:(ServiceError*) error
+        result:(XdataExecutePySparkQueryResult*) result;
+@end
+
 @interface XdataCancelRasQueryResponse : NSObject
 
 @property NSString* requestId;
@@ -514,20 +701,6 @@ queryId:(NSString*)queryId;
 -(id) initWithRequestId:(NSString*) requestId
         error:(ServiceError*) error
         result:(XdataCancelRasQueryResult*) result;
-@end
-
-@interface XdataDeleteDatabaseResult : NSObject
-/// Status
- @property (strong,nonatomic,nonnull)  NSNumber*  status;
-/// Message
- @property (strong,nonatomic,nonnull)  NSString*  message;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithStatus:(NSNumber*) status
-
-    message:(NSString*)message;
 @end
 
 @interface XdataListDatabaseInfoResult : NSObject
@@ -600,37 +773,6 @@ queryId:(NSString*)queryId;
         result:(XdataListDatabaseInfoResult*) result;
 @end
 
-@interface XdataGetDatabaseInfoRequest:JDCloudRequest
-
-/// 实例名称
-@property (strong,nonatomic,nonnull)  NSString*  instanceName;
-/// 数据库名
-@property (strong,nonatomic,nonnull)  NSString*  databaseName;
--(id) initWithRegion:(NSString *)regionId
-instanceName:(NSString*)instanceName
-databaseName:(NSString*)databaseName;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-instanceName:(NSString*)instanceName
-databaseName:(NSString*)databaseName;
-
-@end
-
-@interface XdataCreateDatabaseResult : NSObject
-/// Status
- @property (strong,nonatomic,nonnull)  NSNumber*  status;
-/// Message
- @property (strong,nonatomic,nonnull)  NSString*  message;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithStatus:(NSNumber*) status
-
-    message:(NSString*)message;
-@end
-
 @interface XdataGetDatabaseInfoResponse : NSObject
 
 @property NSString* requestId;
@@ -648,19 +790,6 @@ databaseName:(NSString*)databaseName;
         result:(XdataGetDatabaseInfoResult*) result;
 @end
 
-@interface XdataListDatabaseInfoRequest:JDCloudRequest
-
-/// 实例名称
-@property (strong,nonatomic,nonnull)  NSString*  instanceName;
--(id) initWithRegion:(NSString *)regionId
-instanceName:(NSString*)instanceName;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-instanceName:(NSString*)instanceName;
-
-@end
-
 @interface XdataCreateDatabaseResponse : NSObject
 
 @property NSString* requestId;
@@ -676,44 +805,6 @@ instanceName:(NSString*)instanceName;
 -(id) initWithRequestId:(NSString*) requestId
         error:(ServiceError*) error
         result:(XdataCreateDatabaseResult*) result;
-@end
-
-@interface XdataCreateDatabaseRequest:JDCloudRequest
-
-/// 实例名称
-@property (strong,nonatomic,nonnull)  NSString*  instanceName;
-/// 数据库描述信息
-@property (strong,nonatomic,nonnull)  NSString*  descriptionValue;
-/// 数据库名
-@property (strong,nonatomic,nonnull)  NSString*  databaseName;
--(id) initWithRegion:(NSString *)regionId
-instanceName:(NSString*)instanceName
-descriptionValue:(NSString*)descriptionValue
-databaseName:(NSString*)databaseName;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-instanceName:(NSString*)instanceName
-descriptionValue:(NSString*)descriptionValue
-databaseName:(NSString*)databaseName;
-
-@end
-
-@interface XdataDeleteDatabaseRequest:JDCloudRequest
-
-/// 实例名称
-@property (strong,nonatomic,nonnull)  NSString*  instanceName;
-/// 数据库名
-@property (strong,nonatomic,nonnull)  NSString*  databaseName;
--(id) initWithRegion:(NSString *)regionId
-instanceName:(NSString*)instanceName
-databaseName:(NSString*)databaseName;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-instanceName:(NSString*)instanceName
-databaseName:(NSString*)databaseName;
-
 @end
 
 @interface XdataListInstanceInfoRequest:JDCloudRequest
@@ -755,20 +846,6 @@ databaseName:(NSString*)databaseName;
         result:(XdataListInstanceInfoResult*) result;
 @end
 
-@interface XdataCreateTableResult : NSObject
-/// Status
- @property (strong,nonatomic,nonnull)  NSNumber*  status;
-/// Message
- @property (strong,nonatomic,nonnull)  NSString*  message;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithStatus:(NSNumber*) status
-
-    message:(NSString*)message;
-@end
-
 @interface XdataCreateTableResponse : NSObject
 
 @property NSString* requestId;
@@ -784,27 +861,6 @@ databaseName:(NSString*)databaseName;
 -(id) initWithRequestId:(NSString*) requestId
         error:(ServiceError*) error
         result:(XdataCreateTableResult*) result;
-@end
-
-@interface XdataGetTableInfoRequest:JDCloudRequest
-
-/// 实例名称
-@property (strong,nonatomic,nonnull)  NSString*  instanceName;
-/// 数据库名称
-@property (strong,nonatomic,nonnull)  NSString*  databaseName;
-/// 数据表名
-@property (strong,nonatomic,nonnull)  NSString*  tableName;
--(id) initWithRegion:(NSString *)regionId
-instanceName:(NSString*)instanceName
-databaseName:(NSString*)databaseName
-tableName:(NSString*)tableName;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-instanceName:(NSString*)instanceName
-databaseName:(NSString*)databaseName
-tableName:(NSString*)tableName;
-
 @end
 
 @interface XdataListTableInfoResult : NSObject
@@ -877,45 +933,6 @@ tableName:(NSString*)tableName;
         result:(XdataGetTableInfoResult*) result;
 @end
 
-@interface XdataDeleteTableRequest:JDCloudRequest
-
-/// 实例名称
-@property (strong,nonatomic,nonnull)  NSString*  instanceName;
-/// 数据库名称
-@property (strong,nonatomic,nonnull)  NSString*  databaseName;
-/// 数据表名
-@property (strong,nonatomic,nonnull)  NSString*  tableName;
--(id) initWithRegion:(NSString *)regionId
-instanceName:(NSString*)instanceName
-databaseName:(NSString*)databaseName
-tableName:(NSString*)tableName;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-instanceName:(NSString*)instanceName
-databaseName:(NSString*)databaseName
-tableName:(NSString*)tableName;
-
-@end
-
-@interface XdataDeleteTableResult : NSObject
-/// Status
- @property (strong,nonatomic,nonnull)  NSNumber*  status;
-/// Message
- @property (strong,nonatomic,nonnull)  NSString*  message;
-/// Data
- @property (strong,nonatomic,nonnull)  NSObject*  data;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithStatus:(NSNumber*) status
-
-    message:(NSString*)message
-
-    data:(NSObject*)data;
-@end
-
 @interface XdataCreateTableRequest:JDCloudRequest
 
 /// 实例名称
@@ -930,23 +947,6 @@ dbModelDBTable:(DwTableDesc*)dbModelDBTable;
              version:(NSString *)version
 instanceName:(NSString*)instanceName
 dbModelDBTable:(DwTableDesc*)dbModelDBTable;
-
-@end
-
-@interface XdataListTableInfoRequest:JDCloudRequest
-
-/// 实例名称
-@property (strong,nonatomic,nonnull)  NSString*  instanceName;
-/// 数据库名称
-@property (strong,nonatomic,nonnull)  NSString*  databaseName;
--(id) initWithRegion:(NSString *)regionId
-instanceName:(NSString*)instanceName
-databaseName:(NSString*)databaseName;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-instanceName:(NSString*)instanceName
-databaseName:(NSString*)databaseName;
 
 @end
 

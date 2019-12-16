@@ -78,8 +78,8 @@ processType:(NSNumber*)processType {
     }
     if([self orderList])
     {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self orderList] count]; i++) {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self orderList] count]; i++) {
             OrderPriceProtocol* item = [[self orderList] objectAtIndex:i];
             [arrayDic addObject:[item dictionary]];
         }
@@ -116,10 +116,10 @@ processType:(NSNumber*)processType {
         NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
         for(int i = 0 ; i< [orderListArray count];i++)
         {
-            OrderPriceProtocol* item = [[OrderPriceProtocol alloc]initWithDic:[orderListArray objectAtIndex:i]];
+        OrderPriceProtocol* item = [[OrderPriceProtocol alloc]initWithDic:[orderListArray objectAtIndex:i]];
             if(item)
             {
-                [propertyArray addObject:item];
+            [propertyArray addObject:item];
             }
         }
         self.orderList = propertyArray;
@@ -174,8 +174,8 @@ processType:(NSNumber*)processType {
     }
     if([self list])
     {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self list] count]; i++) {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self list] count]; i++) {
             OrderPriceDetail* item = [[self list] objectAtIndex:i];
             [arrayDic addObject:[item dictionary]];
         }
@@ -211,10 +211,10 @@ processType:(NSNumber*)processType {
         NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
         for(int i = 0 ; i< [listArray count];i++)
         {
-            OrderPriceDetail* item = [[OrderPriceDetail alloc]initWithDic:[listArray objectAtIndex:i]];
+        OrderPriceDetail* item = [[OrderPriceDetail alloc]initWithDic:[listArray objectAtIndex:i]];
             if(item)
             {
-                [propertyArray addObject:item];
+            [propertyArray addObject:item];
             }
         }
         self.list = propertyArray;
@@ -286,8 +286,8 @@ BillingCalculateTotalPriceResult* result = [[BillingCalculateTotalPriceResult al
     }
     if([self result])
     {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self result] count]; i++) {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self result] count]; i++) {
             BillSummary* item = [[self result] objectAtIndex:i];
             [arrayDic addObject:[item dictionary]];
         }
@@ -304,10 +304,10 @@ BillingCalculateTotalPriceResult* result = [[BillingCalculateTotalPriceResult al
         NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
         for(int i = 0 ; i< [resultArray count];i++)
         {
-            BillSummary* item = [[BillSummary alloc]initWithDic:[resultArray objectAtIndex:i]];
+        BillSummary* item = [[BillSummary alloc]initWithDic:[resultArray objectAtIndex:i]];
             if(item)
             {
-                [propertyArray addObject:item];
+            [propertyArray addObject:item];
             }
         }
         self.result = propertyArray;
@@ -331,8 +331,8 @@ BillingCalculateTotalPriceResult* result = [[BillingCalculateTotalPriceResult al
     }
     if([self result])
     {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self result] count]; i++) {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self result] count]; i++) {
             BillSummary* item = [[self result] objectAtIndex:i];
             [arrayDic addObject:[item dictionary]];
         }
@@ -349,10 +349,10 @@ BillingCalculateTotalPriceResult* result = [[BillingCalculateTotalPriceResult al
         NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
         for(int i = 0 ; i< [resultArray count];i++)
         {
-            BillSummary* item = [[BillSummary alloc]initWithDic:[resultArray objectAtIndex:i]];
+        BillSummary* item = [[BillSummary alloc]initWithDic:[resultArray objectAtIndex:i]];
             if(item)
             {
-                [propertyArray addObject:item];
+            [propertyArray addObject:item];
             }
         }
         self.result = propertyArray;
@@ -434,8 +434,8 @@ pageSize:(NSNumber*)pageSize {
     }
     if([self tags])
     {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self tags] count]; i++) {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self tags] count]; i++) {
             Tags* item = [[self tags] objectAtIndex:i];
             [arrayDic addObject:[item dictionary]];
         }
@@ -464,10 +464,10 @@ pageSize:(NSNumber*)pageSize {
         NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
         for(int i = 0 ; i< [tagsArray count];i++)
         {
-            Tags* item = [[Tags alloc]initWithDic:[tagsArray objectAtIndex:i]];
+        Tags* item = [[Tags alloc]initWithDic:[tagsArray objectAtIndex:i]];
             if(item)
             {
-                [propertyArray addObject:item];
+            [propertyArray addObject:item];
             }
         }
         self.tags = propertyArray;
@@ -647,8 +647,8 @@ pageSize:(NSNumber*)pageSize {
     }
     if([self tags])
     {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self tags] count]; i++) {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self tags] count]; i++) {
             Tags* item = [[self tags] objectAtIndex:i];
             [arrayDic addObject:[item dictionary]];
         }
@@ -678,10 +678,10 @@ pageSize:(NSNumber*)pageSize {
         NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
         for(int i = 0 ; i< [tagsArray count];i++)
         {
-            Tags* item = [[Tags alloc]initWithDic:[tagsArray objectAtIndex:i]];
+        Tags* item = [[Tags alloc]initWithDic:[tagsArray objectAtIndex:i]];
             if(item)
             {
-                [propertyArray addObject:item];
+            [propertyArray addObject:item];
             }
         }
         self.tags = propertyArray;

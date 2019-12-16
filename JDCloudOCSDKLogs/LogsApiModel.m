@@ -115,77 +115,6 @@ logtopicUID:(NSString*)logtopicUID {
 } 
 
 @end
-@implementation LogsSearchLogContextResult
--(id) initWithData:(NSArray<NSMutableDictionary<NSString*,NSObject*>*>*) data
-        total:(NSNumber*)total { 
-    self.data = data;               
-    self.total = total;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self data])
-    {
-        [result setValue:[self data] forKey:@"data"];
-    }
-    if([self total])
-    {
-        [result setValue:[self total] forKey:@"total"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.data = [dictionary objectForKey:@"data"];
-    self.total = [dictionary objectForKey:@"total"];
-    return self;
-} 
-
-@end
-  
-@implementation LogsSearchLogContextResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-LogsSearchLogContextResult* result = [[LogsSearchLogContextResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(LogsSearchLogContextResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
 @implementation LogsSearchResult
 -(id) initWithData:(NSArray<NSMutableDictionary<NSString*,NSObject*>*>*) data
         total:(NSNumber*)total { 
@@ -211,50 +140,6 @@ LogsSearchLogContextResult* result = [[LogsSearchLogContextResult alloc]initWith
     self.total = [dictionary objectForKey:@"total"];
     return self;
 } 
-
-@end
-  
-@implementation LogsSearchResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-LogsSearchResult* result = [[LogsSearchResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(LogsSearchResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
 
 @end
 @implementation LogsSearchRequest
@@ -365,275 +250,31 @@ logtopicUID:(NSString*)logtopicUID {
 } 
 
 @end
-@implementation LogsPutResult
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    return self;
-} 
-
-@end
-  
-@implementation LogsPutResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-LogsPutResult* result = [[LogsPutResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(LogsPutResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
-@implementation LogsPutRequest
--(id) initWithRegion:(NSString *)regionId
-stream:(NSString*)stream
-timestamp:(NSString*)timestamp
-entries:(NSArray<Entry*>*)entries
-logtopicUID:(NSString*)logtopicUID { 
-    self.regionId = regionId;
-    self.stream = stream;
-    self.timestamp = timestamp;
-    self.entries = entries;
-    self.logtopicUID = logtopicUID;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-stream:(NSString*)stream
-timestamp:(NSString*)timestamp
-entries:(NSArray<Entry*>*)entries
-logtopicUID:(NSString*)logtopicUID { 
-    self.regionId = regionId;
-    self.version = version;
-    self.stream = stream;
-    self.timestamp = timestamp;
-    self.entries = entries;
-    self.logtopicUID = logtopicUID;
+@implementation LogsSearchLogContextResult
+-(id) initWithData:(NSArray<NSMutableDictionary<NSString*,NSObject*>*>*) data
+        total:(NSNumber*)total { 
+    self.data = data;               
+    self.total = total;               
     return self;
 }
 -(NSMutableDictionary*) dictionary{
     NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
+    if([self data])
     {
-        [result addEntriesFromDictionary:superObjectDic];
+        [result setValue:[self data] forKey:@"data"];
     }
-    if([self stream])
+    if([self total])
     {
-        [result setValue:[self stream] forKey:@"stream"];
-    }
-    if([self timestamp])
-    {
-        [result setValue:[self timestamp] forKey:@"timestamp"];
-    }
-    if([self entries])
-    {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self entries] count]; i++) {
-            Entry* item = [[self entries] objectAtIndex:i];
-            [arrayDic addObject:[item dictionary]];
-        }
-        [result setValue:arrayDic forKey:@"entries"];
-    }
-    if([self logtopicUID])
-    {
-        [result setValue:[self logtopicUID] forKey:@"logtopicUID"];
+        [result setValue:[self total] forKey:@"total"];
     }
     return result;
 }
 
 -(id) initWithDic:(NSDictionary*)dictionary{
-    self.stream = [dictionary objectForKey:@"stream"];
-    self.timestamp = [dictionary objectForKey:@"timestamp"];
-    NSArray* entriesArray = [dictionary objectForKey:@"entries"];
-    if(entriesArray&&![entriesArray isKindOfClass:[NSNull class]])
-    {
-        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
-        for(int i = 0 ; i< [entriesArray count];i++)
-        {
-            Entry* item = [[Entry alloc]initWithDic:[entriesArray objectAtIndex:i]];
-            if(item)
-            {
-                [propertyArray addObject:item];
-            }
-        }
-        self.entries = propertyArray;
-    }
-    self.logtopicUID = [dictionary objectForKey:@"logtopicUID"];
+    self.data = [dictionary objectForKey:@"data"];
+    self.total = [dictionary objectForKey:@"total"];
     return self;
 } 
-
-@end
-@implementation LogsTestMetricTaskResult
--(id) initWithLines:(NSArray<NSString*>*) lines
-        value:(NSNumber*)value { 
-    self.lines = lines;               
-    self.value = value;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self lines])
-    {
-        [result setValue:[self lines] forKey:@"lines"];
-    }
-    if([self value])
-    {
-        [result setValue:[self value] forKey:@"value"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.lines = [dictionary objectForKey:@"lines"];
-    self.value = [dictionary objectForKey:@"value"];
-    return self;
-} 
-
-@end
-  
-@implementation LogsTestMetricTaskResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-LogsTestMetricTaskResult* result = [[LogsTestMetricTaskResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(LogsTestMetricTaskResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
-@implementation LogsUpdateMetricTaskResult
--(id) initWithSuc:(NSString*) suc { 
-    self.suc = suc;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self suc])
-    {
-        [result setValue:[self suc] forKey:@"suc"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.suc = [dictionary objectForKey:@"suc"];
-    return self;
-} 
-
-@end
-  
-@implementation LogsUpdateMetricTaskResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-LogsUpdateMetricTaskResult* result = [[LogsUpdateMetricTaskResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(LogsUpdateMetricTaskResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
 
 @end
 @implementation LogsDescribeMetricTaskRequest
@@ -717,68 +358,24 @@ logmetrictaskUID:(NSString*)logmetrictaskUID {
 } 
 
 @end
-@implementation LogsDescribeMetricTaskResult
--(id) initWithData:(MetrictaskDetailEnd*) data { 
-    self.data = data;               
+@implementation LogsUpdateMetricTaskResult
+-(id) initWithSuc:(NSString*) suc { 
+    self.suc = suc;               
     return self;
 }
 -(NSMutableDictionary*) dictionary{
     NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self data])
+    if([self suc])
     {
-        [result setValue:[[self data] dictionary]forKey:@"data"];
+        [result setValue:[self suc] forKey:@"suc"];
     }
     return result;
 }
 
 -(id) initWithDic:(NSDictionary*)dictionary{
-    self.data = [[MetrictaskDetailEnd alloc]initWithDic:[dictionary objectForKey:@"data"]];
+    self.suc = [dictionary objectForKey:@"suc"];
     return self;
 } 
-
-@end
-  
-@implementation LogsDescribeMetricTaskResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-LogsDescribeMetricTaskResult* result = [[LogsDescribeMetricTaskResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(LogsDescribeMetricTaskResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
 
 @end
 @implementation LogsTestMetricTaskRequest
@@ -1015,6 +612,33 @@ logtopicUID:(NSString*)logtopicUID {
 } 
 
 @end
+@implementation LogsTestMetricTaskResult
+-(id) initWithLines:(NSArray<NSString*>*) lines
+        value:(NSNumber*)value { 
+    self.lines = lines;               
+    self.value = value;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self lines])
+    {
+        [result setValue:[self lines] forKey:@"lines"];
+    }
+    if([self value])
+    {
+        [result setValue:[self value] forKey:@"value"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.lines = [dictionary objectForKey:@"lines"];
+    self.value = [dictionary objectForKey:@"value"];
+    return self;
+} 
+
+@end
 @implementation LogsDescribeMetricTasksRequest
 -(id) initWithRegion:(NSString *)regionId
 pageNumber:(NSNumber*)pageNumber
@@ -1076,70 +700,6 @@ logtopicUID:(NSString*)logtopicUID {
     self.logtopicUID = [dictionary objectForKey:@"logtopicUID"];
     return self;
 } 
-
-@end
-@implementation LogsDeleteMetricTaskResult
--(id) initWithSuc:(NSString*) suc { 
-    self.suc = suc;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self suc])
-    {
-        [result setValue:[self suc] forKey:@"suc"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.suc = [dictionary objectForKey:@"suc"];
-    return self;
-} 
-
-@end
-  
-@implementation LogsDeleteMetricTaskResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-LogsDeleteMetricTaskResult* result = [[LogsDeleteMetricTaskResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(LogsDeleteMetricTaskResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
 
 @end
 @implementation LogsUpdateMetricTaskRequest
@@ -1250,160 +810,6 @@ logmetrictaskUID:(NSString*)logmetrictaskUID {
 } 
 
 @end
-@implementation LogsDescribeMetricTasksResult
--(id) initWithData:(NSArray<MetrictaskDetailEnd*>*) data
-        numberPages:(NSNumber*)numberPages
-        numberRecords:(NSNumber*)numberRecords
-        pageNumber:(NSNumber*)pageNumber
-        pageSize:(NSNumber*)pageSize { 
-    self.data = data;               
-    self.numberPages = numberPages;               
-    self.numberRecords = numberRecords;               
-    self.pageNumber = pageNumber;               
-    self.pageSize = pageSize;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self data])
-    {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self data] count]; i++) {
-            MetrictaskDetailEnd* item = [[self data] objectAtIndex:i];
-            [arrayDic addObject:[item dictionary]];
-        }
-        [result setValue:arrayDic forKey:@"data"];
-    }
-    if([self numberPages])
-    {
-        [result setValue:[self numberPages] forKey:@"numberPages"];
-    }
-    if([self numberRecords])
-    {
-        [result setValue:[self numberRecords] forKey:@"numberRecords"];
-    }
-    if([self pageNumber])
-    {
-        [result setValue:[self pageNumber] forKey:@"pageNumber"];
-    }
-    if([self pageSize])
-    {
-        [result setValue:[self pageSize] forKey:@"pageSize"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    NSArray* dataArray = [dictionary objectForKey:@"data"];
-    if(dataArray&&![dataArray isKindOfClass:[NSNull class]])
-    {
-        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
-        for(int i = 0 ; i< [dataArray count];i++)
-        {
-            MetrictaskDetailEnd* item = [[MetrictaskDetailEnd alloc]initWithDic:[dataArray objectAtIndex:i]];
-            if(item)
-            {
-                [propertyArray addObject:item];
-            }
-        }
-        self.data = propertyArray;
-    }
-    self.numberPages = [dictionary objectForKey:@"numberPages"];
-    self.numberRecords = [dictionary objectForKey:@"numberRecords"];
-    self.pageNumber = [dictionary objectForKey:@"pageNumber"];
-    self.pageSize = [dictionary objectForKey:@"pageSize"];
-    return self;
-} 
-
-@end
-  
-@implementation LogsDescribeMetricTasksResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-LogsDescribeMetricTasksResult* result = [[LogsDescribeMetricTasksResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(LogsDescribeMetricTasksResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
-  
-@implementation LogsCreateMetricTaskResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-LogsCreateMetricTaskResult* result = [[LogsCreateMetricTaskResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(LogsCreateMetricTaskResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
 @implementation LogsDeleteMetricTaskRequest
 -(id) initWithRegion:(NSString *)regionId
 logsetUID:(NSString*)logsetUID
@@ -1458,68 +864,22 @@ logmetrictaskUID:(NSString*)logmetrictaskUID {
 } 
 
 @end
-@implementation LogsDescribeLogsetsResult
--(id) initWithData:(NSArray<LogsetEnd*>*) data
-        numberPages:(NSNumber*)numberPages
-        numberRecords:(NSNumber*)numberRecords
-        pageNumber:(NSNumber*)pageNumber
-        pageSize:(NSNumber*)pageSize { 
-    self.data = data;               
-    self.numberPages = numberPages;               
-    self.numberRecords = numberRecords;               
-    self.pageNumber = pageNumber;               
-    self.pageSize = pageSize;               
+@implementation LogsDeleteMetricTaskResult
+-(id) initWithSuc:(NSString*) suc { 
+    self.suc = suc;               
     return self;
 }
 -(NSMutableDictionary*) dictionary{
     NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self data])
+    if([self suc])
     {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self data] count]; i++) {
-            LogsetEnd* item = [[self data] objectAtIndex:i];
-            [arrayDic addObject:[item dictionary]];
-        }
-        [result setValue:arrayDic forKey:@"data"];
-    }
-    if([self numberPages])
-    {
-        [result setValue:[self numberPages] forKey:@"numberPages"];
-    }
-    if([self numberRecords])
-    {
-        [result setValue:[self numberRecords] forKey:@"numberRecords"];
-    }
-    if([self pageNumber])
-    {
-        [result setValue:[self pageNumber] forKey:@"pageNumber"];
-    }
-    if([self pageSize])
-    {
-        [result setValue:[self pageSize] forKey:@"pageSize"];
+        [result setValue:[self suc] forKey:@"suc"];
     }
     return result;
 }
 
 -(id) initWithDic:(NSDictionary*)dictionary{
-    NSArray* dataArray = [dictionary objectForKey:@"data"];
-    if(dataArray&&![dataArray isKindOfClass:[NSNull class]])
-    {
-        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
-        for(int i = 0 ; i< [dataArray count];i++)
-        {
-            LogsetEnd* item = [[LogsetEnd alloc]initWithDic:[dataArray objectAtIndex:i]];
-            if(item)
-            {
-                [propertyArray addObject:item];
-            }
-        }
-        self.data = propertyArray;
-    }
-    self.numberPages = [dictionary objectForKey:@"numberPages"];
-    self.numberRecords = [dictionary objectForKey:@"numberRecords"];
-    self.pageNumber = [dictionary objectForKey:@"pageNumber"];
-    self.pageSize = [dictionary objectForKey:@"pageSize"];
+    self.suc = [dictionary objectForKey:@"suc"];
     return self;
 } 
 
@@ -1576,116 +936,6 @@ lifeCycle:(NSNumber*)lifeCycle {
     self.lifeCycle = [dictionary objectForKey:@"lifeCycle"];
     return self;
 } 
-
-@end
-@implementation LogsUpdateLogsetResult
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    return self;
-} 
-
-@end
-  
-@implementation LogsUpdateLogsetResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-LogsUpdateLogsetResult* result = [[LogsUpdateLogsetResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(LogsUpdateLogsetResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
-@implementation LogsDeleteLogsetResult
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    return self;
-} 
-
-@end
-  
-@implementation LogsDeleteLogsetResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-LogsDeleteLogsetResult* result = [[LogsDeleteLogsetResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(LogsDeleteLogsetResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
 
 @end
 @implementation LogsDescribeLogsetResult
@@ -1784,94 +1034,6 @@ logsetUID:(NSString*)logsetUID {
     self.logsetUID = [dictionary objectForKey:@"logsetUID"];
     return self;
 } 
-
-@end
-  
-@implementation LogsDescribeLogsetResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-LogsDescribeLogsetResult* result = [[LogsDescribeLogsetResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(LogsDescribeLogsetResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
-  
-@implementation LogsDescribeLogsetsResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-LogsDescribeLogsetsResult* result = [[LogsDescribeLogsetsResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(LogsDescribeLogsetsResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
 
 @end
 @implementation LogsCreateLogsetResult
@@ -1984,50 +1146,6 @@ logsetUIDs:(NSString*)logsetUIDs {
 } 
 
 @end
-  
-@implementation LogsCreateLogsetResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-LogsCreateLogsetResult* result = [[LogsCreateLogsetResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(LogsCreateLogsetResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
 @implementation LogsDescribeLogsetsRequest
 -(id) initWithRegion:(NSString *)regionId
 pageNumber:(NSNumber*)pageNumber
@@ -2118,44 +1236,6 @@ instanceId:(NSString*)instanceId {
 } 
 
 @end
-@implementation LogsDescribeInstanceCollectConfsResult
--(id) initWithConfs:(NSArray<CollectConf*>*) confs { 
-    self.confs = confs;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self confs])
-    {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self confs] count]; i++) {
-            CollectConf* item = [[self confs] objectAtIndex:i];
-            [arrayDic addObject:[item dictionary]];
-        }
-        [result setValue:arrayDic forKey:@"confs"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    NSArray* confsArray = [dictionary objectForKey:@"confs"];
-    if(confsArray&&![confsArray isKindOfClass:[NSNull class]])
-    {
-        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
-        for(int i = 0 ; i< [confsArray count];i++)
-        {
-            CollectConf* item = [[CollectConf alloc]initWithDic:[confsArray objectAtIndex:i]];
-            if(item)
-            {
-                [propertyArray addObject:item];
-            }
-        }
-        self.confs = propertyArray;
-    }
-    return self;
-} 
-
-@end
 @implementation LogsDescribeLogdCARequest
 -(id) initWithRegion:(NSString *)regionId
 instanceId:(NSString*)instanceId { 
@@ -2192,50 +1272,6 @@ instanceId:(NSString*)instanceId {
 } 
 
 @end
-  
-@implementation LogsDescribeInstanceCollectConfsResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-LogsDescribeInstanceCollectConfsResult* result = [[LogsDescribeInstanceCollectConfsResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(LogsDescribeInstanceCollectConfsResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
 @implementation LogsDescribeLogdCAResult
 -(id) initWithCert:(NSString*) cert
         expiryDate:(NSNumber*)expiryDate
@@ -2270,105 +1306,6 @@ LogsDescribeInstanceCollectConfsResult* result = [[LogsDescribeInstanceCollectCo
 } 
 
 @end
-  
-@implementation LogsDescribeLogdCAResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-LogsDescribeLogdCAResult* result = [[LogsDescribeLogdCAResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(LogsDescribeLogdCAResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
-@implementation LogsUpdateCollectResourcesResult
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    return self;
-} 
-
-@end
-  
-@implementation LogsUpdateCollectResourcesResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-LogsUpdateCollectResourcesResult* result = [[LogsUpdateCollectResourcesResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(LogsUpdateCollectResourcesResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
 @implementation LogsCreateCollectInfoResult
 -(id) initWithUID:(NSString*) uID { 
     self.uID = uID;               
@@ -2385,244 +1322,6 @@ LogsUpdateCollectResourcesResult* result = [[LogsUpdateCollectResourcesResult al
 
 -(id) initWithDic:(NSDictionary*)dictionary{
     self.uID = [dictionary objectForKey:@"uID"];
-    return self;
-} 
-
-@end
-@implementation LogsDescribeCollectResourcesResult
--(id) initWithData:(NSArray<ResourceEnd*>*) data
-        numberPages:(NSNumber*)numberPages
-        numberRecords:(NSNumber*)numberRecords
-        pageNumber:(NSNumber*)pageNumber
-        pageSize:(NSNumber*)pageSize { 
-    self.data = data;               
-    self.numberPages = numberPages;               
-    self.numberRecords = numberRecords;               
-    self.pageNumber = pageNumber;               
-    self.pageSize = pageSize;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self data])
-    {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self data] count]; i++) {
-            ResourceEnd* item = [[self data] objectAtIndex:i];
-            [arrayDic addObject:[item dictionary]];
-        }
-        [result setValue:arrayDic forKey:@"data"];
-    }
-    if([self numberPages])
-    {
-        [result setValue:[self numberPages] forKey:@"numberPages"];
-    }
-    if([self numberRecords])
-    {
-        [result setValue:[self numberRecords] forKey:@"numberRecords"];
-    }
-    if([self pageNumber])
-    {
-        [result setValue:[self pageNumber] forKey:@"pageNumber"];
-    }
-    if([self pageSize])
-    {
-        [result setValue:[self pageSize] forKey:@"pageSize"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    NSArray* dataArray = [dictionary objectForKey:@"data"];
-    if(dataArray&&![dataArray isKindOfClass:[NSNull class]])
-    {
-        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
-        for(int i = 0 ; i< [dataArray count];i++)
-        {
-            ResourceEnd* item = [[ResourceEnd alloc]initWithDic:[dataArray objectAtIndex:i]];
-            if(item)
-            {
-                [propertyArray addObject:item];
-            }
-        }
-        self.data = propertyArray;
-    }
-    self.numberPages = [dictionary objectForKey:@"numberPages"];
-    self.numberRecords = [dictionary objectForKey:@"numberRecords"];
-    self.pageNumber = [dictionary objectForKey:@"pageNumber"];
-    self.pageSize = [dictionary objectForKey:@"pageSize"];
-    return self;
-} 
-
-@end
-@implementation LogsUpdateCollectInfoResult
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    return self;
-} 
-
-@end
-  
-@implementation LogsUpdateCollectInfoResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-LogsUpdateCollectInfoResult* result = [[LogsUpdateCollectInfoResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(LogsUpdateCollectInfoResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
-@implementation LogsUpdateCollectInfoRequest
--(id) initWithRegion:(NSString *)regionId
-enabled:(NSNumber*)enabled
-resourceType:(NSString*)resourceType
-resources:(NSArray<Resource*>*)resources
-logPath:(NSString*)logPath
-logFile:(NSString*)logFile
-logFilters:(NSArray<NSString*>*)logFilters
-filterEnabled:(NSNumber*)filterEnabled
-collectInfoUID:(NSString*)collectInfoUID { 
-    self.regionId = regionId;
-    self.enabled = enabled;
-    self.resourceType = resourceType;
-    self.resources = resources;
-    self.logPath = logPath;
-    self.logFile = logFile;
-    self.logFilters = logFilters;
-    self.filterEnabled = filterEnabled;
-    self.collectInfoUID = collectInfoUID;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-enabled:(NSNumber*)enabled
-resourceType:(NSString*)resourceType
-resources:(NSArray<Resource*>*)resources
-logPath:(NSString*)logPath
-logFile:(NSString*)logFile
-logFilters:(NSArray<NSString*>*)logFilters
-filterEnabled:(NSNumber*)filterEnabled
-collectInfoUID:(NSString*)collectInfoUID { 
-    self.regionId = regionId;
-    self.version = version;
-    self.enabled = enabled;
-    self.resourceType = resourceType;
-    self.resources = resources;
-    self.logPath = logPath;
-    self.logFile = logFile;
-    self.logFilters = logFilters;
-    self.filterEnabled = filterEnabled;
-    self.collectInfoUID = collectInfoUID;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self enabled])
-    {
-        [result setValue:[self enabled] forKey:@"enabled"];
-    }
-    if([self resourceType])
-    {
-        [result setValue:[self resourceType] forKey:@"resourceType"];
-    }
-    if([self resources])
-    {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self resources] count]; i++) {
-            Resource* item = [[self resources] objectAtIndex:i];
-            [arrayDic addObject:[item dictionary]];
-        }
-        [result setValue:arrayDic forKey:@"resources"];
-    }
-    if([self logPath])
-    {
-        [result setValue:[self logPath] forKey:@"logPath"];
-    }
-    if([self logFile])
-    {
-        [result setValue:[self logFile] forKey:@"logFile"];
-    }
-    if([self logFilters])
-    {
-        [result setValue:[self logFilters] forKey:@"logFilters"];
-    }
-    if([self filterEnabled])
-    {
-        [result setValue:[self filterEnabled] forKey:@"filterEnabled"];
-    }
-    if([self collectInfoUID])
-    {
-        [result setValue:[self collectInfoUID] forKey:@"collectInfoUID"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.enabled = [dictionary objectForKey:@"enabled"];
-    self.resourceType = [dictionary objectForKey:@"resourceType"];
-    NSArray* resourcesArray = [dictionary objectForKey:@"resources"];
-    if(resourcesArray&&![resourcesArray isKindOfClass:[NSNull class]])
-    {
-        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
-        for(int i = 0 ; i< [resourcesArray count];i++)
-        {
-            Resource* item = [[Resource alloc]initWithDic:[resourcesArray objectAtIndex:i]];
-            if(item)
-            {
-                [propertyArray addObject:item];
-            }
-        }
-        self.resources = propertyArray;
-    }
-    self.logPath = [dictionary objectForKey:@"logPath"];
-    self.logFile = [dictionary objectForKey:@"logFile"];
-    self.logFilters = [dictionary objectForKey:@"logFilters"];
-    self.filterEnabled = [dictionary objectForKey:@"filterEnabled"];
-    self.collectInfoUID = [dictionary objectForKey:@"collectInfoUID"];
     return self;
 } 
 
@@ -2659,356 +1358,6 @@ collectInfoUID:(NSString*)collectInfoUID {
 
 -(id) initWithDic:(NSDictionary*)dictionary{
     self.collectInfoUID = [dictionary objectForKey:@"collectInfoUID"];
-    return self;
-} 
-
-@end
-@implementation LogsDescribeCollectInfoResult
--(id) initWithUID:(NSString*) uID
-        appCode:(NSString*)appCode
-        detail:(CollectTempalteEnd*)detail
-        enabled:(NSNumber*)enabled
-        hasResource:(NSNumber*)hasResource
-        logsetUID:(NSString*)logsetUID
-        logtopicUID:(NSString*)logtopicUID
-        resourceType:(NSString*)resourceType
-        serviceCode:(NSString*)serviceCode
-        templateName:(NSString*)templateName
-        templateUID:(NSString*)templateUID { 
-    self.uID = uID;               
-    self.appCode = appCode;               
-    self.detail = detail;               
-    self.enabled = enabled;               
-    self.hasResource = hasResource;               
-    self.logsetUID = logsetUID;               
-    self.logtopicUID = logtopicUID;               
-    self.resourceType = resourceType;               
-    self.serviceCode = serviceCode;               
-    self.templateName = templateName;               
-    self.templateUID = templateUID;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self uID])
-    {
-        [result setValue:[self uID] forKey:@"uID"];
-    }
-    if([self appCode])
-    {
-        [result setValue:[self appCode] forKey:@"appCode"];
-    }
-    if([self detail])
-    {
-        [result setValue:[[self detail] dictionary]forKey:@"detail"];
-    }
-    if([self enabled])
-    {
-        [result setValue:[self enabled] forKey:@"enabled"];
-    }
-    if([self hasResource])
-    {
-        [result setValue:[self hasResource] forKey:@"hasResource"];
-    }
-    if([self logsetUID])
-    {
-        [result setValue:[self logsetUID] forKey:@"logsetUID"];
-    }
-    if([self logtopicUID])
-    {
-        [result setValue:[self logtopicUID] forKey:@"logtopicUID"];
-    }
-    if([self resourceType])
-    {
-        [result setValue:[self resourceType] forKey:@"resourceType"];
-    }
-    if([self serviceCode])
-    {
-        [result setValue:[self serviceCode] forKey:@"serviceCode"];
-    }
-    if([self templateName])
-    {
-        [result setValue:[self templateName] forKey:@"templateName"];
-    }
-    if([self templateUID])
-    {
-        [result setValue:[self templateUID] forKey:@"templateUID"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.uID = [dictionary objectForKey:@"uID"];
-    self.appCode = [dictionary objectForKey:@"appCode"];
-    self.detail = [[CollectTempalteEnd alloc]initWithDic:[dictionary objectForKey:@"detail"]];
-    self.enabled = [dictionary objectForKey:@"enabled"];
-    self.hasResource = [dictionary objectForKey:@"hasResource"];
-    self.logsetUID = [dictionary objectForKey:@"logsetUID"];
-    self.logtopicUID = [dictionary objectForKey:@"logtopicUID"];
-    self.resourceType = [dictionary objectForKey:@"resourceType"];
-    self.serviceCode = [dictionary objectForKey:@"serviceCode"];
-    self.templateName = [dictionary objectForKey:@"templateName"];
-    self.templateUID = [dictionary objectForKey:@"templateUID"];
-    return self;
-} 
-
-@end
-  
-@implementation LogsDescribeCollectResourcesResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-LogsDescribeCollectResourcesResult* result = [[LogsDescribeCollectResourcesResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(LogsDescribeCollectResourcesResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
-@implementation LogsUpdateCollectResourcesRequest
--(id) initWithRegion:(NSString *)regionId
-action:(NSString*)action
-resources:(NSArray<Resource*>*)resources
-collectInfoUID:(NSString*)collectInfoUID { 
-    self.regionId = regionId;
-    self.action = action;
-    self.resources = resources;
-    self.collectInfoUID = collectInfoUID;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-action:(NSString*)action
-resources:(NSArray<Resource*>*)resources
-collectInfoUID:(NSString*)collectInfoUID { 
-    self.regionId = regionId;
-    self.version = version;
-    self.action = action;
-    self.resources = resources;
-    self.collectInfoUID = collectInfoUID;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self action])
-    {
-        [result setValue:[self action] forKey:@"action"];
-    }
-    if([self resources])
-    {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self resources] count]; i++) {
-            Resource* item = [[self resources] objectAtIndex:i];
-            [arrayDic addObject:[item dictionary]];
-        }
-        [result setValue:arrayDic forKey:@"resources"];
-    }
-    if([self collectInfoUID])
-    {
-        [result setValue:[self collectInfoUID] forKey:@"collectInfoUID"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.action = [dictionary objectForKey:@"action"];
-    NSArray* resourcesArray = [dictionary objectForKey:@"resources"];
-    if(resourcesArray&&![resourcesArray isKindOfClass:[NSNull class]])
-    {
-        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
-        for(int i = 0 ; i< [resourcesArray count];i++)
-        {
-            Resource* item = [[Resource alloc]initWithDic:[resourcesArray objectAtIndex:i]];
-            if(item)
-            {
-                [propertyArray addObject:item];
-            }
-        }
-        self.resources = propertyArray;
-    }
-    self.collectInfoUID = [dictionary objectForKey:@"collectInfoUID"];
-    return self;
-} 
-
-@end
-@implementation LogsCreateCollectInfoRequest
--(id) initWithRegion:(NSString *)regionId
-enabled:(NSNumber*)enabled
-appCode:(NSString*)appCode
-serviceCode:(NSString*)serviceCode
-resourceType:(NSString*)resourceType
-resources:(NSArray<Resource*>*)resources
-templateUID:(NSString*)templateUID
-logPath:(NSString*)logPath
-logFile:(NSString*)logFile
-logFilters:(NSArray<NSString*>*)logFilters
-filterEnabled:(NSNumber*)filterEnabled
-logtopicUID:(NSString*)logtopicUID { 
-    self.regionId = regionId;
-    self.enabled = enabled;
-    self.appCode = appCode;
-    self.serviceCode = serviceCode;
-    self.resourceType = resourceType;
-    self.resources = resources;
-    self.templateUID = templateUID;
-    self.logPath = logPath;
-    self.logFile = logFile;
-    self.logFilters = logFilters;
-    self.filterEnabled = filterEnabled;
-    self.logtopicUID = logtopicUID;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-enabled:(NSNumber*)enabled
-appCode:(NSString*)appCode
-serviceCode:(NSString*)serviceCode
-resourceType:(NSString*)resourceType
-resources:(NSArray<Resource*>*)resources
-templateUID:(NSString*)templateUID
-logPath:(NSString*)logPath
-logFile:(NSString*)logFile
-logFilters:(NSArray<NSString*>*)logFilters
-filterEnabled:(NSNumber*)filterEnabled
-logtopicUID:(NSString*)logtopicUID { 
-    self.regionId = regionId;
-    self.version = version;
-    self.enabled = enabled;
-    self.appCode = appCode;
-    self.serviceCode = serviceCode;
-    self.resourceType = resourceType;
-    self.resources = resources;
-    self.templateUID = templateUID;
-    self.logPath = logPath;
-    self.logFile = logFile;
-    self.logFilters = logFilters;
-    self.filterEnabled = filterEnabled;
-    self.logtopicUID = logtopicUID;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self enabled])
-    {
-        [result setValue:[self enabled] forKey:@"enabled"];
-    }
-    if([self appCode])
-    {
-        [result setValue:[self appCode] forKey:@"appCode"];
-    }
-    if([self serviceCode])
-    {
-        [result setValue:[self serviceCode] forKey:@"serviceCode"];
-    }
-    if([self resourceType])
-    {
-        [result setValue:[self resourceType] forKey:@"resourceType"];
-    }
-    if([self resources])
-    {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self resources] count]; i++) {
-            Resource* item = [[self resources] objectAtIndex:i];
-            [arrayDic addObject:[item dictionary]];
-        }
-        [result setValue:arrayDic forKey:@"resources"];
-    }
-    if([self templateUID])
-    {
-        [result setValue:[self templateUID] forKey:@"templateUID"];
-    }
-    if([self logPath])
-    {
-        [result setValue:[self logPath] forKey:@"logPath"];
-    }
-    if([self logFile])
-    {
-        [result setValue:[self logFile] forKey:@"logFile"];
-    }
-    if([self logFilters])
-    {
-        [result setValue:[self logFilters] forKey:@"logFilters"];
-    }
-    if([self filterEnabled])
-    {
-        [result setValue:[self filterEnabled] forKey:@"filterEnabled"];
-    }
-    if([self logtopicUID])
-    {
-        [result setValue:[self logtopicUID] forKey:@"logtopicUID"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.enabled = [dictionary objectForKey:@"enabled"];
-    self.appCode = [dictionary objectForKey:@"appCode"];
-    self.serviceCode = [dictionary objectForKey:@"serviceCode"];
-    self.resourceType = [dictionary objectForKey:@"resourceType"];
-    NSArray* resourcesArray = [dictionary objectForKey:@"resources"];
-    if(resourcesArray&&![resourcesArray isKindOfClass:[NSNull class]])
-    {
-        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
-        for(int i = 0 ; i< [resourcesArray count];i++)
-        {
-            Resource* item = [[Resource alloc]initWithDic:[resourcesArray objectAtIndex:i]];
-            if(item)
-            {
-                [propertyArray addObject:item];
-            }
-        }
-        self.resources = propertyArray;
-    }
-    self.templateUID = [dictionary objectForKey:@"templateUID"];
-    self.logPath = [dictionary objectForKey:@"logPath"];
-    self.logFile = [dictionary objectForKey:@"logFile"];
-    self.logFilters = [dictionary objectForKey:@"logFilters"];
-    self.filterEnabled = [dictionary objectForKey:@"filterEnabled"];
-    self.logtopicUID = [dictionary objectForKey:@"logtopicUID"];
     return self;
 } 
 
@@ -3065,149 +1414,6 @@ collectInfoUID:(NSString*)collectInfoUID {
     self.collectInfoUID = [dictionary objectForKey:@"collectInfoUID"];
     return self;
 } 
-
-@end
-  
-@implementation LogsDescribeCollectInfoResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-LogsDescribeCollectInfoResult* result = [[LogsDescribeCollectInfoResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(LogsDescribeCollectInfoResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
-  
-@implementation LogsCreateCollectInfoResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-LogsCreateCollectInfoResult* result = [[LogsCreateCollectInfoResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(LogsCreateCollectInfoResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
-@implementation LogsDeleteLogtopicResult
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    return self;
-} 
-
-@end
-  
-@implementation LogsDeleteLogtopicResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-LogsDeleteLogtopicResult* result = [[LogsDeleteLogtopicResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(LogsDeleteLogtopicResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
 
 @end
 @implementation LogsDeleteLogtopicRequest
@@ -3430,61 +1636,6 @@ logsetUID:(NSString*)logsetUID {
 } 
 
 @end
-@implementation LogsUpdateLogtopicResult
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    return self;
-} 
-
-@end
-  
-@implementation LogsUpdateLogtopicResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-LogsUpdateLogtopicResult* result = [[LogsUpdateLogtopicResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(LogsUpdateLogtopicResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
 @implementation LogsDescribeLogtopicRequest
 -(id) initWithRegion:(NSString *)regionId
 logtopicUID:(NSString*)logtopicUID { 
@@ -3584,6 +1735,1875 @@ logsetUID:(NSString*)logsetUID {
 } 
 
 @end
+@implementation LogsCreateLogtopicResult
+-(id) initWithUID:(NSString*) uID { 
+    self.uID = uID;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self uID])
+    {
+        [result setValue:[self uID] forKey:@"uID"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.uID = [dictionary objectForKey:@"uID"];
+    return self;
+} 
+
+@end
+  
+@implementation LogsSearchLogContextResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+LogsSearchLogContextResult* result = [[LogsSearchLogContextResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(LogsSearchLogContextResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+  
+@implementation LogsSearchResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+LogsSearchResult* result = [[LogsSearchResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(LogsSearchResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+@implementation LogsPutResult
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    return self;
+} 
+
+@end
+  
+@implementation LogsPutResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+LogsPutResult* result = [[LogsPutResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(LogsPutResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+@implementation LogsPutRequest
+-(id) initWithRegion:(NSString *)regionId
+stream:(NSString*)stream
+timestamp:(NSString*)timestamp
+entries:(NSArray<Entry*>*)entries
+logtopicUID:(NSString*)logtopicUID { 
+    self.regionId = regionId;
+    self.stream = stream;
+    self.timestamp = timestamp;
+    self.entries = entries;
+    self.logtopicUID = logtopicUID;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+stream:(NSString*)stream
+timestamp:(NSString*)timestamp
+entries:(NSArray<Entry*>*)entries
+logtopicUID:(NSString*)logtopicUID { 
+    self.regionId = regionId;
+    self.version = version;
+    self.stream = stream;
+    self.timestamp = timestamp;
+    self.entries = entries;
+    self.logtopicUID = logtopicUID;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self stream])
+    {
+        [result setValue:[self stream] forKey:@"stream"];
+    }
+    if([self timestamp])
+    {
+        [result setValue:[self timestamp] forKey:@"timestamp"];
+    }
+    if([self entries])
+    {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self entries] count]; i++) {
+            Entry* item = [[self entries] objectAtIndex:i];
+            [arrayDic addObject:[item dictionary]];
+        }
+        [result setValue:arrayDic forKey:@"entries"];
+    }
+    if([self logtopicUID])
+    {
+        [result setValue:[self logtopicUID] forKey:@"logtopicUID"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.stream = [dictionary objectForKey:@"stream"];
+    self.timestamp = [dictionary objectForKey:@"timestamp"];
+    NSArray* entriesArray = [dictionary objectForKey:@"entries"];
+    if(entriesArray&&![entriesArray isKindOfClass:[NSNull class]])
+    {
+        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
+        for(int i = 0 ; i< [entriesArray count];i++)
+        {
+        Entry* item = [[Entry alloc]initWithDic:[entriesArray objectAtIndex:i]];
+            if(item)
+            {
+            [propertyArray addObject:item];
+            }
+        }
+        self.entries = propertyArray;
+    }
+    self.logtopicUID = [dictionary objectForKey:@"logtopicUID"];
+    return self;
+} 
+
+@end
+  
+@implementation LogsTestMetricTaskResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+LogsTestMetricTaskResult* result = [[LogsTestMetricTaskResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(LogsTestMetricTaskResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+  
+@implementation LogsUpdateMetricTaskResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+LogsUpdateMetricTaskResult* result = [[LogsUpdateMetricTaskResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(LogsUpdateMetricTaskResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+@implementation LogsDescribeMetricTaskResult
+-(id) initWithData:(MetrictaskDetailEnd*) data { 
+    self.data = data;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self data])
+    {
+        [result setValue:[[self data] dictionary]forKey:@"data"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.data = [[MetrictaskDetailEnd alloc]initWithDic:[dictionary objectForKey:@"data"]];
+    return self;
+} 
+
+@end
+  
+@implementation LogsDescribeMetricTaskResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+LogsDescribeMetricTaskResult* result = [[LogsDescribeMetricTaskResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(LogsDescribeMetricTaskResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+  
+@implementation LogsDeleteMetricTaskResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+LogsDeleteMetricTaskResult* result = [[LogsDeleteMetricTaskResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(LogsDeleteMetricTaskResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+@implementation LogsDescribeMetricTasksResult
+-(id) initWithData:(NSArray<MetrictaskDetailEnd*>*) data
+        numberPages:(NSNumber*)numberPages
+        numberRecords:(NSNumber*)numberRecords
+        pageNumber:(NSNumber*)pageNumber
+        pageSize:(NSNumber*)pageSize { 
+    self.data = data;               
+    self.numberPages = numberPages;               
+    self.numberRecords = numberRecords;               
+    self.pageNumber = pageNumber;               
+    self.pageSize = pageSize;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self data])
+    {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self data] count]; i++) {
+            MetrictaskDetailEnd* item = [[self data] objectAtIndex:i];
+            [arrayDic addObject:[item dictionary]];
+        }
+        [result setValue:arrayDic forKey:@"data"];
+    }
+    if([self numberPages])
+    {
+        [result setValue:[self numberPages] forKey:@"numberPages"];
+    }
+    if([self numberRecords])
+    {
+        [result setValue:[self numberRecords] forKey:@"numberRecords"];
+    }
+    if([self pageNumber])
+    {
+        [result setValue:[self pageNumber] forKey:@"pageNumber"];
+    }
+    if([self pageSize])
+    {
+        [result setValue:[self pageSize] forKey:@"pageSize"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    NSArray* dataArray = [dictionary objectForKey:@"data"];
+    if(dataArray&&![dataArray isKindOfClass:[NSNull class]])
+    {
+        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
+        for(int i = 0 ; i< [dataArray count];i++)
+        {
+        MetrictaskDetailEnd* item = [[MetrictaskDetailEnd alloc]initWithDic:[dataArray objectAtIndex:i]];
+            if(item)
+            {
+            [propertyArray addObject:item];
+            }
+        }
+        self.data = propertyArray;
+    }
+    self.numberPages = [dictionary objectForKey:@"numberPages"];
+    self.numberRecords = [dictionary objectForKey:@"numberRecords"];
+    self.pageNumber = [dictionary objectForKey:@"pageNumber"];
+    self.pageSize = [dictionary objectForKey:@"pageSize"];
+    return self;
+} 
+
+@end
+  
+@implementation LogsDescribeMetricTasksResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+LogsDescribeMetricTasksResult* result = [[LogsDescribeMetricTasksResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(LogsDescribeMetricTasksResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+  
+@implementation LogsCreateMetricTaskResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+LogsCreateMetricTaskResult* result = [[LogsCreateMetricTaskResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(LogsCreateMetricTaskResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+@implementation LogsDescribeLogsetsResult
+-(id) initWithData:(NSArray<LogsetEnd*>*) data
+        numberPages:(NSNumber*)numberPages
+        numberRecords:(NSNumber*)numberRecords
+        pageNumber:(NSNumber*)pageNumber
+        pageSize:(NSNumber*)pageSize { 
+    self.data = data;               
+    self.numberPages = numberPages;               
+    self.numberRecords = numberRecords;               
+    self.pageNumber = pageNumber;               
+    self.pageSize = pageSize;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self data])
+    {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self data] count]; i++) {
+            LogsetEnd* item = [[self data] objectAtIndex:i];
+            [arrayDic addObject:[item dictionary]];
+        }
+        [result setValue:arrayDic forKey:@"data"];
+    }
+    if([self numberPages])
+    {
+        [result setValue:[self numberPages] forKey:@"numberPages"];
+    }
+    if([self numberRecords])
+    {
+        [result setValue:[self numberRecords] forKey:@"numberRecords"];
+    }
+    if([self pageNumber])
+    {
+        [result setValue:[self pageNumber] forKey:@"pageNumber"];
+    }
+    if([self pageSize])
+    {
+        [result setValue:[self pageSize] forKey:@"pageSize"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    NSArray* dataArray = [dictionary objectForKey:@"data"];
+    if(dataArray&&![dataArray isKindOfClass:[NSNull class]])
+    {
+        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
+        for(int i = 0 ; i< [dataArray count];i++)
+        {
+        LogsetEnd* item = [[LogsetEnd alloc]initWithDic:[dataArray objectAtIndex:i]];
+            if(item)
+            {
+            [propertyArray addObject:item];
+            }
+        }
+        self.data = propertyArray;
+    }
+    self.numberPages = [dictionary objectForKey:@"numberPages"];
+    self.numberRecords = [dictionary objectForKey:@"numberRecords"];
+    self.pageNumber = [dictionary objectForKey:@"pageNumber"];
+    self.pageSize = [dictionary objectForKey:@"pageSize"];
+    return self;
+} 
+
+@end
+@implementation LogsUpdateLogsetResult
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    return self;
+} 
+
+@end
+  
+@implementation LogsUpdateLogsetResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+LogsUpdateLogsetResult* result = [[LogsUpdateLogsetResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(LogsUpdateLogsetResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+@implementation LogsDeleteLogsetResult
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    return self;
+} 
+
+@end
+  
+@implementation LogsDeleteLogsetResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+LogsDeleteLogsetResult* result = [[LogsDeleteLogsetResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(LogsDeleteLogsetResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+  
+@implementation LogsDescribeLogsetResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+LogsDescribeLogsetResult* result = [[LogsDescribeLogsetResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(LogsDescribeLogsetResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+  
+@implementation LogsDescribeLogsetsResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+LogsDescribeLogsetsResult* result = [[LogsDescribeLogsetsResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(LogsDescribeLogsetsResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+  
+@implementation LogsCreateLogsetResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+LogsCreateLogsetResult* result = [[LogsCreateLogsetResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(LogsCreateLogsetResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+@implementation LogsDescribeInstanceCollectConfsResult
+-(id) initWithConfs:(NSArray<CollectConf*>*) confs { 
+    self.confs = confs;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self confs])
+    {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self confs] count]; i++) {
+            CollectConf* item = [[self confs] objectAtIndex:i];
+            [arrayDic addObject:[item dictionary]];
+        }
+        [result setValue:arrayDic forKey:@"confs"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    NSArray* confsArray = [dictionary objectForKey:@"confs"];
+    if(confsArray&&![confsArray isKindOfClass:[NSNull class]])
+    {
+        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
+        for(int i = 0 ; i< [confsArray count];i++)
+        {
+        CollectConf* item = [[CollectConf alloc]initWithDic:[confsArray objectAtIndex:i]];
+            if(item)
+            {
+            [propertyArray addObject:item];
+            }
+        }
+        self.confs = propertyArray;
+    }
+    return self;
+} 
+
+@end
+  
+@implementation LogsDescribeInstanceCollectConfsResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+LogsDescribeInstanceCollectConfsResult* result = [[LogsDescribeInstanceCollectConfsResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(LogsDescribeInstanceCollectConfsResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+  
+@implementation LogsDescribeLogdCAResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+LogsDescribeLogdCAResult* result = [[LogsDescribeLogdCAResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(LogsDescribeLogdCAResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+@implementation LogsUpdateCollectResourcesResult
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    return self;
+} 
+
+@end
+  
+@implementation LogsUpdateCollectResourcesResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+LogsUpdateCollectResourcesResult* result = [[LogsUpdateCollectResourcesResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(LogsUpdateCollectResourcesResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+@implementation LogsDescribeCollectResourcesResult
+-(id) initWithData:(NSArray<ResourceEnd*>*) data
+        numberPages:(NSNumber*)numberPages
+        numberRecords:(NSNumber*)numberRecords
+        pageNumber:(NSNumber*)pageNumber
+        pageSize:(NSNumber*)pageSize { 
+    self.data = data;               
+    self.numberPages = numberPages;               
+    self.numberRecords = numberRecords;               
+    self.pageNumber = pageNumber;               
+    self.pageSize = pageSize;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self data])
+    {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self data] count]; i++) {
+            ResourceEnd* item = [[self data] objectAtIndex:i];
+            [arrayDic addObject:[item dictionary]];
+        }
+        [result setValue:arrayDic forKey:@"data"];
+    }
+    if([self numberPages])
+    {
+        [result setValue:[self numberPages] forKey:@"numberPages"];
+    }
+    if([self numberRecords])
+    {
+        [result setValue:[self numberRecords] forKey:@"numberRecords"];
+    }
+    if([self pageNumber])
+    {
+        [result setValue:[self pageNumber] forKey:@"pageNumber"];
+    }
+    if([self pageSize])
+    {
+        [result setValue:[self pageSize] forKey:@"pageSize"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    NSArray* dataArray = [dictionary objectForKey:@"data"];
+    if(dataArray&&![dataArray isKindOfClass:[NSNull class]])
+    {
+        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
+        for(int i = 0 ; i< [dataArray count];i++)
+        {
+        ResourceEnd* item = [[ResourceEnd alloc]initWithDic:[dataArray objectAtIndex:i]];
+            if(item)
+            {
+            [propertyArray addObject:item];
+            }
+        }
+        self.data = propertyArray;
+    }
+    self.numberPages = [dictionary objectForKey:@"numberPages"];
+    self.numberRecords = [dictionary objectForKey:@"numberRecords"];
+    self.pageNumber = [dictionary objectForKey:@"pageNumber"];
+    self.pageSize = [dictionary objectForKey:@"pageSize"];
+    return self;
+} 
+
+@end
+@implementation LogsUpdateCollectInfoResult
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    return self;
+} 
+
+@end
+  
+@implementation LogsUpdateCollectInfoResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+LogsUpdateCollectInfoResult* result = [[LogsUpdateCollectInfoResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(LogsUpdateCollectInfoResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+@implementation LogsUpdateCollectInfoRequest
+-(id) initWithRegion:(NSString *)regionId
+enabled:(NSNumber*)enabled
+resourceType:(NSString*)resourceType
+resources:(NSArray<Resource*>*)resources
+logPath:(NSString*)logPath
+logFile:(NSString*)logFile
+logFilters:(NSArray<NSString*>*)logFilters
+filterEnabled:(NSNumber*)filterEnabled
+collectInfoUID:(NSString*)collectInfoUID { 
+    self.regionId = regionId;
+    self.enabled = enabled;
+    self.resourceType = resourceType;
+    self.resources = resources;
+    self.logPath = logPath;
+    self.logFile = logFile;
+    self.logFilters = logFilters;
+    self.filterEnabled = filterEnabled;
+    self.collectInfoUID = collectInfoUID;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+enabled:(NSNumber*)enabled
+resourceType:(NSString*)resourceType
+resources:(NSArray<Resource*>*)resources
+logPath:(NSString*)logPath
+logFile:(NSString*)logFile
+logFilters:(NSArray<NSString*>*)logFilters
+filterEnabled:(NSNumber*)filterEnabled
+collectInfoUID:(NSString*)collectInfoUID { 
+    self.regionId = regionId;
+    self.version = version;
+    self.enabled = enabled;
+    self.resourceType = resourceType;
+    self.resources = resources;
+    self.logPath = logPath;
+    self.logFile = logFile;
+    self.logFilters = logFilters;
+    self.filterEnabled = filterEnabled;
+    self.collectInfoUID = collectInfoUID;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self enabled])
+    {
+        [result setValue:[self enabled] forKey:@"enabled"];
+    }
+    if([self resourceType])
+    {
+        [result setValue:[self resourceType] forKey:@"resourceType"];
+    }
+    if([self resources])
+    {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self resources] count]; i++) {
+            Resource* item = [[self resources] objectAtIndex:i];
+            [arrayDic addObject:[item dictionary]];
+        }
+        [result setValue:arrayDic forKey:@"resources"];
+    }
+    if([self logPath])
+    {
+        [result setValue:[self logPath] forKey:@"logPath"];
+    }
+    if([self logFile])
+    {
+        [result setValue:[self logFile] forKey:@"logFile"];
+    }
+    if([self logFilters])
+    {
+        [result setValue:[self logFilters] forKey:@"logFilters"];
+    }
+    if([self filterEnabled])
+    {
+        [result setValue:[self filterEnabled] forKey:@"filterEnabled"];
+    }
+    if([self collectInfoUID])
+    {
+        [result setValue:[self collectInfoUID] forKey:@"collectInfoUID"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.enabled = [dictionary objectForKey:@"enabled"];
+    self.resourceType = [dictionary objectForKey:@"resourceType"];
+    NSArray* resourcesArray = [dictionary objectForKey:@"resources"];
+    if(resourcesArray&&![resourcesArray isKindOfClass:[NSNull class]])
+    {
+        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
+        for(int i = 0 ; i< [resourcesArray count];i++)
+        {
+        Resource* item = [[Resource alloc]initWithDic:[resourcesArray objectAtIndex:i]];
+            if(item)
+            {
+            [propertyArray addObject:item];
+            }
+        }
+        self.resources = propertyArray;
+    }
+    self.logPath = [dictionary objectForKey:@"logPath"];
+    self.logFile = [dictionary objectForKey:@"logFile"];
+    self.logFilters = [dictionary objectForKey:@"logFilters"];
+    self.filterEnabled = [dictionary objectForKey:@"filterEnabled"];
+    self.collectInfoUID = [dictionary objectForKey:@"collectInfoUID"];
+    return self;
+} 
+
+@end
+@implementation LogsDescribeCollectInfoResult
+-(id) initWithUID:(NSString*) uID
+        appCode:(NSString*)appCode
+        detail:(CollectTempalteEnd*)detail
+        enabled:(NSNumber*)enabled
+        hasResource:(NSNumber*)hasResource
+        logsetUID:(NSString*)logsetUID
+        logtopicUID:(NSString*)logtopicUID
+        resourceType:(NSString*)resourceType
+        serviceCode:(NSString*)serviceCode
+        templateName:(NSString*)templateName
+        templateUID:(NSString*)templateUID { 
+    self.uID = uID;               
+    self.appCode = appCode;               
+    self.detail = detail;               
+    self.enabled = enabled;               
+    self.hasResource = hasResource;               
+    self.logsetUID = logsetUID;               
+    self.logtopicUID = logtopicUID;               
+    self.resourceType = resourceType;               
+    self.serviceCode = serviceCode;               
+    self.templateName = templateName;               
+    self.templateUID = templateUID;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self uID])
+    {
+        [result setValue:[self uID] forKey:@"uID"];
+    }
+    if([self appCode])
+    {
+        [result setValue:[self appCode] forKey:@"appCode"];
+    }
+    if([self detail])
+    {
+        [result setValue:[[self detail] dictionary]forKey:@"detail"];
+    }
+    if([self enabled])
+    {
+        [result setValue:[self enabled] forKey:@"enabled"];
+    }
+    if([self hasResource])
+    {
+        [result setValue:[self hasResource] forKey:@"hasResource"];
+    }
+    if([self logsetUID])
+    {
+        [result setValue:[self logsetUID] forKey:@"logsetUID"];
+    }
+    if([self logtopicUID])
+    {
+        [result setValue:[self logtopicUID] forKey:@"logtopicUID"];
+    }
+    if([self resourceType])
+    {
+        [result setValue:[self resourceType] forKey:@"resourceType"];
+    }
+    if([self serviceCode])
+    {
+        [result setValue:[self serviceCode] forKey:@"serviceCode"];
+    }
+    if([self templateName])
+    {
+        [result setValue:[self templateName] forKey:@"templateName"];
+    }
+    if([self templateUID])
+    {
+        [result setValue:[self templateUID] forKey:@"templateUID"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.uID = [dictionary objectForKey:@"uID"];
+    self.appCode = [dictionary objectForKey:@"appCode"];
+    self.detail = [[CollectTempalteEnd alloc]initWithDic:[dictionary objectForKey:@"detail"]];
+    self.enabled = [dictionary objectForKey:@"enabled"];
+    self.hasResource = [dictionary objectForKey:@"hasResource"];
+    self.logsetUID = [dictionary objectForKey:@"logsetUID"];
+    self.logtopicUID = [dictionary objectForKey:@"logtopicUID"];
+    self.resourceType = [dictionary objectForKey:@"resourceType"];
+    self.serviceCode = [dictionary objectForKey:@"serviceCode"];
+    self.templateName = [dictionary objectForKey:@"templateName"];
+    self.templateUID = [dictionary objectForKey:@"templateUID"];
+    return self;
+} 
+
+@end
+  
+@implementation LogsDescribeCollectResourcesResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+LogsDescribeCollectResourcesResult* result = [[LogsDescribeCollectResourcesResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(LogsDescribeCollectResourcesResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+@implementation LogsUpdateCollectResourcesRequest
+-(id) initWithRegion:(NSString *)regionId
+action:(NSString*)action
+resources:(NSArray<Resource*>*)resources
+collectInfoUID:(NSString*)collectInfoUID { 
+    self.regionId = regionId;
+    self.action = action;
+    self.resources = resources;
+    self.collectInfoUID = collectInfoUID;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+action:(NSString*)action
+resources:(NSArray<Resource*>*)resources
+collectInfoUID:(NSString*)collectInfoUID { 
+    self.regionId = regionId;
+    self.version = version;
+    self.action = action;
+    self.resources = resources;
+    self.collectInfoUID = collectInfoUID;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self action])
+    {
+        [result setValue:[self action] forKey:@"action"];
+    }
+    if([self resources])
+    {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self resources] count]; i++) {
+            Resource* item = [[self resources] objectAtIndex:i];
+            [arrayDic addObject:[item dictionary]];
+        }
+        [result setValue:arrayDic forKey:@"resources"];
+    }
+    if([self collectInfoUID])
+    {
+        [result setValue:[self collectInfoUID] forKey:@"collectInfoUID"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.action = [dictionary objectForKey:@"action"];
+    NSArray* resourcesArray = [dictionary objectForKey:@"resources"];
+    if(resourcesArray&&![resourcesArray isKindOfClass:[NSNull class]])
+    {
+        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
+        for(int i = 0 ; i< [resourcesArray count];i++)
+        {
+        Resource* item = [[Resource alloc]initWithDic:[resourcesArray objectAtIndex:i]];
+            if(item)
+            {
+            [propertyArray addObject:item];
+            }
+        }
+        self.resources = propertyArray;
+    }
+    self.collectInfoUID = [dictionary objectForKey:@"collectInfoUID"];
+    return self;
+} 
+
+@end
+@implementation LogsCreateCollectInfoRequest
+-(id) initWithRegion:(NSString *)regionId
+enabled:(NSNumber*)enabled
+appCode:(NSString*)appCode
+serviceCode:(NSString*)serviceCode
+resourceType:(NSString*)resourceType
+resources:(NSArray<Resource*>*)resources
+templateUID:(NSString*)templateUID
+logPath:(NSString*)logPath
+logFile:(NSString*)logFile
+logFilters:(NSArray<NSString*>*)logFilters
+filterEnabled:(NSNumber*)filterEnabled
+logtopicUID:(NSString*)logtopicUID { 
+    self.regionId = regionId;
+    self.enabled = enabled;
+    self.appCode = appCode;
+    self.serviceCode = serviceCode;
+    self.resourceType = resourceType;
+    self.resources = resources;
+    self.templateUID = templateUID;
+    self.logPath = logPath;
+    self.logFile = logFile;
+    self.logFilters = logFilters;
+    self.filterEnabled = filterEnabled;
+    self.logtopicUID = logtopicUID;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+enabled:(NSNumber*)enabled
+appCode:(NSString*)appCode
+serviceCode:(NSString*)serviceCode
+resourceType:(NSString*)resourceType
+resources:(NSArray<Resource*>*)resources
+templateUID:(NSString*)templateUID
+logPath:(NSString*)logPath
+logFile:(NSString*)logFile
+logFilters:(NSArray<NSString*>*)logFilters
+filterEnabled:(NSNumber*)filterEnabled
+logtopicUID:(NSString*)logtopicUID { 
+    self.regionId = regionId;
+    self.version = version;
+    self.enabled = enabled;
+    self.appCode = appCode;
+    self.serviceCode = serviceCode;
+    self.resourceType = resourceType;
+    self.resources = resources;
+    self.templateUID = templateUID;
+    self.logPath = logPath;
+    self.logFile = logFile;
+    self.logFilters = logFilters;
+    self.filterEnabled = filterEnabled;
+    self.logtopicUID = logtopicUID;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self enabled])
+    {
+        [result setValue:[self enabled] forKey:@"enabled"];
+    }
+    if([self appCode])
+    {
+        [result setValue:[self appCode] forKey:@"appCode"];
+    }
+    if([self serviceCode])
+    {
+        [result setValue:[self serviceCode] forKey:@"serviceCode"];
+    }
+    if([self resourceType])
+    {
+        [result setValue:[self resourceType] forKey:@"resourceType"];
+    }
+    if([self resources])
+    {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self resources] count]; i++) {
+            Resource* item = [[self resources] objectAtIndex:i];
+            [arrayDic addObject:[item dictionary]];
+        }
+        [result setValue:arrayDic forKey:@"resources"];
+    }
+    if([self templateUID])
+    {
+        [result setValue:[self templateUID] forKey:@"templateUID"];
+    }
+    if([self logPath])
+    {
+        [result setValue:[self logPath] forKey:@"logPath"];
+    }
+    if([self logFile])
+    {
+        [result setValue:[self logFile] forKey:@"logFile"];
+    }
+    if([self logFilters])
+    {
+        [result setValue:[self logFilters] forKey:@"logFilters"];
+    }
+    if([self filterEnabled])
+    {
+        [result setValue:[self filterEnabled] forKey:@"filterEnabled"];
+    }
+    if([self logtopicUID])
+    {
+        [result setValue:[self logtopicUID] forKey:@"logtopicUID"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.enabled = [dictionary objectForKey:@"enabled"];
+    self.appCode = [dictionary objectForKey:@"appCode"];
+    self.serviceCode = [dictionary objectForKey:@"serviceCode"];
+    self.resourceType = [dictionary objectForKey:@"resourceType"];
+    NSArray* resourcesArray = [dictionary objectForKey:@"resources"];
+    if(resourcesArray&&![resourcesArray isKindOfClass:[NSNull class]])
+    {
+        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
+        for(int i = 0 ; i< [resourcesArray count];i++)
+        {
+        Resource* item = [[Resource alloc]initWithDic:[resourcesArray objectAtIndex:i]];
+            if(item)
+            {
+            [propertyArray addObject:item];
+            }
+        }
+        self.resources = propertyArray;
+    }
+    self.templateUID = [dictionary objectForKey:@"templateUID"];
+    self.logPath = [dictionary objectForKey:@"logPath"];
+    self.logFile = [dictionary objectForKey:@"logFile"];
+    self.logFilters = [dictionary objectForKey:@"logFilters"];
+    self.filterEnabled = [dictionary objectForKey:@"filterEnabled"];
+    self.logtopicUID = [dictionary objectForKey:@"logtopicUID"];
+    return self;
+} 
+
+@end
+  
+@implementation LogsDescribeCollectInfoResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+LogsDescribeCollectInfoResult* result = [[LogsDescribeCollectInfoResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(LogsDescribeCollectInfoResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+  
+@implementation LogsCreateCollectInfoResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+LogsCreateCollectInfoResult* result = [[LogsCreateCollectInfoResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(LogsCreateCollectInfoResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+@implementation LogsDeleteLogtopicResult
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    return self;
+} 
+
+@end
+  
+@implementation LogsDeleteLogtopicResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+LogsDeleteLogtopicResult* result = [[LogsDeleteLogtopicResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(LogsDeleteLogtopicResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+@implementation LogsUpdateLogtopicResult
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    return self;
+} 
+
+@end
+  
+@implementation LogsUpdateLogtopicResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+LogsUpdateLogtopicResult* result = [[LogsUpdateLogtopicResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(LogsUpdateLogtopicResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
 @implementation LogsDescribeLogtopicsResult
 -(id) initWithData:(NSArray<LogtopicDetailEnd*>*) data
         numberPages:(NSNumber*)numberPages
@@ -3601,8 +3621,8 @@ logsetUID:(NSString*)logsetUID {
     NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
     if([self data])
     {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self data] count]; i++) {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self data] count]; i++) {
             LogtopicDetailEnd* item = [[self data] objectAtIndex:i];
             [arrayDic addObject:[item dictionary]];
         }
@@ -3634,10 +3654,10 @@ logsetUID:(NSString*)logsetUID {
         NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
         for(int i = 0 ; i< [dataArray count];i++)
         {
-            LogtopicDetailEnd* item = [[LogtopicDetailEnd alloc]initWithDic:[dataArray objectAtIndex:i]];
+        LogtopicDetailEnd* item = [[LogtopicDetailEnd alloc]initWithDic:[dataArray objectAtIndex:i]];
             if(item)
             {
-                [propertyArray addObject:item];
+            [propertyArray addObject:item];
             }
         }
         self.data = propertyArray;
@@ -3736,26 +3756,6 @@ LogsDescribeLogtopicResult* result = [[LogsDescribeLogtopicResult alloc]initWith
     self.requestId = requestId;
     return self;
 }
-
-@end
-@implementation LogsCreateLogtopicResult
--(id) initWithUID:(NSString*) uID { 
-    self.uID = uID;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self uID])
-    {
-        [result setValue:[self uID] forKey:@"uID"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.uID = [dictionary objectForKey:@"uID"];
-    return self;
-} 
 
 @end
   

@@ -50,6 +50,1732 @@ backupId:(NSString*)backupId;
 
 @end
 
+@interface RdsDescribeBackupDownloadURLResult : NSObject
+/// 公网下载链接，若当前不可下载，则为空串
+ @property (strong,nonatomic,nonnull)  NSString*  publicURL;
+/// 内网下载链接，若当前不可下载，则为空串
+ @property (strong,nonatomic,nonnull)  NSString*  internalURL;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithPublicURL:(NSString*) publicURL
+
+    internalURL:(NSString*)internalURL;
+@end
+
+@interface RdsDescribeBackupsRequest:JDCloudRequest
+
+/// RDS实例ID，唯一标识一个实例
+@property (strong,nonatomic,nonnull)  NSString*  instanceId;
+/// 查询备份类型，0为手动备份，1为自动备份，不传表示全部. &lt;br&gt;**- 测试参数，仅支持SQL Server，后续可能被其他参数取代**
+@property (strong,nonatomic,nonnull)  NSNumber*  propertyAuto;
+/// 返回backupType等于指定值的备份列表。full为全量备份，diff为增量备份&lt;br&gt;**- 测试参数，仅支持SQL Server，后续可能被其他参数取代**
+@property (strong,nonatomic,nonnull)  NSString*  backupTypeFilter;
+/// 返回dbName等于指定值的备份列表，不传或为空返回全部&lt;br&gt;**- 测试参数，仅支持SQL Server，后续可能被其他参数取代**
+@property (strong,nonatomic,nonnull)  NSString*  dbNameFilter;
+/// 返回备份开始时间大于该时间的备份列表&lt;br&gt;**- 测试参数，仅支持SQL Server，后续可能被其他参数取代**
+@property (strong,nonatomic,nonnull)  NSString*  backupTimeRangeStartFilter;
+/// 返回备份开始时间小于等于该时间的备份列表&lt;br&gt;**- 测试参数，仅支持SQL Server，后续可能被其他参数取代**
+@property (strong,nonatomic,nonnull)  NSString*  backupTimeRangeEndFilter;
+/// 显示数据的页码，默认为1，取值范围：[-1,∞)。pageNumber为-1时，返回所有数据页码；超过总页数时，显示最后一页。
+@property (strong,nonatomic,nonnull)  NSNumber*  pageNumber;
+/// 每页显示的数据条数，默认为10，取值范围：10、20、30、50、100
+@property (strong,nonatomic,nonnull)  NSNumber*  pageSize;
+-(id) initWithRegion:(NSString *)regionId
+instanceId:(NSString*)instanceId
+propertyAuto:(NSNumber*)propertyAuto
+backupTypeFilter:(NSString*)backupTypeFilter
+dbNameFilter:(NSString*)dbNameFilter
+backupTimeRangeStartFilter:(NSString*)backupTimeRangeStartFilter
+backupTimeRangeEndFilter:(NSString*)backupTimeRangeEndFilter
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+instanceId:(NSString*)instanceId
+propertyAuto:(NSNumber*)propertyAuto
+backupTypeFilter:(NSString*)backupTypeFilter
+dbNameFilter:(NSString*)dbNameFilter
+backupTimeRangeStartFilter:(NSString*)backupTimeRangeStartFilter
+backupTimeRangeEndFilter:(NSString*)backupTimeRangeEndFilter
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize;
+
+@end
+
+@interface RdsCreateBackupResult : NSObject
+/// 备份Id
+ @property (strong,nonatomic,nonnull)  NSString*  backupId;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithBackupId:(NSString*) backupId;
+@end
+
+@interface RdsDeleteBackupRequest:JDCloudRequest
+
+/// 备份ID
+@property (strong,nonatomic,nonnull)  NSString*  backupId;
+-(id) initWithRegion:(NSString *)regionId
+backupId:(NSString*)backupId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+backupId:(NSString*)backupId;
+
+@end
+
+@interface RdsDescribeErrorLogsRequest:JDCloudRequest
+
+/// RDS 实例ID，唯一标识一个RDS实例
+@property (strong,nonatomic,nonnull)  NSString*  instanceId;
+-(id) initWithRegion:(NSString *)regionId
+instanceId:(NSString*)instanceId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+instanceId:(NSString*)instanceId;
+
+@end
+
+@interface RdsDescribeInterceptResultRequest:JDCloudRequest
+
+/// 显示数据的页码，默认为1，取值范围：[-1,∞)。pageNumber为-1时，返回所有数据页码；超过总页数时，显示最后一页;
+@property (strong,nonatomic,nonnull)  NSNumber*  pageNumber;
+/// 每页显示的数据条数，默认为10，取值范围：[10,100]，且为10的整数倍
+@property (strong,nonatomic,nonnull)  NSNumber*  pageSize;
+/// Instance ID
+@property (strong,nonatomic,nonnull)  NSString*  instanceId;
+-(id) initWithRegion:(NSString *)regionId
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+instanceId:(NSString*)instanceId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+instanceId:(NSString*)instanceId;
+
+@end
+
+@interface RdsEnableInterceptRequest:JDCloudRequest
+
+/// Instance ID
+@property (strong,nonatomic,nonnull)  NSString*  instanceId;
+-(id) initWithRegion:(NSString *)regionId
+instanceId:(NSString*)instanceId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+instanceId:(NSString*)instanceId;
+
+@end
+
+@interface RdsDescribeInterceptResult : NSObject
+/// Available
+ @property (strong,nonatomic,nonnull)  NSNumber*  available;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithAvailable:(NSNumber*) available;
+@end
+
+@interface RdsDisableInterceptRequest:JDCloudRequest
+
+/// Instance ID
+@property (strong,nonatomic,nonnull)  NSString*  instanceId;
+-(id) initWithRegion:(NSString *)regionId
+instanceId:(NSString*)instanceId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+instanceId:(NSString*)instanceId;
+
+@end
+
+@interface RdsDescribeInterceptRequest:JDCloudRequest
+
+/// Instance ID
+@property (strong,nonatomic,nonnull)  NSString*  instanceId;
+-(id) initWithRegion:(NSString *)regionId
+instanceId:(NSString*)instanceId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+instanceId:(NSString*)instanceId;
+
+@end
+
+@interface RdsEnableTdeRequest:JDCloudRequest
+
+/// RDS 实例ID，唯一标识一个RDS实例
+@property (strong,nonatomic,nonnull)  NSString*  instanceId;
+-(id) initWithRegion:(NSString *)regionId
+instanceId:(NSString*)instanceId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+instanceId:(NSString*)instanceId;
+
+@end
+
+@interface RdsDescribeTdeResult : NSObject
+/// 当前实例是否已经开启TDE功能，如已开启，返回true；如未开启，返回false；开启中，返回pending
+ @property (strong,nonatomic,nonnull)  NSString*  status;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithStatus:(NSString*) status;
+@end
+
+@interface RdsDescribeTdeRequest:JDCloudRequest
+
+/// RDS 实例ID，唯一标识一个RDS实例
+@property (strong,nonatomic,nonnull)  NSString*  instanceId;
+-(id) initWithRegion:(NSString *)regionId
+instanceId:(NSString*)instanceId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+instanceId:(NSString*)instanceId;
+
+@end
+
+@interface RdsModifyAuditRequest:JDCloudRequest
+
+/// 在原有审计项基础上，增加新的审计项，多个审计项之间用英文逗号，分号或空格分隔，例如DATABASE_OBJECT_ACCESS_GROUP,ACKUP_RESTORE_GROUP
+@property (strong,nonatomic,nonnull)  NSString*  add;
+/// 删除审计项，多个审计项之间用英文逗号，分号或空格分隔，例如DATABASE_OBJECT_ACCESS_GROUP,ACKUP_RESTORE_GROUP&lt;br&gt;如删除了所有审计项，则审计自动关闭
+@property (strong,nonatomic,nonnull)  NSString*  drop;
+/// RDS 实例ID，唯一标识一个RDS实例
+@property (strong,nonatomic,nonnull)  NSString*  instanceId;
+-(id) initWithRegion:(NSString *)regionId
+add:(NSString*)add
+drop:(NSString*)drop
+instanceId:(NSString*)instanceId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+add:(NSString*)add
+drop:(NSString*)drop
+instanceId:(NSString*)instanceId;
+
+@end
+
+@interface RdsEnableAuditRequest:JDCloudRequest
+
+/// RDS 实例ID，唯一标识一个RDS实例
+@property (strong,nonatomic,nonnull)  NSString*  instanceId;
+-(id) initWithRegion:(NSString *)regionId
+instanceId:(NSString*)instanceId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+instanceId:(NSString*)instanceId;
+
+@end
+
+@interface RdsDisableAuditRequest:JDCloudRequest
+
+/// RDS 实例ID，唯一标识一个RDS实例
+@property (strong,nonatomic,nonnull)  NSString*  instanceId;
+-(id) initWithRegion:(NSString *)regionId
+instanceId:(NSString*)instanceId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+instanceId:(NSString*)instanceId;
+
+@end
+
+@interface RdsDescribeAuditDownloadURLResult : NSObject
+/// 公网下载链接，若当前不可下载，则为空串
+ @property (strong,nonatomic,nonnull)  NSString*  publicURL;
+/// 内网下载链接，若当前不可下载，则为空串
+ @property (strong,nonatomic,nonnull)  NSString*  internalURL;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithPublicURL:(NSString*) publicURL
+
+    internalURL:(NSString*)internalURL;
+@end
+
+@interface RdsDescribeAuditOptionsResult : NSObject
+/// AuditDefault类模板：返回建议开启的审计选项。&lt;br&gt; AuditOptions类模板：不返回该参数
+ @property (strong,nonatomic,nonnull)  NSArray<NSString*>*  enabled;
+/// AuditDefault类模板：返回未开启的审计选项&lt;br&gt;AuditOptions类模板：返回所有的审计选项
+ @property (strong,nonatomic,nonnull)  NSArray<NSString*>*  disabled;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithEnabled:(NSArray<NSString*>*) enabled
+
+    disabled:(NSArray<NSString*>*)disabled;
+@end
+
+@interface RdsDescribeAuditFilesRequest:JDCloudRequest
+
+/// RDS 实例ID，唯一标识一个RDS实例
+@property (strong,nonatomic,nonnull)  NSString*  instanceId;
+-(id) initWithRegion:(NSString *)regionId
+instanceId:(NSString*)instanceId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+instanceId:(NSString*)instanceId;
+
+@end
+
+@interface RdsDeleteAuditRequest:JDCloudRequest
+
+/// RDS 实例ID，唯一标识一个RDS实例
+@property (strong,nonatomic,nonnull)  NSString*  instanceId;
+-(id) initWithRegion:(NSString *)regionId
+instanceId:(NSString*)instanceId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+instanceId:(NSString*)instanceId;
+
+@end
+
+@interface RdsDescribeAuditDownloadURLRequest:JDCloudRequest
+
+/// 审计文件名
+@property (strong,nonatomic,nonnull)  NSString*  fileName;
+/// RDS 实例ID，唯一标识一个RDS实例
+@property (strong,nonatomic,nonnull)  NSString*  instanceId;
+-(id) initWithRegion:(NSString *)regionId
+fileName:(NSString*)fileName
+instanceId:(NSString*)instanceId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+fileName:(NSString*)fileName
+instanceId:(NSString*)instanceId;
+
+@end
+
+@interface RdsCreateAuditRequest:JDCloudRequest
+
+/// 要开启的审计选项，各个选项之间用英文逗号或空格进行分割，例如：DATABASE_OBJECT_ACCESS_GROUP,ACKUP_RESTORE_GROU等&lt;br&gt;各个数据库版本支持的审计选项可以通过接口[describeAuditOptions](./describeAuditOptions.md)获得，各个审计项的具体含义可以参看微软的官方文档
+@property (strong,nonatomic,nonnull)  NSString*  enabled;
+/// RDS 实例ID，唯一标识一个RDS实例
+@property (strong,nonatomic,nonnull)  NSString*  instanceId;
+-(id) initWithRegion:(NSString *)regionId
+enabled:(NSString*)enabled
+instanceId:(NSString*)instanceId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+enabled:(NSString*)enabled
+instanceId:(NSString*)instanceId;
+
+@end
+
+@interface RdsDescribeAuditRequest:JDCloudRequest
+
+/// RDS 实例ID，唯一标识一个RDS实例
+@property (strong,nonatomic,nonnull)  NSString*  instanceId;
+-(id) initWithRegion:(NSString *)regionId
+instanceId:(NSString*)instanceId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+instanceId:(NSString*)instanceId;
+
+@end
+
+@interface RdsDescribeAuditOptionsRequest:JDCloudRequest
+
+/// 审计选项类别，**大小写敏感**，目前支持两种类型：&lt;br&gt;（1）AuditOptions开头：在disalbed参数中返回SQL Server各个版本支持的所有选项，支持的名称为&lt;br&gt;AuditOptions2008R2&lt;br&gt;AuditOptions2012&lt;br&gt;AuditOptions2014&lt;br&gt;AuditOptions2016&lt;br&gt;例如输入参数为&quot;AuditOptions2016&quot;，则在disabled字段中返回SQL Server 2016 版本所支持的所有的审计选项&lt;br&gt;（2）AuditDefault开头：京东云建议的默认选项,在enabled参数中返回建议开启的选项，在disabled参数中返回不开启的选项，支持的名称为：&lt;br&gt;AuditDefault2008R2&lt;br&gt;AuditDefault2012&lt;br&gt;AuditDefault2014&lt;br&gt;AuditDefault2016&lt;br&gt;例如输入参数为&quot;AuditDefault2016&quot;，则在enabled字段返回SQL Server 2016 版本中京东云建议开启的审计选项，在disabled字段中返回建议不开启的选项
+@property (strong,nonatomic,nonnull)  NSString*  name;
+/// RDS 实例ID，唯一标识一个RDS实例
+@property (strong,nonatomic,nonnull)  NSString*  instanceId;
+-(id) initWithRegion:(NSString *)regionId
+name:(NSString*)name
+instanceId:(NSString*)instanceId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+name:(NSString*)name
+instanceId:(NSString*)instanceId;
+
+@end
+
+@interface RdsDescribeAuditResult : NSObject
+/// 当前已开启的审计选项。如当前实例未开启审计，则返回空数组
+ @property (strong,nonatomic,nonnull)  NSArray<NSString*>*  enabled;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithEnabled:(NSArray<NSString*>*) enabled;
+@end
+
+@interface RdsDescribeBinlogDownloadURLRequest:JDCloudRequest
+
+/// 设置链接地址的过期时间，单位是秒，默认值是 300 秒，最长不能超过取值范围为 1 ~ 86400 秒
+@property (strong,nonatomic,nonnull)  NSNumber*  seconds;
+/// RDS 实例ID，唯一标识一个RDS实例
+@property (strong,nonatomic,nonnull)  NSString*  instanceId;
+/// binlog的备份ID，可以通过describeBinlogs获得
+@property (strong,nonatomic,nonnull)  NSString*  binlogBackupId;
+-(id) initWithRegion:(NSString *)regionId
+seconds:(NSNumber*)seconds
+instanceId:(NSString*)instanceId
+binlogBackupId:(NSString*)binlogBackupId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+seconds:(NSNumber*)seconds
+instanceId:(NSString*)instanceId
+binlogBackupId:(NSString*)binlogBackupId;
+
+@end
+
+@interface RdsDescribeBinlogDownloadURLResult : NSObject
+/// 公网下载链接
+ @property (strong,nonatomic,nonnull)  NSString*  publicURL;
+/// 内网下载链接
+ @property (strong,nonatomic,nonnull)  NSString*  internalURL;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithPublicURL:(NSString*) publicURL
+
+    internalURL:(NSString*)internalURL;
+@end
+
+@interface RdsDescribeBinlogsRequest:JDCloudRequest
+
+/// 显示数据的页码，默认为1，取值范围：[-1,∞)。pageNumber为-1时，返回所有数据页码；超过总页数时，显示最后一页。
+@property (strong,nonatomic,nonnull)  NSNumber*  pageNumber;
+/// 每页显示的数据条数，默认为10，取值范围：10、20、30、50、100
+@property (strong,nonatomic,nonnull)  NSNumber*  pageSize;
+/// 查询开始时间，格式为：YYYY-MM-DD HH:mm:ss，开始时间到结束时间不超过三天
+@property (strong,nonatomic,nonnull)  NSString*  startTime;
+/// 查询结束时间，格式为：YYYY-MM-DD HH:mm:ss，开始时间到结束时间不超过三天
+@property (strong,nonatomic,nonnull)  NSString*  endTime;
+/// RDS 实例ID，唯一标识一个RDS实例
+@property (strong,nonatomic,nonnull)  NSString*  instanceId;
+-(id) initWithRegion:(NSString *)regionId
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+startTime:(NSString*)startTime
+endTime:(NSString*)endTime
+instanceId:(NSString*)instanceId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+startTime:(NSString*)startTime
+endTime:(NSString*)endTime
+instanceId:(NSString*)instanceId;
+
+@end
+
+@interface RdsClearBinlogsRequest:JDCloudRequest
+
+/// RDS 实例ID，唯一标识一个RDS实例
+@property (strong,nonatomic,nonnull)  NSString*  instanceId;
+-(id) initWithRegion:(NSString *)regionId
+instanceId:(NSString*)instanceId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+instanceId:(NSString*)instanceId;
+
+@end
+
+@interface RdsDescribeAzsResult : NSObject
+/// Azs
+ @property (strong,nonatomic,nonnull)  NSArray<NSString*>*  azs;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithAzs:(NSArray<NSString*>*) azs;
+@end
+
+@interface RdsDescribeAzsRequest:JDCloudRequest
+
+/// RDS引擎类型，参见[枚举参数定义](../Enum-Definitions/Enum-Definitions.md)
+@property (strong,nonatomic,nonnull)  NSString*  engine;
+-(id) initWithRegion:(NSString *)regionId
+engine:(NSString*)engine;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+engine:(NSString*)engine;
+
+@end
+
+@interface RdsGetUploadKeyRequest:JDCloudRequest
+
+/// RDS 实例ID，唯一标识一个RDS实例
+@property (strong,nonatomic,nonnull)  NSString*  instanceId;
+-(id) initWithRegion:(NSString *)regionId
+instanceId:(NSString*)instanceId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+instanceId:(NSString*)instanceId;
+
+@end
+
+@interface RdsSetImportFileSharedRequest:JDCloudRequest
+
+/// 文件是否共享&lt;br&gt;true:共享&lt;br&gt;false:不共享
+@property (strong,nonatomic,nonnull)  NSString*  shared;
+/// RDS 实例ID，唯一标识一个RDS实例
+@property (strong,nonatomic,nonnull)  NSString*  instanceId;
+/// 单库上云文件名
+@property (strong,nonatomic,nonnull)  NSString*  fileName;
+-(id) initWithRegion:(NSString *)regionId
+shared:(NSString*)shared
+instanceId:(NSString*)instanceId
+fileName:(NSString*)fileName;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+shared:(NSString*)shared
+instanceId:(NSString*)instanceId
+fileName:(NSString*)fileName;
+
+@end
+
+@interface RdsDeleteImportFileRequest:JDCloudRequest
+
+/// 共享文件的全局ID，可从上传文件查询接口describeImportFiles中获取；如果该文件不是共享文件，则无须输入该字段
+@property (strong,nonatomic,nonnull)  NSString*  sharedFileGid;
+/// RDS 实例ID，唯一标识一个RDS实例
+@property (strong,nonatomic,nonnull)  NSString*  instanceId;
+/// 单库上云文件名
+@property (strong,nonatomic,nonnull)  NSString*  fileName;
+-(id) initWithRegion:(NSString *)regionId
+sharedFileGid:(NSString*)sharedFileGid
+instanceId:(NSString*)instanceId
+fileName:(NSString*)fileName;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+sharedFileGid:(NSString*)sharedFileGid
+instanceId:(NSString*)instanceId
+fileName:(NSString*)fileName;
+
+@end
+
+@interface RdsGetUploadKeyResult : NSObject
+/// 上传文件需要用到的Key
+ @property (strong,nonatomic,nonnull)  NSString*  key;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithKey:(NSString*) key;
+@end
+
+@interface RdsDescribeImportFilesRequest:JDCloudRequest
+
+/// RDS 实例ID，唯一标识一个RDS实例
+@property (strong,nonatomic,nonnull)  NSString*  instanceId;
+-(id) initWithRegion:(NSString *)regionId
+instanceId:(NSString*)instanceId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+instanceId:(NSString*)instanceId;
+
+@end
+
+@interface RdsModifyWhiteListRequest:JDCloudRequest
+
+/// IP或IP段，不同的IP/IP段之间用英文逗号分隔，例如0.0.0.0/0,192.168.0.10
+@property (strong,nonatomic,nonnull)  NSString*  ips;
+/// RDS 实例ID，唯一标识一个RDS实例
+@property (strong,nonatomic,nonnull)  NSString*  instanceId;
+-(id) initWithRegion:(NSString *)regionId
+ips:(NSString*)ips
+instanceId:(NSString*)instanceId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+ips:(NSString*)ips
+instanceId:(NSString*)instanceId;
+
+@end
+
+@interface RdsDescribeWhiteListRequest:JDCloudRequest
+
+/// RDS 实例ID，唯一标识一个RDS实例
+@property (strong,nonatomic,nonnull)  NSString*  instanceId;
+-(id) initWithRegion:(NSString *)regionId
+instanceId:(NSString*)instanceId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+instanceId:(NSString*)instanceId;
+
+@end
+
+@interface RdsDescribeLogDownloadURLRequest:JDCloudRequest
+
+/// 设置链接地址的过期时间，单位是秒，默认值是 300 秒，最长不能超过取值范围为 1 ~ 86400 秒
+@property (strong,nonatomic,nonnull)  NSNumber*  seconds;
+/// RDS 实例ID，唯一标识一个RDS实例
+@property (strong,nonatomic,nonnull)  NSString*  instanceId;
+/// 日志文件ID
+@property (strong,nonatomic,nonnull)  NSString*  logId;
+-(id) initWithRegion:(NSString *)regionId
+seconds:(NSNumber*)seconds
+instanceId:(NSString*)instanceId
+logId:(NSString*)logId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+seconds:(NSNumber*)seconds
+instanceId:(NSString*)instanceId
+logId:(NSString*)logId;
+
+@end
+
+@interface RdsDescribeLogDownloadURLResult : NSObject
+/// 公网下载链接
+ @property (strong,nonatomic,nonnull)  NSString*  publicURL;
+/// 内网下载链接
+ @property (strong,nonatomic,nonnull)  NSString*  internalURL;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithPublicURL:(NSString*) publicURL
+
+    internalURL:(NSString*)internalURL;
+@end
+
+@interface RdsUpdateLogDownloadURLInternalRequest:JDCloudRequest
+
+/// 设置链接地址的过期时间，单位是秒，最长不能超过取值范围为 1 ~ 86400 秒
+@property (strong,nonatomic,nonnull)  NSNumber*  seconds;
+/// RDS 实例ID，唯一标识一个RDS实例
+@property (strong,nonatomic,nonnull)  NSString*  instanceId;
+/// 日志文件ID
+@property (strong,nonatomic,nonnull)  NSString*  logId;
+-(id) initWithRegion:(NSString *)regionId
+seconds:(NSNumber*)seconds
+instanceId:(NSString*)instanceId
+logId:(NSString*)logId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+seconds:(NSNumber*)seconds
+instanceId:(NSString*)instanceId
+logId:(NSString*)logId;
+
+@end
+
+@interface RdsUpdateLogDownloadURLInternalResult : NSObject
+/// 公网下载链接
+ @property (strong,nonatomic,nonnull)  NSString*  publicURL;
+/// 内网下载链接
+ @property (strong,nonatomic,nonnull)  NSString*  internalURL;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithPublicURL:(NSString*) publicURL
+
+    internalURL:(NSString*)internalURL;
+@end
+
+@interface RdsDisableInternetAccessRequest:JDCloudRequest
+
+/// RDS 实例ID，唯一标识一个RDS实例
+@property (strong,nonatomic,nonnull)  NSString*  instanceId;
+-(id) initWithRegion:(NSString *)regionId
+instanceId:(NSString*)instanceId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+instanceId:(NSString*)instanceId;
+
+@end
+
+@interface RdsModifyInstanceSpecResult : NSObject
+/// 生成的订单号
+ @property (strong,nonatomic,nonnull)  NSString*  orderId;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithOrderId:(NSString*) orderId;
+@end
+
+@interface RdsCreateROInstanceRequest:JDCloudRequest
+
+/// 实例名称，具体规则可参见帮助中心文档:[名称及密码限制](../../../documentation/Database-and-Cache-Service/RDS/Introduction/Restrictions/SQLServer-Restrictions.md)
+@property (strong,nonatomic,nonnull)  NSString*  instanceName;
+/// 只读实例规格FlavorId
+@property (strong,nonatomic,nonnull)  NSString*  instanceClass;
+/// 存储类型，参见[枚举参数定义](../Enum-Definitions/Enum-Definitions.md)，缺省值为：LOCAL_SSD
+@property (strong,nonatomic,nonnull)  NSString*  instanceStorageType;
+/// 磁盘空间
+@property (strong,nonatomic,nonnull)  NSNumber*  instanceStorageGB;
+/// 可用区ID
+@property (strong,nonatomic,nonnull)  NSString*  azId;
+/// VPC的ID，如果没有填写就保持和常规实例一样的VPC
+@property (strong,nonatomic,nonnull)  NSString*  vpcId;
+/// 子网ID，如果没有填写就保持和常规实例一样的subnet
+@property (strong,nonatomic,nonnull)  NSString*  subnetId;
+/// 参数组ID，缺省采用和常规实例一样的参数组
+@property (strong,nonatomic,nonnull)  NSString*  parameterGroup;
+/// 实例数据加密(存储类型为云硬盘才支持数据加密)。false：不加密；true：加密。缺省为false。
+@property (strong,nonatomic,nonnull)  NSNumber*  storageEncrypted;
+/// 创建只读实例的数目,缺省为1
+@property (strong,nonatomic,nonnull)  NSNumber*  count;
+/// RDS 实例ID，唯一标识一个RDS实例
+@property (strong,nonatomic,nonnull)  NSString*  instanceId;
+-(id) initWithRegion:(NSString *)regionId
+instanceName:(NSString*)instanceName
+instanceClass:(NSString*)instanceClass
+instanceStorageType:(NSString*)instanceStorageType
+instanceStorageGB:(NSNumber*)instanceStorageGB
+azId:(NSString*)azId
+vpcId:(NSString*)vpcId
+subnetId:(NSString*)subnetId
+parameterGroup:(NSString*)parameterGroup
+storageEncrypted:(NSNumber*)storageEncrypted
+count:(NSNumber*)count
+instanceId:(NSString*)instanceId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+instanceName:(NSString*)instanceName
+instanceClass:(NSString*)instanceClass
+instanceStorageType:(NSString*)instanceStorageType
+instanceStorageGB:(NSNumber*)instanceStorageGB
+azId:(NSString*)azId
+vpcId:(NSString*)vpcId
+subnetId:(NSString*)subnetId
+parameterGroup:(NSString*)parameterGroup
+storageEncrypted:(NSNumber*)storageEncrypted
+count:(NSNumber*)count
+instanceId:(NSString*)instanceId;
+
+@end
+
+@interface RdsCreateInstanceResult : NSObject
+/// InstanceId
+ @property (strong,nonatomic,nonnull)  NSString*  instanceId;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithInstanceId:(NSString*) instanceId;
+@end
+
+@interface RdsEnableInternetAccessRequest:JDCloudRequest
+
+/// RDS 实例ID，唯一标识一个RDS实例
+@property (strong,nonatomic,nonnull)  NSString*  instanceId;
+-(id) initWithRegion:(NSString *)regionId
+instanceId:(NSString*)instanceId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+instanceId:(NSString*)instanceId;
+
+@end
+
+@interface RdsCreateInstanceByTimeResult : NSObject
+/// 新创建的实例ID
+ @property (strong,nonatomic,nonnull)  NSString*  instanceId;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithInstanceId:(NSString*) instanceId;
+@end
+
+@interface RdsModifyInstanceNameRequest:JDCloudRequest
+
+/// 实例名称，名称支持中文，实例名的具体规则可参见帮助中心文档:[名称及密码限制](../../../documentation/Database-and-Cache-Service/RDS/Introduction/Restrictions/SQLServer-Restrictions.md)
+@property (strong,nonatomic,nonnull)  NSString*  instanceName;
+/// RDS 实例ID，唯一标识一个RDS实例
+@property (strong,nonatomic,nonnull)  NSString*  instanceId;
+-(id) initWithRegion:(NSString *)regionId
+instanceName:(NSString*)instanceName
+instanceId:(NSString*)instanceId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+instanceName:(NSString*)instanceName
+instanceId:(NSString*)instanceId;
+
+@end
+
+@interface RdsDescribeLatestRestoreTimeRequest:JDCloudRequest
+
+/// RDS 实例ID，唯一标识一个RDS实例
+@property (strong,nonatomic,nonnull)  NSString*  instanceId;
+-(id) initWithRegion:(NSString *)regionId
+instanceId:(NSString*)instanceId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+instanceId:(NSString*)instanceId;
+
+@end
+
+@interface RdsRestoreInstanceRequest:JDCloudRequest
+
+/// 用于恢复的备份Id，仅限于本实例生成的备份
+@property (strong,nonatomic,nonnull)  NSString*  backupId;
+/// RDS 实例ID，唯一标识一个RDS实例
+@property (strong,nonatomic,nonnull)  NSString*  instanceId;
+-(id) initWithRegion:(NSString *)regionId
+backupId:(NSString*)backupId
+instanceId:(NSString*)instanceId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+backupId:(NSString*)backupId
+instanceId:(NSString*)instanceId;
+
+@end
+
+@interface RdsModifyParameterGroupRequest:JDCloudRequest
+
+/// 参数组ID
+@property (strong,nonatomic,nonnull)  NSString*  parameterGroupId;
+/// RDS 实例ID，唯一标识一个RDS实例
+@property (strong,nonatomic,nonnull)  NSString*  instanceId;
+-(id) initWithRegion:(NSString *)regionId
+parameterGroupId:(NSString*)parameterGroupId
+instanceId:(NSString*)instanceId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+parameterGroupId:(NSString*)parameterGroupId
+instanceId:(NSString*)instanceId;
+
+@end
+
+@interface RdsModifyConnectionModeRequest:JDCloudRequest
+
+/// 连接模式&lt;br&gt; - standard：标准模式(缺省)，响应时间短，但没有 SQL 审计和拦截的能力 &lt;br&gt;- security：高安全模式，具备一定的 SQL注入拦截能力，并可开启 SQL 审计，但会增加一定的响应时间
+@property (strong,nonatomic,nonnull)  NSString*  connectionMode;
+/// RDS 实例ID，唯一标识一个RDS实例
+@property (strong,nonatomic,nonnull)  NSString*  instanceId;
+-(id) initWithRegion:(NSString *)regionId
+connectionMode:(NSString*)connectionMode
+instanceId:(NSString*)instanceId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+connectionMode:(NSString*)connectionMode
+instanceId:(NSString*)instanceId;
+
+@end
+
+@interface RdsFailoverInstanceRequest:JDCloudRequest
+
+/// RDS 实例ID，唯一标识一个RDS实例
+@property (strong,nonatomic,nonnull)  NSString*  instanceId;
+-(id) initWithRegion:(NSString *)regionId
+instanceId:(NSString*)instanceId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+instanceId:(NSString*)instanceId;
+
+@end
+
+@interface RdsCreateInstanceFromBackupResult : NSObject
+/// InstanceId
+ @property (strong,nonatomic,nonnull)  NSString*  instanceId;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithInstanceId:(NSString*) instanceId;
+@end
+
+@interface RdsRebootInstanceRequest:JDCloudRequest
+
+/// 是否重启主节点。&lt;br&gt; - 仅SQL Server 支持该参数
+@property (strong,nonatomic,nonnull)  NSNumber*  rebootMaster;
+/// 是否重启备节点。&lt;br&gt; - 仅SQL Server 支持该参数
+@property (strong,nonatomic,nonnull)  NSNumber*  rebootSlave;
+/// RDS 实例ID，唯一标识一个RDS实例
+@property (strong,nonatomic,nonnull)  NSString*  instanceId;
+-(id) initWithRegion:(NSString *)regionId
+rebootMaster:(NSNumber*)rebootMaster
+rebootSlave:(NSNumber*)rebootSlave
+instanceId:(NSString*)instanceId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+rebootMaster:(NSNumber*)rebootMaster
+rebootSlave:(NSNumber*)rebootSlave
+instanceId:(NSString*)instanceId;
+
+@end
+
+@interface RdsDescribeInstanceAttributesRequest:JDCloudRequest
+
+/// RDS 实例ID，唯一标识一个RDS实例
+@property (strong,nonatomic,nonnull)  NSString*  instanceId;
+-(id) initWithRegion:(NSString *)regionId
+instanceId:(NSString*)instanceId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+instanceId:(NSString*)instanceId;
+
+@end
+
+@interface RdsModifyBackupPolicyRequest:JDCloudRequest
+
+/// 自动备份开始时间窗口,例如：00:00-01:00，表示0点到1点开始进行数据库自动备份，备份完成时间则跟实例大小有关，不一定在这个时间范围中&lt;br&gt;SQL Server:范围00:00-23:59，时间范围差不得小于30分钟。&lt;br&gt;MySQL,只能是以下取值:&lt;br&gt;00:00-01:00&lt;br&gt;01:00-02:00&lt;br&gt;......&lt;br&gt;23:00-24:00
+@property (strong,nonatomic,nonnull)  NSString*  startWindow;
+/// RDS 实例ID，唯一标识一个RDS实例
+@property (strong,nonatomic,nonnull)  NSString*  instanceId;
+-(id) initWithRegion:(NSString *)regionId
+startWindow:(NSString*)startWindow
+instanceId:(NSString*)instanceId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+startWindow:(NSString*)startWindow
+instanceId:(NSString*)instanceId;
+
+@end
+
+@interface RdsDeleteInstanceRequest:JDCloudRequest
+
+/// RDS 实例ID，唯一标识一个RDS实例
+@property (strong,nonatomic,nonnull)  NSString*  instanceId;
+-(id) initWithRegion:(NSString *)regionId
+instanceId:(NSString*)instanceId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+instanceId:(NSString*)instanceId;
+
+@end
+
+@interface RdsModifyInstanceSpecRequest:JDCloudRequest
+
+/// 扩容后实例规格
+@property (strong,nonatomic,nonnull)  NSString*  rdsNewInstanceClass;
+/// 扩容后实例磁盘大小
+@property (strong,nonatomic,nonnull)  NSNumber*  rdsNewInstanceStorageGB;
+/// 存储类型，如果不指定，默认会采用实例原存储类型.
+@property (strong,nonatomic,nonnull)  NSString*  rdsNewInstanceStorageType;
+/// 实例数据加密(存储类型为云硬盘才支持数据加密). false：不加密; true：加密. 如果实例从本地盘变为云硬盘，缺省为false. 如果实例本来就是使用云硬盘的，缺省和源实例保持一致
+@property (strong,nonatomic,nonnull)  NSNumber*  storageEncrypted;
+/// RDS 实例ID，唯一标识一个RDS实例
+@property (strong,nonatomic,nonnull)  NSString*  instanceId;
+-(id) initWithRegion:(NSString *)regionId
+rdsNewInstanceClass:(NSString*)rdsNewInstanceClass
+rdsNewInstanceStorageGB:(NSNumber*)rdsNewInstanceStorageGB
+rdsNewInstanceStorageType:(NSString*)rdsNewInstanceStorageType
+storageEncrypted:(NSNumber*)storageEncrypted
+instanceId:(NSString*)instanceId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+rdsNewInstanceClass:(NSString*)rdsNewInstanceClass
+rdsNewInstanceStorageGB:(NSNumber*)rdsNewInstanceStorageGB
+rdsNewInstanceStorageType:(NSString*)rdsNewInstanceStorageType
+storageEncrypted:(NSNumber*)storageEncrypted
+instanceId:(NSString*)instanceId;
+
+@end
+
+@interface RdsCreateROInstanceResult : NSObject
+/// 新创建的只读实例ID
+ @property (strong,nonatomic,nonnull)  NSArray<NSString*>*  roInstanceId;
+/// 订单ID
+ @property (strong,nonatomic,nonnull)  NSString*  orderId;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithRoInstanceId:(NSArray<NSString*>*) roInstanceId
+
+    orderId:(NSString*)orderId;
+@end
+
+@interface RdsDescribeBackupPolicyRequest:JDCloudRequest
+
+/// RDS 实例ID，唯一标识一个RDS实例
+@property (strong,nonatomic,nonnull)  NSString*  instanceId;
+-(id) initWithRegion:(NSString *)regionId
+instanceId:(NSString*)instanceId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+instanceId:(NSString*)instanceId;
+
+@end
+
+@interface RdsDescribeLatestRestoreTimeResult : NSObject
+/// 实例按时间点恢复时,可恢复到的最后的一个时间点
+ @property (strong,nonatomic,nonnull)  NSString*  latestRestoreTime;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithLatestRestoreTime:(NSString*) latestRestoreTime;
+@end
+
+@interface RdsDescribeBackupPolicyResult : NSObject
+/// 自动备份开始时间窗口，范围00:00-23:59，时间范围差不得小于30分钟。&lt;br&gt;例如：00:00-01:00，表示0点到1点开始进行数据库自动备份，备份完成时间则跟实例大小有关，不一定在这个时间范围中
+ @property (strong,nonatomic,nonnull)  NSString*  startWindow;
+/// 自动备份保留周期，单位天,缺省为7天，范围7-730
+ @property (strong,nonatomic,nonnull)  NSNumber*  retentionPeriod;
+/// 自动备份循环模式&lt;br&gt;1:表示每天都是全量备份&lt;br&gt;2:表示自动备份按照全量、增量、增量这样的方式进行，例如第1天是全量备份，第2、3天是增量备份；第4天又是全量备份，以此类推.&lt;br&gt; - 仅支持 SQL Server
+ @property (strong,nonatomic,nonnull)  NSNumber*  cycleMode;
+/// 是否备份binlog&lt;br&gt;true:表示备份&lt;br&gt;false:表示不备份&lt;br&gt; - **仅支持 MySQL，Percona，MariaDB
+ @property (strong,nonatomic,nonnull)  NSString*  backupBinlog;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithStartWindow:(NSString*) startWindow
+
+    retentionPeriod:(NSNumber*)retentionPeriod
+
+    cycleMode:(NSNumber*)cycleMode
+
+    backupBinlog:(NSString*)backupBinlog;
+@end
+
+@interface RdsExchangeInstanceDnsRequest:JDCloudRequest
+
+/// 要交换的实例ID
+@property (strong,nonatomic,nonnull)  NSString*  targetInstanceId;
+/// RDS 实例ID，唯一标识一个RDS实例
+@property (strong,nonatomic,nonnull)  NSString*  instanceId;
+-(id) initWithRegion:(NSString *)regionId
+targetInstanceId:(NSString*)targetInstanceId
+instanceId:(NSString*)instanceId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+targetInstanceId:(NSString*)targetInstanceId
+instanceId:(NSString*)instanceId;
+
+@end
+
+@interface RdsDeleteDatabaseRequest:JDCloudRequest
+
+/// RDS 实例ID，唯一标识一个RDS实例
+@property (strong,nonatomic,nonnull)  NSString*  instanceId;
+/// 库名称
+@property (strong,nonatomic,nonnull)  NSString*  dbName;
+-(id) initWithRegion:(NSString *)regionId
+instanceId:(NSString*)instanceId
+dbName:(NSString*)dbName;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+instanceId:(NSString*)instanceId
+dbName:(NSString*)dbName;
+
+@end
+
+@interface RdsDescribeDatabasesRequest:JDCloudRequest
+
+/// 数据库名。如果不指定数据库名，则返回所有数据库列表&lt;br&gt;- **MySQL：不支持该字段**&lt;br&gt;- **SQL Server：支持该字段**
+@property (strong,nonatomic,nonnull)  NSString*  dbName;
+/// 显示数据的页码，默认为1，取值范围：[-1,∞)。pageNumber为-1时，返回所有数据页码；超过总页数时，显示最后一页;
+@property (strong,nonatomic,nonnull)  NSNumber*  pageNumber;
+/// 每页显示的数据条数，默认为100，取值范围：[10,100]，用于查询列表的接口
+@property (strong,nonatomic,nonnull)  NSNumber*  pageSize;
+/// RDS 实例ID，唯一标识一个RDS实例
+@property (strong,nonatomic,nonnull)  NSString*  instanceId;
+-(id) initWithRegion:(NSString *)regionId
+dbName:(NSString*)dbName
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+instanceId:(NSString*)instanceId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+dbName:(NSString*)dbName
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+instanceId:(NSString*)instanceId;
+
+@end
+
+@interface RdsCreateDatabaseRequest:JDCloudRequest
+
+/// 数据库名，数据库名称的限制请参考[帮助中心文档](../../../documentation/Database-and-Cache-Service/RDS/Introduction/Restrictions/SQLServer-Restrictions.md)
+@property (strong,nonatomic,nonnull)  NSString*  dbName;
+/// 数据库的字符集名，当前支持的字符集请查看[枚举参数定义](../Enum-Definitions/Enum-Definitions.md)
+@property (strong,nonatomic,nonnull)  NSString*  characterSetName;
+/// RDS 实例ID，唯一标识一个RDS实例
+@property (strong,nonatomic,nonnull)  NSString*  instanceId;
+-(id) initWithRegion:(NSString *)regionId
+dbName:(NSString*)dbName
+characterSetName:(NSString*)characterSetName
+instanceId:(NSString*)instanceId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+dbName:(NSString*)dbName
+characterSetName:(NSString*)characterSetName
+instanceId:(NSString*)instanceId;
+
+@end
+
+@interface RdsRestoreDatabaseFromFileRequest:JDCloudRequest
+
+/// 共享文件的全局ID，可从上传文件查询接口[describeImportFiles](../Cloud-on-Single-Database/describeImportFiles.md)获取；如果该文件不是共享文件，则不用输入该参数
+@property (strong,nonatomic,nonnull)  NSString*  sharedFileGid;
+/// 用户上传的备份文件名称（包括文件后缀名），例如mydb1.bak
+@property (strong,nonatomic,nonnull)  NSString*  fileName;
+/// RDS 实例ID，唯一标识一个RDS实例
+@property (strong,nonatomic,nonnull)  NSString*  instanceId;
+/// 库名称
+@property (strong,nonatomic,nonnull)  NSString*  dbName;
+-(id) initWithRegion:(NSString *)regionId
+sharedFileGid:(NSString*)sharedFileGid
+fileName:(NSString*)fileName
+instanceId:(NSString*)instanceId
+dbName:(NSString*)dbName;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+sharedFileGid:(NSString*)sharedFileGid
+fileName:(NSString*)fileName
+instanceId:(NSString*)instanceId
+dbName:(NSString*)dbName;
+
+@end
+
+@interface RdsRestoreDatabaseFromBackupRequest:JDCloudRequest
+
+/// 备份ID，可从备份查询接口describeBackups获取
+@property (strong,nonatomic,nonnull)  NSString*  backupId;
+/// 指定该备份中用于恢复数据库的文件名称。通常情况下文件名（不包括后缀）即为备份的数据库名。例如文件名为my_test_db.bak，表示该文件是my_test_db数据库的备份
+@property (strong,nonatomic,nonnull)  NSString*  backupFileName;
+/// RDS 实例ID，唯一标识一个RDS实例
+@property (strong,nonatomic,nonnull)  NSString*  instanceId;
+/// 库名称
+@property (strong,nonatomic,nonnull)  NSString*  dbName;
+-(id) initWithRegion:(NSString *)regionId
+backupId:(NSString*)backupId
+backupFileName:(NSString*)backupFileName
+instanceId:(NSString*)instanceId
+dbName:(NSString*)dbName;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+backupId:(NSString*)backupId
+backupFileName:(NSString*)backupFileName
+instanceId:(NSString*)instanceId
+dbName:(NSString*)dbName;
+
+@end
+
+@interface RdsRestoreDatabaseFromOSSRequest:JDCloudRequest
+
+/// 用户上传到对象存储OSS上的备份文件的路径。&lt;br&gt;例如用户备份上传的bucket为db_backup，文件为test_server/db1.bak，那么ossULR为db_backup/test_server/db1.bak。&lt;br&gt;**授权说明**：需要授予账户ID：785455908940，对这个bucket的读取权限，具体步骤可以查看[文档](https://docs.jdcloud.com/cn/object-storage-service/set-bucket-policy-2)。
+@property (strong,nonatomic,nonnull)  NSString*  ossURL;
+/// RDS 实例ID，唯一标识一个RDS实例
+@property (strong,nonatomic,nonnull)  NSString*  instanceId;
+/// 库名称
+@property (strong,nonatomic,nonnull)  NSString*  dbName;
+-(id) initWithRegion:(NSString *)regionId
+ossURL:(NSString*)ossURL
+instanceId:(NSString*)instanceId
+dbName:(NSString*)dbName;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+ossURL:(NSString*)ossURL
+instanceId:(NSString*)instanceId
+dbName:(NSString*)dbName;
+
+@end
+
+@interface RdsCreateBackupSynchronicityRequest:JDCloudRequest
+
+/// 源实例ID
+@property (strong,nonatomic,nonnull)  NSString*  instanceId;
+/// 备份同步的目标地域
+@property (strong,nonatomic,nonnull)  NSString*  destRegion;
+-(id) initWithRegion:(NSString *)regionId
+instanceId:(NSString*)instanceId
+destRegion:(NSString*)destRegion;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+instanceId:(NSString*)instanceId
+destRegion:(NSString*)destRegion;
+
+@end
+
+@interface RdsCreateInstanceByTimeInCrossRegionResult : NSObject
+/// 新创建的实例ID
+ @property (strong,nonatomic,nonnull)  NSString*  instanceId;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithInstanceId:(NSString*) instanceId;
+@end
+
+@interface RdsCreateBackupSynchronicityResult : NSObject
+/// 跨地域备份同步服务ID
+ @property (strong,nonatomic,nonnull)  NSString*  serviceId;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithServiceId:(NSString*) serviceId;
+@end
+
+@interface RdsDescribeBackupSynchronicitiesRequest:JDCloudRequest
+
+/// 显示数据的页码，默认为1，取值范围：[1,∞)，页码超过总页数时，显示最后一页，用于查询列表的接口
+@property (strong,nonatomic,nonnull)  NSNumber*  pageNumber;
+/// 每页显示的数据条数，默认为10，取值范围：10、20、30、50、100
+@property (strong,nonatomic,nonnull)  NSNumber*  pageSize;
+-(id) initWithRegion:(NSString *)regionId
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize;
+
+@end
+
+@interface RdsDeleteBackupSynchronicityRequest:JDCloudRequest
+
+/// 跨地域备份同步服务ID
+@property (strong,nonatomic,nonnull)  NSString*  serviceId;
+-(id) initWithRegion:(NSString *)regionId
+serviceId:(NSString*)serviceId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+serviceId:(NSString*)serviceId;
+
+@end
+
+@interface RdsCreateAccountRequest:JDCloudRequest
+
+/// 账号名，在同一个RDS实例中，账号名不能重复。账号名的具体规则可参见帮助中心文档:[名称及密码限制](../../../documentation/Database-and-Cache-Service/RDS/Introduction/Restrictions/SQLServer-Restrictions.md)
+@property (strong,nonatomic,nonnull)  NSString*  accountName;
+/// 密码,密码的具体规则可参见帮助中心文档:[名称及密码限制](../../../documentation/Database-and-Cache-Service/RDS/Introduction/Restrictions/SQLServer-Restrictions.md)
+@property (strong,nonatomic,nonnull)  NSString*  accountPassword;
+/// RDS 实例ID，唯一标识一个RDS实例
+@property (strong,nonatomic,nonnull)  NSString*  instanceId;
+-(id) initWithRegion:(NSString *)regionId
+accountName:(NSString*)accountName
+accountPassword:(NSString*)accountPassword
+instanceId:(NSString*)instanceId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+accountName:(NSString*)accountName
+accountPassword:(NSString*)accountPassword
+instanceId:(NSString*)instanceId;
+
+@end
+
+@interface RdsCreateSuperAccountRequest:JDCloudRequest
+
+/// 账号名，在同一个RDS实例中，账号名不能重复。账号名的具体规则可参见帮助中心文档:[名称及密码限制](../../../documentation/Database-and-Cache-Service/RDS/Introduction/Restrictions/SQLServer-Restrictions.md)
+@property (strong,nonatomic,nonnull)  NSString*  accountName;
+/// 密码,密码的具体规则可参见帮助中心文档:[名称及密码限制](../../../documentation/Database-and-Cache-Service/RDS/Introduction/Restrictions/SQLServer-Restrictions.md)
+@property (strong,nonatomic,nonnull)  NSString*  accountPassword;
+/// RDS 实例ID，唯一标识一个RDS实例
+@property (strong,nonatomic,nonnull)  NSString*  instanceId;
+-(id) initWithRegion:(NSString *)regionId
+accountName:(NSString*)accountName
+accountPassword:(NSString*)accountPassword
+instanceId:(NSString*)instanceId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+accountName:(NSString*)accountName
+accountPassword:(NSString*)accountPassword
+instanceId:(NSString*)instanceId;
+
+@end
+
+@interface RdsResetPasswordRequest:JDCloudRequest
+
+/// 新密码，密码的具体规则可参见帮助中心文档:[名称及密码限制](../../../documentation/Database-and-Cache-Service/RDS/Introduction/Restrictions/SQLServer-Restrictions.md)
+@property (strong,nonatomic,nonnull)  NSString*  accountPassword;
+/// RDS 实例ID，唯一标识一个RDS实例
+@property (strong,nonatomic,nonnull)  NSString*  instanceId;
+/// 账号名，在同一个实例中账号名不能重复
+@property (strong,nonatomic,nonnull)  NSString*  accountName;
+-(id) initWithRegion:(NSString *)regionId
+accountPassword:(NSString*)accountPassword
+instanceId:(NSString*)instanceId
+accountName:(NSString*)accountName;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+accountPassword:(NSString*)accountPassword
+instanceId:(NSString*)instanceId
+accountName:(NSString*)accountName;
+
+@end
+
+@interface RdsRevokePrivilegeRequest:JDCloudRequest
+
+/// 需要取消授权的数据库的名称。权限取消后，该账号将不能访问此数据库
+@property (strong,nonatomic,nonnull)  NSArray<NSString*>*  dbNames;
+/// RDS 实例ID，唯一标识一个RDS实例
+@property (strong,nonatomic,nonnull)  NSString*  instanceId;
+/// 账号名，在同一个实例中账号名不能重复
+@property (strong,nonatomic,nonnull)  NSString*  accountName;
+-(id) initWithRegion:(NSString *)regionId
+dbNames:(NSArray<NSString*>*)dbNames
+instanceId:(NSString*)instanceId
+accountName:(NSString*)accountName;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+dbNames:(NSArray<NSString*>*)dbNames
+instanceId:(NSString*)instanceId
+accountName:(NSString*)accountName;
+
+@end
+
+@interface RdsDeleteAccountRequest:JDCloudRequest
+
+/// RDS 实例ID，唯一标识一个RDS实例
+@property (strong,nonatomic,nonnull)  NSString*  instanceId;
+/// 账号名，在同一个实例中账号名不能重复
+@property (strong,nonatomic,nonnull)  NSString*  accountName;
+-(id) initWithRegion:(NSString *)regionId
+instanceId:(NSString*)instanceId
+accountName:(NSString*)accountName;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+instanceId:(NSString*)instanceId
+accountName:(NSString*)accountName;
+
+@end
+
+@interface RdsDescribeAccountsRequest:JDCloudRequest
+
+/// 显示数据的页码，默认为1，取值范围：[-1,∞)。pageNumber为-1时，返回所有数据页码；超过总页数时，显示最后一页;
+@property (strong,nonatomic,nonnull)  NSNumber*  pageNumber;
+/// 每页显示的数据条数，默认为100，取值范围：[10,100]，用于查询列表的接口
+@property (strong,nonatomic,nonnull)  NSNumber*  pageSize;
+/// RDS 实例ID，唯一标识一个RDS实例
+@property (strong,nonatomic,nonnull)  NSString*  instanceId;
+-(id) initWithRegion:(NSString *)regionId
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+instanceId:(NSString*)instanceId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+instanceId:(NSString*)instanceId;
+
+@end
+
+@interface RdsAlterTableWithOnlineDDLRequest:JDCloudRequest
+
+/// DDL命令修改的库名
+@property (strong,nonatomic,nonnull)  NSString*  database;
+/// DDL命令修改的表名
+@property (strong,nonatomic,nonnull)  NSString*  table;
+/// 需要执行的的DDL命令
+@property (strong,nonatomic,nonnull)  NSString*  command;
+/// RDS 实例ID，唯一标识一个RDS实例
+@property (strong,nonatomic,nonnull)  NSString*  instanceId;
+-(id) initWithRegion:(NSString *)regionId
+database:(NSString*)database
+table:(NSString*)table
+command:(NSString*)command
+instanceId:(NSString*)instanceId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+database:(NSString*)database
+table:(NSString*)table
+command:(NSString*)command
+instanceId:(NSString*)instanceId;
+
+@end
+
+@interface RdsDescribeSlowLogAttributesRequest:JDCloudRequest
+
+/// 慢日志开始时间，格式为：YYYY-MM-DD HH:mm:ss，开始时间到当前时间不能大于 7 天, 开始时间不能大于结束时间，结束时间不能大于当前时间
+@property (strong,nonatomic,nonnull)  NSString*  startTime;
+/// 慢日志结束时间，格式为：YYYY-MM-DD HH:mm:ss，开始时间到当前时间不能大于 7 天, 开始时间不能大于结束时间，结束时间不能大于当前时间
+@property (strong,nonatomic,nonnull)  NSString*  endTime;
+/// 查询哪个数据库的慢日志，不填表示返回所有数据库的慢日志
+@property (strong,nonatomic,nonnull)  NSString*  dbName;
+/// 显示数据的页码，默认为1，取值范围：[-1,1000)。pageNumber为-1时，返回所有数据页码；超过总页数时，显示最后一页。
+@property (strong,nonatomic,nonnull)  NSNumber*  pageNumber;
+/// 每页显示的数据条数，默认为10，取值范围：10、20、30、50、100
+@property (strong,nonatomic,nonnull)  NSNumber*  pageSize;
+/// RDS 实例ID，唯一标识一个RDS实例
+@property (strong,nonatomic,nonnull)  NSString*  instanceId;
+-(id) initWithRegion:(NSString *)regionId
+startTime:(NSString*)startTime
+endTime:(NSString*)endTime
+dbName:(NSString*)dbName
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+instanceId:(NSString*)instanceId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+startTime:(NSString*)startTime
+endTime:(NSString*)endTime
+dbName:(NSString*)dbName
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+instanceId:(NSString*)instanceId;
+
+@end
+
+@interface RdsDescribeActiveQueryPerformanceRequest:JDCloudRequest
+
+/// 需要查询的数据库名，多个数据库名之间用英文逗号分隔，默认所有数据库
+@property (strong,nonatomic,nonnull)  NSString*  db;
+/// 返回执行时间大于等于threshold的记录，默认10，单位秒
+@property (strong,nonatomic,nonnull)  NSNumber*  threshold;
+/// 显示数据的页码，默认为1，取值范围：[-1,1000)。pageNumber为-1时，返回所有数据页码；超过总页数时，显示最后一页。
+@property (strong,nonatomic,nonnull)  NSNumber*  pageNumber;
+/// 每页显示的数据条数，默认为50，取值范围：[1,100]，只能为10的倍数
+@property (strong,nonatomic,nonnull)  NSNumber*  pageSize;
+/// RDS 实例ID，唯一标识一个RDS实例
+@property (strong,nonatomic,nonnull)  NSString*  instanceId;
+-(id) initWithRegion:(NSString *)regionId
+db:(NSString*)db
+threshold:(NSNumber*)threshold
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+instanceId:(NSString*)instanceId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+db:(NSString*)db
+threshold:(NSNumber*)threshold
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+instanceId:(NSString*)instanceId;
+
+@end
+
+@interface RdsDescribeIndexPerformanceRequest:JDCloudRequest
+
+/// 查询类型，不同的查询类型按照相应的字段从高到低返回结果。&lt;br&gt;支持如下类型：&lt;br&gt;Missing：缺失索引&lt;br&gt;Size：索引大小，单位KB&lt;br&gt;Updates：索引更新次数&lt;br&gt;Scans：表扫描次数&lt;br&gt;Used：最少使用&lt;br&gt;
+@property (strong,nonatomic,nonnull)  NSString*  queryType;
+/// 需要查询的数据库名，多个数据库名之间用英文逗号分隔，默认所有数据库
+@property (strong,nonatomic,nonnull)  NSString*  db;
+/// 显示数据的页码，默认为1，取值范围：[-1,1000)。pageNumber为-1时，返回所有数据页码；超过总页数时，显示最后一页。
+@property (strong,nonatomic,nonnull)  NSNumber*  pageNumber;
+/// 每页显示的数据条数，默认为50，取值范围：[1,100]，只能为10的倍数，用于查询列表的接口
+@property (strong,nonatomic,nonnull)  NSNumber*  pageSize;
+/// RDS 实例ID，唯一标识一个RDS实例
+@property (strong,nonatomic,nonnull)  NSString*  instanceId;
+-(id) initWithRegion:(NSString *)regionId
+queryType:(NSString*)queryType
+db:(NSString*)db
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+instanceId:(NSString*)instanceId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+queryType:(NSString*)queryType
+db:(NSString*)db
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+instanceId:(NSString*)instanceId;
+
+@end
+
+@interface RdsDescribeSlowLogsRequest:JDCloudRequest
+
+/// 慢日志开始时间，格式为：YYYY-MM-DD HH:mm:ss，开始时间到当前时间不能大于 7 天，开始时间不能大于结束时间，结束时间不能大于当前时间
+@property (strong,nonatomic,nonnull)  NSString*  startTime;
+/// 慢日志结束时间，格式为：YYYY-MM-DD HH:mm:ss，开始时间到当前时间不能大于 7 天，开始时间不能大于结束时间，结束时间不能大于当前时间
+@property (strong,nonatomic,nonnull)  NSString*  endTime;
+/// 查询哪个数据库的慢日志，不填表示返回所有数据库的慢日志
+@property (strong,nonatomic,nonnull)  NSString*  dbName;
+/// 显示数据的页码，默认为1，取值范围：[-1,1000)。pageNumber为-1时，返回所有数据页码；超过总页数时，显示最后一页。
+@property (strong,nonatomic,nonnull)  NSNumber*  pageNumber;
+/// 每页显示的数据条数，默认为10，取值范围：10、20、30、50、100
+@property (strong,nonatomic,nonnull)  NSNumber*  pageSize;
+/// RDS 实例ID，唯一标识一个RDS实例
+@property (strong,nonatomic,nonnull)  NSString*  instanceId;
+-(id) initWithRegion:(NSString *)regionId
+startTime:(NSString*)startTime
+endTime:(NSString*)endTime
+dbName:(NSString*)dbName
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+instanceId:(NSString*)instanceId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+startTime:(NSString*)startTime
+endTime:(NSString*)endTime
+dbName:(NSString*)dbName
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+instanceId:(NSString*)instanceId;
+
+@end
+
+@interface RdsDescribeQueryPerformanceRequest:JDCloudRequest
+
+/// 查询类型，不同的查询类型按照相应的字段从高到低返回结果。&lt;br&gt;支持如下类型：&lt;br&gt;ExecutionCount：执行次数&lt;br&gt;LastRows：上次返回行数&lt;br&gt;ElapsedTime：平均执行时间&lt;br&gt;CPUTime：平均CPU时间&lt;br&gt;LogicalReads：平均逻辑读&lt;br&gt;LogicalWrites：平均逻辑写&lt;br&gt;PhysicalReads：平均物理读&lt;br&gt;
+@property (strong,nonatomic,nonnull)  NSString*  queryType;
+/// 只返回查询条件大于等于threshold的记录，默认为0
+@property (strong,nonatomic,nonnull)  NSNumber*  threshold;
+/// 显示数据的页码，默认为1，取值范围：[-1,1000]。pageNumber为-1时，返回所有数据页码；超过总页数时，显示最后一页。
+@property (strong,nonatomic,nonnull)  NSNumber*  pageNumber;
+/// 每页显示的数据条数，默认为50，取值范围：[1,100]，只能为10的倍数，用于查询列表的接口
+@property (strong,nonatomic,nonnull)  NSNumber*  pageSize;
+/// RDS 实例ID，唯一标识一个RDS实例
+@property (strong,nonatomic,nonnull)  NSString*  instanceId;
+-(id) initWithRegion:(NSString *)regionId
+queryType:(NSString*)queryType
+threshold:(NSNumber*)threshold
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+instanceId:(NSString*)instanceId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+queryType:(NSString*)queryType
+threshold:(NSNumber*)threshold
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+instanceId:(NSString*)instanceId;
+
+@end
+
+@interface RdsDescribeParametersRequest:JDCloudRequest
+
+/// Instance ID
+@property (strong,nonatomic,nonnull)  NSString*  instanceId;
+-(id) initWithRegion:(NSString *)regionId
+instanceId:(NSString*)instanceId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+instanceId:(NSString*)instanceId;
+
+@end
+
+@interface RdsDescribeParameterGroupParametersRequest:JDCloudRequest
+
+/// Parameter Group ID
+@property (strong,nonatomic,nonnull)  NSString*  parameterGroupId;
+-(id) initWithRegion:(NSString *)regionId
+parameterGroupId:(NSString*)parameterGroupId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+parameterGroupId:(NSString*)parameterGroupId;
+
+@end
+
+@interface RdsModifyParameterGroupAttributeRequest:JDCloudRequest
+
+/// 参数组名称
+@property (strong,nonatomic,nonnull)  NSString*  parameterGroupName;
+/// 参数组描述
+@property (strong,nonatomic,nonnull)  NSString*  descriptionValue;
+/// Parameter Group ID
+@property (strong,nonatomic,nonnull)  NSString*  parameterGroupId;
+-(id) initWithRegion:(NSString *)regionId
+parameterGroupName:(NSString*)parameterGroupName
+descriptionValue:(NSString*)descriptionValue
+parameterGroupId:(NSString*)parameterGroupId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+parameterGroupName:(NSString*)parameterGroupName
+descriptionValue:(NSString*)descriptionValue
+parameterGroupId:(NSString*)parameterGroupId;
+
+@end
+
+@interface RdsDescribeParameterGroupAttachedInstancesRequest:JDCloudRequest
+
+/// 显示数据的页码，默认为1，取值范围：[-1,∞)。pageNumber为-1时，返回所有数据页码；超过总页数时，显示最后一页
+@property (strong,nonatomic,nonnull)  NSNumber*  pageNumber;
+/// 每页显示的数据条数，默认为10，取值范围：[10,100]，且为10的整数倍
+@property (strong,nonatomic,nonnull)  NSNumber*  pageSize;
+/// Parameter Group ID
+@property (strong,nonatomic,nonnull)  NSString*  parameterGroupId;
+-(id) initWithRegion:(NSString *)regionId
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+parameterGroupId:(NSString*)parameterGroupId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+parameterGroupId:(NSString*)parameterGroupId;
+
+@end
+
+@interface RdsCopyParameterGroupRequest:JDCloudRequest
+
+/// 参数组ID
+@property (strong,nonatomic,nonnull)  NSString*  parameterGroupId;
+/// 参数组的名字
+@property (strong,nonatomic,nonnull)  NSString*  parameterGroupName;
+/// 参数组的描述
+@property (strong,nonatomic,nonnull)  NSString*  descriptionValue;
+-(id) initWithRegion:(NSString *)regionId
+parameterGroupId:(NSString*)parameterGroupId
+parameterGroupName:(NSString*)parameterGroupName
+descriptionValue:(NSString*)descriptionValue;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+parameterGroupId:(NSString*)parameterGroupId
+parameterGroupName:(NSString*)parameterGroupName
+descriptionValue:(NSString*)descriptionValue;
+
+@end
+
+@interface RdsCreateParameterGroupRequest:JDCloudRequest
+
+/// 实例引擎类型，参见[枚举参数定义](../Enum-Definitions/Enum-Definitions.md)
+@property (strong,nonatomic,nonnull)  NSString*  engine;
+/// 实例引擎版本，参见[枚举参数定义](../Enum-Definitions/Enum-Definitions.md)
+@property (strong,nonatomic,nonnull)  NSString*  engineVersion;
+/// 参数组的名字
+@property (strong,nonatomic,nonnull)  NSString*  parameterGroupName;
+/// 参数组的描述
+@property (strong,nonatomic,nonnull)  NSString*  descriptionValue;
+-(id) initWithRegion:(NSString *)regionId
+engine:(NSString*)engine
+engineVersion:(NSString*)engineVersion
+parameterGroupName:(NSString*)parameterGroupName
+descriptionValue:(NSString*)descriptionValue;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+engine:(NSString*)engine
+engineVersion:(NSString*)engineVersion
+parameterGroupName:(NSString*)parameterGroupName
+descriptionValue:(NSString*)descriptionValue;
+
+@end
+
+@interface RdsDeleteParameterGroupRequest:JDCloudRequest
+
+/// Parameter Group ID
+@property (strong,nonatomic,nonnull)  NSString*  parameterGroupId;
+-(id) initWithRegion:(NSString *)regionId
+parameterGroupId:(NSString*)parameterGroupId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+parameterGroupId:(NSString*)parameterGroupId;
+
+@end
+
+@interface RdsDescribeParameterModifyRecordsRequest:JDCloudRequest
+
+/// 显示数据的页码，默认为1，取值范围：[-1,∞)。pageNumber为-1时，返回所有数据页码；超过总页数时，显示最后一页;
+@property (strong,nonatomic,nonnull)  NSNumber*  pageNumber;
+/// 每页显示的数据条数，默认为10，取值范围：[10,100]，且为10的整数倍
+@property (strong,nonatomic,nonnull)  NSNumber*  pageSize;
+/// 查询开始时间，格式为：YYYY-MM-DD HH:mm:ss
+@property (strong,nonatomic,nonnull)  NSString*  startTime;
+/// 查询结束时间，格式为：YYYY-MM-DD HH:mm:ss
+@property (strong,nonatomic,nonnull)  NSString*  endTime;
+/// Parameter Group ID
+@property (strong,nonatomic,nonnull)  NSString*  parameterGroupId;
+-(id) initWithRegion:(NSString *)regionId
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+startTime:(NSString*)startTime
+endTime:(NSString*)endTime
+parameterGroupId:(NSString*)parameterGroupId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+startTime:(NSString*)startTime
+endTime:(NSString*)endTime
+parameterGroupId:(NSString*)parameterGroupId;
+
+@end
+
+@interface RdsDescribeParameterGroupsRequest:JDCloudRequest
+
+/// 显示数据的页码，默认为1，取值范围：[-1,∞)。pageNumber为-1时，返回所有数据页码；超过总页数时，显示最后一页;
+@property (strong,nonatomic,nonnull)  NSNumber*  pageNumber;
+/// 每页显示的数据条数，默认为10，取值范围：[10,100]，且为10的整数倍
+@property (strong,nonatomic,nonnull)  NSNumber*  pageSize;
+-(id) initWithRegion:(NSString *)regionId
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize;
+
+@end
+
+@interface RdsCreateParameterGroupResult : NSObject
+/// ParameterGroupId
+ @property (strong,nonatomic,nonnull)  NSString*  parameterGroupId;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithParameterGroupId:(NSString*) parameterGroupId;
+@end
+
+@interface RdsCopyParameterGroupResult : NSObject
+/// ParameterGroupId
+ @property (strong,nonatomic,nonnull)  NSString*  parameterGroupId;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithParameterGroupId:(NSString*) parameterGroupId;
+@end
+
 @interface RdsDescribeBackupsResult : NSObject
 /// Backup
  @property (strong,nonatomic,nonnull)  NSArray<Backup*>*  backup;
@@ -86,71 +1812,6 @@ backupId:(NSString*)backupId;
 -(id) initWithRequestId:(NSString*) requestId
         error:(ServiceError*) error
         result:(RdsDeleteBackupResult*) result;
-@end
-
-@interface RdsDescribeBackupDownloadURLResult : NSObject
-/// 公网下载链接，若当前不可下载，则为空串
- @property (strong,nonatomic,nonnull)  NSString*  publicURL;
-/// 内网下载链接，若当前不可下载，则为空串
- @property (strong,nonatomic,nonnull)  NSString*  internalURL;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithPublicURL:(NSString*) publicURL
-
-    internalURL:(NSString*)internalURL;
-@end
-
-@interface RdsDescribeBackupsRequest:JDCloudRequest
-
-/// RDS实例ID，唯一标识一个实例
-@property (strong,nonatomic,nonnull)  NSString*  instanceId;
-/// 查询备份类型，0为手动备份，1为自动备份，不传表示全部. &lt;br&gt;**- 测试参数，仅支持SQL Server，后续可能被其他参数取代**
-@property (strong,nonatomic,nonnull)  NSNumber*  auto;
-/// 返回backupType等于指定值的备份列表。full为全量备份，diff为增量备份&lt;br&gt;**- 测试参数，仅支持SQL Server，后续可能被其他参数取代**
-@property (strong,nonatomic,nonnull)  NSString*  backupTypeFilter;
-/// 返回dbName等于指定值的备份列表，不传或为空返回全部&lt;br&gt;**- 测试参数，仅支持SQL Server，后续可能被其他参数取代**
-@property (strong,nonatomic,nonnull)  NSString*  dbNameFilter;
-/// 返回备份开始时间大于该时间的备份列表&lt;br&gt;**- 测试参数，仅支持SQL Server，后续可能被其他参数取代**
-@property (strong,nonatomic,nonnull)  NSString*  backupTimeRangeStartFilter;
-/// 返回备份开始时间小于等于该时间的备份列表&lt;br&gt;**- 测试参数，仅支持SQL Server，后续可能被其他参数取代**
-@property (strong,nonatomic,nonnull)  NSString*  backupTimeRangeEndFilter;
-/// 显示数据的页码，默认为1，取值范围：[-1,∞)。pageNumber为-1时，返回所有数据页码；超过总页数时，显示最后一页。
-@property (strong,nonatomic,nonnull)  NSNumber*  pageNumber;
-/// 每页显示的数据条数，默认为10，取值范围：10、20、30、50、100
-@property (strong,nonatomic,nonnull)  NSNumber*  pageSize;
--(id) initWithRegion:(NSString *)regionId
-instanceId:(NSString*)instanceId
-auto:(NSNumber*)auto
-backupTypeFilter:(NSString*)backupTypeFilter
-dbNameFilter:(NSString*)dbNameFilter
-backupTimeRangeStartFilter:(NSString*)backupTimeRangeStartFilter
-backupTimeRangeEndFilter:(NSString*)backupTimeRangeEndFilter
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-instanceId:(NSString*)instanceId
-auto:(NSNumber*)auto
-backupTypeFilter:(NSString*)backupTypeFilter
-dbNameFilter:(NSString*)dbNameFilter
-backupTimeRangeStartFilter:(NSString*)backupTimeRangeStartFilter
-backupTimeRangeEndFilter:(NSString*)backupTimeRangeEndFilter
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize;
-
-@end
-
-@interface RdsCreateBackupResult : NSObject
-/// 备份Id
- @property (strong,nonatomic,nonnull)  NSString*  backupId;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithBackupId:(NSString*) backupId;
 @end
 
 @interface RdsDescribeBackupsResponse : NSObject
@@ -204,19 +1865,6 @@ pageSize:(NSNumber*)pageSize;
         result:(RdsDescribeBackupDownloadURLResult*) result;
 @end
 
-@interface RdsDeleteBackupRequest:JDCloudRequest
-
-/// 备份ID
-@property (strong,nonatomic,nonnull)  NSString*  backupId;
--(id) initWithRegion:(NSString *)regionId
-backupId:(NSString*)backupId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-backupId:(NSString*)backupId;
-
-@end
-
 @interface RdsCreateBackupRequest:JDCloudRequest
 
 /// RDS实例ID，唯一标识一个实例
@@ -259,40 +1907,6 @@ backupSpec:(BackupSpec*)backupSpec;
 -(id) initWithRequestId:(NSString*) requestId
         error:(ServiceError*) error
         result:(RdsDescribeErrorLogsResult*) result;
-@end
-
-@interface RdsDescribeErrorLogsRequest:JDCloudRequest
-
-/// RDS 实例ID，唯一标识一个RDS实例
-@property (strong,nonatomic,nonnull)  NSString*  instanceId;
--(id) initWithRegion:(NSString *)regionId
-instanceId:(NSString*)instanceId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-instanceId:(NSString*)instanceId;
-
-@end
-
-@interface RdsDescribeInterceptResultRequest:JDCloudRequest
-
-/// 显示数据的页码，默认为1，取值范围：[-1,∞)。pageNumber为-1时，返回所有数据页码；超过总页数时，显示最后一页;
-@property (strong,nonatomic,nonnull)  NSNumber*  pageNumber;
-/// 每页显示的数据条数，默认为10，取值范围：[10,100]，且为10的整数倍
-@property (strong,nonatomic,nonnull)  NSNumber*  pageSize;
-/// Instance ID
-@property (strong,nonatomic,nonnull)  NSString*  instanceId;
--(id) initWithRegion:(NSString *)regionId
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-instanceId:(NSString*)instanceId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-instanceId:(NSString*)instanceId;
-
 @end
 
 @interface RdsDisableInterceptResult : NSObject
@@ -340,19 +1954,6 @@ instanceId:(NSString*)instanceId;
         result:(RdsDescribeInterceptResultResult*) result;
 @end
 
-@interface RdsEnableInterceptRequest:JDCloudRequest
-
-/// Instance ID
-@property (strong,nonatomic,nonnull)  NSString*  instanceId;
--(id) initWithRegion:(NSString *)regionId
-instanceId:(NSString*)instanceId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-instanceId:(NSString*)instanceId;
-
-@end
-
 @interface RdsEnableInterceptResponse : NSObject
 
 @property NSString* requestId;
@@ -368,29 +1969,6 @@ instanceId:(NSString*)instanceId;
 -(id) initWithRequestId:(NSString*) requestId
         error:(ServiceError*) error
         result:(RdsEnableInterceptResult*) result;
-@end
-
-@interface RdsDescribeInterceptResult : NSObject
-/// Available
- @property (strong,nonatomic,nonnull)  NSNumber*  available;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithAvailable:(NSNumber*) available;
-@end
-
-@interface RdsDisableInterceptRequest:JDCloudRequest
-
-/// Instance ID
-@property (strong,nonatomic,nonnull)  NSString*  instanceId;
--(id) initWithRegion:(NSString *)regionId
-instanceId:(NSString*)instanceId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-instanceId:(NSString*)instanceId;
-
 @end
 
 @interface RdsDescribeInterceptResponse : NSObject
@@ -410,19 +1988,6 @@ instanceId:(NSString*)instanceId;
         result:(RdsDescribeInterceptResult*) result;
 @end
 
-@interface RdsDescribeInterceptRequest:JDCloudRequest
-
-/// Instance ID
-@property (strong,nonatomic,nonnull)  NSString*  instanceId;
--(id) initWithRegion:(NSString *)regionId
-instanceId:(NSString*)instanceId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-instanceId:(NSString*)instanceId;
-
-@end
-
 @interface RdsDisableInterceptResponse : NSObject
 
 @property NSString* requestId;
@@ -438,16 +2003,6 @@ instanceId:(NSString*)instanceId;
 -(id) initWithRequestId:(NSString*) requestId
         error:(ServiceError*) error
         result:(RdsDisableInterceptResult*) result;
-@end
-
-@interface RdsDescribeTdeResult : NSObject
-/// 当前实例是否已经开启TDE功能，如已开启，返回true；如未开启，返回false；开启中，返回pending
- @property (strong,nonatomic,nonnull)  NSString*  status;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithStatus:(NSString*) status;
 @end
 
 @interface RdsDescribeTdeResponse : NSObject
@@ -467,37 +2022,11 @@ instanceId:(NSString*)instanceId;
         result:(RdsDescribeTdeResult*) result;
 @end
 
-@interface RdsEnableTdeRequest:JDCloudRequest
-
-/// RDS 实例ID，唯一标识一个RDS实例
-@property (strong,nonatomic,nonnull)  NSString*  instanceId;
--(id) initWithRegion:(NSString *)regionId
-instanceId:(NSString*)instanceId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-instanceId:(NSString*)instanceId;
-
-@end
-
 @interface RdsEnableTdeResult : NSObject
 
 -(NSMutableDictionary*) dictionary;
 
 -(id) initWithDic:(NSDictionary*)dictionary;
-@end
-
-@interface RdsDescribeTdeRequest:JDCloudRequest
-
-/// RDS 实例ID，唯一标识一个RDS实例
-@property (strong,nonatomic,nonnull)  NSString*  instanceId;
--(id) initWithRegion:(NSString *)regionId
-instanceId:(NSString*)instanceId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-instanceId:(NSString*)instanceId;
-
 @end
 
 @interface RdsEnableTdeResponse : NSObject
@@ -522,27 +2051,6 @@ instanceId:(NSString*)instanceId;
 -(NSMutableDictionary*) dictionary;
 
 -(id) initWithDic:(NSDictionary*)dictionary;
-@end
-
-@interface RdsModifyAuditRequest:JDCloudRequest
-
-/// 在原有审计项基础上，增加新的审计项，多个审计项之间用英文逗号，分号或空格分隔，例如DATABASE_OBJECT_ACCESS_GROUP,ACKUP_RESTORE_GROUP
-@property (strong,nonatomic,nonnull)  NSString*  add;
-/// 删除审计项，多个审计项之间用英文逗号，分号或空格分隔，例如DATABASE_OBJECT_ACCESS_GROUP,ACKUP_RESTORE_GROUP&lt;br&gt;如删除了所有审计项，则审计自动关闭
-@property (strong,nonatomic,nonnull)  NSString*  drop;
-/// RDS 实例ID，唯一标识一个RDS实例
-@property (strong,nonatomic,nonnull)  NSString*  instanceId;
--(id) initWithRegion:(NSString *)regionId
-add:(NSString*)add
-drop:(NSString*)drop
-instanceId:(NSString*)instanceId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-add:(NSString*)add
-drop:(NSString*)drop
-instanceId:(NSString*)instanceId;
-
 @end
 
 @interface RdsDescribeAuditFilesResult : NSObject
@@ -678,32 +2186,6 @@ instanceId:(NSString*)instanceId;
 -(id) initWithDic:(NSDictionary*)dictionary;
 @end
 
-@interface RdsEnableAuditRequest:JDCloudRequest
-
-/// RDS 实例ID，唯一标识一个RDS实例
-@property (strong,nonatomic,nonnull)  NSString*  instanceId;
--(id) initWithRegion:(NSString *)regionId
-instanceId:(NSString*)instanceId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-instanceId:(NSString*)instanceId;
-
-@end
-
-@interface RdsDisableAuditRequest:JDCloudRequest
-
-/// RDS 实例ID，唯一标识一个RDS实例
-@property (strong,nonatomic,nonnull)  NSString*  instanceId;
--(id) initWithRegion:(NSString *)regionId
-instanceId:(NSString*)instanceId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-instanceId:(NSString*)instanceId;
-
-@end
-
 @interface RdsDisableAuditResult : NSObject
 
 -(NSMutableDictionary*) dictionary;
@@ -728,47 +2210,6 @@ instanceId:(NSString*)instanceId;
         result:(RdsDisableAuditResult*) result;
 @end
 
-@interface RdsDescribeAuditDownloadURLResult : NSObject
-/// 公网下载链接，若当前不可下载，则为空串
- @property (strong,nonatomic,nonnull)  NSString*  publicURL;
-/// 内网下载链接，若当前不可下载，则为空串
- @property (strong,nonatomic,nonnull)  NSString*  internalURL;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithPublicURL:(NSString*) publicURL
-
-    internalURL:(NSString*)internalURL;
-@end
-
-@interface RdsDescribeAuditOptionsResult : NSObject
-/// AuditDefault类模板：返回建议开启的审计选项。&lt;br&gt; AuditOptions类模板：不返回该参数
- @property (strong,nonatomic,nonnull)  NSArray<NSString*>*  enabled;
-/// AuditDefault类模板：返回未开启的审计选项&lt;br&gt;AuditOptions类模板：返回所有的审计选项
- @property (strong,nonatomic,nonnull)  NSArray<NSString*>*  disabled;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithEnabled:(NSArray<NSString*>*) enabled
-
-    disabled:(NSArray<NSString*>*)disabled;
-@end
-
-@interface RdsDescribeAuditFilesRequest:JDCloudRequest
-
-/// RDS 实例ID，唯一标识一个RDS实例
-@property (strong,nonatomic,nonnull)  NSString*  instanceId;
--(id) initWithRegion:(NSString *)regionId
-instanceId:(NSString*)instanceId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-instanceId:(NSString*)instanceId;
-
-@end
-
 @interface RdsDescribeAuditOptionsResponse : NSObject
 
 @property NSString* requestId;
@@ -786,53 +2227,6 @@ instanceId:(NSString*)instanceId;
         result:(RdsDescribeAuditOptionsResult*) result;
 @end
 
-@interface RdsDeleteAuditRequest:JDCloudRequest
-
-/// RDS 实例ID，唯一标识一个RDS实例
-@property (strong,nonatomic,nonnull)  NSString*  instanceId;
--(id) initWithRegion:(NSString *)regionId
-instanceId:(NSString*)instanceId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-instanceId:(NSString*)instanceId;
-
-@end
-
-@interface RdsDescribeAuditDownloadURLRequest:JDCloudRequest
-
-/// 审计文件名
-@property (strong,nonatomic,nonnull)  NSString*  fileName;
-/// RDS 实例ID，唯一标识一个RDS实例
-@property (strong,nonatomic,nonnull)  NSString*  instanceId;
--(id) initWithRegion:(NSString *)regionId
-fileName:(NSString*)fileName
-instanceId:(NSString*)instanceId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-fileName:(NSString*)fileName
-instanceId:(NSString*)instanceId;
-
-@end
-
-@interface RdsCreateAuditRequest:JDCloudRequest
-
-/// 要开启的审计选项，各个选项之间用英文逗号或空格进行分割，例如：DATABASE_OBJECT_ACCESS_GROUP,ACKUP_RESTORE_GROU等&lt;br&gt;各个数据库版本支持的审计选项可以通过接口[describeAuditOptions](./describeAuditOptions.md)获得，各个审计项的具体含义可以参看微软的官方文档
-@property (strong,nonatomic,nonnull)  NSString*  enabled;
-/// RDS 实例ID，唯一标识一个RDS实例
-@property (strong,nonatomic,nonnull)  NSString*  instanceId;
--(id) initWithRegion:(NSString *)regionId
-enabled:(NSString*)enabled
-instanceId:(NSString*)instanceId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-enabled:(NSString*)enabled
-instanceId:(NSString*)instanceId;
-
-@end
-
 @interface RdsCreateAuditResponse : NSObject
 
 @property NSString* requestId;
@@ -848,19 +2242,6 @@ instanceId:(NSString*)instanceId;
 -(id) initWithRequestId:(NSString*) requestId
         error:(ServiceError*) error
         result:(RdsCreateAuditResult*) result;
-@end
-
-@interface RdsDescribeAuditRequest:JDCloudRequest
-
-/// RDS 实例ID，唯一标识一个RDS实例
-@property (strong,nonatomic,nonnull)  NSString*  instanceId;
--(id) initWithRegion:(NSString *)regionId
-instanceId:(NSString*)instanceId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-instanceId:(NSString*)instanceId;
-
 @end
 
 @interface RdsModifyAuditResult : NSObject
@@ -885,33 +2266,6 @@ instanceId:(NSString*)instanceId;
 -(id) initWithRequestId:(NSString*) requestId
         error:(ServiceError*) error
         result:(RdsModifyAuditResult*) result;
-@end
-
-@interface RdsDescribeAuditOptionsRequest:JDCloudRequest
-
-/// 审计选项类别，**大小写敏感**，目前支持两种类型：&lt;br&gt;（1）AuditOptions开头：在disalbed参数中返回SQL Server各个版本支持的所有选项，支持的名称为&lt;br&gt;AuditOptions2008R2&lt;br&gt;AuditOptions2012&lt;br&gt;AuditOptions2014&lt;br&gt;AuditOptions2016&lt;br&gt;例如输入参数为&quot;AuditOptions2016&quot;，则在disabled字段中返回SQL Server 2016 版本所支持的所有的审计选项&lt;br&gt;（2）AuditDefault开头：京东云建议的默认选项,在enabled参数中返回建议开启的选项，在disabled参数中返回不开启的选项，支持的名称为：&lt;br&gt;AuditDefault2008R2&lt;br&gt;AuditDefault2012&lt;br&gt;AuditDefault2014&lt;br&gt;AuditDefault2016&lt;br&gt;例如输入参数为&quot;AuditDefault2016&quot;，则在enabled字段返回SQL Server 2016 版本中京东云建议开启的审计选项，在disabled字段中返回建议不开启的选项
-@property (strong,nonatomic,nonnull)  NSString*  name;
-/// RDS 实例ID，唯一标识一个RDS实例
-@property (strong,nonatomic,nonnull)  NSString*  instanceId;
--(id) initWithRegion:(NSString *)regionId
-name:(NSString*)name
-instanceId:(NSString*)instanceId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-name:(NSString*)name
-instanceId:(NSString*)instanceId;
-
-@end
-
-@interface RdsDescribeAuditResult : NSObject
-/// 当前已开启的审计选项。如当前实例未开启审计，则返回空数组
- @property (strong,nonatomic,nonnull)  NSArray<NSString*>*  enabled;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithEnabled:(NSArray<NSString*>*) enabled;
 @end
 
 @interface RdsDescribeAuditResponse : NSObject
@@ -996,27 +2350,6 @@ instanceId:(NSString*)instanceId;
         result:(RdsDescribeBinlogsResult*) result;
 @end
 
-@interface RdsDescribeBinlogDownloadURLRequest:JDCloudRequest
-
-/// 设置链接地址的过期时间，单位是秒，默认值是 300 秒，最长不能超过取值范围为 1 ~ 86400 秒
-@property (strong,nonatomic,nonnull)  NSNumber*  seconds;
-/// RDS 实例ID，唯一标识一个RDS实例
-@property (strong,nonatomic,nonnull)  NSString*  instanceId;
-/// binlog的备份ID，可以通过describeBinlogs获得
-@property (strong,nonatomic,nonnull)  NSString*  binlogBackupId;
--(id) initWithRegion:(NSString *)regionId
-seconds:(NSNumber*)seconds
-instanceId:(NSString*)instanceId
-binlogBackupId:(NSString*)binlogBackupId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-seconds:(NSNumber*)seconds
-instanceId:(NSString*)instanceId
-binlogBackupId:(NSString*)binlogBackupId;
-
-@end
-
 @interface RdsClearBinlogsResult : NSObject
 
 -(NSMutableDictionary*) dictionary;
@@ -1041,49 +2374,6 @@ binlogBackupId:(NSString*)binlogBackupId;
         result:(RdsClearBinlogsResult*) result;
 @end
 
-@interface RdsDescribeBinlogDownloadURLResult : NSObject
-/// 公网下载链接
- @property (strong,nonatomic,nonnull)  NSString*  publicURL;
-/// 内网下载链接
- @property (strong,nonatomic,nonnull)  NSString*  internalURL;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithPublicURL:(NSString*) publicURL
-
-    internalURL:(NSString*)internalURL;
-@end
-
-@interface RdsDescribeBinlogsRequest:JDCloudRequest
-
-/// 显示数据的页码，默认为1，取值范围：[-1,∞)。pageNumber为-1时，返回所有数据页码；超过总页数时，显示最后一页。
-@property (strong,nonatomic,nonnull)  NSNumber*  pageNumber;
-/// 每页显示的数据条数，默认为10，取值范围：10、20、30、50、100
-@property (strong,nonatomic,nonnull)  NSNumber*  pageSize;
-/// 查询开始时间，格式为：YYYY-MM-DD HH:mm:ss，开始时间到结束时间不超过三天
-@property (strong,nonatomic,nonnull)  NSString*  startTime;
-/// 查询结束时间，格式为：YYYY-MM-DD HH:mm:ss，开始时间到结束时间不超过三天
-@property (strong,nonatomic,nonnull)  NSString*  endTime;
-/// RDS 实例ID，唯一标识一个RDS实例
-@property (strong,nonatomic,nonnull)  NSString*  instanceId;
--(id) initWithRegion:(NSString *)regionId
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-startTime:(NSString*)startTime
-endTime:(NSString*)endTime
-instanceId:(NSString*)instanceId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-startTime:(NSString*)startTime
-endTime:(NSString*)endTime
-instanceId:(NSString*)instanceId;
-
-@end
-
 @interface RdsDescribeBinlogDownloadURLResponse : NSObject
 
 @property NSString* requestId;
@@ -1099,42 +2389,6 @@ instanceId:(NSString*)instanceId;
 -(id) initWithRequestId:(NSString*) requestId
         error:(ServiceError*) error
         result:(RdsDescribeBinlogDownloadURLResult*) result;
-@end
-
-@interface RdsClearBinlogsRequest:JDCloudRequest
-
-/// RDS 实例ID，唯一标识一个RDS实例
-@property (strong,nonatomic,nonnull)  NSString*  instanceId;
--(id) initWithRegion:(NSString *)regionId
-instanceId:(NSString*)instanceId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-instanceId:(NSString*)instanceId;
-
-@end
-
-@interface RdsDescribeAzsResult : NSObject
-/// Azs
- @property (strong,nonatomic,nonnull)  NSArray<NSString*>*  azs;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithAzs:(NSArray<NSString*>*) azs;
-@end
-
-@interface RdsDescribeAzsRequest:JDCloudRequest
-
-/// RDS引擎类型，参见[枚举参数定义](../Enum-Definitions/Enum-Definitions.md)
-@property (strong,nonatomic,nonnull)  NSString*  engine;
--(id) initWithRegion:(NSString *)regionId
-engine:(NSString*)engine;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-engine:(NSString*)engine;
-
 @end
 
 @interface RdsDescribeAzsResponse : NSObject
@@ -1176,71 +2430,6 @@ engine:(NSString*)engine;
 -(id) initWithRequestId:(NSString*) requestId
         error:(ServiceError*) error
         result:(RdsSetImportFileSharedResult*) result;
-@end
-
-@interface RdsGetUploadKeyRequest:JDCloudRequest
-
-/// RDS 实例ID，唯一标识一个RDS实例
-@property (strong,nonatomic,nonnull)  NSString*  instanceId;
--(id) initWithRegion:(NSString *)regionId
-instanceId:(NSString*)instanceId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-instanceId:(NSString*)instanceId;
-
-@end
-
-@interface RdsSetImportFileSharedRequest:JDCloudRequest
-
-/// 文件是否共享&lt;br&gt;true:共享&lt;br&gt;false:不共享
-@property (strong,nonatomic,nonnull)  NSString*  shared;
-/// RDS 实例ID，唯一标识一个RDS实例
-@property (strong,nonatomic,nonnull)  NSString*  instanceId;
-/// 单库上云文件名
-@property (strong,nonatomic,nonnull)  NSString*  fileName;
--(id) initWithRegion:(NSString *)regionId
-shared:(NSString*)shared
-instanceId:(NSString*)instanceId
-fileName:(NSString*)fileName;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-shared:(NSString*)shared
-instanceId:(NSString*)instanceId
-fileName:(NSString*)fileName;
-
-@end
-
-@interface RdsDeleteImportFileRequest:JDCloudRequest
-
-/// 共享文件的全局ID，可从上传文件查询接口describeImportFiles中获取；如果该文件不是共享文件，则无须输入该字段
-@property (strong,nonatomic,nonnull)  NSString*  sharedFileGid;
-/// RDS 实例ID，唯一标识一个RDS实例
-@property (strong,nonatomic,nonnull)  NSString*  instanceId;
-/// 单库上云文件名
-@property (strong,nonatomic,nonnull)  NSString*  fileName;
--(id) initWithRegion:(NSString *)regionId
-sharedFileGid:(NSString*)sharedFileGid
-instanceId:(NSString*)instanceId
-fileName:(NSString*)fileName;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-sharedFileGid:(NSString*)sharedFileGid
-instanceId:(NSString*)instanceId
-fileName:(NSString*)fileName;
-
-@end
-
-@interface RdsGetUploadKeyResult : NSObject
-/// 上传文件需要用到的Key
- @property (strong,nonatomic,nonnull)  NSString*  key;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithKey:(NSString*) key;
 @end
 
 @interface RdsGetUploadKeyResponse : NSObject
@@ -1311,19 +2500,6 @@ fileName:(NSString*)fileName;
         result:(RdsDescribeImportFilesResult*) result;
 @end
 
-@interface RdsDescribeImportFilesRequest:JDCloudRequest
-
-/// RDS 实例ID，唯一标识一个RDS实例
-@property (strong,nonatomic,nonnull)  NSString*  instanceId;
--(id) initWithRegion:(NSString *)regionId
-instanceId:(NSString*)instanceId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-instanceId:(NSString*)instanceId;
-
-@end
-
 @interface RdsDescribeWhiteListResult : NSObject
 /// WhiteLists
  @property (strong,nonatomic,nonnull)  NSArray<WhiteList*>*  whiteLists;
@@ -1341,23 +2517,6 @@ instanceId:(NSString*)instanceId;
 -(id) initWithDic:(NSDictionary*)dictionary;
 @end
 
-@interface RdsModifyWhiteListRequest:JDCloudRequest
-
-/// IP或IP段，不同的IP/IP段之间用英文逗号分隔，例如0.0.0.0/0,192.168.0.10
-@property (strong,nonatomic,nonnull)  NSString*  ips;
-/// RDS 实例ID，唯一标识一个RDS实例
-@property (strong,nonatomic,nonnull)  NSString*  instanceId;
--(id) initWithRegion:(NSString *)regionId
-ips:(NSString*)ips
-instanceId:(NSString*)instanceId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-ips:(NSString*)ips
-instanceId:(NSString*)instanceId;
-
-@end
-
 @interface RdsModifyWhiteListResponse : NSObject
 
 @property NSString* requestId;
@@ -1373,19 +2532,6 @@ instanceId:(NSString*)instanceId;
 -(id) initWithRequestId:(NSString*) requestId
         error:(ServiceError*) error
         result:(RdsModifyWhiteListResult*) result;
-@end
-
-@interface RdsDescribeWhiteListRequest:JDCloudRequest
-
-/// RDS 实例ID，唯一标识一个RDS实例
-@property (strong,nonatomic,nonnull)  NSString*  instanceId;
--(id) initWithRegion:(NSString *)regionId
-instanceId:(NSString*)instanceId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-instanceId:(NSString*)instanceId;
-
 @end
 
 @interface RdsDescribeWhiteListResponse : NSObject
@@ -1436,20 +2582,6 @@ instanceId:(NSString*)instanceId;
         result:(RdsDescribeLogsResult*) result;
 @end
 
-@interface RdsUpdateLogDownloadURLInternalResult : NSObject
-/// 公网下载链接
- @property (strong,nonatomic,nonnull)  NSString*  publicURL;
-/// 内网下载链接
- @property (strong,nonatomic,nonnull)  NSString*  internalURL;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithPublicURL:(NSString*) publicURL
-
-    internalURL:(NSString*)internalURL;
-@end
-
 @interface RdsUpdateLogDownloadURLInternalResponse : NSObject
 
 @property NSString* requestId;
@@ -1465,62 +2597,6 @@ instanceId:(NSString*)instanceId;
 -(id) initWithRequestId:(NSString*) requestId
         error:(ServiceError*) error
         result:(RdsUpdateLogDownloadURLInternalResult*) result;
-@end
-
-@interface RdsDescribeLogDownloadURLRequest:JDCloudRequest
-
-/// 设置链接地址的过期时间，单位是秒，默认值是 300 秒，最长不能超过取值范围为 1 ~ 86400 秒
-@property (strong,nonatomic,nonnull)  NSNumber*  seconds;
-/// RDS 实例ID，唯一标识一个RDS实例
-@property (strong,nonatomic,nonnull)  NSString*  instanceId;
-/// 日志文件ID
-@property (strong,nonatomic,nonnull)  NSString*  logId;
--(id) initWithRegion:(NSString *)regionId
-seconds:(NSNumber*)seconds
-instanceId:(NSString*)instanceId
-logId:(NSString*)logId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-seconds:(NSNumber*)seconds
-instanceId:(NSString*)instanceId
-logId:(NSString*)logId;
-
-@end
-
-@interface RdsDescribeLogDownloadURLResult : NSObject
-/// 公网下载链接
- @property (strong,nonatomic,nonnull)  NSString*  publicURL;
-/// 内网下载链接
- @property (strong,nonatomic,nonnull)  NSString*  internalURL;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithPublicURL:(NSString*) publicURL
-
-    internalURL:(NSString*)internalURL;
-@end
-
-@interface RdsUpdateLogDownloadURLInternalRequest:JDCloudRequest
-
-/// 设置链接地址的过期时间，单位是秒，最长不能超过取值范围为 1 ~ 86400 秒
-@property (strong,nonatomic,nonnull)  NSNumber*  seconds;
-/// RDS 实例ID，唯一标识一个RDS实例
-@property (strong,nonatomic,nonnull)  NSString*  instanceId;
-/// 日志文件ID
-@property (strong,nonatomic,nonnull)  NSString*  logId;
--(id) initWithRegion:(NSString *)regionId
-seconds:(NSNumber*)seconds
-instanceId:(NSString*)instanceId
-logId:(NSString*)logId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-seconds:(NSNumber*)seconds
-instanceId:(NSString*)instanceId
-logId:(NSString*)logId;
-
 @end
 
 @interface RdsDescribeLogDownloadURLResponse : NSObject
@@ -1567,19 +2643,6 @@ instanceId:(NSString*)instanceId;
 
 @end
 
-@interface RdsDisableInternetAccessRequest:JDCloudRequest
-
-/// RDS 实例ID，唯一标识一个RDS实例
-@property (strong,nonatomic,nonnull)  NSString*  instanceId;
--(id) initWithRegion:(NSString *)regionId
-instanceId:(NSString*)instanceId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-instanceId:(NSString*)instanceId;
-
-@end
-
 @interface RdsModifyParameterGroupResult : NSObject
 
 -(NSMutableDictionary*) dictionary;
@@ -1604,16 +2667,6 @@ instanceId:(NSString*)instanceId;
         result:(RdsModifyParameterGroupResult*) result;
 @end
 
-@interface RdsModifyInstanceSpecResult : NSObject
-/// 生成的订单号
- @property (strong,nonatomic,nonnull)  NSString*  orderId;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithOrderId:(NSString*) orderId;
-@end
-
 @interface RdsRebootInstanceResult : NSObject
 
 -(NSMutableDictionary*) dictionary;
@@ -1628,82 +2681,6 @@ instanceId:(NSString*)instanceId;
 -(id) initWithDic:(NSDictionary*)dictionary;
 @end
 
-@interface RdsCreateROInstanceRequest:JDCloudRequest
-
-/// 实例名称，具体规则可参见帮助中心文档:[名称及密码限制](../../../documentation/Database-and-Cache-Service/RDS/Introduction/Restrictions/SQLServer-Restrictions.md)
-@property (strong,nonatomic,nonnull)  NSString*  instanceName;
-/// 只读实例规格FlavorId
-@property (strong,nonatomic,nonnull)  NSString*  instanceClass;
-/// 存储类型，参见[枚举参数定义](../Enum-Definitions/Enum-Definitions.md)，缺省值为：LOCAL_SSD
-@property (strong,nonatomic,nonnull)  NSString*  instanceStorageType;
-/// 磁盘空间
-@property (strong,nonatomic,nonnull)  NSNumber*  instanceStorageGB;
-/// 可用区ID
-@property (strong,nonatomic,nonnull)  NSString*  azId;
-/// VPC的ID，如果没有填写就保持和常规实例一样的VPC
-@property (strong,nonatomic,nonnull)  NSString*  vpcId;
-/// 子网ID，如果没有填写就保持和常规实例一样的subnet
-@property (strong,nonatomic,nonnull)  NSString*  subnetId;
-/// 参数组ID，缺省采用和常规实例一样的参数组
-@property (strong,nonatomic,nonnull)  NSString*  parameterGroup;
-/// 实例数据加密(存储类型为云硬盘才支持数据加密)。false：不加密；true：加密。缺省为false。
-@property (strong,nonatomic,nonnull)  NSNumber*  storageEncrypted;
-/// 创建只读实例的数目,缺省为1
-@property (strong,nonatomic,nonnull)  NSNumber*  count;
-/// RDS 实例ID，唯一标识一个RDS实例
-@property (strong,nonatomic,nonnull)  NSString*  instanceId;
--(id) initWithRegion:(NSString *)regionId
-instanceName:(NSString*)instanceName
-instanceClass:(NSString*)instanceClass
-instanceStorageType:(NSString*)instanceStorageType
-instanceStorageGB:(NSNumber*)instanceStorageGB
-azId:(NSString*)azId
-vpcId:(NSString*)vpcId
-subnetId:(NSString*)subnetId
-parameterGroup:(NSString*)parameterGroup
-storageEncrypted:(NSNumber*)storageEncrypted
-count:(NSNumber*)count
-instanceId:(NSString*)instanceId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-instanceName:(NSString*)instanceName
-instanceClass:(NSString*)instanceClass
-instanceStorageType:(NSString*)instanceStorageType
-instanceStorageGB:(NSNumber*)instanceStorageGB
-azId:(NSString*)azId
-vpcId:(NSString*)vpcId
-subnetId:(NSString*)subnetId
-parameterGroup:(NSString*)parameterGroup
-storageEncrypted:(NSNumber*)storageEncrypted
-count:(NSNumber*)count
-instanceId:(NSString*)instanceId;
-
-@end
-
-@interface RdsCreateInstanceResult : NSObject
-/// InstanceId
- @property (strong,nonatomic,nonnull)  NSString*  instanceId;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithInstanceId:(NSString*) instanceId;
-@end
-
-@interface RdsEnableInternetAccessRequest:JDCloudRequest
-
-/// RDS 实例ID，唯一标识一个RDS实例
-@property (strong,nonatomic,nonnull)  NSString*  instanceId;
--(id) initWithRegion:(NSString *)regionId
-instanceId:(NSString*)instanceId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-instanceId:(NSString*)instanceId;
-
-@end
-
 @interface RdsDescribeInstancesResult : NSObject
 /// DbInstances
  @property (strong,nonatomic,nonnull)  NSArray<DBInstance*>*  dbInstances;
@@ -1716,16 +2693,6 @@ instanceId:(NSString*)instanceId;
 -(id) initWithDbInstances:(NSArray<DBInstance*>*) dbInstances
 
     totalCount:(NSNumber*)totalCount;
-@end
-
-@interface RdsCreateInstanceFromBackupResult : NSObject
-/// InstanceId
- @property (strong,nonatomic,nonnull)  NSString*  instanceId;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithInstanceId:(NSString*) instanceId;
 @end
 
 @interface RdsCreateInstanceFromBackupResponse : NSObject
@@ -1745,20 +2712,6 @@ instanceId:(NSString*)instanceId;
         result:(RdsCreateInstanceFromBackupResult*) result;
 @end
 
-@interface RdsCreateROInstanceResult : NSObject
-/// 新创建的只读实例ID
- @property (strong,nonatomic,nonnull)  NSArray<NSString*>*  roInstanceId;
-/// 订单ID
- @property (strong,nonatomic,nonnull)  NSString*  orderId;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithRoInstanceId:(NSArray<NSString*>*) roInstanceId
-
-    orderId:(NSString*)orderId;
-@end
-
 @interface RdsCreateROInstanceResponse : NSObject
 
 @property NSString* requestId;
@@ -1774,16 +2727,6 @@ instanceId:(NSString*)instanceId;
 -(id) initWithRequestId:(NSString*) requestId
         error:(ServiceError*) error
         result:(RdsCreateROInstanceResult*) result;
-@end
-
-@interface RdsCreateInstanceByTimeResult : NSObject
-/// 新创建的实例ID
- @property (strong,nonatomic,nonnull)  NSString*  instanceId;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithInstanceId:(NSString*) instanceId;
 @end
 
 @interface RdsRestoreInstanceResult : NSObject
@@ -1808,23 +2751,6 @@ instanceId:(NSString*)instanceId;
 -(id) initWithRequestId:(NSString*) requestId
         error:(ServiceError*) error
         result:(RdsRestoreInstanceResult*) result;
-@end
-
-@interface RdsModifyInstanceNameRequest:JDCloudRequest
-
-/// 实例名称，名称支持中文，实例名的具体规则可参见帮助中心文档:[名称及密码限制](../../../documentation/Database-and-Cache-Service/RDS/Introduction/Restrictions/SQLServer-Restrictions.md)
-@property (strong,nonatomic,nonnull)  NSString*  instanceName;
-/// RDS 实例ID，唯一标识一个RDS实例
-@property (strong,nonatomic,nonnull)  NSString*  instanceId;
--(id) initWithRegion:(NSString *)regionId
-instanceName:(NSString*)instanceName
-instanceId:(NSString*)instanceId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-instanceName:(NSString*)instanceName
-instanceId:(NSString*)instanceId;
-
 @end
 
 @interface RdsCreateInstanceResponse : NSObject
@@ -1868,29 +2794,6 @@ instanceId:(NSString*)instanceId;
         result:(RdsModifyInstanceNameResult*) result;
 @end
 
-@interface RdsDescribeLatestRestoreTimeRequest:JDCloudRequest
-
-/// RDS 实例ID，唯一标识一个RDS实例
-@property (strong,nonatomic,nonnull)  NSString*  instanceId;
--(id) initWithRegion:(NSString *)regionId
-instanceId:(NSString*)instanceId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-instanceId:(NSString*)instanceId;
-
-@end
-
-@interface RdsDescribeLatestRestoreTimeResult : NSObject
-/// 实例按时间点恢复时,可恢复到的最后的一个时间点
- @property (strong,nonatomic,nonnull)  NSString*  latestRestoreTime;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithLatestRestoreTime:(NSString*) latestRestoreTime;
-@end
-
 @interface RdsDescribeLatestRestoreTimeResponse : NSObject
 
 @property NSString* requestId;
@@ -1918,23 +2821,6 @@ instanceSpec:(DBInstanceSpec*)instanceSpec;
 -(id) initWithRegion:(NSString *)regionId
              version:(NSString *)version
 instanceSpec:(DBInstanceSpec*)instanceSpec;
-
-@end
-
-@interface RdsRestoreInstanceRequest:JDCloudRequest
-
-/// 用于恢复的备份Id，仅限于本实例生成的备份
-@property (strong,nonatomic,nonnull)  NSString*  backupId;
-/// RDS 实例ID，唯一标识一个RDS实例
-@property (strong,nonatomic,nonnull)  NSString*  instanceId;
--(id) initWithRegion:(NSString *)regionId
-backupId:(NSString*)backupId
-instanceId:(NSString*)instanceId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-backupId:(NSString*)backupId
-instanceId:(NSString*)instanceId;
 
 @end
 
@@ -2043,23 +2929,6 @@ tagFilters:(NSArray<TagFilter*>*)tagFilters;
 -(id) initWithDic:(NSDictionary*)dictionary;
 @end
 
-@interface RdsModifyParameterGroupRequest:JDCloudRequest
-
-/// 参数组ID
-@property (strong,nonatomic,nonnull)  NSString*  parameterGroupId;
-/// RDS 实例ID，唯一标识一个RDS实例
-@property (strong,nonatomic,nonnull)  NSString*  instanceId;
--(id) initWithRegion:(NSString *)regionId
-parameterGroupId:(NSString*)parameterGroupId
-instanceId:(NSString*)instanceId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-parameterGroupId:(NSString*)parameterGroupId
-instanceId:(NSString*)instanceId;
-
-@end
-
 @interface RdsDeleteInstanceResult : NSObject
 
 -(NSMutableDictionary*) dictionary;
@@ -2122,23 +2991,6 @@ instanceSpec:(RestoredNewDBInstanceSpec*)instanceSpec;
 -(id) initWithDbInstanceAttributes:(DBInstanceAttribute*) dbInstanceAttributes;
 @end
 
-@interface RdsModifyConnectionModeRequest:JDCloudRequest
-
-/// 连接模式&lt;br&gt; - standard：标准模式(缺省)，响应时间短，但没有 SQL 审计和拦截的能力 &lt;br&gt;- security：高安全模式，具备一定的 SQL注入拦截能力，并可开启 SQL 审计，但会增加一定的响应时间
-@property (strong,nonatomic,nonnull)  NSString*  connectionMode;
-/// RDS 实例ID，唯一标识一个RDS实例
-@property (strong,nonatomic,nonnull)  NSString*  instanceId;
--(id) initWithRegion:(NSString *)regionId
-connectionMode:(NSString*)connectionMode
-instanceId:(NSString*)instanceId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-connectionMode:(NSString*)connectionMode
-instanceId:(NSString*)instanceId;
-
-@end
-
 @interface RdsExchangeInstanceDnsResult : NSObject
 
 -(NSMutableDictionary*) dictionary;
@@ -2163,19 +3015,6 @@ instanceId:(NSString*)instanceId;
         result:(RdsDisableInternetAccessResult*) result;
 @end
 
-@interface RdsFailoverInstanceRequest:JDCloudRequest
-
-/// RDS 实例ID，唯一标识一个RDS实例
-@property (strong,nonatomic,nonnull)  NSString*  instanceId;
--(id) initWithRegion:(NSString *)regionId
-instanceId:(NSString*)instanceId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-instanceId:(NSString*)instanceId;
-
-@end
-
 @interface RdsModifyBackupPolicyResponse : NSObject
 
 @property NSString* requestId;
@@ -2193,28 +3032,6 @@ instanceId:(NSString*)instanceId;
         result:(RdsModifyBackupPolicyResult*) result;
 @end
 
-@interface RdsDescribeBackupPolicyResult : NSObject
-/// 自动备份开始时间窗口，范围00:00-23:59，时间范围差不得小于30分钟。&lt;br&gt;例如：00:00-01:00，表示0点到1点开始进行数据库自动备份，备份完成时间则跟实例大小有关，不一定在这个时间范围中
- @property (strong,nonatomic,nonnull)  NSString*  startWindow;
-/// 自动备份保留周期，单位天,缺省为7天，范围7-730
- @property (strong,nonatomic,nonnull)  NSNumber*  retentionPeriod;
-/// 自动备份循环模式&lt;br&gt;1:表示每天都是全量备份&lt;br&gt;2:表示自动备份按照全量、增量、增量这样的方式进行，例如第1天是全量备份，第2、3天是增量备份；第4天又是全量备份，以此类推.&lt;br&gt; - 仅支持 SQL Server
- @property (strong,nonatomic,nonnull)  NSNumber*  cycleMode;
-/// 是否备份binlog&lt;br&gt;true:表示备份&lt;br&gt;false:表示不备份&lt;br&gt; - **仅支持 MySQL，Percona，MariaDB
- @property (strong,nonatomic,nonnull)  NSString*  backupBinlog;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithStartWindow:(NSString*) startWindow
-
-    retentionPeriod:(NSNumber*)retentionPeriod
-
-    cycleMode:(NSNumber*)cycleMode
-
-    backupBinlog:(NSString*)backupBinlog;
-@end
-
 @interface RdsDescribeBackupPolicyResponse : NSObject
 
 @property NSString* requestId;
@@ -2230,57 +3047,6 @@ instanceId:(NSString*)instanceId;
 -(id) initWithRequestId:(NSString*) requestId
         error:(ServiceError*) error
         result:(RdsDescribeBackupPolicyResult*) result;
-@end
-
-@interface RdsRebootInstanceRequest:JDCloudRequest
-
-/// 是否重启主节点。&lt;br&gt; - 仅SQL Server 支持该参数
-@property (strong,nonatomic,nonnull)  NSNumber*  rebootMaster;
-/// 是否重启备节点。&lt;br&gt; - 仅SQL Server 支持该参数
-@property (strong,nonatomic,nonnull)  NSNumber*  rebootSlave;
-/// RDS 实例ID，唯一标识一个RDS实例
-@property (strong,nonatomic,nonnull)  NSString*  instanceId;
--(id) initWithRegion:(NSString *)regionId
-rebootMaster:(NSNumber*)rebootMaster
-rebootSlave:(NSNumber*)rebootSlave
-instanceId:(NSString*)instanceId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-rebootMaster:(NSNumber*)rebootMaster
-rebootSlave:(NSNumber*)rebootSlave
-instanceId:(NSString*)instanceId;
-
-@end
-
-@interface RdsDescribeInstanceAttributesRequest:JDCloudRequest
-
-/// RDS 实例ID，唯一标识一个RDS实例
-@property (strong,nonatomic,nonnull)  NSString*  instanceId;
--(id) initWithRegion:(NSString *)regionId
-instanceId:(NSString*)instanceId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-instanceId:(NSString*)instanceId;
-
-@end
-
-@interface RdsModifyBackupPolicyRequest:JDCloudRequest
-
-/// 自动备份开始时间窗口,例如：00:00-01:00，表示0点到1点开始进行数据库自动备份，备份完成时间则跟实例大小有关，不一定在这个时间范围中&lt;br&gt;SQL Server:范围00:00-23:59，时间范围差不得小于30分钟。&lt;br&gt;MySQL,只能是以下取值:&lt;br&gt;00:00-01:00&lt;br&gt;01:00-02:00&lt;br&gt;......&lt;br&gt;23:00-24:00
-@property (strong,nonatomic,nonnull)  NSString*  startWindow;
-/// RDS 实例ID，唯一标识一个RDS实例
-@property (strong,nonatomic,nonnull)  NSString*  instanceId;
--(id) initWithRegion:(NSString *)regionId
-startWindow:(NSString*)startWindow
-instanceId:(NSString*)instanceId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-startWindow:(NSString*)startWindow
-instanceId:(NSString*)instanceId;
-
 @end
 
 @interface RdsModifyConnectionModeResponse : NSObject
@@ -2341,48 +3107,6 @@ instanceId:(NSString*)instanceId;
         result:(RdsDescribeInstanceAttributesResult*) result;
 @end
 
-@interface RdsDeleteInstanceRequest:JDCloudRequest
-
-/// RDS 实例ID，唯一标识一个RDS实例
-@property (strong,nonatomic,nonnull)  NSString*  instanceId;
--(id) initWithRegion:(NSString *)regionId
-instanceId:(NSString*)instanceId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-instanceId:(NSString*)instanceId;
-
-@end
-
-@interface RdsModifyInstanceSpecRequest:JDCloudRequest
-
-/// 扩容后实例规格
-@property (strong,nonatomic,nonnull)  NSString*  rdsNewInstanceClass;
-/// 扩容后实例磁盘大小
-@property (strong,nonatomic,nonnull)  NSNumber*  rdsNewInstanceStorageGB;
-/// 存储类型，如果不指定，默认会采用实例原存储类型.
-@property (strong,nonatomic,nonnull)  NSString*  rdsNewInstanceStorageType;
-/// 实例数据加密(存储类型为云硬盘才支持数据加密). false：不加密; true：加密. 如果实例从本地盘变为云硬盘，缺省为false. 如果实例本来就是使用云硬盘的，缺省和源实例保持一致
-@property (strong,nonatomic,nonnull)  NSNumber*  storageEncrypted;
-/// RDS 实例ID，唯一标识一个RDS实例
-@property (strong,nonatomic,nonnull)  NSString*  instanceId;
--(id) initWithRegion:(NSString *)regionId
-rdsNewInstanceClass:(NSString*)rdsNewInstanceClass
-rdsNewInstanceStorageGB:(NSNumber*)rdsNewInstanceStorageGB
-rdsNewInstanceStorageType:(NSString*)rdsNewInstanceStorageType
-storageEncrypted:(NSNumber*)storageEncrypted
-instanceId:(NSString*)instanceId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-rdsNewInstanceClass:(NSString*)rdsNewInstanceClass
-rdsNewInstanceStorageGB:(NSNumber*)rdsNewInstanceStorageGB
-rdsNewInstanceStorageType:(NSString*)rdsNewInstanceStorageType
-storageEncrypted:(NSNumber*)storageEncrypted
-instanceId:(NSString*)instanceId;
-
-@end
-
 @interface RdsRebootInstanceResponse : NSObject
 
 @property NSString* requestId;
@@ -2398,19 +3122,6 @@ instanceId:(NSString*)instanceId;
 -(id) initWithRequestId:(NSString*) requestId
         error:(ServiceError*) error
         result:(RdsRebootInstanceResult*) result;
-@end
-
-@interface RdsDescribeBackupPolicyRequest:JDCloudRequest
-
-/// RDS 实例ID，唯一标识一个RDS实例
-@property (strong,nonatomic,nonnull)  NSString*  instanceId;
--(id) initWithRegion:(NSString *)regionId
-instanceId:(NSString*)instanceId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-instanceId:(NSString*)instanceId;
-
 @end
 
 @interface RdsDescribeInstancesResponse : NSObject
@@ -2445,23 +3156,6 @@ instanceId:(NSString*)instanceId;
 -(id) initWithRequestId:(NSString*) requestId
         error:(ServiceError*) error
         result:(RdsFailoverInstanceResult*) result;
-@end
-
-@interface RdsExchangeInstanceDnsRequest:JDCloudRequest
-
-/// 要交换的实例ID
-@property (strong,nonatomic,nonnull)  NSString*  targetInstanceId;
-/// RDS 实例ID，唯一标识一个RDS实例
-@property (strong,nonatomic,nonnull)  NSString*  instanceId;
--(id) initWithRegion:(NSString *)regionId
-targetInstanceId:(NSString*)targetInstanceId
-instanceId:(NSString*)instanceId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-targetInstanceId:(NSString*)targetInstanceId
-instanceId:(NSString*)instanceId;
-
 @end
 
 @interface RdsExchangeInstanceDnsResponse : NSObject
@@ -2503,23 +3197,6 @@ instanceId:(NSString*)instanceId;
 -(id) initWithRequestId:(NSString*) requestId
         error:(ServiceError*) error
         result:(RdsDeleteDatabaseResult*) result;
-@end
-
-@interface RdsDeleteDatabaseRequest:JDCloudRequest
-
-/// RDS 实例ID，唯一标识一个RDS实例
-@property (strong,nonatomic,nonnull)  NSString*  instanceId;
-/// 库名称
-@property (strong,nonatomic,nonnull)  NSString*  dbName;
--(id) initWithRegion:(NSString *)regionId
-instanceId:(NSString*)instanceId
-dbName:(NSString*)dbName;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-instanceId:(NSString*)instanceId
-dbName:(NSString*)dbName;
-
 @end
 
 @interface RdsDescribeDatabasesResult : NSObject
@@ -2608,77 +3285,6 @@ dbName:(NSString*)dbName;
         result:(RdsRestoreDatabaseFromFileResult*) result;
 @end
 
-@interface RdsDescribeDatabasesRequest:JDCloudRequest
-
-/// 数据库名。如果不指定数据库名，则返回所有数据库列表&lt;br&gt;- **MySQL：不支持该字段**&lt;br&gt;- **SQL Server：支持该字段**
-@property (strong,nonatomic,nonnull)  NSString*  dbName;
-/// 显示数据的页码，默认为1，取值范围：[-1,∞)。pageNumber为-1时，返回所有数据页码；超过总页数时，显示最后一页;
-@property (strong,nonatomic,nonnull)  NSNumber*  pageNumber;
-/// 每页显示的数据条数，默认为100，取值范围：[10,100]，用于查询列表的接口
-@property (strong,nonatomic,nonnull)  NSNumber*  pageSize;
-/// RDS 实例ID，唯一标识一个RDS实例
-@property (strong,nonatomic,nonnull)  NSString*  instanceId;
--(id) initWithRegion:(NSString *)regionId
-dbName:(NSString*)dbName
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-instanceId:(NSString*)instanceId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-dbName:(NSString*)dbName
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-instanceId:(NSString*)instanceId;
-
-@end
-
-@interface RdsCreateDatabaseRequest:JDCloudRequest
-
-/// 数据库名，数据库名称的限制请参考[帮助中心文档](../../../documentation/Database-and-Cache-Service/RDS/Introduction/Restrictions/SQLServer-Restrictions.md)
-@property (strong,nonatomic,nonnull)  NSString*  dbName;
-/// 数据库的字符集名，当前支持的字符集请查看[枚举参数定义](../Enum-Definitions/Enum-Definitions.md)
-@property (strong,nonatomic,nonnull)  NSString*  characterSetName;
-/// RDS 实例ID，唯一标识一个RDS实例
-@property (strong,nonatomic,nonnull)  NSString*  instanceId;
--(id) initWithRegion:(NSString *)regionId
-dbName:(NSString*)dbName
-characterSetName:(NSString*)characterSetName
-instanceId:(NSString*)instanceId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-dbName:(NSString*)dbName
-characterSetName:(NSString*)characterSetName
-instanceId:(NSString*)instanceId;
-
-@end
-
-@interface RdsRestoreDatabaseFromFileRequest:JDCloudRequest
-
-/// 共享文件的全局ID，可从上传文件查询接口[describeImportFiles](../Cloud-on-Single-Database/describeImportFiles.md)获取；如果该文件不是共享文件，则不用输入该参数
-@property (strong,nonatomic,nonnull)  NSString*  sharedFileGid;
-/// 用户上传的备份文件名称（包括文件后缀名），例如mydb1.bak
-@property (strong,nonatomic,nonnull)  NSString*  fileName;
-/// RDS 实例ID，唯一标识一个RDS实例
-@property (strong,nonatomic,nonnull)  NSString*  instanceId;
-/// 库名称
-@property (strong,nonatomic,nonnull)  NSString*  dbName;
--(id) initWithRegion:(NSString *)regionId
-sharedFileGid:(NSString*)sharedFileGid
-fileName:(NSString*)fileName
-instanceId:(NSString*)instanceId
-dbName:(NSString*)dbName;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-sharedFileGid:(NSString*)sharedFileGid
-fileName:(NSString*)fileName
-instanceId:(NSString*)instanceId
-dbName:(NSString*)dbName;
-
-@end
-
 @interface RdsRestoreDatabaseFromBackupResponse : NSObject
 
 @property NSString* requestId;
@@ -2720,62 +3326,6 @@ dbName:(NSString*)dbName;
         result:(RdsCreateDatabaseResult*) result;
 @end
 
-@interface RdsRestoreDatabaseFromBackupRequest:JDCloudRequest
-
-/// 备份ID，可从备份查询接口describeBackups获取
-@property (strong,nonatomic,nonnull)  NSString*  backupId;
-/// 指定该备份中用于恢复数据库的文件名称。通常情况下文件名（不包括后缀）即为备份的数据库名。例如文件名为my_test_db.bak，表示该文件是my_test_db数据库的备份
-@property (strong,nonatomic,nonnull)  NSString*  backupFileName;
-/// RDS 实例ID，唯一标识一个RDS实例
-@property (strong,nonatomic,nonnull)  NSString*  instanceId;
-/// 库名称
-@property (strong,nonatomic,nonnull)  NSString*  dbName;
--(id) initWithRegion:(NSString *)regionId
-backupId:(NSString*)backupId
-backupFileName:(NSString*)backupFileName
-instanceId:(NSString*)instanceId
-dbName:(NSString*)dbName;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-backupId:(NSString*)backupId
-backupFileName:(NSString*)backupFileName
-instanceId:(NSString*)instanceId
-dbName:(NSString*)dbName;
-
-@end
-
-@interface RdsRestoreDatabaseFromOSSRequest:JDCloudRequest
-
-/// 用户上传到对象存储OSS上的备份文件的路径。&lt;br&gt;例如用户备份上传的bucket为db_backup，文件为test_server/db1.bak，那么ossULR为db_backup/test_server/db1.bak。&lt;br&gt;**授权说明**：需要授予账户ID：785455908940，对这个bucket的读取权限，具体步骤可以查看[文档](https://docs.jdcloud.com/cn/object-storage-service/set-bucket-policy-2)。
-@property (strong,nonatomic,nonnull)  NSString*  ossURL;
-/// RDS 实例ID，唯一标识一个RDS实例
-@property (strong,nonatomic,nonnull)  NSString*  instanceId;
-/// 库名称
-@property (strong,nonatomic,nonnull)  NSString*  dbName;
--(id) initWithRegion:(NSString *)regionId
-ossURL:(NSString*)ossURL
-instanceId:(NSString*)instanceId
-dbName:(NSString*)dbName;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-ossURL:(NSString*)ossURL
-instanceId:(NSString*)instanceId
-dbName:(NSString*)dbName;
-
-@end
-
-@interface RdsCreateBackupSynchronicityResult : NSObject
-/// 跨地域备份同步服务ID
- @property (strong,nonatomic,nonnull)  NSString*  serviceId;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithServiceId:(NSString*) serviceId;
-@end
-
 @interface RdsCreateBackupSynchronicityResponse : NSObject
 
 @property NSString* requestId;
@@ -2791,33 +3341,6 @@ dbName:(NSString*)dbName;
 -(id) initWithRequestId:(NSString*) requestId
         error:(ServiceError*) error
         result:(RdsCreateBackupSynchronicityResult*) result;
-@end
-
-@interface RdsCreateBackupSynchronicityRequest:JDCloudRequest
-
-/// 源实例ID
-@property (strong,nonatomic,nonnull)  NSString*  instanceId;
-/// 备份同步的目标地域
-@property (strong,nonatomic,nonnull)  NSString*  destRegion;
--(id) initWithRegion:(NSString *)regionId
-instanceId:(NSString*)instanceId
-destRegion:(NSString*)destRegion;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-instanceId:(NSString*)instanceId
-destRegion:(NSString*)destRegion;
-
-@end
-
-@interface RdsCreateInstanceByTimeInCrossRegionResult : NSObject
-/// 新创建的实例ID
- @property (strong,nonatomic,nonnull)  NSString*  instanceId;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithInstanceId:(NSString*) instanceId;
 @end
 
 @interface RdsDeleteBackupSynchronicityResult : NSObject
@@ -2896,23 +3419,6 @@ instanceSpec:(RestoredNewDBInstanceSpec*)instanceSpec;
 
 @end
 
-@interface RdsDescribeBackupSynchronicitiesRequest:JDCloudRequest
-
-/// 显示数据的页码，默认为1，取值范围：[1,∞)，页码超过总页数时，显示最后一页，用于查询列表的接口
-@property (strong,nonatomic,nonnull)  NSNumber*  pageNumber;
-/// 每页显示的数据条数，默认为10，取值范围：10、20、30、50、100
-@property (strong,nonatomic,nonnull)  NSNumber*  pageSize;
--(id) initWithRegion:(NSString *)regionId
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize;
-
-@end
-
 @interface RdsCreateInstanceByTimeInCrossRegionResponse : NSObject
 
 @property NSString* requestId;
@@ -2930,87 +3436,11 @@ pageSize:(NSNumber*)pageSize;
         result:(RdsCreateInstanceByTimeInCrossRegionResult*) result;
 @end
 
-@interface RdsDeleteBackupSynchronicityRequest:JDCloudRequest
-
-/// 跨地域备份同步服务ID
-@property (strong,nonatomic,nonnull)  NSString*  serviceId;
--(id) initWithRegion:(NSString *)regionId
-serviceId:(NSString*)serviceId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-serviceId:(NSString*)serviceId;
-
-@end
-
-@interface RdsCreateAccountRequest:JDCloudRequest
-
-/// 账号名，在同一个RDS实例中，账号名不能重复。账号名的具体规则可参见帮助中心文档:[名称及密码限制](../../../documentation/Database-and-Cache-Service/RDS/Introduction/Restrictions/SQLServer-Restrictions.md)
-@property (strong,nonatomic,nonnull)  NSString*  accountName;
-/// 密码,密码的具体规则可参见帮助中心文档:[名称及密码限制](../../../documentation/Database-and-Cache-Service/RDS/Introduction/Restrictions/SQLServer-Restrictions.md)
-@property (strong,nonatomic,nonnull)  NSString*  accountPassword;
-/// RDS 实例ID，唯一标识一个RDS实例
-@property (strong,nonatomic,nonnull)  NSString*  instanceId;
--(id) initWithRegion:(NSString *)regionId
-accountName:(NSString*)accountName
-accountPassword:(NSString*)accountPassword
-instanceId:(NSString*)instanceId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-accountName:(NSString*)accountName
-accountPassword:(NSString*)accountPassword
-instanceId:(NSString*)instanceId;
-
-@end
-
-@interface RdsCreateSuperAccountRequest:JDCloudRequest
-
-/// 账号名，在同一个RDS实例中，账号名不能重复。账号名的具体规则可参见帮助中心文档:[名称及密码限制](../../../documentation/Database-and-Cache-Service/RDS/Introduction/Restrictions/SQLServer-Restrictions.md)
-@property (strong,nonatomic,nonnull)  NSString*  accountName;
-/// 密码,密码的具体规则可参见帮助中心文档:[名称及密码限制](../../../documentation/Database-and-Cache-Service/RDS/Introduction/Restrictions/SQLServer-Restrictions.md)
-@property (strong,nonatomic,nonnull)  NSString*  accountPassword;
-/// RDS 实例ID，唯一标识一个RDS实例
-@property (strong,nonatomic,nonnull)  NSString*  instanceId;
--(id) initWithRegion:(NSString *)regionId
-accountName:(NSString*)accountName
-accountPassword:(NSString*)accountPassword
-instanceId:(NSString*)instanceId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-accountName:(NSString*)accountName
-accountPassword:(NSString*)accountPassword
-instanceId:(NSString*)instanceId;
-
-@end
-
 @interface RdsRevokePrivilegeResult : NSObject
 
 -(NSMutableDictionary*) dictionary;
 
 -(id) initWithDic:(NSDictionary*)dictionary;
-@end
-
-@interface RdsResetPasswordRequest:JDCloudRequest
-
-/// 新密码，密码的具体规则可参见帮助中心文档:[名称及密码限制](../../../documentation/Database-and-Cache-Service/RDS/Introduction/Restrictions/SQLServer-Restrictions.md)
-@property (strong,nonatomic,nonnull)  NSString*  accountPassword;
-/// RDS 实例ID，唯一标识一个RDS实例
-@property (strong,nonatomic,nonnull)  NSString*  instanceId;
-/// 账号名，在同一个实例中账号名不能重复
-@property (strong,nonatomic,nonnull)  NSString*  accountName;
--(id) initWithRegion:(NSString *)regionId
-accountPassword:(NSString*)accountPassword
-instanceId:(NSString*)instanceId
-accountName:(NSString*)accountName;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-accountPassword:(NSString*)accountPassword
-instanceId:(NSString*)instanceId
-accountName:(NSString*)accountName;
-
 @end
 
 @interface RdsDeleteAccountResult : NSObject
@@ -3103,44 +3533,6 @@ accountName:(NSString*)accountName;
         result:(RdsCreateSuperAccountResult*) result;
 @end
 
-@interface RdsRevokePrivilegeRequest:JDCloudRequest
-
-/// 需要取消授权的数据库的名称。权限取消后，该账号将不能访问此数据库
-@property (strong,nonatomic,nonnull)  NSArray<NSString*>*  dbNames;
-/// RDS 实例ID，唯一标识一个RDS实例
-@property (strong,nonatomic,nonnull)  NSString*  instanceId;
-/// 账号名，在同一个实例中账号名不能重复
-@property (strong,nonatomic,nonnull)  NSString*  accountName;
--(id) initWithRegion:(NSString *)regionId
-dbNames:(NSArray<NSString*>*)dbNames
-instanceId:(NSString*)instanceId
-accountName:(NSString*)accountName;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-dbNames:(NSArray<NSString*>*)dbNames
-instanceId:(NSString*)instanceId
-accountName:(NSString*)accountName;
-
-@end
-
-@interface RdsDeleteAccountRequest:JDCloudRequest
-
-/// RDS 实例ID，唯一标识一个RDS实例
-@property (strong,nonatomic,nonnull)  NSString*  instanceId;
-/// 账号名，在同一个实例中账号名不能重复
-@property (strong,nonatomic,nonnull)  NSString*  accountName;
--(id) initWithRegion:(NSString *)regionId
-instanceId:(NSString*)instanceId
-accountName:(NSString*)accountName;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-instanceId:(NSString*)instanceId
-accountName:(NSString*)accountName;
-
-@end
-
 @interface RdsRevokePrivilegeResponse : NSObject
 
 @property NSString* requestId;
@@ -3163,27 +3555,6 @@ accountName:(NSString*)accountName;
 -(NSMutableDictionary*) dictionary;
 
 -(id) initWithDic:(NSDictionary*)dictionary;
-@end
-
-@interface RdsDescribeAccountsRequest:JDCloudRequest
-
-/// 显示数据的页码，默认为1，取值范围：[-1,∞)。pageNumber为-1时，返回所有数据页码；超过总页数时，显示最后一页;
-@property (strong,nonatomic,nonnull)  NSNumber*  pageNumber;
-/// 每页显示的数据条数，默认为100，取值范围：[10,100]，用于查询列表的接口
-@property (strong,nonatomic,nonnull)  NSNumber*  pageSize;
-/// RDS 实例ID，唯一标识一个RDS实例
-@property (strong,nonatomic,nonnull)  NSString*  instanceId;
--(id) initWithRegion:(NSString *)regionId
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-instanceId:(NSString*)instanceId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-instanceId:(NSString*)instanceId;
-
 @end
 
 @interface RdsDescribeAccountsResponse : NSObject
@@ -3283,31 +3654,6 @@ instanceId:(NSString*)instanceId;
 -(id) initWithRequestId:(NSString*) requestId
         error:(ServiceError*) error
         result:(RdsAlterTableWithOnlineDDLResult*) result;
-@end
-
-@interface RdsAlterTableWithOnlineDDLRequest:JDCloudRequest
-
-/// DDL命令修改的库名
-@property (strong,nonatomic,nonnull)  NSString*  database;
-/// DDL命令修改的表名
-@property (strong,nonatomic,nonnull)  NSString*  table;
-/// 需要执行的的DDL命令
-@property (strong,nonatomic,nonnull)  NSString*  command;
-/// RDS 实例ID，唯一标识一个RDS实例
-@property (strong,nonatomic,nonnull)  NSString*  instanceId;
--(id) initWithRegion:(NSString *)regionId
-database:(NSString*)database
-table:(NSString*)table
-command:(NSString*)command
-instanceId:(NSString*)instanceId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-database:(NSString*)database
-table:(NSString*)table
-command:(NSString*)command
-instanceId:(NSString*)instanceId;
-
 @end
 
 @interface RdsDescribeIndexPerformanceResult : NSObject
@@ -3462,68 +3808,6 @@ instanceId:(NSString*)instanceId;
         result:(RdsDescribeActiveQueryPerformanceResult*) result;
 @end
 
-@interface RdsDescribeSlowLogAttributesRequest:JDCloudRequest
-
-/// 慢日志开始时间，格式为：YYYY-MM-DD HH:mm:ss，开始时间到当前时间不能大于 7 天, 开始时间不能大于结束时间，结束时间不能大于当前时间
-@property (strong,nonatomic,nonnull)  NSString*  startTime;
-/// 慢日志结束时间，格式为：YYYY-MM-DD HH:mm:ss，开始时间到当前时间不能大于 7 天, 开始时间不能大于结束时间，结束时间不能大于当前时间
-@property (strong,nonatomic,nonnull)  NSString*  endTime;
-/// 查询哪个数据库的慢日志，不填表示返回所有数据库的慢日志
-@property (strong,nonatomic,nonnull)  NSString*  dbName;
-/// 显示数据的页码，默认为1，取值范围：[-1,1000)。pageNumber为-1时，返回所有数据页码；超过总页数时，显示最后一页。
-@property (strong,nonatomic,nonnull)  NSNumber*  pageNumber;
-/// 每页显示的数据条数，默认为10，取值范围：10、20、30、50、100
-@property (strong,nonatomic,nonnull)  NSNumber*  pageSize;
-/// RDS 实例ID，唯一标识一个RDS实例
-@property (strong,nonatomic,nonnull)  NSString*  instanceId;
--(id) initWithRegion:(NSString *)regionId
-startTime:(NSString*)startTime
-endTime:(NSString*)endTime
-dbName:(NSString*)dbName
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-instanceId:(NSString*)instanceId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-startTime:(NSString*)startTime
-endTime:(NSString*)endTime
-dbName:(NSString*)dbName
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-instanceId:(NSString*)instanceId;
-
-@end
-
-@interface RdsDescribeActiveQueryPerformanceRequest:JDCloudRequest
-
-/// 需要查询的数据库名，多个数据库名之间用英文逗号分隔，默认所有数据库
-@property (strong,nonatomic,nonnull)  NSString*  db;
-/// 返回执行时间大于等于threshold的记录，默认10，单位秒
-@property (strong,nonatomic,nonnull)  NSNumber*  threshold;
-/// 显示数据的页码，默认为1，取值范围：[-1,1000)。pageNumber为-1时，返回所有数据页码；超过总页数时，显示最后一页。
-@property (strong,nonatomic,nonnull)  NSNumber*  pageNumber;
-/// 每页显示的数据条数，默认为50，取值范围：[1,100]，只能为10的倍数
-@property (strong,nonatomic,nonnull)  NSNumber*  pageSize;
-/// RDS 实例ID，唯一标识一个RDS实例
-@property (strong,nonatomic,nonnull)  NSString*  instanceId;
--(id) initWithRegion:(NSString *)regionId
-db:(NSString*)db
-threshold:(NSNumber*)threshold
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-instanceId:(NSString*)instanceId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-db:(NSString*)db
-threshold:(NSNumber*)threshold
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-instanceId:(NSString*)instanceId;
-
-@end
-
 @interface RdsDescribeSlowLogsResult : NSObject
 /// SlowLogs
  @property (strong,nonatomic,nonnull)  NSArray<SlowLogDigest*>*  slowLogs;
@@ -3536,97 +3820,6 @@ instanceId:(NSString*)instanceId;
 -(id) initWithSlowLogs:(NSArray<SlowLogDigest*>*) slowLogs
 
     totalCount:(NSNumber*)totalCount;
-@end
-
-@interface RdsDescribeIndexPerformanceRequest:JDCloudRequest
-
-/// 查询类型，不同的查询类型按照相应的字段从高到低返回结果。&lt;br&gt;支持如下类型：&lt;br&gt;Missing：缺失索引&lt;br&gt;Size：索引大小，单位KB&lt;br&gt;Updates：索引更新次数&lt;br&gt;Scans：表扫描次数&lt;br&gt;Used：最少使用&lt;br&gt;
-@property (strong,nonatomic,nonnull)  NSString*  queryType;
-/// 需要查询的数据库名，多个数据库名之间用英文逗号分隔，默认所有数据库
-@property (strong,nonatomic,nonnull)  NSString*  db;
-/// 显示数据的页码，默认为1，取值范围：[-1,1000)。pageNumber为-1时，返回所有数据页码；超过总页数时，显示最后一页。
-@property (strong,nonatomic,nonnull)  NSNumber*  pageNumber;
-/// 每页显示的数据条数，默认为50，取值范围：[1,100]，只能为10的倍数，用于查询列表的接口
-@property (strong,nonatomic,nonnull)  NSNumber*  pageSize;
-/// RDS 实例ID，唯一标识一个RDS实例
-@property (strong,nonatomic,nonnull)  NSString*  instanceId;
--(id) initWithRegion:(NSString *)regionId
-queryType:(NSString*)queryType
-db:(NSString*)db
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-instanceId:(NSString*)instanceId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-queryType:(NSString*)queryType
-db:(NSString*)db
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-instanceId:(NSString*)instanceId;
-
-@end
-
-@interface RdsDescribeSlowLogsRequest:JDCloudRequest
-
-/// 慢日志开始时间，格式为：YYYY-MM-DD HH:mm:ss，开始时间到当前时间不能大于 7 天，开始时间不能大于结束时间，结束时间不能大于当前时间
-@property (strong,nonatomic,nonnull)  NSString*  startTime;
-/// 慢日志结束时间，格式为：YYYY-MM-DD HH:mm:ss，开始时间到当前时间不能大于 7 天，开始时间不能大于结束时间，结束时间不能大于当前时间
-@property (strong,nonatomic,nonnull)  NSString*  endTime;
-/// 查询哪个数据库的慢日志，不填表示返回所有数据库的慢日志
-@property (strong,nonatomic,nonnull)  NSString*  dbName;
-/// 显示数据的页码，默认为1，取值范围：[-1,1000)。pageNumber为-1时，返回所有数据页码；超过总页数时，显示最后一页。
-@property (strong,nonatomic,nonnull)  NSNumber*  pageNumber;
-/// 每页显示的数据条数，默认为10，取值范围：10、20、30、50、100
-@property (strong,nonatomic,nonnull)  NSNumber*  pageSize;
-/// RDS 实例ID，唯一标识一个RDS实例
-@property (strong,nonatomic,nonnull)  NSString*  instanceId;
--(id) initWithRegion:(NSString *)regionId
-startTime:(NSString*)startTime
-endTime:(NSString*)endTime
-dbName:(NSString*)dbName
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-instanceId:(NSString*)instanceId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-startTime:(NSString*)startTime
-endTime:(NSString*)endTime
-dbName:(NSString*)dbName
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-instanceId:(NSString*)instanceId;
-
-@end
-
-@interface RdsDescribeQueryPerformanceRequest:JDCloudRequest
-
-/// 查询类型，不同的查询类型按照相应的字段从高到低返回结果。&lt;br&gt;支持如下类型：&lt;br&gt;ExecutionCount：执行次数&lt;br&gt;LastRows：上次返回行数&lt;br&gt;ElapsedTime：平均执行时间&lt;br&gt;CPUTime：平均CPU时间&lt;br&gt;LogicalReads：平均逻辑读&lt;br&gt;LogicalWrites：平均逻辑写&lt;br&gt;PhysicalReads：平均物理读&lt;br&gt;
-@property (strong,nonatomic,nonnull)  NSString*  queryType;
-/// 只返回查询条件大于等于threshold的记录，默认为0
-@property (strong,nonatomic,nonnull)  NSNumber*  threshold;
-/// 显示数据的页码，默认为1，取值范围：[-1,1000]。pageNumber为-1时，返回所有数据页码；超过总页数时，显示最后一页。
-@property (strong,nonatomic,nonnull)  NSNumber*  pageNumber;
-/// 每页显示的数据条数，默认为50，取值范围：[1,100]，只能为10的倍数，用于查询列表的接口
-@property (strong,nonatomic,nonnull)  NSNumber*  pageSize;
-/// RDS 实例ID，唯一标识一个RDS实例
-@property (strong,nonatomic,nonnull)  NSString*  instanceId;
--(id) initWithRegion:(NSString *)regionId
-queryType:(NSString*)queryType
-threshold:(NSNumber*)threshold
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-instanceId:(NSString*)instanceId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-queryType:(NSString*)queryType
-threshold:(NSNumber*)threshold
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-instanceId:(NSString*)instanceId;
-
 @end
 
 @interface RdsDescribeSlowLogsResponse : NSObject
@@ -3644,19 +3837,6 @@ instanceId:(NSString*)instanceId;
 -(id) initWithRequestId:(NSString*) requestId
         error:(ServiceError*) error
         result:(RdsDescribeSlowLogsResult*) result;
-@end
-
-@interface RdsDescribeParametersRequest:JDCloudRequest
-
-/// Instance ID
-@property (strong,nonatomic,nonnull)  NSString*  instanceId;
--(id) initWithRegion:(NSString *)regionId
-instanceId:(NSString*)instanceId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-instanceId:(NSString*)instanceId;
-
 @end
 
 @interface RdsDescribeParametersResult : NSObject
@@ -3727,19 +3907,6 @@ instanceId:(NSString*)instanceId;
         result:(RdsModifyParametersResult*) result;
 @end
 
-@interface RdsDescribeParameterGroupParametersRequest:JDCloudRequest
-
-/// Parameter Group ID
-@property (strong,nonatomic,nonnull)  NSString*  parameterGroupId;
--(id) initWithRegion:(NSString *)regionId
-parameterGroupId:(NSString*)parameterGroupId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-parameterGroupId:(NSString*)parameterGroupId;
-
-@end
-
 @interface RdsModifyParameterGroupAttributeResult : NSObject
 
 -(NSMutableDictionary*) dictionary;
@@ -3793,27 +3960,6 @@ parameterGroupId:(NSString*)parameterGroupId;
 -(id) initWithRequestId:(NSString*) requestId
         error:(ServiceError*) error
         result:(RdsDescribeParameterModifyRecordsResult*) result;
-@end
-
-@interface RdsModifyParameterGroupAttributeRequest:JDCloudRequest
-
-/// 参数组名称
-@property (strong,nonatomic,nonnull)  NSString*  parameterGroupName;
-/// 参数组描述
-@property (strong,nonatomic,nonnull)  NSString*  descriptionValue;
-/// Parameter Group ID
-@property (strong,nonatomic,nonnull)  NSString*  parameterGroupId;
--(id) initWithRegion:(NSString *)regionId
-parameterGroupName:(NSString*)parameterGroupName
-descriptionValue:(NSString*)descriptionValue
-parameterGroupId:(NSString*)parameterGroupId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-parameterGroupName:(NSString*)parameterGroupName
-descriptionValue:(NSString*)descriptionValue
-parameterGroupId:(NSString*)parameterGroupId;
-
 @end
 
 @interface RdsDescribeParameterGroupParametersResult : NSObject
@@ -3874,83 +4020,6 @@ parameterGroupId:(NSString*)parameterGroupId;
         result:(RdsDescribeParameterGroupAttachedInstancesResult*) result;
 @end
 
-@interface RdsDescribeParameterGroupAttachedInstancesRequest:JDCloudRequest
-
-/// 显示数据的页码，默认为1，取值范围：[-1,∞)。pageNumber为-1时，返回所有数据页码；超过总页数时，显示最后一页
-@property (strong,nonatomic,nonnull)  NSNumber*  pageNumber;
-/// 每页显示的数据条数，默认为10，取值范围：[10,100]，且为10的整数倍
-@property (strong,nonatomic,nonnull)  NSNumber*  pageSize;
-/// Parameter Group ID
-@property (strong,nonatomic,nonnull)  NSString*  parameterGroupId;
--(id) initWithRegion:(NSString *)regionId
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-parameterGroupId:(NSString*)parameterGroupId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-parameterGroupId:(NSString*)parameterGroupId;
-
-@end
-
-@interface RdsCopyParameterGroupRequest:JDCloudRequest
-
-/// 参数组ID
-@property (strong,nonatomic,nonnull)  NSString*  parameterGroupId;
-/// 参数组的名字
-@property (strong,nonatomic,nonnull)  NSString*  parameterGroupName;
-/// 参数组的描述
-@property (strong,nonatomic,nonnull)  NSString*  descriptionValue;
--(id) initWithRegion:(NSString *)regionId
-parameterGroupId:(NSString*)parameterGroupId
-parameterGroupName:(NSString*)parameterGroupName
-descriptionValue:(NSString*)descriptionValue;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-parameterGroupId:(NSString*)parameterGroupId
-parameterGroupName:(NSString*)parameterGroupName
-descriptionValue:(NSString*)descriptionValue;
-
-@end
-
-@interface RdsCreateParameterGroupRequest:JDCloudRequest
-
-/// 实例引擎类型，参见[枚举参数定义](../Enum-Definitions/Enum-Definitions.md)
-@property (strong,nonatomic,nonnull)  NSString*  engine;
-/// 实例引擎版本，参见[枚举参数定义](../Enum-Definitions/Enum-Definitions.md)
-@property (strong,nonatomic,nonnull)  NSString*  engineVersion;
-/// 参数组的名字
-@property (strong,nonatomic,nonnull)  NSString*  parameterGroupName;
-/// 参数组的描述
-@property (strong,nonatomic,nonnull)  NSString*  descriptionValue;
--(id) initWithRegion:(NSString *)regionId
-engine:(NSString*)engine
-engineVersion:(NSString*)engineVersion
-parameterGroupName:(NSString*)parameterGroupName
-descriptionValue:(NSString*)descriptionValue;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-engine:(NSString*)engine
-engineVersion:(NSString*)engineVersion
-parameterGroupName:(NSString*)parameterGroupName
-descriptionValue:(NSString*)descriptionValue;
-
-@end
-
-@interface RdsCopyParameterGroupResult : NSObject
-/// ParameterGroupId
- @property (strong,nonatomic,nonnull)  NSString*  parameterGroupId;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithParameterGroupId:(NSString*) parameterGroupId;
-@end
-
 @interface RdsCopyParameterGroupResponse : NSObject
 
 @property NSString* requestId;
@@ -3966,16 +4035,6 @@ descriptionValue:(NSString*)descriptionValue;
 -(id) initWithRequestId:(NSString*) requestId
         error:(ServiceError*) error
         result:(RdsCopyParameterGroupResult*) result;
-@end
-
-@interface RdsCreateParameterGroupResult : NSObject
-/// ParameterGroupId
- @property (strong,nonatomic,nonnull)  NSString*  parameterGroupId;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithParameterGroupId:(NSString*) parameterGroupId;
 @end
 
 @interface RdsCreateParameterGroupResponse : NSObject
@@ -4017,48 +4076,6 @@ descriptionValue:(NSString*)descriptionValue;
 -(id) initWithRequestId:(NSString*) requestId
         error:(ServiceError*) error
         result:(RdsDeleteParameterGroupResult*) result;
-@end
-
-@interface RdsDeleteParameterGroupRequest:JDCloudRequest
-
-/// Parameter Group ID
-@property (strong,nonatomic,nonnull)  NSString*  parameterGroupId;
--(id) initWithRegion:(NSString *)regionId
-parameterGroupId:(NSString*)parameterGroupId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-parameterGroupId:(NSString*)parameterGroupId;
-
-@end
-
-@interface RdsDescribeParameterModifyRecordsRequest:JDCloudRequest
-
-/// 显示数据的页码，默认为1，取值范围：[-1,∞)。pageNumber为-1时，返回所有数据页码；超过总页数时，显示最后一页;
-@property (strong,nonatomic,nonnull)  NSNumber*  pageNumber;
-/// 每页显示的数据条数，默认为10，取值范围：[10,100]，且为10的整数倍
-@property (strong,nonatomic,nonnull)  NSNumber*  pageSize;
-/// 查询开始时间，格式为：YYYY-MM-DD HH:mm:ss
-@property (strong,nonatomic,nonnull)  NSString*  startTime;
-/// 查询结束时间，格式为：YYYY-MM-DD HH:mm:ss
-@property (strong,nonatomic,nonnull)  NSString*  endTime;
-/// Parameter Group ID
-@property (strong,nonatomic,nonnull)  NSString*  parameterGroupId;
--(id) initWithRegion:(NSString *)regionId
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-startTime:(NSString*)startTime
-endTime:(NSString*)endTime
-parameterGroupId:(NSString*)parameterGroupId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-startTime:(NSString*)startTime
-endTime:(NSString*)endTime
-parameterGroupId:(NSString*)parameterGroupId;
-
 @end
 
 @interface RdsDescribeParameterGroupsResult : NSObject
@@ -4106,23 +4123,6 @@ parameterGroupId:(NSString*)parameterGroupId;
              version:(NSString *)version
 parameters:(NSArray<Parameter*>*)parameters
 parameterGroupId:(NSString*)parameterGroupId;
-
-@end
-
-@interface RdsDescribeParameterGroupsRequest:JDCloudRequest
-
-/// 显示数据的页码，默认为1，取值范围：[-1,∞)。pageNumber为-1时，返回所有数据页码；超过总页数时，显示最后一页;
-@property (strong,nonatomic,nonnull)  NSNumber*  pageNumber;
-/// 每页显示的数据条数，默认为10，取值范围：[10,100]，且为10的整数倍
-@property (strong,nonatomic,nonnull)  NSNumber*  pageSize;
--(id) initWithRegion:(NSString *)regionId
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize;
 
 @end
 

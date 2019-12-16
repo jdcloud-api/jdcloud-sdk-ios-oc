@@ -42,6 +42,278 @@ masterVersion:(NSString*)masterVersion;
 
 @end
 
+@interface KubernetesDescribeUpgradableMasterVersionsRequest:JDCloudRequest
+
+/// 集群 ID
+@property (strong,nonatomic,nonnull)  NSString*  clusterId;
+-(id) initWithRegion:(NSString *)regionId
+clusterId:(NSString*)clusterId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+clusterId:(NSString*)clusterId;
+
+@end
+
+@interface KubernetesDescribeNodeVersionRequest:JDCloudRequest
+
+/// 节点版本
+@property (strong,nonatomic,nonnull)  NSString*  nodeVersion;
+-(id) initWithRegion:(NSString *)regionId
+nodeVersion:(NSString*)nodeVersion;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+nodeVersion:(NSString*)nodeVersion;
+
+@end
+
+@interface KubernetesDescribeUpgradableNodeVersionsRequest:JDCloudRequest
+
+/// 节点组 id
+@property (strong,nonatomic,nonnull)  NSArray<NSString*>*  nodeGroupIds;
+/// 集群 ID
+@property (strong,nonatomic,nonnull)  NSString*  clusterId;
+-(id) initWithRegion:(NSString *)regionId
+nodeGroupIds:(NSArray<NSString*>*)nodeGroupIds
+clusterId:(NSString*)clusterId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+nodeGroupIds:(NSArray<NSString*>*)nodeGroupIds
+clusterId:(NSString*)clusterId;
+
+@end
+
+@interface KubernetesDescribeNodeGroupRequest:JDCloudRequest
+
+/// 工作节点组 ID
+@property (strong,nonatomic,nonnull)  NSString*  nodeGroupId;
+-(id) initWithRegion:(NSString *)regionId
+nodeGroupId:(NSString*)nodeGroupId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+nodeGroupId:(NSString*)nodeGroupId;
+
+@end
+
+@interface KubernetesModifyNodeGroupRequest:JDCloudRequest
+
+/// 工作节点组名称
+@property (strong,nonatomic,nonnull)  NSString*  name;
+/// 工作节点组描述
+@property (strong,nonatomic,nonnull)  NSString*  descriptionValue;
+/// 工作节点组 ID
+@property (strong,nonatomic,nonnull)  NSString*  nodeGroupId;
+-(id) initWithRegion:(NSString *)regionId
+name:(NSString*)name
+descriptionValue:(NSString*)descriptionValue
+nodeGroupId:(NSString*)nodeGroupId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+name:(NSString*)name
+descriptionValue:(NSString*)descriptionValue
+nodeGroupId:(NSString*)nodeGroupId;
+
+@end
+
+@interface KubernetesSetNodeGroupSizeRequest:JDCloudRequest
+
+/// 预期目标节点数量
+@property (strong,nonatomic,nonnull)  NSNumber*  expectCount;
+/// 工作节点组 ID
+@property (strong,nonatomic,nonnull)  NSString*  nodeGroupId;
+-(id) initWithRegion:(NSString *)regionId
+expectCount:(NSNumber*)expectCount
+nodeGroupId:(NSString*)nodeGroupId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+expectCount:(NSNumber*)expectCount
+nodeGroupId:(NSString*)nodeGroupId;
+
+@end
+
+@interface KubernetesCreateNodeGroupResult : NSObject
+/// NodeGroupId
+ @property (strong,nonatomic,nonnull)  NSString*  nodeGroupId;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithNodeGroupId:(NSString*) nodeGroupId;
+@end
+
+@interface KubernetesSetAutoRepairRequest:JDCloudRequest
+
+/// 是否开启自动修复
+@property (strong,nonatomic,nonnull)  NSNumber*  enabled;
+/// 工作节点组 ID
+@property (strong,nonatomic,nonnull)  NSString*  nodeGroupId;
+-(id) initWithRegion:(NSString *)regionId
+enabled:(NSNumber*)enabled
+nodeGroupId:(NSString*)nodeGroupId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+enabled:(NSNumber*)enabled
+nodeGroupId:(NSString*)nodeGroupId;
+
+@end
+
+@interface KubernetesRollbackNodeGroupUpgradeRequest:JDCloudRequest
+
+/// 工作节点组 ID
+@property (strong,nonatomic,nonnull)  NSString*  nodeGroupId;
+-(id) initWithRegion:(NSString *)regionId
+nodeGroupId:(NSString*)nodeGroupId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+nodeGroupId:(NSString*)nodeGroupId;
+
+@end
+
+@interface KubernetesDeleteNodeGroupRequest:JDCloudRequest
+
+/// 工作节点组 ID
+@property (strong,nonatomic,nonnull)  NSString*  nodeGroupId;
+-(id) initWithRegion:(NSString *)regionId
+nodeGroupId:(NSString*)nodeGroupId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+nodeGroupId:(NSString*)nodeGroupId;
+
+@end
+
+@interface KubernetesDescribeClusterRequest:JDCloudRequest
+
+/// 集群 ID
+@property (strong,nonatomic,nonnull)  NSString*  clusterId;
+-(id) initWithRegion:(NSString *)regionId
+clusterId:(NSString*)clusterId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+clusterId:(NSString*)clusterId;
+
+@end
+
+@interface KubernetesModifyClusterRequest:JDCloudRequest
+
+/// 集群名称
+@property (strong,nonatomic,nonnull)  NSString*  name;
+/// 集群描述
+@property (strong,nonatomic,nonnull)  NSString*  descriptionValue;
+/// 集群 ID
+@property (strong,nonatomic,nonnull)  NSString*  clusterId;
+-(id) initWithRegion:(NSString *)regionId
+name:(NSString*)name
+descriptionValue:(NSString*)descriptionValue
+clusterId:(NSString*)clusterId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+name:(NSString*)name
+descriptionValue:(NSString*)descriptionValue
+clusterId:(NSString*)clusterId;
+
+@end
+
+@interface KubernetesSetUserMetricsRequest:JDCloudRequest
+
+/// 是否开启自定义监控
+@property (strong,nonatomic,nonnull)  NSNumber*  enabled;
+/// 集群 ID
+@property (strong,nonatomic,nonnull)  NSString*  clusterId;
+-(id) initWithRegion:(NSString *)regionId
+enabled:(NSNumber*)enabled
+clusterId:(NSString*)clusterId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+enabled:(NSNumber*)enabled
+clusterId:(NSString*)clusterId;
+
+@end
+
+@interface KubernetesDescribeProgressRequest:JDCloudRequest
+
+/// 节点组 ID
+@property (strong,nonatomic,nonnull)  NSArray<NSString*>*  nodeGroupIds;
+/// 集群 ID
+@property (strong,nonatomic,nonnull)  NSString*  clusterId;
+-(id) initWithRegion:(NSString *)regionId
+nodeGroupIds:(NSArray<NSString*>*)nodeGroupIds
+clusterId:(NSString*)clusterId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+nodeGroupIds:(NSArray<NSString*>*)nodeGroupIds
+clusterId:(NSString*)clusterId;
+
+@end
+
+@interface KubernetesCreateClusterResult : NSObject
+/// ClusterId
+ @property (strong,nonatomic,nonnull)  NSString*  clusterId;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithClusterId:(NSString*) clusterId;
+@end
+
+@interface KubernetesUpgradeClusterRequest:JDCloudRequest
+
+/// 升级范围
+@property (strong,nonatomic,nonnull)  NSString*  scope;
+/// 节点组 id
+@property (strong,nonatomic,nonnull)  NSArray<NSString*>*  nodeGroupIds;
+/// 集群 ID
+@property (strong,nonatomic,nonnull)  NSString*  clusterId;
+-(id) initWithRegion:(NSString *)regionId
+scope:(NSString*)scope
+nodeGroupIds:(NSArray<NSString*>*)nodeGroupIds
+clusterId:(NSString*)clusterId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+scope:(NSString*)scope
+nodeGroupIds:(NSArray<NSString*>*)nodeGroupIds
+clusterId:(NSString*)clusterId;
+
+@end
+
+@interface KubernetesDeleteClusterRequest:JDCloudRequest
+
+/// 集群 ID
+@property (strong,nonatomic,nonnull)  NSString*  clusterId;
+-(id) initWithRegion:(NSString *)regionId
+clusterId:(NSString*)clusterId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+clusterId:(NSString*)clusterId;
+
+@end
+
+@interface KubernetesAbortUpgradeRequest:JDCloudRequest
+
+/// 集群 ID
+@property (strong,nonatomic,nonnull)  NSString*  clusterId;
+-(id) initWithRegion:(NSString *)regionId
+clusterId:(NSString*)clusterId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+clusterId:(NSString*)clusterId;
+
+@end
+
 @interface KubernetesDescribeVersionsResult : NSObject
 /// MasterVersions
  @property (strong,nonatomic,nonnull)  NSArray<MasterVersion*>*  masterVersions;
@@ -93,19 +365,6 @@ masterVersion:(NSString*)masterVersion;
 
 @end
 
-@interface KubernetesDescribeUpgradableMasterVersionsRequest:JDCloudRequest
-
-/// 集群 ID
-@property (strong,nonatomic,nonnull)  NSString*  clusterId;
--(id) initWithRegion:(NSString *)regionId
-clusterId:(NSString*)clusterId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-clusterId:(NSString*)clusterId;
-
-@end
-
 @interface KubernetesDescribeServerConfigResult : NSObject
 /// ServerConfig
  @property (strong,nonatomic,nonnull)  ServerConfig*  serverConfig;
@@ -114,19 +373,6 @@ clusterId:(NSString*)clusterId;
 
 -(id) initWithDic:(NSDictionary*)dictionary;
 -(id) initWithServerConfig:(ServerConfig*) serverConfig;
-@end
-
-@interface KubernetesDescribeNodeVersionRequest:JDCloudRequest
-
-/// 节点版本
-@property (strong,nonatomic,nonnull)  NSString*  nodeVersion;
--(id) initWithRegion:(NSString *)regionId
-nodeVersion:(NSString*)nodeVersion;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-nodeVersion:(NSString*)nodeVersion;
-
 @end
 
 @interface KubernetesDescribeUpgradableNodeVersionsResult : NSObject
@@ -190,23 +436,6 @@ nodeVersion:(NSString*)nodeVersion;
         result:(KubernetesDescribeNodeVersionResult*) result;
 @end
 
-@interface KubernetesDescribeUpgradableNodeVersionsRequest:JDCloudRequest
-
-/// 节点组 id
-@property (strong,nonatomic,nonnull)  NSArray<NSString*>*  nodeGroupIds;
-/// 集群 ID
-@property (strong,nonatomic,nonnull)  NSString*  clusterId;
--(id) initWithRegion:(NSString *)regionId
-nodeGroupIds:(NSArray<NSString*>*)nodeGroupIds
-clusterId:(NSString*)clusterId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-nodeGroupIds:(NSArray<NSString*>*)nodeGroupIds
-clusterId:(NSString*)clusterId;
-
-@end
-
 @interface KubernetesDescribeUpgradableNodeVersionsResponse : NSObject
 
 @property NSString* requestId;
@@ -222,57 +451,6 @@ clusterId:(NSString*)clusterId;
 -(id) initWithRequestId:(NSString*) requestId
         error:(ServiceError*) error
         result:(KubernetesDescribeUpgradableNodeVersionsResult*) result;
-@end
-
-@interface KubernetesDescribeNodeGroupRequest:JDCloudRequest
-
-/// 工作节点组 ID
-@property (strong,nonatomic,nonnull)  NSString*  nodeGroupId;
--(id) initWithRegion:(NSString *)regionId
-nodeGroupId:(NSString*)nodeGroupId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-nodeGroupId:(NSString*)nodeGroupId;
-
-@end
-
-@interface KubernetesModifyNodeGroupRequest:JDCloudRequest
-
-/// 工作节点组名称
-@property (strong,nonatomic,nonnull)  NSString*  name;
-/// 工作节点组描述
-@property (strong,nonatomic,nonnull)  NSString*  descriptionValue;
-/// 工作节点组 ID
-@property (strong,nonatomic,nonnull)  NSString*  nodeGroupId;
--(id) initWithRegion:(NSString *)regionId
-name:(NSString*)name
-descriptionValue:(NSString*)descriptionValue
-nodeGroupId:(NSString*)nodeGroupId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-name:(NSString*)name
-descriptionValue:(NSString*)descriptionValue
-nodeGroupId:(NSString*)nodeGroupId;
-
-@end
-
-@interface KubernetesSetNodeGroupSizeRequest:JDCloudRequest
-
-/// 预期目标节点数量
-@property (strong,nonatomic,nonnull)  NSNumber*  expectCount;
-/// 工作节点组 ID
-@property (strong,nonatomic,nonnull)  NSString*  nodeGroupId;
--(id) initWithRegion:(NSString *)regionId
-expectCount:(NSNumber*)expectCount
-nodeGroupId:(NSString*)nodeGroupId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-expectCount:(NSNumber*)expectCount
-nodeGroupId:(NSString*)nodeGroupId;
-
 @end
 
 @interface KubernetesDescribeNodeGroupsRequest:JDCloudRequest
@@ -359,16 +537,6 @@ filters:(NSArray<Filter*>*)filters;
         result:(KubernetesDeleteNodeGroupResult*) result;
 @end
 
-@interface KubernetesCreateNodeGroupResult : NSObject
-/// NodeGroupId
- @property (strong,nonatomic,nonnull)  NSString*  nodeGroupId;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithNodeGroupId:(NSString*) nodeGroupId;
-@end
-
 @interface KubernetesCreateNodeGroupResponse : NSObject
 
 @property NSString* requestId;
@@ -425,23 +593,6 @@ filters:(NSArray<Filter*>*)filters;
 
 -(id) initWithDic:(NSDictionary*)dictionary;
 -(id) initWithNodeGroup:(NodeGroup*) nodeGroup;
-@end
-
-@interface KubernetesSetAutoRepairRequest:JDCloudRequest
-
-/// 是否开启自动修复
-@property (strong,nonatomic,nonnull)  NSNumber*  enabled;
-/// 工作节点组 ID
-@property (strong,nonatomic,nonnull)  NSString*  nodeGroupId;
--(id) initWithRegion:(NSString *)regionId
-enabled:(NSNumber*)enabled
-nodeGroupId:(NSString*)nodeGroupId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-enabled:(NSNumber*)enabled
-nodeGroupId:(NSString*)nodeGroupId;
-
 @end
 
 @interface KubernetesRollbackNodeGroupUpgradeResult : NSObject
@@ -530,19 +681,6 @@ autoRepair:(NSNumber*)autoRepair;
 
 @end
 
-@interface KubernetesRollbackNodeGroupUpgradeRequest:JDCloudRequest
-
-/// 工作节点组 ID
-@property (strong,nonatomic,nonnull)  NSString*  nodeGroupId;
--(id) initWithRegion:(NSString *)regionId
-nodeGroupId:(NSString*)nodeGroupId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-nodeGroupId:(NSString*)nodeGroupId;
-
-@end
-
 @interface KubernetesModifyNodeGroupResult : NSObject
 
 -(NSMutableDictionary*) dictionary;
@@ -565,19 +703,6 @@ nodeGroupId:(NSString*)nodeGroupId;
 -(id) initWithRequestId:(NSString*) requestId
         error:(ServiceError*) error
         result:(KubernetesModifyNodeGroupResult*) result;
-@end
-
-@interface KubernetesDeleteNodeGroupRequest:JDCloudRequest
-
-/// 工作节点组 ID
-@property (strong,nonatomic,nonnull)  NSString*  nodeGroupId;
--(id) initWithRegion:(NSString *)regionId
-nodeGroupId:(NSString*)nodeGroupId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-nodeGroupId:(NSString*)nodeGroupId;
-
 @end
 
 @interface KubernetesSetNodeGroupSizeResponse : NSObject
@@ -667,40 +792,6 @@ filters:(NSArray<Filter*>*)filters;
 -(id) initWithRequestId:(NSString*) requestId
         error:(ServiceError*) error
         result:(KubernetesDescribeProgressResult*) result;
-@end
-
-@interface KubernetesDescribeClusterRequest:JDCloudRequest
-
-/// 集群 ID
-@property (strong,nonatomic,nonnull)  NSString*  clusterId;
--(id) initWithRegion:(NSString *)regionId
-clusterId:(NSString*)clusterId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-clusterId:(NSString*)clusterId;
-
-@end
-
-@interface KubernetesModifyClusterRequest:JDCloudRequest
-
-/// 集群名称
-@property (strong,nonatomic,nonnull)  NSString*  name;
-/// 集群描述
-@property (strong,nonatomic,nonnull)  NSString*  descriptionValue;
-/// 集群 ID
-@property (strong,nonatomic,nonnull)  NSString*  clusterId;
--(id) initWithRegion:(NSString *)regionId
-name:(NSString*)name
-descriptionValue:(NSString*)descriptionValue
-clusterId:(NSString*)clusterId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-name:(NSString*)name
-descriptionValue:(NSString*)descriptionValue
-clusterId:(NSString*)clusterId;
-
 @end
 
 @interface KubernetesDeleteClusterResult : NSObject
@@ -801,16 +892,6 @@ clusterId:(NSString*)clusterId;
 -(NSMutableDictionary*) dictionary;
 
 -(id) initWithDic:(NSDictionary*)dictionary;
-@end
-
-@interface KubernetesCreateClusterResult : NSObject
-/// ClusterId
- @property (strong,nonatomic,nonnull)  NSString*  clusterId;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithClusterId:(NSString*) clusterId;
 @end
 
 @interface KubernetesCreateClusterResponse : NSObject
@@ -919,23 +1000,6 @@ clusterId:(NSString*)clusterId;
 
 @end
 
-@interface KubernetesSetUserMetricsRequest:JDCloudRequest
-
-/// 是否开启自定义监控
-@property (strong,nonatomic,nonnull)  NSNumber*  enabled;
-/// 集群 ID
-@property (strong,nonatomic,nonnull)  NSString*  clusterId;
--(id) initWithRegion:(NSString *)regionId
-enabled:(NSNumber*)enabled
-clusterId:(NSString*)clusterId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-enabled:(NSNumber*)enabled
-clusterId:(NSString*)clusterId;
-
-@end
-
 @interface KubernetesUpgradeClusterResult : NSObject
 
 -(NSMutableDictionary*) dictionary;
@@ -960,23 +1024,6 @@ clusterId:(NSString*)clusterId;
         result:(KubernetesUpgradeClusterResult*) result;
 @end
 
-@interface KubernetesDescribeProgressRequest:JDCloudRequest
-
-/// 节点组 ID
-@property (strong,nonatomic,nonnull)  NSArray<NSString*>*  nodeGroupIds;
-/// 集群 ID
-@property (strong,nonatomic,nonnull)  NSString*  clusterId;
--(id) initWithRegion:(NSString *)regionId
-nodeGroupIds:(NSArray<NSString*>*)nodeGroupIds
-clusterId:(NSString*)clusterId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-nodeGroupIds:(NSArray<NSString*>*)nodeGroupIds
-clusterId:(NSString*)clusterId;
-
-@end
-
 @interface KubernetesModifyClusterResponse : NSObject
 
 @property NSString* requestId;
@@ -992,27 +1039,6 @@ clusterId:(NSString*)clusterId;
 -(id) initWithRequestId:(NSString*) requestId
         error:(ServiceError*) error
         result:(KubernetesModifyClusterResult*) result;
-@end
-
-@interface KubernetesUpgradeClusterRequest:JDCloudRequest
-
-/// 升级范围
-@property (strong,nonatomic,nonnull)  NSString*  scope;
-/// 节点组 id
-@property (strong,nonatomic,nonnull)  NSArray<NSString*>*  nodeGroupIds;
-/// 集群 ID
-@property (strong,nonatomic,nonnull)  NSString*  clusterId;
--(id) initWithRegion:(NSString *)regionId
-scope:(NSString*)scope
-nodeGroupIds:(NSArray<NSString*>*)nodeGroupIds
-clusterId:(NSString*)clusterId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-scope:(NSString*)scope
-nodeGroupIds:(NSArray<NSString*>*)nodeGroupIds
-clusterId:(NSString*)clusterId;
-
 @end
 
 @interface KubernetesDescribeClustersRequest:JDCloudRequest
@@ -1072,19 +1098,6 @@ filters:(NSArray<Filter*>*)filters;
         result:(KubernetesSetUserMetricsResult*) result;
 @end
 
-@interface KubernetesDeleteClusterRequest:JDCloudRequest
-
-/// 集群 ID
-@property (strong,nonatomic,nonnull)  NSString*  clusterId;
--(id) initWithRegion:(NSString *)regionId
-clusterId:(NSString*)clusterId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-clusterId:(NSString*)clusterId;
-
-@end
-
 @interface KubernetesCreateClusterRequest:JDCloudRequest
 
 /// 名称（同一用户的 cluster 允许重名）
@@ -1135,19 +1148,6 @@ accessKey:(NSString*)accessKey
 secretKey:(NSString*)secretKey
 userMetrics:(NSNumber*)userMetrics
 addonsConfig:(NSArray<AddonConfigSpec*>*)addonsConfig;
-
-@end
-
-@interface KubernetesAbortUpgradeRequest:JDCloudRequest
-
-/// 集群 ID
-@property (strong,nonatomic,nonnull)  NSString*  clusterId;
--(id) initWithRegion:(NSString *)regionId
-clusterId:(NSString*)clusterId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-clusterId:(NSString*)clusterId;
 
 @end
 

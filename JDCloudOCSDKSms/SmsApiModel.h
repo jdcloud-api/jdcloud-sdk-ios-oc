@@ -66,28 +66,6 @@ phoneList:(NSArray<NSString*>*)phoneList;
 
 @end
 
-@interface SmsStatusReportResult : NSObject
-/// Data
- @property (strong,nonatomic,nonnull)  NSArray<StatusReportResp*>*  data;
-/// 请求状态
- @property (strong,nonatomic,nonnull)  NSNumber*  status;
-/// 错误码
- @property (strong,nonatomic,nonnull)  NSString*  code;
-/// 错误消息
- @property (strong,nonatomic,nonnull)  NSString*  message;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithData:(NSArray<StatusReportResp*>*) data
-
-    status:(NSNumber*)status
-
-    code:(NSString*)code
-
-    message:(NSString*)message;
-@end
-
 @interface SmsBatchSendRequest:JDCloudRequest
 
 /// 模板Id
@@ -111,6 +89,28 @@ signId:(NSString*)signId
 phoneList:(NSArray<NSString*>*)phoneList
 params:(NSArray<NSString*>*)params;
 
+@end
+
+@interface SmsStatusReportResult : NSObject
+/// Data
+ @property (strong,nonatomic,nonnull)  NSArray<StatusReportResp*>*  data;
+/// 请求状态
+ @property (strong,nonatomic,nonnull)  NSNumber*  status;
+/// 错误码
+ @property (strong,nonatomic,nonnull)  NSString*  code;
+/// 错误消息
+ @property (strong,nonatomic,nonnull)  NSString*  message;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithData:(NSArray<StatusReportResp*>*) data
+
+    status:(NSNumber*)status
+
+    code:(NSString*)code
+
+    message:(NSString*)message;
 @end
 
 @interface SmsStatusReportResponse : NSObject

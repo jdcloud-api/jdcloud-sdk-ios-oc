@@ -45,6 +45,512 @@ pageSize:(NSNumber*)pageSize;
 
 @end
 
+@interface KmsDescribeSecretVersionInfoRequest:JDCloudRequest
+
+/// 机密ID
+@property (strong,nonatomic,nonnull)  NSString*  secretId;
+-(id) initWithRegion:(NSString *)regionId
+secretId:(NSString*)secretId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+secretId:(NSString*)secretId;
+
+@end
+
+@interface KmsEnableSecretVersionRequest:JDCloudRequest
+
+/// 机密ID
+@property (strong,nonatomic,nonnull)  NSString*  secretId;
+-(id) initWithRegion:(NSString *)regionId
+secretId:(NSString*)secretId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+secretId:(NSString*)secretId;
+
+@end
+
+@interface KmsCreateSecretResult : NSObject
+/// secretId
+ @property (strong,nonatomic,nonnull)  NSString*  secretId;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithSecretId:(NSString*) secretId;
+@end
+
+@interface KmsDisableSecretVersionRequest:JDCloudRequest
+
+/// 机密ID
+@property (strong,nonatomic,nonnull)  NSString*  secretId;
+-(id) initWithRegion:(NSString *)regionId
+secretId:(NSString*)secretId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+secretId:(NSString*)secretId;
+
+@end
+
+@interface KmsEnableSecretRequest:JDCloudRequest
+
+/// 机密ID
+@property (strong,nonatomic,nonnull)  NSString*  secretId;
+-(id) initWithRegion:(NSString *)regionId
+secretId:(NSString*)secretId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+secretId:(NSString*)secretId;
+
+@end
+
+@interface KmsDisableSecretRequest:JDCloudRequest
+
+/// 机密ID
+@property (strong,nonatomic,nonnull)  NSString*  secretId;
+-(id) initWithRegion:(NSString *)regionId
+secretId:(NSString*)secretId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+secretId:(NSString*)secretId;
+
+@end
+
+@interface KmsDescribeSecretVersionListRequest:JDCloudRequest
+
+/// 页码；默认为1
+@property (strong,nonatomic,nonnull)  NSNumber*  pageNumber;
+/// 分页大小；默认为10；取值范围[10, 100]
+@property (strong,nonatomic,nonnull)  NSNumber*  pageSize;
+/// 机密ID
+@property (strong,nonatomic,nonnull)  NSString*  secretId;
+-(id) initWithRegion:(NSString *)regionId
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+secretId:(NSString*)secretId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+secretId:(NSString*)secretId;
+
+@end
+
+@interface KmsDeleteSecretRequest:JDCloudRequest
+
+/// 机密ID
+@property (strong,nonatomic,nonnull)  NSString*  secretId;
+-(id) initWithRegion:(NSString *)regionId
+secretId:(NSString*)secretId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+secretId:(NSString*)secretId;
+
+@end
+
+@interface KmsExportSecretRequest:JDCloudRequest
+
+/// 机密ID
+@property (strong,nonatomic,nonnull)  NSString*  secretId;
+-(id) initWithRegion:(NSString *)regionId
+secretId:(NSString*)secretId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+secretId:(NSString*)secretId;
+
+@end
+
+@interface KmsExportSecretResult : NSObject
+/// 机密包
+ @property (strong,nonatomic,nonnull)  NSString*  secretPackage;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithSecretPackage:(NSString*) secretPackage;
+@end
+
+@interface KmsDeleteSecretVersionRequest:JDCloudRequest
+
+/// 机密ID
+@property (strong,nonatomic,nonnull)  NSString*  secretId;
+-(id) initWithRegion:(NSString *)regionId
+secretId:(NSString*)secretId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+secretId:(NSString*)secretId;
+
+@end
+
+@interface KmsImportSecretRequest:JDCloudRequest
+
+/// 密钥包的内容
+@property (strong,nonatomic,nonnull)  NSString*  secretPackage;
+-(id) initWithRegion:(NSString *)regionId
+secretPackage:(NSString*)secretPackage;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+secretPackage:(NSString*)secretPackage;
+
+@end
+
+@interface KmsGetPublicKeyRequest:JDCloudRequest
+
+/// 密钥ID
+@property (strong,nonatomic,nonnull)  NSString*  keyId;
+-(id) initWithRegion:(NSString *)regionId
+keyId:(NSString*)keyId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+keyId:(NSString*)keyId;
+
+@end
+
+@interface KmsKeyRotationRequest:JDCloudRequest
+
+/// 密钥ID
+@property (strong,nonatomic,nonnull)  NSString*  keyId;
+-(id) initWithRegion:(NSString *)regionId
+keyId:(NSString*)keyId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+keyId:(NSString*)keyId;
+
+@end
+
+@interface KmsGenerateDataKeyRequest:JDCloudRequest
+
+/// 密钥ID
+@property (strong,nonatomic,nonnull)  NSString*  keyId;
+-(id) initWithRegion:(NSString *)regionId
+keyId:(NSString*)keyId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+keyId:(NSString*)keyId;
+
+@end
+
+@interface KmsEncryptResult : NSObject
+/// 密文数据 Base64-encoded binary data object
+ @property (strong,nonatomic,nonnull)  NSString*  ciphertextBlob;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithCiphertextBlob:(NSString*) ciphertextBlob;
+@end
+
+@interface KmsEnableKeyVersionRequest:JDCloudRequest
+
+/// 密钥ID
+@property (strong,nonatomic,nonnull)  NSString*  keyId;
+-(id) initWithRegion:(NSString *)regionId
+keyId:(NSString*)keyId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+keyId:(NSString*)keyId;
+
+@end
+
+@interface KmsValidateResult : NSObject
+/// 校验签名结果，true为成功，false为失败
+ @property (strong,nonatomic,nonnull)  NSNumber*  validated;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithValidated:(NSNumber*) validated;
+@end
+
+@interface KmsGenerateDataKeyResult : NSObject
+/// 明文DEK Base64-encoded binary data object
+ @property (strong,nonatomic,nonnull)  NSString*  plaintext;
+/// 密文DEK Base64-encoded binary data object
+ @property (strong,nonatomic,nonnull)  NSString*  ciphertextBlob;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithPlaintext:(NSString*) plaintext
+
+    ciphertextBlob:(NSString*)ciphertextBlob;
+@end
+
+@interface KmsCancelKeyVersionDeletionRequest:JDCloudRequest
+
+/// 密钥ID
+@property (strong,nonatomic,nonnull)  NSString*  keyId;
+-(id) initWithRegion:(NSString *)regionId
+keyId:(NSString*)keyId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+keyId:(NSString*)keyId;
+
+@end
+
+@interface KmsDecryptRequest:JDCloudRequest
+
+/// 密文数据 Base64-encoded binary data object
+@property (strong,nonatomic,nonnull)  NSString*  ciphertextBlob;
+/// 密钥ID
+@property (strong,nonatomic,nonnull)  NSString*  keyId;
+-(id) initWithRegion:(NSString *)regionId
+ciphertextBlob:(NSString*)ciphertextBlob
+keyId:(NSString*)keyId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+ciphertextBlob:(NSString*)ciphertextBlob
+keyId:(NSString*)keyId;
+
+@end
+
+@interface KmsGetPublicKeyResult : NSObject
+/// 公钥，PEM格式
+ @property (strong,nonatomic,nonnull)  NSString*  publicKeyBlob;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithPublicKeyBlob:(NSString*) publicKeyBlob;
+@end
+
+@interface KmsDescribeKeyListRequest:JDCloudRequest
+
+/// 页码；默认为1
+@property (strong,nonatomic,nonnull)  NSNumber*  pageNumber;
+/// 分页大小；默认为10；取值范围[10, 100]
+@property (strong,nonatomic,nonnull)  NSNumber*  pageSize;
+-(id) initWithRegion:(NSString *)regionId
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize;
+
+@end
+
+@interface KmsDescribeKeyDetailRequest:JDCloudRequest
+
+/// 页码；默认为1
+@property (strong,nonatomic,nonnull)  NSNumber*  pageNumber;
+/// 分页大小；默认为10；取值范围[10, 100]
+@property (strong,nonatomic,nonnull)  NSNumber*  pageSize;
+/// 密钥ID
+@property (strong,nonatomic,nonnull)  NSString*  keyId;
+-(id) initWithRegion:(NSString *)regionId
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+keyId:(NSString*)keyId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+keyId:(NSString*)keyId;
+
+@end
+
+@interface KmsScheduleKeyVersionDeletionRequest:JDCloudRequest
+
+/// 延迟删除时间，单位（天），默认为7天；支持时间范围：7~30天
+@property (strong,nonatomic,nonnull)  NSNumber*  delayDays;
+/// 密钥ID
+@property (strong,nonatomic,nonnull)  NSString*  keyId;
+-(id) initWithRegion:(NSString *)regionId
+delayDays:(NSNumber*)delayDays
+keyId:(NSString*)keyId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+delayDays:(NSNumber*)delayDays
+keyId:(NSString*)keyId;
+
+@end
+
+@interface KmsValidateRequest:JDCloudRequest
+
+/// 需要签名的数据 Base64-encoded binary data object
+@property (strong,nonatomic,nonnull)  NSString*  plaintext;
+/// 签名
+@property (strong,nonatomic,nonnull)  NSString*  signature;
+/// 密钥ID
+@property (strong,nonatomic,nonnull)  NSString*  keyId;
+-(id) initWithRegion:(NSString *)regionId
+plaintext:(NSString*)plaintext
+signature:(NSString*)signature
+keyId:(NSString*)keyId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+plaintext:(NSString*)plaintext
+signature:(NSString*)signature
+keyId:(NSString*)keyId;
+
+@end
+
+@interface KmsCreateKeyResult : NSObject
+/// 创建的密钥ID
+ @property (strong,nonatomic,nonnull)  NSString*  keyId;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithKeyId:(NSString*) keyId;
+@end
+
+@interface KmsSignResult : NSObject
+/// 签名
+ @property (strong,nonatomic,nonnull)  NSString*  signature;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithSignature:(NSString*) signature;
+@end
+
+@interface KmsCancelKeyDeletionRequest:JDCloudRequest
+
+/// 密钥ID
+@property (strong,nonatomic,nonnull)  NSString*  keyId;
+-(id) initWithRegion:(NSString *)regionId
+keyId:(NSString*)keyId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+keyId:(NSString*)keyId;
+
+@end
+
+@interface KmsEncryptRequest:JDCloudRequest
+
+/// 明文数据 Base64-encoded binary data object
+@property (strong,nonatomic,nonnull)  NSString*  plaintext;
+/// 密钥ID
+@property (strong,nonatomic,nonnull)  NSString*  keyId;
+-(id) initWithRegion:(NSString *)regionId
+plaintext:(NSString*)plaintext
+keyId:(NSString*)keyId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+plaintext:(NSString*)plaintext
+keyId:(NSString*)keyId;
+
+@end
+
+@interface KmsSignRequest:JDCloudRequest
+
+/// 需要签名的数据 Base64-encoded binary data object
+@property (strong,nonatomic,nonnull)  NSString*  plaintext;
+/// 密钥ID
+@property (strong,nonatomic,nonnull)  NSString*  keyId;
+-(id) initWithRegion:(NSString *)regionId
+plaintext:(NSString*)plaintext
+keyId:(NSString*)keyId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+plaintext:(NSString*)plaintext
+keyId:(NSString*)keyId;
+
+@end
+
+@interface KmsScheduleKeyDeletionRequest:JDCloudRequest
+
+/// 延迟删除时间，单位（天），默认为7天；支持时间范围：7~30天
+@property (strong,nonatomic,nonnull)  NSNumber*  delayDays;
+/// 密钥ID
+@property (strong,nonatomic,nonnull)  NSString*  keyId;
+-(id) initWithRegion:(NSString *)regionId
+delayDays:(NSNumber*)delayDays
+keyId:(NSString*)keyId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+delayDays:(NSNumber*)delayDays
+keyId:(NSString*)keyId;
+
+@end
+
+@interface KmsDisableKeyRequest:JDCloudRequest
+
+/// 密钥ID
+@property (strong,nonatomic,nonnull)  NSString*  keyId;
+-(id) initWithRegion:(NSString *)regionId
+keyId:(NSString*)keyId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+keyId:(NSString*)keyId;
+
+@end
+
+@interface KmsDescribeKeyRequest:JDCloudRequest
+
+/// 密钥ID
+@property (strong,nonatomic,nonnull)  NSString*  keyId;
+-(id) initWithRegion:(NSString *)regionId
+keyId:(NSString*)keyId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+keyId:(NSString*)keyId;
+
+@end
+
+@interface KmsEnableKeyRequest:JDCloudRequest
+
+/// 密钥ID
+@property (strong,nonatomic,nonnull)  NSString*  keyId;
+-(id) initWithRegion:(NSString *)regionId
+keyId:(NSString*)keyId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+keyId:(NSString*)keyId;
+
+@end
+
+@interface KmsDecryptResult : NSObject
+/// 明文数据 Base64-encoded binary data object
+ @property (strong,nonatomic,nonnull)  NSString*  plaintext;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithPlaintext:(NSString*) plaintext;
+@end
+
+@interface KmsDisableKeyVersionRequest:JDCloudRequest
+
+/// 密钥ID
+@property (strong,nonatomic,nonnull)  NSString*  keyId;
+-(id) initWithRegion:(NSString *)regionId
+keyId:(NSString*)keyId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+keyId:(NSString*)keyId;
+
+@end
+
 @interface KmsEnableSecretResult : NSObject
 
 -(NSMutableDictionary*) dictionary;
@@ -69,19 +575,6 @@ pageSize:(NSNumber*)pageSize;
         result:(KmsEnableSecretResult*) result;
 @end
 
-@interface KmsDescribeSecretVersionInfoRequest:JDCloudRequest
-
-/// 机密ID
-@property (strong,nonatomic,nonnull)  NSString*  secretId;
--(id) initWithRegion:(NSString *)regionId
-secretId:(NSString*)secretId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-secretId:(NSString*)secretId;
-
-@end
-
 @interface KmsEnableSecretVersionResult : NSObject
 
 -(NSMutableDictionary*) dictionary;
@@ -104,29 +597,6 @@ secretId:(NSString*)secretId;
 -(id) initWithRequestId:(NSString*) requestId
         error:(ServiceError*) error
         result:(KmsEnableSecretVersionResult*) result;
-@end
-
-@interface KmsEnableSecretVersionRequest:JDCloudRequest
-
-/// 机密ID
-@property (strong,nonatomic,nonnull)  NSString*  secretId;
--(id) initWithRegion:(NSString *)regionId
-secretId:(NSString*)secretId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-secretId:(NSString*)secretId;
-
-@end
-
-@interface KmsCreateSecretResult : NSObject
-/// secretId
- @property (strong,nonatomic,nonnull)  NSString*  secretId;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithSecretId:(NSString*) secretId;
 @end
 
 @interface KmsCreateSecretVersionResult : NSObject
@@ -214,19 +684,6 @@ secretId:(NSString*)secretId;
         result:(KmsDescribeSecretVersionInfoResult*) result;
 @end
 
-@interface KmsDisableSecretVersionRequest:JDCloudRequest
-
-/// 机密ID
-@property (strong,nonatomic,nonnull)  NSString*  secretId;
--(id) initWithRegion:(NSString *)regionId
-secretId:(NSString*)secretId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-secretId:(NSString*)secretId;
-
-@end
-
 @interface KmsDescribeSecretVersionListResponse : NSObject
 
 @property NSString* requestId;
@@ -285,32 +742,6 @@ secretId:(NSString*)secretId;
         result:(KmsDeleteSecretVersionResult*) result;
 @end
 
-@interface KmsEnableSecretRequest:JDCloudRequest
-
-/// 机密ID
-@property (strong,nonatomic,nonnull)  NSString*  secretId;
--(id) initWithRegion:(NSString *)regionId
-secretId:(NSString*)secretId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-secretId:(NSString*)secretId;
-
-@end
-
-@interface KmsDisableSecretRequest:JDCloudRequest
-
-/// 机密ID
-@property (strong,nonatomic,nonnull)  NSString*  secretId;
--(id) initWithRegion:(NSString *)regionId
-secretId:(NSString*)secretId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-secretId:(NSString*)secretId;
-
-@end
-
 @interface KmsDeleteSecretResult : NSObject
 
 -(NSMutableDictionary*) dictionary;
@@ -364,27 +795,6 @@ secretId:(NSString*)secretId;
 -(id) initWithRequestId:(NSString*) requestId
         error:(ServiceError*) error
         result:(KmsCreateSecretResult*) result;
-@end
-
-@interface KmsDescribeSecretVersionListRequest:JDCloudRequest
-
-/// 页码；默认为1
-@property (strong,nonatomic,nonnull)  NSNumber*  pageNumber;
-/// 分页大小；默认为10；取值范围[10, 100]
-@property (strong,nonatomic,nonnull)  NSNumber*  pageSize;
-/// 机密ID
-@property (strong,nonatomic,nonnull)  NSString*  secretId;
--(id) initWithRegion:(NSString *)regionId
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-secretId:(NSString*)secretId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-secretId:(NSString*)secretId;
-
 @end
 
 @interface KmsUpdateSecretResponse : NSObject
@@ -455,19 +865,6 @@ secretCfg:(SecretCfg*)secretCfg;
 
 @end
 
-@interface KmsDeleteSecretRequest:JDCloudRequest
-
-/// 机密ID
-@property (strong,nonatomic,nonnull)  NSString*  secretId;
--(id) initWithRegion:(NSString *)regionId
-secretId:(NSString*)secretId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-secretId:(NSString*)secretId;
-
-@end
-
 @interface KmsDisableSecretResult : NSObject
 
 -(NSMutableDictionary*) dictionary;
@@ -490,29 +887,6 @@ secretId:(NSString*)secretId;
 -(id) initWithRequestId:(NSString*) requestId
         error:(ServiceError*) error
         result:(KmsDisableSecretResult*) result;
-@end
-
-@interface KmsExportSecretRequest:JDCloudRequest
-
-/// 机密ID
-@property (strong,nonatomic,nonnull)  NSString*  secretId;
--(id) initWithRegion:(NSString *)regionId
-secretId:(NSString*)secretId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-secretId:(NSString*)secretId;
-
-@end
-
-@interface KmsExportSecretResult : NSObject
-/// 机密包
- @property (strong,nonatomic,nonnull)  NSString*  secretPackage;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithSecretPackage:(NSString*) secretPackage;
 @end
 
 @interface KmsImportSecretResponse : NSObject
@@ -566,19 +940,6 @@ secretId:(NSString*)secretId;
         result:(KmsDescribeSecretListResult*) result;
 @end
 
-@interface KmsDeleteSecretVersionRequest:JDCloudRequest
-
-/// 机密ID
-@property (strong,nonatomic,nonnull)  NSString*  secretId;
--(id) initWithRegion:(NSString *)regionId
-secretId:(NSString*)secretId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-secretId:(NSString*)secretId;
-
-@end
-
 @interface KmsExportSecretResponse : NSObject
 
 @property NSString* requestId;
@@ -611,19 +972,6 @@ secretId:(NSString*)secretId;
 -(id) initWithRequestId:(NSString*) requestId
         error:(ServiceError*) error
         result:(KmsUpdateSecretVersionResult*) result;
-@end
-
-@interface KmsImportSecretRequest:JDCloudRequest
-
-/// 密钥包的内容
-@property (strong,nonatomic,nonnull)  NSString*  secretPackage;
--(id) initWithRegion:(NSString *)regionId
-secretPackage:(NSString*)secretPackage;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-secretPackage:(NSString*)secretPackage;
-
 @end
 
 @interface KmsDisableKeyVersionResult : NSObject
@@ -667,19 +1015,6 @@ secretPackage:(NSString*)secretPackage;
 -(id) initWithDic:(NSDictionary*)dictionary;
 @end
 
-@interface KmsGetPublicKeyRequest:JDCloudRequest
-
-/// 密钥ID
-@property (strong,nonatomic,nonnull)  NSString*  keyId;
--(id) initWithRegion:(NSString *)regionId
-keyId:(NSString*)keyId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-keyId:(NSString*)keyId;
-
-@end
-
 @interface KmsUpdateKeyDescriptionRequest:JDCloudRequest
 
 /// KeyCfg
@@ -697,84 +1032,11 @@ keyId:(NSString*)keyId;
 
 @end
 
-@interface KmsKeyRotationRequest:JDCloudRequest
-
-/// 密钥ID
-@property (strong,nonatomic,nonnull)  NSString*  keyId;
--(id) initWithRegion:(NSString *)regionId
-keyId:(NSString*)keyId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-keyId:(NSString*)keyId;
-
-@end
-
-@interface KmsGenerateDataKeyRequest:JDCloudRequest
-
-/// 密钥ID
-@property (strong,nonatomic,nonnull)  NSString*  keyId;
--(id) initWithRegion:(NSString *)regionId
-keyId:(NSString*)keyId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-keyId:(NSString*)keyId;
-
-@end
-
-@interface KmsEncryptResult : NSObject
-/// 密文数据 Base64-encoded binary data object
- @property (strong,nonatomic,nonnull)  NSString*  ciphertextBlob;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithCiphertextBlob:(NSString*) ciphertextBlob;
-@end
-
 @interface KmsScheduleKeyVersionDeletionResult : NSObject
 
 -(NSMutableDictionary*) dictionary;
 
 -(id) initWithDic:(NSDictionary*)dictionary;
-@end
-
-@interface KmsEnableKeyVersionRequest:JDCloudRequest
-
-/// 密钥ID
-@property (strong,nonatomic,nonnull)  NSString*  keyId;
--(id) initWithRegion:(NSString *)regionId
-keyId:(NSString*)keyId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-keyId:(NSString*)keyId;
-
-@end
-
-@interface KmsValidateResult : NSObject
-/// 校验签名结果，true为成功，false为失败
- @property (strong,nonatomic,nonnull)  NSNumber*  validated;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithValidated:(NSNumber*) validated;
-@end
-
-@interface KmsGenerateDataKeyResult : NSObject
-/// 明文DEK Base64-encoded binary data object
- @property (strong,nonatomic,nonnull)  NSString*  plaintext;
-/// 密文DEK Base64-encoded binary data object
- @property (strong,nonatomic,nonnull)  NSString*  ciphertextBlob;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithPlaintext:(NSString*) plaintext
-
-    ciphertextBlob:(NSString*)ciphertextBlob;
 @end
 
 @interface KmsDisableKeyResponse : NSObject
@@ -811,46 +1073,6 @@ keyId:(NSString*)keyId;
         result:(KmsValidateResult*) result;
 @end
 
-@interface KmsCancelKeyVersionDeletionRequest:JDCloudRequest
-
-/// 密钥ID
-@property (strong,nonatomic,nonnull)  NSString*  keyId;
--(id) initWithRegion:(NSString *)regionId
-keyId:(NSString*)keyId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-keyId:(NSString*)keyId;
-
-@end
-
-@interface KmsDecryptRequest:JDCloudRequest
-
-/// 密文数据 Base64-encoded binary data object
-@property (strong,nonatomic,nonnull)  NSString*  ciphertextBlob;
-/// 密钥ID
-@property (strong,nonatomic,nonnull)  NSString*  keyId;
--(id) initWithRegion:(NSString *)regionId
-ciphertextBlob:(NSString*)ciphertextBlob
-keyId:(NSString*)keyId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-ciphertextBlob:(NSString*)ciphertextBlob
-keyId:(NSString*)keyId;
-
-@end
-
-@interface KmsSignResult : NSObject
-/// 签名
- @property (strong,nonatomic,nonnull)  NSString*  signature;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithSignature:(NSString*) signature;
-@end
-
 @interface KmsSignResponse : NSObject
 
 @property NSString* requestId;
@@ -873,16 +1095,6 @@ keyId:(NSString*)keyId;
 -(NSMutableDictionary*) dictionary;
 
 -(id) initWithDic:(NSDictionary*)dictionary;
-@end
-
-@interface KmsGetPublicKeyResult : NSObject
-/// 公钥，PEM格式
- @property (strong,nonatomic,nonnull)  NSString*  publicKeyBlob;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithPublicKeyBlob:(NSString*) publicKeyBlob;
 @end
 
 @interface KmsScheduleKeyDeletionResult : NSObject
@@ -909,23 +1121,6 @@ keyId:(NSString*)keyId;
         result:(KmsScheduleKeyDeletionResult*) result;
 @end
 
-@interface KmsDescribeKeyListRequest:JDCloudRequest
-
-/// 页码；默认为1
-@property (strong,nonatomic,nonnull)  NSNumber*  pageNumber;
-/// 分页大小；默认为10；取值范围[10, 100]
-@property (strong,nonatomic,nonnull)  NSNumber*  pageSize;
--(id) initWithRegion:(NSString *)regionId
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize;
-
-@end
-
 @interface KmsGetPublicKeyResponse : NSObject
 
 @property NSString* requestId;
@@ -941,27 +1136,6 @@ pageSize:(NSNumber*)pageSize;
 -(id) initWithRequestId:(NSString*) requestId
         error:(ServiceError*) error
         result:(KmsGetPublicKeyResult*) result;
-@end
-
-@interface KmsDescribeKeyDetailRequest:JDCloudRequest
-
-/// 页码；默认为1
-@property (strong,nonatomic,nonnull)  NSNumber*  pageNumber;
-/// 分页大小；默认为10；取值范围[10, 100]
-@property (strong,nonatomic,nonnull)  NSNumber*  pageSize;
-/// 密钥ID
-@property (strong,nonatomic,nonnull)  NSString*  keyId;
--(id) initWithRegion:(NSString *)regionId
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-keyId:(NSString*)keyId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-keyId:(NSString*)keyId;
-
 @end
 
 @interface KmsEnableKeyVersionResult : NSObject
@@ -1039,23 +1213,6 @@ keyId:(NSString*)keyId;
 -(id) initWithKeyDetail:(KeyDetail*) keyDetail;
 @end
 
-@interface KmsScheduleKeyVersionDeletionRequest:JDCloudRequest
-
-/// 延迟删除时间，单位（天），默认为7天；支持时间范围：7~30天
-@property (strong,nonatomic,nonnull)  NSNumber*  delayDays;
-/// 密钥ID
-@property (strong,nonatomic,nonnull)  NSString*  keyId;
--(id) initWithRegion:(NSString *)regionId
-delayDays:(NSNumber*)delayDays
-keyId:(NSString*)keyId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-delayDays:(NSNumber*)delayDays
-keyId:(NSString*)keyId;
-
-@end
-
 @interface KmsEnableKeyResult : NSObject
 
 -(NSMutableDictionary*) dictionary;
@@ -1085,37 +1242,6 @@ keyId:(NSString*)keyId;
 -(id) initWithRequestId:(NSString*) requestId
         error:(ServiceError*) error
         result:(KmsCancelKeyDeletionResult*) result;
-@end
-
-@interface KmsValidateRequest:JDCloudRequest
-
-/// 需要签名的数据 Base64-encoded binary data object
-@property (strong,nonatomic,nonnull)  NSString*  plaintext;
-/// 签名
-@property (strong,nonatomic,nonnull)  NSString*  signature;
-/// 密钥ID
-@property (strong,nonatomic,nonnull)  NSString*  keyId;
--(id) initWithRegion:(NSString *)regionId
-plaintext:(NSString*)plaintext
-signature:(NSString*)signature
-keyId:(NSString*)keyId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-plaintext:(NSString*)plaintext
-signature:(NSString*)signature
-keyId:(NSString*)keyId;
-
-@end
-
-@interface KmsCreateKeyResult : NSObject
-/// 创建的密钥ID
- @property (strong,nonatomic,nonnull)  NSString*  keyId;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithKeyId:(NSString*) keyId;
 @end
 
 @interface KmsGenerateDataKeyResponse : NSObject
@@ -1193,70 +1319,6 @@ keyId:(NSString*)keyId;
         result:(KmsEncryptResult*) result;
 @end
 
-@interface KmsCancelKeyDeletionRequest:JDCloudRequest
-
-/// 密钥ID
-@property (strong,nonatomic,nonnull)  NSString*  keyId;
--(id) initWithRegion:(NSString *)regionId
-keyId:(NSString*)keyId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-keyId:(NSString*)keyId;
-
-@end
-
-@interface KmsEncryptRequest:JDCloudRequest
-
-/// 明文数据 Base64-encoded binary data object
-@property (strong,nonatomic,nonnull)  NSString*  plaintext;
-/// 密钥ID
-@property (strong,nonatomic,nonnull)  NSString*  keyId;
--(id) initWithRegion:(NSString *)regionId
-plaintext:(NSString*)plaintext
-keyId:(NSString*)keyId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-plaintext:(NSString*)plaintext
-keyId:(NSString*)keyId;
-
-@end
-
-@interface KmsSignRequest:JDCloudRequest
-
-/// 需要签名的数据 Base64-encoded binary data object
-@property (strong,nonatomic,nonnull)  NSString*  plaintext;
-/// 密钥ID
-@property (strong,nonatomic,nonnull)  NSString*  keyId;
--(id) initWithRegion:(NSString *)regionId
-plaintext:(NSString*)plaintext
-keyId:(NSString*)keyId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-plaintext:(NSString*)plaintext
-keyId:(NSString*)keyId;
-
-@end
-
-@interface KmsScheduleKeyDeletionRequest:JDCloudRequest
-
-/// 延迟删除时间，单位（天），默认为7天；支持时间范围：7~30天
-@property (strong,nonatomic,nonnull)  NSNumber*  delayDays;
-/// 密钥ID
-@property (strong,nonatomic,nonnull)  NSString*  keyId;
--(id) initWithRegion:(NSString *)regionId
-delayDays:(NSNumber*)delayDays
-keyId:(NSString*)keyId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-delayDays:(NSNumber*)delayDays
-keyId:(NSString*)keyId;
-
-@end
-
 @interface KmsUpdateKeyDescriptionResponse : NSObject
 
 @property NSString* requestId;
@@ -1272,16 +1334,6 @@ keyId:(NSString*)keyId;
 -(id) initWithRequestId:(NSString*) requestId
         error:(ServiceError*) error
         result:(KmsUpdateKeyDescriptionResult*) result;
-@end
-
-@interface KmsDecryptResult : NSObject
-/// 明文数据 Base64-encoded binary data object
- @property (strong,nonatomic,nonnull)  NSString*  plaintext;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithPlaintext:(NSString*) plaintext;
 @end
 
 @interface KmsDecryptResponse : NSObject
@@ -1318,19 +1370,6 @@ keyId:(NSString*)keyId;
         result:(KmsEnableKeyResult*) result;
 @end
 
-@interface KmsDisableKeyRequest:JDCloudRequest
-
-/// 密钥ID
-@property (strong,nonatomic,nonnull)  NSString*  keyId;
--(id) initWithRegion:(NSString *)regionId
-keyId:(NSString*)keyId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-keyId:(NSString*)keyId;
-
-@end
-
 @interface KmsCreateKeyResponse : NSObject
 
 @property NSString* requestId;
@@ -1346,19 +1385,6 @@ keyId:(NSString*)keyId;
 -(id) initWithRequestId:(NSString*) requestId
         error:(ServiceError*) error
         result:(KmsCreateKeyResult*) result;
-@end
-
-@interface KmsDescribeKeyRequest:JDCloudRequest
-
-/// 密钥ID
-@property (strong,nonatomic,nonnull)  NSString*  keyId;
--(id) initWithRegion:(NSString *)regionId
-keyId:(NSString*)keyId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-keyId:(NSString*)keyId;
-
 @end
 
 @interface KmsDescribeKeyListResult : NSObject
@@ -1392,19 +1418,6 @@ keyId:(NSString*)keyId;
         result:(KmsDescribeKeyListResult*) result;
 @end
 
-@interface KmsEnableKeyRequest:JDCloudRequest
-
-/// 密钥ID
-@property (strong,nonatomic,nonnull)  NSString*  keyId;
--(id) initWithRegion:(NSString *)regionId
-keyId:(NSString*)keyId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-keyId:(NSString*)keyId;
-
-@end
-
 @interface KmsDescribeKeyDetailResponse : NSObject
 
 @property NSString* requestId;
@@ -1432,19 +1445,6 @@ keyCfg:(KeyCfg*)keyCfg;
 -(id) initWithRegion:(NSString *)regionId
              version:(NSString *)version
 keyCfg:(KeyCfg*)keyCfg;
-
-@end
-
-@interface KmsDisableKeyVersionRequest:JDCloudRequest
-
-/// 密钥ID
-@property (strong,nonatomic,nonnull)  NSString*  keyId;
--(id) initWithRegion:(NSString *)regionId
-keyId:(NSString*)keyId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-keyId:(NSString*)keyId;
 
 @end
 

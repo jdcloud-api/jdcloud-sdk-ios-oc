@@ -65,6 +65,40 @@ venderName:(NSString*)venderName;
 
 @end
 
+@interface YundingdatapushDeleteDatapushVenderRequest:JDCloudRequest
+
+/// appkey
+@property (strong,nonatomic,nonnull)  NSString*  appkey;
+/// 云鼎数据库实例ID
+@property (strong,nonatomic,nonnull)  NSString*  ydRdsInstanceId;
+/// 商家ID
+@property (strong,nonatomic,nonnull)  NSString*  venderId;
+-(id) initWithRegion:(NSString *)regionId
+appkey:(NSString*)appkey
+ydRdsInstanceId:(NSString*)ydRdsInstanceId
+venderId:(NSString*)venderId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+appkey:(NSString*)appkey
+ydRdsInstanceId:(NSString*)ydRdsInstanceId
+venderId:(NSString*)venderId;
+
+@end
+
+@interface YundingdatapushDescribeRdsInstancesRequest:JDCloudRequest
+
+/// appkey
+@property (strong,nonatomic,nonnull)  NSString*  appkey;
+-(id) initWithRegion:(NSString *)regionId
+appkey:(NSString*)appkey;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+appkey:(NSString*)appkey;
+
+@end
+
 @interface YundingdatapushAddDatapushVenderResult : NSObject
 
 -(NSMutableDictionary*) dictionary;
@@ -138,40 +172,6 @@ datapushVender:(Vender*)datapushVender;
 
 -(id) initWithDic:(NSDictionary*)dictionary;
 -(id) initWithVenders:(NSArray<RdsInstance*>*) venders;
-@end
-
-@interface YundingdatapushDeleteDatapushVenderRequest:JDCloudRequest
-
-/// appkey
-@property (strong,nonatomic,nonnull)  NSString*  appkey;
-/// 云鼎数据库实例ID
-@property (strong,nonatomic,nonnull)  NSString*  ydRdsInstanceId;
-/// 商家ID
-@property (strong,nonatomic,nonnull)  NSString*  venderId;
--(id) initWithRegion:(NSString *)regionId
-appkey:(NSString*)appkey
-ydRdsInstanceId:(NSString*)ydRdsInstanceId
-venderId:(NSString*)venderId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-appkey:(NSString*)appkey
-ydRdsInstanceId:(NSString*)ydRdsInstanceId
-venderId:(NSString*)venderId;
-
-@end
-
-@interface YundingdatapushDescribeRdsInstancesRequest:JDCloudRequest
-
-/// appkey
-@property (strong,nonatomic,nonnull)  NSString*  appkey;
--(id) initWithRegion:(NSString *)regionId
-appkey:(NSString*)appkey;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-appkey:(NSString*)appkey;
-
 @end
 
 @interface YundingdatapushDeleteDatapushVenderResult : NSObject

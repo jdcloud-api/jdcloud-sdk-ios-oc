@@ -54,6 +54,84 @@ iccid:(NSString*)iccid;
 
 @end
 
+@interface IotlinkCloseIotCardRequest:JDCloudRequest
+
+/// 物联网卡号码列表(单次提交最多不超过200个号码)
+@property (strong,nonatomic,nonnull)  NSArray<NSString*>*  iccids;
+-(id) initWithRegion:(NSString *)regionId
+iccids:(NSArray<NSString*>*)iccids;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+iccids:(NSArray<NSString*>*)iccids;
+
+@end
+
+@interface IotlinkOpenIotCardRequest:JDCloudRequest
+
+/// 物联网卡号码列表(单次提交最多不超过200个号码)
+@property (strong,nonatomic,nonnull)  NSArray<NSString*>*  iccids;
+-(id) initWithRegion:(NSString *)regionId
+iccids:(NSArray<NSString*>*)iccids;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+iccids:(NSArray<NSString*>*)iccids;
+
+@end
+
+@interface IotlinkLifeStatusRequest:JDCloudRequest
+
+/// 物联网卡iccid
+@property (strong,nonatomic,nonnull)  NSString*  iccid;
+-(id) initWithRegion:(NSString *)regionId
+iccid:(NSString*)iccid;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+iccid:(NSString*)iccid;
+
+@end
+
+@interface IotlinkCloseIotFlowRequest:JDCloudRequest
+
+/// 物联网卡号码列表(单次提交最多不超过200个号码)
+@property (strong,nonatomic,nonnull)  NSArray<NSString*>*  iccids;
+-(id) initWithRegion:(NSString *)regionId
+iccids:(NSArray<NSString*>*)iccids;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+iccids:(NSArray<NSString*>*)iccids;
+
+@end
+
+@interface IotlinkGprsRealtimeInfoRequest:JDCloudRequest
+
+/// 物联网卡iccid
+@property (strong,nonatomic,nonnull)  NSString*  iccid;
+-(id) initWithRegion:(NSString *)regionId
+iccid:(NSString*)iccid;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+iccid:(NSString*)iccid;
+
+@end
+
+@interface IotlinkGprsStatusRequest:JDCloudRequest
+
+/// 物联网卡iccid
+@property (strong,nonatomic,nonnull)  NSString*  iccid;
+-(id) initWithRegion:(NSString *)regionId
+iccid:(NSString*)iccid;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+iccid:(NSString*)iccid;
+
+@end
+
 @interface IotlinkCloseIotCardResult : NSObject
 /// 请求状态(0:成功;1:失败)
  @property (strong,nonatomic,nonnull)  NSString*  status;
@@ -122,19 +200,6 @@ iccid:(NSString*)iccid;
 -(id) initWithRequestId:(NSString*) requestId
         error:(ServiceError*) error
         result:(IotlinkCloseIotFlowResult*) result;
-@end
-
-@interface IotlinkCloseIotCardRequest:JDCloudRequest
-
-/// 物联网卡号码列表(单次提交最多不超过200个号码)
-@property (strong,nonatomic,nonnull)  NSArray<NSString*>*  iccids;
--(id) initWithRegion:(NSString *)regionId
-iccids:(NSArray<NSString*>*)iccids;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-iccids:(NSArray<NSString*>*)iccids;
-
 @end
 
 @interface IotlinkOpenIotCardResult : NSObject
@@ -224,32 +289,6 @@ iccids:(NSArray<NSString*>*)iccids;
     message:(NSString*)message
 
     result:(GprsStatusResp*)result;
-@end
-
-@interface IotlinkOpenIotCardRequest:JDCloudRequest
-
-/// 物联网卡号码列表(单次提交最多不超过200个号码)
-@property (strong,nonatomic,nonnull)  NSArray<NSString*>*  iccids;
--(id) initWithRegion:(NSString *)regionId
-iccids:(NSArray<NSString*>*)iccids;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-iccids:(NSArray<NSString*>*)iccids;
-
-@end
-
-@interface IotlinkLifeStatusRequest:JDCloudRequest
-
-/// 物联网卡iccid
-@property (strong,nonatomic,nonnull)  NSString*  iccid;
--(id) initWithRegion:(NSString *)regionId
-iccid:(NSString*)iccid;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-iccid:(NSString*)iccid;
-
 @end
 
 @interface IotlinkGprsStatusResponse : NSObject
@@ -371,45 +410,6 @@ iccid:(NSString*)iccid;
 -(id) initWithRequestId:(NSString*) requestId
         error:(ServiceError*) error
         result:(IotlinkOpenIotFlowResult*) result;
-@end
-
-@interface IotlinkCloseIotFlowRequest:JDCloudRequest
-
-/// 物联网卡号码列表(单次提交最多不超过200个号码)
-@property (strong,nonatomic,nonnull)  NSArray<NSString*>*  iccids;
--(id) initWithRegion:(NSString *)regionId
-iccids:(NSArray<NSString*>*)iccids;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-iccids:(NSArray<NSString*>*)iccids;
-
-@end
-
-@interface IotlinkGprsRealtimeInfoRequest:JDCloudRequest
-
-/// 物联网卡iccid
-@property (strong,nonatomic,nonnull)  NSString*  iccid;
--(id) initWithRegion:(NSString *)regionId
-iccid:(NSString*)iccid;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-iccid:(NSString*)iccid;
-
-@end
-
-@interface IotlinkGprsStatusRequest:JDCloudRequest
-
-/// 物联网卡iccid
-@property (strong,nonatomic,nonnull)  NSString*  iccid;
--(id) initWithRegion:(NSString *)regionId
-iccid:(NSString*)iccid;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-iccid:(NSString*)iccid;
-
 @end
 
 #endif /* IotlinkApiModel_h */

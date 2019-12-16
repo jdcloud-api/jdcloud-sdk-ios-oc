@@ -70,26 +70,6 @@ bandwidthId:(NSString*)bandwidthId {
 } 
 
 @end
-@implementation JdccsDescribeBandwidthTrafficResult
--(id) initWithBandwidthTraffic:(BandwidthTraffic*) bandwidthTraffic { 
-    self.bandwidthTraffic = bandwidthTraffic;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self bandwidthTraffic])
-    {
-        [result setValue:[[self bandwidthTraffic] dictionary]forKey:@"bandwidthTraffic"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.bandwidthTraffic = [[BandwidthTraffic alloc]initWithDic:[dictionary objectForKey:@"bandwidthTraffic"]];
-    return self;
-} 
-
-@end
 @implementation JdccsLastDownsampleRequest
 -(id) initWithRegion:(NSString *)regionId
 resourceId:(NSString*)resourceId
@@ -142,109 +122,6 @@ metric:(NSString*)metric {
     self.metric = [dictionary objectForKey:@"metric"];
     return self;
 } 
-
-@end
-@implementation JdccsDescribeBandwidthTrafficsResult
--(id) initWithBandwidthTraffics:(NSArray<DescribeBandwidthTraffic*>*) bandwidthTraffics
-        pageNumber:(NSNumber*)pageNumber
-        pageSize:(NSNumber*)pageSize
-        totalCount:(NSNumber*)totalCount { 
-    self.bandwidthTraffics = bandwidthTraffics;               
-    self.pageNumber = pageNumber;               
-    self.pageSize = pageSize;               
-    self.totalCount = totalCount;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self bandwidthTraffics])
-    {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self bandwidthTraffics] count]; i++) {
-            DescribeBandwidthTraffic* item = [[self bandwidthTraffics] objectAtIndex:i];
-            [arrayDic addObject:[item dictionary]];
-        }
-        [result setValue:arrayDic forKey:@"bandwidthTraffics"];
-    }
-    if([self pageNumber])
-    {
-        [result setValue:[self pageNumber] forKey:@"pageNumber"];
-    }
-    if([self pageSize])
-    {
-        [result setValue:[self pageSize] forKey:@"pageSize"];
-    }
-    if([self totalCount])
-    {
-        [result setValue:[self totalCount] forKey:@"totalCount"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    NSArray* bandwidthTrafficsArray = [dictionary objectForKey:@"bandwidthTraffics"];
-    if(bandwidthTrafficsArray&&![bandwidthTrafficsArray isKindOfClass:[NSNull class]])
-    {
-        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
-        for(int i = 0 ; i< [bandwidthTrafficsArray count];i++)
-        {
-            DescribeBandwidthTraffic* item = [[DescribeBandwidthTraffic alloc]initWithDic:[bandwidthTrafficsArray objectAtIndex:i]];
-            if(item)
-            {
-                [propertyArray addObject:item];
-            }
-        }
-        self.bandwidthTraffics = propertyArray;
-    }
-    self.pageNumber = [dictionary objectForKey:@"pageNumber"];
-    self.pageSize = [dictionary objectForKey:@"pageSize"];
-    self.totalCount = [dictionary objectForKey:@"totalCount"];
-    return self;
-} 
-
-@end
-  
-@implementation JdccsDescribeBandwidthTrafficsResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-JdccsDescribeBandwidthTrafficsResult* result = [[JdccsDescribeBandwidthTrafficsResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(JdccsDescribeBandwidthTrafficsResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
 
 @end
 @implementation JdccsDescribeMetricDataRequest
@@ -328,6 +205,228 @@ metric:(NSString*)metric {
 } 
 
 @end
+@implementation JdccsDescribeBandwidthTrafficsRequest
+-(id) initWithRegion:(NSString *)regionId
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+idc:(NSString*)idc { 
+    self.regionId = regionId;
+    self.pageNumber = pageNumber;
+    self.pageSize = pageSize;
+    self.idc = idc;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+idc:(NSString*)idc { 
+    self.regionId = regionId;
+    self.version = version;
+    self.pageNumber = pageNumber;
+    self.pageSize = pageSize;
+    self.idc = idc;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self pageNumber])
+    {
+        [result setValue:[self pageNumber] forKey:@"pageNumber"];
+    }
+    if([self pageSize])
+    {
+        [result setValue:[self pageSize] forKey:@"pageSize"];
+    }
+    if([self idc])
+    {
+        [result setValue:[self idc] forKey:@"idc"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.pageNumber = [dictionary objectForKey:@"pageNumber"];
+    self.pageSize = [dictionary objectForKey:@"pageSize"];
+    self.idc = [dictionary objectForKey:@"idc"];
+    return self;
+} 
+
+@end
+@implementation JdccsDescribeIdcsRequest
+-(id) initWithRegion:(NSString *)regionId
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize { 
+    self.regionId = regionId;
+    self.pageNumber = pageNumber;
+    self.pageSize = pageSize;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize { 
+    self.regionId = regionId;
+    self.version = version;
+    self.pageNumber = pageNumber;
+    self.pageSize = pageSize;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self pageNumber])
+    {
+        [result setValue:[self pageNumber] forKey:@"pageNumber"];
+    }
+    if([self pageSize])
+    {
+        [result setValue:[self pageSize] forKey:@"pageSize"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.pageNumber = [dictionary objectForKey:@"pageNumber"];
+    self.pageSize = [dictionary objectForKey:@"pageSize"];
+    return self;
+} 
+
+@end
+@implementation JdccsDescribeBandwidthTrafficResult
+-(id) initWithBandwidthTraffic:(BandwidthTraffic*) bandwidthTraffic { 
+    self.bandwidthTraffic = bandwidthTraffic;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self bandwidthTraffic])
+    {
+        [result setValue:[[self bandwidthTraffic] dictionary]forKey:@"bandwidthTraffic"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.bandwidthTraffic = [[BandwidthTraffic alloc]initWithDic:[dictionary objectForKey:@"bandwidthTraffic"]];
+    return self;
+} 
+
+@end
+@implementation JdccsDescribeBandwidthTrafficsResult
+-(id) initWithBandwidthTraffics:(NSArray<DescribeBandwidthTraffic*>*) bandwidthTraffics
+        pageNumber:(NSNumber*)pageNumber
+        pageSize:(NSNumber*)pageSize
+        totalCount:(NSNumber*)totalCount { 
+    self.bandwidthTraffics = bandwidthTraffics;               
+    self.pageNumber = pageNumber;               
+    self.pageSize = pageSize;               
+    self.totalCount = totalCount;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self bandwidthTraffics])
+    {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self bandwidthTraffics] count]; i++) {
+            DescribeBandwidthTraffic* item = [[self bandwidthTraffics] objectAtIndex:i];
+            [arrayDic addObject:[item dictionary]];
+        }
+        [result setValue:arrayDic forKey:@"bandwidthTraffics"];
+    }
+    if([self pageNumber])
+    {
+        [result setValue:[self pageNumber] forKey:@"pageNumber"];
+    }
+    if([self pageSize])
+    {
+        [result setValue:[self pageSize] forKey:@"pageSize"];
+    }
+    if([self totalCount])
+    {
+        [result setValue:[self totalCount] forKey:@"totalCount"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    NSArray* bandwidthTrafficsArray = [dictionary objectForKey:@"bandwidthTraffics"];
+    if(bandwidthTrafficsArray&&![bandwidthTrafficsArray isKindOfClass:[NSNull class]])
+    {
+        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
+        for(int i = 0 ; i< [bandwidthTrafficsArray count];i++)
+        {
+        DescribeBandwidthTraffic* item = [[DescribeBandwidthTraffic alloc]initWithDic:[bandwidthTrafficsArray objectAtIndex:i]];
+            if(item)
+            {
+            [propertyArray addObject:item];
+            }
+        }
+        self.bandwidthTraffics = propertyArray;
+    }
+    self.pageNumber = [dictionary objectForKey:@"pageNumber"];
+    self.pageSize = [dictionary objectForKey:@"pageSize"];
+    self.totalCount = [dictionary objectForKey:@"totalCount"];
+    return self;
+} 
+
+@end
+  
+@implementation JdccsDescribeBandwidthTrafficsResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+JdccsDescribeBandwidthTrafficsResult* result = [[JdccsDescribeBandwidthTrafficsResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(JdccsDescribeBandwidthTrafficsResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
 @implementation JdccsDescribeMetricsRequest
 -(NSMutableDictionary*) dictionary{
     NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
@@ -353,8 +452,8 @@ metric:(NSString*)metric {
     NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
     if([self metrics])
     {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self metrics] count]; i++) {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self metrics] count]; i++) {
             Metric* item = [[self metrics] objectAtIndex:i];
             [arrayDic addObject:[item dictionary]];
         }
@@ -370,10 +469,10 @@ metric:(NSString*)metric {
         NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
         for(int i = 0 ; i< [metricsArray count];i++)
         {
-            Metric* item = [[Metric alloc]initWithDic:[metricsArray objectAtIndex:i]];
+        Metric* item = [[Metric alloc]initWithDic:[metricsArray objectAtIndex:i]];
             if(item)
             {
-                [propertyArray addObject:item];
+            [propertyArray addObject:item];
             }
         }
         self.metrics = propertyArray;
@@ -435,8 +534,8 @@ JdccsDescribeMetricsResult* result = [[JdccsDescribeMetricsResult alloc]initWith
     NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
     if([self items])
     {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self items] count]; i++) {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self items] count]; i++) {
             LastDownsampleRespItem* item = [[self items] objectAtIndex:i];
             [arrayDic addObject:[item dictionary]];
         }
@@ -452,10 +551,10 @@ JdccsDescribeMetricsResult* result = [[JdccsDescribeMetricsResult alloc]initWith
         NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
         for(int i = 0 ; i< [itemsArray count];i++)
         {
-            LastDownsampleRespItem* item = [[LastDownsampleRespItem alloc]initWithDic:[itemsArray objectAtIndex:i]];
+        LastDownsampleRespItem* item = [[LastDownsampleRespItem alloc]initWithDic:[itemsArray objectAtIndex:i]];
             if(item)
             {
-                [propertyArray addObject:item];
+            [propertyArray addObject:item];
             }
         }
         self.items = propertyArray;
@@ -616,60 +715,6 @@ JdccsDescribeBandwidthTrafficResult* result = [[JdccsDescribeBandwidthTrafficRes
 }
 
 @end
-@implementation JdccsDescribeBandwidthTrafficsRequest
--(id) initWithRegion:(NSString *)regionId
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-idc:(NSString*)idc { 
-    self.regionId = regionId;
-    self.pageNumber = pageNumber;
-    self.pageSize = pageSize;
-    self.idc = idc;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-idc:(NSString*)idc { 
-    self.regionId = regionId;
-    self.version = version;
-    self.pageNumber = pageNumber;
-    self.pageSize = pageSize;
-    self.idc = idc;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self pageNumber])
-    {
-        [result setValue:[self pageNumber] forKey:@"pageNumber"];
-    }
-    if([self pageSize])
-    {
-        [result setValue:[self pageSize] forKey:@"pageSize"];
-    }
-    if([self idc])
-    {
-        [result setValue:[self idc] forKey:@"idc"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.pageNumber = [dictionary objectForKey:@"pageNumber"];
-    self.pageSize = [dictionary objectForKey:@"pageSize"];
-    self.idc = [dictionary objectForKey:@"idc"];
-    return self;
-} 
-
-@end
 @implementation JdccsDescribeCabinetsResult
 -(id) initWithCabinets:(NSArray<DescribeCabinet*>*) cabinets
         pageNumber:(NSNumber*)pageNumber
@@ -685,8 +730,8 @@ idc:(NSString*)idc {
     NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
     if([self cabinets])
     {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self cabinets] count]; i++) {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self cabinets] count]; i++) {
             DescribeCabinet* item = [[self cabinets] objectAtIndex:i];
             [arrayDic addObject:[item dictionary]];
         }
@@ -714,10 +759,10 @@ idc:(NSString*)idc {
         NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
         for(int i = 0 ; i< [cabinetsArray count];i++)
         {
-            DescribeCabinet* item = [[DescribeCabinet alloc]initWithDic:[cabinetsArray objectAtIndex:i]];
+        DescribeCabinet* item = [[DescribeCabinet alloc]initWithDic:[cabinetsArray objectAtIndex:i]];
             if(item)
             {
-                [propertyArray addObject:item];
+            [propertyArray addObject:item];
             }
         }
         self.cabinets = propertyArray;
@@ -744,8 +789,8 @@ idc:(NSString*)idc {
     NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
     if([self rooms])
     {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self rooms] count]; i++) {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self rooms] count]; i++) {
             Room* item = [[self rooms] objectAtIndex:i];
             [arrayDic addObject:[item dictionary]];
         }
@@ -773,10 +818,10 @@ idc:(NSString*)idc {
         NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
         for(int i = 0 ; i< [roomsArray count];i++)
         {
-            Room* item = [[Room alloc]initWithDic:[roomsArray objectAtIndex:i]];
+        Room* item = [[Room alloc]initWithDic:[roomsArray objectAtIndex:i]];
             if(item)
             {
-                [propertyArray addObject:item];
+            [propertyArray addObject:item];
             }
         }
         self.rooms = propertyArray;
@@ -833,8 +878,8 @@ idc:(NSString*)idc {
     }
     if([self filters])
     {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self filters] count]; i++) {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self filters] count]; i++) {
             Filter* item = [[self filters] objectAtIndex:i];
             [arrayDic addObject:[item dictionary]];
         }
@@ -856,10 +901,10 @@ idc:(NSString*)idc {
         NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
         for(int i = 0 ; i< [filtersArray count];i++)
         {
-            Filter* item = [[Filter alloc]initWithDic:[filtersArray objectAtIndex:i]];
+        Filter* item = [[Filter alloc]initWithDic:[filtersArray objectAtIndex:i]];
             if(item)
             {
-                [propertyArray addObject:item];
+            [propertyArray addObject:item];
             }
         }
         self.filters = propertyArray;
@@ -914,8 +959,8 @@ idc:(NSString*)idc {
     }
     if([self filters])
     {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self filters] count]; i++) {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self filters] count]; i++) {
             Filter* item = [[self filters] objectAtIndex:i];
             [arrayDic addObject:[item dictionary]];
         }
@@ -937,10 +982,10 @@ idc:(NSString*)idc {
         NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
         for(int i = 0 ; i< [filtersArray count];i++)
         {
-            Filter* item = [[Filter alloc]initWithDic:[filtersArray objectAtIndex:i]];
+        Filter* item = [[Filter alloc]initWithDic:[filtersArray objectAtIndex:i]];
             if(item)
             {
-                [propertyArray addObject:item];
+            [propertyArray addObject:item];
             }
         }
         self.filters = propertyArray;
@@ -1009,8 +1054,8 @@ JdccsDescribeRoomsResult* result = [[JdccsDescribeRoomsResult alloc]initWithDic:
     NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
     if([self idcs])
     {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self idcs] count]; i++) {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self idcs] count]; i++) {
             Idc* item = [[self idcs] objectAtIndex:i];
             [arrayDic addObject:[item dictionary]];
         }
@@ -1038,10 +1083,10 @@ JdccsDescribeRoomsResult* result = [[JdccsDescribeRoomsResult alloc]initWithDic:
         NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
         for(int i = 0 ; i< [idcsArray count];i++)
         {
-            Idc* item = [[Idc alloc]initWithDic:[idcsArray objectAtIndex:i]];
+        Idc* item = [[Idc alloc]initWithDic:[idcsArray objectAtIndex:i]];
             if(item)
             {
-                [propertyArray addObject:item];
+            [propertyArray addObject:item];
             }
         }
         self.idcs = propertyArray;
@@ -1139,51 +1184,6 @@ JdccsDescribeCabinetsResult* result = [[JdccsDescribeCabinetsResult alloc]initWi
     self.requestId = requestId;
     return self;
 }
-
-@end
-@implementation JdccsDescribeIdcsRequest
--(id) initWithRegion:(NSString *)regionId
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize { 
-    self.regionId = regionId;
-    self.pageNumber = pageNumber;
-    self.pageSize = pageSize;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize { 
-    self.regionId = regionId;
-    self.version = version;
-    self.pageNumber = pageNumber;
-    self.pageSize = pageSize;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self pageNumber])
-    {
-        [result setValue:[self pageNumber] forKey:@"pageNumber"];
-    }
-    if([self pageSize])
-    {
-        [result setValue:[self pageSize] forKey:@"pageSize"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.pageNumber = [dictionary objectForKey:@"pageNumber"];
-    self.pageSize = [dictionary objectForKey:@"pageSize"];
-    return self;
-} 
 
 @end
  

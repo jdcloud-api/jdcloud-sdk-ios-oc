@@ -115,6 +115,193 @@ domainName:(NSString*)domainName {
 } 
 
 @end
+@implementation ClouddnsserviceGetDomainQueryTrafficResult
+-(id) initWithTime:(NSArray<NSNumber*>*) time
+        unit:(NSString*)unit
+        traffic:(NSArray<NSNumber*>*)traffic { 
+    self.time = time;               
+    self.unit = unit;               
+    self.traffic = traffic;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self time])
+    {
+        [result setValue:[self time] forKey:@"time"];
+    }
+    if([self unit])
+    {
+        [result setValue:[self unit] forKey:@"unit"];
+    }
+    if([self traffic])
+    {
+        [result setValue:[self traffic] forKey:@"traffic"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.time = [dictionary objectForKey:@"time"];
+    self.unit = [dictionary objectForKey:@"unit"];
+    self.traffic = [dictionary objectForKey:@"traffic"];
+    return self;
+} 
+
+@end
+@implementation ClouddnsserviceAddDomainRequest
+-(id) initWithRegion:(NSString *)regionId
+packId:(NSNumber*)packId
+domainName:(NSString*)domainName
+domainId:(NSNumber*)domainId
+buyType:(NSNumber*)buyType
+timeSpan:(NSNumber*)timeSpan
+timeUnit:(NSNumber*)timeUnit
+billingType:(NSNumber*)billingType { 
+    self.regionId = regionId;
+    self.packId = packId;
+    self.domainName = domainName;
+    self.domainId = domainId;
+    self.buyType = buyType;
+    self.timeSpan = timeSpan;
+    self.timeUnit = timeUnit;
+    self.billingType = billingType;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+packId:(NSNumber*)packId
+domainName:(NSString*)domainName
+domainId:(NSNumber*)domainId
+buyType:(NSNumber*)buyType
+timeSpan:(NSNumber*)timeSpan
+timeUnit:(NSNumber*)timeUnit
+billingType:(NSNumber*)billingType { 
+    self.regionId = regionId;
+    self.version = version;
+    self.packId = packId;
+    self.domainName = domainName;
+    self.domainId = domainId;
+    self.buyType = buyType;
+    self.timeSpan = timeSpan;
+    self.timeUnit = timeUnit;
+    self.billingType = billingType;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self packId])
+    {
+        [result setValue:[self packId] forKey:@"packId"];
+    }
+    if([self domainName])
+    {
+        [result setValue:[self domainName] forKey:@"domainName"];
+    }
+    if([self domainId])
+    {
+        [result setValue:[self domainId] forKey:@"domainId"];
+    }
+    if([self buyType])
+    {
+        [result setValue:[self buyType] forKey:@"buyType"];
+    }
+    if([self timeSpan])
+    {
+        [result setValue:[self timeSpan] forKey:@"timeSpan"];
+    }
+    if([self timeUnit])
+    {
+        [result setValue:[self timeUnit] forKey:@"timeUnit"];
+    }
+    if([self billingType])
+    {
+        [result setValue:[self billingType] forKey:@"billingType"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.packId = [dictionary objectForKey:@"packId"];
+    self.domainName = [dictionary objectForKey:@"domainName"];
+    self.domainId = [dictionary objectForKey:@"domainId"];
+    self.buyType = [dictionary objectForKey:@"buyType"];
+    self.timeSpan = [dictionary objectForKey:@"timeSpan"];
+    self.timeUnit = [dictionary objectForKey:@"timeUnit"];
+    self.billingType = [dictionary objectForKey:@"billingType"];
+    return self;
+} 
+
+@end
+@implementation ClouddnsserviceGetDomainQueryTrafficRequest
+-(id) initWithRegion:(NSString *)regionId
+domainName:(NSString*)domainName
+start:(NSString*)start
+end:(NSString*)end
+domainId:(NSString*)domainId { 
+    self.regionId = regionId;
+    self.domainName = domainName;
+    self.start = start;
+    self.end = end;
+    self.domainId = domainId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+domainName:(NSString*)domainName
+start:(NSString*)start
+end:(NSString*)end
+domainId:(NSString*)domainId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.domainName = domainName;
+    self.start = start;
+    self.end = end;
+    self.domainId = domainId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self domainName])
+    {
+        [result setValue:[self domainName] forKey:@"domainName"];
+    }
+    if([self start])
+    {
+        [result setValue:[self start] forKey:@"start"];
+    }
+    if([self end])
+    {
+        [result setValue:[self end] forKey:@"end"];
+    }
+    if([self domainId])
+    {
+        [result setValue:[self domainId] forKey:@"domainId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.domainName = [dictionary objectForKey:@"domainName"];
+    self.start = [dictionary objectForKey:@"start"];
+    self.end = [dictionary objectForKey:@"end"];
+    self.domainId = [dictionary objectForKey:@"domainId"];
+    return self;
+} 
+
+@end
 @implementation ClouddnsserviceGetDomainQueryCountResult
 -(id) initWithTime:(NSArray<NSNumber*>*) time
         traffic:(NSArray<NSNumber*>*)traffic { 
@@ -138,6 +325,933 @@ domainName:(NSString*)domainName {
 -(id) initWithDic:(NSDictionary*)dictionary{
     self.time = [dictionary objectForKey:@"time"];
     self.traffic = [dictionary objectForKey:@"traffic"];
+    return self;
+} 
+
+@end
+@implementation ClouddnsserviceUpdateDomainRequest
+-(id) initWithRegion:(NSString *)regionId
+domainName:(NSString*)domainName
+idValue:(NSNumber*)idValue { 
+    self.regionId = regionId;
+    self.domainName = domainName;
+    self.idValue = idValue;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+domainName:(NSString*)domainName
+idValue:(NSNumber*)idValue { 
+    self.regionId = regionId;
+    self.version = version;
+    self.domainName = domainName;
+    self.idValue = idValue;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self domainName])
+    {
+        [result setValue:[self domainName] forKey:@"domainName"];
+    }
+    if([self idValue])
+    {
+        [result setValue:[self idValue] forKey:@"id"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.domainName = [dictionary objectForKey:@"domainName"];
+    self.idValue = [dictionary objectForKey:@"id"];
+    return self;
+} 
+
+@end
+@implementation ClouddnsserviceGetDomainQueryCountRequest
+-(id) initWithRegion:(NSString *)regionId
+domainName:(NSString*)domainName
+start:(NSString*)start
+end:(NSString*)end
+domainId:(NSString*)domainId { 
+    self.regionId = regionId;
+    self.domainName = domainName;
+    self.start = start;
+    self.end = end;
+    self.domainId = domainId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+domainName:(NSString*)domainName
+start:(NSString*)start
+end:(NSString*)end
+domainId:(NSString*)domainId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.domainName = domainName;
+    self.start = start;
+    self.end = end;
+    self.domainId = domainId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self domainName])
+    {
+        [result setValue:[self domainName] forKey:@"domainName"];
+    }
+    if([self start])
+    {
+        [result setValue:[self start] forKey:@"start"];
+    }
+    if([self end])
+    {
+        [result setValue:[self end] forKey:@"end"];
+    }
+    if([self domainId])
+    {
+        [result setValue:[self domainId] forKey:@"domainId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.domainName = [dictionary objectForKey:@"domainName"];
+    self.start = [dictionary objectForKey:@"start"];
+    self.end = [dictionary objectForKey:@"end"];
+    self.domainId = [dictionary objectForKey:@"domainId"];
+    return self;
+} 
+
+@end
+@implementation ClouddnsserviceOperateMonitorRequest
+-(id) initWithRegion:(NSString *)regionId
+action:(NSString*)action
+ids:(NSArray<NSNumber*>*)ids
+switchTarget:(NSString*)switchTarget
+domainId:(NSString*)domainId { 
+    self.regionId = regionId;
+    self.action = action;
+    self.ids = ids;
+    self.switchTarget = switchTarget;
+    self.domainId = domainId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+action:(NSString*)action
+ids:(NSArray<NSNumber*>*)ids
+switchTarget:(NSString*)switchTarget
+domainId:(NSString*)domainId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.action = action;
+    self.ids = ids;
+    self.switchTarget = switchTarget;
+    self.domainId = domainId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self action])
+    {
+        [result setValue:[self action] forKey:@"action"];
+    }
+    if([self ids])
+    {
+        [result setValue:[self ids] forKey:@"ids"];
+    }
+    if([self switchTarget])
+    {
+        [result setValue:[self switchTarget] forKey:@"switchTarget"];
+    }
+    if([self domainId])
+    {
+        [result setValue:[self domainId] forKey:@"domainId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.action = [dictionary objectForKey:@"action"];
+    self.ids = [dictionary objectForKey:@"ids"];
+    self.switchTarget = [dictionary objectForKey:@"switchTarget"];
+    self.domainId = [dictionary objectForKey:@"domainId"];
+    return self;
+} 
+
+@end
+@implementation ClouddnsserviceGetMonitorRequest
+-(id) initWithRegion:(NSString *)regionId
+pageIndex:(NSNumber*)pageIndex
+pageSize:(NSNumber*)pageSize
+searchValue:(NSString*)searchValue
+domainId:(NSString*)domainId { 
+    self.regionId = regionId;
+    self.pageIndex = pageIndex;
+    self.pageSize = pageSize;
+    self.searchValue = searchValue;
+    self.domainId = domainId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+pageIndex:(NSNumber*)pageIndex
+pageSize:(NSNumber*)pageSize
+searchValue:(NSString*)searchValue
+domainId:(NSString*)domainId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.pageIndex = pageIndex;
+    self.pageSize = pageSize;
+    self.searchValue = searchValue;
+    self.domainId = domainId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self pageIndex])
+    {
+        [result setValue:[self pageIndex] forKey:@"pageIndex"];
+    }
+    if([self pageSize])
+    {
+        [result setValue:[self pageSize] forKey:@"pageSize"];
+    }
+    if([self searchValue])
+    {
+        [result setValue:[self searchValue] forKey:@"searchValue"];
+    }
+    if([self domainId])
+    {
+        [result setValue:[self domainId] forKey:@"domainId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.pageIndex = [dictionary objectForKey:@"pageIndex"];
+    self.pageSize = [dictionary objectForKey:@"pageSize"];
+    self.searchValue = [dictionary objectForKey:@"searchValue"];
+    self.domainId = [dictionary objectForKey:@"domainId"];
+    return self;
+} 
+
+@end
+@implementation ClouddnsserviceGetMonitorAlarmInfoRequest
+-(id) initWithRegion:(NSString *)regionId
+pageIndex:(NSNumber*)pageIndex
+pageSize:(NSNumber*)pageSize
+searchValue:(NSString*)searchValue
+domainId:(NSString*)domainId { 
+    self.regionId = regionId;
+    self.pageIndex = pageIndex;
+    self.pageSize = pageSize;
+    self.searchValue = searchValue;
+    self.domainId = domainId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+pageIndex:(NSNumber*)pageIndex
+pageSize:(NSNumber*)pageSize
+searchValue:(NSString*)searchValue
+domainId:(NSString*)domainId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.pageIndex = pageIndex;
+    self.pageSize = pageSize;
+    self.searchValue = searchValue;
+    self.domainId = domainId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self pageIndex])
+    {
+        [result setValue:[self pageIndex] forKey:@"pageIndex"];
+    }
+    if([self pageSize])
+    {
+        [result setValue:[self pageSize] forKey:@"pageSize"];
+    }
+    if([self searchValue])
+    {
+        [result setValue:[self searchValue] forKey:@"searchValue"];
+    }
+    if([self domainId])
+    {
+        [result setValue:[self domainId] forKey:@"domainId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.pageIndex = [dictionary objectForKey:@"pageIndex"];
+    self.pageSize = [dictionary objectForKey:@"pageSize"];
+    self.searchValue = [dictionary objectForKey:@"searchValue"];
+    self.domainId = [dictionary objectForKey:@"domainId"];
+    return self;
+} 
+
+@end
+@implementation ClouddnsserviceGetTargetsRequest
+-(id) initWithRegion:(NSString *)regionId
+subDomainName:(NSString*)subDomainName
+domainId:(NSString*)domainId { 
+    self.regionId = regionId;
+    self.subDomainName = subDomainName;
+    self.domainId = domainId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+subDomainName:(NSString*)subDomainName
+domainId:(NSString*)domainId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.subDomainName = subDomainName;
+    self.domainId = domainId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self subDomainName])
+    {
+        [result setValue:[self subDomainName] forKey:@"subDomainName"];
+    }
+    if([self domainId])
+    {
+        [result setValue:[self domainId] forKey:@"domainId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.subDomainName = [dictionary objectForKey:@"subDomainName"];
+    self.domainId = [dictionary objectForKey:@"domainId"];
+    return self;
+} 
+
+@end
+@implementation ClouddnsserviceAddMonitorRequest
+-(id) initWithRegion:(NSString *)regionId
+subDomainName:(NSString*)subDomainName
+domainId:(NSString*)domainId { 
+    self.regionId = regionId;
+    self.subDomainName = subDomainName;
+    self.domainId = domainId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+subDomainName:(NSString*)subDomainName
+domainId:(NSString*)domainId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.subDomainName = subDomainName;
+    self.domainId = domainId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self subDomainName])
+    {
+        [result setValue:[self subDomainName] forKey:@"subDomainName"];
+    }
+    if([self domainId])
+    {
+        [result setValue:[self domainId] forKey:@"domainId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.subDomainName = [dictionary objectForKey:@"subDomainName"];
+    self.domainId = [dictionary objectForKey:@"domainId"];
+    return self;
+} 
+
+@end
+@implementation ClouddnsserviceGetTargetsResult
+-(id) initWithData:(NSArray<NSString*>*) data { 
+    self.data = data;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self data])
+    {
+        [result setValue:[self data] forKey:@"data"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.data = [dictionary objectForKey:@"data"];
+    return self;
+} 
+
+@end
+@implementation ClouddnsserviceAddMonitorTargetRequest
+-(id) initWithRegion:(NSString *)regionId
+subDomainName:(NSString*)subDomainName
+targets:(NSArray<NSString*>*)targets
+domainId:(NSString*)domainId { 
+    self.regionId = regionId;
+    self.subDomainName = subDomainName;
+    self.targets = targets;
+    self.domainId = domainId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+subDomainName:(NSString*)subDomainName
+targets:(NSArray<NSString*>*)targets
+domainId:(NSString*)domainId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.subDomainName = subDomainName;
+    self.targets = targets;
+    self.domainId = domainId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self subDomainName])
+    {
+        [result setValue:[self subDomainName] forKey:@"subDomainName"];
+    }
+    if([self targets])
+    {
+        [result setValue:[self targets] forKey:@"targets"];
+    }
+    if([self domainId])
+    {
+        [result setValue:[self domainId] forKey:@"domainId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.subDomainName = [dictionary objectForKey:@"subDomainName"];
+    self.targets = [dictionary objectForKey:@"targets"];
+    self.domainId = [dictionary objectForKey:@"domainId"];
+    return self;
+} 
+
+@end
+@implementation ClouddnsserviceBatchSetDnsResolveResult
+-(id) initWithData:(NSArray<NSString*>*) data { 
+    self.data = data;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self data])
+    {
+        [result setValue:[self data] forKey:@"data"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.data = [dictionary objectForKey:@"data"];
+    return self;
+} 
+
+@end
+@implementation ClouddnsserviceGetViewTreeRequest
+-(id) initWithRegion:(NSString *)regionId
+loadMode:(NSNumber*)loadMode
+packId:(NSNumber*)packId
+viewId:(NSNumber*)viewId
+domainId:(NSString*)domainId { 
+    self.regionId = regionId;
+    self.loadMode = loadMode;
+    self.packId = packId;
+    self.viewId = viewId;
+    self.domainId = domainId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+loadMode:(NSNumber*)loadMode
+packId:(NSNumber*)packId
+viewId:(NSNumber*)viewId
+domainId:(NSString*)domainId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.loadMode = loadMode;
+    self.packId = packId;
+    self.viewId = viewId;
+    self.domainId = domainId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self loadMode])
+    {
+        [result setValue:[self loadMode] forKey:@"loadMode"];
+    }
+    if([self packId])
+    {
+        [result setValue:[self packId] forKey:@"packId"];
+    }
+    if([self viewId])
+    {
+        [result setValue:[self viewId] forKey:@"viewId"];
+    }
+    if([self domainId])
+    {
+        [result setValue:[self domainId] forKey:@"domainId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.loadMode = [dictionary objectForKey:@"loadMode"];
+    self.packId = [dictionary objectForKey:@"packId"];
+    self.viewId = [dictionary objectForKey:@"viewId"];
+    self.domainId = [dictionary objectForKey:@"domainId"];
+    return self;
+} 
+
+@end
+@implementation ClouddnsserviceSearchRRRequest
+-(id) initWithRegion:(NSString *)regionId
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+domainId:(NSString*)domainId { 
+    self.regionId = regionId;
+    self.pageNumber = pageNumber;
+    self.pageSize = pageSize;
+    self.domainId = domainId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+domainId:(NSString*)domainId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.pageNumber = pageNumber;
+    self.pageSize = pageSize;
+    self.domainId = domainId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self pageNumber])
+    {
+        [result setValue:[self pageNumber] forKey:@"pageNumber"];
+    }
+    if([self pageSize])
+    {
+        [result setValue:[self pageSize] forKey:@"pageSize"];
+    }
+    if([self domainId])
+    {
+        [result setValue:[self domainId] forKey:@"domainId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.pageNumber = [dictionary objectForKey:@"pageNumber"];
+    self.pageSize = [dictionary objectForKey:@"pageSize"];
+    self.domainId = [dictionary objectForKey:@"domainId"];
+    return self;
+} 
+
+@end
+@implementation ClouddnsserviceOperateRRRequest
+-(id) initWithRegion:(NSString *)regionId
+ids:(NSArray<NSNumber*>*)ids
+action:(NSString*)action
+domainId:(NSString*)domainId { 
+    self.regionId = regionId;
+    self.ids = ids;
+    self.action = action;
+    self.domainId = domainId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+ids:(NSArray<NSNumber*>*)ids
+action:(NSString*)action
+domainId:(NSString*)domainId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.ids = ids;
+    self.action = action;
+    self.domainId = domainId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self ids])
+    {
+        [result setValue:[self ids] forKey:@"ids"];
+    }
+    if([self action])
+    {
+        [result setValue:[self action] forKey:@"action"];
+    }
+    if([self domainId])
+    {
+        [result setValue:[self domainId] forKey:@"domainId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.ids = [dictionary objectForKey:@"ids"];
+    self.action = [dictionary objectForKey:@"action"];
+    self.domainId = [dictionary objectForKey:@"domainId"];
+    return self;
+} 
+
+@end
+@implementation ClouddnsserviceGetUserViewRequest
+-(id) initWithRegion:(NSString *)regionId
+domainId:(NSNumber*)domainId
+viewId:(NSNumber*)viewId
+viewName:(NSString*)viewName
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize { 
+    self.regionId = regionId;
+    self.domainId = domainId;
+    self.viewId = viewId;
+    self.viewName = viewName;
+    self.pageNumber = pageNumber;
+    self.pageSize = pageSize;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+domainId:(NSNumber*)domainId
+viewId:(NSNumber*)viewId
+viewName:(NSString*)viewName
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize { 
+    self.regionId = regionId;
+    self.version = version;
+    self.domainId = domainId;
+    self.viewId = viewId;
+    self.viewName = viewName;
+    self.pageNumber = pageNumber;
+    self.pageSize = pageSize;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self domainId])
+    {
+        [result setValue:[self domainId] forKey:@"domainId"];
+    }
+    if([self viewId])
+    {
+        [result setValue:[self viewId] forKey:@"viewId"];
+    }
+    if([self viewName])
+    {
+        [result setValue:[self viewName] forKey:@"viewName"];
+    }
+    if([self pageNumber])
+    {
+        [result setValue:[self pageNumber] forKey:@"pageNumber"];
+    }
+    if([self pageSize])
+    {
+        [result setValue:[self pageSize] forKey:@"pageSize"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.domainId = [dictionary objectForKey:@"domainId"];
+    self.viewId = [dictionary objectForKey:@"viewId"];
+    self.viewName = [dictionary objectForKey:@"viewName"];
+    self.pageNumber = [dictionary objectForKey:@"pageNumber"];
+    self.pageSize = [dictionary objectForKey:@"pageSize"];
+    return self;
+} 
+
+@end
+@implementation ClouddnsserviceGetUserViewIPResult
+-(id) initWithDataList:(NSArray<NSString*>*) dataList
+        currentCount:(NSNumber*)currentCount
+        totalCount:(NSNumber*)totalCount
+        totalPage:(NSNumber*)totalPage { 
+    self.dataList = dataList;               
+    self.currentCount = currentCount;               
+    self.totalCount = totalCount;               
+    self.totalPage = totalPage;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self dataList])
+    {
+        [result setValue:[self dataList] forKey:@"dataList"];
+    }
+    if([self currentCount])
+    {
+        [result setValue:[self currentCount] forKey:@"currentCount"];
+    }
+    if([self totalCount])
+    {
+        [result setValue:[self totalCount] forKey:@"totalCount"];
+    }
+    if([self totalPage])
+    {
+        [result setValue:[self totalPage] forKey:@"totalPage"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.dataList = [dictionary objectForKey:@"dataList"];
+    self.currentCount = [dictionary objectForKey:@"currentCount"];
+    self.totalCount = [dictionary objectForKey:@"totalCount"];
+    self.totalPage = [dictionary objectForKey:@"totalPage"];
+    return self;
+} 
+
+@end
+@implementation ClouddnsserviceGetUserViewIPRequest
+-(id) initWithRegion:(NSString *)regionId
+domainId:(NSNumber*)domainId
+viewId:(NSNumber*)viewId
+viewName:(NSString*)viewName
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize { 
+    self.regionId = regionId;
+    self.domainId = domainId;
+    self.viewId = viewId;
+    self.viewName = viewName;
+    self.pageNumber = pageNumber;
+    self.pageSize = pageSize;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+domainId:(NSNumber*)domainId
+viewId:(NSNumber*)viewId
+viewName:(NSString*)viewName
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize { 
+    self.regionId = regionId;
+    self.version = version;
+    self.domainId = domainId;
+    self.viewId = viewId;
+    self.viewName = viewName;
+    self.pageNumber = pageNumber;
+    self.pageSize = pageSize;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self domainId])
+    {
+        [result setValue:[self domainId] forKey:@"domainId"];
+    }
+    if([self viewId])
+    {
+        [result setValue:[self viewId] forKey:@"viewId"];
+    }
+    if([self viewName])
+    {
+        [result setValue:[self viewName] forKey:@"viewName"];
+    }
+    if([self pageNumber])
+    {
+        [result setValue:[self pageNumber] forKey:@"pageNumber"];
+    }
+    if([self pageSize])
+    {
+        [result setValue:[self pageSize] forKey:@"pageSize"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.domainId = [dictionary objectForKey:@"domainId"];
+    self.viewId = [dictionary objectForKey:@"viewId"];
+    self.viewName = [dictionary objectForKey:@"viewName"];
+    self.pageNumber = [dictionary objectForKey:@"pageNumber"];
+    self.pageSize = [dictionary objectForKey:@"pageSize"];
+    return self;
+} 
+
+@end
+@implementation ClouddnsserviceGetActionLogRequest
+-(id) initWithRegion:(NSString *)regionId
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+startTime:(NSString*)startTime
+endTime:(NSString*)endTime
+keyWord:(NSString*)keyWord
+success:(NSNumber*)success
+type:(NSNumber*)type { 
+    self.regionId = regionId;
+    self.pageNumber = pageNumber;
+    self.pageSize = pageSize;
+    self.startTime = startTime;
+    self.endTime = endTime;
+    self.keyWord = keyWord;
+    self.success = success;
+    self.type = type;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+startTime:(NSString*)startTime
+endTime:(NSString*)endTime
+keyWord:(NSString*)keyWord
+success:(NSNumber*)success
+type:(NSNumber*)type { 
+    self.regionId = regionId;
+    self.version = version;
+    self.pageNumber = pageNumber;
+    self.pageSize = pageSize;
+    self.startTime = startTime;
+    self.endTime = endTime;
+    self.keyWord = keyWord;
+    self.success = success;
+    self.type = type;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self pageNumber])
+    {
+        [result setValue:[self pageNumber] forKey:@"pageNumber"];
+    }
+    if([self pageSize])
+    {
+        [result setValue:[self pageSize] forKey:@"pageSize"];
+    }
+    if([self startTime])
+    {
+        [result setValue:[self startTime] forKey:@"startTime"];
+    }
+    if([self endTime])
+    {
+        [result setValue:[self endTime] forKey:@"endTime"];
+    }
+    if([self keyWord])
+    {
+        [result setValue:[self keyWord] forKey:@"keyWord"];
+    }
+    if([self success])
+    {
+        [result setValue:[self success] forKey:@"success"];
+    }
+    if([self type])
+    {
+        [result setValue:[self type] forKey:@"type"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.pageNumber = [dictionary objectForKey:@"pageNumber"];
+    self.pageSize = [dictionary objectForKey:@"pageSize"];
+    self.startTime = [dictionary objectForKey:@"startTime"];
+    self.endTime = [dictionary objectForKey:@"endTime"];
+    self.keyWord = [dictionary objectForKey:@"keyWord"];
+    self.success = [dictionary objectForKey:@"success"];
+    self.type = [dictionary objectForKey:@"type"];
     return self;
 } 
 
@@ -184,40 +1298,6 @@ ClouddnsserviceGetDomainQueryCountResult* result = [[ClouddnsserviceGetDomainQue
     self.requestId = requestId;
     return self;
 }
-
-@end
-@implementation ClouddnsserviceGetDomainQueryTrafficResult
--(id) initWithTime:(NSArray<NSNumber*>*) time
-        unit:(NSString*)unit
-        traffic:(NSArray<NSNumber*>*)traffic { 
-    self.time = time;               
-    self.unit = unit;               
-    self.traffic = traffic;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self time])
-    {
-        [result setValue:[self time] forKey:@"time"];
-    }
-    if([self unit])
-    {
-        [result setValue:[self unit] forKey:@"unit"];
-    }
-    if([self traffic])
-    {
-        [result setValue:[self traffic] forKey:@"traffic"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.time = [dictionary objectForKey:@"time"];
-    self.unit = [dictionary objectForKey:@"unit"];
-    self.traffic = [dictionary objectForKey:@"traffic"];
-    return self;
-} 
 
 @end
 @implementation ClouddnsserviceAddDomainResult
@@ -313,96 +1393,6 @@ ClouddnsserviceUpdateDomainResult* result = [[ClouddnsserviceUpdateDomainResult 
 }
 
 @end
-@implementation ClouddnsserviceAddDomainRequest
--(id) initWithRegion:(NSString *)regionId
-packId:(NSNumber*)packId
-domainName:(NSString*)domainName
-domainId:(NSNumber*)domainId
-buyType:(NSNumber*)buyType
-timeSpan:(NSNumber*)timeSpan
-timeUnit:(NSNumber*)timeUnit
-billingType:(NSNumber*)billingType { 
-    self.regionId = regionId;
-    self.packId = packId;
-    self.domainName = domainName;
-    self.domainId = domainId;
-    self.buyType = buyType;
-    self.timeSpan = timeSpan;
-    self.timeUnit = timeUnit;
-    self.billingType = billingType;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-packId:(NSNumber*)packId
-domainName:(NSString*)domainName
-domainId:(NSNumber*)domainId
-buyType:(NSNumber*)buyType
-timeSpan:(NSNumber*)timeSpan
-timeUnit:(NSNumber*)timeUnit
-billingType:(NSNumber*)billingType { 
-    self.regionId = regionId;
-    self.version = version;
-    self.packId = packId;
-    self.domainName = domainName;
-    self.domainId = domainId;
-    self.buyType = buyType;
-    self.timeSpan = timeSpan;
-    self.timeUnit = timeUnit;
-    self.billingType = billingType;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self packId])
-    {
-        [result setValue:[self packId] forKey:@"packId"];
-    }
-    if([self domainName])
-    {
-        [result setValue:[self domainName] forKey:@"domainName"];
-    }
-    if([self domainId])
-    {
-        [result setValue:[self domainId] forKey:@"domainId"];
-    }
-    if([self buyType])
-    {
-        [result setValue:[self buyType] forKey:@"buyType"];
-    }
-    if([self timeSpan])
-    {
-        [result setValue:[self timeSpan] forKey:@"timeSpan"];
-    }
-    if([self timeUnit])
-    {
-        [result setValue:[self timeUnit] forKey:@"timeUnit"];
-    }
-    if([self billingType])
-    {
-        [result setValue:[self billingType] forKey:@"billingType"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.packId = [dictionary objectForKey:@"packId"];
-    self.domainName = [dictionary objectForKey:@"domainName"];
-    self.domainId = [dictionary objectForKey:@"domainId"];
-    self.buyType = [dictionary objectForKey:@"buyType"];
-    self.timeSpan = [dictionary objectForKey:@"timeSpan"];
-    self.timeUnit = [dictionary objectForKey:@"timeUnit"];
-    self.billingType = [dictionary objectForKey:@"billingType"];
-    return self;
-} 
-
-@end
 @implementation ClouddnsserviceGetDomainsResult
 -(id) initWithDataList:(NSArray<Domain*>*) dataList
         currentCount:(NSNumber*)currentCount
@@ -418,8 +1408,8 @@ billingType:(NSNumber*)billingType {
     NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
     if([self dataList])
     {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self dataList] count]; i++) {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self dataList] count]; i++) {
             Domain* item = [[self dataList] objectAtIndex:i];
             [arrayDic addObject:[item dictionary]];
         }
@@ -447,10 +1437,10 @@ billingType:(NSNumber*)billingType {
         NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
         for(int i = 0 ; i< [dataListArray count];i++)
         {
-            Domain* item = [[Domain alloc]initWithDic:[dataListArray objectAtIndex:i]];
+        Domain* item = [[Domain alloc]initWithDic:[dataListArray objectAtIndex:i]];
             if(item)
             {
-                [propertyArray addObject:item];
+            [propertyArray addObject:item];
             }
         }
         self.dataList = propertyArray;
@@ -458,69 +1448,6 @@ billingType:(NSNumber*)billingType {
     self.currentCount = [dictionary objectForKey:@"currentCount"];
     self.totalCount = [dictionary objectForKey:@"totalCount"];
     self.totalPage = [dictionary objectForKey:@"totalPage"];
-    return self;
-} 
-
-@end
-@implementation ClouddnsserviceGetDomainQueryTrafficRequest
--(id) initWithRegion:(NSString *)regionId
-domainName:(NSString*)domainName
-start:(NSString*)start
-end:(NSString*)end
-domainId:(NSString*)domainId { 
-    self.regionId = regionId;
-    self.domainName = domainName;
-    self.start = start;
-    self.end = end;
-    self.domainId = domainId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-domainName:(NSString*)domainName
-start:(NSString*)start
-end:(NSString*)end
-domainId:(NSString*)domainId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.domainName = domainName;
-    self.start = start;
-    self.end = end;
-    self.domainId = domainId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self domainName])
-    {
-        [result setValue:[self domainName] forKey:@"domainName"];
-    }
-    if([self start])
-    {
-        [result setValue:[self start] forKey:@"start"];
-    }
-    if([self end])
-    {
-        [result setValue:[self end] forKey:@"end"];
-    }
-    if([self domainId])
-    {
-        [result setValue:[self domainId] forKey:@"domainId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.domainName = [dictionary objectForKey:@"domainName"];
-    self.start = [dictionary objectForKey:@"start"];
-    self.end = [dictionary objectForKey:@"end"];
-    self.domainId = [dictionary objectForKey:@"domainId"];
     return self;
 } 
 
@@ -657,51 +1584,6 @@ ClouddnsserviceDelDomainResult* result = [[ClouddnsserviceDelDomainResult alloc]
 }
 
 @end
-@implementation ClouddnsserviceUpdateDomainRequest
--(id) initWithRegion:(NSString *)regionId
-domainName:(NSString*)domainName
-idValue:(NSNumber*)idValue { 
-    self.regionId = regionId;
-    self.domainName = domainName;
-    self.idValue = idValue;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-domainName:(NSString*)domainName
-idValue:(NSNumber*)idValue { 
-    self.regionId = regionId;
-    self.version = version;
-    self.domainName = domainName;
-    self.idValue = idValue;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self domainName])
-    {
-        [result setValue:[self domainName] forKey:@"domainName"];
-    }
-    if([self idValue])
-    {
-        [result setValue:[self idValue] forKey:@"id"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.domainName = [dictionary objectForKey:@"domainName"];
-    self.idValue = [dictionary objectForKey:@"id"];
-    return self;
-} 
-
-@end
   
 @implementation ClouddnsserviceGetDomainsResponse
 -(NSMutableDictionary*) dictionary
@@ -744,69 +1626,6 @@ ClouddnsserviceGetDomainsResult* result = [[ClouddnsserviceGetDomainsResult allo
     self.requestId = requestId;
     return self;
 }
-
-@end
-@implementation ClouddnsserviceGetDomainQueryCountRequest
--(id) initWithRegion:(NSString *)regionId
-domainName:(NSString*)domainName
-start:(NSString*)start
-end:(NSString*)end
-domainId:(NSString*)domainId { 
-    self.regionId = regionId;
-    self.domainName = domainName;
-    self.start = start;
-    self.end = end;
-    self.domainId = domainId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-domainName:(NSString*)domainName
-start:(NSString*)start
-end:(NSString*)end
-domainId:(NSString*)domainId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.domainName = domainName;
-    self.start = start;
-    self.end = end;
-    self.domainId = domainId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self domainName])
-    {
-        [result setValue:[self domainName] forKey:@"domainName"];
-    }
-    if([self start])
-    {
-        [result setValue:[self start] forKey:@"start"];
-    }
-    if([self end])
-    {
-        [result setValue:[self end] forKey:@"end"];
-    }
-    if([self domainId])
-    {
-        [result setValue:[self domainId] forKey:@"domainId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.domainName = [dictionary objectForKey:@"domainName"];
-    self.start = [dictionary objectForKey:@"start"];
-    self.end = [dictionary objectForKey:@"end"];
-    self.domainId = [dictionary objectForKey:@"domainId"];
-    return self;
-} 
 
 @end
 @implementation ClouddnsserviceAddMonitorResult
@@ -964,132 +1783,6 @@ ClouddnsserviceAddMonitorTargetResult* result = [[ClouddnsserviceAddMonitorTarge
 }
 
 @end
-@implementation ClouddnsserviceOperateMonitorRequest
--(id) initWithRegion:(NSString *)regionId
-action:(NSString*)action
-ids:(NSArray<NSNumber*>*)ids
-switchTarget:(NSString*)switchTarget
-domainId:(NSString*)domainId { 
-    self.regionId = regionId;
-    self.action = action;
-    self.ids = ids;
-    self.switchTarget = switchTarget;
-    self.domainId = domainId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-action:(NSString*)action
-ids:(NSArray<NSNumber*>*)ids
-switchTarget:(NSString*)switchTarget
-domainId:(NSString*)domainId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.action = action;
-    self.ids = ids;
-    self.switchTarget = switchTarget;
-    self.domainId = domainId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self action])
-    {
-        [result setValue:[self action] forKey:@"action"];
-    }
-    if([self ids])
-    {
-        [result setValue:[self ids] forKey:@"ids"];
-    }
-    if([self switchTarget])
-    {
-        [result setValue:[self switchTarget] forKey:@"switchTarget"];
-    }
-    if([self domainId])
-    {
-        [result setValue:[self domainId] forKey:@"domainId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.action = [dictionary objectForKey:@"action"];
-    self.ids = [dictionary objectForKey:@"ids"];
-    self.switchTarget = [dictionary objectForKey:@"switchTarget"];
-    self.domainId = [dictionary objectForKey:@"domainId"];
-    return self;
-} 
-
-@end
-@implementation ClouddnsserviceGetMonitorRequest
--(id) initWithRegion:(NSString *)regionId
-pageIndex:(NSNumber*)pageIndex
-pageSize:(NSNumber*)pageSize
-searchValue:(NSString*)searchValue
-domainId:(NSString*)domainId { 
-    self.regionId = regionId;
-    self.pageIndex = pageIndex;
-    self.pageSize = pageSize;
-    self.searchValue = searchValue;
-    self.domainId = domainId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-pageIndex:(NSNumber*)pageIndex
-pageSize:(NSNumber*)pageSize
-searchValue:(NSString*)searchValue
-domainId:(NSString*)domainId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.pageIndex = pageIndex;
-    self.pageSize = pageSize;
-    self.searchValue = searchValue;
-    self.domainId = domainId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self pageIndex])
-    {
-        [result setValue:[self pageIndex] forKey:@"pageIndex"];
-    }
-    if([self pageSize])
-    {
-        [result setValue:[self pageSize] forKey:@"pageSize"];
-    }
-    if([self searchValue])
-    {
-        [result setValue:[self searchValue] forKey:@"searchValue"];
-    }
-    if([self domainId])
-    {
-        [result setValue:[self domainId] forKey:@"domainId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.pageIndex = [dictionary objectForKey:@"pageIndex"];
-    self.pageSize = [dictionary objectForKey:@"pageSize"];
-    self.searchValue = [dictionary objectForKey:@"searchValue"];
-    self.domainId = [dictionary objectForKey:@"domainId"];
-    return self;
-} 
-
-@end
 @implementation ClouddnsserviceGetMonitorResult
 -(id) initWithCurrentCount:(NSNumber*) currentCount
         totalCount:(NSNumber*)totalCount
@@ -1117,8 +1810,8 @@ domainId:(NSString*)domainId {
     }
     if([self dataList])
     {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self dataList] count]; i++) {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self dataList] count]; i++) {
             Monitor* item = [[self dataList] objectAtIndex:i];
             [arrayDic addObject:[item dictionary]];
         }
@@ -1137,10 +1830,10 @@ domainId:(NSString*)domainId {
         NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
         for(int i = 0 ; i< [dataListArray count];i++)
         {
-            Monitor* item = [[Monitor alloc]initWithDic:[dataListArray objectAtIndex:i]];
+        Monitor* item = [[Monitor alloc]initWithDic:[dataListArray objectAtIndex:i]];
             if(item)
             {
-                [propertyArray addObject:item];
+            [propertyArray addObject:item];
             }
         }
         self.dataList = propertyArray;
@@ -1200,134 +1893,6 @@ ClouddnsserviceGetMonitorResult* result = [[ClouddnsserviceGetMonitorResult allo
 }
 
 -(id) initWithDic:(NSDictionary*)dictionary{
-    return self;
-} 
-
-@end
-@implementation ClouddnsserviceGetMonitorAlarmInfoRequest
--(id) initWithRegion:(NSString *)regionId
-pageIndex:(NSNumber*)pageIndex
-pageSize:(NSNumber*)pageSize
-searchValue:(NSString*)searchValue
-domainId:(NSString*)domainId { 
-    self.regionId = regionId;
-    self.pageIndex = pageIndex;
-    self.pageSize = pageSize;
-    self.searchValue = searchValue;
-    self.domainId = domainId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-pageIndex:(NSNumber*)pageIndex
-pageSize:(NSNumber*)pageSize
-searchValue:(NSString*)searchValue
-domainId:(NSString*)domainId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.pageIndex = pageIndex;
-    self.pageSize = pageSize;
-    self.searchValue = searchValue;
-    self.domainId = domainId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self pageIndex])
-    {
-        [result setValue:[self pageIndex] forKey:@"pageIndex"];
-    }
-    if([self pageSize])
-    {
-        [result setValue:[self pageSize] forKey:@"pageSize"];
-    }
-    if([self searchValue])
-    {
-        [result setValue:[self searchValue] forKey:@"searchValue"];
-    }
-    if([self domainId])
-    {
-        [result setValue:[self domainId] forKey:@"domainId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.pageIndex = [dictionary objectForKey:@"pageIndex"];
-    self.pageSize = [dictionary objectForKey:@"pageSize"];
-    self.searchValue = [dictionary objectForKey:@"searchValue"];
-    self.domainId = [dictionary objectForKey:@"domainId"];
-    return self;
-} 
-
-@end
-@implementation ClouddnsserviceGetTargetsRequest
--(id) initWithRegion:(NSString *)regionId
-subDomainName:(NSString*)subDomainName
-domainId:(NSString*)domainId { 
-    self.regionId = regionId;
-    self.subDomainName = subDomainName;
-    self.domainId = domainId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-subDomainName:(NSString*)subDomainName
-domainId:(NSString*)domainId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.subDomainName = subDomainName;
-    self.domainId = domainId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self subDomainName])
-    {
-        [result setValue:[self subDomainName] forKey:@"subDomainName"];
-    }
-    if([self domainId])
-    {
-        [result setValue:[self domainId] forKey:@"domainId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.subDomainName = [dictionary objectForKey:@"subDomainName"];
-    self.domainId = [dictionary objectForKey:@"domainId"];
-    return self;
-} 
-
-@end
-@implementation ClouddnsserviceGetTargetsResult
--(id) initWithData:(NSArray<NSString*>*) data { 
-    self.data = data;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self data])
-    {
-        [result setValue:[self data] forKey:@"data"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.data = [dictionary objectForKey:@"data"];
     return self;
 } 
 
@@ -1458,8 +2023,8 @@ ClouddnsserviceUpdateMonitorResult* result = [[ClouddnsserviceUpdateMonitorResul
     }
     if([self dataList])
     {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self dataList] count]; i++) {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self dataList] count]; i++) {
             MonitorAlarmInfo* item = [[self dataList] objectAtIndex:i];
             [arrayDic addObject:[item dictionary]];
         }
@@ -1478,10 +2043,10 @@ ClouddnsserviceUpdateMonitorResult* result = [[ClouddnsserviceUpdateMonitorResul
         NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
         for(int i = 0 ; i< [dataListArray count];i++)
         {
-            MonitorAlarmInfo* item = [[MonitorAlarmInfo alloc]initWithDic:[dataListArray objectAtIndex:i]];
+        MonitorAlarmInfo* item = [[MonitorAlarmInfo alloc]initWithDic:[dataListArray objectAtIndex:i]];
             if(item)
             {
-                [propertyArray addObject:item];
+            [propertyArray addObject:item];
             }
         }
         self.dataList = propertyArray;
@@ -1534,51 +2099,6 @@ ClouddnsserviceGetMonitorAlarmInfoResult* result = [[ClouddnsserviceGetMonitorAl
 }
 
 @end
-@implementation ClouddnsserviceAddMonitorRequest
--(id) initWithRegion:(NSString *)regionId
-subDomainName:(NSString*)subDomainName
-domainId:(NSString*)domainId { 
-    self.regionId = regionId;
-    self.subDomainName = subDomainName;
-    self.domainId = domainId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-subDomainName:(NSString*)subDomainName
-domainId:(NSString*)domainId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.subDomainName = subDomainName;
-    self.domainId = domainId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self subDomainName])
-    {
-        [result setValue:[self subDomainName] forKey:@"subDomainName"];
-    }
-    if([self domainId])
-    {
-        [result setValue:[self domainId] forKey:@"domainId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.subDomainName = [dictionary objectForKey:@"subDomainName"];
-    self.domainId = [dictionary objectForKey:@"domainId"];
-    return self;
-} 
-
-@end
   
 @implementation ClouddnsserviceOperateMonitorResponse
 -(NSMutableDictionary*) dictionary
@@ -1621,60 +2141,6 @@ ClouddnsserviceOperateMonitorResult* result = [[ClouddnsserviceOperateMonitorRes
     self.requestId = requestId;
     return self;
 }
-
-@end
-@implementation ClouddnsserviceAddMonitorTargetRequest
--(id) initWithRegion:(NSString *)regionId
-subDomainName:(NSString*)subDomainName
-targets:(NSArray<NSString*>*)targets
-domainId:(NSString*)domainId { 
-    self.regionId = regionId;
-    self.subDomainName = subDomainName;
-    self.targets = targets;
-    self.domainId = domainId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-subDomainName:(NSString*)subDomainName
-targets:(NSArray<NSString*>*)targets
-domainId:(NSString*)domainId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.subDomainName = subDomainName;
-    self.targets = targets;
-    self.domainId = domainId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self subDomainName])
-    {
-        [result setValue:[self subDomainName] forKey:@"subDomainName"];
-    }
-    if([self targets])
-    {
-        [result setValue:[self targets] forKey:@"targets"];
-    }
-    if([self domainId])
-    {
-        [result setValue:[self domainId] forKey:@"domainId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.subDomainName = [dictionary objectForKey:@"subDomainName"];
-    self.targets = [dictionary objectForKey:@"targets"];
-    self.domainId = [dictionary objectForKey:@"domainId"];
-    return self;
-} 
 
 @end
 @implementation ClouddnsserviceUpdateRRResult
@@ -1797,26 +2263,6 @@ ClouddnsserviceAddRRResult* result = [[ClouddnsserviceAddRRResult alloc]initWith
 }
 
 @end
-@implementation ClouddnsserviceBatchSetDnsResolveResult
--(id) initWithData:(NSArray<NSString*>*) data { 
-    self.data = data;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self data])
-    {
-        [result setValue:[self data] forKey:@"data"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.data = [dictionary objectForKey:@"data"];
-    return self;
-} 
-
-@end
 @implementation ClouddnsserviceGetViewTreeResult
 -(id) initWithData:(NSArray<ViewTree*>*) data { 
     self.data = data;               
@@ -1826,8 +2272,8 @@ ClouddnsserviceAddRRResult* result = [[ClouddnsserviceAddRRResult alloc]initWith
     NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
     if([self data])
     {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self data] count]; i++) {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self data] count]; i++) {
             ViewTree* item = [[self data] objectAtIndex:i];
             [arrayDic addObject:[item dictionary]];
         }
@@ -1843,10 +2289,10 @@ ClouddnsserviceAddRRResult* result = [[ClouddnsserviceAddRRResult alloc]initWith
         NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
         for(int i = 0 ; i< [dataArray count];i++)
         {
-            ViewTree* item = [[ViewTree alloc]initWithDic:[dataArray objectAtIndex:i]];
+        ViewTree* item = [[ViewTree alloc]initWithDic:[dataArray objectAtIndex:i]];
             if(item)
             {
-                [propertyArray addObject:item];
+            [propertyArray addObject:item];
             }
         }
         self.data = propertyArray;
@@ -1914,8 +2360,8 @@ ClouddnsserviceGetViewTreeResult* result = [[ClouddnsserviceGetViewTreeResult al
     NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
     if([self dataList])
     {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self dataList] count]; i++) {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self dataList] count]; i++) {
             RR* item = [[self dataList] objectAtIndex:i];
             [arrayDic addObject:[item dictionary]];
         }
@@ -1943,10 +2389,10 @@ ClouddnsserviceGetViewTreeResult* result = [[ClouddnsserviceGetViewTreeResult al
         NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
         for(int i = 0 ; i< [dataListArray count];i++)
         {
-            RR* item = [[RR alloc]initWithDic:[dataListArray objectAtIndex:i]];
+        RR* item = [[RR alloc]initWithDic:[dataListArray objectAtIndex:i]];
             if(item)
             {
-                [propertyArray addObject:item];
+            [propertyArray addObject:item];
             }
         }
         self.dataList = propertyArray;
@@ -2135,69 +2581,6 @@ ClouddnsserviceUpdateRRResult* result = [[ClouddnsserviceUpdateRRResult alloc]in
 }
 
 @end
-@implementation ClouddnsserviceGetViewTreeRequest
--(id) initWithRegion:(NSString *)regionId
-loadMode:(NSNumber*)loadMode
-packId:(NSNumber*)packId
-viewId:(NSNumber*)viewId
-domainId:(NSString*)domainId { 
-    self.regionId = regionId;
-    self.loadMode = loadMode;
-    self.packId = packId;
-    self.viewId = viewId;
-    self.domainId = domainId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-loadMode:(NSNumber*)loadMode
-packId:(NSNumber*)packId
-viewId:(NSNumber*)viewId
-domainId:(NSString*)domainId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.loadMode = loadMode;
-    self.packId = packId;
-    self.viewId = viewId;
-    self.domainId = domainId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self loadMode])
-    {
-        [result setValue:[self loadMode] forKey:@"loadMode"];
-    }
-    if([self packId])
-    {
-        [result setValue:[self packId] forKey:@"packId"];
-    }
-    if([self viewId])
-    {
-        [result setValue:[self viewId] forKey:@"viewId"];
-    }
-    if([self domainId])
-    {
-        [result setValue:[self domainId] forKey:@"domainId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.loadMode = [dictionary objectForKey:@"loadMode"];
-    self.packId = [dictionary objectForKey:@"packId"];
-    self.viewId = [dictionary objectForKey:@"viewId"];
-    self.domainId = [dictionary objectForKey:@"domainId"];
-    return self;
-} 
-
-@end
 @implementation ClouddnsserviceBatchSetDnsResolveRequest
 -(id) initWithRegion:(NSString *)regionId
 req:(NSArray<BatchSetDNS*>*)req { 
@@ -2223,8 +2606,8 @@ req:(NSArray<BatchSetDNS*>*)req {
     }
     if([self req])
     {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self req] count]; i++) {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self req] count]; i++) {
             BatchSetDNS* item = [[self req] objectAtIndex:i];
             [arrayDic addObject:[item dictionary]];
         }
@@ -2240,10 +2623,10 @@ req:(NSArray<BatchSetDNS*>*)req {
         NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
         for(int i = 0 ; i< [reqArray count];i++)
         {
-            BatchSetDNS* item = [[BatchSetDNS alloc]initWithDic:[reqArray objectAtIndex:i]];
+        BatchSetDNS* item = [[BatchSetDNS alloc]initWithDic:[reqArray objectAtIndex:i]];
             if(item)
             {
-                [propertyArray addObject:item];
+            [propertyArray addObject:item];
             }
         }
         self.req = propertyArray;
@@ -2307,114 +2690,6 @@ ClouddnsserviceOperateRRResult* result = [[ClouddnsserviceOperateRRResult alloc]
 }
 
 @end
-@implementation ClouddnsserviceSearchRRRequest
--(id) initWithRegion:(NSString *)regionId
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-domainId:(NSString*)domainId { 
-    self.regionId = regionId;
-    self.pageNumber = pageNumber;
-    self.pageSize = pageSize;
-    self.domainId = domainId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-domainId:(NSString*)domainId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.pageNumber = pageNumber;
-    self.pageSize = pageSize;
-    self.domainId = domainId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self pageNumber])
-    {
-        [result setValue:[self pageNumber] forKey:@"pageNumber"];
-    }
-    if([self pageSize])
-    {
-        [result setValue:[self pageSize] forKey:@"pageSize"];
-    }
-    if([self domainId])
-    {
-        [result setValue:[self domainId] forKey:@"domainId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.pageNumber = [dictionary objectForKey:@"pageNumber"];
-    self.pageSize = [dictionary objectForKey:@"pageSize"];
-    self.domainId = [dictionary objectForKey:@"domainId"];
-    return self;
-} 
-
-@end
-@implementation ClouddnsserviceOperateRRRequest
--(id) initWithRegion:(NSString *)regionId
-ids:(NSArray<NSNumber*>*)ids
-action:(NSString*)action
-domainId:(NSString*)domainId { 
-    self.regionId = regionId;
-    self.ids = ids;
-    self.action = action;
-    self.domainId = domainId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-ids:(NSArray<NSNumber*>*)ids
-action:(NSString*)action
-domainId:(NSString*)domainId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.ids = ids;
-    self.action = action;
-    self.domainId = domainId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self ids])
-    {
-        [result setValue:[self ids] forKey:@"ids"];
-    }
-    if([self action])
-    {
-        [result setValue:[self action] forKey:@"action"];
-    }
-    if([self domainId])
-    {
-        [result setValue:[self domainId] forKey:@"domainId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.ids = [dictionary objectForKey:@"ids"];
-    self.action = [dictionary objectForKey:@"action"];
-    self.domainId = [dictionary objectForKey:@"domainId"];
-    return self;
-} 
-
-@end
 @implementation ClouddnsserviceAddUserViewIPResult
 -(NSMutableDictionary*) dictionary{
     NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
@@ -2422,78 +2697,6 @@ domainId:(NSString*)domainId {
 }
 
 -(id) initWithDic:(NSDictionary*)dictionary{
-    return self;
-} 
-
-@end
-@implementation ClouddnsserviceGetUserViewRequest
--(id) initWithRegion:(NSString *)regionId
-domainId:(NSNumber*)domainId
-viewId:(NSNumber*)viewId
-viewName:(NSString*)viewName
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize { 
-    self.regionId = regionId;
-    self.domainId = domainId;
-    self.viewId = viewId;
-    self.viewName = viewName;
-    self.pageNumber = pageNumber;
-    self.pageSize = pageSize;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-domainId:(NSNumber*)domainId
-viewId:(NSNumber*)viewId
-viewName:(NSString*)viewName
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize { 
-    self.regionId = regionId;
-    self.version = version;
-    self.domainId = domainId;
-    self.viewId = viewId;
-    self.viewName = viewName;
-    self.pageNumber = pageNumber;
-    self.pageSize = pageSize;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self domainId])
-    {
-        [result setValue:[self domainId] forKey:@"domainId"];
-    }
-    if([self viewId])
-    {
-        [result setValue:[self viewId] forKey:@"viewId"];
-    }
-    if([self viewName])
-    {
-        [result setValue:[self viewName] forKey:@"viewName"];
-    }
-    if([self pageNumber])
-    {
-        [result setValue:[self pageNumber] forKey:@"pageNumber"];
-    }
-    if([self pageSize])
-    {
-        [result setValue:[self pageSize] forKey:@"pageSize"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.domainId = [dictionary objectForKey:@"domainId"];
-    self.viewId = [dictionary objectForKey:@"viewId"];
-    self.viewName = [dictionary objectForKey:@"viewName"];
-    self.pageNumber = [dictionary objectForKey:@"pageNumber"];
-    self.pageSize = [dictionary objectForKey:@"pageSize"];
     return self;
 } 
 
@@ -2607,47 +2810,6 @@ ClouddnsserviceDelUserViewIPResult* result = [[ClouddnsserviceDelUserViewIPResul
     self.requestId = requestId;
     return self;
 }
-
-@end
-@implementation ClouddnsserviceGetUserViewIPResult
--(id) initWithDataList:(NSArray<NSString*>*) dataList
-        currentCount:(NSNumber*)currentCount
-        totalCount:(NSNumber*)totalCount
-        totalPage:(NSNumber*)totalPage { 
-    self.dataList = dataList;               
-    self.currentCount = currentCount;               
-    self.totalCount = totalCount;               
-    self.totalPage = totalPage;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self dataList])
-    {
-        [result setValue:[self dataList] forKey:@"dataList"];
-    }
-    if([self currentCount])
-    {
-        [result setValue:[self currentCount] forKey:@"currentCount"];
-    }
-    if([self totalCount])
-    {
-        [result setValue:[self totalCount] forKey:@"totalCount"];
-    }
-    if([self totalPage])
-    {
-        [result setValue:[self totalPage] forKey:@"totalPage"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.dataList = [dictionary objectForKey:@"dataList"];
-    self.currentCount = [dictionary objectForKey:@"currentCount"];
-    self.totalCount = [dictionary objectForKey:@"totalCount"];
-    self.totalPage = [dictionary objectForKey:@"totalPage"];
-    return self;
-} 
 
 @end
   
@@ -2836,8 +2998,8 @@ req:(AddView*)req {
     NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
     if([self dataList])
     {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self dataList] count]; i++) {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self dataList] count]; i++) {
             UserViewInput* item = [[self dataList] objectAtIndex:i];
             [arrayDic addObject:[item dictionary]];
         }
@@ -2865,10 +3027,10 @@ req:(AddView*)req {
         NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
         for(int i = 0 ; i< [dataListArray count];i++)
         {
-            UserViewInput* item = [[UserViewInput alloc]initWithDic:[dataListArray objectAtIndex:i]];
+        UserViewInput* item = [[UserViewInput alloc]initWithDic:[dataListArray objectAtIndex:i]];
             if(item)
             {
-                [propertyArray addObject:item];
+            [propertyArray addObject:item];
             }
         }
         self.dataList = propertyArray;
@@ -2956,78 +3118,6 @@ req:(DelViewIP*)req {
 
 -(id) initWithDic:(NSDictionary*)dictionary{
     self.req = [[DelViewIP alloc]initWithDic:[dictionary objectForKey:@"req"]];
-    return self;
-} 
-
-@end
-@implementation ClouddnsserviceGetUserViewIPRequest
--(id) initWithRegion:(NSString *)regionId
-domainId:(NSNumber*)domainId
-viewId:(NSNumber*)viewId
-viewName:(NSString*)viewName
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize { 
-    self.regionId = regionId;
-    self.domainId = domainId;
-    self.viewId = viewId;
-    self.viewName = viewName;
-    self.pageNumber = pageNumber;
-    self.pageSize = pageSize;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-domainId:(NSNumber*)domainId
-viewId:(NSNumber*)viewId
-viewName:(NSString*)viewName
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize { 
-    self.regionId = regionId;
-    self.version = version;
-    self.domainId = domainId;
-    self.viewId = viewId;
-    self.viewName = viewName;
-    self.pageNumber = pageNumber;
-    self.pageSize = pageSize;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self domainId])
-    {
-        [result setValue:[self domainId] forKey:@"domainId"];
-    }
-    if([self viewId])
-    {
-        [result setValue:[self viewId] forKey:@"viewId"];
-    }
-    if([self viewName])
-    {
-        [result setValue:[self viewName] forKey:@"viewName"];
-    }
-    if([self pageNumber])
-    {
-        [result setValue:[self pageNumber] forKey:@"pageNumber"];
-    }
-    if([self pageSize])
-    {
-        [result setValue:[self pageSize] forKey:@"pageSize"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.domainId = [dictionary objectForKey:@"domainId"];
-    self.viewId = [dictionary objectForKey:@"viewId"];
-    self.viewName = [dictionary objectForKey:@"viewName"];
-    self.pageNumber = [dictionary objectForKey:@"pageNumber"];
-    self.pageSize = [dictionary objectForKey:@"pageSize"];
     return self;
 } 
 
@@ -3135,8 +3225,8 @@ ClouddnsserviceAddUserViewIPResult* result = [[ClouddnsserviceAddUserViewIPResul
     NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
     if([self dataList])
     {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self dataList] count]; i++) {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self dataList] count]; i++) {
             Actionlog* item = [[self dataList] objectAtIndex:i];
             [arrayDic addObject:[item dictionary]];
         }
@@ -3164,10 +3254,10 @@ ClouddnsserviceAddUserViewIPResult* result = [[ClouddnsserviceAddUserViewIPResul
         NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
         for(int i = 0 ; i< [dataListArray count];i++)
         {
-            Actionlog* item = [[Actionlog alloc]initWithDic:[dataListArray objectAtIndex:i]];
+        Actionlog* item = [[Actionlog alloc]initWithDic:[dataListArray objectAtIndex:i]];
             if(item)
             {
-                [propertyArray addObject:item];
+            [propertyArray addObject:item];
             }
         }
         self.dataList = propertyArray;
@@ -3221,96 +3311,6 @@ ClouddnsserviceGetActionLogResult* result = [[ClouddnsserviceGetActionLogResult 
     self.requestId = requestId;
     return self;
 }
-
-@end
-@implementation ClouddnsserviceGetActionLogRequest
--(id) initWithRegion:(NSString *)regionId
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-startTime:(NSString*)startTime
-endTime:(NSString*)endTime
-keyWord:(NSString*)keyWord
-success:(NSNumber*)success
-type:(NSNumber*)type { 
-    self.regionId = regionId;
-    self.pageNumber = pageNumber;
-    self.pageSize = pageSize;
-    self.startTime = startTime;
-    self.endTime = endTime;
-    self.keyWord = keyWord;
-    self.success = success;
-    self.type = type;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-startTime:(NSString*)startTime
-endTime:(NSString*)endTime
-keyWord:(NSString*)keyWord
-success:(NSNumber*)success
-type:(NSNumber*)type { 
-    self.regionId = regionId;
-    self.version = version;
-    self.pageNumber = pageNumber;
-    self.pageSize = pageSize;
-    self.startTime = startTime;
-    self.endTime = endTime;
-    self.keyWord = keyWord;
-    self.success = success;
-    self.type = type;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self pageNumber])
-    {
-        [result setValue:[self pageNumber] forKey:@"pageNumber"];
-    }
-    if([self pageSize])
-    {
-        [result setValue:[self pageSize] forKey:@"pageSize"];
-    }
-    if([self startTime])
-    {
-        [result setValue:[self startTime] forKey:@"startTime"];
-    }
-    if([self endTime])
-    {
-        [result setValue:[self endTime] forKey:@"endTime"];
-    }
-    if([self keyWord])
-    {
-        [result setValue:[self keyWord] forKey:@"keyWord"];
-    }
-    if([self success])
-    {
-        [result setValue:[self success] forKey:@"success"];
-    }
-    if([self type])
-    {
-        [result setValue:[self type] forKey:@"type"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.pageNumber = [dictionary objectForKey:@"pageNumber"];
-    self.pageSize = [dictionary objectForKey:@"pageSize"];
-    self.startTime = [dictionary objectForKey:@"startTime"];
-    self.endTime = [dictionary objectForKey:@"endTime"];
-    self.keyWord = [dictionary objectForKey:@"keyWord"];
-    self.success = [dictionary objectForKey:@"success"];
-    self.type = [dictionary objectForKey:@"type"];
-    return self;
-} 
 
 @end
  

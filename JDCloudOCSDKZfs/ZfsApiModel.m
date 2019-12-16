@@ -97,125 +97,6 @@ clientToken:(NSString*)clientToken {
 } 
 
 @end
-@implementation ZfsDeleteMountTargetResult
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    return self;
-} 
-
-@end
-  
-@implementation ZfsDeleteMountTargetResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-ZfsDeleteMountTargetResult* result = [[ZfsDeleteMountTargetResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(ZfsDeleteMountTargetResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
-@implementation ZfsCreateMountTargetResult
--(id) initWithMountTargetId:(NSString*) mountTargetId { 
-    self.mountTargetId = mountTargetId;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self mountTargetId])
-    {
-        [result setValue:[self mountTargetId] forKey:@"mountTargetId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.mountTargetId = [dictionary objectForKey:@"mountTargetId"];
-    return self;
-} 
-
-@end
-  
-@implementation ZfsCreateMountTargetResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-ZfsCreateMountTargetResult* result = [[ZfsCreateMountTargetResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(ZfsCreateMountTargetResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
 @implementation ZfsDeleteMountTargetRequest
 -(id) initWithRegion:(NSString *)regionId
 mountTargetId:(NSString*)mountTargetId { 
@@ -248,115 +129,6 @@ mountTargetId:(NSString*)mountTargetId {
 
 -(id) initWithDic:(NSDictionary*)dictionary{
     self.mountTargetId = [dictionary objectForKey:@"mountTargetId"];
-    return self;
-} 
-
-@end
-@implementation ZfsDescribeMountTargetResult
--(id) initWithMountTarget:(MountTarget*) mountTarget { 
-    self.mountTarget = mountTarget;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self mountTarget])
-    {
-        [result setValue:[[self mountTarget] dictionary]forKey:@"mountTarget"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.mountTarget = [[MountTarget alloc]initWithDic:[dictionary objectForKey:@"mountTarget"]];
-    return self;
-} 
-
-@end
-  
-@implementation ZfsDescribeMountTargetResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-ZfsDescribeMountTargetResult* result = [[ZfsDescribeMountTargetResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(ZfsDescribeMountTargetResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
-@implementation ZfsDescribeMountTargetsResult
--(id) initWithMountTargets:(NSArray<MountTarget*>*) mountTargets
-        totalCount:(NSNumber*)totalCount { 
-    self.mountTargets = mountTargets;               
-    self.totalCount = totalCount;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self mountTargets])
-    {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self mountTargets] count]; i++) {
-            MountTarget* item = [[self mountTargets] objectAtIndex:i];
-            [arrayDic addObject:[item dictionary]];
-        }
-        [result setValue:arrayDic forKey:@"mountTargets"];
-    }
-    if([self totalCount])
-    {
-        [result setValue:[self totalCount] forKey:@"totalCount"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    NSArray* mountTargetsArray = [dictionary objectForKey:@"mountTargets"];
-    if(mountTargetsArray&&![mountTargetsArray isKindOfClass:[NSNull class]])
-    {
-        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
-        for(int i = 0 ; i< [mountTargetsArray count];i++)
-        {
-            MountTarget* item = [[MountTarget alloc]initWithDic:[mountTargetsArray objectAtIndex:i]];
-            if(item)
-            {
-                [propertyArray addObject:item];
-            }
-        }
-        self.mountTargets = propertyArray;
-    }
-    self.totalCount = [dictionary objectForKey:@"totalCount"];
     return self;
 } 
 
@@ -397,292 +169,22 @@ mountTargetId:(NSString*)mountTargetId {
 } 
 
 @end
-  
-@implementation ZfsDescribeMountTargetsResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-ZfsDescribeMountTargetsResult* result = [[ZfsDescribeMountTargetsResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(ZfsDescribeMountTargetsResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
-@implementation ZfsDescribeMountTargetsRequest
--(id) initWithRegion:(NSString *)regionId
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-filters:(NSArray<Filter*>*)filters { 
-    self.regionId = regionId;
-    self.pageNumber = pageNumber;
-    self.pageSize = pageSize;
-    self.filters = filters;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-filters:(NSArray<Filter*>*)filters { 
-    self.regionId = regionId;
-    self.version = version;
-    self.pageNumber = pageNumber;
-    self.pageSize = pageSize;
-    self.filters = filters;
+@implementation ZfsCreateMountTargetResult
+-(id) initWithMountTargetId:(NSString*) mountTargetId { 
+    self.mountTargetId = mountTargetId;               
     return self;
 }
 -(NSMutableDictionary*) dictionary{
     NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
+    if([self mountTargetId])
     {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self pageNumber])
-    {
-        [result setValue:[self pageNumber] forKey:@"pageNumber"];
-    }
-    if([self pageSize])
-    {
-        [result setValue:[self pageSize] forKey:@"pageSize"];
-    }
-    if([self filters])
-    {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self filters] count]; i++) {
-            Filter* item = [[self filters] objectAtIndex:i];
-            [arrayDic addObject:[item dictionary]];
-        }
-        [result setValue:arrayDic forKey:@"filters"];
+        [result setValue:[self mountTargetId] forKey:@"mountTargetId"];
     }
     return result;
 }
 
 -(id) initWithDic:(NSDictionary*)dictionary{
-    self.pageNumber = [dictionary objectForKey:@"pageNumber"];
-    self.pageSize = [dictionary objectForKey:@"pageSize"];
-    NSArray* filtersArray = [dictionary objectForKey:@"filters"];
-    if(filtersArray&&![filtersArray isKindOfClass:[NSNull class]])
-    {
-        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
-        for(int i = 0 ; i< [filtersArray count];i++)
-        {
-            Filter* item = [[Filter alloc]initWithDic:[filtersArray objectAtIndex:i]];
-            if(item)
-            {
-                [propertyArray addObject:item];
-            }
-        }
-        self.filters = propertyArray;
-    }
-    return self;
-} 
-
-@end
-@implementation ZfsDescribeFileSystemResult
--(id) initWithFileSystem:(FileSystem*) fileSystem { 
-    self.fileSystem = fileSystem;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self fileSystem])
-    {
-        [result setValue:[[self fileSystem] dictionary]forKey:@"fileSystem"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.fileSystem = [[FileSystem alloc]initWithDic:[dictionary objectForKey:@"fileSystem"]];
-    return self;
-} 
-
-@end
-  
-@implementation ZfsDescribeFileSystemResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-ZfsDescribeFileSystemResult* result = [[ZfsDescribeFileSystemResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(ZfsDescribeFileSystemResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
-@implementation ZfsDescribeFileSystemsRequest
--(id) initWithRegion:(NSString *)regionId
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-tags:(NSArray<ZfsTagFilter*>*)tags
-filters:(NSArray<Filter*>*)filters { 
-    self.regionId = regionId;
-    self.pageNumber = pageNumber;
-    self.pageSize = pageSize;
-    self.tags = tags;
-    self.filters = filters;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-tags:(NSArray<ZfsTagFilter*>*)tags
-filters:(NSArray<Filter*>*)filters { 
-    self.regionId = regionId;
-    self.version = version;
-    self.pageNumber = pageNumber;
-    self.pageSize = pageSize;
-    self.tags = tags;
-    self.filters = filters;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self pageNumber])
-    {
-        [result setValue:[self pageNumber] forKey:@"pageNumber"];
-    }
-    if([self pageSize])
-    {
-        [result setValue:[self pageSize] forKey:@"pageSize"];
-    }
-    if([self tags])
-    {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self tags] count]; i++) {
-            ZfsTagFilter* item = [[self tags] objectAtIndex:i];
-            [arrayDic addObject:[item dictionary]];
-        }
-        [result setValue:arrayDic forKey:@"tags"];
-    }
-    if([self filters])
-    {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self filters] count]; i++) {
-            Filter* item = [[self filters] objectAtIndex:i];
-            [arrayDic addObject:[item dictionary]];
-        }
-        [result setValue:arrayDic forKey:@"filters"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.pageNumber = [dictionary objectForKey:@"pageNumber"];
-    self.pageSize = [dictionary objectForKey:@"pageSize"];
-    NSArray* tagsArray = [dictionary objectForKey:@"tags"];
-    if(tagsArray&&![tagsArray isKindOfClass:[NSNull class]])
-    {
-        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
-        for(int i = 0 ; i< [tagsArray count];i++)
-        {
-            ZfsTagFilter* item = [[ZfsTagFilter alloc]initWithDic:[tagsArray objectAtIndex:i]];
-            if(item)
-            {
-                [propertyArray addObject:item];
-            }
-        }
-        self.tags = propertyArray;
-    }
-    NSArray* filtersArray = [dictionary objectForKey:@"filters"];
-    if(filtersArray&&![filtersArray isKindOfClass:[NSNull class]])
-    {
-        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
-        for(int i = 0 ; i< [filtersArray count];i++)
-        {
-            Filter* item = [[Filter alloc]initWithDic:[filtersArray objectAtIndex:i]];
-            if(item)
-            {
-                [propertyArray addObject:item];
-            }
-        }
-        self.filters = propertyArray;
-    }
-    return self;
-} 
-
-@end
-@implementation ZfsModifyFileSystemAttributeResult
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
+    self.mountTargetId = [dictionary objectForKey:@"mountTargetId"];
     return self;
 } 
 
@@ -705,194 +207,6 @@ filters:(NSArray<Filter*>*)filters {
     self.fileSystemId = [dictionary objectForKey:@"fileSystemId"];
     return self;
 } 
-
-@end
-  
-@implementation ZfsCreateFileSystemResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-ZfsCreateFileSystemResult* result = [[ZfsCreateFileSystemResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(ZfsCreateFileSystemResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
-@implementation ZfsDescribeFileSystemsResult
--(id) initWithFileSystems:(NSArray<FileSystem*>*) fileSystems
-        totalCount:(NSNumber*)totalCount { 
-    self.fileSystems = fileSystems;               
-    self.totalCount = totalCount;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self fileSystems])
-    {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self fileSystems] count]; i++) {
-            FileSystem* item = [[self fileSystems] objectAtIndex:i];
-            [arrayDic addObject:[item dictionary]];
-        }
-        [result setValue:arrayDic forKey:@"fileSystems"];
-    }
-    if([self totalCount])
-    {
-        [result setValue:[self totalCount] forKey:@"totalCount"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    NSArray* fileSystemsArray = [dictionary objectForKey:@"fileSystems"];
-    if(fileSystemsArray&&![fileSystemsArray isKindOfClass:[NSNull class]])
-    {
-        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
-        for(int i = 0 ; i< [fileSystemsArray count];i++)
-        {
-            FileSystem* item = [[FileSystem alloc]initWithDic:[fileSystemsArray objectAtIndex:i]];
-            if(item)
-            {
-                [propertyArray addObject:item];
-            }
-        }
-        self.fileSystems = propertyArray;
-    }
-    self.totalCount = [dictionary objectForKey:@"totalCount"];
-    return self;
-} 
-
-@end
-  
-@implementation ZfsDescribeFileSystemsResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-ZfsDescribeFileSystemsResult* result = [[ZfsDescribeFileSystemsResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(ZfsDescribeFileSystemsResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
-@implementation ZfsDeleteFileSystemResult
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    return self;
-} 
-
-@end
-  
-@implementation ZfsDeleteFileSystemResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-ZfsDeleteFileSystemResult* result = [[ZfsDeleteFileSystemResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(ZfsDeleteFileSystemResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
 
 @end
 @implementation ZfsCreateFileSystemRequest
@@ -956,50 +270,6 @@ fileSystemType:(NSString*)fileSystemType {
     self.fileSystemType = [dictionary objectForKey:@"fileSystemType"];
     return self;
 } 
-
-@end
-  
-@implementation ZfsModifyFileSystemAttributeResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-ZfsModifyFileSystemAttributeResult* result = [[ZfsModifyFileSystemAttributeResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(ZfsModifyFileSystemAttributeResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
 
 @end
 @implementation ZfsDescribeFileSystemRequest
@@ -1126,6 +396,736 @@ fileSystemId:(NSString*)fileSystemId {
     self.fileSystemId = [dictionary objectForKey:@"fileSystemId"];
     return self;
 } 
+
+@end
+@implementation ZfsDeleteMountTargetResult
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    return self;
+} 
+
+@end
+  
+@implementation ZfsDeleteMountTargetResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+ZfsDeleteMountTargetResult* result = [[ZfsDeleteMountTargetResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(ZfsDeleteMountTargetResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+  
+@implementation ZfsCreateMountTargetResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+ZfsCreateMountTargetResult* result = [[ZfsCreateMountTargetResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(ZfsCreateMountTargetResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+@implementation ZfsDescribeMountTargetResult
+-(id) initWithMountTarget:(MountTarget*) mountTarget { 
+    self.mountTarget = mountTarget;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self mountTarget])
+    {
+        [result setValue:[[self mountTarget] dictionary]forKey:@"mountTarget"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.mountTarget = [[MountTarget alloc]initWithDic:[dictionary objectForKey:@"mountTarget"]];
+    return self;
+} 
+
+@end
+  
+@implementation ZfsDescribeMountTargetResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+ZfsDescribeMountTargetResult* result = [[ZfsDescribeMountTargetResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(ZfsDescribeMountTargetResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+@implementation ZfsDescribeMountTargetsResult
+-(id) initWithMountTargets:(NSArray<MountTarget*>*) mountTargets
+        totalCount:(NSNumber*)totalCount { 
+    self.mountTargets = mountTargets;               
+    self.totalCount = totalCount;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self mountTargets])
+    {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self mountTargets] count]; i++) {
+            MountTarget* item = [[self mountTargets] objectAtIndex:i];
+            [arrayDic addObject:[item dictionary]];
+        }
+        [result setValue:arrayDic forKey:@"mountTargets"];
+    }
+    if([self totalCount])
+    {
+        [result setValue:[self totalCount] forKey:@"totalCount"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    NSArray* mountTargetsArray = [dictionary objectForKey:@"mountTargets"];
+    if(mountTargetsArray&&![mountTargetsArray isKindOfClass:[NSNull class]])
+    {
+        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
+        for(int i = 0 ; i< [mountTargetsArray count];i++)
+        {
+        MountTarget* item = [[MountTarget alloc]initWithDic:[mountTargetsArray objectAtIndex:i]];
+            if(item)
+            {
+            [propertyArray addObject:item];
+            }
+        }
+        self.mountTargets = propertyArray;
+    }
+    self.totalCount = [dictionary objectForKey:@"totalCount"];
+    return self;
+} 
+
+@end
+  
+@implementation ZfsDescribeMountTargetsResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+ZfsDescribeMountTargetsResult* result = [[ZfsDescribeMountTargetsResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(ZfsDescribeMountTargetsResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+@implementation ZfsDescribeMountTargetsRequest
+-(id) initWithRegion:(NSString *)regionId
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+filters:(NSArray<Filter*>*)filters { 
+    self.regionId = regionId;
+    self.pageNumber = pageNumber;
+    self.pageSize = pageSize;
+    self.filters = filters;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+filters:(NSArray<Filter*>*)filters { 
+    self.regionId = regionId;
+    self.version = version;
+    self.pageNumber = pageNumber;
+    self.pageSize = pageSize;
+    self.filters = filters;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self pageNumber])
+    {
+        [result setValue:[self pageNumber] forKey:@"pageNumber"];
+    }
+    if([self pageSize])
+    {
+        [result setValue:[self pageSize] forKey:@"pageSize"];
+    }
+    if([self filters])
+    {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self filters] count]; i++) {
+            Filter* item = [[self filters] objectAtIndex:i];
+            [arrayDic addObject:[item dictionary]];
+        }
+        [result setValue:arrayDic forKey:@"filters"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.pageNumber = [dictionary objectForKey:@"pageNumber"];
+    self.pageSize = [dictionary objectForKey:@"pageSize"];
+    NSArray* filtersArray = [dictionary objectForKey:@"filters"];
+    if(filtersArray&&![filtersArray isKindOfClass:[NSNull class]])
+    {
+        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
+        for(int i = 0 ; i< [filtersArray count];i++)
+        {
+        Filter* item = [[Filter alloc]initWithDic:[filtersArray objectAtIndex:i]];
+            if(item)
+            {
+            [propertyArray addObject:item];
+            }
+        }
+        self.filters = propertyArray;
+    }
+    return self;
+} 
+
+@end
+@implementation ZfsDescribeFileSystemResult
+-(id) initWithFileSystem:(FileSystem*) fileSystem { 
+    self.fileSystem = fileSystem;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self fileSystem])
+    {
+        [result setValue:[[self fileSystem] dictionary]forKey:@"fileSystem"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.fileSystem = [[FileSystem alloc]initWithDic:[dictionary objectForKey:@"fileSystem"]];
+    return self;
+} 
+
+@end
+  
+@implementation ZfsDescribeFileSystemResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+ZfsDescribeFileSystemResult* result = [[ZfsDescribeFileSystemResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(ZfsDescribeFileSystemResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+@implementation ZfsDescribeFileSystemsRequest
+-(id) initWithRegion:(NSString *)regionId
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+tags:(NSArray<ZfsTagFilter*>*)tags
+filters:(NSArray<Filter*>*)filters { 
+    self.regionId = regionId;
+    self.pageNumber = pageNumber;
+    self.pageSize = pageSize;
+    self.tags = tags;
+    self.filters = filters;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+tags:(NSArray<ZfsTagFilter*>*)tags
+filters:(NSArray<Filter*>*)filters { 
+    self.regionId = regionId;
+    self.version = version;
+    self.pageNumber = pageNumber;
+    self.pageSize = pageSize;
+    self.tags = tags;
+    self.filters = filters;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self pageNumber])
+    {
+        [result setValue:[self pageNumber] forKey:@"pageNumber"];
+    }
+    if([self pageSize])
+    {
+        [result setValue:[self pageSize] forKey:@"pageSize"];
+    }
+    if([self tags])
+    {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self tags] count]; i++) {
+            ZfsTagFilter* item = [[self tags] objectAtIndex:i];
+            [arrayDic addObject:[item dictionary]];
+        }
+        [result setValue:arrayDic forKey:@"tags"];
+    }
+    if([self filters])
+    {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self filters] count]; i++) {
+            Filter* item = [[self filters] objectAtIndex:i];
+            [arrayDic addObject:[item dictionary]];
+        }
+        [result setValue:arrayDic forKey:@"filters"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.pageNumber = [dictionary objectForKey:@"pageNumber"];
+    self.pageSize = [dictionary objectForKey:@"pageSize"];
+    NSArray* tagsArray = [dictionary objectForKey:@"tags"];
+    if(tagsArray&&![tagsArray isKindOfClass:[NSNull class]])
+    {
+        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
+        for(int i = 0 ; i< [tagsArray count];i++)
+        {
+        ZfsTagFilter* item = [[ZfsTagFilter alloc]initWithDic:[tagsArray objectAtIndex:i]];
+            if(item)
+            {
+            [propertyArray addObject:item];
+            }
+        }
+        self.tags = propertyArray;
+    }
+    NSArray* filtersArray = [dictionary objectForKey:@"filters"];
+    if(filtersArray&&![filtersArray isKindOfClass:[NSNull class]])
+    {
+        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
+        for(int i = 0 ; i< [filtersArray count];i++)
+        {
+        Filter* item = [[Filter alloc]initWithDic:[filtersArray objectAtIndex:i]];
+            if(item)
+            {
+            [propertyArray addObject:item];
+            }
+        }
+        self.filters = propertyArray;
+    }
+    return self;
+} 
+
+@end
+@implementation ZfsModifyFileSystemAttributeResult
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    return self;
+} 
+
+@end
+  
+@implementation ZfsCreateFileSystemResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+ZfsCreateFileSystemResult* result = [[ZfsCreateFileSystemResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(ZfsCreateFileSystemResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+@implementation ZfsDescribeFileSystemsResult
+-(id) initWithFileSystems:(NSArray<FileSystem*>*) fileSystems
+        totalCount:(NSNumber*)totalCount { 
+    self.fileSystems = fileSystems;               
+    self.totalCount = totalCount;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self fileSystems])
+    {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self fileSystems] count]; i++) {
+            FileSystem* item = [[self fileSystems] objectAtIndex:i];
+            [arrayDic addObject:[item dictionary]];
+        }
+        [result setValue:arrayDic forKey:@"fileSystems"];
+    }
+    if([self totalCount])
+    {
+        [result setValue:[self totalCount] forKey:@"totalCount"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    NSArray* fileSystemsArray = [dictionary objectForKey:@"fileSystems"];
+    if(fileSystemsArray&&![fileSystemsArray isKindOfClass:[NSNull class]])
+    {
+        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
+        for(int i = 0 ; i< [fileSystemsArray count];i++)
+        {
+        FileSystem* item = [[FileSystem alloc]initWithDic:[fileSystemsArray objectAtIndex:i]];
+            if(item)
+            {
+            [propertyArray addObject:item];
+            }
+        }
+        self.fileSystems = propertyArray;
+    }
+    self.totalCount = [dictionary objectForKey:@"totalCount"];
+    return self;
+} 
+
+@end
+  
+@implementation ZfsDescribeFileSystemsResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+ZfsDescribeFileSystemsResult* result = [[ZfsDescribeFileSystemsResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(ZfsDescribeFileSystemsResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+@implementation ZfsDeleteFileSystemResult
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    return self;
+} 
+
+@end
+  
+@implementation ZfsDeleteFileSystemResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+ZfsDeleteFileSystemResult* result = [[ZfsDeleteFileSystemResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(ZfsDeleteFileSystemResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+  
+@implementation ZfsModifyFileSystemAttributeResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+ZfsModifyFileSystemAttributeResult* result = [[ZfsModifyFileSystemAttributeResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(ZfsModifyFileSystemAttributeResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
 
 @end
  

@@ -160,95 +160,6 @@ offset:(NSNumber*)offset {
 } 
 
 @end
-@implementation IasAppsResult
--(id) initWithPagination:(Pagination*) pagination
-        result:(NSArray<AppQueryResultItem*>*)result { 
-    self.pagination = pagination;               
-    self.result = result;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self pagination])
-    {
-        [result setValue:[[self pagination] dictionary]forKey:@"pagination"];
-    }
-    if([self result])
-    {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self result] count]; i++) {
-            AppQueryResultItem* item = [[self result] objectAtIndex:i];
-            [arrayDic addObject:[item dictionary]];
-        }
-        [result setValue:arrayDic forKey:@"result"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.pagination = [[Pagination alloc]initWithDic:[dictionary objectForKey:@"pagination"]];
-    NSArray* resultArray = [dictionary objectForKey:@"result"];
-    if(resultArray&&![resultArray isKindOfClass:[NSNull class]])
-    {
-        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
-        for(int i = 0 ; i< [resultArray count];i++)
-        {
-            AppQueryResultItem* item = [[AppQueryResultItem alloc]initWithDic:[resultArray objectAtIndex:i]];
-            if(item)
-            {
-                [propertyArray addObject:item];
-            }
-        }
-        self.result = propertyArray;
-    }
-    return self;
-} 
-
-@end
-  
-@implementation IasAppsResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-IasAppsResult* result = [[IasAppsResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(IasAppsResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
 @implementation IasAppDetailResult
 -(id) initWithClientId:(NSString*) clientId
         clientName:(NSString*)clientName
@@ -430,104 +341,6 @@ IasAppsResult* result = [[IasAppsResult alloc]initWithDic:[dictionary objectForK
 } 
 
 @end
-@implementation IasStateRequest
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    return self;
-} 
-
-@end
-@implementation IasStateResult
--(id) initWithStates:(NSArray<State*>*) states { 
-    self.states = states;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self states])
-    {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self states] count]; i++) {
-            State* item = [[self states] objectAtIndex:i];
-            [arrayDic addObject:[item dictionary]];
-        }
-        [result setValue:arrayDic forKey:@"states"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    NSArray* statesArray = [dictionary objectForKey:@"states"];
-    if(statesArray&&![statesArray isKindOfClass:[NSNull class]])
-    {
-        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
-        for(int i = 0 ; i< [statesArray count];i++)
-        {
-            State* item = [[State alloc]initWithDic:[statesArray objectAtIndex:i]];
-            if(item)
-            {
-                [propertyArray addObject:item];
-            }
-        }
-        self.states = propertyArray;
-    }
-    return self;
-} 
-
-@end
-  
-@implementation IasStateResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-IasStateResult* result = [[IasStateResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(IasStateResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
 @implementation IasAppDetailRequest
 -(id) initWithRegion:(NSString *)regionId
 clientId:(NSString*)clientId { 
@@ -562,50 +375,6 @@ clientId:(NSString*)clientId {
     self.clientId = [dictionary objectForKey:@"clientId"];
     return self;
 } 
-
-@end
-  
-@implementation IasAppDetailResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-IasAppDetailResult* result = [[IasAppDetailResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(IasAppDetailResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
 
 @end
 @implementation IasCreateAppRequest
@@ -1169,268 +938,6 @@ clientId:(NSString*)clientId {
 } 
 
 @end
-@implementation IasCreateAppResult
--(id) initWithClientId:(NSString*) clientId
-        clientName:(NSString*)clientName
-        tokenEndpointAuthMethod:(NSString*)tokenEndpointAuthMethod
-        grantTypes:(NSString*)grantTypes
-        responseTypes:(NSString*)responseTypes
-        redirectUris:(NSString*)redirectUris
-        clientUri:(NSString*)clientUri
-        logoUri:(NSString*)logoUri
-        tosUri:(NSString*)tosUri
-        policyUri:(NSString*)policyUri
-        scope:(NSString*)scope
-        jwksUri:(NSString*)jwksUri
-        jwks:(NSString*)jwks
-        contacts:(NSString*)contacts
-        extension:(NSString*)extension
-        accessTokenValiditySeconds:(NSNumber*)accessTokenValiditySeconds
-        refreshTokenValiditySeconds:(NSNumber*)refreshTokenValiditySeconds
-        multiTenant:(NSNumber*)multiTenant
-        secretUpdateTime:(NSNumber*)secretUpdateTime
-        updateTime:(NSNumber*)updateTime
-        createTime:(NSNumber*)createTime
-        account:(NSString*)account
-        userType:(NSString*)userType { 
-    self.clientId = clientId;               
-    self.clientName = clientName;               
-    self.tokenEndpointAuthMethod = tokenEndpointAuthMethod;               
-    self.grantTypes = grantTypes;               
-    self.responseTypes = responseTypes;               
-    self.redirectUris = redirectUris;               
-    self.clientUri = clientUri;               
-    self.logoUri = logoUri;               
-    self.tosUri = tosUri;               
-    self.policyUri = policyUri;               
-    self.scope = scope;               
-    self.jwksUri = jwksUri;               
-    self.jwks = jwks;               
-    self.contacts = contacts;               
-    self.extension = extension;               
-    self.accessTokenValiditySeconds = accessTokenValiditySeconds;               
-    self.refreshTokenValiditySeconds = refreshTokenValiditySeconds;               
-    self.multiTenant = multiTenant;               
-    self.secretUpdateTime = secretUpdateTime;               
-    self.updateTime = updateTime;               
-    self.createTime = createTime;               
-    self.account = account;               
-    self.userType = userType;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self clientId])
-    {
-        [result setValue:[self clientId] forKey:@"clientId"];
-    }
-    if([self clientName])
-    {
-        [result setValue:[self clientName] forKey:@"clientName"];
-    }
-    if([self tokenEndpointAuthMethod])
-    {
-        [result setValue:[self tokenEndpointAuthMethod] forKey:@"tokenEndpointAuthMethod"];
-    }
-    if([self grantTypes])
-    {
-        [result setValue:[self grantTypes] forKey:@"grantTypes"];
-    }
-    if([self responseTypes])
-    {
-        [result setValue:[self responseTypes] forKey:@"responseTypes"];
-    }
-    if([self redirectUris])
-    {
-        [result setValue:[self redirectUris] forKey:@"redirectUris"];
-    }
-    if([self clientUri])
-    {
-        [result setValue:[self clientUri] forKey:@"clientUri"];
-    }
-    if([self logoUri])
-    {
-        [result setValue:[self logoUri] forKey:@"logoUri"];
-    }
-    if([self tosUri])
-    {
-        [result setValue:[self tosUri] forKey:@"tosUri"];
-    }
-    if([self policyUri])
-    {
-        [result setValue:[self policyUri] forKey:@"policyUri"];
-    }
-    if([self scope])
-    {
-        [result setValue:[self scope] forKey:@"scope"];
-    }
-    if([self jwksUri])
-    {
-        [result setValue:[self jwksUri] forKey:@"jwksUri"];
-    }
-    if([self jwks])
-    {
-        [result setValue:[self jwks] forKey:@"jwks"];
-    }
-    if([self contacts])
-    {
-        [result setValue:[self contacts] forKey:@"contacts"];
-    }
-    if([self extension])
-    {
-        [result setValue:[self extension] forKey:@"extension"];
-    }
-    if([self accessTokenValiditySeconds])
-    {
-        [result setValue:[self accessTokenValiditySeconds] forKey:@"accessTokenValiditySeconds"];
-    }
-    if([self refreshTokenValiditySeconds])
-    {
-        [result setValue:[self refreshTokenValiditySeconds] forKey:@"refreshTokenValiditySeconds"];
-    }
-    if([self multiTenant])
-    {
-        [result setValue:[self multiTenant] forKey:@"multiTenant"];
-    }
-    if([self secretUpdateTime])
-    {
-        [result setValue:[self secretUpdateTime] forKey:@"secretUpdateTime"];
-    }
-    if([self updateTime])
-    {
-        [result setValue:[self updateTime] forKey:@"updateTime"];
-    }
-    if([self createTime])
-    {
-        [result setValue:[self createTime] forKey:@"createTime"];
-    }
-    if([self account])
-    {
-        [result setValue:[self account] forKey:@"account"];
-    }
-    if([self userType])
-    {
-        [result setValue:[self userType] forKey:@"userType"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.clientId = [dictionary objectForKey:@"clientId"];
-    self.clientName = [dictionary objectForKey:@"clientName"];
-    self.tokenEndpointAuthMethod = [dictionary objectForKey:@"tokenEndpointAuthMethod"];
-    self.grantTypes = [dictionary objectForKey:@"grantTypes"];
-    self.responseTypes = [dictionary objectForKey:@"responseTypes"];
-    self.redirectUris = [dictionary objectForKey:@"redirectUris"];
-    self.clientUri = [dictionary objectForKey:@"clientUri"];
-    self.logoUri = [dictionary objectForKey:@"logoUri"];
-    self.tosUri = [dictionary objectForKey:@"tosUri"];
-    self.policyUri = [dictionary objectForKey:@"policyUri"];
-    self.scope = [dictionary objectForKey:@"scope"];
-    self.jwksUri = [dictionary objectForKey:@"jwksUri"];
-    self.jwks = [dictionary objectForKey:@"jwks"];
-    self.contacts = [dictionary objectForKey:@"contacts"];
-    self.extension = [dictionary objectForKey:@"extension"];
-    self.accessTokenValiditySeconds = [dictionary objectForKey:@"accessTokenValiditySeconds"];
-    self.refreshTokenValiditySeconds = [dictionary objectForKey:@"refreshTokenValiditySeconds"];
-    self.multiTenant = [dictionary objectForKey:@"multiTenant"];
-    self.secretUpdateTime = [dictionary objectForKey:@"secretUpdateTime"];
-    self.updateTime = [dictionary objectForKey:@"updateTime"];
-    self.createTime = [dictionary objectForKey:@"createTime"];
-    self.account = [dictionary objectForKey:@"account"];
-    self.userType = [dictionary objectForKey:@"userType"];
-    return self;
-} 
-
-@end
-  
-@implementation IasCreateAppResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-IasCreateAppResult* result = [[IasCreateAppResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(IasCreateAppResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
-  
-@implementation IasUpdateAppResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-IasUpdateAppResult* result = [[IasUpdateAppResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(IasUpdateAppResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
 @implementation IasDeleteAppRequest
 -(id) initWithRegion:(NSString *)regionId
 clientId:(NSString*)clientId { 
@@ -1661,6 +1168,535 @@ clientId:(NSString*)clientId {
 } 
 
 @end
+@implementation IasCreateAppResult
+-(id) initWithClientId:(NSString*) clientId
+        clientName:(NSString*)clientName
+        tokenEndpointAuthMethod:(NSString*)tokenEndpointAuthMethod
+        grantTypes:(NSString*)grantTypes
+        responseTypes:(NSString*)responseTypes
+        redirectUris:(NSString*)redirectUris
+        clientUri:(NSString*)clientUri
+        logoUri:(NSString*)logoUri
+        tosUri:(NSString*)tosUri
+        policyUri:(NSString*)policyUri
+        scope:(NSString*)scope
+        jwksUri:(NSString*)jwksUri
+        jwks:(NSString*)jwks
+        contacts:(NSString*)contacts
+        extension:(NSString*)extension
+        accessTokenValiditySeconds:(NSNumber*)accessTokenValiditySeconds
+        refreshTokenValiditySeconds:(NSNumber*)refreshTokenValiditySeconds
+        multiTenant:(NSNumber*)multiTenant
+        secretUpdateTime:(NSNumber*)secretUpdateTime
+        updateTime:(NSNumber*)updateTime
+        createTime:(NSNumber*)createTime
+        account:(NSString*)account
+        userType:(NSString*)userType { 
+    self.clientId = clientId;               
+    self.clientName = clientName;               
+    self.tokenEndpointAuthMethod = tokenEndpointAuthMethod;               
+    self.grantTypes = grantTypes;               
+    self.responseTypes = responseTypes;               
+    self.redirectUris = redirectUris;               
+    self.clientUri = clientUri;               
+    self.logoUri = logoUri;               
+    self.tosUri = tosUri;               
+    self.policyUri = policyUri;               
+    self.scope = scope;               
+    self.jwksUri = jwksUri;               
+    self.jwks = jwks;               
+    self.contacts = contacts;               
+    self.extension = extension;               
+    self.accessTokenValiditySeconds = accessTokenValiditySeconds;               
+    self.refreshTokenValiditySeconds = refreshTokenValiditySeconds;               
+    self.multiTenant = multiTenant;               
+    self.secretUpdateTime = secretUpdateTime;               
+    self.updateTime = updateTime;               
+    self.createTime = createTime;               
+    self.account = account;               
+    self.userType = userType;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self clientId])
+    {
+        [result setValue:[self clientId] forKey:@"clientId"];
+    }
+    if([self clientName])
+    {
+        [result setValue:[self clientName] forKey:@"clientName"];
+    }
+    if([self tokenEndpointAuthMethod])
+    {
+        [result setValue:[self tokenEndpointAuthMethod] forKey:@"tokenEndpointAuthMethod"];
+    }
+    if([self grantTypes])
+    {
+        [result setValue:[self grantTypes] forKey:@"grantTypes"];
+    }
+    if([self responseTypes])
+    {
+        [result setValue:[self responseTypes] forKey:@"responseTypes"];
+    }
+    if([self redirectUris])
+    {
+        [result setValue:[self redirectUris] forKey:@"redirectUris"];
+    }
+    if([self clientUri])
+    {
+        [result setValue:[self clientUri] forKey:@"clientUri"];
+    }
+    if([self logoUri])
+    {
+        [result setValue:[self logoUri] forKey:@"logoUri"];
+    }
+    if([self tosUri])
+    {
+        [result setValue:[self tosUri] forKey:@"tosUri"];
+    }
+    if([self policyUri])
+    {
+        [result setValue:[self policyUri] forKey:@"policyUri"];
+    }
+    if([self scope])
+    {
+        [result setValue:[self scope] forKey:@"scope"];
+    }
+    if([self jwksUri])
+    {
+        [result setValue:[self jwksUri] forKey:@"jwksUri"];
+    }
+    if([self jwks])
+    {
+        [result setValue:[self jwks] forKey:@"jwks"];
+    }
+    if([self contacts])
+    {
+        [result setValue:[self contacts] forKey:@"contacts"];
+    }
+    if([self extension])
+    {
+        [result setValue:[self extension] forKey:@"extension"];
+    }
+    if([self accessTokenValiditySeconds])
+    {
+        [result setValue:[self accessTokenValiditySeconds] forKey:@"accessTokenValiditySeconds"];
+    }
+    if([self refreshTokenValiditySeconds])
+    {
+        [result setValue:[self refreshTokenValiditySeconds] forKey:@"refreshTokenValiditySeconds"];
+    }
+    if([self multiTenant])
+    {
+        [result setValue:[self multiTenant] forKey:@"multiTenant"];
+    }
+    if([self secretUpdateTime])
+    {
+        [result setValue:[self secretUpdateTime] forKey:@"secretUpdateTime"];
+    }
+    if([self updateTime])
+    {
+        [result setValue:[self updateTime] forKey:@"updateTime"];
+    }
+    if([self createTime])
+    {
+        [result setValue:[self createTime] forKey:@"createTime"];
+    }
+    if([self account])
+    {
+        [result setValue:[self account] forKey:@"account"];
+    }
+    if([self userType])
+    {
+        [result setValue:[self userType] forKey:@"userType"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.clientId = [dictionary objectForKey:@"clientId"];
+    self.clientName = [dictionary objectForKey:@"clientName"];
+    self.tokenEndpointAuthMethod = [dictionary objectForKey:@"tokenEndpointAuthMethod"];
+    self.grantTypes = [dictionary objectForKey:@"grantTypes"];
+    self.responseTypes = [dictionary objectForKey:@"responseTypes"];
+    self.redirectUris = [dictionary objectForKey:@"redirectUris"];
+    self.clientUri = [dictionary objectForKey:@"clientUri"];
+    self.logoUri = [dictionary objectForKey:@"logoUri"];
+    self.tosUri = [dictionary objectForKey:@"tosUri"];
+    self.policyUri = [dictionary objectForKey:@"policyUri"];
+    self.scope = [dictionary objectForKey:@"scope"];
+    self.jwksUri = [dictionary objectForKey:@"jwksUri"];
+    self.jwks = [dictionary objectForKey:@"jwks"];
+    self.contacts = [dictionary objectForKey:@"contacts"];
+    self.extension = [dictionary objectForKey:@"extension"];
+    self.accessTokenValiditySeconds = [dictionary objectForKey:@"accessTokenValiditySeconds"];
+    self.refreshTokenValiditySeconds = [dictionary objectForKey:@"refreshTokenValiditySeconds"];
+    self.multiTenant = [dictionary objectForKey:@"multiTenant"];
+    self.secretUpdateTime = [dictionary objectForKey:@"secretUpdateTime"];
+    self.updateTime = [dictionary objectForKey:@"updateTime"];
+    self.createTime = [dictionary objectForKey:@"createTime"];
+    self.account = [dictionary objectForKey:@"account"];
+    self.userType = [dictionary objectForKey:@"userType"];
+    return self;
+} 
+
+@end
+@implementation IasGetAppRequest
+-(id) initWithRegion:(NSString *)regionId
+clientId:(NSString*)clientId { 
+    self.regionId = regionId;
+    self.clientId = clientId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+clientId:(NSString*)clientId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.clientId = clientId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self clientId])
+    {
+        [result setValue:[self clientId] forKey:@"clientId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.clientId = [dictionary objectForKey:@"clientId"];
+    return self;
+} 
+
+@end
+@implementation IasAppsResult
+-(id) initWithPagination:(Pagination*) pagination
+        result:(NSArray<AppQueryResultItem*>*)result { 
+    self.pagination = pagination;               
+    self.result = result;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self pagination])
+    {
+        [result setValue:[[self pagination] dictionary]forKey:@"pagination"];
+    }
+    if([self result])
+    {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self result] count]; i++) {
+            AppQueryResultItem* item = [[self result] objectAtIndex:i];
+            [arrayDic addObject:[item dictionary]];
+        }
+        [result setValue:arrayDic forKey:@"result"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.pagination = [[Pagination alloc]initWithDic:[dictionary objectForKey:@"pagination"]];
+    NSArray* resultArray = [dictionary objectForKey:@"result"];
+    if(resultArray&&![resultArray isKindOfClass:[NSNull class]])
+    {
+        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
+        for(int i = 0 ; i< [resultArray count];i++)
+        {
+        AppQueryResultItem* item = [[AppQueryResultItem alloc]initWithDic:[resultArray objectAtIndex:i]];
+            if(item)
+            {
+            [propertyArray addObject:item];
+            }
+        }
+        self.result = propertyArray;
+    }
+    return self;
+} 
+
+@end
+  
+@implementation IasAppsResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+IasAppsResult* result = [[IasAppsResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(IasAppsResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+@implementation IasStateRequest
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    return self;
+} 
+
+@end
+@implementation IasStateResult
+-(id) initWithStates:(NSArray<State*>*) states { 
+    self.states = states;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self states])
+    {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self states] count]; i++) {
+            State* item = [[self states] objectAtIndex:i];
+            [arrayDic addObject:[item dictionary]];
+        }
+        [result setValue:arrayDic forKey:@"states"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    NSArray* statesArray = [dictionary objectForKey:@"states"];
+    if(statesArray&&![statesArray isKindOfClass:[NSNull class]])
+    {
+        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
+        for(int i = 0 ; i< [statesArray count];i++)
+        {
+        State* item = [[State alloc]initWithDic:[statesArray objectAtIndex:i]];
+            if(item)
+            {
+            [propertyArray addObject:item];
+            }
+        }
+        self.states = propertyArray;
+    }
+    return self;
+} 
+
+@end
+  
+@implementation IasStateResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+IasStateResult* result = [[IasStateResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(IasStateResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+  
+@implementation IasAppDetailResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+IasAppDetailResult* result = [[IasAppDetailResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(IasAppDetailResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+  
+@implementation IasCreateAppResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+IasCreateAppResult* result = [[IasCreateAppResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(IasCreateAppResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+  
+@implementation IasUpdateAppResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+IasUpdateAppResult* result = [[IasUpdateAppResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(IasUpdateAppResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
   
 @implementation IasDeleteAppResponse
 -(NSMutableDictionary*) dictionary
@@ -1714,8 +1750,8 @@ IasDeleteAppResult* result = [[IasDeleteAppResult alloc]initWithDic:[dictionary 
     NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
     if([self apps])
     {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self apps] count]; i++) {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self apps] count]; i++) {
             ApplicationRes* item = [[self apps] objectAtIndex:i];
             [arrayDic addObject:[item dictionary]];
         }
@@ -1731,10 +1767,10 @@ IasDeleteAppResult* result = [[IasDeleteAppResult alloc]initWithDic:[dictionary 
         NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
         for(int i = 0 ; i< [appsArray count];i++)
         {
-            ApplicationRes* item = [[ApplicationRes alloc]initWithDic:[appsArray objectAtIndex:i]];
+        ApplicationRes* item = [[ApplicationRes alloc]initWithDic:[appsArray objectAtIndex:i]];
             if(item)
             {
-                [propertyArray addObject:item];
+            [propertyArray addObject:item];
             }
         }
         self.apps = propertyArray;
@@ -1829,42 +1865,6 @@ IasGetAppsResult* result = [[IasGetAppsResult alloc]initWithDic:[dictionary obje
     self.requestId = requestId;
     return self;
 }
-
-@end
-@implementation IasGetAppRequest
--(id) initWithRegion:(NSString *)regionId
-clientId:(NSString*)clientId { 
-    self.regionId = regionId;
-    self.clientId = clientId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-clientId:(NSString*)clientId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.clientId = clientId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self clientId])
-    {
-        [result setValue:[self clientId] forKey:@"clientId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.clientId = [dictionary objectForKey:@"clientId"];
-    return self;
-} 
 
 @end
 @implementation IasGetAppsRequest

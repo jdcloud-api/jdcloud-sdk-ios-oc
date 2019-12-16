@@ -131,77 +131,6 @@ queryId:(NSString*)queryId {
 } 
 
 @end
-@implementation XdataGetRasQueryLogResult
--(id) initWithStatus:(NSNumber*) status
-        message:(NSString*)message { 
-    self.status = status;               
-    self.message = message;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self status])
-    {
-        [result setValue:[self status] forKey:@"status"];
-    }
-    if([self message])
-    {
-        [result setValue:[self message] forKey:@"message"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.status = [dictionary objectForKey:@"status"];
-    self.message = [dictionary objectForKey:@"message"];
-    return self;
-} 
-
-@end
-  
-@implementation XdataGetRasQueryLogResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-XdataGetRasQueryLogResult* result = [[XdataGetRasQueryLogResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(XdataGetRasQueryLogResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
 @implementation XdataGetPySparkExecuteResultResult
 -(id) initWithStatus:(NSNumber*) status
         message:(NSString*)message { 
@@ -227,77 +156,6 @@ XdataGetRasQueryLogResult* result = [[XdataGetRasQueryLogResult alloc]initWithDi
     self.message = [dictionary objectForKey:@"message"];
     return self;
 } 
-
-@end
-@implementation XdataCancelPySparkJobResult
--(id) initWithStatus:(NSNumber*) status
-        message:(NSString*)message { 
-    self.status = status;               
-    self.message = message;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self status])
-    {
-        [result setValue:[self status] forKey:@"status"];
-    }
-    if([self message])
-    {
-        [result setValue:[self message] forKey:@"message"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.status = [dictionary objectForKey:@"status"];
-    self.message = [dictionary objectForKey:@"message"];
-    return self;
-} 
-
-@end
-  
-@implementation XdataCancelPySparkJobResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-XdataCancelPySparkJobResult* result = [[XdataCancelPySparkJobResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(XdataCancelPySparkJobResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
 
 @end
 @implementation XdataGetRasQueryResultRequest
@@ -611,94 +469,6 @@ queryId:(NSString*)queryId {
 } 
 
 @end
-  
-@implementation XdataGetPySparkExecuteStateResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-XdataGetPySparkExecuteStateResult* result = [[XdataGetPySparkExecuteStateResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(XdataGetPySparkExecuteStateResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
-  
-@implementation XdataExecuteRasQueryResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-XdataExecuteRasQueryResult* result = [[XdataExecuteRasQueryResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(XdataExecuteRasQueryResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
 @implementation XdataCancelRasQueryResult
 -(id) initWithStatus:(NSNumber*) status
         message:(NSString*)message { 
@@ -726,48 +496,31 @@ XdataExecuteRasQueryResult* result = [[XdataExecuteRasQueryResult alloc]initWith
 } 
 
 @end
-  
-@implementation XdataGetPySparkExecuteResultResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
+@implementation XdataGetRasQueryLogResult
+-(id) initWithStatus:(NSNumber*) status
+        message:(NSString*)message { 
+    self.status = status;               
+    self.message = message;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self status])
     {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
+        [result setValue:[self status] forKey:@"status"];
     }
-    if([self error])
+    if([self message])
     {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
+        [result setValue:[self message] forKey:@"message"];
     }
     return result;
 }
 
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-XdataGetPySparkExecuteResultResult* result = [[XdataGetPySparkExecuteResultResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.status = [dictionary objectForKey:@"status"];
+    self.message = [dictionary objectForKey:@"message"];
     return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(XdataGetPySparkExecuteResultResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
+} 
 
 @end
 @implementation XdataGetRasQueryStateResult
@@ -802,50 +555,6 @@ XdataGetPySparkExecuteResultResult* result = [[XdataGetPySparkExecuteResultResul
     self.data = [dictionary objectForKey:@"data"];
     return self;
 } 
-
-@end
-  
-@implementation XdataGetRasQueryResultResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-XdataGetRasQueryResultResult* result = [[XdataGetRasQueryResultResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(XdataGetRasQueryResultResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
 
 @end
 @implementation XdataCancelRasQueryRequest
@@ -938,50 +647,6 @@ queryId:(NSString*)queryId {
 } 
 
 @end
-  
-@implementation XdataGetRasQueryStateResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-XdataGetRasQueryStateResult* result = [[XdataGetRasQueryStateResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(XdataGetRasQueryStateResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
 @implementation XdataExecutePySparkQueryRequest
 -(id) initWithRegion:(NSString *)regionId
 script:(NSString*)script
@@ -1054,50 +719,6 @@ scriptType:(NSString*)scriptType {
 } 
 
 @end
-  
-@implementation XdataExecutePySparkQueryResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-XdataExecutePySparkQueryResult* result = [[XdataExecutePySparkQueryResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(XdataExecutePySparkQueryResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
 @implementation XdataGetPySparkExecuteStateRequest
 -(id) initWithRegion:(NSString *)regionId
 userName:(NSString*)userName
@@ -1141,6 +762,833 @@ queryId:(NSString*)queryId {
     self.queryId = [dictionary objectForKey:@"queryId"];
     return self;
 } 
+
+@end
+@implementation XdataCancelPySparkJobResult
+-(id) initWithStatus:(NSNumber*) status
+        message:(NSString*)message { 
+    self.status = status;               
+    self.message = message;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self status])
+    {
+        [result setValue:[self status] forKey:@"status"];
+    }
+    if([self message])
+    {
+        [result setValue:[self message] forKey:@"message"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.status = [dictionary objectForKey:@"status"];
+    self.message = [dictionary objectForKey:@"message"];
+    return self;
+} 
+
+@end
+@implementation XdataDeleteDatabaseResult
+-(id) initWithStatus:(NSNumber*) status
+        message:(NSString*)message { 
+    self.status = status;               
+    self.message = message;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self status])
+    {
+        [result setValue:[self status] forKey:@"status"];
+    }
+    if([self message])
+    {
+        [result setValue:[self message] forKey:@"message"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.status = [dictionary objectForKey:@"status"];
+    self.message = [dictionary objectForKey:@"message"];
+    return self;
+} 
+
+@end
+@implementation XdataGetDatabaseInfoRequest
+-(id) initWithRegion:(NSString *)regionId
+instanceName:(NSString*)instanceName
+databaseName:(NSString*)databaseName { 
+    self.regionId = regionId;
+    self.instanceName = instanceName;
+    self.databaseName = databaseName;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+instanceName:(NSString*)instanceName
+databaseName:(NSString*)databaseName { 
+    self.regionId = regionId;
+    self.version = version;
+    self.instanceName = instanceName;
+    self.databaseName = databaseName;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self instanceName])
+    {
+        [result setValue:[self instanceName] forKey:@"instanceName"];
+    }
+    if([self databaseName])
+    {
+        [result setValue:[self databaseName] forKey:@"databaseName"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.instanceName = [dictionary objectForKey:@"instanceName"];
+    self.databaseName = [dictionary objectForKey:@"databaseName"];
+    return self;
+} 
+
+@end
+@implementation XdataCreateDatabaseResult
+-(id) initWithStatus:(NSNumber*) status
+        message:(NSString*)message { 
+    self.status = status;               
+    self.message = message;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self status])
+    {
+        [result setValue:[self status] forKey:@"status"];
+    }
+    if([self message])
+    {
+        [result setValue:[self message] forKey:@"message"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.status = [dictionary objectForKey:@"status"];
+    self.message = [dictionary objectForKey:@"message"];
+    return self;
+} 
+
+@end
+@implementation XdataListDatabaseInfoRequest
+-(id) initWithRegion:(NSString *)regionId
+instanceName:(NSString*)instanceName { 
+    self.regionId = regionId;
+    self.instanceName = instanceName;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+instanceName:(NSString*)instanceName { 
+    self.regionId = regionId;
+    self.version = version;
+    self.instanceName = instanceName;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self instanceName])
+    {
+        [result setValue:[self instanceName] forKey:@"instanceName"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.instanceName = [dictionary objectForKey:@"instanceName"];
+    return self;
+} 
+
+@end
+@implementation XdataCreateDatabaseRequest
+-(id) initWithRegion:(NSString *)regionId
+instanceName:(NSString*)instanceName
+descriptionValue:(NSString*)descriptionValue
+databaseName:(NSString*)databaseName { 
+    self.regionId = regionId;
+    self.instanceName = instanceName;
+    self.descriptionValue = descriptionValue;
+    self.databaseName = databaseName;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+instanceName:(NSString*)instanceName
+descriptionValue:(NSString*)descriptionValue
+databaseName:(NSString*)databaseName { 
+    self.regionId = regionId;
+    self.version = version;
+    self.instanceName = instanceName;
+    self.descriptionValue = descriptionValue;
+    self.databaseName = databaseName;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self instanceName])
+    {
+        [result setValue:[self instanceName] forKey:@"instanceName"];
+    }
+    if([self descriptionValue])
+    {
+        [result setValue:[self descriptionValue] forKey:@"description"];
+    }
+    if([self databaseName])
+    {
+        [result setValue:[self databaseName] forKey:@"databaseName"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.instanceName = [dictionary objectForKey:@"instanceName"];
+    self.descriptionValue = [dictionary objectForKey:@"description"];
+    self.databaseName = [dictionary objectForKey:@"databaseName"];
+    return self;
+} 
+
+@end
+@implementation XdataDeleteDatabaseRequest
+-(id) initWithRegion:(NSString *)regionId
+instanceName:(NSString*)instanceName
+databaseName:(NSString*)databaseName { 
+    self.regionId = regionId;
+    self.instanceName = instanceName;
+    self.databaseName = databaseName;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+instanceName:(NSString*)instanceName
+databaseName:(NSString*)databaseName { 
+    self.regionId = regionId;
+    self.version = version;
+    self.instanceName = instanceName;
+    self.databaseName = databaseName;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self instanceName])
+    {
+        [result setValue:[self instanceName] forKey:@"instanceName"];
+    }
+    if([self databaseName])
+    {
+        [result setValue:[self databaseName] forKey:@"databaseName"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.instanceName = [dictionary objectForKey:@"instanceName"];
+    self.databaseName = [dictionary objectForKey:@"databaseName"];
+    return self;
+} 
+
+@end
+@implementation XdataGetTableInfoRequest
+-(id) initWithRegion:(NSString *)regionId
+instanceName:(NSString*)instanceName
+databaseName:(NSString*)databaseName
+tableName:(NSString*)tableName { 
+    self.regionId = regionId;
+    self.instanceName = instanceName;
+    self.databaseName = databaseName;
+    self.tableName = tableName;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+instanceName:(NSString*)instanceName
+databaseName:(NSString*)databaseName
+tableName:(NSString*)tableName { 
+    self.regionId = regionId;
+    self.version = version;
+    self.instanceName = instanceName;
+    self.databaseName = databaseName;
+    self.tableName = tableName;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self instanceName])
+    {
+        [result setValue:[self instanceName] forKey:@"instanceName"];
+    }
+    if([self databaseName])
+    {
+        [result setValue:[self databaseName] forKey:@"databaseName"];
+    }
+    if([self tableName])
+    {
+        [result setValue:[self tableName] forKey:@"tableName"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.instanceName = [dictionary objectForKey:@"instanceName"];
+    self.databaseName = [dictionary objectForKey:@"databaseName"];
+    self.tableName = [dictionary objectForKey:@"tableName"];
+    return self;
+} 
+
+@end
+@implementation XdataDeleteTableRequest
+-(id) initWithRegion:(NSString *)regionId
+instanceName:(NSString*)instanceName
+databaseName:(NSString*)databaseName
+tableName:(NSString*)tableName { 
+    self.regionId = regionId;
+    self.instanceName = instanceName;
+    self.databaseName = databaseName;
+    self.tableName = tableName;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+instanceName:(NSString*)instanceName
+databaseName:(NSString*)databaseName
+tableName:(NSString*)tableName { 
+    self.regionId = regionId;
+    self.version = version;
+    self.instanceName = instanceName;
+    self.databaseName = databaseName;
+    self.tableName = tableName;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self instanceName])
+    {
+        [result setValue:[self instanceName] forKey:@"instanceName"];
+    }
+    if([self databaseName])
+    {
+        [result setValue:[self databaseName] forKey:@"databaseName"];
+    }
+    if([self tableName])
+    {
+        [result setValue:[self tableName] forKey:@"tableName"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.instanceName = [dictionary objectForKey:@"instanceName"];
+    self.databaseName = [dictionary objectForKey:@"databaseName"];
+    self.tableName = [dictionary objectForKey:@"tableName"];
+    return self;
+} 
+
+@end
+@implementation XdataDeleteTableResult
+-(id) initWithStatus:(NSNumber*) status
+        message:(NSString*)message
+        data:(NSObject*)data { 
+    self.status = status;               
+    self.message = message;               
+    self.data = data;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self status])
+    {
+        [result setValue:[self status] forKey:@"status"];
+    }
+    if([self message])
+    {
+        [result setValue:[self message] forKey:@"message"];
+    }
+    if([self data])
+    {
+        [result setValue:[self data] forKey:@"data"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.status = [dictionary objectForKey:@"status"];
+    self.message = [dictionary objectForKey:@"message"];
+    self.data = [dictionary objectForKey:@"data"];
+    return self;
+} 
+
+@end
+@implementation XdataListTableInfoRequest
+-(id) initWithRegion:(NSString *)regionId
+instanceName:(NSString*)instanceName
+databaseName:(NSString*)databaseName { 
+    self.regionId = regionId;
+    self.instanceName = instanceName;
+    self.databaseName = databaseName;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+instanceName:(NSString*)instanceName
+databaseName:(NSString*)databaseName { 
+    self.regionId = regionId;
+    self.version = version;
+    self.instanceName = instanceName;
+    self.databaseName = databaseName;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self instanceName])
+    {
+        [result setValue:[self instanceName] forKey:@"instanceName"];
+    }
+    if([self databaseName])
+    {
+        [result setValue:[self databaseName] forKey:@"databaseName"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.instanceName = [dictionary objectForKey:@"instanceName"];
+    self.databaseName = [dictionary objectForKey:@"databaseName"];
+    return self;
+} 
+
+@end
+@implementation XdataCreateTableResult
+-(id) initWithStatus:(NSNumber*) status
+        message:(NSString*)message { 
+    self.status = status;               
+    self.message = message;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self status])
+    {
+        [result setValue:[self status] forKey:@"status"];
+    }
+    if([self message])
+    {
+        [result setValue:[self message] forKey:@"message"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.status = [dictionary objectForKey:@"status"];
+    self.message = [dictionary objectForKey:@"message"];
+    return self;
+} 
+
+@end
+  
+@implementation XdataGetRasQueryLogResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+XdataGetRasQueryLogResult* result = [[XdataGetRasQueryLogResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(XdataGetRasQueryLogResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+  
+@implementation XdataCancelPySparkJobResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+XdataCancelPySparkJobResult* result = [[XdataCancelPySparkJobResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(XdataCancelPySparkJobResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+  
+@implementation XdataGetPySparkExecuteStateResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+XdataGetPySparkExecuteStateResult* result = [[XdataGetPySparkExecuteStateResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(XdataGetPySparkExecuteStateResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+  
+@implementation XdataExecuteRasQueryResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+XdataExecuteRasQueryResult* result = [[XdataExecuteRasQueryResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(XdataExecuteRasQueryResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+  
+@implementation XdataGetPySparkExecuteResultResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+XdataGetPySparkExecuteResultResult* result = [[XdataGetPySparkExecuteResultResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(XdataGetPySparkExecuteResultResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+  
+@implementation XdataGetRasQueryResultResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+XdataGetRasQueryResultResult* result = [[XdataGetRasQueryResultResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(XdataGetRasQueryResultResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+  
+@implementation XdataGetRasQueryStateResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+XdataGetRasQueryStateResult* result = [[XdataGetRasQueryStateResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(XdataGetRasQueryStateResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+  
+@implementation XdataExecutePySparkQueryResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+XdataExecutePySparkQueryResult* result = [[XdataExecutePySparkQueryResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(XdataExecutePySparkQueryResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
 
 @end
   
@@ -1187,33 +1635,6 @@ XdataCancelRasQueryResult* result = [[XdataCancelRasQueryResult alloc]initWithDi
 }
 
 @end
-@implementation XdataDeleteDatabaseResult
--(id) initWithStatus:(NSNumber*) status
-        message:(NSString*)message { 
-    self.status = status;               
-    self.message = message;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self status])
-    {
-        [result setValue:[self status] forKey:@"status"];
-    }
-    if([self message])
-    {
-        [result setValue:[self message] forKey:@"message"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.status = [dictionary objectForKey:@"status"];
-    self.message = [dictionary objectForKey:@"message"];
-    return self;
-} 
-
-@end
 @implementation XdataListDatabaseInfoResult
 -(id) initWithStatus:(NSNumber*) status
         message:(NSString*)message
@@ -1235,8 +1656,8 @@ XdataCancelRasQueryResult* result = [[XdataCancelRasQueryResult alloc]initWithDi
     }
     if([self data])
     {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self data] count]; i++) {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self data] count]; i++) {
             DwDatabaseInfo* item = [[self data] objectAtIndex:i];
             [arrayDic addObject:[item dictionary]];
         }
@@ -1254,10 +1675,10 @@ XdataCancelRasQueryResult* result = [[XdataCancelRasQueryResult alloc]initWithDi
         NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
         for(int i = 0 ; i< [dataArray count];i++)
         {
-            DwDatabaseInfo* item = [[DwDatabaseInfo alloc]initWithDic:[dataArray objectAtIndex:i]];
+        DwDatabaseInfo* item = [[DwDatabaseInfo alloc]initWithDic:[dataArray objectAtIndex:i]];
             if(item)
             {
-                [propertyArray addObject:item];
+            [propertyArray addObject:item];
             }
         }
         self.data = propertyArray;
@@ -1388,78 +1809,6 @@ XdataListDatabaseInfoResult* result = [[XdataListDatabaseInfoResult alloc]initWi
 }
 
 @end
-@implementation XdataGetDatabaseInfoRequest
--(id) initWithRegion:(NSString *)regionId
-instanceName:(NSString*)instanceName
-databaseName:(NSString*)databaseName { 
-    self.regionId = regionId;
-    self.instanceName = instanceName;
-    self.databaseName = databaseName;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-instanceName:(NSString*)instanceName
-databaseName:(NSString*)databaseName { 
-    self.regionId = regionId;
-    self.version = version;
-    self.instanceName = instanceName;
-    self.databaseName = databaseName;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self instanceName])
-    {
-        [result setValue:[self instanceName] forKey:@"instanceName"];
-    }
-    if([self databaseName])
-    {
-        [result setValue:[self databaseName] forKey:@"databaseName"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.instanceName = [dictionary objectForKey:@"instanceName"];
-    self.databaseName = [dictionary objectForKey:@"databaseName"];
-    return self;
-} 
-
-@end
-@implementation XdataCreateDatabaseResult
--(id) initWithStatus:(NSNumber*) status
-        message:(NSString*)message { 
-    self.status = status;               
-    self.message = message;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self status])
-    {
-        [result setValue:[self status] forKey:@"status"];
-    }
-    if([self message])
-    {
-        [result setValue:[self message] forKey:@"message"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.status = [dictionary objectForKey:@"status"];
-    self.message = [dictionary objectForKey:@"message"];
-    return self;
-} 
-
-@end
   
 @implementation XdataGetDatabaseInfoResponse
 -(NSMutableDictionary*) dictionary
@@ -1502,42 +1851,6 @@ XdataGetDatabaseInfoResult* result = [[XdataGetDatabaseInfoResult alloc]initWith
     self.requestId = requestId;
     return self;
 }
-
-@end
-@implementation XdataListDatabaseInfoRequest
--(id) initWithRegion:(NSString *)regionId
-instanceName:(NSString*)instanceName { 
-    self.regionId = regionId;
-    self.instanceName = instanceName;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-instanceName:(NSString*)instanceName { 
-    self.regionId = regionId;
-    self.version = version;
-    self.instanceName = instanceName;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self instanceName])
-    {
-        [result setValue:[self instanceName] forKey:@"instanceName"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.instanceName = [dictionary objectForKey:@"instanceName"];
-    return self;
-} 
 
 @end
   
@@ -1584,105 +1897,6 @@ XdataCreateDatabaseResult* result = [[XdataCreateDatabaseResult alloc]initWithDi
 }
 
 @end
-@implementation XdataCreateDatabaseRequest
--(id) initWithRegion:(NSString *)regionId
-instanceName:(NSString*)instanceName
-descriptionValue:(NSString*)descriptionValue
-databaseName:(NSString*)databaseName { 
-    self.regionId = regionId;
-    self.instanceName = instanceName;
-    self.descriptionValue = descriptionValue;
-    self.databaseName = databaseName;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-instanceName:(NSString*)instanceName
-descriptionValue:(NSString*)descriptionValue
-databaseName:(NSString*)databaseName { 
-    self.regionId = regionId;
-    self.version = version;
-    self.instanceName = instanceName;
-    self.descriptionValue = descriptionValue;
-    self.databaseName = databaseName;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self instanceName])
-    {
-        [result setValue:[self instanceName] forKey:@"instanceName"];
-    }
-    if([self descriptionValue])
-    {
-        [result setValue:[self descriptionValue] forKey:@"description"];
-    }
-    if([self databaseName])
-    {
-        [result setValue:[self databaseName] forKey:@"databaseName"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.instanceName = [dictionary objectForKey:@"instanceName"];
-    self.descriptionValue = [dictionary objectForKey:@"description"];
-    self.databaseName = [dictionary objectForKey:@"databaseName"];
-    return self;
-} 
-
-@end
-@implementation XdataDeleteDatabaseRequest
--(id) initWithRegion:(NSString *)regionId
-instanceName:(NSString*)instanceName
-databaseName:(NSString*)databaseName { 
-    self.regionId = regionId;
-    self.instanceName = instanceName;
-    self.databaseName = databaseName;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-instanceName:(NSString*)instanceName
-databaseName:(NSString*)databaseName { 
-    self.regionId = regionId;
-    self.version = version;
-    self.instanceName = instanceName;
-    self.databaseName = databaseName;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self instanceName])
-    {
-        [result setValue:[self instanceName] forKey:@"instanceName"];
-    }
-    if([self databaseName])
-    {
-        [result setValue:[self databaseName] forKey:@"databaseName"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.instanceName = [dictionary objectForKey:@"instanceName"];
-    self.databaseName = [dictionary objectForKey:@"databaseName"];
-    return self;
-} 
-
-@end
 @implementation XdataListInstanceInfoRequest
 -(NSMutableDictionary*) dictionary{
     NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
@@ -1720,8 +1934,8 @@ databaseName:(NSString*)databaseName {
     }
     if([self data])
     {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self data] count]; i++) {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self data] count]; i++) {
             DwInstance* item = [[self data] objectAtIndex:i];
             [arrayDic addObject:[item dictionary]];
         }
@@ -1739,10 +1953,10 @@ databaseName:(NSString*)databaseName {
         NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
         for(int i = 0 ; i< [dataArray count];i++)
         {
-            DwInstance* item = [[DwInstance alloc]initWithDic:[dataArray objectAtIndex:i]];
+        DwInstance* item = [[DwInstance alloc]initWithDic:[dataArray objectAtIndex:i]];
             if(item)
             {
-                [propertyArray addObject:item];
+            [propertyArray addObject:item];
             }
         }
         self.data = propertyArray;
@@ -1795,33 +2009,6 @@ XdataListInstanceInfoResult* result = [[XdataListInstanceInfoResult alloc]initWi
 }
 
 @end
-@implementation XdataCreateTableResult
--(id) initWithStatus:(NSNumber*) status
-        message:(NSString*)message { 
-    self.status = status;               
-    self.message = message;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self status])
-    {
-        [result setValue:[self status] forKey:@"status"];
-    }
-    if([self message])
-    {
-        [result setValue:[self message] forKey:@"message"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.status = [dictionary objectForKey:@"status"];
-    self.message = [dictionary objectForKey:@"message"];
-    return self;
-} 
-
-@end
   
 @implementation XdataCreateTableResponse
 -(NSMutableDictionary*) dictionary
@@ -1866,60 +2053,6 @@ XdataCreateTableResult* result = [[XdataCreateTableResult alloc]initWithDic:[dic
 }
 
 @end
-@implementation XdataGetTableInfoRequest
--(id) initWithRegion:(NSString *)regionId
-instanceName:(NSString*)instanceName
-databaseName:(NSString*)databaseName
-tableName:(NSString*)tableName { 
-    self.regionId = regionId;
-    self.instanceName = instanceName;
-    self.databaseName = databaseName;
-    self.tableName = tableName;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-instanceName:(NSString*)instanceName
-databaseName:(NSString*)databaseName
-tableName:(NSString*)tableName { 
-    self.regionId = regionId;
-    self.version = version;
-    self.instanceName = instanceName;
-    self.databaseName = databaseName;
-    self.tableName = tableName;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self instanceName])
-    {
-        [result setValue:[self instanceName] forKey:@"instanceName"];
-    }
-    if([self databaseName])
-    {
-        [result setValue:[self databaseName] forKey:@"databaseName"];
-    }
-    if([self tableName])
-    {
-        [result setValue:[self tableName] forKey:@"tableName"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.instanceName = [dictionary objectForKey:@"instanceName"];
-    self.databaseName = [dictionary objectForKey:@"databaseName"];
-    self.tableName = [dictionary objectForKey:@"tableName"];
-    return self;
-} 
-
-@end
 @implementation XdataListTableInfoResult
 -(id) initWithStatus:(NSNumber*) status
         message:(NSString*)message
@@ -1941,8 +2074,8 @@ tableName:(NSString*)tableName {
     }
     if([self data])
     {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self data] count]; i++) {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self data] count]; i++) {
             DwTable* item = [[self data] objectAtIndex:i];
             [arrayDic addObject:[item dictionary]];
         }
@@ -1960,10 +2093,10 @@ tableName:(NSString*)tableName {
         NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
         for(int i = 0 ; i< [dataArray count];i++)
         {
-            DwTable* item = [[DwTable alloc]initWithDic:[dataArray objectAtIndex:i]];
+        DwTable* item = [[DwTable alloc]initWithDic:[dataArray objectAtIndex:i]];
             if(item)
             {
-                [propertyArray addObject:item];
+            [propertyArray addObject:item];
             }
         }
         self.data = propertyArray;
@@ -2094,94 +2227,6 @@ XdataGetTableInfoResult* result = [[XdataGetTableInfoResult alloc]initWithDic:[d
 }
 
 @end
-@implementation XdataDeleteTableRequest
--(id) initWithRegion:(NSString *)regionId
-instanceName:(NSString*)instanceName
-databaseName:(NSString*)databaseName
-tableName:(NSString*)tableName { 
-    self.regionId = regionId;
-    self.instanceName = instanceName;
-    self.databaseName = databaseName;
-    self.tableName = tableName;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-instanceName:(NSString*)instanceName
-databaseName:(NSString*)databaseName
-tableName:(NSString*)tableName { 
-    self.regionId = regionId;
-    self.version = version;
-    self.instanceName = instanceName;
-    self.databaseName = databaseName;
-    self.tableName = tableName;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self instanceName])
-    {
-        [result setValue:[self instanceName] forKey:@"instanceName"];
-    }
-    if([self databaseName])
-    {
-        [result setValue:[self databaseName] forKey:@"databaseName"];
-    }
-    if([self tableName])
-    {
-        [result setValue:[self tableName] forKey:@"tableName"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.instanceName = [dictionary objectForKey:@"instanceName"];
-    self.databaseName = [dictionary objectForKey:@"databaseName"];
-    self.tableName = [dictionary objectForKey:@"tableName"];
-    return self;
-} 
-
-@end
-@implementation XdataDeleteTableResult
--(id) initWithStatus:(NSNumber*) status
-        message:(NSString*)message
-        data:(NSObject*)data { 
-    self.status = status;               
-    self.message = message;               
-    self.data = data;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self status])
-    {
-        [result setValue:[self status] forKey:@"status"];
-    }
-    if([self message])
-    {
-        [result setValue:[self message] forKey:@"message"];
-    }
-    if([self data])
-    {
-        [result setValue:[self data] forKey:@"data"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.status = [dictionary objectForKey:@"status"];
-    self.message = [dictionary objectForKey:@"message"];
-    self.data = [dictionary objectForKey:@"data"];
-    return self;
-} 
-
-@end
 @implementation XdataCreateTableRequest
 -(id) initWithRegion:(NSString *)regionId
 instanceName:(NSString*)instanceName
@@ -2223,51 +2268,6 @@ dbModelDBTable:(DwTableDesc*)dbModelDBTable {
 -(id) initWithDic:(NSDictionary*)dictionary{
     self.instanceName = [dictionary objectForKey:@"instanceName"];
     self.dbModelDBTable = [[DwTableDesc alloc]initWithDic:[dictionary objectForKey:@"dbModelDBTable"]];
-    return self;
-} 
-
-@end
-@implementation XdataListTableInfoRequest
--(id) initWithRegion:(NSString *)regionId
-instanceName:(NSString*)instanceName
-databaseName:(NSString*)databaseName { 
-    self.regionId = regionId;
-    self.instanceName = instanceName;
-    self.databaseName = databaseName;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-instanceName:(NSString*)instanceName
-databaseName:(NSString*)databaseName { 
-    self.regionId = regionId;
-    self.version = version;
-    self.instanceName = instanceName;
-    self.databaseName = databaseName;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self instanceName])
-    {
-        [result setValue:[self instanceName] forKey:@"instanceName"];
-    }
-    if([self databaseName])
-    {
-        [result setValue:[self databaseName] forKey:@"databaseName"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.instanceName = [dictionary objectForKey:@"instanceName"];
-    self.databaseName = [dictionary objectForKey:@"databaseName"];
     return self;
 } 
 

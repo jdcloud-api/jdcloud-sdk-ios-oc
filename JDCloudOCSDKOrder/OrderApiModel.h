@@ -45,19 +45,6 @@ orderNumber:(NSString*)orderNumber;
 
 @end
 
-@interface OrderQueryOrdersRequest:JDCloudRequest
-
-/// QueryVo
-@property (strong,nonatomic,nonnull)  ListOrderRequest*  queryVo;
--(id) initWithRegion:(NSString *)regionId
-queryVo:(ListOrderRequest*)queryVo;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-queryVo:(ListOrderRequest*)queryVo;
-
-@end
-
 @interface OrderPayOrderResult : NSObject
 /// 订单号
  @property (strong,nonatomic,nonnull)  NSString*  orderNumber;
@@ -70,6 +57,36 @@ queryVo:(ListOrderRequest*)queryVo;
 -(id) initWithOrderNumber:(NSString*) orderNumber
 
     autoPay:(NSNumber*)autoPay;
+@end
+
+@interface OrderPayOrderRequest:JDCloudRequest
+
+/// 自动支付标示，当为true,才会发生自动支付，后付费的订单直接支付0元，预付费的订单（余额+代金劵）&gt; 订单应付金额，成功，否则支付失败（建议到京东云平台用现金方式支付）
+@property (strong,nonatomic,nonnull)  NSNumber*  autoPay;
+/// orderNumber ID
+@property (strong,nonatomic,nonnull)  NSString*  orderNumber;
+-(id) initWithRegion:(NSString *)regionId
+autoPay:(NSNumber*)autoPay
+orderNumber:(NSString*)orderNumber;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+autoPay:(NSNumber*)autoPay
+orderNumber:(NSString*)orderNumber;
+
+@end
+
+@interface OrderQueryOrdersRequest:JDCloudRequest
+
+/// QueryVo
+@property (strong,nonatomic,nonnull)  ListOrderRequest*  queryVo;
+-(id) initWithRegion:(NSString *)regionId
+queryVo:(ListOrderRequest*)queryVo;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+queryVo:(ListOrderRequest*)queryVo;
+
 @end
 
 @interface OrderQueryOrderResult : NSObject
@@ -115,23 +132,6 @@ queryVo:(ListOrderRequest*)queryVo;
     totalCount:(NSNumber*)totalCount
 
     totalPage:(NSNumber*)totalPage;
-@end
-
-@interface OrderPayOrderRequest:JDCloudRequest
-
-/// 自动支付标示，当为true,才会发生自动支付，后付费的订单直接支付0元，预付费的订单（余额+代金劵）&gt; 订单应付金额，成功，否则支付失败（建议到京东云平台用现金方式支付）
-@property (strong,nonatomic,nonnull)  NSNumber*  autoPay;
-/// orderNumber ID
-@property (strong,nonatomic,nonnull)  NSString*  orderNumber;
--(id) initWithRegion:(NSString *)regionId
-autoPay:(NSNumber*)autoPay
-orderNumber:(NSString*)orderNumber;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-autoPay:(NSNumber*)autoPay
-orderNumber:(NSString*)orderNumber;
-
 @end
 
 @interface OrderPayOrderResponse : NSObject

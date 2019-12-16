@@ -70,6 +70,78 @@ orderNumber:(NSString*)orderNumber {
 } 
 
 @end
+@implementation OrderPayOrderResult
+-(id) initWithOrderNumber:(NSString*) orderNumber
+        autoPay:(NSNumber*)autoPay { 
+    self.orderNumber = orderNumber;               
+    self.autoPay = autoPay;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self orderNumber])
+    {
+        [result setValue:[self orderNumber] forKey:@"orderNumber"];
+    }
+    if([self autoPay])
+    {
+        [result setValue:[self autoPay] forKey:@"autoPay"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.orderNumber = [dictionary objectForKey:@"orderNumber"];
+    self.autoPay = [dictionary objectForKey:@"autoPay"];
+    return self;
+} 
+
+@end
+@implementation OrderPayOrderRequest
+-(id) initWithRegion:(NSString *)regionId
+autoPay:(NSNumber*)autoPay
+orderNumber:(NSString*)orderNumber { 
+    self.regionId = regionId;
+    self.autoPay = autoPay;
+    self.orderNumber = orderNumber;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+autoPay:(NSNumber*)autoPay
+orderNumber:(NSString*)orderNumber { 
+    self.regionId = regionId;
+    self.version = version;
+    self.autoPay = autoPay;
+    self.orderNumber = orderNumber;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self autoPay])
+    {
+        [result setValue:[self autoPay] forKey:@"autoPay"];
+    }
+    if([self orderNumber])
+    {
+        [result setValue:[self orderNumber] forKey:@"orderNumber"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.autoPay = [dictionary objectForKey:@"autoPay"];
+    self.orderNumber = [dictionary objectForKey:@"orderNumber"];
+    return self;
+} 
+
+@end
 @implementation OrderQueryOrdersRequest
 -(id) initWithRegion:(NSString *)regionId
 queryVo:(ListOrderRequest*)queryVo { 
@@ -102,33 +174,6 @@ queryVo:(ListOrderRequest*)queryVo {
 
 -(id) initWithDic:(NSDictionary*)dictionary{
     self.queryVo = [[ListOrderRequest alloc]initWithDic:[dictionary objectForKey:@"queryVo"]];
-    return self;
-} 
-
-@end
-@implementation OrderPayOrderResult
--(id) initWithOrderNumber:(NSString*) orderNumber
-        autoPay:(NSNumber*)autoPay { 
-    self.orderNumber = orderNumber;               
-    self.autoPay = autoPay;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self orderNumber])
-    {
-        [result setValue:[self orderNumber] forKey:@"orderNumber"];
-    }
-    if([self autoPay])
-    {
-        [result setValue:[self autoPay] forKey:@"autoPay"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.orderNumber = [dictionary objectForKey:@"orderNumber"];
-    self.autoPay = [dictionary objectForKey:@"autoPay"];
     return self;
 } 
 
@@ -210,8 +255,8 @@ OrderQueryOrderResult* result = [[OrderQueryOrderResult alloc]initWithDic:[dicti
     NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
     if([self resultList])
     {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self resultList] count]; i++) {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self resultList] count]; i++) {
             OrderResponseObject* item = [[self resultList] objectAtIndex:i];
             [arrayDic addObject:[item dictionary]];
         }
@@ -235,61 +280,16 @@ OrderQueryOrderResult* result = [[OrderQueryOrderResult alloc]initWithDic:[dicti
         NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
         for(int i = 0 ; i< [resultListArray count];i++)
         {
-            OrderResponseObject* item = [[OrderResponseObject alloc]initWithDic:[resultListArray objectAtIndex:i]];
+        OrderResponseObject* item = [[OrderResponseObject alloc]initWithDic:[resultListArray objectAtIndex:i]];
             if(item)
             {
-                [propertyArray addObject:item];
+            [propertyArray addObject:item];
             }
         }
         self.resultList = propertyArray;
     }
     self.totalCount = [dictionary objectForKey:@"totalCount"];
     self.totalPage = [dictionary objectForKey:@"totalPage"];
-    return self;
-} 
-
-@end
-@implementation OrderPayOrderRequest
--(id) initWithRegion:(NSString *)regionId
-autoPay:(NSNumber*)autoPay
-orderNumber:(NSString*)orderNumber { 
-    self.regionId = regionId;
-    self.autoPay = autoPay;
-    self.orderNumber = orderNumber;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-autoPay:(NSNumber*)autoPay
-orderNumber:(NSString*)orderNumber { 
-    self.regionId = regionId;
-    self.version = version;
-    self.autoPay = autoPay;
-    self.orderNumber = orderNumber;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self autoPay])
-    {
-        [result setValue:[self autoPay] forKey:@"autoPay"];
-    }
-    if([self orderNumber])
-    {
-        [result setValue:[self orderNumber] forKey:@"orderNumber"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.autoPay = [dictionary objectForKey:@"autoPay"];
-    self.orderNumber = [dictionary objectForKey:@"orderNumber"];
     return self;
 } 
 

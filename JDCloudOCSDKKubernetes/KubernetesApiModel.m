@@ -61,6 +61,721 @@ masterVersion:(NSString*)masterVersion {
 } 
 
 @end
+@implementation KubernetesDescribeUpgradableMasterVersionsRequest
+-(id) initWithRegion:(NSString *)regionId
+clusterId:(NSString*)clusterId { 
+    self.regionId = regionId;
+    self.clusterId = clusterId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+clusterId:(NSString*)clusterId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.clusterId = clusterId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self clusterId])
+    {
+        [result setValue:[self clusterId] forKey:@"clusterId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.clusterId = [dictionary objectForKey:@"clusterId"];
+    return self;
+} 
+
+@end
+@implementation KubernetesDescribeNodeVersionRequest
+-(id) initWithRegion:(NSString *)regionId
+nodeVersion:(NSString*)nodeVersion { 
+    self.regionId = regionId;
+    self.nodeVersion = nodeVersion;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+nodeVersion:(NSString*)nodeVersion { 
+    self.regionId = regionId;
+    self.version = version;
+    self.nodeVersion = nodeVersion;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self nodeVersion])
+    {
+        [result setValue:[self nodeVersion] forKey:@"nodeVersion"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.nodeVersion = [dictionary objectForKey:@"nodeVersion"];
+    return self;
+} 
+
+@end
+@implementation KubernetesDescribeUpgradableNodeVersionsRequest
+-(id) initWithRegion:(NSString *)regionId
+nodeGroupIds:(NSArray<NSString*>*)nodeGroupIds
+clusterId:(NSString*)clusterId { 
+    self.regionId = regionId;
+    self.nodeGroupIds = nodeGroupIds;
+    self.clusterId = clusterId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+nodeGroupIds:(NSArray<NSString*>*)nodeGroupIds
+clusterId:(NSString*)clusterId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.nodeGroupIds = nodeGroupIds;
+    self.clusterId = clusterId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self nodeGroupIds])
+    {
+        [result setValue:[self nodeGroupIds] forKey:@"nodeGroupIds"];
+    }
+    if([self clusterId])
+    {
+        [result setValue:[self clusterId] forKey:@"clusterId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.nodeGroupIds = [dictionary objectForKey:@"nodeGroupIds"];
+    self.clusterId = [dictionary objectForKey:@"clusterId"];
+    return self;
+} 
+
+@end
+@implementation KubernetesDescribeNodeGroupRequest
+-(id) initWithRegion:(NSString *)regionId
+nodeGroupId:(NSString*)nodeGroupId { 
+    self.regionId = regionId;
+    self.nodeGroupId = nodeGroupId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+nodeGroupId:(NSString*)nodeGroupId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.nodeGroupId = nodeGroupId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self nodeGroupId])
+    {
+        [result setValue:[self nodeGroupId] forKey:@"nodeGroupId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.nodeGroupId = [dictionary objectForKey:@"nodeGroupId"];
+    return self;
+} 
+
+@end
+@implementation KubernetesModifyNodeGroupRequest
+-(id) initWithRegion:(NSString *)regionId
+name:(NSString*)name
+descriptionValue:(NSString*)descriptionValue
+nodeGroupId:(NSString*)nodeGroupId { 
+    self.regionId = regionId;
+    self.name = name;
+    self.descriptionValue = descriptionValue;
+    self.nodeGroupId = nodeGroupId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+name:(NSString*)name
+descriptionValue:(NSString*)descriptionValue
+nodeGroupId:(NSString*)nodeGroupId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.name = name;
+    self.descriptionValue = descriptionValue;
+    self.nodeGroupId = nodeGroupId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self name])
+    {
+        [result setValue:[self name] forKey:@"name"];
+    }
+    if([self descriptionValue])
+    {
+        [result setValue:[self descriptionValue] forKey:@"description"];
+    }
+    if([self nodeGroupId])
+    {
+        [result setValue:[self nodeGroupId] forKey:@"nodeGroupId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.name = [dictionary objectForKey:@"name"];
+    self.descriptionValue = [dictionary objectForKey:@"description"];
+    self.nodeGroupId = [dictionary objectForKey:@"nodeGroupId"];
+    return self;
+} 
+
+@end
+@implementation KubernetesSetNodeGroupSizeRequest
+-(id) initWithRegion:(NSString *)regionId
+expectCount:(NSNumber*)expectCount
+nodeGroupId:(NSString*)nodeGroupId { 
+    self.regionId = regionId;
+    self.expectCount = expectCount;
+    self.nodeGroupId = nodeGroupId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+expectCount:(NSNumber*)expectCount
+nodeGroupId:(NSString*)nodeGroupId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.expectCount = expectCount;
+    self.nodeGroupId = nodeGroupId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self expectCount])
+    {
+        [result setValue:[self expectCount] forKey:@"expectCount"];
+    }
+    if([self nodeGroupId])
+    {
+        [result setValue:[self nodeGroupId] forKey:@"nodeGroupId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.expectCount = [dictionary objectForKey:@"expectCount"];
+    self.nodeGroupId = [dictionary objectForKey:@"nodeGroupId"];
+    return self;
+} 
+
+@end
+@implementation KubernetesCreateNodeGroupResult
+-(id) initWithNodeGroupId:(NSString*) nodeGroupId { 
+    self.nodeGroupId = nodeGroupId;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self nodeGroupId])
+    {
+        [result setValue:[self nodeGroupId] forKey:@"nodeGroupId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.nodeGroupId = [dictionary objectForKey:@"nodeGroupId"];
+    return self;
+} 
+
+@end
+@implementation KubernetesSetAutoRepairRequest
+-(id) initWithRegion:(NSString *)regionId
+enabled:(NSNumber*)enabled
+nodeGroupId:(NSString*)nodeGroupId { 
+    self.regionId = regionId;
+    self.enabled = enabled;
+    self.nodeGroupId = nodeGroupId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+enabled:(NSNumber*)enabled
+nodeGroupId:(NSString*)nodeGroupId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.enabled = enabled;
+    self.nodeGroupId = nodeGroupId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self enabled])
+    {
+        [result setValue:[self enabled] forKey:@"enabled"];
+    }
+    if([self nodeGroupId])
+    {
+        [result setValue:[self nodeGroupId] forKey:@"nodeGroupId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.enabled = [dictionary objectForKey:@"enabled"];
+    self.nodeGroupId = [dictionary objectForKey:@"nodeGroupId"];
+    return self;
+} 
+
+@end
+@implementation KubernetesRollbackNodeGroupUpgradeRequest
+-(id) initWithRegion:(NSString *)regionId
+nodeGroupId:(NSString*)nodeGroupId { 
+    self.regionId = regionId;
+    self.nodeGroupId = nodeGroupId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+nodeGroupId:(NSString*)nodeGroupId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.nodeGroupId = nodeGroupId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self nodeGroupId])
+    {
+        [result setValue:[self nodeGroupId] forKey:@"nodeGroupId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.nodeGroupId = [dictionary objectForKey:@"nodeGroupId"];
+    return self;
+} 
+
+@end
+@implementation KubernetesDeleteNodeGroupRequest
+-(id) initWithRegion:(NSString *)regionId
+nodeGroupId:(NSString*)nodeGroupId { 
+    self.regionId = regionId;
+    self.nodeGroupId = nodeGroupId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+nodeGroupId:(NSString*)nodeGroupId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.nodeGroupId = nodeGroupId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self nodeGroupId])
+    {
+        [result setValue:[self nodeGroupId] forKey:@"nodeGroupId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.nodeGroupId = [dictionary objectForKey:@"nodeGroupId"];
+    return self;
+} 
+
+@end
+@implementation KubernetesDescribeClusterRequest
+-(id) initWithRegion:(NSString *)regionId
+clusterId:(NSString*)clusterId { 
+    self.regionId = regionId;
+    self.clusterId = clusterId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+clusterId:(NSString*)clusterId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.clusterId = clusterId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self clusterId])
+    {
+        [result setValue:[self clusterId] forKey:@"clusterId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.clusterId = [dictionary objectForKey:@"clusterId"];
+    return self;
+} 
+
+@end
+@implementation KubernetesModifyClusterRequest
+-(id) initWithRegion:(NSString *)regionId
+name:(NSString*)name
+descriptionValue:(NSString*)descriptionValue
+clusterId:(NSString*)clusterId { 
+    self.regionId = regionId;
+    self.name = name;
+    self.descriptionValue = descriptionValue;
+    self.clusterId = clusterId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+name:(NSString*)name
+descriptionValue:(NSString*)descriptionValue
+clusterId:(NSString*)clusterId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.name = name;
+    self.descriptionValue = descriptionValue;
+    self.clusterId = clusterId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self name])
+    {
+        [result setValue:[self name] forKey:@"name"];
+    }
+    if([self descriptionValue])
+    {
+        [result setValue:[self descriptionValue] forKey:@"description"];
+    }
+    if([self clusterId])
+    {
+        [result setValue:[self clusterId] forKey:@"clusterId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.name = [dictionary objectForKey:@"name"];
+    self.descriptionValue = [dictionary objectForKey:@"description"];
+    self.clusterId = [dictionary objectForKey:@"clusterId"];
+    return self;
+} 
+
+@end
+@implementation KubernetesSetUserMetricsRequest
+-(id) initWithRegion:(NSString *)regionId
+enabled:(NSNumber*)enabled
+clusterId:(NSString*)clusterId { 
+    self.regionId = regionId;
+    self.enabled = enabled;
+    self.clusterId = clusterId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+enabled:(NSNumber*)enabled
+clusterId:(NSString*)clusterId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.enabled = enabled;
+    self.clusterId = clusterId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self enabled])
+    {
+        [result setValue:[self enabled] forKey:@"enabled"];
+    }
+    if([self clusterId])
+    {
+        [result setValue:[self clusterId] forKey:@"clusterId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.enabled = [dictionary objectForKey:@"enabled"];
+    self.clusterId = [dictionary objectForKey:@"clusterId"];
+    return self;
+} 
+
+@end
+@implementation KubernetesDescribeProgressRequest
+-(id) initWithRegion:(NSString *)regionId
+nodeGroupIds:(NSArray<NSString*>*)nodeGroupIds
+clusterId:(NSString*)clusterId { 
+    self.regionId = regionId;
+    self.nodeGroupIds = nodeGroupIds;
+    self.clusterId = clusterId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+nodeGroupIds:(NSArray<NSString*>*)nodeGroupIds
+clusterId:(NSString*)clusterId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.nodeGroupIds = nodeGroupIds;
+    self.clusterId = clusterId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self nodeGroupIds])
+    {
+        [result setValue:[self nodeGroupIds] forKey:@"nodeGroupIds"];
+    }
+    if([self clusterId])
+    {
+        [result setValue:[self clusterId] forKey:@"clusterId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.nodeGroupIds = [dictionary objectForKey:@"nodeGroupIds"];
+    self.clusterId = [dictionary objectForKey:@"clusterId"];
+    return self;
+} 
+
+@end
+@implementation KubernetesCreateClusterResult
+-(id) initWithClusterId:(NSString*) clusterId { 
+    self.clusterId = clusterId;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self clusterId])
+    {
+        [result setValue:[self clusterId] forKey:@"clusterId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.clusterId = [dictionary objectForKey:@"clusterId"];
+    return self;
+} 
+
+@end
+@implementation KubernetesUpgradeClusterRequest
+-(id) initWithRegion:(NSString *)regionId
+scope:(NSString*)scope
+nodeGroupIds:(NSArray<NSString*>*)nodeGroupIds
+clusterId:(NSString*)clusterId { 
+    self.regionId = regionId;
+    self.scope = scope;
+    self.nodeGroupIds = nodeGroupIds;
+    self.clusterId = clusterId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+scope:(NSString*)scope
+nodeGroupIds:(NSArray<NSString*>*)nodeGroupIds
+clusterId:(NSString*)clusterId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.scope = scope;
+    self.nodeGroupIds = nodeGroupIds;
+    self.clusterId = clusterId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self scope])
+    {
+        [result setValue:[self scope] forKey:@"scope"];
+    }
+    if([self nodeGroupIds])
+    {
+        [result setValue:[self nodeGroupIds] forKey:@"nodeGroupIds"];
+    }
+    if([self clusterId])
+    {
+        [result setValue:[self clusterId] forKey:@"clusterId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.scope = [dictionary objectForKey:@"scope"];
+    self.nodeGroupIds = [dictionary objectForKey:@"nodeGroupIds"];
+    self.clusterId = [dictionary objectForKey:@"clusterId"];
+    return self;
+} 
+
+@end
+@implementation KubernetesDeleteClusterRequest
+-(id) initWithRegion:(NSString *)regionId
+clusterId:(NSString*)clusterId { 
+    self.regionId = regionId;
+    self.clusterId = clusterId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+clusterId:(NSString*)clusterId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.clusterId = clusterId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self clusterId])
+    {
+        [result setValue:[self clusterId] forKey:@"clusterId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.clusterId = [dictionary objectForKey:@"clusterId"];
+    return self;
+} 
+
+@end
+@implementation KubernetesAbortUpgradeRequest
+-(id) initWithRegion:(NSString *)regionId
+clusterId:(NSString*)clusterId { 
+    self.regionId = regionId;
+    self.clusterId = clusterId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+clusterId:(NSString*)clusterId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.clusterId = clusterId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self clusterId])
+    {
+        [result setValue:[self clusterId] forKey:@"clusterId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.clusterId = [dictionary objectForKey:@"clusterId"];
+    return self;
+} 
+
+@end
 @implementation KubernetesDescribeVersionsResult
 -(id) initWithMasterVersions:(NSArray<MasterVersion*>*) masterVersions { 
     self.masterVersions = masterVersions;               
@@ -70,8 +785,8 @@ masterVersion:(NSString*)masterVersion {
     NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
     if([self masterVersions])
     {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self masterVersions] count]; i++) {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self masterVersions] count]; i++) {
             MasterVersion* item = [[self masterVersions] objectAtIndex:i];
             [arrayDic addObject:[item dictionary]];
         }
@@ -87,10 +802,10 @@ masterVersion:(NSString*)masterVersion {
         NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
         for(int i = 0 ; i< [masterVersionsArray count];i++)
         {
-            MasterVersion* item = [[MasterVersion alloc]initWithDic:[masterVersionsArray objectAtIndex:i]];
+        MasterVersion* item = [[MasterVersion alloc]initWithDic:[masterVersionsArray objectAtIndex:i]];
             if(item)
             {
-                [propertyArray addObject:item];
+            [propertyArray addObject:item];
             }
         }
         self.masterVersions = propertyArray;
@@ -172,8 +887,8 @@ KubernetesDescribeVersionsResult* result = [[KubernetesDescribeVersionsResult al
     NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
     if([self masterVersions])
     {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self masterVersions] count]; i++) {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self masterVersions] count]; i++) {
             MasterVersion* item = [[self masterVersions] objectAtIndex:i];
             [arrayDic addObject:[item dictionary]];
         }
@@ -189,10 +904,10 @@ KubernetesDescribeVersionsResult* result = [[KubernetesDescribeVersionsResult al
         NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
         for(int i = 0 ; i< [masterVersionsArray count];i++)
         {
-            MasterVersion* item = [[MasterVersion alloc]initWithDic:[masterVersionsArray objectAtIndex:i]];
+        MasterVersion* item = [[MasterVersion alloc]initWithDic:[masterVersionsArray objectAtIndex:i]];
             if(item)
             {
-                [propertyArray addObject:item];
+            [propertyArray addObject:item];
             }
         }
         self.masterVersions = propertyArray;
@@ -217,42 +932,6 @@ KubernetesDescribeVersionsResult* result = [[KubernetesDescribeVersionsResult al
 } 
 
 @end
-@implementation KubernetesDescribeUpgradableMasterVersionsRequest
--(id) initWithRegion:(NSString *)regionId
-clusterId:(NSString*)clusterId { 
-    self.regionId = regionId;
-    self.clusterId = clusterId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-clusterId:(NSString*)clusterId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.clusterId = clusterId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self clusterId])
-    {
-        [result setValue:[self clusterId] forKey:@"clusterId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.clusterId = [dictionary objectForKey:@"clusterId"];
-    return self;
-} 
-
-@end
 @implementation KubernetesDescribeServerConfigResult
 -(id) initWithServerConfig:(ServerConfig*) serverConfig { 
     self.serverConfig = serverConfig;               
@@ -273,42 +952,6 @@ clusterId:(NSString*)clusterId {
 } 
 
 @end
-@implementation KubernetesDescribeNodeVersionRequest
--(id) initWithRegion:(NSString *)regionId
-nodeVersion:(NSString*)nodeVersion { 
-    self.regionId = regionId;
-    self.nodeVersion = nodeVersion;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-nodeVersion:(NSString*)nodeVersion { 
-    self.regionId = regionId;
-    self.version = version;
-    self.nodeVersion = nodeVersion;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self nodeVersion])
-    {
-        [result setValue:[self nodeVersion] forKey:@"nodeVersion"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.nodeVersion = [dictionary objectForKey:@"nodeVersion"];
-    return self;
-} 
-
-@end
 @implementation KubernetesDescribeUpgradableNodeVersionsResult
 -(id) initWithNdoeVersions:(NSArray<NodeVersion*>*) ndoeVersions { 
     self.ndoeVersions = ndoeVersions;               
@@ -318,8 +961,8 @@ nodeVersion:(NSString*)nodeVersion {
     NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
     if([self ndoeVersions])
     {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self ndoeVersions] count]; i++) {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self ndoeVersions] count]; i++) {
             NodeVersion* item = [[self ndoeVersions] objectAtIndex:i];
             [arrayDic addObject:[item dictionary]];
         }
@@ -335,10 +978,10 @@ nodeVersion:(NSString*)nodeVersion {
         NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
         for(int i = 0 ; i< [ndoeVersionsArray count];i++)
         {
-            NodeVersion* item = [[NodeVersion alloc]initWithDic:[ndoeVersionsArray objectAtIndex:i]];
+        NodeVersion* item = [[NodeVersion alloc]initWithDic:[ndoeVersionsArray objectAtIndex:i]];
             if(item)
             {
-                [propertyArray addObject:item];
+            [propertyArray addObject:item];
             }
         }
         self.ndoeVersions = propertyArray;
@@ -479,51 +1122,6 @@ KubernetesDescribeNodeVersionResult* result = [[KubernetesDescribeNodeVersionRes
 }
 
 @end
-@implementation KubernetesDescribeUpgradableNodeVersionsRequest
--(id) initWithRegion:(NSString *)regionId
-nodeGroupIds:(NSArray<NSString*>*)nodeGroupIds
-clusterId:(NSString*)clusterId { 
-    self.regionId = regionId;
-    self.nodeGroupIds = nodeGroupIds;
-    self.clusterId = clusterId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-nodeGroupIds:(NSArray<NSString*>*)nodeGroupIds
-clusterId:(NSString*)clusterId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.nodeGroupIds = nodeGroupIds;
-    self.clusterId = clusterId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self nodeGroupIds])
-    {
-        [result setValue:[self nodeGroupIds] forKey:@"nodeGroupIds"];
-    }
-    if([self clusterId])
-    {
-        [result setValue:[self clusterId] forKey:@"clusterId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.nodeGroupIds = [dictionary objectForKey:@"nodeGroupIds"];
-    self.clusterId = [dictionary objectForKey:@"clusterId"];
-    return self;
-} 
-
-@end
   
 @implementation KubernetesDescribeUpgradableNodeVersionsResponse
 -(NSMutableDictionary*) dictionary
@@ -566,141 +1164,6 @@ KubernetesDescribeUpgradableNodeVersionsResult* result = [[KubernetesDescribeUpg
     self.requestId = requestId;
     return self;
 }
-
-@end
-@implementation KubernetesDescribeNodeGroupRequest
--(id) initWithRegion:(NSString *)regionId
-nodeGroupId:(NSString*)nodeGroupId { 
-    self.regionId = regionId;
-    self.nodeGroupId = nodeGroupId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-nodeGroupId:(NSString*)nodeGroupId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.nodeGroupId = nodeGroupId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self nodeGroupId])
-    {
-        [result setValue:[self nodeGroupId] forKey:@"nodeGroupId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.nodeGroupId = [dictionary objectForKey:@"nodeGroupId"];
-    return self;
-} 
-
-@end
-@implementation KubernetesModifyNodeGroupRequest
--(id) initWithRegion:(NSString *)regionId
-name:(NSString*)name
-descriptionValue:(NSString*)descriptionValue
-nodeGroupId:(NSString*)nodeGroupId { 
-    self.regionId = regionId;
-    self.name = name;
-    self.descriptionValue = descriptionValue;
-    self.nodeGroupId = nodeGroupId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-name:(NSString*)name
-descriptionValue:(NSString*)descriptionValue
-nodeGroupId:(NSString*)nodeGroupId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.name = name;
-    self.descriptionValue = descriptionValue;
-    self.nodeGroupId = nodeGroupId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self name])
-    {
-        [result setValue:[self name] forKey:@"name"];
-    }
-    if([self descriptionValue])
-    {
-        [result setValue:[self descriptionValue] forKey:@"description"];
-    }
-    if([self nodeGroupId])
-    {
-        [result setValue:[self nodeGroupId] forKey:@"nodeGroupId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.name = [dictionary objectForKey:@"name"];
-    self.descriptionValue = [dictionary objectForKey:@"description"];
-    self.nodeGroupId = [dictionary objectForKey:@"nodeGroupId"];
-    return self;
-} 
-
-@end
-@implementation KubernetesSetNodeGroupSizeRequest
--(id) initWithRegion:(NSString *)regionId
-expectCount:(NSNumber*)expectCount
-nodeGroupId:(NSString*)nodeGroupId { 
-    self.regionId = regionId;
-    self.expectCount = expectCount;
-    self.nodeGroupId = nodeGroupId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-expectCount:(NSNumber*)expectCount
-nodeGroupId:(NSString*)nodeGroupId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.expectCount = expectCount;
-    self.nodeGroupId = nodeGroupId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self expectCount])
-    {
-        [result setValue:[self expectCount] forKey:@"expectCount"];
-    }
-    if([self nodeGroupId])
-    {
-        [result setValue:[self nodeGroupId] forKey:@"nodeGroupId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.expectCount = [dictionary objectForKey:@"expectCount"];
-    self.nodeGroupId = [dictionary objectForKey:@"nodeGroupId"];
-    return self;
-} 
 
 @end
 @implementation KubernetesDescribeNodeGroupsRequest
@@ -748,8 +1211,8 @@ filters:(NSArray<Filter*>*)filters {
     }
     if([self tags])
     {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self tags] count]; i++) {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self tags] count]; i++) {
             KubernetesTagFilter* item = [[self tags] objectAtIndex:i];
             [arrayDic addObject:[item dictionary]];
         }
@@ -757,8 +1220,8 @@ filters:(NSArray<Filter*>*)filters {
     }
     if([self filters])
     {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self filters] count]; i++) {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self filters] count]; i++) {
             Filter* item = [[self filters] objectAtIndex:i];
             [arrayDic addObject:[item dictionary]];
         }
@@ -776,10 +1239,10 @@ filters:(NSArray<Filter*>*)filters {
         NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
         for(int i = 0 ; i< [tagsArray count];i++)
         {
-            KubernetesTagFilter* item = [[KubernetesTagFilter alloc]initWithDic:[tagsArray objectAtIndex:i]];
+        KubernetesTagFilter* item = [[KubernetesTagFilter alloc]initWithDic:[tagsArray objectAtIndex:i]];
             if(item)
             {
-                [propertyArray addObject:item];
+            [propertyArray addObject:item];
             }
         }
         self.tags = propertyArray;
@@ -790,10 +1253,10 @@ filters:(NSArray<Filter*>*)filters {
         NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
         for(int i = 0 ; i< [filtersArray count];i++)
         {
-            Filter* item = [[Filter alloc]initWithDic:[filtersArray objectAtIndex:i]];
+        Filter* item = [[Filter alloc]initWithDic:[filtersArray objectAtIndex:i]];
             if(item)
             {
-                [propertyArray addObject:item];
+            [propertyArray addObject:item];
             }
         }
         self.filters = propertyArray;
@@ -923,26 +1386,6 @@ KubernetesDeleteNodeGroupResult* result = [[KubernetesDeleteNodeGroupResult allo
 }
 
 @end
-@implementation KubernetesCreateNodeGroupResult
--(id) initWithNodeGroupId:(NSString*) nodeGroupId { 
-    self.nodeGroupId = nodeGroupId;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self nodeGroupId])
-    {
-        [result setValue:[self nodeGroupId] forKey:@"nodeGroupId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.nodeGroupId = [dictionary objectForKey:@"nodeGroupId"];
-    return self;
-} 
-
-@end
   
 @implementation KubernetesCreateNodeGroupResponse
 -(NSMutableDictionary*) dictionary
@@ -998,8 +1441,8 @@ KubernetesCreateNodeGroupResult* result = [[KubernetesCreateNodeGroupResult allo
     NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
     if([self nodeGroups])
     {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self nodeGroups] count]; i++) {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self nodeGroups] count]; i++) {
             NodeGroup* item = [[self nodeGroups] objectAtIndex:i];
             [arrayDic addObject:[item dictionary]];
         }
@@ -1019,10 +1462,10 @@ KubernetesCreateNodeGroupResult* result = [[KubernetesCreateNodeGroupResult allo
         NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
         for(int i = 0 ; i< [nodeGroupsArray count];i++)
         {
-            NodeGroup* item = [[NodeGroup alloc]initWithDic:[nodeGroupsArray objectAtIndex:i]];
+        NodeGroup* item = [[NodeGroup alloc]initWithDic:[nodeGroupsArray objectAtIndex:i]];
             if(item)
             {
-                [propertyArray addObject:item];
+            [propertyArray addObject:item];
             }
         }
         self.nodeGroups = propertyArray;
@@ -1092,51 +1535,6 @@ KubernetesDescribeNodeGroupsResult* result = [[KubernetesDescribeNodeGroupsResul
 
 -(id) initWithDic:(NSDictionary*)dictionary{
     self.nodeGroup = [[NodeGroup alloc]initWithDic:[dictionary objectForKey:@"nodeGroup"]];
-    return self;
-} 
-
-@end
-@implementation KubernetesSetAutoRepairRequest
--(id) initWithRegion:(NSString *)regionId
-enabled:(NSNumber*)enabled
-nodeGroupId:(NSString*)nodeGroupId { 
-    self.regionId = regionId;
-    self.enabled = enabled;
-    self.nodeGroupId = nodeGroupId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-enabled:(NSNumber*)enabled
-nodeGroupId:(NSString*)nodeGroupId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.enabled = enabled;
-    self.nodeGroupId = nodeGroupId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self enabled])
-    {
-        [result setValue:[self enabled] forKey:@"enabled"];
-    }
-    if([self nodeGroupId])
-    {
-        [result setValue:[self nodeGroupId] forKey:@"nodeGroupId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.enabled = [dictionary objectForKey:@"enabled"];
-    self.nodeGroupId = [dictionary objectForKey:@"nodeGroupId"];
     return self;
 } 
 
@@ -1348,42 +1746,6 @@ autoRepair:(NSNumber*)autoRepair {
 } 
 
 @end
-@implementation KubernetesRollbackNodeGroupUpgradeRequest
--(id) initWithRegion:(NSString *)regionId
-nodeGroupId:(NSString*)nodeGroupId { 
-    self.regionId = regionId;
-    self.nodeGroupId = nodeGroupId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-nodeGroupId:(NSString*)nodeGroupId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.nodeGroupId = nodeGroupId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self nodeGroupId])
-    {
-        [result setValue:[self nodeGroupId] forKey:@"nodeGroupId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.nodeGroupId = [dictionary objectForKey:@"nodeGroupId"];
-    return self;
-} 
-
-@end
 @implementation KubernetesModifyNodeGroupResult
 -(NSMutableDictionary*) dictionary{
     NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
@@ -1439,42 +1801,6 @@ KubernetesModifyNodeGroupResult* result = [[KubernetesModifyNodeGroupResult allo
 }
 
 @end
-@implementation KubernetesDeleteNodeGroupRequest
--(id) initWithRegion:(NSString *)regionId
-nodeGroupId:(NSString*)nodeGroupId { 
-    self.regionId = regionId;
-    self.nodeGroupId = nodeGroupId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-nodeGroupId:(NSString*)nodeGroupId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.nodeGroupId = nodeGroupId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self nodeGroupId])
-    {
-        [result setValue:[self nodeGroupId] forKey:@"nodeGroupId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.nodeGroupId = [dictionary objectForKey:@"nodeGroupId"];
-    return self;
-} 
-
-@end
   
 @implementation KubernetesSetNodeGroupSizeResponse
 -(NSMutableDictionary*) dictionary
@@ -1528,8 +1854,8 @@ KubernetesSetNodeGroupSizeResult* result = [[KubernetesSetNodeGroupSizeResult al
     NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
     if([self quotas])
     {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self quotas] count]; i++) {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self quotas] count]; i++) {
             KubernetesQuota* item = [[self quotas] objectAtIndex:i];
             [arrayDic addObject:[item dictionary]];
         }
@@ -1545,10 +1871,10 @@ KubernetesSetNodeGroupSizeResult* result = [[KubernetesSetNodeGroupSizeResult al
         NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
         for(int i = 0 ; i< [quotasArray count];i++)
         {
-            KubernetesQuota* item = [[KubernetesQuota alloc]initWithDic:[quotasArray objectAtIndex:i]];
+        KubernetesQuota* item = [[KubernetesQuota alloc]initWithDic:[quotasArray objectAtIndex:i]];
             if(item)
             {
-                [propertyArray addObject:item];
+            [propertyArray addObject:item];
             }
         }
         self.quotas = propertyArray;
@@ -1626,8 +1952,8 @@ filters:(NSArray<Filter*>*)filters {
     }
     if([self filters])
     {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self filters] count]; i++) {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self filters] count]; i++) {
             Filter* item = [[self filters] objectAtIndex:i];
             [arrayDic addObject:[item dictionary]];
         }
@@ -1643,10 +1969,10 @@ filters:(NSArray<Filter*>*)filters {
         NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
         for(int i = 0 ; i< [filtersArray count];i++)
         {
-            Filter* item = [[Filter alloc]initWithDic:[filtersArray objectAtIndex:i]];
+        Filter* item = [[Filter alloc]initWithDic:[filtersArray objectAtIndex:i]];
             if(item)
             {
-                [propertyArray addObject:item];
+            [propertyArray addObject:item];
             }
         }
         self.filters = propertyArray;
@@ -1670,8 +1996,8 @@ filters:(NSArray<Filter*>*)filters {
     }
     if([self nodeGroupProgresses])
     {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self nodeGroupProgresses] count]; i++) {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self nodeGroupProgresses] count]; i++) {
             NodeGroupProgress* item = [[self nodeGroupProgresses] objectAtIndex:i];
             [arrayDic addObject:[item dictionary]];
         }
@@ -1688,10 +2014,10 @@ filters:(NSArray<Filter*>*)filters {
         NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
         for(int i = 0 ; i< [nodeGroupProgressesArray count];i++)
         {
-            NodeGroupProgress* item = [[NodeGroupProgress alloc]initWithDic:[nodeGroupProgressesArray objectAtIndex:i]];
+        NodeGroupProgress* item = [[NodeGroupProgress alloc]initWithDic:[nodeGroupProgressesArray objectAtIndex:i]];
             if(item)
             {
-                [propertyArray addObject:item];
+            [propertyArray addObject:item];
             }
         }
         self.nodeGroupProgresses = propertyArray;
@@ -1742,96 +2068,6 @@ KubernetesDescribeProgressResult* result = [[KubernetesDescribeProgressResult al
     self.requestId = requestId;
     return self;
 }
-
-@end
-@implementation KubernetesDescribeClusterRequest
--(id) initWithRegion:(NSString *)regionId
-clusterId:(NSString*)clusterId { 
-    self.regionId = regionId;
-    self.clusterId = clusterId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-clusterId:(NSString*)clusterId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.clusterId = clusterId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self clusterId])
-    {
-        [result setValue:[self clusterId] forKey:@"clusterId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.clusterId = [dictionary objectForKey:@"clusterId"];
-    return self;
-} 
-
-@end
-@implementation KubernetesModifyClusterRequest
--(id) initWithRegion:(NSString *)regionId
-name:(NSString*)name
-descriptionValue:(NSString*)descriptionValue
-clusterId:(NSString*)clusterId { 
-    self.regionId = regionId;
-    self.name = name;
-    self.descriptionValue = descriptionValue;
-    self.clusterId = clusterId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-name:(NSString*)name
-descriptionValue:(NSString*)descriptionValue
-clusterId:(NSString*)clusterId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.name = name;
-    self.descriptionValue = descriptionValue;
-    self.clusterId = clusterId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self name])
-    {
-        [result setValue:[self name] forKey:@"name"];
-    }
-    if([self descriptionValue])
-    {
-        [result setValue:[self descriptionValue] forKey:@"description"];
-    }
-    if([self clusterId])
-    {
-        [result setValue:[self clusterId] forKey:@"clusterId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.name = [dictionary objectForKey:@"name"];
-    self.descriptionValue = [dictionary objectForKey:@"description"];
-    self.clusterId = [dictionary objectForKey:@"clusterId"];
-    return self;
-} 
 
 @end
 @implementation KubernetesDeleteClusterResult
@@ -1911,8 +2147,8 @@ KubernetesDeleteClusterResult* result = [[KubernetesDeleteClusterResult alloc]in
     NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
     if([self clusters])
     {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self clusters] count]; i++) {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self clusters] count]; i++) {
             Cluster* item = [[self clusters] objectAtIndex:i];
             [arrayDic addObject:[item dictionary]];
         }
@@ -1932,10 +2168,10 @@ KubernetesDeleteClusterResult* result = [[KubernetesDeleteClusterResult alloc]in
         NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
         for(int i = 0 ; i< [clustersArray count];i++)
         {
-            Cluster* item = [[Cluster alloc]initWithDic:[clustersArray objectAtIndex:i]];
+        Cluster* item = [[Cluster alloc]initWithDic:[clustersArray objectAtIndex:i]];
             if(item)
             {
-                [propertyArray addObject:item];
+            [propertyArray addObject:item];
             }
         }
         self.clusters = propertyArray;
@@ -1974,8 +2210,8 @@ clusterId:(NSString*)clusterId {
     }
     if([self addonsConfig])
     {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self addonsConfig] count]; i++) {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self addonsConfig] count]; i++) {
             AddonConfigSpec* item = [[self addonsConfig] objectAtIndex:i];
             [arrayDic addObject:[item dictionary]];
         }
@@ -1995,10 +2231,10 @@ clusterId:(NSString*)clusterId {
         NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
         for(int i = 0 ; i< [addonsConfigArray count];i++)
         {
-            AddonConfigSpec* item = [[AddonConfigSpec alloc]initWithDic:[addonsConfigArray objectAtIndex:i]];
+        AddonConfigSpec* item = [[AddonConfigSpec alloc]initWithDic:[addonsConfigArray objectAtIndex:i]];
             if(item)
             {
-                [propertyArray addObject:item];
+            [propertyArray addObject:item];
             }
         }
         self.addonsConfig = propertyArray;
@@ -2081,26 +2317,6 @@ KubernetesAbortUpgradeResult* result = [[KubernetesAbortUpgradeResult alloc]init
 }
 
 -(id) initWithDic:(NSDictionary*)dictionary{
-    return self;
-} 
-
-@end
-@implementation KubernetesCreateClusterResult
--(id) initWithClusterId:(NSString*) clusterId { 
-    self.clusterId = clusterId;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self clusterId])
-    {
-        [result setValue:[self clusterId] forKey:@"clusterId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.clusterId = [dictionary objectForKey:@"clusterId"];
     return self;
 } 
 
@@ -2366,51 +2582,6 @@ clusterId:(NSString*)clusterId {
 } 
 
 @end
-@implementation KubernetesSetUserMetricsRequest
--(id) initWithRegion:(NSString *)regionId
-enabled:(NSNumber*)enabled
-clusterId:(NSString*)clusterId { 
-    self.regionId = regionId;
-    self.enabled = enabled;
-    self.clusterId = clusterId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-enabled:(NSNumber*)enabled
-clusterId:(NSString*)clusterId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.enabled = enabled;
-    self.clusterId = clusterId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self enabled])
-    {
-        [result setValue:[self enabled] forKey:@"enabled"];
-    }
-    if([self clusterId])
-    {
-        [result setValue:[self clusterId] forKey:@"clusterId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.enabled = [dictionary objectForKey:@"enabled"];
-    self.clusterId = [dictionary objectForKey:@"clusterId"];
-    return self;
-} 
-
-@end
 @implementation KubernetesUpgradeClusterResult
 -(NSMutableDictionary*) dictionary{
     NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
@@ -2466,51 +2637,6 @@ KubernetesUpgradeClusterResult* result = [[KubernetesUpgradeClusterResult alloc]
 }
 
 @end
-@implementation KubernetesDescribeProgressRequest
--(id) initWithRegion:(NSString *)regionId
-nodeGroupIds:(NSArray<NSString*>*)nodeGroupIds
-clusterId:(NSString*)clusterId { 
-    self.regionId = regionId;
-    self.nodeGroupIds = nodeGroupIds;
-    self.clusterId = clusterId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-nodeGroupIds:(NSArray<NSString*>*)nodeGroupIds
-clusterId:(NSString*)clusterId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.nodeGroupIds = nodeGroupIds;
-    self.clusterId = clusterId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self nodeGroupIds])
-    {
-        [result setValue:[self nodeGroupIds] forKey:@"nodeGroupIds"];
-    }
-    if([self clusterId])
-    {
-        [result setValue:[self clusterId] forKey:@"clusterId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.nodeGroupIds = [dictionary objectForKey:@"nodeGroupIds"];
-    self.clusterId = [dictionary objectForKey:@"clusterId"];
-    return self;
-} 
-
-@end
   
 @implementation KubernetesModifyClusterResponse
 -(NSMutableDictionary*) dictionary
@@ -2555,60 +2681,6 @@ KubernetesModifyClusterResult* result = [[KubernetesModifyClusterResult alloc]in
 }
 
 @end
-@implementation KubernetesUpgradeClusterRequest
--(id) initWithRegion:(NSString *)regionId
-scope:(NSString*)scope
-nodeGroupIds:(NSArray<NSString*>*)nodeGroupIds
-clusterId:(NSString*)clusterId { 
-    self.regionId = regionId;
-    self.scope = scope;
-    self.nodeGroupIds = nodeGroupIds;
-    self.clusterId = clusterId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-scope:(NSString*)scope
-nodeGroupIds:(NSArray<NSString*>*)nodeGroupIds
-clusterId:(NSString*)clusterId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.scope = scope;
-    self.nodeGroupIds = nodeGroupIds;
-    self.clusterId = clusterId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self scope])
-    {
-        [result setValue:[self scope] forKey:@"scope"];
-    }
-    if([self nodeGroupIds])
-    {
-        [result setValue:[self nodeGroupIds] forKey:@"nodeGroupIds"];
-    }
-    if([self clusterId])
-    {
-        [result setValue:[self clusterId] forKey:@"clusterId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.scope = [dictionary objectForKey:@"scope"];
-    self.nodeGroupIds = [dictionary objectForKey:@"nodeGroupIds"];
-    self.clusterId = [dictionary objectForKey:@"clusterId"];
-    return self;
-} 
-
-@end
 @implementation KubernetesDescribeClustersRequest
 -(id) initWithRegion:(NSString *)regionId
 pageNumber:(NSNumber*)pageNumber
@@ -2650,8 +2722,8 @@ filters:(NSArray<Filter*>*)filters {
     }
     if([self filters])
     {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self filters] count]; i++) {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self filters] count]; i++) {
             Filter* item = [[self filters] objectAtIndex:i];
             [arrayDic addObject:[item dictionary]];
         }
@@ -2669,10 +2741,10 @@ filters:(NSArray<Filter*>*)filters {
         NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
         for(int i = 0 ; i< [filtersArray count];i++)
         {
-            Filter* item = [[Filter alloc]initWithDic:[filtersArray objectAtIndex:i]];
+        Filter* item = [[Filter alloc]initWithDic:[filtersArray objectAtIndex:i]];
             if(item)
             {
-                [propertyArray addObject:item];
+            [propertyArray addObject:item];
             }
         }
         self.filters = propertyArray;
@@ -2767,42 +2839,6 @@ KubernetesSetUserMetricsResult* result = [[KubernetesSetUserMetricsResult alloc]
     self.requestId = requestId;
     return self;
 }
-
-@end
-@implementation KubernetesDeleteClusterRequest
--(id) initWithRegion:(NSString *)regionId
-clusterId:(NSString*)clusterId { 
-    self.regionId = regionId;
-    self.clusterId = clusterId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-clusterId:(NSString*)clusterId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.clusterId = clusterId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self clusterId])
-    {
-        [result setValue:[self clusterId] forKey:@"clusterId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.clusterId = [dictionary objectForKey:@"clusterId"];
-    return self;
-} 
 
 @end
 @implementation KubernetesCreateClusterRequest
@@ -2910,8 +2946,8 @@ addonsConfig:(NSArray<AddonConfigSpec*>*)addonsConfig {
     }
     if([self addonsConfig])
     {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self addonsConfig] count]; i++) {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self addonsConfig] count]; i++) {
             AddonConfigSpec* item = [[self addonsConfig] objectAtIndex:i];
             [arrayDic addObject:[item dictionary]];
         }
@@ -2937,50 +2973,14 @@ addonsConfig:(NSArray<AddonConfigSpec*>*)addonsConfig {
         NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
         for(int i = 0 ; i< [addonsConfigArray count];i++)
         {
-            AddonConfigSpec* item = [[AddonConfigSpec alloc]initWithDic:[addonsConfigArray objectAtIndex:i]];
+        AddonConfigSpec* item = [[AddonConfigSpec alloc]initWithDic:[addonsConfigArray objectAtIndex:i]];
             if(item)
             {
-                [propertyArray addObject:item];
+            [propertyArray addObject:item];
             }
         }
         self.addonsConfig = propertyArray;
     }
-    return self;
-} 
-
-@end
-@implementation KubernetesAbortUpgradeRequest
--(id) initWithRegion:(NSString *)regionId
-clusterId:(NSString*)clusterId { 
-    self.regionId = regionId;
-    self.clusterId = clusterId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-clusterId:(NSString*)clusterId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.clusterId = clusterId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self clusterId])
-    {
-        [result setValue:[self clusterId] forKey:@"clusterId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.clusterId = [dictionary objectForKey:@"clusterId"];
     return self;
 } 
 

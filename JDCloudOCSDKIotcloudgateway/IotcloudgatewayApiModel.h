@@ -41,30 +41,6 @@ instanceId:(NSString*)instanceId;
 
 @end
 
-@interface IotcloudgatewayDeviceControlResult : NSObject
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
-@end
-
-@interface IotcloudgatewayDeviceControlResponse : NSObject
-
-@property NSString* requestId;
-
-@property ServiceError* error;
-
-@property IotcloudgatewayDeviceControlResult* result;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
-
--(id) initWithRequestId:(NSString*) requestId
-        error:(ServiceError*) error
-        result:(IotcloudgatewayDeviceControlResult*) result;
-@end
-
 @interface IotcloudgatewayQueryInstanceExposeDomainRequest:JDCloudRequest
 
 /// 实例ID
@@ -76,37 +52,6 @@ instanceId:(NSString*)instanceId;
              version:(NSString *)version
 instanceId:(NSString*)instanceId;
 
-@end
-
-@interface IotcloudgatewayQueryInstanceExposeDomainResult : NSObject
-/// 实例对应下行域名
- @property (strong,nonatomic,nonnull)  NSString*  iotgwd;
-/// 实例对应上行域名
- @property (strong,nonatomic,nonnull)  NSString*  iotgwu;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithIotgwd:(NSString*) iotgwd
-
-    iotgwu:(NSString*)iotgwu;
-@end
-
-@interface IotcloudgatewayQueryInstanceExposeDomainResponse : NSObject
-
-@property NSString* requestId;
-
-@property ServiceError* error;
-
-@property IotcloudgatewayQueryInstanceExposeDomainResult* result;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
-
--(id) initWithRequestId:(NSString*) requestId
-        error:(ServiceError*) error
-        result:(IotcloudgatewayQueryInstanceExposeDomainResult*) result;
 @end
 
 @interface IotcloudgatewayDescribeInstancesRequest:JDCloudRequest
@@ -134,6 +79,74 @@ pageSize:(NSNumber*)pageSize;
 
 -(id) initWithDic:(NSDictionary*)dictionary;
 -(id) initWithStatus:(NSString*) status;
+@end
+
+@interface IotcloudgatewayQueryInstanceExposeDomainResult : NSObject
+/// 实例对应下行域名
+ @property (strong,nonatomic,nonnull)  NSString*  iotgwd;
+/// 实例对应上行域名
+ @property (strong,nonatomic,nonnull)  NSString*  iotgwu;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithIotgwd:(NSString*) iotgwd
+
+    iotgwu:(NSString*)iotgwu;
+@end
+
+@interface IotcloudgatewayQueryInstanceStatusRequest:JDCloudRequest
+
+/// 实例ID
+@property (strong,nonatomic,nonnull)  NSString*  instanceId;
+-(id) initWithRegion:(NSString *)regionId
+instanceId:(NSString*)instanceId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+instanceId:(NSString*)instanceId;
+
+@end
+
+@interface IotcloudgatewayDeviceControlResult : NSObject
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+@end
+
+@interface IotcloudgatewayDeviceControlResponse : NSObject
+
+@property NSString* requestId;
+
+@property ServiceError* error;
+
+@property IotcloudgatewayDeviceControlResult* result;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+
+-(id) initWithRequestId:(NSString*) requestId
+        error:(ServiceError*) error
+        result:(IotcloudgatewayDeviceControlResult*) result;
+@end
+
+@interface IotcloudgatewayQueryInstanceExposeDomainResponse : NSObject
+
+@property NSString* requestId;
+
+@property ServiceError* error;
+
+@property IotcloudgatewayQueryInstanceExposeDomainResult* result;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+
+-(id) initWithRequestId:(NSString*) requestId
+        error:(ServiceError*) error
+        result:(IotcloudgatewayQueryInstanceExposeDomainResult*) result;
 @end
 
 @interface IotcloudgatewayQueryInstanceStatusResponse : NSObject
@@ -224,19 +237,6 @@ instanceId:(NSString*)instanceId;
 -(id) initWithRegion:(NSString *)regionId
              version:(NSString *)version
 devicecmd:(DeviceControlSpec*)devicecmd
-instanceId:(NSString*)instanceId;
-
-@end
-
-@interface IotcloudgatewayQueryInstanceStatusRequest:JDCloudRequest
-
-/// 实例ID
-@property (strong,nonatomic,nonnull)  NSString*  instanceId;
--(id) initWithRegion:(NSString *)regionId
-instanceId:(NSString*)instanceId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
 instanceId:(NSString*)instanceId;
 
 @end

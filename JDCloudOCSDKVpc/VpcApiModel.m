@@ -106,252 +106,6 @@ routeTableId:(NSString*)routeTableId {
 } 
 
 @end
-@implementation VpcRemoveRouteTableRulesResult
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    return self;
-} 
-
-@end
-  
-@implementation VpcRemoveRouteTableRulesResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-VpcRemoveRouteTableRulesResult* result = [[VpcRemoveRouteTableRulesResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(VpcRemoveRouteTableRulesResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
-@implementation VpcDescribeRouteTablesRequest
--(id) initWithRegion:(NSString *)regionId
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-filters:(NSArray<Filter*>*)filters { 
-    self.regionId = regionId;
-    self.pageNumber = pageNumber;
-    self.pageSize = pageSize;
-    self.filters = filters;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-filters:(NSArray<Filter*>*)filters { 
-    self.regionId = regionId;
-    self.version = version;
-    self.pageNumber = pageNumber;
-    self.pageSize = pageSize;
-    self.filters = filters;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self pageNumber])
-    {
-        [result setValue:[self pageNumber] forKey:@"pageNumber"];
-    }
-    if([self pageSize])
-    {
-        [result setValue:[self pageSize] forKey:@"pageSize"];
-    }
-    if([self filters])
-    {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self filters] count]; i++) {
-            Filter* item = [[self filters] objectAtIndex:i];
-            [arrayDic addObject:[item dictionary]];
-        }
-        [result setValue:arrayDic forKey:@"filters"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.pageNumber = [dictionary objectForKey:@"pageNumber"];
-    self.pageSize = [dictionary objectForKey:@"pageSize"];
-    NSArray* filtersArray = [dictionary objectForKey:@"filters"];
-    if(filtersArray&&![filtersArray isKindOfClass:[NSNull class]])
-    {
-        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
-        for(int i = 0 ; i< [filtersArray count];i++)
-        {
-            Filter* item = [[Filter alloc]initWithDic:[filtersArray objectAtIndex:i]];
-            if(item)
-            {
-                [propertyArray addObject:item];
-            }
-        }
-        self.filters = propertyArray;
-    }
-    return self;
-} 
-
-@end
-@implementation VpcAddRouteTableRulesRequest
--(id) initWithRegion:(NSString *)regionId
-routeTableRuleSpecs:(NSArray<AddRouteTableRules*>*)routeTableRuleSpecs
-routeTableId:(NSString*)routeTableId { 
-    self.regionId = regionId;
-    self.routeTableRuleSpecs = routeTableRuleSpecs;
-    self.routeTableId = routeTableId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-routeTableRuleSpecs:(NSArray<AddRouteTableRules*>*)routeTableRuleSpecs
-routeTableId:(NSString*)routeTableId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.routeTableRuleSpecs = routeTableRuleSpecs;
-    self.routeTableId = routeTableId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self routeTableRuleSpecs])
-    {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self routeTableRuleSpecs] count]; i++) {
-            AddRouteTableRules* item = [[self routeTableRuleSpecs] objectAtIndex:i];
-            [arrayDic addObject:[item dictionary]];
-        }
-        [result setValue:arrayDic forKey:@"routeTableRuleSpecs"];
-    }
-    if([self routeTableId])
-    {
-        [result setValue:[self routeTableId] forKey:@"routeTableId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    NSArray* routeTableRuleSpecsArray = [dictionary objectForKey:@"routeTableRuleSpecs"];
-    if(routeTableRuleSpecsArray&&![routeTableRuleSpecsArray isKindOfClass:[NSNull class]])
-    {
-        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
-        for(int i = 0 ; i< [routeTableRuleSpecsArray count];i++)
-        {
-            AddRouteTableRules* item = [[AddRouteTableRules alloc]initWithDic:[routeTableRuleSpecsArray objectAtIndex:i]];
-            if(item)
-            {
-                [propertyArray addObject:item];
-            }
-        }
-        self.routeTableRuleSpecs = propertyArray;
-    }
-    self.routeTableId = [dictionary objectForKey:@"routeTableId"];
-    return self;
-} 
-
-@end
-@implementation VpcModifyRouteTableRulesResult
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    return self;
-} 
-
-@end
-@implementation VpcDescribeRouteTablesResult
--(id) initWithRouteTables:(NSArray<RouteTable*>*) routeTables
-        totalCount:(NSNumber*)totalCount { 
-    self.routeTables = routeTables;               
-    self.totalCount = totalCount;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self routeTables])
-    {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self routeTables] count]; i++) {
-            RouteTable* item = [[self routeTables] objectAtIndex:i];
-            [arrayDic addObject:[item dictionary]];
-        }
-        [result setValue:arrayDic forKey:@"routeTables"];
-    }
-    if([self totalCount])
-    {
-        [result setValue:[self totalCount] forKey:@"totalCount"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    NSArray* routeTablesArray = [dictionary objectForKey:@"routeTables"];
-    if(routeTablesArray&&![routeTablesArray isKindOfClass:[NSNull class]])
-    {
-        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
-        for(int i = 0 ; i< [routeTablesArray count];i++)
-        {
-            RouteTable* item = [[RouteTable alloc]initWithDic:[routeTablesArray objectAtIndex:i]];
-            if(item)
-            {
-                [propertyArray addObject:item];
-            }
-        }
-        self.routeTables = propertyArray;
-    }
-    self.totalCount = [dictionary objectForKey:@"totalCount"];
-    return self;
-} 
-
-@end
 @implementation VpcModifyRouteTableRequest
 -(id) initWithRegion:(NSString *)regionId
 routeTableName:(NSString*)routeTableName
@@ -460,26 +214,6 @@ descriptionValue:(NSString*)descriptionValue {
 } 
 
 @end
-@implementation VpcDescribeRouteTableResult
--(id) initWithRouteTable:(RouteTable*) routeTable { 
-    self.routeTable = routeTable;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self routeTable])
-    {
-        [result setValue:[[self routeTable] dictionary]forKey:@"routeTable"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.routeTable = [[RouteTable alloc]initWithDic:[dictionary objectForKey:@"routeTable"]];
-    return self;
-} 
-
-@end
 @implementation VpcAssociateRouteTableRequest
 -(id) initWithRegion:(NSString *)regionId
 subnetIds:(NSArray<NSString*>*)subnetIds
@@ -521,6 +255,2257 @@ routeTableId:(NSString*)routeTableId {
 -(id) initWithDic:(NSDictionary*)dictionary{
     self.subnetIds = [dictionary objectForKey:@"subnetIds"];
     self.routeTableId = [dictionary objectForKey:@"routeTableId"];
+    return self;
+} 
+
+@end
+@implementation VpcDescribeRouteTableRequest
+-(id) initWithRegion:(NSString *)regionId
+routeTableId:(NSString*)routeTableId { 
+    self.regionId = regionId;
+    self.routeTableId = routeTableId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+routeTableId:(NSString*)routeTableId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.routeTableId = routeTableId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self routeTableId])
+    {
+        [result setValue:[self routeTableId] forKey:@"routeTableId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.routeTableId = [dictionary objectForKey:@"routeTableId"];
+    return self;
+} 
+
+@end
+@implementation VpcCreateRouteTableResult
+-(id) initWithRouteTableId:(NSString*) routeTableId { 
+    self.routeTableId = routeTableId;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self routeTableId])
+    {
+        [result setValue:[self routeTableId] forKey:@"routeTableId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.routeTableId = [dictionary objectForKey:@"routeTableId"];
+    return self;
+} 
+
+@end
+@implementation VpcDisassociateRouteTableRequest
+-(id) initWithRegion:(NSString *)regionId
+subnetId:(NSString*)subnetId
+routeTableId:(NSString*)routeTableId { 
+    self.regionId = regionId;
+    self.subnetId = subnetId;
+    self.routeTableId = routeTableId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+subnetId:(NSString*)subnetId
+routeTableId:(NSString*)routeTableId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.subnetId = subnetId;
+    self.routeTableId = routeTableId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self subnetId])
+    {
+        [result setValue:[self subnetId] forKey:@"subnetId"];
+    }
+    if([self routeTableId])
+    {
+        [result setValue:[self routeTableId] forKey:@"routeTableId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.subnetId = [dictionary objectForKey:@"subnetId"];
+    self.routeTableId = [dictionary objectForKey:@"routeTableId"];
+    return self;
+} 
+
+@end
+@implementation VpcDescribeQuotaRequest
+-(id) initWithRegion:(NSString *)regionId
+type:(NSString*)type
+parentResourceId:(NSString*)parentResourceId { 
+    self.regionId = regionId;
+    self.type = type;
+    self.parentResourceId = parentResourceId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+type:(NSString*)type
+parentResourceId:(NSString*)parentResourceId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.type = type;
+    self.parentResourceId = parentResourceId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self type])
+    {
+        [result setValue:[self type] forKey:@"type"];
+    }
+    if([self parentResourceId])
+    {
+        [result setValue:[self parentResourceId] forKey:@"parentResourceId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.type = [dictionary objectForKey:@"type"];
+    self.parentResourceId = [dictionary objectForKey:@"parentResourceId"];
+    return self;
+} 
+
+@end
+@implementation VpcDescribeQuotaResult
+-(id) initWithQuota:(NSObject*) quota { 
+    self.quota = quota;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self quota])
+    {
+        [result setValue:[self quota] forKey:@"quota"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.quota = [dictionary objectForKey:@"quota"];
+    return self;
+} 
+
+@end
+@implementation VpcCreateNetworkInterfaceResult
+-(id) initWithNetworkInterfaceId:(NSString*) networkInterfaceId { 
+    self.networkInterfaceId = networkInterfaceId;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self networkInterfaceId])
+    {
+        [result setValue:[self networkInterfaceId] forKey:@"networkInterfaceId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.networkInterfaceId = [dictionary objectForKey:@"networkInterfaceId"];
+    return self;
+} 
+
+@end
+@implementation VpcAssignSecondaryIpsRequest
+-(id) initWithRegion:(NSString *)regionId
+force:(NSNumber*)force
+secondaryIps:(NSArray<NSString*>*)secondaryIps
+secondaryIpCount:(NSNumber*)secondaryIpCount
+networkInterfaceId:(NSString*)networkInterfaceId { 
+    self.regionId = regionId;
+    self.force = force;
+    self.secondaryIps = secondaryIps;
+    self.secondaryIpCount = secondaryIpCount;
+    self.networkInterfaceId = networkInterfaceId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+force:(NSNumber*)force
+secondaryIps:(NSArray<NSString*>*)secondaryIps
+secondaryIpCount:(NSNumber*)secondaryIpCount
+networkInterfaceId:(NSString*)networkInterfaceId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.force = force;
+    self.secondaryIps = secondaryIps;
+    self.secondaryIpCount = secondaryIpCount;
+    self.networkInterfaceId = networkInterfaceId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self force])
+    {
+        [result setValue:[self force] forKey:@"force"];
+    }
+    if([self secondaryIps])
+    {
+        [result setValue:[self secondaryIps] forKey:@"secondaryIps"];
+    }
+    if([self secondaryIpCount])
+    {
+        [result setValue:[self secondaryIpCount] forKey:@"secondaryIpCount"];
+    }
+    if([self networkInterfaceId])
+    {
+        [result setValue:[self networkInterfaceId] forKey:@"networkInterfaceId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.force = [dictionary objectForKey:@"force"];
+    self.secondaryIps = [dictionary objectForKey:@"secondaryIps"];
+    self.secondaryIpCount = [dictionary objectForKey:@"secondaryIpCount"];
+    self.networkInterfaceId = [dictionary objectForKey:@"networkInterfaceId"];
+    return self;
+} 
+
+@end
+@implementation VpcDeleteNetworkInterfaceRequest
+-(id) initWithRegion:(NSString *)regionId
+networkInterfaceId:(NSString*)networkInterfaceId { 
+    self.regionId = regionId;
+    self.networkInterfaceId = networkInterfaceId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+networkInterfaceId:(NSString*)networkInterfaceId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.networkInterfaceId = networkInterfaceId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self networkInterfaceId])
+    {
+        [result setValue:[self networkInterfaceId] forKey:@"networkInterfaceId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.networkInterfaceId = [dictionary objectForKey:@"networkInterfaceId"];
+    return self;
+} 
+
+@end
+@implementation VpcCreateNetworkInterfaceRequest
+-(id) initWithRegion:(NSString *)regionId
+subnetId:(NSString*)subnetId
+az:(NSString*)az
+networkInterfaceName:(NSString*)networkInterfaceName
+primaryIpAddress:(NSString*)primaryIpAddress
+secondaryIpAddresses:(NSArray<NSString*>*)secondaryIpAddresses
+secondaryIpCount:(NSNumber*)secondaryIpCount
+securityGroups:(NSArray<NSString*>*)securityGroups
+sanityCheck:(NSNumber*)sanityCheck
+descriptionValue:(NSString*)descriptionValue { 
+    self.regionId = regionId;
+    self.subnetId = subnetId;
+    self.az = az;
+    self.networkInterfaceName = networkInterfaceName;
+    self.primaryIpAddress = primaryIpAddress;
+    self.secondaryIpAddresses = secondaryIpAddresses;
+    self.secondaryIpCount = secondaryIpCount;
+    self.securityGroups = securityGroups;
+    self.sanityCheck = sanityCheck;
+    self.descriptionValue = descriptionValue;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+subnetId:(NSString*)subnetId
+az:(NSString*)az
+networkInterfaceName:(NSString*)networkInterfaceName
+primaryIpAddress:(NSString*)primaryIpAddress
+secondaryIpAddresses:(NSArray<NSString*>*)secondaryIpAddresses
+secondaryIpCount:(NSNumber*)secondaryIpCount
+securityGroups:(NSArray<NSString*>*)securityGroups
+sanityCheck:(NSNumber*)sanityCheck
+descriptionValue:(NSString*)descriptionValue { 
+    self.regionId = regionId;
+    self.version = version;
+    self.subnetId = subnetId;
+    self.az = az;
+    self.networkInterfaceName = networkInterfaceName;
+    self.primaryIpAddress = primaryIpAddress;
+    self.secondaryIpAddresses = secondaryIpAddresses;
+    self.secondaryIpCount = secondaryIpCount;
+    self.securityGroups = securityGroups;
+    self.sanityCheck = sanityCheck;
+    self.descriptionValue = descriptionValue;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self subnetId])
+    {
+        [result setValue:[self subnetId] forKey:@"subnetId"];
+    }
+    if([self az])
+    {
+        [result setValue:[self az] forKey:@"az"];
+    }
+    if([self networkInterfaceName])
+    {
+        [result setValue:[self networkInterfaceName] forKey:@"networkInterfaceName"];
+    }
+    if([self primaryIpAddress])
+    {
+        [result setValue:[self primaryIpAddress] forKey:@"primaryIpAddress"];
+    }
+    if([self secondaryIpAddresses])
+    {
+        [result setValue:[self secondaryIpAddresses] forKey:@"secondaryIpAddresses"];
+    }
+    if([self secondaryIpCount])
+    {
+        [result setValue:[self secondaryIpCount] forKey:@"secondaryIpCount"];
+    }
+    if([self securityGroups])
+    {
+        [result setValue:[self securityGroups] forKey:@"securityGroups"];
+    }
+    if([self sanityCheck])
+    {
+        [result setValue:[self sanityCheck] forKey:@"sanityCheck"];
+    }
+    if([self descriptionValue])
+    {
+        [result setValue:[self descriptionValue] forKey:@"description"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.subnetId = [dictionary objectForKey:@"subnetId"];
+    self.az = [dictionary objectForKey:@"az"];
+    self.networkInterfaceName = [dictionary objectForKey:@"networkInterfaceName"];
+    self.primaryIpAddress = [dictionary objectForKey:@"primaryIpAddress"];
+    self.secondaryIpAddresses = [dictionary objectForKey:@"secondaryIpAddresses"];
+    self.secondaryIpCount = [dictionary objectForKey:@"secondaryIpCount"];
+    self.securityGroups = [dictionary objectForKey:@"securityGroups"];
+    self.sanityCheck = [dictionary objectForKey:@"sanityCheck"];
+    self.descriptionValue = [dictionary objectForKey:@"description"];
+    return self;
+} 
+
+@end
+@implementation VpcAssociateElasticIpRequest
+-(id) initWithRegion:(NSString *)regionId
+elasticIpId:(NSString*)elasticIpId
+privateIpAddress:(NSString*)privateIpAddress
+elasticIpAddress:(NSString*)elasticIpAddress
+networkInterfaceId:(NSString*)networkInterfaceId { 
+    self.regionId = regionId;
+    self.elasticIpId = elasticIpId;
+    self.privateIpAddress = privateIpAddress;
+    self.elasticIpAddress = elasticIpAddress;
+    self.networkInterfaceId = networkInterfaceId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+elasticIpId:(NSString*)elasticIpId
+privateIpAddress:(NSString*)privateIpAddress
+elasticIpAddress:(NSString*)elasticIpAddress
+networkInterfaceId:(NSString*)networkInterfaceId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.elasticIpId = elasticIpId;
+    self.privateIpAddress = privateIpAddress;
+    self.elasticIpAddress = elasticIpAddress;
+    self.networkInterfaceId = networkInterfaceId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self elasticIpId])
+    {
+        [result setValue:[self elasticIpId] forKey:@"elasticIpId"];
+    }
+    if([self privateIpAddress])
+    {
+        [result setValue:[self privateIpAddress] forKey:@"privateIpAddress"];
+    }
+    if([self elasticIpAddress])
+    {
+        [result setValue:[self elasticIpAddress] forKey:@"elasticIpAddress"];
+    }
+    if([self networkInterfaceId])
+    {
+        [result setValue:[self networkInterfaceId] forKey:@"networkInterfaceId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.elasticIpId = [dictionary objectForKey:@"elasticIpId"];
+    self.privateIpAddress = [dictionary objectForKey:@"privateIpAddress"];
+    self.elasticIpAddress = [dictionary objectForKey:@"elasticIpAddress"];
+    self.networkInterfaceId = [dictionary objectForKey:@"networkInterfaceId"];
+    return self;
+} 
+
+@end
+@implementation VpcDisassociateElasticIpRequest
+-(id) initWithRegion:(NSString *)regionId
+elasticIpId:(NSString*)elasticIpId
+elasticIpAddress:(NSString*)elasticIpAddress
+networkInterfaceId:(NSString*)networkInterfaceId { 
+    self.regionId = regionId;
+    self.elasticIpId = elasticIpId;
+    self.elasticIpAddress = elasticIpAddress;
+    self.networkInterfaceId = networkInterfaceId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+elasticIpId:(NSString*)elasticIpId
+elasticIpAddress:(NSString*)elasticIpAddress
+networkInterfaceId:(NSString*)networkInterfaceId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.elasticIpId = elasticIpId;
+    self.elasticIpAddress = elasticIpAddress;
+    self.networkInterfaceId = networkInterfaceId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self elasticIpId])
+    {
+        [result setValue:[self elasticIpId] forKey:@"elasticIpId"];
+    }
+    if([self elasticIpAddress])
+    {
+        [result setValue:[self elasticIpAddress] forKey:@"elasticIpAddress"];
+    }
+    if([self networkInterfaceId])
+    {
+        [result setValue:[self networkInterfaceId] forKey:@"networkInterfaceId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.elasticIpId = [dictionary objectForKey:@"elasticIpId"];
+    self.elasticIpAddress = [dictionary objectForKey:@"elasticIpAddress"];
+    self.networkInterfaceId = [dictionary objectForKey:@"networkInterfaceId"];
+    return self;
+} 
+
+@end
+@implementation VpcUnassignSecondaryIpsRequest
+-(id) initWithRegion:(NSString *)regionId
+secondaryIps:(NSArray<NSString*>*)secondaryIps
+networkInterfaceId:(NSString*)networkInterfaceId { 
+    self.regionId = regionId;
+    self.secondaryIps = secondaryIps;
+    self.networkInterfaceId = networkInterfaceId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+secondaryIps:(NSArray<NSString*>*)secondaryIps
+networkInterfaceId:(NSString*)networkInterfaceId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.secondaryIps = secondaryIps;
+    self.networkInterfaceId = networkInterfaceId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self secondaryIps])
+    {
+        [result setValue:[self secondaryIps] forKey:@"secondaryIps"];
+    }
+    if([self networkInterfaceId])
+    {
+        [result setValue:[self networkInterfaceId] forKey:@"networkInterfaceId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.secondaryIps = [dictionary objectForKey:@"secondaryIps"];
+    self.networkInterfaceId = [dictionary objectForKey:@"networkInterfaceId"];
+    return self;
+} 
+
+@end
+@implementation VpcDescribeNetworkInterfaceRequest
+-(id) initWithRegion:(NSString *)regionId
+networkInterfaceId:(NSString*)networkInterfaceId { 
+    self.regionId = regionId;
+    self.networkInterfaceId = networkInterfaceId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+networkInterfaceId:(NSString*)networkInterfaceId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.networkInterfaceId = networkInterfaceId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self networkInterfaceId])
+    {
+        [result setValue:[self networkInterfaceId] forKey:@"networkInterfaceId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.networkInterfaceId = [dictionary objectForKey:@"networkInterfaceId"];
+    return self;
+} 
+
+@end
+@implementation VpcModifyNetworkInterfaceRequest
+-(id) initWithRegion:(NSString *)regionId
+networkInterfaceName:(NSString*)networkInterfaceName
+descriptionValue:(NSString*)descriptionValue
+securityGroups:(NSArray<NSString*>*)securityGroups
+networkInterfaceId:(NSString*)networkInterfaceId { 
+    self.regionId = regionId;
+    self.networkInterfaceName = networkInterfaceName;
+    self.descriptionValue = descriptionValue;
+    self.securityGroups = securityGroups;
+    self.networkInterfaceId = networkInterfaceId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+networkInterfaceName:(NSString*)networkInterfaceName
+descriptionValue:(NSString*)descriptionValue
+securityGroups:(NSArray<NSString*>*)securityGroups
+networkInterfaceId:(NSString*)networkInterfaceId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.networkInterfaceName = networkInterfaceName;
+    self.descriptionValue = descriptionValue;
+    self.securityGroups = securityGroups;
+    self.networkInterfaceId = networkInterfaceId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self networkInterfaceName])
+    {
+        [result setValue:[self networkInterfaceName] forKey:@"networkInterfaceName"];
+    }
+    if([self descriptionValue])
+    {
+        [result setValue:[self descriptionValue] forKey:@"description"];
+    }
+    if([self securityGroups])
+    {
+        [result setValue:[self securityGroups] forKey:@"securityGroups"];
+    }
+    if([self networkInterfaceId])
+    {
+        [result setValue:[self networkInterfaceId] forKey:@"networkInterfaceId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.networkInterfaceName = [dictionary objectForKey:@"networkInterfaceName"];
+    self.descriptionValue = [dictionary objectForKey:@"description"];
+    self.securityGroups = [dictionary objectForKey:@"securityGroups"];
+    self.networkInterfaceId = [dictionary objectForKey:@"networkInterfaceId"];
+    return self;
+} 
+
+@end
+@implementation VpcDescribeSubnetRequest
+-(id) initWithRegion:(NSString *)regionId
+subnetId:(NSString*)subnetId { 
+    self.regionId = regionId;
+    self.subnetId = subnetId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+subnetId:(NSString*)subnetId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.subnetId = subnetId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self subnetId])
+    {
+        [result setValue:[self subnetId] forKey:@"subnetId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.subnetId = [dictionary objectForKey:@"subnetId"];
+    return self;
+} 
+
+@end
+@implementation VpcCreateSubnetResult
+-(id) initWithSubnetId:(NSString*) subnetId { 
+    self.subnetId = subnetId;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self subnetId])
+    {
+        [result setValue:[self subnetId] forKey:@"subnetId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.subnetId = [dictionary objectForKey:@"subnetId"];
+    return self;
+} 
+
+@end
+@implementation VpcDeleteSubnetRequest
+-(id) initWithRegion:(NSString *)regionId
+subnetId:(NSString*)subnetId { 
+    self.regionId = regionId;
+    self.subnetId = subnetId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+subnetId:(NSString*)subnetId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.subnetId = subnetId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self subnetId])
+    {
+        [result setValue:[self subnetId] forKey:@"subnetId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.subnetId = [dictionary objectForKey:@"subnetId"];
+    return self;
+} 
+
+@end
+@implementation VpcCreateSubnetRequest
+-(id) initWithRegion:(NSString *)regionId
+vpcId:(NSString*)vpcId
+subnetName:(NSString*)subnetName
+addressPrefix:(NSString*)addressPrefix
+routeTableId:(NSString*)routeTableId
+descriptionValue:(NSString*)descriptionValue { 
+    self.regionId = regionId;
+    self.vpcId = vpcId;
+    self.subnetName = subnetName;
+    self.addressPrefix = addressPrefix;
+    self.routeTableId = routeTableId;
+    self.descriptionValue = descriptionValue;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+vpcId:(NSString*)vpcId
+subnetName:(NSString*)subnetName
+addressPrefix:(NSString*)addressPrefix
+routeTableId:(NSString*)routeTableId
+descriptionValue:(NSString*)descriptionValue { 
+    self.regionId = regionId;
+    self.version = version;
+    self.vpcId = vpcId;
+    self.subnetName = subnetName;
+    self.addressPrefix = addressPrefix;
+    self.routeTableId = routeTableId;
+    self.descriptionValue = descriptionValue;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self vpcId])
+    {
+        [result setValue:[self vpcId] forKey:@"vpcId"];
+    }
+    if([self subnetName])
+    {
+        [result setValue:[self subnetName] forKey:@"subnetName"];
+    }
+    if([self addressPrefix])
+    {
+        [result setValue:[self addressPrefix] forKey:@"addressPrefix"];
+    }
+    if([self routeTableId])
+    {
+        [result setValue:[self routeTableId] forKey:@"routeTableId"];
+    }
+    if([self descriptionValue])
+    {
+        [result setValue:[self descriptionValue] forKey:@"description"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.vpcId = [dictionary objectForKey:@"vpcId"];
+    self.subnetName = [dictionary objectForKey:@"subnetName"];
+    self.addressPrefix = [dictionary objectForKey:@"addressPrefix"];
+    self.routeTableId = [dictionary objectForKey:@"routeTableId"];
+    self.descriptionValue = [dictionary objectForKey:@"description"];
+    return self;
+} 
+
+@end
+@implementation VpcModifySubnetRequest
+-(id) initWithRegion:(NSString *)regionId
+subnetName:(NSString*)subnetName
+descriptionValue:(NSString*)descriptionValue
+subnetId:(NSString*)subnetId { 
+    self.regionId = regionId;
+    self.subnetName = subnetName;
+    self.descriptionValue = descriptionValue;
+    self.subnetId = subnetId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+subnetName:(NSString*)subnetName
+descriptionValue:(NSString*)descriptionValue
+subnetId:(NSString*)subnetId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.subnetName = subnetName;
+    self.descriptionValue = descriptionValue;
+    self.subnetId = subnetId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self subnetName])
+    {
+        [result setValue:[self subnetName] forKey:@"subnetName"];
+    }
+    if([self descriptionValue])
+    {
+        [result setValue:[self descriptionValue] forKey:@"description"];
+    }
+    if([self subnetId])
+    {
+        [result setValue:[self subnetId] forKey:@"subnetId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.subnetName = [dictionary objectForKey:@"subnetName"];
+    self.descriptionValue = [dictionary objectForKey:@"description"];
+    self.subnetId = [dictionary objectForKey:@"subnetId"];
+    return self;
+} 
+
+@end
+@implementation VpcRemoveNetworkSecurityGroupRulesRequest
+-(id) initWithRegion:(NSString *)regionId
+ruleIds:(NSArray<NSString*>*)ruleIds
+networkSecurityGroupId:(NSString*)networkSecurityGroupId { 
+    self.regionId = regionId;
+    self.ruleIds = ruleIds;
+    self.networkSecurityGroupId = networkSecurityGroupId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+ruleIds:(NSArray<NSString*>*)ruleIds
+networkSecurityGroupId:(NSString*)networkSecurityGroupId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.ruleIds = ruleIds;
+    self.networkSecurityGroupId = networkSecurityGroupId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self ruleIds])
+    {
+        [result setValue:[self ruleIds] forKey:@"ruleIds"];
+    }
+    if([self networkSecurityGroupId])
+    {
+        [result setValue:[self networkSecurityGroupId] forKey:@"networkSecurityGroupId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.ruleIds = [dictionary objectForKey:@"ruleIds"];
+    self.networkSecurityGroupId = [dictionary objectForKey:@"networkSecurityGroupId"];
+    return self;
+} 
+
+@end
+@implementation VpcDeleteNetworkSecurityGroupRequest
+-(id) initWithRegion:(NSString *)regionId
+networkSecurityGroupId:(NSString*)networkSecurityGroupId { 
+    self.regionId = regionId;
+    self.networkSecurityGroupId = networkSecurityGroupId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+networkSecurityGroupId:(NSString*)networkSecurityGroupId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.networkSecurityGroupId = networkSecurityGroupId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self networkSecurityGroupId])
+    {
+        [result setValue:[self networkSecurityGroupId] forKey:@"networkSecurityGroupId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.networkSecurityGroupId = [dictionary objectForKey:@"networkSecurityGroupId"];
+    return self;
+} 
+
+@end
+@implementation VpcCreateNetworkSecurityGroupRequest
+-(id) initWithRegion:(NSString *)regionId
+vpcId:(NSString*)vpcId
+networkSecurityGroupName:(NSString*)networkSecurityGroupName
+descriptionValue:(NSString*)descriptionValue { 
+    self.regionId = regionId;
+    self.vpcId = vpcId;
+    self.networkSecurityGroupName = networkSecurityGroupName;
+    self.descriptionValue = descriptionValue;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+vpcId:(NSString*)vpcId
+networkSecurityGroupName:(NSString*)networkSecurityGroupName
+descriptionValue:(NSString*)descriptionValue { 
+    self.regionId = regionId;
+    self.version = version;
+    self.vpcId = vpcId;
+    self.networkSecurityGroupName = networkSecurityGroupName;
+    self.descriptionValue = descriptionValue;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self vpcId])
+    {
+        [result setValue:[self vpcId] forKey:@"vpcId"];
+    }
+    if([self networkSecurityGroupName])
+    {
+        [result setValue:[self networkSecurityGroupName] forKey:@"networkSecurityGroupName"];
+    }
+    if([self descriptionValue])
+    {
+        [result setValue:[self descriptionValue] forKey:@"description"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.vpcId = [dictionary objectForKey:@"vpcId"];
+    self.networkSecurityGroupName = [dictionary objectForKey:@"networkSecurityGroupName"];
+    self.descriptionValue = [dictionary objectForKey:@"description"];
+    return self;
+} 
+
+@end
+@implementation VpcCreateNetworkSecurityGroupResult
+-(id) initWithNetworkSecurityGroupId:(NSString*) networkSecurityGroupId { 
+    self.networkSecurityGroupId = networkSecurityGroupId;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self networkSecurityGroupId])
+    {
+        [result setValue:[self networkSecurityGroupId] forKey:@"networkSecurityGroupId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.networkSecurityGroupId = [dictionary objectForKey:@"networkSecurityGroupId"];
+    return self;
+} 
+
+@end
+@implementation VpcDescribeNetworkSecurityGroupRequest
+-(id) initWithRegion:(NSString *)regionId
+networkSecurityGroupId:(NSString*)networkSecurityGroupId { 
+    self.regionId = regionId;
+    self.networkSecurityGroupId = networkSecurityGroupId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+networkSecurityGroupId:(NSString*)networkSecurityGroupId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.networkSecurityGroupId = networkSecurityGroupId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self networkSecurityGroupId])
+    {
+        [result setValue:[self networkSecurityGroupId] forKey:@"networkSecurityGroupId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.networkSecurityGroupId = [dictionary objectForKey:@"networkSecurityGroupId"];
+    return self;
+} 
+
+@end
+@implementation VpcModifyNetworkSecurityGroupRequest
+-(id) initWithRegion:(NSString *)regionId
+networkSecurityGroupName:(NSString*)networkSecurityGroupName
+descriptionValue:(NSString*)descriptionValue
+networkSecurityGroupId:(NSString*)networkSecurityGroupId { 
+    self.regionId = regionId;
+    self.networkSecurityGroupName = networkSecurityGroupName;
+    self.descriptionValue = descriptionValue;
+    self.networkSecurityGroupId = networkSecurityGroupId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+networkSecurityGroupName:(NSString*)networkSecurityGroupName
+descriptionValue:(NSString*)descriptionValue
+networkSecurityGroupId:(NSString*)networkSecurityGroupId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.networkSecurityGroupName = networkSecurityGroupName;
+    self.descriptionValue = descriptionValue;
+    self.networkSecurityGroupId = networkSecurityGroupId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self networkSecurityGroupName])
+    {
+        [result setValue:[self networkSecurityGroupName] forKey:@"networkSecurityGroupName"];
+    }
+    if([self descriptionValue])
+    {
+        [result setValue:[self descriptionValue] forKey:@"description"];
+    }
+    if([self networkSecurityGroupId])
+    {
+        [result setValue:[self networkSecurityGroupId] forKey:@"networkSecurityGroupId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.networkSecurityGroupName = [dictionary objectForKey:@"networkSecurityGroupName"];
+    self.descriptionValue = [dictionary objectForKey:@"description"];
+    self.networkSecurityGroupId = [dictionary objectForKey:@"networkSecurityGroupId"];
+    return self;
+} 
+
+@end
+@implementation VpcDescribeNetworkAclRequest
+-(id) initWithRegion:(NSString *)regionId
+networkAclId:(NSString*)networkAclId { 
+    self.regionId = regionId;
+    self.networkAclId = networkAclId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+networkAclId:(NSString*)networkAclId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.networkAclId = networkAclId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self networkAclId])
+    {
+        [result setValue:[self networkAclId] forKey:@"networkAclId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.networkAclId = [dictionary objectForKey:@"networkAclId"];
+    return self;
+} 
+
+@end
+@implementation VpcCreateNetworkAclResult
+-(id) initWithNetworkAclId:(NSString*) networkAclId { 
+    self.networkAclId = networkAclId;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self networkAclId])
+    {
+        [result setValue:[self networkAclId] forKey:@"networkAclId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.networkAclId = [dictionary objectForKey:@"networkAclId"];
+    return self;
+} 
+
+@end
+@implementation VpcDisassociateNetworkAclRequest
+-(id) initWithRegion:(NSString *)regionId
+subnetId:(NSString*)subnetId
+networkAclId:(NSString*)networkAclId { 
+    self.regionId = regionId;
+    self.subnetId = subnetId;
+    self.networkAclId = networkAclId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+subnetId:(NSString*)subnetId
+networkAclId:(NSString*)networkAclId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.subnetId = subnetId;
+    self.networkAclId = networkAclId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self subnetId])
+    {
+        [result setValue:[self subnetId] forKey:@"subnetId"];
+    }
+    if([self networkAclId])
+    {
+        [result setValue:[self networkAclId] forKey:@"networkAclId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.subnetId = [dictionary objectForKey:@"subnetId"];
+    self.networkAclId = [dictionary objectForKey:@"networkAclId"];
+    return self;
+} 
+
+@end
+@implementation VpcCreateNetworkAclRequest
+-(id) initWithRegion:(NSString *)regionId
+vpcId:(NSString*)vpcId
+networkAclName:(NSString*)networkAclName
+descriptionValue:(NSString*)descriptionValue { 
+    self.regionId = regionId;
+    self.vpcId = vpcId;
+    self.networkAclName = networkAclName;
+    self.descriptionValue = descriptionValue;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+vpcId:(NSString*)vpcId
+networkAclName:(NSString*)networkAclName
+descriptionValue:(NSString*)descriptionValue { 
+    self.regionId = regionId;
+    self.version = version;
+    self.vpcId = vpcId;
+    self.networkAclName = networkAclName;
+    self.descriptionValue = descriptionValue;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self vpcId])
+    {
+        [result setValue:[self vpcId] forKey:@"vpcId"];
+    }
+    if([self networkAclName])
+    {
+        [result setValue:[self networkAclName] forKey:@"networkAclName"];
+    }
+    if([self descriptionValue])
+    {
+        [result setValue:[self descriptionValue] forKey:@"description"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.vpcId = [dictionary objectForKey:@"vpcId"];
+    self.networkAclName = [dictionary objectForKey:@"networkAclName"];
+    self.descriptionValue = [dictionary objectForKey:@"description"];
+    return self;
+} 
+
+@end
+@implementation VpcRemoveNetworkAclRulesRequest
+-(id) initWithRegion:(NSString *)regionId
+ruleIds:(NSArray<NSString*>*)ruleIds
+networkAclId:(NSString*)networkAclId { 
+    self.regionId = regionId;
+    self.ruleIds = ruleIds;
+    self.networkAclId = networkAclId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+ruleIds:(NSArray<NSString*>*)ruleIds
+networkAclId:(NSString*)networkAclId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.ruleIds = ruleIds;
+    self.networkAclId = networkAclId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self ruleIds])
+    {
+        [result setValue:[self ruleIds] forKey:@"ruleIds"];
+    }
+    if([self networkAclId])
+    {
+        [result setValue:[self networkAclId] forKey:@"networkAclId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.ruleIds = [dictionary objectForKey:@"ruleIds"];
+    self.networkAclId = [dictionary objectForKey:@"networkAclId"];
+    return self;
+} 
+
+@end
+@implementation VpcModifyNetworkAclRequest
+-(id) initWithRegion:(NSString *)regionId
+networkAclName:(NSString*)networkAclName
+descriptionValue:(NSString*)descriptionValue
+networkAclId:(NSString*)networkAclId { 
+    self.regionId = regionId;
+    self.networkAclName = networkAclName;
+    self.descriptionValue = descriptionValue;
+    self.networkAclId = networkAclId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+networkAclName:(NSString*)networkAclName
+descriptionValue:(NSString*)descriptionValue
+networkAclId:(NSString*)networkAclId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.networkAclName = networkAclName;
+    self.descriptionValue = descriptionValue;
+    self.networkAclId = networkAclId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self networkAclName])
+    {
+        [result setValue:[self networkAclName] forKey:@"networkAclName"];
+    }
+    if([self descriptionValue])
+    {
+        [result setValue:[self descriptionValue] forKey:@"description"];
+    }
+    if([self networkAclId])
+    {
+        [result setValue:[self networkAclId] forKey:@"networkAclId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.networkAclName = [dictionary objectForKey:@"networkAclName"];
+    self.descriptionValue = [dictionary objectForKey:@"description"];
+    self.networkAclId = [dictionary objectForKey:@"networkAclId"];
+    return self;
+} 
+
+@end
+@implementation VpcDeleteNetworkAclRequest
+-(id) initWithRegion:(NSString *)regionId
+networkAclId:(NSString*)networkAclId { 
+    self.regionId = regionId;
+    self.networkAclId = networkAclId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+networkAclId:(NSString*)networkAclId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.networkAclId = networkAclId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self networkAclId])
+    {
+        [result setValue:[self networkAclId] forKey:@"networkAclId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.networkAclId = [dictionary objectForKey:@"networkAclId"];
+    return self;
+} 
+
+@end
+@implementation VpcAssociateNetworkAclRequest
+-(id) initWithRegion:(NSString *)regionId
+subnetIds:(NSArray<NSString*>*)subnetIds
+networkAclId:(NSString*)networkAclId { 
+    self.regionId = regionId;
+    self.subnetIds = subnetIds;
+    self.networkAclId = networkAclId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+subnetIds:(NSArray<NSString*>*)subnetIds
+networkAclId:(NSString*)networkAclId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.subnetIds = subnetIds;
+    self.networkAclId = networkAclId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self subnetIds])
+    {
+        [result setValue:[self subnetIds] forKey:@"subnetIds"];
+    }
+    if([self networkAclId])
+    {
+        [result setValue:[self networkAclId] forKey:@"networkAclId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.subnetIds = [dictionary objectForKey:@"subnetIds"];
+    self.networkAclId = [dictionary objectForKey:@"networkAclId"];
+    return self;
+} 
+
+@end
+@implementation VpcDescribeElasticIpRequest
+-(id) initWithRegion:(NSString *)regionId
+elasticIpId:(NSString*)elasticIpId { 
+    self.regionId = regionId;
+    self.elasticIpId = elasticIpId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+elasticIpId:(NSString*)elasticIpId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.elasticIpId = elasticIpId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self elasticIpId])
+    {
+        [result setValue:[self elasticIpId] forKey:@"elasticIpId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.elasticIpId = [dictionary objectForKey:@"elasticIpId"];
+    return self;
+} 
+
+@end
+@implementation VpcDeleteElasticIpRequest
+-(id) initWithRegion:(NSString *)regionId
+elasticIpId:(NSString*)elasticIpId { 
+    self.regionId = regionId;
+    self.elasticIpId = elasticIpId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+elasticIpId:(NSString*)elasticIpId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.elasticIpId = elasticIpId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self elasticIpId])
+    {
+        [result setValue:[self elasticIpId] forKey:@"elasticIpId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.elasticIpId = [dictionary objectForKey:@"elasticIpId"];
+    return self;
+} 
+
+@end
+@implementation VpcModifyElasticIpRequest
+-(id) initWithRegion:(NSString *)regionId
+bandwidthMbps:(NSNumber*)bandwidthMbps
+elasticIpId:(NSString*)elasticIpId { 
+    self.regionId = regionId;
+    self.bandwidthMbps = bandwidthMbps;
+    self.elasticIpId = elasticIpId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+bandwidthMbps:(NSNumber*)bandwidthMbps
+elasticIpId:(NSString*)elasticIpId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.bandwidthMbps = bandwidthMbps;
+    self.elasticIpId = elasticIpId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self bandwidthMbps])
+    {
+        [result setValue:[self bandwidthMbps] forKey:@"bandwidthMbps"];
+    }
+    if([self elasticIpId])
+    {
+        [result setValue:[self elasticIpId] forKey:@"elasticIpId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.bandwidthMbps = [dictionary objectForKey:@"bandwidthMbps"];
+    self.elasticIpId = [dictionary objectForKey:@"elasticIpId"];
+    return self;
+} 
+
+@end
+@implementation VpcCreateElasticIpsResult
+-(id) initWithElasticIpIds:(NSArray<NSString*>*) elasticIpIds
+        requestId:(NSString*)requestId { 
+    self.elasticIpIds = elasticIpIds;               
+    self.requestId = requestId;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self elasticIpIds])
+    {
+        [result setValue:[self elasticIpIds] forKey:@"elasticIpIds"];
+    }
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.elasticIpIds = [dictionary objectForKey:@"elasticIpIds"];
+    self.requestId = [dictionary objectForKey:@"requestId"];
+    return self;
+} 
+
+@end
+@implementation VpcModifyVpcPeeringRequest
+-(id) initWithRegion:(NSString *)regionId
+vpcPeeringName:(NSString*)vpcPeeringName
+descriptionValue:(NSString*)descriptionValue
+vpcPeeringId:(NSString*)vpcPeeringId { 
+    self.regionId = regionId;
+    self.vpcPeeringName = vpcPeeringName;
+    self.descriptionValue = descriptionValue;
+    self.vpcPeeringId = vpcPeeringId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+vpcPeeringName:(NSString*)vpcPeeringName
+descriptionValue:(NSString*)descriptionValue
+vpcPeeringId:(NSString*)vpcPeeringId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.vpcPeeringName = vpcPeeringName;
+    self.descriptionValue = descriptionValue;
+    self.vpcPeeringId = vpcPeeringId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self vpcPeeringName])
+    {
+        [result setValue:[self vpcPeeringName] forKey:@"vpcPeeringName"];
+    }
+    if([self descriptionValue])
+    {
+        [result setValue:[self descriptionValue] forKey:@"description"];
+    }
+    if([self vpcPeeringId])
+    {
+        [result setValue:[self vpcPeeringId] forKey:@"vpcPeeringId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.vpcPeeringName = [dictionary objectForKey:@"vpcPeeringName"];
+    self.descriptionValue = [dictionary objectForKey:@"description"];
+    self.vpcPeeringId = [dictionary objectForKey:@"vpcPeeringId"];
+    return self;
+} 
+
+@end
+@implementation VpcCreateVpcPeeringRequest
+-(id) initWithRegion:(NSString *)regionId
+vpcPeeringName:(NSString*)vpcPeeringName
+vpcId:(NSString*)vpcId
+remoteVpcId:(NSString*)remoteVpcId
+descriptionValue:(NSString*)descriptionValue { 
+    self.regionId = regionId;
+    self.vpcPeeringName = vpcPeeringName;
+    self.vpcId = vpcId;
+    self.remoteVpcId = remoteVpcId;
+    self.descriptionValue = descriptionValue;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+vpcPeeringName:(NSString*)vpcPeeringName
+vpcId:(NSString*)vpcId
+remoteVpcId:(NSString*)remoteVpcId
+descriptionValue:(NSString*)descriptionValue { 
+    self.regionId = regionId;
+    self.version = version;
+    self.vpcPeeringName = vpcPeeringName;
+    self.vpcId = vpcId;
+    self.remoteVpcId = remoteVpcId;
+    self.descriptionValue = descriptionValue;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self vpcPeeringName])
+    {
+        [result setValue:[self vpcPeeringName] forKey:@"vpcPeeringName"];
+    }
+    if([self vpcId])
+    {
+        [result setValue:[self vpcId] forKey:@"vpcId"];
+    }
+    if([self remoteVpcId])
+    {
+        [result setValue:[self remoteVpcId] forKey:@"remoteVpcId"];
+    }
+    if([self descriptionValue])
+    {
+        [result setValue:[self descriptionValue] forKey:@"description"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.vpcPeeringName = [dictionary objectForKey:@"vpcPeeringName"];
+    self.vpcId = [dictionary objectForKey:@"vpcId"];
+    self.remoteVpcId = [dictionary objectForKey:@"remoteVpcId"];
+    self.descriptionValue = [dictionary objectForKey:@"description"];
+    return self;
+} 
+
+@end
+@implementation VpcDescribeVpcPeeringRequest
+-(id) initWithRegion:(NSString *)regionId
+vpcPeeringId:(NSString*)vpcPeeringId { 
+    self.regionId = regionId;
+    self.vpcPeeringId = vpcPeeringId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+vpcPeeringId:(NSString*)vpcPeeringId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.vpcPeeringId = vpcPeeringId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self vpcPeeringId])
+    {
+        [result setValue:[self vpcPeeringId] forKey:@"vpcPeeringId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.vpcPeeringId = [dictionary objectForKey:@"vpcPeeringId"];
+    return self;
+} 
+
+@end
+@implementation VpcDeleteVpcPeeringRequest
+-(id) initWithRegion:(NSString *)regionId
+vpcPeeringId:(NSString*)vpcPeeringId { 
+    self.regionId = regionId;
+    self.vpcPeeringId = vpcPeeringId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+vpcPeeringId:(NSString*)vpcPeeringId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.vpcPeeringId = vpcPeeringId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self vpcPeeringId])
+    {
+        [result setValue:[self vpcPeeringId] forKey:@"vpcPeeringId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.vpcPeeringId = [dictionary objectForKey:@"vpcPeeringId"];
+    return self;
+} 
+
+@end
+@implementation VpcDeleteVpcRequest
+-(id) initWithRegion:(NSString *)regionId
+vpcId:(NSString*)vpcId { 
+    self.regionId = regionId;
+    self.vpcId = vpcId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+vpcId:(NSString*)vpcId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.vpcId = vpcId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self vpcId])
+    {
+        [result setValue:[self vpcId] forKey:@"vpcId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.vpcId = [dictionary objectForKey:@"vpcId"];
+    return self;
+} 
+
+@end
+@implementation VpcDescribeVpcRequest
+-(id) initWithRegion:(NSString *)regionId
+vpcId:(NSString*)vpcId { 
+    self.regionId = regionId;
+    self.vpcId = vpcId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+vpcId:(NSString*)vpcId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.vpcId = vpcId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self vpcId])
+    {
+        [result setValue:[self vpcId] forKey:@"vpcId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.vpcId = [dictionary objectForKey:@"vpcId"];
+    return self;
+} 
+
+@end
+@implementation VpcCreateVpcRequest
+-(id) initWithRegion:(NSString *)regionId
+vpcName:(NSString*)vpcName
+addressPrefix:(NSString*)addressPrefix
+descriptionValue:(NSString*)descriptionValue { 
+    self.regionId = regionId;
+    self.vpcName = vpcName;
+    self.addressPrefix = addressPrefix;
+    self.descriptionValue = descriptionValue;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+vpcName:(NSString*)vpcName
+addressPrefix:(NSString*)addressPrefix
+descriptionValue:(NSString*)descriptionValue { 
+    self.regionId = regionId;
+    self.version = version;
+    self.vpcName = vpcName;
+    self.addressPrefix = addressPrefix;
+    self.descriptionValue = descriptionValue;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self vpcName])
+    {
+        [result setValue:[self vpcName] forKey:@"vpcName"];
+    }
+    if([self addressPrefix])
+    {
+        [result setValue:[self addressPrefix] forKey:@"addressPrefix"];
+    }
+    if([self descriptionValue])
+    {
+        [result setValue:[self descriptionValue] forKey:@"description"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.vpcName = [dictionary objectForKey:@"vpcName"];
+    self.addressPrefix = [dictionary objectForKey:@"addressPrefix"];
+    self.descriptionValue = [dictionary objectForKey:@"description"];
+    return self;
+} 
+
+@end
+@implementation VpcModifyVpcRequest
+-(id) initWithRegion:(NSString *)regionId
+vpcName:(NSString*)vpcName
+descriptionValue:(NSString*)descriptionValue
+vpcId:(NSString*)vpcId { 
+    self.regionId = regionId;
+    self.vpcName = vpcName;
+    self.descriptionValue = descriptionValue;
+    self.vpcId = vpcId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+vpcName:(NSString*)vpcName
+descriptionValue:(NSString*)descriptionValue
+vpcId:(NSString*)vpcId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.vpcName = vpcName;
+    self.descriptionValue = descriptionValue;
+    self.vpcId = vpcId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self vpcName])
+    {
+        [result setValue:[self vpcName] forKey:@"vpcName"];
+    }
+    if([self descriptionValue])
+    {
+        [result setValue:[self descriptionValue] forKey:@"description"];
+    }
+    if([self vpcId])
+    {
+        [result setValue:[self vpcId] forKey:@"vpcId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.vpcName = [dictionary objectForKey:@"vpcName"];
+    self.descriptionValue = [dictionary objectForKey:@"description"];
+    self.vpcId = [dictionary objectForKey:@"vpcId"];
+    return self;
+} 
+
+@end
+@implementation VpcCreateVpcResult
+-(id) initWithVpcId:(NSString*) vpcId { 
+    self.vpcId = vpcId;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self vpcId])
+    {
+        [result setValue:[self vpcId] forKey:@"vpcId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.vpcId = [dictionary objectForKey:@"vpcId"];
+    return self;
+} 
+
+@end
+@implementation VpcRemoveRouteTableRulesResult
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    return self;
+} 
+
+@end
+  
+@implementation VpcRemoveRouteTableRulesResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+VpcRemoveRouteTableRulesResult* result = [[VpcRemoveRouteTableRulesResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(VpcRemoveRouteTableRulesResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+@implementation VpcDescribeRouteTablesRequest
+-(id) initWithRegion:(NSString *)regionId
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+filters:(NSArray<Filter*>*)filters { 
+    self.regionId = regionId;
+    self.pageNumber = pageNumber;
+    self.pageSize = pageSize;
+    self.filters = filters;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+filters:(NSArray<Filter*>*)filters { 
+    self.regionId = regionId;
+    self.version = version;
+    self.pageNumber = pageNumber;
+    self.pageSize = pageSize;
+    self.filters = filters;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self pageNumber])
+    {
+        [result setValue:[self pageNumber] forKey:@"pageNumber"];
+    }
+    if([self pageSize])
+    {
+        [result setValue:[self pageSize] forKey:@"pageSize"];
+    }
+    if([self filters])
+    {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self filters] count]; i++) {
+            Filter* item = [[self filters] objectAtIndex:i];
+            [arrayDic addObject:[item dictionary]];
+        }
+        [result setValue:arrayDic forKey:@"filters"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.pageNumber = [dictionary objectForKey:@"pageNumber"];
+    self.pageSize = [dictionary objectForKey:@"pageSize"];
+    NSArray* filtersArray = [dictionary objectForKey:@"filters"];
+    if(filtersArray&&![filtersArray isKindOfClass:[NSNull class]])
+    {
+        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
+        for(int i = 0 ; i< [filtersArray count];i++)
+        {
+        Filter* item = [[Filter alloc]initWithDic:[filtersArray objectAtIndex:i]];
+            if(item)
+            {
+            [propertyArray addObject:item];
+            }
+        }
+        self.filters = propertyArray;
+    }
+    return self;
+} 
+
+@end
+@implementation VpcAddRouteTableRulesRequest
+-(id) initWithRegion:(NSString *)regionId
+routeTableRuleSpecs:(NSArray<AddRouteTableRules*>*)routeTableRuleSpecs
+routeTableId:(NSString*)routeTableId { 
+    self.regionId = regionId;
+    self.routeTableRuleSpecs = routeTableRuleSpecs;
+    self.routeTableId = routeTableId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+routeTableRuleSpecs:(NSArray<AddRouteTableRules*>*)routeTableRuleSpecs
+routeTableId:(NSString*)routeTableId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.routeTableRuleSpecs = routeTableRuleSpecs;
+    self.routeTableId = routeTableId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self routeTableRuleSpecs])
+    {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self routeTableRuleSpecs] count]; i++) {
+            AddRouteTableRules* item = [[self routeTableRuleSpecs] objectAtIndex:i];
+            [arrayDic addObject:[item dictionary]];
+        }
+        [result setValue:arrayDic forKey:@"routeTableRuleSpecs"];
+    }
+    if([self routeTableId])
+    {
+        [result setValue:[self routeTableId] forKey:@"routeTableId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    NSArray* routeTableRuleSpecsArray = [dictionary objectForKey:@"routeTableRuleSpecs"];
+    if(routeTableRuleSpecsArray&&![routeTableRuleSpecsArray isKindOfClass:[NSNull class]])
+    {
+        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
+        for(int i = 0 ; i< [routeTableRuleSpecsArray count];i++)
+        {
+        AddRouteTableRules* item = [[AddRouteTableRules alloc]initWithDic:[routeTableRuleSpecsArray objectAtIndex:i]];
+            if(item)
+            {
+            [propertyArray addObject:item];
+            }
+        }
+        self.routeTableRuleSpecs = propertyArray;
+    }
+    self.routeTableId = [dictionary objectForKey:@"routeTableId"];
+    return self;
+} 
+
+@end
+@implementation VpcModifyRouteTableRulesResult
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    return self;
+} 
+
+@end
+@implementation VpcDescribeRouteTablesResult
+-(id) initWithRouteTables:(NSArray<RouteTable*>*) routeTables
+        totalCount:(NSNumber*)totalCount { 
+    self.routeTables = routeTables;               
+    self.totalCount = totalCount;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self routeTables])
+    {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self routeTables] count]; i++) {
+            RouteTable* item = [[self routeTables] objectAtIndex:i];
+            [arrayDic addObject:[item dictionary]];
+        }
+        [result setValue:arrayDic forKey:@"routeTables"];
+    }
+    if([self totalCount])
+    {
+        [result setValue:[self totalCount] forKey:@"totalCount"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    NSArray* routeTablesArray = [dictionary objectForKey:@"routeTables"];
+    if(routeTablesArray&&![routeTablesArray isKindOfClass:[NSNull class]])
+    {
+        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
+        for(int i = 0 ; i< [routeTablesArray count];i++)
+        {
+        RouteTable* item = [[RouteTable alloc]initWithDic:[routeTablesArray objectAtIndex:i]];
+            if(item)
+            {
+            [propertyArray addObject:item];
+            }
+        }
+        self.routeTables = propertyArray;
+    }
+    self.totalCount = [dictionary objectForKey:@"totalCount"];
+    return self;
+} 
+
+@end
+@implementation VpcDescribeRouteTableResult
+-(id) initWithRouteTable:(RouteTable*) routeTable { 
+    self.routeTable = routeTable;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self routeTable])
+    {
+        [result setValue:[[self routeTable] dictionary]forKey:@"routeTable"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.routeTable = [[RouteTable alloc]initWithDic:[dictionary objectForKey:@"routeTable"]];
     return self;
 } 
 
@@ -591,42 +2576,6 @@ VpcModifyRouteTableRulesResult* result = [[VpcModifyRouteTableRulesResult alloc]
 } 
 
 @end
-@implementation VpcDescribeRouteTableRequest
--(id) initWithRegion:(NSString *)regionId
-routeTableId:(NSString*)routeTableId { 
-    self.regionId = regionId;
-    self.routeTableId = routeTableId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-routeTableId:(NSString*)routeTableId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.routeTableId = routeTableId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self routeTableId])
-    {
-        [result setValue:[self routeTableId] forKey:@"routeTableId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.routeTableId = [dictionary objectForKey:@"routeTableId"];
-    return self;
-} 
-
-@end
 @implementation VpcModifyRouteTableRulesRequest
 -(id) initWithRegion:(NSString *)regionId
 modifyRouteTableRuleSpecs:(NSArray<ModifyRouteTableRules*>*)modifyRouteTableRuleSpecs
@@ -656,8 +2605,8 @@ routeTableId:(NSString*)routeTableId {
     }
     if([self modifyRouteTableRuleSpecs])
     {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self modifyRouteTableRuleSpecs] count]; i++) {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self modifyRouteTableRuleSpecs] count]; i++) {
             ModifyRouteTableRules* item = [[self modifyRouteTableRuleSpecs] objectAtIndex:i];
             [arrayDic addObject:[item dictionary]];
         }
@@ -677,10 +2626,10 @@ routeTableId:(NSString*)routeTableId {
         NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
         for(int i = 0 ; i< [modifyRouteTableRuleSpecsArray count];i++)
         {
-            ModifyRouteTableRules* item = [[ModifyRouteTableRules alloc]initWithDic:[modifyRouteTableRuleSpecsArray objectAtIndex:i]];
+        ModifyRouteTableRules* item = [[ModifyRouteTableRules alloc]initWithDic:[modifyRouteTableRuleSpecsArray objectAtIndex:i]];
             if(item)
             {
-                [propertyArray addObject:item];
+            [propertyArray addObject:item];
             }
         }
         self.modifyRouteTableRuleSpecs = propertyArray;
@@ -842,26 +2791,6 @@ VpcDescribeRouteTablesResult* result = [[VpcDescribeRouteTablesResult alloc]init
     self.requestId = requestId;
     return self;
 }
-
-@end
-@implementation VpcCreateRouteTableResult
--(id) initWithRouteTableId:(NSString*) routeTableId { 
-    self.routeTableId = routeTableId;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self routeTableId])
-    {
-        [result setValue:[self routeTableId] forKey:@"routeTableId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.routeTableId = [dictionary objectForKey:@"routeTableId"];
-    return self;
-} 
 
 @end
   
@@ -1095,116 +3024,6 @@ VpcAddRouteTableRulesResult* result = [[VpcAddRouteTableRulesResult alloc]initWi
 }
 
 @end
-@implementation VpcDisassociateRouteTableRequest
--(id) initWithRegion:(NSString *)regionId
-subnetId:(NSString*)subnetId
-routeTableId:(NSString*)routeTableId { 
-    self.regionId = regionId;
-    self.subnetId = subnetId;
-    self.routeTableId = routeTableId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-subnetId:(NSString*)subnetId
-routeTableId:(NSString*)routeTableId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.subnetId = subnetId;
-    self.routeTableId = routeTableId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self subnetId])
-    {
-        [result setValue:[self subnetId] forKey:@"subnetId"];
-    }
-    if([self routeTableId])
-    {
-        [result setValue:[self routeTableId] forKey:@"routeTableId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.subnetId = [dictionary objectForKey:@"subnetId"];
-    self.routeTableId = [dictionary objectForKey:@"routeTableId"];
-    return self;
-} 
-
-@end
-@implementation VpcDescribeQuotaRequest
--(id) initWithRegion:(NSString *)regionId
-type:(NSString*)type
-parentResourceId:(NSString*)parentResourceId { 
-    self.regionId = regionId;
-    self.type = type;
-    self.parentResourceId = parentResourceId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-type:(NSString*)type
-parentResourceId:(NSString*)parentResourceId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.type = type;
-    self.parentResourceId = parentResourceId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self type])
-    {
-        [result setValue:[self type] forKey:@"type"];
-    }
-    if([self parentResourceId])
-    {
-        [result setValue:[self parentResourceId] forKey:@"parentResourceId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.type = [dictionary objectForKey:@"type"];
-    self.parentResourceId = [dictionary objectForKey:@"parentResourceId"];
-    return self;
-} 
-
-@end
-@implementation VpcDescribeQuotaResult
--(id) initWithQuota:(NSObject*) quota { 
-    self.quota = quota;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self quota])
-    {
-        [result setValue:[self quota] forKey:@"quota"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.quota = [dictionary objectForKey:@"quota"];
-    return self;
-} 
-
-@end
   
 @implementation VpcDescribeQuotaResponse
 -(NSMutableDictionary*) dictionary
@@ -1249,26 +3068,6 @@ VpcDescribeQuotaResult* result = [[VpcDescribeQuotaResult alloc]initWithDic:[dic
 }
 
 @end
-@implementation VpcCreateNetworkInterfaceResult
--(id) initWithNetworkInterfaceId:(NSString*) networkInterfaceId { 
-    self.networkInterfaceId = networkInterfaceId;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self networkInterfaceId])
-    {
-        [result setValue:[self networkInterfaceId] forKey:@"networkInterfaceId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.networkInterfaceId = [dictionary objectForKey:@"networkInterfaceId"];
-    return self;
-} 
-
-@end
 @implementation VpcUnassignSecondaryIpsResult
 -(NSMutableDictionary*) dictionary{
     NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
@@ -1291,8 +3090,8 @@ VpcDescribeQuotaResult* result = [[VpcDescribeQuotaResult alloc]initWithDic:[dic
     NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
     if([self networkInterfaces])
     {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self networkInterfaces] count]; i++) {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self networkInterfaces] count]; i++) {
             NetworkInterface* item = [[self networkInterfaces] objectAtIndex:i];
             [arrayDic addObject:[item dictionary]];
         }
@@ -1312,10 +3111,10 @@ VpcDescribeQuotaResult* result = [[VpcDescribeQuotaResult alloc]initWithDic:[dic
         NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
         for(int i = 0 ; i< [networkInterfacesArray count];i++)
         {
-            NetworkInterface* item = [[NetworkInterface alloc]initWithDic:[networkInterfacesArray objectAtIndex:i]];
+        NetworkInterface* item = [[NetworkInterface alloc]initWithDic:[networkInterfacesArray objectAtIndex:i]];
             if(item)
             {
-                [propertyArray addObject:item];
+            [propertyArray addObject:item];
             }
         }
         self.networkInterfaces = propertyArray;
@@ -1554,105 +3353,6 @@ VpcAssociateElasticIpResult* result = [[VpcAssociateElasticIpResult alloc]initWi
 }
 
 @end
-@implementation VpcAssignSecondaryIpsRequest
--(id) initWithRegion:(NSString *)regionId
-force:(NSNumber*)force
-secondaryIps:(NSArray<NSString*>*)secondaryIps
-secondaryIpCount:(NSNumber*)secondaryIpCount
-networkInterfaceId:(NSString*)networkInterfaceId { 
-    self.regionId = regionId;
-    self.force = force;
-    self.secondaryIps = secondaryIps;
-    self.secondaryIpCount = secondaryIpCount;
-    self.networkInterfaceId = networkInterfaceId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-force:(NSNumber*)force
-secondaryIps:(NSArray<NSString*>*)secondaryIps
-secondaryIpCount:(NSNumber*)secondaryIpCount
-networkInterfaceId:(NSString*)networkInterfaceId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.force = force;
-    self.secondaryIps = secondaryIps;
-    self.secondaryIpCount = secondaryIpCount;
-    self.networkInterfaceId = networkInterfaceId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self force])
-    {
-        [result setValue:[self force] forKey:@"force"];
-    }
-    if([self secondaryIps])
-    {
-        [result setValue:[self secondaryIps] forKey:@"secondaryIps"];
-    }
-    if([self secondaryIpCount])
-    {
-        [result setValue:[self secondaryIpCount] forKey:@"secondaryIpCount"];
-    }
-    if([self networkInterfaceId])
-    {
-        [result setValue:[self networkInterfaceId] forKey:@"networkInterfaceId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.force = [dictionary objectForKey:@"force"];
-    self.secondaryIps = [dictionary objectForKey:@"secondaryIps"];
-    self.secondaryIpCount = [dictionary objectForKey:@"secondaryIpCount"];
-    self.networkInterfaceId = [dictionary objectForKey:@"networkInterfaceId"];
-    return self;
-} 
-
-@end
-@implementation VpcDeleteNetworkInterfaceRequest
--(id) initWithRegion:(NSString *)regionId
-networkInterfaceId:(NSString*)networkInterfaceId { 
-    self.regionId = regionId;
-    self.networkInterfaceId = networkInterfaceId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-networkInterfaceId:(NSString*)networkInterfaceId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.networkInterfaceId = networkInterfaceId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self networkInterfaceId])
-    {
-        [result setValue:[self networkInterfaceId] forKey:@"networkInterfaceId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.networkInterfaceId = [dictionary objectForKey:@"networkInterfaceId"];
-    return self;
-} 
-
-@end
 @implementation VpcAssignSecondaryIpsResult
 -(NSMutableDictionary*) dictionary{
     NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
@@ -1752,177 +3452,6 @@ VpcUnassignSecondaryIpsResult* result = [[VpcUnassignSecondaryIpsResult alloc]in
 }
 
 @end
-@implementation VpcCreateNetworkInterfaceRequest
--(id) initWithRegion:(NSString *)regionId
-subnetId:(NSString*)subnetId
-az:(NSString*)az
-networkInterfaceName:(NSString*)networkInterfaceName
-primaryIpAddress:(NSString*)primaryIpAddress
-secondaryIpAddresses:(NSArray<NSString*>*)secondaryIpAddresses
-secondaryIpCount:(NSNumber*)secondaryIpCount
-securityGroups:(NSArray<NSString*>*)securityGroups
-sanityCheck:(NSNumber*)sanityCheck
-descriptionValue:(NSString*)descriptionValue { 
-    self.regionId = regionId;
-    self.subnetId = subnetId;
-    self.az = az;
-    self.networkInterfaceName = networkInterfaceName;
-    self.primaryIpAddress = primaryIpAddress;
-    self.secondaryIpAddresses = secondaryIpAddresses;
-    self.secondaryIpCount = secondaryIpCount;
-    self.securityGroups = securityGroups;
-    self.sanityCheck = sanityCheck;
-    self.descriptionValue = descriptionValue;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-subnetId:(NSString*)subnetId
-az:(NSString*)az
-networkInterfaceName:(NSString*)networkInterfaceName
-primaryIpAddress:(NSString*)primaryIpAddress
-secondaryIpAddresses:(NSArray<NSString*>*)secondaryIpAddresses
-secondaryIpCount:(NSNumber*)secondaryIpCount
-securityGroups:(NSArray<NSString*>*)securityGroups
-sanityCheck:(NSNumber*)sanityCheck
-descriptionValue:(NSString*)descriptionValue { 
-    self.regionId = regionId;
-    self.version = version;
-    self.subnetId = subnetId;
-    self.az = az;
-    self.networkInterfaceName = networkInterfaceName;
-    self.primaryIpAddress = primaryIpAddress;
-    self.secondaryIpAddresses = secondaryIpAddresses;
-    self.secondaryIpCount = secondaryIpCount;
-    self.securityGroups = securityGroups;
-    self.sanityCheck = sanityCheck;
-    self.descriptionValue = descriptionValue;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self subnetId])
-    {
-        [result setValue:[self subnetId] forKey:@"subnetId"];
-    }
-    if([self az])
-    {
-        [result setValue:[self az] forKey:@"az"];
-    }
-    if([self networkInterfaceName])
-    {
-        [result setValue:[self networkInterfaceName] forKey:@"networkInterfaceName"];
-    }
-    if([self primaryIpAddress])
-    {
-        [result setValue:[self primaryIpAddress] forKey:@"primaryIpAddress"];
-    }
-    if([self secondaryIpAddresses])
-    {
-        [result setValue:[self secondaryIpAddresses] forKey:@"secondaryIpAddresses"];
-    }
-    if([self secondaryIpCount])
-    {
-        [result setValue:[self secondaryIpCount] forKey:@"secondaryIpCount"];
-    }
-    if([self securityGroups])
-    {
-        [result setValue:[self securityGroups] forKey:@"securityGroups"];
-    }
-    if([self sanityCheck])
-    {
-        [result setValue:[self sanityCheck] forKey:@"sanityCheck"];
-    }
-    if([self descriptionValue])
-    {
-        [result setValue:[self descriptionValue] forKey:@"description"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.subnetId = [dictionary objectForKey:@"subnetId"];
-    self.az = [dictionary objectForKey:@"az"];
-    self.networkInterfaceName = [dictionary objectForKey:@"networkInterfaceName"];
-    self.primaryIpAddress = [dictionary objectForKey:@"primaryIpAddress"];
-    self.secondaryIpAddresses = [dictionary objectForKey:@"secondaryIpAddresses"];
-    self.secondaryIpCount = [dictionary objectForKey:@"secondaryIpCount"];
-    self.securityGroups = [dictionary objectForKey:@"securityGroups"];
-    self.sanityCheck = [dictionary objectForKey:@"sanityCheck"];
-    self.descriptionValue = [dictionary objectForKey:@"description"];
-    return self;
-} 
-
-@end
-@implementation VpcAssociateElasticIpRequest
--(id) initWithRegion:(NSString *)regionId
-elasticIpId:(NSString*)elasticIpId
-privateIpAddress:(NSString*)privateIpAddress
-elasticIpAddress:(NSString*)elasticIpAddress
-networkInterfaceId:(NSString*)networkInterfaceId { 
-    self.regionId = regionId;
-    self.elasticIpId = elasticIpId;
-    self.privateIpAddress = privateIpAddress;
-    self.elasticIpAddress = elasticIpAddress;
-    self.networkInterfaceId = networkInterfaceId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-elasticIpId:(NSString*)elasticIpId
-privateIpAddress:(NSString*)privateIpAddress
-elasticIpAddress:(NSString*)elasticIpAddress
-networkInterfaceId:(NSString*)networkInterfaceId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.elasticIpId = elasticIpId;
-    self.privateIpAddress = privateIpAddress;
-    self.elasticIpAddress = elasticIpAddress;
-    self.networkInterfaceId = networkInterfaceId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self elasticIpId])
-    {
-        [result setValue:[self elasticIpId] forKey:@"elasticIpId"];
-    }
-    if([self privateIpAddress])
-    {
-        [result setValue:[self privateIpAddress] forKey:@"privateIpAddress"];
-    }
-    if([self elasticIpAddress])
-    {
-        [result setValue:[self elasticIpAddress] forKey:@"elasticIpAddress"];
-    }
-    if([self networkInterfaceId])
-    {
-        [result setValue:[self networkInterfaceId] forKey:@"networkInterfaceId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.elasticIpId = [dictionary objectForKey:@"elasticIpId"];
-    self.privateIpAddress = [dictionary objectForKey:@"privateIpAddress"];
-    self.elasticIpAddress = [dictionary objectForKey:@"elasticIpAddress"];
-    self.networkInterfaceId = [dictionary objectForKey:@"networkInterfaceId"];
-    return self;
-} 
-
-@end
   
 @implementation VpcDescribeNetworkInterfacesResponse
 -(NSMutableDictionary*) dictionary
@@ -1965,105 +3494,6 @@ VpcDescribeNetworkInterfacesResult* result = [[VpcDescribeNetworkInterfacesResul
     self.requestId = requestId;
     return self;
 }
-
-@end
-@implementation VpcDisassociateElasticIpRequest
--(id) initWithRegion:(NSString *)regionId
-elasticIpId:(NSString*)elasticIpId
-elasticIpAddress:(NSString*)elasticIpAddress
-networkInterfaceId:(NSString*)networkInterfaceId { 
-    self.regionId = regionId;
-    self.elasticIpId = elasticIpId;
-    self.elasticIpAddress = elasticIpAddress;
-    self.networkInterfaceId = networkInterfaceId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-elasticIpId:(NSString*)elasticIpId
-elasticIpAddress:(NSString*)elasticIpAddress
-networkInterfaceId:(NSString*)networkInterfaceId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.elasticIpId = elasticIpId;
-    self.elasticIpAddress = elasticIpAddress;
-    self.networkInterfaceId = networkInterfaceId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self elasticIpId])
-    {
-        [result setValue:[self elasticIpId] forKey:@"elasticIpId"];
-    }
-    if([self elasticIpAddress])
-    {
-        [result setValue:[self elasticIpAddress] forKey:@"elasticIpAddress"];
-    }
-    if([self networkInterfaceId])
-    {
-        [result setValue:[self networkInterfaceId] forKey:@"networkInterfaceId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.elasticIpId = [dictionary objectForKey:@"elasticIpId"];
-    self.elasticIpAddress = [dictionary objectForKey:@"elasticIpAddress"];
-    self.networkInterfaceId = [dictionary objectForKey:@"networkInterfaceId"];
-    return self;
-} 
-
-@end
-@implementation VpcUnassignSecondaryIpsRequest
--(id) initWithRegion:(NSString *)regionId
-secondaryIps:(NSArray<NSString*>*)secondaryIps
-networkInterfaceId:(NSString*)networkInterfaceId { 
-    self.regionId = regionId;
-    self.secondaryIps = secondaryIps;
-    self.networkInterfaceId = networkInterfaceId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-secondaryIps:(NSArray<NSString*>*)secondaryIps
-networkInterfaceId:(NSString*)networkInterfaceId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.secondaryIps = secondaryIps;
-    self.networkInterfaceId = networkInterfaceId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self secondaryIps])
-    {
-        [result setValue:[self secondaryIps] forKey:@"secondaryIps"];
-    }
-    if([self networkInterfaceId])
-    {
-        [result setValue:[self networkInterfaceId] forKey:@"networkInterfaceId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.secondaryIps = [dictionary objectForKey:@"secondaryIps"];
-    self.networkInterfaceId = [dictionary objectForKey:@"networkInterfaceId"];
-    return self;
-} 
 
 @end
   
@@ -2110,42 +3540,6 @@ VpcCreateNetworkInterfaceResult* result = [[VpcCreateNetworkInterfaceResult allo
 }
 
 @end
-@implementation VpcDescribeNetworkInterfaceRequest
--(id) initWithRegion:(NSString *)regionId
-networkInterfaceId:(NSString*)networkInterfaceId { 
-    self.regionId = regionId;
-    self.networkInterfaceId = networkInterfaceId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-networkInterfaceId:(NSString*)networkInterfaceId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.networkInterfaceId = networkInterfaceId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self networkInterfaceId])
-    {
-        [result setValue:[self networkInterfaceId] forKey:@"networkInterfaceId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.networkInterfaceId = [dictionary objectForKey:@"networkInterfaceId"];
-    return self;
-} 
-
-@end
 @implementation VpcDisassociateElasticIpResult
 -(NSMutableDictionary*) dictionary{
     NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
@@ -2153,69 +3547,6 @@ networkInterfaceId:(NSString*)networkInterfaceId {
 }
 
 -(id) initWithDic:(NSDictionary*)dictionary{
-    return self;
-} 
-
-@end
-@implementation VpcModifyNetworkInterfaceRequest
--(id) initWithRegion:(NSString *)regionId
-networkInterfaceName:(NSString*)networkInterfaceName
-descriptionValue:(NSString*)descriptionValue
-securityGroups:(NSArray<NSString*>*)securityGroups
-networkInterfaceId:(NSString*)networkInterfaceId { 
-    self.regionId = regionId;
-    self.networkInterfaceName = networkInterfaceName;
-    self.descriptionValue = descriptionValue;
-    self.securityGroups = securityGroups;
-    self.networkInterfaceId = networkInterfaceId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-networkInterfaceName:(NSString*)networkInterfaceName
-descriptionValue:(NSString*)descriptionValue
-securityGroups:(NSArray<NSString*>*)securityGroups
-networkInterfaceId:(NSString*)networkInterfaceId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.networkInterfaceName = networkInterfaceName;
-    self.descriptionValue = descriptionValue;
-    self.securityGroups = securityGroups;
-    self.networkInterfaceId = networkInterfaceId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self networkInterfaceName])
-    {
-        [result setValue:[self networkInterfaceName] forKey:@"networkInterfaceName"];
-    }
-    if([self descriptionValue])
-    {
-        [result setValue:[self descriptionValue] forKey:@"description"];
-    }
-    if([self securityGroups])
-    {
-        [result setValue:[self securityGroups] forKey:@"securityGroups"];
-    }
-    if([self networkInterfaceId])
-    {
-        [result setValue:[self networkInterfaceId] forKey:@"networkInterfaceId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.networkInterfaceName = [dictionary objectForKey:@"networkInterfaceName"];
-    self.descriptionValue = [dictionary objectForKey:@"description"];
-    self.securityGroups = [dictionary objectForKey:@"securityGroups"];
-    self.networkInterfaceId = [dictionary objectForKey:@"networkInterfaceId"];
     return self;
 } 
 
@@ -2261,8 +3592,8 @@ filters:(NSArray<Filter*>*)filters {
     }
     if([self filters])
     {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self filters] count]; i++) {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self filters] count]; i++) {
             Filter* item = [[self filters] objectAtIndex:i];
             [arrayDic addObject:[item dictionary]];
         }
@@ -2280,10 +3611,10 @@ filters:(NSArray<Filter*>*)filters {
         NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
         for(int i = 0 ; i< [filtersArray count];i++)
         {
-            Filter* item = [[Filter alloc]initWithDic:[filtersArray objectAtIndex:i]];
+        Filter* item = [[Filter alloc]initWithDic:[filtersArray objectAtIndex:i]];
             if(item)
             {
-                [propertyArray addObject:item];
+            [propertyArray addObject:item];
             }
         }
         self.filters = propertyArray;
@@ -2347,42 +3678,6 @@ VpcDisassociateElasticIpResult* result = [[VpcDisassociateElasticIpResult alloc]
 } 
 
 @end
-@implementation VpcDescribeSubnetRequest
--(id) initWithRegion:(NSString *)regionId
-subnetId:(NSString*)subnetId { 
-    self.regionId = regionId;
-    self.subnetId = subnetId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-subnetId:(NSString*)subnetId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.subnetId = subnetId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self subnetId])
-    {
-        [result setValue:[self subnetId] forKey:@"subnetId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.subnetId = [dictionary objectForKey:@"subnetId"];
-    return self;
-} 
-
-@end
 @implementation VpcDescribeSubnetsResult
 -(id) initWithSubnets:(NSArray<Subnet*>*) subnets
         totalCount:(NSNumber*)totalCount { 
@@ -2394,8 +3689,8 @@ subnetId:(NSString*)subnetId {
     NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
     if([self subnets])
     {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self subnets] count]; i++) {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self subnets] count]; i++) {
             Subnet* item = [[self subnets] objectAtIndex:i];
             [arrayDic addObject:[item dictionary]];
         }
@@ -2415,10 +3710,10 @@ subnetId:(NSString*)subnetId {
         NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
         for(int i = 0 ; i< [subnetsArray count];i++)
         {
-            Subnet* item = [[Subnet alloc]initWithDic:[subnetsArray objectAtIndex:i]];
+        Subnet* item = [[Subnet alloc]initWithDic:[subnetsArray objectAtIndex:i]];
             if(item)
             {
-                [propertyArray addObject:item];
+            [propertyArray addObject:item];
             }
         }
         self.subnets = propertyArray;
@@ -2470,26 +3765,6 @@ VpcDescribeSubnetsResult* result = [[VpcDescribeSubnetsResult alloc]initWithDic:
     self.requestId = requestId;
     return self;
 }
-
-@end
-@implementation VpcCreateSubnetResult
--(id) initWithSubnetId:(NSString*) subnetId { 
-    self.subnetId = subnetId;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self subnetId])
-    {
-        [result setValue:[self subnetId] forKey:@"subnetId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.subnetId = [dictionary objectForKey:@"subnetId"];
-    return self;
-} 
 
 @end
 @implementation VpcDescribeSubnetResult
@@ -2641,8 +3916,8 @@ filters:(NSArray<Filter*>*)filters {
     }
     if([self filters])
     {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self filters] count]; i++) {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self filters] count]; i++) {
             Filter* item = [[self filters] objectAtIndex:i];
             [arrayDic addObject:[item dictionary]];
         }
@@ -2660,122 +3935,14 @@ filters:(NSArray<Filter*>*)filters {
         NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
         for(int i = 0 ; i< [filtersArray count];i++)
         {
-            Filter* item = [[Filter alloc]initWithDic:[filtersArray objectAtIndex:i]];
+        Filter* item = [[Filter alloc]initWithDic:[filtersArray objectAtIndex:i]];
             if(item)
             {
-                [propertyArray addObject:item];
+            [propertyArray addObject:item];
             }
         }
         self.filters = propertyArray;
     }
-    return self;
-} 
-
-@end
-@implementation VpcDeleteSubnetRequest
--(id) initWithRegion:(NSString *)regionId
-subnetId:(NSString*)subnetId { 
-    self.regionId = regionId;
-    self.subnetId = subnetId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-subnetId:(NSString*)subnetId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.subnetId = subnetId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self subnetId])
-    {
-        [result setValue:[self subnetId] forKey:@"subnetId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.subnetId = [dictionary objectForKey:@"subnetId"];
-    return self;
-} 
-
-@end
-@implementation VpcCreateSubnetRequest
--(id) initWithRegion:(NSString *)regionId
-vpcId:(NSString*)vpcId
-subnetName:(NSString*)subnetName
-addressPrefix:(NSString*)addressPrefix
-routeTableId:(NSString*)routeTableId
-descriptionValue:(NSString*)descriptionValue { 
-    self.regionId = regionId;
-    self.vpcId = vpcId;
-    self.subnetName = subnetName;
-    self.addressPrefix = addressPrefix;
-    self.routeTableId = routeTableId;
-    self.descriptionValue = descriptionValue;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-vpcId:(NSString*)vpcId
-subnetName:(NSString*)subnetName
-addressPrefix:(NSString*)addressPrefix
-routeTableId:(NSString*)routeTableId
-descriptionValue:(NSString*)descriptionValue { 
-    self.regionId = regionId;
-    self.version = version;
-    self.vpcId = vpcId;
-    self.subnetName = subnetName;
-    self.addressPrefix = addressPrefix;
-    self.routeTableId = routeTableId;
-    self.descriptionValue = descriptionValue;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self vpcId])
-    {
-        [result setValue:[self vpcId] forKey:@"vpcId"];
-    }
-    if([self subnetName])
-    {
-        [result setValue:[self subnetName] forKey:@"subnetName"];
-    }
-    if([self addressPrefix])
-    {
-        [result setValue:[self addressPrefix] forKey:@"addressPrefix"];
-    }
-    if([self routeTableId])
-    {
-        [result setValue:[self routeTableId] forKey:@"routeTableId"];
-    }
-    if([self descriptionValue])
-    {
-        [result setValue:[self descriptionValue] forKey:@"description"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.vpcId = [dictionary objectForKey:@"vpcId"];
-    self.subnetName = [dictionary objectForKey:@"subnetName"];
-    self.addressPrefix = [dictionary objectForKey:@"addressPrefix"];
-    self.routeTableId = [dictionary objectForKey:@"routeTableId"];
-    self.descriptionValue = [dictionary objectForKey:@"description"];
     return self;
 } 
 
@@ -2879,60 +4046,6 @@ VpcModifySubnetResult* result = [[VpcModifySubnetResult alloc]initWithDic:[dicti
 }
 
 @end
-@implementation VpcModifySubnetRequest
--(id) initWithRegion:(NSString *)regionId
-subnetName:(NSString*)subnetName
-descriptionValue:(NSString*)descriptionValue
-subnetId:(NSString*)subnetId { 
-    self.regionId = regionId;
-    self.subnetName = subnetName;
-    self.descriptionValue = descriptionValue;
-    self.subnetId = subnetId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-subnetName:(NSString*)subnetName
-descriptionValue:(NSString*)descriptionValue
-subnetId:(NSString*)subnetId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.subnetName = subnetName;
-    self.descriptionValue = descriptionValue;
-    self.subnetId = subnetId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self subnetName])
-    {
-        [result setValue:[self subnetName] forKey:@"subnetName"];
-    }
-    if([self descriptionValue])
-    {
-        [result setValue:[self descriptionValue] forKey:@"description"];
-    }
-    if([self subnetId])
-    {
-        [result setValue:[self subnetId] forKey:@"subnetId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.subnetName = [dictionary objectForKey:@"subnetName"];
-    self.descriptionValue = [dictionary objectForKey:@"description"];
-    self.subnetId = [dictionary objectForKey:@"subnetId"];
-    return self;
-} 
-
-@end
 @implementation VpcDescribeNetworkSecurityGroupsResult
 -(id) initWithNetworkSecurityGroups:(NSArray<NetworkSecurityGroup*>*) networkSecurityGroups
         totalCount:(NSNumber*)totalCount { 
@@ -2944,8 +4057,8 @@ subnetId:(NSString*)subnetId {
     NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
     if([self networkSecurityGroups])
     {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self networkSecurityGroups] count]; i++) {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self networkSecurityGroups] count]; i++) {
             NetworkSecurityGroup* item = [[self networkSecurityGroups] objectAtIndex:i];
             [arrayDic addObject:[item dictionary]];
         }
@@ -2965,60 +4078,15 @@ subnetId:(NSString*)subnetId {
         NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
         for(int i = 0 ; i< [networkSecurityGroupsArray count];i++)
         {
-            NetworkSecurityGroup* item = [[NetworkSecurityGroup alloc]initWithDic:[networkSecurityGroupsArray objectAtIndex:i]];
+        NetworkSecurityGroup* item = [[NetworkSecurityGroup alloc]initWithDic:[networkSecurityGroupsArray objectAtIndex:i]];
             if(item)
             {
-                [propertyArray addObject:item];
+            [propertyArray addObject:item];
             }
         }
         self.networkSecurityGroups = propertyArray;
     }
     self.totalCount = [dictionary objectForKey:@"totalCount"];
-    return self;
-} 
-
-@end
-@implementation VpcRemoveNetworkSecurityGroupRulesRequest
--(id) initWithRegion:(NSString *)regionId
-ruleIds:(NSArray<NSString*>*)ruleIds
-networkSecurityGroupId:(NSString*)networkSecurityGroupId { 
-    self.regionId = regionId;
-    self.ruleIds = ruleIds;
-    self.networkSecurityGroupId = networkSecurityGroupId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-ruleIds:(NSArray<NSString*>*)ruleIds
-networkSecurityGroupId:(NSString*)networkSecurityGroupId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.ruleIds = ruleIds;
-    self.networkSecurityGroupId = networkSecurityGroupId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self ruleIds])
-    {
-        [result setValue:[self ruleIds] forKey:@"ruleIds"];
-    }
-    if([self networkSecurityGroupId])
-    {
-        [result setValue:[self networkSecurityGroupId] forKey:@"networkSecurityGroupId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.ruleIds = [dictionary objectForKey:@"ruleIds"];
-    self.networkSecurityGroupId = [dictionary objectForKey:@"networkSecurityGroupId"];
     return self;
 } 
 
@@ -3039,96 +4107,6 @@ networkSecurityGroupId:(NSString*)networkSecurityGroupId {
 
 -(id) initWithDic:(NSDictionary*)dictionary{
     self.networkSecurityGroup = [[NetworkSecurityGroup alloc]initWithDic:[dictionary objectForKey:@"networkSecurityGroup"]];
-    return self;
-} 
-
-@end
-@implementation VpcDeleteNetworkSecurityGroupRequest
--(id) initWithRegion:(NSString *)regionId
-networkSecurityGroupId:(NSString*)networkSecurityGroupId { 
-    self.regionId = regionId;
-    self.networkSecurityGroupId = networkSecurityGroupId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-networkSecurityGroupId:(NSString*)networkSecurityGroupId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.networkSecurityGroupId = networkSecurityGroupId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self networkSecurityGroupId])
-    {
-        [result setValue:[self networkSecurityGroupId] forKey:@"networkSecurityGroupId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.networkSecurityGroupId = [dictionary objectForKey:@"networkSecurityGroupId"];
-    return self;
-} 
-
-@end
-@implementation VpcCreateNetworkSecurityGroupRequest
--(id) initWithRegion:(NSString *)regionId
-vpcId:(NSString*)vpcId
-networkSecurityGroupName:(NSString*)networkSecurityGroupName
-descriptionValue:(NSString*)descriptionValue { 
-    self.regionId = regionId;
-    self.vpcId = vpcId;
-    self.networkSecurityGroupName = networkSecurityGroupName;
-    self.descriptionValue = descriptionValue;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-vpcId:(NSString*)vpcId
-networkSecurityGroupName:(NSString*)networkSecurityGroupName
-descriptionValue:(NSString*)descriptionValue { 
-    self.regionId = regionId;
-    self.version = version;
-    self.vpcId = vpcId;
-    self.networkSecurityGroupName = networkSecurityGroupName;
-    self.descriptionValue = descriptionValue;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self vpcId])
-    {
-        [result setValue:[self vpcId] forKey:@"vpcId"];
-    }
-    if([self networkSecurityGroupName])
-    {
-        [result setValue:[self networkSecurityGroupName] forKey:@"networkSecurityGroupName"];
-    }
-    if([self descriptionValue])
-    {
-        [result setValue:[self descriptionValue] forKey:@"description"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.vpcId = [dictionary objectForKey:@"vpcId"];
-    self.networkSecurityGroupName = [dictionary objectForKey:@"networkSecurityGroupName"];
-    self.descriptionValue = [dictionary objectForKey:@"description"];
     return self;
 } 
 
@@ -3186,26 +4164,6 @@ VpcAddNetworkSecurityGroupRulesResult* result = [[VpcAddNetworkSecurityGroupRule
     self.requestId = requestId;
     return self;
 }
-
-@end
-@implementation VpcCreateNetworkSecurityGroupResult
--(id) initWithNetworkSecurityGroupId:(NSString*) networkSecurityGroupId { 
-    self.networkSecurityGroupId = networkSecurityGroupId;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self networkSecurityGroupId])
-    {
-        [result setValue:[self networkSecurityGroupId] forKey:@"networkSecurityGroupId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.networkSecurityGroupId = [dictionary objectForKey:@"networkSecurityGroupId"];
-    return self;
-} 
 
 @end
   
@@ -3380,8 +4338,8 @@ networkSecurityGroupId:(NSString*)networkSecurityGroupId {
     }
     if([self networkSecurityGroupRuleSpecs])
     {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self networkSecurityGroupRuleSpecs] count]; i++) {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self networkSecurityGroupRuleSpecs] count]; i++) {
             AddSecurityGroupRules* item = [[self networkSecurityGroupRuleSpecs] objectAtIndex:i];
             [arrayDic addObject:[item dictionary]];
         }
@@ -3401,10 +4359,10 @@ networkSecurityGroupId:(NSString*)networkSecurityGroupId {
         NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
         for(int i = 0 ; i< [networkSecurityGroupRuleSpecsArray count];i++)
         {
-            AddSecurityGroupRules* item = [[AddSecurityGroupRules alloc]initWithDic:[networkSecurityGroupRuleSpecsArray objectAtIndex:i]];
+        AddSecurityGroupRules* item = [[AddSecurityGroupRules alloc]initWithDic:[networkSecurityGroupRuleSpecsArray objectAtIndex:i]];
             if(item)
             {
-                [propertyArray addObject:item];
+            [propertyArray addObject:item];
             }
         }
         self.networkSecurityGroupRuleSpecs = propertyArray;
@@ -3443,8 +4401,8 @@ networkSecurityGroupId:(NSString*)networkSecurityGroupId {
     }
     if([self modifySecurityGroupRuleSpecs])
     {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self modifySecurityGroupRuleSpecs] count]; i++) {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self modifySecurityGroupRuleSpecs] count]; i++) {
             ModifySecurityGroupRules* item = [[self modifySecurityGroupRuleSpecs] objectAtIndex:i];
             [arrayDic addObject:[item dictionary]];
         }
@@ -3464,10 +4422,10 @@ networkSecurityGroupId:(NSString*)networkSecurityGroupId {
         NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
         for(int i = 0 ; i< [modifySecurityGroupRuleSpecsArray count];i++)
         {
-            ModifySecurityGroupRules* item = [[ModifySecurityGroupRules alloc]initWithDic:[modifySecurityGroupRuleSpecsArray objectAtIndex:i]];
+        ModifySecurityGroupRules* item = [[ModifySecurityGroupRules alloc]initWithDic:[modifySecurityGroupRuleSpecsArray objectAtIndex:i]];
             if(item)
             {
-                [propertyArray addObject:item];
+            [propertyArray addObject:item];
             }
         }
         self.modifySecurityGroupRuleSpecs = propertyArray;
@@ -3573,8 +4531,8 @@ filters:(NSArray<Filter*>*)filters {
     }
     if([self filters])
     {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self filters] count]; i++) {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self filters] count]; i++) {
             Filter* item = [[self filters] objectAtIndex:i];
             [arrayDic addObject:[item dictionary]];
         }
@@ -3592,10 +4550,10 @@ filters:(NSArray<Filter*>*)filters {
         NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
         for(int i = 0 ; i< [filtersArray count];i++)
         {
-            Filter* item = [[Filter alloc]initWithDic:[filtersArray objectAtIndex:i]];
+        Filter* item = [[Filter alloc]initWithDic:[filtersArray objectAtIndex:i]];
             if(item)
             {
-                [propertyArray addObject:item];
+            [propertyArray addObject:item];
             }
         }
         self.filters = propertyArray;
@@ -3714,96 +4672,6 @@ VpcModifyNetworkSecurityGroupResult* result = [[VpcModifyNetworkSecurityGroupRes
 }
 
 @end
-@implementation VpcDescribeNetworkSecurityGroupRequest
--(id) initWithRegion:(NSString *)regionId
-networkSecurityGroupId:(NSString*)networkSecurityGroupId { 
-    self.regionId = regionId;
-    self.networkSecurityGroupId = networkSecurityGroupId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-networkSecurityGroupId:(NSString*)networkSecurityGroupId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.networkSecurityGroupId = networkSecurityGroupId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self networkSecurityGroupId])
-    {
-        [result setValue:[self networkSecurityGroupId] forKey:@"networkSecurityGroupId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.networkSecurityGroupId = [dictionary objectForKey:@"networkSecurityGroupId"];
-    return self;
-} 
-
-@end
-@implementation VpcModifyNetworkSecurityGroupRequest
--(id) initWithRegion:(NSString *)regionId
-networkSecurityGroupName:(NSString*)networkSecurityGroupName
-descriptionValue:(NSString*)descriptionValue
-networkSecurityGroupId:(NSString*)networkSecurityGroupId { 
-    self.regionId = regionId;
-    self.networkSecurityGroupName = networkSecurityGroupName;
-    self.descriptionValue = descriptionValue;
-    self.networkSecurityGroupId = networkSecurityGroupId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-networkSecurityGroupName:(NSString*)networkSecurityGroupName
-descriptionValue:(NSString*)descriptionValue
-networkSecurityGroupId:(NSString*)networkSecurityGroupId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.networkSecurityGroupName = networkSecurityGroupName;
-    self.descriptionValue = descriptionValue;
-    self.networkSecurityGroupId = networkSecurityGroupId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self networkSecurityGroupName])
-    {
-        [result setValue:[self networkSecurityGroupName] forKey:@"networkSecurityGroupName"];
-    }
-    if([self descriptionValue])
-    {
-        [result setValue:[self descriptionValue] forKey:@"description"];
-    }
-    if([self networkSecurityGroupId])
-    {
-        [result setValue:[self networkSecurityGroupId] forKey:@"networkSecurityGroupId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.networkSecurityGroupName = [dictionary objectForKey:@"networkSecurityGroupName"];
-    self.descriptionValue = [dictionary objectForKey:@"description"];
-    self.networkSecurityGroupId = [dictionary objectForKey:@"networkSecurityGroupId"];
-    return self;
-} 
-
-@end
   
 @implementation VpcDescribeNetworkSecurityGroupResponse
 -(NSMutableDictionary*) dictionary
@@ -3888,8 +4756,8 @@ networkAclId:(NSString*)networkAclId {
     }
     if([self modifyNetworkAclRuleSpecs])
     {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self modifyNetworkAclRuleSpecs] count]; i++) {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self modifyNetworkAclRuleSpecs] count]; i++) {
             ModifyNetworkAclRuleSpec* item = [[self modifyNetworkAclRuleSpecs] objectAtIndex:i];
             [arrayDic addObject:[item dictionary]];
         }
@@ -3909,115 +4777,14 @@ networkAclId:(NSString*)networkAclId {
         NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
         for(int i = 0 ; i< [modifyNetworkAclRuleSpecsArray count];i++)
         {
-            ModifyNetworkAclRuleSpec* item = [[ModifyNetworkAclRuleSpec alloc]initWithDic:[modifyNetworkAclRuleSpecsArray objectAtIndex:i]];
+        ModifyNetworkAclRuleSpec* item = [[ModifyNetworkAclRuleSpec alloc]initWithDic:[modifyNetworkAclRuleSpecsArray objectAtIndex:i]];
             if(item)
             {
-                [propertyArray addObject:item];
+            [propertyArray addObject:item];
             }
         }
         self.modifyNetworkAclRuleSpecs = propertyArray;
     }
-    self.networkAclId = [dictionary objectForKey:@"networkAclId"];
-    return self;
-} 
-
-@end
-@implementation VpcDescribeNetworkAclRequest
--(id) initWithRegion:(NSString *)regionId
-networkAclId:(NSString*)networkAclId { 
-    self.regionId = regionId;
-    self.networkAclId = networkAclId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-networkAclId:(NSString*)networkAclId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.networkAclId = networkAclId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self networkAclId])
-    {
-        [result setValue:[self networkAclId] forKey:@"networkAclId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.networkAclId = [dictionary objectForKey:@"networkAclId"];
-    return self;
-} 
-
-@end
-@implementation VpcCreateNetworkAclResult
--(id) initWithNetworkAclId:(NSString*) networkAclId { 
-    self.networkAclId = networkAclId;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self networkAclId])
-    {
-        [result setValue:[self networkAclId] forKey:@"networkAclId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.networkAclId = [dictionary objectForKey:@"networkAclId"];
-    return self;
-} 
-
-@end
-@implementation VpcDisassociateNetworkAclRequest
--(id) initWithRegion:(NSString *)regionId
-subnetId:(NSString*)subnetId
-networkAclId:(NSString*)networkAclId { 
-    self.regionId = regionId;
-    self.subnetId = subnetId;
-    self.networkAclId = networkAclId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-subnetId:(NSString*)subnetId
-networkAclId:(NSString*)networkAclId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.subnetId = subnetId;
-    self.networkAclId = networkAclId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self subnetId])
-    {
-        [result setValue:[self subnetId] forKey:@"subnetId"];
-    }
-    if([self networkAclId])
-    {
-        [result setValue:[self networkAclId] forKey:@"networkAclId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.subnetId = [dictionary objectForKey:@"subnetId"];
     self.networkAclId = [dictionary objectForKey:@"networkAclId"];
     return self;
 } 
@@ -4109,8 +4876,8 @@ VpcDeleteNetworkAclResult* result = [[VpcDeleteNetworkAclResult alloc]initWithDi
     NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
     if([self networkAcls])
     {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self networkAcls] count]; i++) {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self networkAcls] count]; i++) {
             NetworkAcl* item = [[self networkAcls] objectAtIndex:i];
             [arrayDic addObject:[item dictionary]];
         }
@@ -4130,10 +4897,10 @@ VpcDeleteNetworkAclResult* result = [[VpcDeleteNetworkAclResult alloc]initWithDi
         NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
         for(int i = 0 ; i< [networkAclsArray count];i++)
         {
-            NetworkAcl* item = [[NetworkAcl alloc]initWithDic:[networkAclsArray objectAtIndex:i]];
+        NetworkAcl* item = [[NetworkAcl alloc]initWithDic:[networkAclsArray objectAtIndex:i]];
             if(item)
             {
-                [propertyArray addObject:item];
+            [propertyArray addObject:item];
             }
         }
         self.networkAcls = propertyArray;
@@ -4185,60 +4952,6 @@ VpcDescribeNetworkAclsResult* result = [[VpcDescribeNetworkAclsResult alloc]init
     self.requestId = requestId;
     return self;
 }
-
-@end
-@implementation VpcCreateNetworkAclRequest
--(id) initWithRegion:(NSString *)regionId
-vpcId:(NSString*)vpcId
-networkAclName:(NSString*)networkAclName
-descriptionValue:(NSString*)descriptionValue { 
-    self.regionId = regionId;
-    self.vpcId = vpcId;
-    self.networkAclName = networkAclName;
-    self.descriptionValue = descriptionValue;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-vpcId:(NSString*)vpcId
-networkAclName:(NSString*)networkAclName
-descriptionValue:(NSString*)descriptionValue { 
-    self.regionId = regionId;
-    self.version = version;
-    self.vpcId = vpcId;
-    self.networkAclName = networkAclName;
-    self.descriptionValue = descriptionValue;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self vpcId])
-    {
-        [result setValue:[self vpcId] forKey:@"vpcId"];
-    }
-    if([self networkAclName])
-    {
-        [result setValue:[self networkAclName] forKey:@"networkAclName"];
-    }
-    if([self descriptionValue])
-    {
-        [result setValue:[self descriptionValue] forKey:@"description"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.vpcId = [dictionary objectForKey:@"vpcId"];
-    self.networkAclName = [dictionary objectForKey:@"networkAclName"];
-    self.descriptionValue = [dictionary objectForKey:@"description"];
-    return self;
-} 
 
 @end
 @implementation VpcModifyNetworkAclRulesResult
@@ -4307,51 +5020,6 @@ VpcDescribeNetworkAclResult* result = [[VpcDescribeNetworkAclResult alloc]initWi
 } 
 
 @end
-@implementation VpcRemoveNetworkAclRulesRequest
--(id) initWithRegion:(NSString *)regionId
-ruleIds:(NSArray<NSString*>*)ruleIds
-networkAclId:(NSString*)networkAclId { 
-    self.regionId = regionId;
-    self.ruleIds = ruleIds;
-    self.networkAclId = networkAclId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-ruleIds:(NSArray<NSString*>*)ruleIds
-networkAclId:(NSString*)networkAclId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.ruleIds = ruleIds;
-    self.networkAclId = networkAclId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self ruleIds])
-    {
-        [result setValue:[self ruleIds] forKey:@"ruleIds"];
-    }
-    if([self networkAclId])
-    {
-        [result setValue:[self networkAclId] forKey:@"networkAclId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.ruleIds = [dictionary objectForKey:@"ruleIds"];
-    self.networkAclId = [dictionary objectForKey:@"networkAclId"];
-    return self;
-} 
-
-@end
   
 @implementation VpcAssociateNetworkAclResponse
 -(NSMutableDictionary*) dictionary
@@ -4403,96 +5071,6 @@ VpcAssociateNetworkAclResult* result = [[VpcAssociateNetworkAclResult alloc]init
 }
 
 -(id) initWithDic:(NSDictionary*)dictionary{
-    return self;
-} 
-
-@end
-@implementation VpcModifyNetworkAclRequest
--(id) initWithRegion:(NSString *)regionId
-networkAclName:(NSString*)networkAclName
-descriptionValue:(NSString*)descriptionValue
-networkAclId:(NSString*)networkAclId { 
-    self.regionId = regionId;
-    self.networkAclName = networkAclName;
-    self.descriptionValue = descriptionValue;
-    self.networkAclId = networkAclId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-networkAclName:(NSString*)networkAclName
-descriptionValue:(NSString*)descriptionValue
-networkAclId:(NSString*)networkAclId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.networkAclName = networkAclName;
-    self.descriptionValue = descriptionValue;
-    self.networkAclId = networkAclId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self networkAclName])
-    {
-        [result setValue:[self networkAclName] forKey:@"networkAclName"];
-    }
-    if([self descriptionValue])
-    {
-        [result setValue:[self descriptionValue] forKey:@"description"];
-    }
-    if([self networkAclId])
-    {
-        [result setValue:[self networkAclId] forKey:@"networkAclId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.networkAclName = [dictionary objectForKey:@"networkAclName"];
-    self.descriptionValue = [dictionary objectForKey:@"description"];
-    self.networkAclId = [dictionary objectForKey:@"networkAclId"];
-    return self;
-} 
-
-@end
-@implementation VpcDeleteNetworkAclRequest
--(id) initWithRegion:(NSString *)regionId
-networkAclId:(NSString*)networkAclId { 
-    self.regionId = regionId;
-    self.networkAclId = networkAclId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-networkAclId:(NSString*)networkAclId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.networkAclId = networkAclId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self networkAclId])
-    {
-        [result setValue:[self networkAclId] forKey:@"networkAclId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.networkAclId = [dictionary objectForKey:@"networkAclId"];
     return self;
 } 
 
@@ -4583,51 +5161,6 @@ VpcCreateNetworkAclResult* result = [[VpcCreateNetworkAclResult alloc]initWithDi
     self.requestId = requestId;
     return self;
 }
-
-@end
-@implementation VpcAssociateNetworkAclRequest
--(id) initWithRegion:(NSString *)regionId
-subnetIds:(NSArray<NSString*>*)subnetIds
-networkAclId:(NSString*)networkAclId { 
-    self.regionId = regionId;
-    self.subnetIds = subnetIds;
-    self.networkAclId = networkAclId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-subnetIds:(NSArray<NSString*>*)subnetIds
-networkAclId:(NSString*)networkAclId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.subnetIds = subnetIds;
-    self.networkAclId = networkAclId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self subnetIds])
-    {
-        [result setValue:[self subnetIds] forKey:@"subnetIds"];
-    }
-    if([self networkAclId])
-    {
-        [result setValue:[self networkAclId] forKey:@"networkAclId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.subnetIds = [dictionary objectForKey:@"subnetIds"];
-    self.networkAclId = [dictionary objectForKey:@"networkAclId"];
-    return self;
-} 
 
 @end
 @implementation VpcDisassociateNetworkAclResult
@@ -4869,8 +5402,8 @@ filters:(NSArray<Filter*>*)filters {
     }
     if([self filters])
     {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self filters] count]; i++) {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self filters] count]; i++) {
             Filter* item = [[self filters] objectAtIndex:i];
             [arrayDic addObject:[item dictionary]];
         }
@@ -4888,10 +5421,10 @@ filters:(NSArray<Filter*>*)filters {
         NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
         for(int i = 0 ; i< [filtersArray count];i++)
         {
-            Filter* item = [[Filter alloc]initWithDic:[filtersArray objectAtIndex:i]];
+        Filter* item = [[Filter alloc]initWithDic:[filtersArray objectAtIndex:i]];
             if(item)
             {
-                [propertyArray addObject:item];
+            [propertyArray addObject:item];
             }
         }
         self.filters = propertyArray;
@@ -4929,8 +5462,8 @@ networkAclId:(NSString*)networkAclId {
     }
     if([self networkAclRuleSpecs])
     {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self networkAclRuleSpecs] count]; i++) {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self networkAclRuleSpecs] count]; i++) {
             AddNetworkAclRuleSpec* item = [[self networkAclRuleSpecs] objectAtIndex:i];
             [arrayDic addObject:[item dictionary]];
         }
@@ -4950,10 +5483,10 @@ networkAclId:(NSString*)networkAclId {
         NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
         for(int i = 0 ; i< [networkAclRuleSpecsArray count];i++)
         {
-            AddNetworkAclRuleSpec* item = [[AddNetworkAclRuleSpec alloc]initWithDic:[networkAclRuleSpecsArray objectAtIndex:i]];
+        AddNetworkAclRuleSpec* item = [[AddNetworkAclRuleSpec alloc]initWithDic:[networkAclRuleSpecsArray objectAtIndex:i]];
             if(item)
             {
-                [propertyArray addObject:item];
+            [propertyArray addObject:item];
             }
         }
         self.networkAclRuleSpecs = propertyArray;
@@ -4985,8 +5518,8 @@ networkAclId:(NSString*)networkAclId {
     NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
     if([self elasticIps])
     {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self elasticIps] count]; i++) {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self elasticIps] count]; i++) {
             ElasticIp* item = [[self elasticIps] objectAtIndex:i];
             [arrayDic addObject:[item dictionary]];
         }
@@ -5006,10 +5539,10 @@ networkAclId:(NSString*)networkAclId {
         NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
         for(int i = 0 ; i< [elasticIpsArray count];i++)
         {
-            ElasticIp* item = [[ElasticIp alloc]initWithDic:[elasticIpsArray objectAtIndex:i]];
+        ElasticIp* item = [[ElasticIp alloc]initWithDic:[elasticIpsArray objectAtIndex:i]];
             if(item)
             {
-                [propertyArray addObject:item];
+            [propertyArray addObject:item];
             }
         }
         self.elasticIps = propertyArray;
@@ -5072,42 +5605,6 @@ VpcDeleteElasticIpResult* result = [[VpcDeleteElasticIpResult alloc]initWithDic:
     self.requestId = requestId;
     return self;
 }
-
-@end
-@implementation VpcDescribeElasticIpRequest
--(id) initWithRegion:(NSString *)regionId
-elasticIpId:(NSString*)elasticIpId { 
-    self.regionId = regionId;
-    self.elasticIpId = elasticIpId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-elasticIpId:(NSString*)elasticIpId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.elasticIpId = elasticIpId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self elasticIpId])
-    {
-        [result setValue:[self elasticIpId] forKey:@"elasticIpId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.elasticIpId = [dictionary objectForKey:@"elasticIpId"];
-    return self;
-} 
 
 @end
 @implementation VpcDescribeElasticIpResult
@@ -5215,8 +5712,8 @@ filters:(NSArray<Filter*>*)filters {
     }
     if([self filters])
     {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self filters] count]; i++) {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self filters] count]; i++) {
             Filter* item = [[self filters] objectAtIndex:i];
             [arrayDic addObject:[item dictionary]];
         }
@@ -5234,10 +5731,10 @@ filters:(NSArray<Filter*>*)filters {
         NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
         for(int i = 0 ; i< [filtersArray count];i++)
         {
-            Filter* item = [[Filter alloc]initWithDic:[filtersArray objectAtIndex:i]];
+        Filter* item = [[Filter alloc]initWithDic:[filtersArray objectAtIndex:i]];
             if(item)
             {
-                [propertyArray addObject:item];
+            [propertyArray addObject:item];
             }
         }
         self.filters = propertyArray;
@@ -5290,42 +5787,6 @@ VpcDescribeElasticIpsResult* result = [[VpcDescribeElasticIpsResult alloc]initWi
 }
 
 @end
-@implementation VpcDeleteElasticIpRequest
--(id) initWithRegion:(NSString *)regionId
-elasticIpId:(NSString*)elasticIpId { 
-    self.regionId = regionId;
-    self.elasticIpId = elasticIpId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-elasticIpId:(NSString*)elasticIpId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.elasticIpId = elasticIpId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self elasticIpId])
-    {
-        [result setValue:[self elasticIpId] forKey:@"elasticIpId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.elasticIpId = [dictionary objectForKey:@"elasticIpId"];
-    return self;
-} 
-
-@end
   
 @implementation VpcModifyElasticIpResponse
 -(NSMutableDictionary*) dictionary
@@ -5368,33 +5829,6 @@ VpcModifyElasticIpResult* result = [[VpcModifyElasticIpResult alloc]initWithDic:
     self.requestId = requestId;
     return self;
 }
-
-@end
-@implementation VpcCreateElasticIpsResult
--(id) initWithElasticIpIds:(NSArray<NSString*>*) elasticIpIds
-        requestId:(NSString*)requestId { 
-    self.elasticIpIds = elasticIpIds;               
-    self.requestId = requestId;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self elasticIpIds])
-    {
-        [result setValue:[self elasticIpIds] forKey:@"elasticIpIds"];
-    }
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.elasticIpIds = [dictionary objectForKey:@"elasticIpIds"];
-    self.requestId = [dictionary objectForKey:@"requestId"];
-    return self;
-} 
 
 @end
   
@@ -5491,51 +5925,6 @@ elasticIpSpec:(ElasticIpSpec*)elasticIpSpec {
     self.maxCount = [dictionary objectForKey:@"maxCount"];
     self.elasticIpAddress = [dictionary objectForKey:@"elasticIpAddress"];
     self.elasticIpSpec = [[ElasticIpSpec alloc]initWithDic:[dictionary objectForKey:@"elasticIpSpec"]];
-    return self;
-} 
-
-@end
-@implementation VpcModifyElasticIpRequest
--(id) initWithRegion:(NSString *)regionId
-bandwidthMbps:(NSNumber*)bandwidthMbps
-elasticIpId:(NSString*)elasticIpId { 
-    self.regionId = regionId;
-    self.bandwidthMbps = bandwidthMbps;
-    self.elasticIpId = elasticIpId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-bandwidthMbps:(NSNumber*)bandwidthMbps
-elasticIpId:(NSString*)elasticIpId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.bandwidthMbps = bandwidthMbps;
-    self.elasticIpId = elasticIpId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self bandwidthMbps])
-    {
-        [result setValue:[self bandwidthMbps] forKey:@"bandwidthMbps"];
-    }
-    if([self elasticIpId])
-    {
-        [result setValue:[self elasticIpId] forKey:@"elasticIpId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.bandwidthMbps = [dictionary objectForKey:@"bandwidthMbps"];
-    self.elasticIpId = [dictionary objectForKey:@"elasticIpId"];
     return self;
 } 
 
@@ -5676,8 +6065,8 @@ filters:(NSArray<Filter*>*)filters {
     }
     if([self filters])
     {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self filters] count]; i++) {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self filters] count]; i++) {
             Filter* item = [[self filters] objectAtIndex:i];
             [arrayDic addObject:[item dictionary]];
         }
@@ -5695,10 +6084,10 @@ filters:(NSArray<Filter*>*)filters {
         NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
         for(int i = 0 ; i< [filtersArray count];i++)
         {
-            Filter* item = [[Filter alloc]initWithDic:[filtersArray objectAtIndex:i]];
+        Filter* item = [[Filter alloc]initWithDic:[filtersArray objectAtIndex:i]];
             if(item)
             {
-                [propertyArray addObject:item];
+            [propertyArray addObject:item];
             }
         }
         self.filters = propertyArray;
@@ -5806,60 +6195,6 @@ VpcDeleteVpcPeeringResult* result = [[VpcDeleteVpcPeeringResult alloc]initWithDi
 }
 
 @end
-@implementation VpcModifyVpcPeeringRequest
--(id) initWithRegion:(NSString *)regionId
-vpcPeeringName:(NSString*)vpcPeeringName
-descriptionValue:(NSString*)descriptionValue
-vpcPeeringId:(NSString*)vpcPeeringId { 
-    self.regionId = regionId;
-    self.vpcPeeringName = vpcPeeringName;
-    self.descriptionValue = descriptionValue;
-    self.vpcPeeringId = vpcPeeringId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-vpcPeeringName:(NSString*)vpcPeeringName
-descriptionValue:(NSString*)descriptionValue
-vpcPeeringId:(NSString*)vpcPeeringId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.vpcPeeringName = vpcPeeringName;
-    self.descriptionValue = descriptionValue;
-    self.vpcPeeringId = vpcPeeringId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self vpcPeeringName])
-    {
-        [result setValue:[self vpcPeeringName] forKey:@"vpcPeeringName"];
-    }
-    if([self descriptionValue])
-    {
-        [result setValue:[self descriptionValue] forKey:@"description"];
-    }
-    if([self vpcPeeringId])
-    {
-        [result setValue:[self vpcPeeringId] forKey:@"vpcPeeringId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.vpcPeeringName = [dictionary objectForKey:@"vpcPeeringName"];
-    self.descriptionValue = [dictionary objectForKey:@"description"];
-    self.vpcPeeringId = [dictionary objectForKey:@"vpcPeeringId"];
-    return self;
-} 
-
-@end
   
 @implementation VpcModifyVpcPeeringResponse
 -(NSMutableDictionary*) dictionary
@@ -5904,141 +6239,6 @@ VpcModifyVpcPeeringResult* result = [[VpcModifyVpcPeeringResult alloc]initWithDi
 }
 
 @end
-@implementation VpcCreateVpcPeeringRequest
--(id) initWithRegion:(NSString *)regionId
-vpcPeeringName:(NSString*)vpcPeeringName
-vpcId:(NSString*)vpcId
-remoteVpcId:(NSString*)remoteVpcId
-descriptionValue:(NSString*)descriptionValue { 
-    self.regionId = regionId;
-    self.vpcPeeringName = vpcPeeringName;
-    self.vpcId = vpcId;
-    self.remoteVpcId = remoteVpcId;
-    self.descriptionValue = descriptionValue;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-vpcPeeringName:(NSString*)vpcPeeringName
-vpcId:(NSString*)vpcId
-remoteVpcId:(NSString*)remoteVpcId
-descriptionValue:(NSString*)descriptionValue { 
-    self.regionId = regionId;
-    self.version = version;
-    self.vpcPeeringName = vpcPeeringName;
-    self.vpcId = vpcId;
-    self.remoteVpcId = remoteVpcId;
-    self.descriptionValue = descriptionValue;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self vpcPeeringName])
-    {
-        [result setValue:[self vpcPeeringName] forKey:@"vpcPeeringName"];
-    }
-    if([self vpcId])
-    {
-        [result setValue:[self vpcId] forKey:@"vpcId"];
-    }
-    if([self remoteVpcId])
-    {
-        [result setValue:[self remoteVpcId] forKey:@"remoteVpcId"];
-    }
-    if([self descriptionValue])
-    {
-        [result setValue:[self descriptionValue] forKey:@"description"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.vpcPeeringName = [dictionary objectForKey:@"vpcPeeringName"];
-    self.vpcId = [dictionary objectForKey:@"vpcId"];
-    self.remoteVpcId = [dictionary objectForKey:@"remoteVpcId"];
-    self.descriptionValue = [dictionary objectForKey:@"description"];
-    return self;
-} 
-
-@end
-@implementation VpcDescribeVpcPeeringRequest
--(id) initWithRegion:(NSString *)regionId
-vpcPeeringId:(NSString*)vpcPeeringId { 
-    self.regionId = regionId;
-    self.vpcPeeringId = vpcPeeringId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-vpcPeeringId:(NSString*)vpcPeeringId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.vpcPeeringId = vpcPeeringId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self vpcPeeringId])
-    {
-        [result setValue:[self vpcPeeringId] forKey:@"vpcPeeringId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.vpcPeeringId = [dictionary objectForKey:@"vpcPeeringId"];
-    return self;
-} 
-
-@end
-@implementation VpcDeleteVpcPeeringRequest
--(id) initWithRegion:(NSString *)regionId
-vpcPeeringId:(NSString*)vpcPeeringId { 
-    self.regionId = regionId;
-    self.vpcPeeringId = vpcPeeringId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-vpcPeeringId:(NSString*)vpcPeeringId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.vpcPeeringId = vpcPeeringId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self vpcPeeringId])
-    {
-        [result setValue:[self vpcPeeringId] forKey:@"vpcPeeringId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.vpcPeeringId = [dictionary objectForKey:@"vpcPeeringId"];
-    return self;
-} 
-
-@end
 @implementation VpcDescribeVpcPeeringsResult
 -(id) initWithVpcPeerings:(NSArray<VpcPeering*>*) vpcPeerings
         totalCount:(NSNumber*)totalCount { 
@@ -6050,8 +6250,8 @@ vpcPeeringId:(NSString*)vpcPeeringId {
     NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
     if([self vpcPeerings])
     {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self vpcPeerings] count]; i++) {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self vpcPeerings] count]; i++) {
             VpcPeering* item = [[self vpcPeerings] objectAtIndex:i];
             [arrayDic addObject:[item dictionary]];
         }
@@ -6071,10 +6271,10 @@ vpcPeeringId:(NSString*)vpcPeeringId {
         NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
         for(int i = 0 ; i< [vpcPeeringsArray count];i++)
         {
-            VpcPeering* item = [[VpcPeering alloc]initWithDic:[vpcPeeringsArray objectAtIndex:i]];
+        VpcPeering* item = [[VpcPeering alloc]initWithDic:[vpcPeeringsArray objectAtIndex:i]];
             if(item)
             {
-                [propertyArray addObject:item];
+            [propertyArray addObject:item];
             }
         }
         self.vpcPeerings = propertyArray;
@@ -6169,8 +6369,8 @@ filters:(NSArray<Filter*>*)filters {
     }
     if([self filters])
     {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self filters] count]; i++) {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self filters] count]; i++) {
             Filter* item = [[self filters] objectAtIndex:i];
             [arrayDic addObject:[item dictionary]];
         }
@@ -6188,50 +6388,14 @@ filters:(NSArray<Filter*>*)filters {
         NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
         for(int i = 0 ; i< [filtersArray count];i++)
         {
-            Filter* item = [[Filter alloc]initWithDic:[filtersArray objectAtIndex:i]];
+        Filter* item = [[Filter alloc]initWithDic:[filtersArray objectAtIndex:i]];
             if(item)
             {
-                [propertyArray addObject:item];
+            [propertyArray addObject:item];
             }
         }
         self.filters = propertyArray;
     }
-    return self;
-} 
-
-@end
-@implementation VpcDeleteVpcRequest
--(id) initWithRegion:(NSString *)regionId
-vpcId:(NSString*)vpcId { 
-    self.regionId = regionId;
-    self.vpcId = vpcId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-vpcId:(NSString*)vpcId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.vpcId = vpcId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self vpcId])
-    {
-        [result setValue:[self vpcId] forKey:@"vpcId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.vpcId = [dictionary objectForKey:@"vpcId"];
     return self;
 } 
 
@@ -6247,8 +6411,8 @@ vpcId:(NSString*)vpcId {
     NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
     if([self vpcs])
     {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self vpcs] count]; i++) {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self vpcs] count]; i++) {
             Vpc* item = [[self vpcs] objectAtIndex:i];
             [arrayDic addObject:[item dictionary]];
         }
@@ -6268,10 +6432,10 @@ vpcId:(NSString*)vpcId {
         NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
         for(int i = 0 ; i< [vpcsArray count];i++)
         {
-            Vpc* item = [[Vpc alloc]initWithDic:[vpcsArray objectAtIndex:i]];
+        Vpc* item = [[Vpc alloc]initWithDic:[vpcsArray objectAtIndex:i]];
             if(item)
             {
-                [propertyArray addObject:item];
+            [propertyArray addObject:item];
             }
         }
         self.vpcs = propertyArray;
@@ -6297,42 +6461,6 @@ vpcId:(NSString*)vpcId {
 
 -(id) initWithDic:(NSDictionary*)dictionary{
     self.vpc = [[Vpc alloc]initWithDic:[dictionary objectForKey:@"vpc"]];
-    return self;
-} 
-
-@end
-@implementation VpcDescribeVpcRequest
--(id) initWithRegion:(NSString *)regionId
-vpcId:(NSString*)vpcId { 
-    self.regionId = regionId;
-    self.vpcId = vpcId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-vpcId:(NSString*)vpcId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.vpcId = vpcId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self vpcId])
-    {
-        [result setValue:[self vpcId] forKey:@"vpcId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.vpcId = [dictionary objectForKey:@"vpcId"];
     return self;
 } 
 
@@ -6379,114 +6507,6 @@ VpcDescribeVpcResult* result = [[VpcDescribeVpcResult alloc]initWithDic:[diction
     self.requestId = requestId;
     return self;
 }
-
-@end
-@implementation VpcCreateVpcRequest
--(id) initWithRegion:(NSString *)regionId
-vpcName:(NSString*)vpcName
-addressPrefix:(NSString*)addressPrefix
-descriptionValue:(NSString*)descriptionValue { 
-    self.regionId = regionId;
-    self.vpcName = vpcName;
-    self.addressPrefix = addressPrefix;
-    self.descriptionValue = descriptionValue;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-vpcName:(NSString*)vpcName
-addressPrefix:(NSString*)addressPrefix
-descriptionValue:(NSString*)descriptionValue { 
-    self.regionId = regionId;
-    self.version = version;
-    self.vpcName = vpcName;
-    self.addressPrefix = addressPrefix;
-    self.descriptionValue = descriptionValue;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self vpcName])
-    {
-        [result setValue:[self vpcName] forKey:@"vpcName"];
-    }
-    if([self addressPrefix])
-    {
-        [result setValue:[self addressPrefix] forKey:@"addressPrefix"];
-    }
-    if([self descriptionValue])
-    {
-        [result setValue:[self descriptionValue] forKey:@"description"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.vpcName = [dictionary objectForKey:@"vpcName"];
-    self.addressPrefix = [dictionary objectForKey:@"addressPrefix"];
-    self.descriptionValue = [dictionary objectForKey:@"description"];
-    return self;
-} 
-
-@end
-@implementation VpcModifyVpcRequest
--(id) initWithRegion:(NSString *)regionId
-vpcName:(NSString*)vpcName
-descriptionValue:(NSString*)descriptionValue
-vpcId:(NSString*)vpcId { 
-    self.regionId = regionId;
-    self.vpcName = vpcName;
-    self.descriptionValue = descriptionValue;
-    self.vpcId = vpcId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-vpcName:(NSString*)vpcName
-descriptionValue:(NSString*)descriptionValue
-vpcId:(NSString*)vpcId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.vpcName = vpcName;
-    self.descriptionValue = descriptionValue;
-    self.vpcId = vpcId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self vpcName])
-    {
-        [result setValue:[self vpcName] forKey:@"vpcName"];
-    }
-    if([self descriptionValue])
-    {
-        [result setValue:[self descriptionValue] forKey:@"description"];
-    }
-    if([self vpcId])
-    {
-        [result setValue:[self vpcId] forKey:@"vpcId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.vpcName = [dictionary objectForKey:@"vpcName"];
-    self.descriptionValue = [dictionary objectForKey:@"description"];
-    self.vpcId = [dictionary objectForKey:@"vpcId"];
-    return self;
-} 
 
 @end
 @implementation VpcDeleteVpcResult
@@ -6551,26 +6571,6 @@ VpcDeleteVpcResult* result = [[VpcDeleteVpcResult alloc]initWithDic:[dictionary 
 }
 
 -(id) initWithDic:(NSDictionary*)dictionary{
-    return self;
-} 
-
-@end
-@implementation VpcCreateVpcResult
--(id) initWithVpcId:(NSString*) vpcId { 
-    self.vpcId = vpcId;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self vpcId])
-    {
-        [result setValue:[self vpcId] forKey:@"vpcId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.vpcId = [dictionary objectForKey:@"vpcId"];
     return self;
 } 
 

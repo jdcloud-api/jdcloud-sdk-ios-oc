@@ -71,54 +71,6 @@ productKey:(NSString*)productKey;
 
 @end
 
-@interface IotcoreCreateProductTopicResponse : NSObject
-
-@property NSString* requestId;
-
-@property ServiceError* error;
-
-@property IotcoreCreateProductTopicResult* result;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
-
--(id) initWithRequestId:(NSString*) requestId
-        error:(ServiceError*) error
-        result:(IotcoreCreateProductTopicResult*) result;
-@end
-
-@interface IotcoreListProductAbilitiesRequest:JDCloudRequest
-
-/// 页码, 默认为1, 取值范围：[1,∞)
-@property (strong,nonatomic,nonnull)  NSNumber*  pageNumber;
-/// 分页大小，默认为10，取值范围：[10,100]
-@property (strong,nonatomic,nonnull)  NSNumber*  pageSize;
-/// abilityName-功能名称，精确匹配
-   /// abilityType-功能类型，精确匹配
-   /// 
-@property (strong,nonatomic,nonnull)  NSArray<Filter*>*  filters;
-/// IoT Hub实例ID信息
-@property (strong,nonatomic,nonnull)  NSString*  instanceId;
-/// 产品Key
-@property (strong,nonatomic,nonnull)  NSString*  productKey;
--(id) initWithRegion:(NSString *)regionId
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-filters:(NSArray<Filter*>*)filters
-instanceId:(NSString*)instanceId
-productKey:(NSString*)productKey;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-filters:(NSArray<Filter*>*)filters
-instanceId:(NSString*)instanceId
-productKey:(NSString*)productKey;
-
-@end
-
 @interface IotcoreImportThingModelRequest:JDCloudRequest
 
 /// 物模型JSON
@@ -140,88 +92,6 @@ productKey:(NSString*)productKey;
 
 @end
 
-@interface IotcoreExportThingModelResult : NSObject
-/// ThingModel
- @property (strong,nonatomic,nonnull)  NSObject*  thingModel;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithThingModel:(NSObject*) thingModel;
-@end
-
-@interface IotcoreExportThingModelResponse : NSObject
-
-@property NSString* requestId;
-
-@property ServiceError* error;
-
-@property IotcoreExportThingModelResult* result;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
-
--(id) initWithRequestId:(NSString*) requestId
-        error:(ServiceError*) error
-        result:(IotcoreExportThingModelResult*) result;
-@end
-
-@interface IotcoreImportThingModelResult : NSObject
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
-@end
-
-@interface IotcoreImportThingModelResponse : NSObject
-
-@property NSString* requestId;
-
-@property ServiceError* error;
-
-@property IotcoreImportThingModelResult* result;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
-
--(id) initWithRequestId:(NSString*) requestId
-        error:(ServiceError*) error
-        result:(IotcoreImportThingModelResult*) result;
-@end
-
-@interface IotcoreListProductAbilitiesResult : NSObject
-/// 分页信息
- @property (strong,nonatomic,nonnull)  PageinfoVO*  page;
-/// Abilities
- @property (strong,nonatomic,nonnull)  NSArray<ProductAbility*>*  abilities;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithPage:(PageinfoVO*) page
-
-    abilities:(NSArray<ProductAbility*>*)abilities;
-@end
-
-@interface IotcoreListProductAbilitiesResponse : NSObject
-
-@property NSString* requestId;
-
-@property ServiceError* error;
-
-@property IotcoreListProductAbilitiesResult* result;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
-
--(id) initWithRequestId:(NSString*) requestId
-        error:(ServiceError*) error
-        result:(IotcoreListProductAbilitiesResult*) result;
-@end
-
 @interface IotcoreExportThingModelRequest:JDCloudRequest
 
 /// IoT Hub实例ID信息
@@ -239,58 +109,14 @@ productKey:(NSString*)productKey;
 
 @end
 
-@interface IotcoreInvokeThingServiceResult : NSObject
-/// 消息唯一标识
- @property (strong,nonatomic,nonnull)  NSString*  msgId;
+@interface IotcoreExportThingModelResult : NSObject
+/// ThingModel
+ @property (strong,nonatomic,nonnull)  NSObject*  thingModel;
 
 -(NSMutableDictionary*) dictionary;
 
 -(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithMsgId:(NSString*) msgId;
-@end
-
-@interface IotcoreInvokeThingServiceResponse : NSObject
-
-@property NSString* requestId;
-
-@property ServiceError* error;
-
-@property IotcoreInvokeThingServiceResult* result;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
-
--(id) initWithRequestId:(NSString*) requestId
-        error:(ServiceError*) error
-        result:(IotcoreInvokeThingServiceResult*) result;
-@end
-
-@interface IotcoreInvokeThingTopicResult : NSObject
-/// 消息唯一标识
- @property (strong,nonatomic,nonnull)  NSString*  msgId;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithMsgId:(NSString*) msgId;
-@end
-
-@interface IotcoreInvokeThingTopicResponse : NSObject
-
-@property NSString* requestId;
-
-@property ServiceError* error;
-
-@property IotcoreInvokeThingTopicResult* result;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
-
--(id) initWithRequestId:(NSString*) requestId
-        error:(ServiceError*) error
-        result:(IotcoreInvokeThingTopicResult*) result;
+-(id) initWithThingModel:(NSObject*) thingModel;
 @end
 
 @interface IotcoreDescribeThingShadowResult : NSObject
@@ -313,97 +139,6 @@ productKey:(NSString*)productKey;
     version:(NSNumber*)version
 
     timestamp:(NSNumber*)timestamp;
-@end
-
-@interface IotcoreQueryDeviceDetailResult : NSObject
-/// 设备ID
- @property (strong,nonatomic,nonnull)  NSString*  deviceId;
-/// 设备名称
- @property (strong,nonatomic,nonnull)  NSString*  deviceName;
-/// 父级设备Id
- @property (strong,nonatomic,nonnull)  NSString*  parentId;
-/// 设备类型，同产品类型，0-普通设备，1-网关，2-Edge
- @property (strong,nonatomic,nonnull)  NSString*  deviceType;
-/// 设备状态，0-未激活，1-激活离线，2-激活在线
- @property (strong,nonatomic,nonnull)  NSNumber*  status;
-/// 产品Key
- @property (strong,nonatomic,nonnull)  NSString*  productKey;
-/// 设备标识符
- @property (strong,nonatomic,nonnull)  NSString*  identifier;
-/// 设备秘钥
- @property (strong,nonatomic,nonnull)  NSString*  secret;
-/// 设备描述
- @property (strong,nonatomic,nonnull)  NSString*  descriptionValue;
-/// 激活时间
- @property (strong,nonatomic,nonnull)  NSNumber*  activatedTime;
-/// 最后连接时间
- @property (strong,nonatomic,nonnull)  NSNumber*  lastConnectedTime;
-/// 注册时间
- @property (strong,nonatomic,nonnull)  NSNumber*  createdTime;
-/// 修改时间
- @property (strong,nonatomic,nonnull)  NSNumber*  updatedTime;
-/// 产品名称
- @property (strong,nonatomic,nonnull)  NSString*  productName;
-/// 设备型号
- @property (strong,nonatomic,nonnull)  NSString*  model;
-/// 设备厂商
- @property (strong,nonatomic,nonnull)  NSString*  manufacturer;
-/// 动态注册,0:关闭，1:开启
- @property (strong,nonatomic,nonnull)  NSNumber*  dynamicRegister;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithDeviceId:(NSString*) deviceId
-
-    deviceName:(NSString*)deviceName
-
-    parentId:(NSString*)parentId
-
-    deviceType:(NSString*)deviceType
-
-    status:(NSNumber*)status
-
-    productKey:(NSString*)productKey
-
-    identifier:(NSString*)identifier
-
-    secret:(NSString*)secret
-
-    descriptionValue:(NSString*)descriptionValue
-
-    activatedTime:(NSNumber*)activatedTime
-
-    lastConnectedTime:(NSNumber*)lastConnectedTime
-
-    createdTime:(NSNumber*)createdTime
-
-    updatedTime:(NSNumber*)updatedTime
-
-    productName:(NSString*)productName
-
-    model:(NSString*)model
-
-    manufacturer:(NSString*)manufacturer
-
-    dynamicRegister:(NSNumber*)dynamicRegister;
-@end
-
-@interface IotcoreQueryDeviceDetailResponse : NSObject
-
-@property NSString* requestId;
-
-@property ServiceError* error;
-
-@property IotcoreQueryDeviceDetailResult* result;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
-
--(id) initWithRequestId:(NSString*) requestId
-        error:(ServiceError*) error
-        result:(IotcoreQueryDeviceDetailResult*) result;
 @end
 
 @interface IotcoreUpdateThingShadowRequest:JDCloudRequest
@@ -429,117 +164,6 @@ instanceId:(NSString*)instanceId
 identifier:(NSString*)identifier
 productKey:(NSString*)productKey;
 
-@end
-
-@interface IotcoreUpdateDeviceResult : NSObject
-/// 设备详情
- @property (strong,nonatomic,nonnull)  DeviceVO*  device;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithDevice:(DeviceVO*) device;
-@end
-
-@interface IotcoreUpdateDeviceResponse : NSObject
-
-@property NSString* requestId;
-
-@property ServiceError* error;
-
-@property IotcoreUpdateDeviceResult* result;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
-
--(id) initWithRequestId:(NSString*) requestId
-        error:(ServiceError*) error
-        result:(IotcoreUpdateDeviceResult*) result;
-@end
-
-@interface IotcoreQueryDevicePageResult : NSObject
-/// PageSize
- @property (strong,nonatomic,nonnull)  NSNumber*  pageSize;
-/// NowPage
- @property (strong,nonatomic,nonnull)  NSNumber*  nowPage;
-/// TotalSize
- @property (strong,nonatomic,nonnull)  NSNumber*  totalSize;
-/// TotalPage
- @property (strong,nonatomic,nonnull)  NSNumber*  totalPage;
-/// Data
- @property (strong,nonatomic,nonnull)  NSArray<DeviceVO*>*  data;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithPageSize:(NSNumber*) pageSize
-
-    nowPage:(NSNumber*)nowPage
-
-    totalSize:(NSNumber*)totalSize
-
-    totalPage:(NSNumber*)totalPage
-
-    data:(NSArray<DeviceVO*>*)data;
-@end
-
-@interface IotcoreQueryDevicePageResponse : NSObject
-
-@property NSString* requestId;
-
-@property ServiceError* error;
-
-@property IotcoreQueryDevicePageResult* result;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
-
--(id) initWithRequestId:(NSString*) requestId
-        error:(ServiceError*) error
-        result:(IotcoreQueryDevicePageResult*) result;
-@end
-
-@interface IotcoreRemoveDeviceResult : NSObject
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
-@end
-
-@interface IotcoreRemoveDeviceResponse : NSObject
-
-@property NSString* requestId;
-
-@property ServiceError* error;
-
-@property IotcoreRemoveDeviceResult* result;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
-
--(id) initWithRequestId:(NSString*) requestId
-        error:(ServiceError*) error
-        result:(IotcoreRemoveDeviceResult*) result;
-@end
-
-@interface IotcoreDescribeThingShadowResponse : NSObject
-
-@property NSString* requestId;
-
-@property ServiceError* error;
-
-@property IotcoreDescribeThingShadowResult* result;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
-
--(id) initWithRequestId:(NSString*) requestId
-        error:(ServiceError*) error
-        result:(IotcoreDescribeThingShadowResult*) result;
 @end
 
 @interface IotcoreDescribeThingShadowRequest:JDCloudRequest
@@ -663,45 +287,24 @@ productKey:(NSString*)productKey;
 
 @end
 
-@interface IotcoreAddDeviceResponse : NSObject
-
-@property NSString* requestId;
-
-@property ServiceError* error;
-
-@property IotcoreAddDeviceResult* result;
+@interface IotcoreInvokeThingTopicResult : NSObject
+/// 消息唯一标识
+ @property (strong,nonatomic,nonnull)  NSString*  msgId;
 
 -(NSMutableDictionary*) dictionary;
 
 -(id) initWithDic:(NSDictionary*)dictionary;
-
--(id) initWithRequestId:(NSString*) requestId
-        error:(ServiceError*) error
-        result:(IotcoreAddDeviceResult*) result;
+-(id) initWithMsgId:(NSString*) msgId;
 @end
 
-@interface IotcoreUpdateThingShadowResult : NSObject
+@interface IotcoreInvokeThingServiceResult : NSObject
+/// 消息唯一标识
+ @property (strong,nonatomic,nonnull)  NSString*  msgId;
 
 -(NSMutableDictionary*) dictionary;
 
 -(id) initWithDic:(NSDictionary*)dictionary;
-@end
-
-@interface IotcoreUpdateThingShadowResponse : NSObject
-
-@property NSString* requestId;
-
-@property ServiceError* error;
-
-@property IotcoreUpdateThingShadowResult* result;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
-
--(id) initWithRequestId:(NSString*) requestId
-        error:(ServiceError*) error
-        result:(IotcoreUpdateThingShadowResult*) result;
+-(id) initWithMsgId:(NSString*) msgId;
 @end
 
 @interface IotcoreRemoveDeviceRequest:JDCloudRequest
@@ -723,6 +326,80 @@ deviceName:(NSString*)deviceName
 instanceId:(NSString*)instanceId
 productKey:(NSString*)productKey;
 
+@end
+
+@interface IotcoreQueryDeviceDetailResult : NSObject
+/// 设备ID
+ @property (strong,nonatomic,nonnull)  NSString*  deviceId;
+/// 设备名称
+ @property (strong,nonatomic,nonnull)  NSString*  deviceName;
+/// 父级设备Id
+ @property (strong,nonatomic,nonnull)  NSString*  parentId;
+/// 设备类型，同产品类型，0-普通设备，1-网关，2-Edge
+ @property (strong,nonatomic,nonnull)  NSString*  deviceType;
+/// 设备状态，0-未激活，1-激活离线，2-激活在线
+ @property (strong,nonatomic,nonnull)  NSNumber*  status;
+/// 产品Key
+ @property (strong,nonatomic,nonnull)  NSString*  productKey;
+/// 设备标识符
+ @property (strong,nonatomic,nonnull)  NSString*  identifier;
+/// 设备秘钥
+ @property (strong,nonatomic,nonnull)  NSString*  secret;
+/// 设备描述
+ @property (strong,nonatomic,nonnull)  NSString*  descriptionValue;
+/// 激活时间
+ @property (strong,nonatomic,nonnull)  NSNumber*  activatedTime;
+/// 最后连接时间
+ @property (strong,nonatomic,nonnull)  NSNumber*  lastConnectedTime;
+/// 注册时间
+ @property (strong,nonatomic,nonnull)  NSNumber*  createdTime;
+/// 修改时间
+ @property (strong,nonatomic,nonnull)  NSNumber*  updatedTime;
+/// 产品名称
+ @property (strong,nonatomic,nonnull)  NSString*  productName;
+/// 设备型号
+ @property (strong,nonatomic,nonnull)  NSString*  model;
+/// 设备厂商
+ @property (strong,nonatomic,nonnull)  NSString*  manufacturer;
+/// 动态注册,0:关闭，1:开启
+ @property (strong,nonatomic,nonnull)  NSNumber*  dynamicRegister;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithDeviceId:(NSString*) deviceId
+
+    deviceName:(NSString*)deviceName
+
+    parentId:(NSString*)parentId
+
+    deviceType:(NSString*)deviceType
+
+    status:(NSNumber*)status
+
+    productKey:(NSString*)productKey
+
+    identifier:(NSString*)identifier
+
+    secret:(NSString*)secret
+
+    descriptionValue:(NSString*)descriptionValue
+
+    activatedTime:(NSNumber*)activatedTime
+
+    lastConnectedTime:(NSNumber*)lastConnectedTime
+
+    createdTime:(NSNumber*)createdTime
+
+    updatedTime:(NSNumber*)updatedTime
+
+    productName:(NSString*)productName
+
+    model:(NSString*)model
+
+    manufacturer:(NSString*)manufacturer
+
+    dynamicRegister:(NSNumber*)dynamicRegister;
 @end
 
 @interface IotcoreQueryDeviceDetailRequest:JDCloudRequest
@@ -843,68 +520,6 @@ instanceId:(NSString*)instanceId;
 
 @end
 
-@interface IotcoreDescribeProductResult : NSObject
-/// 产品名称
- @property (strong,nonatomic,nonnull)  NSString*  productName;
-/// 节点类型，取值：
-   /// 0：设备。设备不能挂载子设备。可以直连物联网平台，也可以作为网关的子设备连接物联网平台
-   /// 1：网关。网关可以挂载子设备，具有子设备管理模块，维持子设备的拓扑关系，和将拓扑关系同步到物联网平台
-   /// 
- @property (strong,nonatomic,nonnull)  NSNumber*  productType;
-/// 产品key
- @property (strong,nonatomic,nonnull)  NSString*  productKey;
-/// 产品秘钥
- @property (strong,nonatomic,nonnull)  NSString*  productSecret;
-/// 创建时间,时间为东八区（UTC/GMT+08:00）
- @property (strong,nonatomic,nonnull)  NSNumber*  createdTime;
-/// 包含设备数
- @property (strong,nonatomic,nonnull)  NSNumber*  deviceCount;
-/// 动态注册,0:关闭，1:开启
- @property (strong,nonatomic,nonnull)  NSNumber*  dynamicRegister;
-/// 产品描述信息
- @property (strong,nonatomic,nonnull)  NSString*  productDescription;
-/// 产品类型,如自定义等
- @property (strong,nonatomic,nonnull)  NSString*  templateName;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithProductName:(NSString*) productName
-
-    productType:(NSNumber*)productType
-
-    productKey:(NSString*)productKey
-
-    productSecret:(NSString*)productSecret
-
-    createdTime:(NSNumber*)createdTime
-
-    deviceCount:(NSNumber*)deviceCount
-
-    dynamicRegister:(NSNumber*)dynamicRegister
-
-    productDescription:(NSString*)productDescription
-
-    templateName:(NSString*)templateName;
-@end
-
-@interface IotcoreDescribeProductResponse : NSObject
-
-@property NSString* requestId;
-
-@property ServiceError* error;
-
-@property IotcoreDescribeProductResult* result;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
-
--(id) initWithRequestId:(NSString*) requestId
-        error:(ServiceError*) error
-        result:(IotcoreDescribeProductResult*) result;
-@end
-
 @interface IotcoreCreateProductResult : NSObject
 /// ProductKey
  @property (strong,nonatomic,nonnull)  NSString*  productKey;
@@ -913,85 +528,6 @@ instanceId:(NSString*)instanceId;
 
 -(id) initWithDic:(NSDictionary*)dictionary;
 -(id) initWithProductKey:(NSString*) productKey;
-@end
-
-@interface IotcoreCreateProductResponse : NSObject
-
-@property NSString* requestId;
-
-@property ServiceError* error;
-
-@property IotcoreCreateProductResult* result;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
-
--(id) initWithRequestId:(NSString*) requestId
-        error:(ServiceError*) error
-        result:(IotcoreCreateProductResult*) result;
-@end
-
-@interface IotcoreListProductsResult : NSObject
-/// 分页信息
- @property (strong,nonatomic,nonnull)  PageinfoVO*  page;
-/// Products
- @property (strong,nonatomic,nonnull)  NSArray<Product*>*  products;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithPage:(PageinfoVO*) page
-
-    products:(NSArray<Product*>*)products;
-@end
-
-@interface IotcoreUpdateProductResult : NSObject
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
-@end
-
-@interface IotcoreUpdateProductResponse : NSObject
-
-@property NSString* requestId;
-
-@property ServiceError* error;
-
-@property IotcoreUpdateProductResult* result;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
-
--(id) initWithRequestId:(NSString*) requestId
-        error:(ServiceError*) error
-        result:(IotcoreUpdateProductResult*) result;
-@end
-
-@interface IotcoreDeleteProductResult : NSObject
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
-@end
-
-@interface IotcoreDeleteProductResponse : NSObject
-
-@property NSString* requestId;
-
-@property ServiceError* error;
-
-@property IotcoreDeleteProductResult* result;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
-
--(id) initWithRequestId:(NSString*) requestId
-        error:(ServiceError*) error
-        result:(IotcoreDeleteProductResult*) result;
 @end
 
 @interface IotcoreUpdateProductRequest:JDCloudRequest
@@ -1076,6 +612,487 @@ productKey:(NSString*)productKey;
 
 @end
 
+@interface IotcoreDescribeProductResult : NSObject
+/// 产品名称
+ @property (strong,nonatomic,nonnull)  NSString*  productName;
+/// 节点类型，取值：
+   /// 0：设备。设备不能挂载子设备。可以直连物联网平台，也可以作为网关的子设备连接物联网平台
+   /// 1：网关。网关可以挂载子设备，具有子设备管理模块，维持子设备的拓扑关系，和将拓扑关系同步到物联网平台
+   /// 
+ @property (strong,nonatomic,nonnull)  NSNumber*  productType;
+/// 产品key
+ @property (strong,nonatomic,nonnull)  NSString*  productKey;
+/// 产品秘钥
+ @property (strong,nonatomic,nonnull)  NSString*  productSecret;
+/// 创建时间,时间为东八区（UTC/GMT+08:00）
+ @property (strong,nonatomic,nonnull)  NSNumber*  createdTime;
+/// 包含设备数
+ @property (strong,nonatomic,nonnull)  NSNumber*  deviceCount;
+/// 动态注册,0:关闭，1:开启
+ @property (strong,nonatomic,nonnull)  NSNumber*  dynamicRegister;
+/// 产品描述信息
+ @property (strong,nonatomic,nonnull)  NSString*  productDescription;
+/// 产品类型,如自定义等
+ @property (strong,nonatomic,nonnull)  NSString*  templateName;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithProductName:(NSString*) productName
+
+    productType:(NSNumber*)productType
+
+    productKey:(NSString*)productKey
+
+    productSecret:(NSString*)productSecret
+
+    createdTime:(NSNumber*)createdTime
+
+    deviceCount:(NSNumber*)deviceCount
+
+    dynamicRegister:(NSNumber*)dynamicRegister
+
+    productDescription:(NSString*)productDescription
+
+    templateName:(NSString*)templateName;
+@end
+
+@interface IotcoreDeleteProductRequest:JDCloudRequest
+
+/// IoT Engine实例ID信息
+@property (strong,nonatomic,nonnull)  NSString*  instanceId;
+/// 产品Key
+@property (strong,nonatomic,nonnull)  NSString*  productKey;
+-(id) initWithRegion:(NSString *)regionId
+instanceId:(NSString*)instanceId
+productKey:(NSString*)productKey;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+instanceId:(NSString*)instanceId
+productKey:(NSString*)productKey;
+
+@end
+
+@interface IotcoreCreateProductTopicResponse : NSObject
+
+@property NSString* requestId;
+
+@property ServiceError* error;
+
+@property IotcoreCreateProductTopicResult* result;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+
+-(id) initWithRequestId:(NSString*) requestId
+        error:(ServiceError*) error
+        result:(IotcoreCreateProductTopicResult*) result;
+@end
+
+@interface IotcoreListProductAbilitiesRequest:JDCloudRequest
+
+/// 页码, 默认为1, 取值范围：[1,∞)
+@property (strong,nonatomic,nonnull)  NSNumber*  pageNumber;
+/// 分页大小，默认为10，取值范围：[10,100]
+@property (strong,nonatomic,nonnull)  NSNumber*  pageSize;
+/// abilityName-功能名称，精确匹配
+   /// abilityType-功能类型，精确匹配
+   /// 
+@property (strong,nonatomic,nonnull)  NSArray<Filter*>*  filters;
+/// IoT Hub实例ID信息
+@property (strong,nonatomic,nonnull)  NSString*  instanceId;
+/// 产品Key
+@property (strong,nonatomic,nonnull)  NSString*  productKey;
+-(id) initWithRegion:(NSString *)regionId
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+filters:(NSArray<Filter*>*)filters
+instanceId:(NSString*)instanceId
+productKey:(NSString*)productKey;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+filters:(NSArray<Filter*>*)filters
+instanceId:(NSString*)instanceId
+productKey:(NSString*)productKey;
+
+@end
+
+@interface IotcoreExportThingModelResponse : NSObject
+
+@property NSString* requestId;
+
+@property ServiceError* error;
+
+@property IotcoreExportThingModelResult* result;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+
+-(id) initWithRequestId:(NSString*) requestId
+        error:(ServiceError*) error
+        result:(IotcoreExportThingModelResult*) result;
+@end
+
+@interface IotcoreImportThingModelResult : NSObject
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+@end
+
+@interface IotcoreImportThingModelResponse : NSObject
+
+@property NSString* requestId;
+
+@property ServiceError* error;
+
+@property IotcoreImportThingModelResult* result;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+
+-(id) initWithRequestId:(NSString*) requestId
+        error:(ServiceError*) error
+        result:(IotcoreImportThingModelResult*) result;
+@end
+
+@interface IotcoreListProductAbilitiesResult : NSObject
+/// 分页信息
+ @property (strong,nonatomic,nonnull)  PageinfoVO*  page;
+/// Abilities
+ @property (strong,nonatomic,nonnull)  NSArray<ProductAbility*>*  abilities;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithPage:(PageinfoVO*) page
+
+    abilities:(NSArray<ProductAbility*>*)abilities;
+@end
+
+@interface IotcoreListProductAbilitiesResponse : NSObject
+
+@property NSString* requestId;
+
+@property ServiceError* error;
+
+@property IotcoreListProductAbilitiesResult* result;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+
+-(id) initWithRequestId:(NSString*) requestId
+        error:(ServiceError*) error
+        result:(IotcoreListProductAbilitiesResult*) result;
+@end
+
+@interface IotcoreInvokeThingServiceResponse : NSObject
+
+@property NSString* requestId;
+
+@property ServiceError* error;
+
+@property IotcoreInvokeThingServiceResult* result;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+
+-(id) initWithRequestId:(NSString*) requestId
+        error:(ServiceError*) error
+        result:(IotcoreInvokeThingServiceResult*) result;
+@end
+
+@interface IotcoreInvokeThingTopicResponse : NSObject
+
+@property NSString* requestId;
+
+@property ServiceError* error;
+
+@property IotcoreInvokeThingTopicResult* result;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+
+-(id) initWithRequestId:(NSString*) requestId
+        error:(ServiceError*) error
+        result:(IotcoreInvokeThingTopicResult*) result;
+@end
+
+@interface IotcoreQueryDeviceDetailResponse : NSObject
+
+@property NSString* requestId;
+
+@property ServiceError* error;
+
+@property IotcoreQueryDeviceDetailResult* result;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+
+-(id) initWithRequestId:(NSString*) requestId
+        error:(ServiceError*) error
+        result:(IotcoreQueryDeviceDetailResult*) result;
+@end
+
+@interface IotcoreUpdateDeviceResult : NSObject
+/// 设备详情
+ @property (strong,nonatomic,nonnull)  DeviceVO*  device;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithDevice:(DeviceVO*) device;
+@end
+
+@interface IotcoreUpdateDeviceResponse : NSObject
+
+@property NSString* requestId;
+
+@property ServiceError* error;
+
+@property IotcoreUpdateDeviceResult* result;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+
+-(id) initWithRequestId:(NSString*) requestId
+        error:(ServiceError*) error
+        result:(IotcoreUpdateDeviceResult*) result;
+@end
+
+@interface IotcoreQueryDevicePageResult : NSObject
+/// PageSize
+ @property (strong,nonatomic,nonnull)  NSNumber*  pageSize;
+/// NowPage
+ @property (strong,nonatomic,nonnull)  NSNumber*  nowPage;
+/// TotalSize
+ @property (strong,nonatomic,nonnull)  NSNumber*  totalSize;
+/// TotalPage
+ @property (strong,nonatomic,nonnull)  NSNumber*  totalPage;
+/// Data
+ @property (strong,nonatomic,nonnull)  NSArray<DeviceVO*>*  data;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithPageSize:(NSNumber*) pageSize
+
+    nowPage:(NSNumber*)nowPage
+
+    totalSize:(NSNumber*)totalSize
+
+    totalPage:(NSNumber*)totalPage
+
+    data:(NSArray<DeviceVO*>*)data;
+@end
+
+@interface IotcoreQueryDevicePageResponse : NSObject
+
+@property NSString* requestId;
+
+@property ServiceError* error;
+
+@property IotcoreQueryDevicePageResult* result;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+
+-(id) initWithRequestId:(NSString*) requestId
+        error:(ServiceError*) error
+        result:(IotcoreQueryDevicePageResult*) result;
+@end
+
+@interface IotcoreRemoveDeviceResult : NSObject
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+@end
+
+@interface IotcoreRemoveDeviceResponse : NSObject
+
+@property NSString* requestId;
+
+@property ServiceError* error;
+
+@property IotcoreRemoveDeviceResult* result;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+
+-(id) initWithRequestId:(NSString*) requestId
+        error:(ServiceError*) error
+        result:(IotcoreRemoveDeviceResult*) result;
+@end
+
+@interface IotcoreDescribeThingShadowResponse : NSObject
+
+@property NSString* requestId;
+
+@property ServiceError* error;
+
+@property IotcoreDescribeThingShadowResult* result;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+
+-(id) initWithRequestId:(NSString*) requestId
+        error:(ServiceError*) error
+        result:(IotcoreDescribeThingShadowResult*) result;
+@end
+
+@interface IotcoreAddDeviceResponse : NSObject
+
+@property NSString* requestId;
+
+@property ServiceError* error;
+
+@property IotcoreAddDeviceResult* result;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+
+-(id) initWithRequestId:(NSString*) requestId
+        error:(ServiceError*) error
+        result:(IotcoreAddDeviceResult*) result;
+@end
+
+@interface IotcoreUpdateThingShadowResult : NSObject
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+@end
+
+@interface IotcoreUpdateThingShadowResponse : NSObject
+
+@property NSString* requestId;
+
+@property ServiceError* error;
+
+@property IotcoreUpdateThingShadowResult* result;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+
+-(id) initWithRequestId:(NSString*) requestId
+        error:(ServiceError*) error
+        result:(IotcoreUpdateThingShadowResult*) result;
+@end
+
+@interface IotcoreDescribeProductResponse : NSObject
+
+@property NSString* requestId;
+
+@property ServiceError* error;
+
+@property IotcoreDescribeProductResult* result;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+
+-(id) initWithRequestId:(NSString*) requestId
+        error:(ServiceError*) error
+        result:(IotcoreDescribeProductResult*) result;
+@end
+
+@interface IotcoreCreateProductResponse : NSObject
+
+@property NSString* requestId;
+
+@property ServiceError* error;
+
+@property IotcoreCreateProductResult* result;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+
+-(id) initWithRequestId:(NSString*) requestId
+        error:(ServiceError*) error
+        result:(IotcoreCreateProductResult*) result;
+@end
+
+@interface IotcoreListProductsResult : NSObject
+/// 分页信息
+ @property (strong,nonatomic,nonnull)  PageinfoVO*  page;
+/// Products
+ @property (strong,nonatomic,nonnull)  NSArray<Product*>*  products;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithPage:(PageinfoVO*) page
+
+    products:(NSArray<Product*>*)products;
+@end
+
+@interface IotcoreUpdateProductResult : NSObject
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+@end
+
+@interface IotcoreUpdateProductResponse : NSObject
+
+@property NSString* requestId;
+
+@property ServiceError* error;
+
+@property IotcoreUpdateProductResult* result;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+
+-(id) initWithRequestId:(NSString*) requestId
+        error:(ServiceError*) error
+        result:(IotcoreUpdateProductResult*) result;
+@end
+
+@interface IotcoreDeleteProductResult : NSObject
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+@end
+
+@interface IotcoreDeleteProductResponse : NSObject
+
+@property NSString* requestId;
+
+@property ServiceError* error;
+
+@property IotcoreDeleteProductResult* result;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+
+-(id) initWithRequestId:(NSString*) requestId
+        error:(ServiceError*) error
+        result:(IotcoreDeleteProductResult*) result;
+@end
+
 @interface IotcoreListProductsRequest:JDCloudRequest
 
 /// 页码, 默认为1, 取值范围：[1,∞)
@@ -1119,23 +1136,6 @@ instanceId:(NSString*)instanceId;
 -(id) initWithRequestId:(NSString*) requestId
         error:(ServiceError*) error
         result:(IotcoreListProductsResult*) result;
-@end
-
-@interface IotcoreDeleteProductRequest:JDCloudRequest
-
-/// IoT Engine实例ID信息
-@property (strong,nonatomic,nonnull)  NSString*  instanceId;
-/// 产品Key
-@property (strong,nonatomic,nonnull)  NSString*  productKey;
--(id) initWithRegion:(NSString *)regionId
-instanceId:(NSString*)instanceId
-productKey:(NSString*)productKey;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-instanceId:(NSString*)instanceId
-productKey:(NSString*)productKey;
-
 @end
 
 #endif /* IotcoreApiModel_h */

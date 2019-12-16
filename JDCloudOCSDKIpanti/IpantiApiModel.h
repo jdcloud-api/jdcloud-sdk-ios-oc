@@ -63,27 +63,6 @@ webRuleId:(NSString*)webRuleId;
 
 @end
 
-@interface IpantiCreateWhiteListRuleOfWebRuleRequest:JDCloudRequest
-
-/// 添加网站类规则的白名单规则请求参数
-@property (strong,nonatomic,nonnull)  WebWhiteListRuleSpec*  webWhiteListRuleSpec;
-/// 高防实例 Id
-@property (strong,nonatomic,nonnull)  NSString*  instanceId;
-/// 网站规则 Id
-@property (strong,nonatomic,nonnull)  NSString*  webRuleId;
--(id) initWithRegion:(NSString *)regionId
-webWhiteListRuleSpec:(WebWhiteListRuleSpec*)webWhiteListRuleSpec
-instanceId:(NSString*)instanceId
-webRuleId:(NSString*)webRuleId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-webWhiteListRuleSpec:(WebWhiteListRuleSpec*)webWhiteListRuleSpec
-instanceId:(NSString*)instanceId
-webRuleId:(NSString*)webRuleId;
-
-@end
-
 @interface IpantiEnableWebRuleCCObserverModeResult : NSObject
 /// 0: 开启 CC 观察者模式失败, 1: 开启 CC 观察者模式成功
  @property (strong,nonatomic,nonnull)  NSNumber*  code;
@@ -96,23 +75,6 @@ webRuleId:(NSString*)webRuleId;
 -(id) initWithCode:(NSNumber*) code
 
     message:(NSString*)message;
-@end
-
-@interface IpantiEnableWebRuleCCObserverModeResponse : NSObject
-
-@property NSString* requestId;
-
-@property ServiceError* error;
-
-@property IpantiEnableWebRuleCCObserverModeResult* result;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
-
--(id) initWithRequestId:(NSString*) requestId
-        error:(ServiceError*) error
-        result:(IpantiEnableWebRuleCCObserverModeResult*) result;
 @end
 
 @interface IpantiDescribeWebRuleBlackListUsageRequest:JDCloudRequest
@@ -130,37 +92,6 @@ webRuleId:(NSString*)webRuleId;
 instanceId:(NSString*)instanceId
 webRuleId:(NSString*)webRuleId;
 
-@end
-
-@interface IpantiDisableWebRuleCCObserverModeResult : NSObject
-/// 0: 关闭 CC 观察者模式失败, 1: 关闭 CC 观察者模式成功
- @property (strong,nonatomic,nonnull)  NSNumber*  code;
-/// 关闭 CC 观察者模式失败时给出具体原因
- @property (strong,nonatomic,nonnull)  NSString*  message;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithCode:(NSNumber*) code
-
-    message:(NSString*)message;
-@end
-
-@interface IpantiDisableWebRuleCCObserverModeResponse : NSObject
-
-@property NSString* requestId;
-
-@property ServiceError* error;
-
-@property IpantiDisableWebRuleCCObserverModeResult* result;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
-
--(id) initWithRequestId:(NSString*) requestId
-        error:(ServiceError*) error
-        result:(IpantiDisableWebRuleCCObserverModeResult*) result;
 @end
 
 @interface IpantiDeleteWebRuleResult : NSObject
@@ -208,23 +139,6 @@ webRuleId:(NSString*)webRuleId;
     message:(NSString*)message;
 @end
 
-@interface IpantiModifyCCProtectionConfigOfWebRuleResponse : NSObject
-
-@property NSString* requestId;
-
-@property ServiceError* error;
-
-@property IpantiModifyCCProtectionConfigOfWebRuleResult* result;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
-
--(id) initWithRequestId:(NSString*) requestId
-        error:(ServiceError*) error
-        result:(IpantiModifyCCProtectionConfigOfWebRuleResult*) result;
-@end
-
 @interface IpantiDescribeWhiteListRuleOfWebRuleRequest:JDCloudRequest
 
 /// 高防实例 Id
@@ -244,16 +158,6 @@ instanceId:(NSString*)instanceId
 webRuleId:(NSString*)webRuleId
 webWhiteListRuleId:(NSString*)webWhiteListRuleId;
 
-@end
-
-@interface IpantiDescribeWebRuleResult : NSObject
-/// Data
- @property (strong,nonatomic,nonnull)  WebRule*  data;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithData:(WebRule*) data;
 @end
 
 @interface IpantiDisableWebRuleCCResult : NSObject
@@ -295,37 +199,6 @@ webRuleId:(NSString*)webRuleId;
 
 @end
 
-@interface IpantiEnableCCProtectionRuleOfWebRuleResult : NSObject
-/// 0: 开启失败, 1: 开启成功
- @property (strong,nonatomic,nonnull)  NSNumber*  code;
-/// 开启失败时给出具体原因
- @property (strong,nonatomic,nonnull)  NSString*  message;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithCode:(NSNumber*) code
-
-    message:(NSString*)message;
-@end
-
-@interface IpantiEnableCCProtectionRuleOfWebRuleResponse : NSObject
-
-@property NSString* requestId;
-
-@property ServiceError* error;
-
-@property IpantiEnableCCProtectionRuleOfWebRuleResult* result;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
-
--(id) initWithRequestId:(NSString*) requestId
-        error:(ServiceError*) error
-        result:(IpantiEnableCCProtectionRuleOfWebRuleResult*) result;
-@end
-
 @interface IpantiDisableWebRuleWhiteListResult : NSObject
 /// 关闭结果, 0: 关闭失败, 1: 关闭成功
  @property (strong,nonatomic,nonnull)  NSNumber*  code;
@@ -338,37 +211,6 @@ webRuleId:(NSString*)webRuleId;
 -(id) initWithCode:(NSNumber*) code
 
     message:(NSString*)message;
-@end
-
-@interface IpantiCreateBlackListRuleOfWebRuleRequest:JDCloudRequest
-
-/// 添加网站类规则的黑名单规则请求参数
-@property (strong,nonatomic,nonnull)  WebBlackListRuleSpec*  webBlackListRuleSpec;
-/// 高防实例 Id
-@property (strong,nonatomic,nonnull)  NSString*  instanceId;
-/// 网站规则 Id
-@property (strong,nonatomic,nonnull)  NSString*  webRuleId;
--(id) initWithRegion:(NSString *)regionId
-webBlackListRuleSpec:(WebBlackListRuleSpec*)webBlackListRuleSpec
-instanceId:(NSString*)instanceId
-webRuleId:(NSString*)webRuleId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-webBlackListRuleSpec:(WebBlackListRuleSpec*)webBlackListRuleSpec
-instanceId:(NSString*)instanceId
-webRuleId:(NSString*)webRuleId;
-
-@end
-
-@interface IpantiDescribeBlackListRuleOfWebRuleResult : NSObject
-/// Data
- @property (strong,nonatomic,nonnull)  WebBlackListRule*  data;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithData:(WebBlackListRule*) data;
 @end
 
 @interface IpantiDisableBlackListRuleOfWebRuleRequest:JDCloudRequest
@@ -392,27 +234,6 @@ webBlackListRuleId:(NSString*)webBlackListRuleId;
 
 @end
 
-@interface IpantiCreateCCProtectionRuleOfWebRuleRequest:JDCloudRequest
-
-/// 添加 CC 防护规则请求参数
-@property (strong,nonatomic,nonnull)  CCProtectionRuleSpec*  ccProtectionRuleSpec;
-/// 高防实例 Id
-@property (strong,nonatomic,nonnull)  NSString*  instanceId;
-/// 网站规则 Id
-@property (strong,nonatomic,nonnull)  NSString*  webRuleId;
--(id) initWithRegion:(NSString *)regionId
-ccProtectionRuleSpec:(CCProtectionRuleSpec*)ccProtectionRuleSpec
-instanceId:(NSString*)instanceId
-webRuleId:(NSString*)webRuleId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-ccProtectionRuleSpec:(CCProtectionRuleSpec*)ccProtectionRuleSpec
-instanceId:(NSString*)instanceId
-webRuleId:(NSString*)webRuleId;
-
-@end
-
 @interface IpantiEnableWebRuleCCObserverModeRequest:JDCloudRequest
 
 /// 高防实例 Id
@@ -428,16 +249,6 @@ webRuleId:(NSString*)webRuleId;
 instanceId:(NSString*)instanceId
 webRuleId:(NSString*)webRuleId;
 
-@end
-
-@interface IpantiDescribeWhiteListRuleOfWebRuleResult : NSObject
-/// Data
- @property (strong,nonatomic,nonnull)  WebWhiteListRule*  data;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithData:(WebWhiteListRule*) data;
 @end
 
 @interface IpantiModifyBlackListRuleOfWebRuleResult : NSObject
@@ -527,37 +338,6 @@ webWhiteListRuleId:(NSString*)webWhiteListRuleId;
 
 @end
 
-@interface IpantiEnableWhiteListRuleOfWebRuleResult : NSObject
-/// 开启结果, 0: 开启失败, 1: 开启成功
- @property (strong,nonatomic,nonnull)  NSNumber*  code;
-/// 开启失败时给出具体原因
- @property (strong,nonatomic,nonnull)  NSString*  message;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithCode:(NSNumber*) code
-
-    message:(NSString*)message;
-@end
-
-@interface IpantiEnableWhiteListRuleOfWebRuleResponse : NSObject
-
-@property NSString* requestId;
-
-@property ServiceError* error;
-
-@property IpantiEnableWhiteListRuleOfWebRuleResult* result;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
-
--(id) initWithRequestId:(NSString*) requestId
-        error:(ServiceError*) error
-        result:(IpantiEnableWhiteListRuleOfWebRuleResult*) result;
-@end
-
 @interface IpantiDisableCCProtectionRuleOfWebRuleRequest:JDCloudRequest
 
 /// 高防实例 Id
@@ -579,70 +359,6 @@ ccProtectionRuleId:(NSString*)ccProtectionRuleId;
 
 @end
 
-@interface IpantiDescribeWebRulesResult : NSObject
-/// DataList
- @property (strong,nonatomic,nonnull)  NSArray<WebRule*>*  dataList;
-/// 当前页数量
- @property (strong,nonatomic,nonnull)  NSNumber*  currentCount;
-/// 总数
- @property (strong,nonatomic,nonnull)  NSNumber*  totalCount;
-/// 总页数
- @property (strong,nonatomic,nonnull)  NSNumber*  totalPage;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithDataList:(NSArray<WebRule*>*) dataList
-
-    currentCount:(NSNumber*)currentCount
-
-    totalCount:(NSNumber*)totalCount
-
-    totalPage:(NSNumber*)totalPage;
-@end
-
-@interface IpantiDescribeWebRulesResponse : NSObject
-
-@property NSString* requestId;
-
-@property ServiceError* error;
-
-@property IpantiDescribeWebRulesResult* result;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
-
--(id) initWithRequestId:(NSString*) requestId
-        error:(ServiceError*) error
-        result:(IpantiDescribeWebRulesResult*) result;
-@end
-
-@interface IpantiModifyCCProtectionRuleOfWebRuleRequest:JDCloudRequest
-
-/// 修改 CC 防护规则请求参数
-@property (strong,nonatomic,nonnull)  CCProtectionRuleSpec*  ccProtectionRuleSpec;
-/// 高防实例 Id
-@property (strong,nonatomic,nonnull)  NSString*  instanceId;
-/// 网站规则 Id
-@property (strong,nonatomic,nonnull)  NSString*  webRuleId;
-/// 网站类规则的 CC 防护规则 Id
-@property (strong,nonatomic,nonnull)  NSString*  ccProtectionRuleId;
--(id) initWithRegion:(NSString *)regionId
-ccProtectionRuleSpec:(CCProtectionRuleSpec*)ccProtectionRuleSpec
-instanceId:(NSString*)instanceId
-webRuleId:(NSString*)webRuleId
-ccProtectionRuleId:(NSString*)ccProtectionRuleId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-ccProtectionRuleSpec:(CCProtectionRuleSpec*)ccProtectionRuleSpec
-instanceId:(NSString*)instanceId
-webRuleId:(NSString*)webRuleId
-ccProtectionRuleId:(NSString*)ccProtectionRuleId;
-
-@end
-
 @interface IpantiCreateBlackListRuleOfWebRuleResult : NSObject
 /// 0: 添加失败, 1: 添加成功
  @property (strong,nonatomic,nonnull)  NSNumber*  code;
@@ -655,16 +371,6 @@ ccProtectionRuleId:(NSString*)ccProtectionRuleId;
 -(id) initWithCode:(NSNumber*) code
 
     message:(NSString*)message;
-@end
-
-@interface IpantiDescribeWebRuleBlackListGeoAreasResult : NSObject
-/// DataList
- @property (strong,nonatomic,nonnull)  NSArray<Country*>*  dataList;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithDataList:(NSArray<Country*>*) dataList;
 @end
 
 @interface IpantiDescribeCCProtectionDefaultConfigOfWebRuleRequest:JDCloudRequest
@@ -724,44 +430,6 @@ webRuleId:(NSString*)webRuleId;
 -(id) initWithCode:(NSNumber*) code
 
     message:(NSString*)message;
-@end
-
-@interface IpantiModifyCertInfoRequest:JDCloudRequest
-
-/// 编辑网站规则证书信息请求参数
-@property (strong,nonatomic,nonnull)  CertInfoModifySpec*  certInfoModifySpec;
-/// 高防实例 Id
-@property (strong,nonatomic,nonnull)  NSString*  instanceId;
-/// 网站规则 Id
-@property (strong,nonatomic,nonnull)  NSString*  webRuleId;
--(id) initWithRegion:(NSString *)regionId
-certInfoModifySpec:(CertInfoModifySpec*)certInfoModifySpec
-instanceId:(NSString*)instanceId
-webRuleId:(NSString*)webRuleId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-certInfoModifySpec:(CertInfoModifySpec*)certInfoModifySpec
-instanceId:(NSString*)instanceId
-webRuleId:(NSString*)webRuleId;
-
-@end
-
-@interface IpantiDeleteBlackListRuleOfWebRuleResponse : NSObject
-
-@property NSString* requestId;
-
-@property ServiceError* error;
-
-@property IpantiDeleteBlackListRuleOfWebRuleResult* result;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
-
--(id) initWithRequestId:(NSString*) requestId
-        error:(ServiceError*) error
-        result:(IpantiDeleteBlackListRuleOfWebRuleResult*) result;
 @end
 
 @interface IpantiCreateCCProtectionRuleOfWebRuleResult : NSObject
@@ -830,6 +498,1872 @@ webRuleId:(NSString*)webRuleId;
 
 @end
 
+@interface IpantiEnableWhiteListRuleOfWebRuleResult : NSObject
+/// 开启结果, 0: 开启失败, 1: 开启成功
+ @property (strong,nonatomic,nonnull)  NSNumber*  code;
+/// 开启失败时给出具体原因
+ @property (strong,nonatomic,nonnull)  NSString*  message;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithCode:(NSNumber*) code
+
+    message:(NSString*)message;
+@end
+
+@interface IpantiEnableWebRuleWhiteListRequest:JDCloudRequest
+
+/// 高防实例 Id
+@property (strong,nonatomic,nonnull)  NSString*  instanceId;
+/// 网站规则 Id
+@property (strong,nonatomic,nonnull)  NSString*  webRuleId;
+-(id) initWithRegion:(NSString *)regionId
+instanceId:(NSString*)instanceId
+webRuleId:(NSString*)webRuleId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+instanceId:(NSString*)instanceId
+webRuleId:(NSString*)webRuleId;
+
+@end
+
+@interface IpantiSwitchWebRuleProtectRequest:JDCloudRequest
+
+/// 高防实例 Id
+@property (strong,nonatomic,nonnull)  NSString*  instanceId;
+/// 网站规则 Id
+@property (strong,nonatomic,nonnull)  NSString*  webRuleId;
+-(id) initWithRegion:(NSString *)regionId
+instanceId:(NSString*)instanceId
+webRuleId:(NSString*)webRuleId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+instanceId:(NSString*)instanceId
+webRuleId:(NSString*)webRuleId;
+
+@end
+
+@interface IpantiEnableWebRuleCCResult : NSObject
+/// 0: 开启 CC 失败, 1: 开启 CC 成功
+ @property (strong,nonatomic,nonnull)  NSNumber*  code;
+/// 开启 CC 失败时给出具体原因
+ @property (strong,nonatomic,nonnull)  NSString*  message;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithCode:(NSNumber*) code
+
+    message:(NSString*)message;
+@end
+
+@interface IpantiCreateWhiteListRuleOfWebRuleResult : NSObject
+/// 0: 添加失败, 1: 添加成功
+ @property (strong,nonatomic,nonnull)  NSNumber*  code;
+/// 添加失败时给出具体原因
+ @property (strong,nonatomic,nonnull)  NSString*  message;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithCode:(NSNumber*) code
+
+    message:(NSString*)message;
+@end
+
+@interface IpantiCreateWebRuleResult : NSObject
+/// 0: 添加失败, 1: 添加成功
+ @property (strong,nonatomic,nonnull)  NSNumber*  code;
+/// 添加失败时给出具体原因
+ @property (strong,nonatomic,nonnull)  NSString*  message;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithCode:(NSNumber*) code
+
+    message:(NSString*)message;
+@end
+
+@interface IpantiDescribeWebRuleWhiteListUsageResult : NSObject
+/// 已配置的白名单规则数量
+ @property (strong,nonatomic,nonnull)  NSNumber*  ipantiAllocatedNum;
+/// 开启的白名单规则数量
+ @property (strong,nonatomic,nonnull)  NSNumber*  activeNum;
+/// 还可添加的白名单规则数量
+ @property (strong,nonatomic,nonnull)  NSNumber*  surplusAllocateNum;
+/// 最多可添加的白名单规则数量
+ @property (strong,nonatomic,nonnull)  NSNumber*  maxAllocateNum;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithAllocatedNum:(NSNumber*) ipantiAllocatedNum
+
+    activeNum:(NSNumber*)activeNum
+
+    surplusAllocateNum:(NSNumber*)surplusAllocateNum
+
+    maxAllocateNum:(NSNumber*)maxAllocateNum;
+@end
+
+@interface IpantiDisableWebRuleBlackListResult : NSObject
+/// 关闭结果, 0: 关闭失败, 1: 关闭成功
+ @property (strong,nonatomic,nonnull)  NSNumber*  code;
+/// 关闭失败时给出具体原因
+ @property (strong,nonatomic,nonnull)  NSString*  message;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithCode:(NSNumber*) code
+
+    message:(NSString*)message;
+@end
+
+@interface IpantiEnableCCProtectionRuleOfWebRuleRequest:JDCloudRequest
+
+/// 高防实例 Id
+@property (strong,nonatomic,nonnull)  NSString*  instanceId;
+/// 网站规则 Id
+@property (strong,nonatomic,nonnull)  NSString*  webRuleId;
+/// 网站类规则的 CC 防护规则 Id
+@property (strong,nonatomic,nonnull)  NSString*  ccProtectionRuleId;
+-(id) initWithRegion:(NSString *)regionId
+instanceId:(NSString*)instanceId
+webRuleId:(NSString*)webRuleId
+ccProtectionRuleId:(NSString*)ccProtectionRuleId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+instanceId:(NSString*)instanceId
+webRuleId:(NSString*)webRuleId
+ccProtectionRuleId:(NSString*)ccProtectionRuleId;
+
+@end
+
+@interface IpantiEnableWebRuleCCRequest:JDCloudRequest
+
+/// 高防实例 Id
+@property (strong,nonatomic,nonnull)  NSString*  instanceId;
+/// 网站规则 Id
+@property (strong,nonatomic,nonnull)  NSString*  webRuleId;
+-(id) initWithRegion:(NSString *)regionId
+instanceId:(NSString*)instanceId
+webRuleId:(NSString*)webRuleId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+instanceId:(NSString*)instanceId
+webRuleId:(NSString*)webRuleId;
+
+@end
+
+@interface IpantiDeleteWebRuleRequest:JDCloudRequest
+
+/// 高防实例 Id
+@property (strong,nonatomic,nonnull)  NSString*  instanceId;
+/// 网站规则 Id
+@property (strong,nonatomic,nonnull)  NSString*  webRuleId;
+-(id) initWithRegion:(NSString *)regionId
+instanceId:(NSString*)instanceId
+webRuleId:(NSString*)webRuleId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+instanceId:(NSString*)instanceId
+webRuleId:(NSString*)webRuleId;
+
+@end
+
+@interface IpantiDeleteCCProtectionRuleOfWebRuleRequest:JDCloudRequest
+
+/// 高防实例 Id
+@property (strong,nonatomic,nonnull)  NSString*  instanceId;
+/// 网站规则 Id
+@property (strong,nonatomic,nonnull)  NSString*  webRuleId;
+/// 网站类规则的 CC 防护规则 Id
+@property (strong,nonatomic,nonnull)  NSString*  ccProtectionRuleId;
+-(id) initWithRegion:(NSString *)regionId
+instanceId:(NSString*)instanceId
+webRuleId:(NSString*)webRuleId
+ccProtectionRuleId:(NSString*)ccProtectionRuleId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+instanceId:(NSString*)instanceId
+webRuleId:(NSString*)webRuleId
+ccProtectionRuleId:(NSString*)ccProtectionRuleId;
+
+@end
+
+@interface IpantiEnableCCProtectionRuleOfWebRuleResult : NSObject
+/// 0: 开启失败, 1: 开启成功
+ @property (strong,nonatomic,nonnull)  NSNumber*  code;
+/// 开启失败时给出具体原因
+ @property (strong,nonatomic,nonnull)  NSString*  message;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithCode:(NSNumber*) code
+
+    message:(NSString*)message;
+@end
+
+@interface IpantiSwitchWebRuleOriginRequest:JDCloudRequest
+
+/// 高防实例 Id
+@property (strong,nonatomic,nonnull)  NSString*  instanceId;
+/// 网站规则 Id
+@property (strong,nonatomic,nonnull)  NSString*  webRuleId;
+-(id) initWithRegion:(NSString *)regionId
+instanceId:(NSString*)instanceId
+webRuleId:(NSString*)webRuleId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+instanceId:(NSString*)instanceId
+webRuleId:(NSString*)webRuleId;
+
+@end
+
+@interface IpantiDisableWhiteListRuleOfWebRuleResult : NSObject
+/// 关闭结果, 0: 关闭失败, 1: 关闭成功
+ @property (strong,nonatomic,nonnull)  NSNumber*  code;
+/// 关闭失败时给出具体原因
+ @property (strong,nonatomic,nonnull)  NSString*  message;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithCode:(NSNumber*) code
+
+    message:(NSString*)message;
+@end
+
+@interface IpantiDisableWebRuleCCRequest:JDCloudRequest
+
+/// 高防实例 Id
+@property (strong,nonatomic,nonnull)  NSString*  instanceId;
+/// 网站规则 Id
+@property (strong,nonatomic,nonnull)  NSString*  webRuleId;
+-(id) initWithRegion:(NSString *)regionId
+instanceId:(NSString*)instanceId
+webRuleId:(NSString*)webRuleId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+instanceId:(NSString*)instanceId
+webRuleId:(NSString*)webRuleId;
+
+@end
+
+@interface IpantiDeleteWhiteListRuleOfWebRuleResult : NSObject
+/// 删除结果, 0: 删除失败, 1: 删除成功
+ @property (strong,nonatomic,nonnull)  NSNumber*  code;
+/// 删除失败时给出具体原因
+ @property (strong,nonatomic,nonnull)  NSString*  message;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithCode:(NSNumber*) code
+
+    message:(NSString*)message;
+@end
+
+@interface IpantiDescribeWebRulesRequest:JDCloudRequest
+
+/// 页码, 默认为1
+@property (strong,nonatomic,nonnull)  NSNumber*  pageNumber;
+/// 分页大小, 默认为10, 取值范围[10, 100]
+@property (strong,nonatomic,nonnull)  NSNumber*  pageSize;
+/// 查询类型名称, domain:源站域名, ip:源站 IP, rawDomain: 域名
+@property (strong,nonatomic,nonnull)  NSString*  searchType;
+/// 查询类型值
+@property (strong,nonatomic,nonnull)  NSString*  searchValue;
+/// 高防实例 Id
+@property (strong,nonatomic,nonnull)  NSString*  instanceId;
+-(id) initWithRegion:(NSString *)regionId
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+searchType:(NSString*)searchType
+searchValue:(NSString*)searchValue
+instanceId:(NSString*)instanceId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+searchType:(NSString*)searchType
+searchValue:(NSString*)searchValue
+instanceId:(NSString*)instanceId;
+
+@end
+
+@interface IpantiDisableWebRuleWhiteListRequest:JDCloudRequest
+
+/// 高防实例 Id
+@property (strong,nonatomic,nonnull)  NSString*  instanceId;
+/// 网站规则 Id
+@property (strong,nonatomic,nonnull)  NSString*  webRuleId;
+-(id) initWithRegion:(NSString *)regionId
+instanceId:(NSString*)instanceId
+webRuleId:(NSString*)webRuleId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+instanceId:(NSString*)instanceId
+webRuleId:(NSString*)webRuleId;
+
+@end
+
+@interface IpantiModifyWhiteListRuleOfWebRuleResult : NSObject
+/// 修改结果, 0: 修改失败, 1: 修改成功
+ @property (strong,nonatomic,nonnull)  NSNumber*  code;
+/// 修改失败时给出具体原因
+ @property (strong,nonatomic,nonnull)  NSString*  message;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithCode:(NSNumber*) code
+
+    message:(NSString*)message;
+@end
+
+@interface IpantiDescribeCCProtectionConfigOfWebRuleRequest:JDCloudRequest
+
+/// 高防实例 Id
+@property (strong,nonatomic,nonnull)  NSString*  instanceId;
+/// 网站规则 Id
+@property (strong,nonatomic,nonnull)  NSString*  webRuleId;
+-(id) initWithRegion:(NSString *)regionId
+instanceId:(NSString*)instanceId
+webRuleId:(NSString*)webRuleId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+instanceId:(NSString*)instanceId
+webRuleId:(NSString*)webRuleId;
+
+@end
+
+@interface IpantiModifyCertInfoResult : NSObject
+/// 上传 SSL 证书结果, 0: 删除证书失败, 1: 删除证书成功
+ @property (strong,nonatomic,nonnull)  NSNumber*  code;
+/// 上传成功时为证书 Id, 失败时给出具体原因
+ @property (strong,nonatomic,nonnull)  NSString*  message;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithCode:(NSNumber*) code
+
+    message:(NSString*)message;
+@end
+
+@interface IpantiDisableWebRuleCCObserverModeResult : NSObject
+/// 0: 关闭 CC 观察者模式失败, 1: 关闭 CC 观察者模式成功
+ @property (strong,nonatomic,nonnull)  NSNumber*  code;
+/// 关闭 CC 观察者模式失败时给出具体原因
+ @property (strong,nonatomic,nonnull)  NSString*  message;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithCode:(NSNumber*) code
+
+    message:(NSString*)message;
+@end
+
+@interface IpantiDeleteBlackListRuleOfWebRuleRequest:JDCloudRequest
+
+/// 高防实例 Id
+@property (strong,nonatomic,nonnull)  NSString*  instanceId;
+/// 网站规则 Id
+@property (strong,nonatomic,nonnull)  NSString*  webRuleId;
+/// 网站类规则的黑名单规则 Id
+@property (strong,nonatomic,nonnull)  NSString*  webBlackListRuleId;
+-(id) initWithRegion:(NSString *)regionId
+instanceId:(NSString*)instanceId
+webRuleId:(NSString*)webRuleId
+webBlackListRuleId:(NSString*)webBlackListRuleId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+instanceId:(NSString*)instanceId
+webRuleId:(NSString*)webRuleId
+webBlackListRuleId:(NSString*)webBlackListRuleId;
+
+@end
+
+@interface IpantiSwitchWebRuleProtectResult : NSObject
+/// 0: 规则切换成防御失败, 1: 规则切换成防御成功
+ @property (strong,nonatomic,nonnull)  NSNumber*  code;
+/// 规则切换成防御失败时给出具体原因
+ @property (strong,nonatomic,nonnull)  NSString*  message;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithCode:(NSNumber*) code
+
+    message:(NSString*)message;
+@end
+
+@interface IpantiModifyCCProtectionRuleOfWebRuleResult : NSObject
+/// 0: 修改失败, 1: 修改成功
+ @property (strong,nonatomic,nonnull)  NSNumber*  code;
+/// 修改失败时给出具体原因
+ @property (strong,nonatomic,nonnull)  NSString*  message;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithCode:(NSNumber*) code
+
+    message:(NSString*)message;
+@end
+
+@interface IpantiDescribeBlackListRulesOfWebRuleRequest:JDCloudRequest
+
+/// 页码, 默认为1
+@property (strong,nonatomic,nonnull)  NSNumber*  pageNumber;
+/// 分页大小, 默认为10, 取值范围[10, 100]
+@property (strong,nonatomic,nonnull)  NSNumber*  pageSize;
+/// 高防实例 Id
+@property (strong,nonatomic,nonnull)  NSString*  instanceId;
+/// 网站规则 Id
+@property (strong,nonatomic,nonnull)  NSString*  webRuleId;
+-(id) initWithRegion:(NSString *)regionId
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+instanceId:(NSString*)instanceId
+webRuleId:(NSString*)webRuleId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+instanceId:(NSString*)instanceId
+webRuleId:(NSString*)webRuleId;
+
+@end
+
+@interface IpantiEnableWebRuleBlackListResult : NSObject
+/// 开启结果, 0: 开启失败, 1: 开启成功
+ @property (strong,nonatomic,nonnull)  NSNumber*  code;
+/// 开启失败时给出具体原因
+ @property (strong,nonatomic,nonnull)  NSString*  message;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithCode:(NSNumber*) code
+
+    message:(NSString*)message;
+@end
+
+@interface IpantiDisableCCProtectionRuleOfWebRuleResult : NSObject
+/// 0: 关闭失败, 1: 关闭成功
+ @property (strong,nonatomic,nonnull)  NSNumber*  code;
+/// 关闭失败时给出具体原因
+ @property (strong,nonatomic,nonnull)  NSString*  message;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithCode:(NSNumber*) code
+
+    message:(NSString*)message;
+@end
+
+@interface IpantiEnableBlackListRuleOfWebRuleResult : NSObject
+/// 开启结果, 0: 开启失败, 1: 开启成功
+ @property (strong,nonatomic,nonnull)  NSNumber*  code;
+/// 开启失败时给出具体原因
+ @property (strong,nonatomic,nonnull)  NSString*  message;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithCode:(NSNumber*) code
+
+    message:(NSString*)message;
+@end
+
+@interface IpantiModifyWebRuleResult : NSObject
+/// 修改网站类规则结果, 0: 修改失败, 1: 修改成功
+ @property (strong,nonatomic,nonnull)  NSNumber*  code;
+/// 修改失败时给出具体原因
+ @property (strong,nonatomic,nonnull)  NSString*  message;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithCode:(NSNumber*) code
+
+    message:(NSString*)message;
+@end
+
+@interface IpantiEnableBlackListRuleOfWebRuleRequest:JDCloudRequest
+
+/// 高防实例 Id
+@property (strong,nonatomic,nonnull)  NSString*  instanceId;
+/// 网站规则 Id
+@property (strong,nonatomic,nonnull)  NSString*  webRuleId;
+/// 网站类规则的黑名单规则 Id
+@property (strong,nonatomic,nonnull)  NSString*  webBlackListRuleId;
+-(id) initWithRegion:(NSString *)regionId
+instanceId:(NSString*)instanceId
+webRuleId:(NSString*)webRuleId
+webBlackListRuleId:(NSString*)webBlackListRuleId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+instanceId:(NSString*)instanceId
+webRuleId:(NSString*)webRuleId
+webBlackListRuleId:(NSString*)webBlackListRuleId;
+
+@end
+
+@interface IpantiDescribeBlackListRuleOfWebRuleRequest:JDCloudRequest
+
+/// 高防实例 Id
+@property (strong,nonatomic,nonnull)  NSString*  instanceId;
+/// 网站规则 Id
+@property (strong,nonatomic,nonnull)  NSString*  webRuleId;
+/// 网站类规则的黑名单规则 Id
+@property (strong,nonatomic,nonnull)  NSString*  webBlackListRuleId;
+-(id) initWithRegion:(NSString *)regionId
+instanceId:(NSString*)instanceId
+webRuleId:(NSString*)webRuleId
+webBlackListRuleId:(NSString*)webBlackListRuleId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+instanceId:(NSString*)instanceId
+webRuleId:(NSString*)webRuleId
+webBlackListRuleId:(NSString*)webBlackListRuleId;
+
+@end
+
+@interface IpantiDescribeWebRuleBlackListUsageResult : NSObject
+/// 已配置的黑名单规则数量
+ @property (strong,nonatomic,nonnull)  NSNumber*  ipantiAllocatedNum;
+/// 开启的黑名单规则数量
+ @property (strong,nonatomic,nonnull)  NSNumber*  activeNum;
+/// 还可添加的黑名单规则数量
+ @property (strong,nonatomic,nonnull)  NSNumber*  surplusAllocateNum;
+/// 最多可添加的黑名单规则数量
+ @property (strong,nonatomic,nonnull)  NSNumber*  maxAllocateNum;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithAllocatedNum:(NSNumber*) ipantiAllocatedNum
+
+    activeNum:(NSNumber*)activeNum
+
+    surplusAllocateNum:(NSNumber*)surplusAllocateNum
+
+    maxAllocateNum:(NSNumber*)maxAllocateNum;
+@end
+
+@interface IpantiDisableWhiteListRuleOfWebRuleRequest:JDCloudRequest
+
+/// 高防实例 Id
+@property (strong,nonatomic,nonnull)  NSString*  instanceId;
+/// 网站规则 Id
+@property (strong,nonatomic,nonnull)  NSString*  webRuleId;
+/// 网站类规则的白名单规则 Id
+@property (strong,nonatomic,nonnull)  NSString*  webWhiteListRuleId;
+-(id) initWithRegion:(NSString *)regionId
+instanceId:(NSString*)instanceId
+webRuleId:(NSString*)webRuleId
+webWhiteListRuleId:(NSString*)webWhiteListRuleId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+instanceId:(NSString*)instanceId
+webRuleId:(NSString*)webRuleId
+webWhiteListRuleId:(NSString*)webWhiteListRuleId;
+
+@end
+
+@interface IpantiDisableWebRuleCCObserverModeRequest:JDCloudRequest
+
+/// 高防实例 Id
+@property (strong,nonatomic,nonnull)  NSString*  instanceId;
+/// 网站规则 Id
+@property (strong,nonatomic,nonnull)  NSString*  webRuleId;
+-(id) initWithRegion:(NSString *)regionId
+instanceId:(NSString*)instanceId
+webRuleId:(NSString*)webRuleId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+instanceId:(NSString*)instanceId
+webRuleId:(NSString*)webRuleId;
+
+@end
+
+@interface IpantiDescribeForwardRulesRequest:JDCloudRequest
+
+/// 页码, 默认为1
+@property (strong,nonatomic,nonnull)  NSNumber*  pageNumber;
+/// 分页大小, 默认为10, 取值范围[10, 100]
+@property (strong,nonatomic,nonnull)  NSNumber*  pageSize;
+/// 查询类型名称, domain:源站域名, ip:源站 IP, port: 转发端口, originPort: 源站端口
+@property (strong,nonatomic,nonnull)  NSString*  searchType;
+/// 查询类型值
+@property (strong,nonatomic,nonnull)  NSString*  searchValue;
+/// 高防实例 Id
+@property (strong,nonatomic,nonnull)  NSString*  instanceId;
+-(id) initWithRegion:(NSString *)regionId
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+searchType:(NSString*)searchType
+searchValue:(NSString*)searchValue
+instanceId:(NSString*)instanceId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+searchType:(NSString*)searchType
+searchValue:(NSString*)searchValue
+instanceId:(NSString*)instanceId;
+
+@end
+
+@interface IpantiDescribeForwardRuleRequest:JDCloudRequest
+
+/// 高防实例 Id
+@property (strong,nonatomic,nonnull)  NSString*  instanceId;
+/// 转发规则 Id
+@property (strong,nonatomic,nonnull)  NSString*  forwardRuleId;
+-(id) initWithRegion:(NSString *)regionId
+instanceId:(NSString*)instanceId
+forwardRuleId:(NSString*)forwardRuleId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+instanceId:(NSString*)instanceId
+forwardRuleId:(NSString*)forwardRuleId;
+
+@end
+
+@interface IpantiModifyForwardRuleResult : NSObject
+/// 0: 更新规则失败, 1: 更新规则成功
+ @property (strong,nonatomic,nonnull)  NSNumber*  code;
+/// 更新规则失败时给出具体原因
+ @property (strong,nonatomic,nonnull)  NSString*  message;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithCode:(NSNumber*) code
+
+    message:(NSString*)message;
+@end
+
+@interface IpantiDescribeWhiteListRuleOfForwardRuleRequest:JDCloudRequest
+
+/// 高防实例 Id
+@property (strong,nonatomic,nonnull)  NSString*  instanceId;
+/// 转发规则 Id
+@property (strong,nonatomic,nonnull)  NSString*  forwardRuleId;
+-(id) initWithRegion:(NSString *)regionId
+instanceId:(NSString*)instanceId
+forwardRuleId:(NSString*)forwardRuleId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+instanceId:(NSString*)instanceId
+forwardRuleId:(NSString*)forwardRuleId;
+
+@end
+
+@interface IpantiEnableWhiteListRuleOfForwardRuleResult : NSObject
+/// 开启结果, 0: 开启失败, 1: 开启成功
+ @property (strong,nonatomic,nonnull)  NSNumber*  code;
+/// 开启失败时给出具体原因
+ @property (strong,nonatomic,nonnull)  NSString*  message;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithCode:(NSNumber*) code
+
+    message:(NSString*)message;
+@end
+
+@interface IpantiEnableBlackListRuleOfForwardRuleResult : NSObject
+/// 开启结果, 0: 开启失败, 1: 开启成功
+ @property (strong,nonatomic,nonnull)  NSNumber*  code;
+/// 开启失败时给出具体原因
+ @property (strong,nonatomic,nonnull)  NSString*  message;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithCode:(NSNumber*) code
+
+    message:(NSString*)message;
+@end
+
+@interface IpantiModifyProtectionRuleOfForwardRuleResult : NSObject
+/// 0: 修改规则失败, 1: 修改规则成功
+ @property (strong,nonatomic,nonnull)  NSNumber*  code;
+/// 修改规则失败时给出具体原因
+ @property (strong,nonatomic,nonnull)  NSString*  message;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithCode:(NSNumber*) code
+
+    message:(NSString*)message;
+@end
+
+@interface IpantiEnableWhiteListRuleOfForwardRuleRequest:JDCloudRequest
+
+/// 高防实例 Id
+@property (strong,nonatomic,nonnull)  NSString*  instanceId;
+/// 转发规则 Id
+@property (strong,nonatomic,nonnull)  NSString*  forwardRuleId;
+-(id) initWithRegion:(NSString *)regionId
+instanceId:(NSString*)instanceId
+forwardRuleId:(NSString*)forwardRuleId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+instanceId:(NSString*)instanceId
+forwardRuleId:(NSString*)forwardRuleId;
+
+@end
+
+@interface IpantiEnableBlackListRuleOfForwardRuleRequest:JDCloudRequest
+
+/// 高防实例 Id
+@property (strong,nonatomic,nonnull)  NSString*  instanceId;
+/// 转发规则 Id
+@property (strong,nonatomic,nonnull)  NSString*  forwardRuleId;
+-(id) initWithRegion:(NSString *)regionId
+instanceId:(NSString*)instanceId
+forwardRuleId:(NSString*)forwardRuleId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+instanceId:(NSString*)instanceId
+forwardRuleId:(NSString*)forwardRuleId;
+
+@end
+
+@interface IpantiDeleteForwardRuleResult : NSObject
+/// 0: 删除规则失败, 1: 删除规则成功
+ @property (strong,nonatomic,nonnull)  NSNumber*  code;
+/// 删除规则失败时给出具体原因
+ @property (strong,nonatomic,nonnull)  NSString*  message;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithCode:(NSNumber*) code
+
+    message:(NSString*)message;
+@end
+
+@interface IpantiSwitchForwardRuleOriginRequest:JDCloudRequest
+
+/// 高防实例 Id
+@property (strong,nonatomic,nonnull)  NSString*  instanceId;
+/// 转发规则 Id
+@property (strong,nonatomic,nonnull)  NSString*  forwardRuleId;
+-(id) initWithRegion:(NSString *)regionId
+instanceId:(NSString*)instanceId
+forwardRuleId:(NSString*)forwardRuleId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+instanceId:(NSString*)instanceId
+forwardRuleId:(NSString*)forwardRuleId;
+
+@end
+
+@interface IpantiSwitchForwardRuleOriginResult : NSObject
+/// 0: 切换失败, 1: 切换成功
+ @property (strong,nonatomic,nonnull)  NSNumber*  code;
+/// 切换失败时给出具体原因
+ @property (strong,nonatomic,nonnull)  NSString*  message;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithCode:(NSNumber*) code
+
+    message:(NSString*)message;
+@end
+
+@interface IpantiCreateForwardRuleResult : NSObject
+/// 0: 添加规则失败, 1: 添加规则成功
+ @property (strong,nonatomic,nonnull)  NSNumber*  code;
+/// 添加规则失败时给出具体原因
+ @property (strong,nonatomic,nonnull)  NSString*  message;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithCode:(NSNumber*) code
+
+    message:(NSString*)message;
+@end
+
+@interface IpantiSwitchForwardRuleProtectRequest:JDCloudRequest
+
+/// 高防实例 Id
+@property (strong,nonatomic,nonnull)  NSString*  instanceId;
+/// 转发规则 Id
+@property (strong,nonatomic,nonnull)  NSString*  forwardRuleId;
+-(id) initWithRegion:(NSString *)regionId
+instanceId:(NSString*)instanceId
+forwardRuleId:(NSString*)forwardRuleId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+instanceId:(NSString*)instanceId
+forwardRuleId:(NSString*)forwardRuleId;
+
+@end
+
+@interface IpantiDescribeBlackListRuleOfForwardRuleRequest:JDCloudRequest
+
+/// 高防实例 Id
+@property (strong,nonatomic,nonnull)  NSString*  instanceId;
+/// 转发规则 Id
+@property (strong,nonatomic,nonnull)  NSString*  forwardRuleId;
+-(id) initWithRegion:(NSString *)regionId
+instanceId:(NSString*)instanceId
+forwardRuleId:(NSString*)forwardRuleId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+instanceId:(NSString*)instanceId
+forwardRuleId:(NSString*)forwardRuleId;
+
+@end
+
+@interface IpantiSwitchForwardRuleProtectResult : NSObject
+/// 0: 切换失败, 1: 切换成功
+ @property (strong,nonatomic,nonnull)  NSNumber*  code;
+/// 切换失败时给出具体原因
+ @property (strong,nonatomic,nonnull)  NSString*  message;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithCode:(NSNumber*) code
+
+    message:(NSString*)message;
+@end
+
+@interface IpantiModifyBlackListRuleOfForwardRuleResult : NSObject
+/// 修改结果, 0: 修改失败, 1: 修改成功
+ @property (strong,nonatomic,nonnull)  NSNumber*  code;
+/// 修改失败时给出具体原因
+ @property (strong,nonatomic,nonnull)  NSString*  message;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithCode:(NSNumber*) code
+
+    message:(NSString*)message;
+@end
+
+@interface IpantiDeleteForwardRuleRequest:JDCloudRequest
+
+/// 高防实例 Id
+@property (strong,nonatomic,nonnull)  NSString*  instanceId;
+/// 转发规则 Id
+@property (strong,nonatomic,nonnull)  NSString*  forwardRuleId;
+-(id) initWithRegion:(NSString *)regionId
+instanceId:(NSString*)instanceId
+forwardRuleId:(NSString*)forwardRuleId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+instanceId:(NSString*)instanceId
+forwardRuleId:(NSString*)forwardRuleId;
+
+@end
+
+@interface IpantiModifyWhiteListRuleOfForwardRuleResult : NSObject
+/// 修改结果, 0: 修改失败, 1: 修改成功
+ @property (strong,nonatomic,nonnull)  NSNumber*  code;
+/// 修改失败时给出具体原因
+ @property (strong,nonatomic,nonnull)  NSString*  message;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithCode:(NSNumber*) code
+
+    message:(NSString*)message;
+@end
+
+@interface IpantiDescribeProtectionRuleOfForwardRuleRequest:JDCloudRequest
+
+/// 高防实例 Id
+@property (strong,nonatomic,nonnull)  NSString*  instanceId;
+/// 转发规则 Id
+@property (strong,nonatomic,nonnull)  NSString*  forwardRuleId;
+-(id) initWithRegion:(NSString *)regionId
+instanceId:(NSString*)instanceId
+forwardRuleId:(NSString*)forwardRuleId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+instanceId:(NSString*)instanceId
+forwardRuleId:(NSString*)forwardRuleId;
+
+@end
+
+@interface IpantiDisableWhiteListRuleOfForwardRuleResult : NSObject
+/// 关闭结果, 0: 关闭失败, 1: 关闭成功
+ @property (strong,nonatomic,nonnull)  NSNumber*  code;
+/// 关闭失败时给出具体原因
+ @property (strong,nonatomic,nonnull)  NSString*  message;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithCode:(NSNumber*) code
+
+    message:(NSString*)message;
+@end
+
+@interface IpantiDisableBlackListRuleOfForwardRuleRequest:JDCloudRequest
+
+/// 高防实例 Id
+@property (strong,nonatomic,nonnull)  NSString*  instanceId;
+/// 转发规则 Id
+@property (strong,nonatomic,nonnull)  NSString*  forwardRuleId;
+-(id) initWithRegion:(NSString *)regionId
+instanceId:(NSString*)instanceId
+forwardRuleId:(NSString*)forwardRuleId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+instanceId:(NSString*)instanceId
+forwardRuleId:(NSString*)forwardRuleId;
+
+@end
+
+@interface IpantiDisableBlackListRuleOfForwardRuleResult : NSObject
+/// 关闭结果, 0: 关闭失败, 1: 关闭成功
+ @property (strong,nonatomic,nonnull)  NSNumber*  code;
+/// 关闭失败时给出具体原因
+ @property (strong,nonatomic,nonnull)  NSString*  message;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithCode:(NSNumber*) code
+
+    message:(NSString*)message;
+@end
+
+@interface IpantiDisableWhiteListRuleOfForwardRuleRequest:JDCloudRequest
+
+/// 高防实例 Id
+@property (strong,nonatomic,nonnull)  NSString*  instanceId;
+/// 转发规则 Id
+@property (strong,nonatomic,nonnull)  NSString*  forwardRuleId;
+-(id) initWithRegion:(NSString *)regionId
+instanceId:(NSString*)instanceId
+forwardRuleId:(NSString*)forwardRuleId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+instanceId:(NSString*)instanceId
+forwardRuleId:(NSString*)forwardRuleId;
+
+@end
+
+@interface IpantiDescribeCCAttackLogDetailsRequest:JDCloudRequest
+
+/// 页码, 默认为1
+@property (strong,nonatomic,nonnull)  NSNumber*  pageNumber;
+/// 分页大小, 默认为10, 取值范围[10, 100]
+@property (strong,nonatomic,nonnull)  NSNumber*  pageSize;
+/// 开始时间, 只能查询最近 60 天以内的数据, UTC 时间, 格式: yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
+@property (strong,nonatomic,nonnull)  NSString*  startTime;
+/// 查询的结束时间, UTC 时间, 格式: yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
+@property (strong,nonatomic,nonnull)  NSString*  endTime;
+/// 高防实例 ID
+@property (strong,nonatomic,nonnull)  NSString*  instanceId;
+/// 查询的子域名，只有选中某一个实例后才能多选子域名
+@property (strong,nonatomic,nonnull)  NSArray<NSString*>*  subDomain;
+/// CC 攻击记录Id
+@property (strong,nonatomic,nonnull)  NSString*  attackId;
+-(id) initWithRegion:(NSString *)regionId
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+startTime:(NSString*)startTime
+endTime:(NSString*)endTime
+instanceId:(NSString*)instanceId
+subDomain:(NSArray<NSString*>*)subDomain
+attackId:(NSString*)attackId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+startTime:(NSString*)startTime
+endTime:(NSString*)endTime
+instanceId:(NSString*)instanceId
+subDomain:(NSArray<NSString*>*)subDomain
+attackId:(NSString*)attackId;
+
+@end
+
+@interface IpantiDescribeCCAttackLogsRequest:JDCloudRequest
+
+/// 页码, 默认为1
+@property (strong,nonatomic,nonnull)  NSNumber*  pageNumber;
+/// 分页大小, 默认为10, 取值范围[10, 100]
+@property (strong,nonatomic,nonnull)  NSNumber*  pageSize;
+/// 开始时间, 只能查询最近 60 天以内的数据, UTC 时间, 格式：yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
+@property (strong,nonatomic,nonnull)  NSString*  startTime;
+/// 查询的结束时间, UTC 时间, 格式：yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
+@property (strong,nonatomic,nonnull)  NSString*  endTime;
+/// 高防实例 ID
+@property (strong,nonatomic,nonnull)  NSArray<NSString*>*  instanceId;
+-(id) initWithRegion:(NSString *)regionId
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+startTime:(NSString*)startTime
+endTime:(NSString*)endTime
+instanceId:(NSArray<NSString*>*)instanceId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+startTime:(NSString*)startTime
+endTime:(NSString*)endTime
+instanceId:(NSArray<NSString*>*)instanceId;
+
+@end
+
+@interface IpantiDescribeAttackStatisticsRequest:JDCloudRequest
+
+/// 开始时间, 只能查询最近 60 天以内的数据, UTC 时间, 格式：yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
+@property (strong,nonatomic,nonnull)  NSString*  startTime;
+/// 查询的结束时间, UTC 时间, 格式：yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
+@property (strong,nonatomic,nonnull)  NSString*  endTime;
+/// 高防实例 ID
+@property (strong,nonatomic,nonnull)  NSArray<NSString*>*  instanceId;
+/// 攻击类型, 0 为 DDoS, 1 为 CC
+@property (strong,nonatomic,nonnull)  NSNumber*  type;
+-(id) initWithRegion:(NSString *)regionId
+startTime:(NSString*)startTime
+endTime:(NSString*)endTime
+instanceId:(NSArray<NSString*>*)instanceId
+type:(NSNumber*)type;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+startTime:(NSString*)startTime
+endTime:(NSString*)endTime
+instanceId:(NSArray<NSString*>*)instanceId
+type:(NSNumber*)type;
+
+@end
+
+@interface IpantiDescribeAttackStatisticsResult : NSObject
+/// 攻击流量峰值
+ @property (strong,nonatomic,nonnull)  NSNumber*  flow;
+/// 攻击次数
+ @property (strong,nonatomic,nonnull)  NSNumber*  count;
+/// 流量单位, bps、Kbps、Mbps、Gbps
+ @property (strong,nonatomic,nonnull)  NSString*  unit;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithFlow:(NSNumber*) flow
+
+    count:(NSNumber*)count
+
+    unit:(NSString*)unit;
+@end
+
+@interface IpantiDescribeAttackTypeCountRequest:JDCloudRequest
+
+/// 开始时间, 只能查询最近 60 天以内的数据, UTC 时间, 格式：yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
+@property (strong,nonatomic,nonnull)  NSString*  startTime;
+/// 查询的结束时间, UTC 时间, 格式：yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
+@property (strong,nonatomic,nonnull)  NSString*  endTime;
+/// 高防实例 ID
+@property (strong,nonatomic,nonnull)  NSArray<NSString*>*  instanceId;
+-(id) initWithRegion:(NSString *)regionId
+startTime:(NSString*)startTime
+endTime:(NSString*)endTime
+instanceId:(NSArray<NSString*>*)instanceId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+startTime:(NSString*)startTime
+endTime:(NSString*)endTime
+instanceId:(NSArray<NSString*>*)instanceId;
+
+@end
+
+@interface IpantiDescribeDDoSAttackLogsRequest:JDCloudRequest
+
+/// 页码, 默认为1
+@property (strong,nonatomic,nonnull)  NSNumber*  pageNumber;
+/// 分页大小, 默认为10, 取值范围[10, 100]
+@property (strong,nonatomic,nonnull)  NSNumber*  pageSize;
+/// 开始时间, 只能查询最近 60 天以内的数据, UTC 时间, 格式：yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
+@property (strong,nonatomic,nonnull)  NSString*  startTime;
+/// 查询的结束时间, UTC 时间, 格式：yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
+@property (strong,nonatomic,nonnull)  NSString*  endTime;
+/// 高防实例 ID
+@property (strong,nonatomic,nonnull)  NSArray<NSString*>*  instanceId;
+-(id) initWithRegion:(NSString *)regionId
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+startTime:(NSString*)startTime
+endTime:(NSString*)endTime
+instanceId:(NSArray<NSString*>*)instanceId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+startTime:(NSString*)startTime
+endTime:(NSString*)endTime
+instanceId:(NSArray<NSString*>*)instanceId;
+
+@end
+
+@interface IpantiDescribeCpsIpListRequest:JDCloudRequest
+
+/// 页码, 默认为 1
+@property (strong,nonatomic,nonnull)  NSNumber*  pageNumber;
+/// 分页大小, 默认为 10, 取值范围 [0, 100], 0 表示全量
+@property (strong,nonatomic,nonnull)  NSNumber*  pageSize;
+-(id) initWithRegion:(NSString *)regionId
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize;
+
+@end
+
+@interface IpantiCreateInstanceResult : NSObject
+/// 0: 新购或升级实例失败, 1: 新购或升级实例成功
+ @property (strong,nonatomic,nonnull)  NSNumber*  code;
+/// 新购或升级成功时为 订单 id, 创建实例失败时给出具体原因
+ @property (strong,nonatomic,nonnull)  NSString*  message;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithCode:(NSNumber*) code
+
+    message:(NSString*)message;
+@end
+
+@interface IpantiCheckNameRequest:JDCloudRequest
+
+/// 待检测实例名称
+@property (strong,nonatomic,nonnull)  NSString*  name;
+-(id) initWithRegion:(NSString *)regionId
+name:(NSString*)name;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+name:(NSString*)name;
+
+@end
+
+@interface IpantiModifyInstanceNameResult : NSObject
+/// 0: 修改实例名称失败, 1: 修改实例名称成功
+ @property (strong,nonatomic,nonnull)  NSNumber*  code;
+/// 修改失败时给出具体原因
+ @property (strong,nonatomic,nonnull)  NSString*  message;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithCode:(NSNumber*) code
+
+    message:(NSString*)message;
+@end
+
+@interface IpantiModifyAlarmConfigResult : NSObject
+/// 0: 修改失败, 1: 修改成功
+ @property (strong,nonatomic,nonnull)  NSNumber*  code;
+/// 修改失败时给出具体原因
+ @property (strong,nonatomic,nonnull)  NSString*  message;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithCode:(NSNumber*) code
+
+    message:(NSString*)message;
+@end
+
+@interface IpantiModifyEPBResult : NSObject
+/// 0: 修改失败, 1: 修改成功
+ @property (strong,nonatomic,nonnull)  NSNumber*  code;
+/// 修改失败时给出具体原因
+ @property (strong,nonatomic,nonnull)  NSString*  message;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithCode:(NSNumber*) code
+
+    message:(NSString*)message;
+@end
+
+@interface IpantiDescribeInstancesRequest:JDCloudRequest
+
+/// 页码, 默认为 1
+@property (strong,nonatomic,nonnull)  NSNumber*  pageNumber;
+/// 分页大小, 默认为 10, 取值范围[10, 100], 0 表示全量
+@property (strong,nonatomic,nonnull)  NSNumber*  pageSize;
+/// 实例名称，可模糊匹配
+@property (strong,nonatomic,nonnull)  NSString*  name;
+-(id) initWithRegion:(NSString *)regionId
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+name:(NSString*)name;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+name:(NSString*)name;
+
+@end
+
+@interface IpantiDescribeInstanceRequest:JDCloudRequest
+
+/// 实例 ID
+@property (strong,nonatomic,nonnull)  NSString*  instanceId;
+-(id) initWithRegion:(NSString *)regionId
+instanceId:(NSString*)instanceId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+instanceId:(NSString*)instanceId;
+
+@end
+
+@interface IpantiCheckNameResult : NSObject
+/// 检测结果 code, 0: 不可用, 1: 可用
+ @property (strong,nonatomic,nonnull)  NSNumber*  code;
+/// 检测结果, 不可用时给出具体原因
+ @property (strong,nonatomic,nonnull)  NSString*  message;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithCode:(NSNumber*) code
+
+    message:(NSString*)message;
+@end
+
+@interface IpantiDescribeVpcIpListRequest:JDCloudRequest
+
+/// 页码, 默认为 1
+@property (strong,nonatomic,nonnull)  NSNumber*  pageNumber;
+/// 分页大小, 默认为 10, 取值范围 [0, 100], 0 表示全量
+@property (strong,nonatomic,nonnull)  NSNumber*  pageSize;
+-(id) initWithRegion:(NSString *)regionId
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize;
+
+@end
+
+@interface IpantiDescribeNameListRequest:JDCloudRequest
+
+/// 高防实例 ID, 为空则查询所有实例名称
+@property (strong,nonatomic,nonnull)  NSString*  idValue;
+/// 实例名称, 可模糊匹配
+@property (strong,nonatomic,nonnull)  NSString*  name;
+/// 页码, 默认为 1
+@property (strong,nonatomic,nonnull)  NSNumber*  pageNumber;
+/// 分页大小, 默认为 10, 取值范围 [10, 100]
+@property (strong,nonatomic,nonnull)  NSNumber*  pageSize;
+-(id) initWithRegion:(NSString *)regionId
+idValue:(NSString*)idValue
+name:(NSString*)name
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+idValue:(NSString*)idValue
+name:(NSString*)name
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize;
+
+@end
+
+@interface IpantiDescribeAlarmConfigRequest:JDCloudRequest
+
+/// 实例 ID
+@property (strong,nonatomic,nonnull)  NSString*  instanceId;
+-(id) initWithRegion:(NSString *)regionId
+instanceId:(NSString*)instanceId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+instanceId:(NSString*)instanceId;
+
+@end
+
+@interface IpantiDescribeFwdGraphResult : NSObject
+/// ForwardRecord
+ @property (strong,nonatomic,nonnull)  NSArray<NSNumber*>*  forwardRecord;
+/// Time
+ @property (strong,nonatomic,nonnull)  NSArray<NSString*>*  time;
+/// 流量单位, bps, Kbps, Mbps, Gbps
+ @property (strong,nonatomic,nonnull)  NSString*  unit;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithForwardRecord:(NSArray<NSNumber*>*) forwardRecord
+
+    time:(NSArray<NSString*>*)time
+
+    unit:(NSString*)unit;
+@end
+
+@interface IpantiDescribeCCGraphRequest:JDCloudRequest
+
+/// 开始时间, 最多查最近 60 天, UTC 时间, 格式: yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
+@property (strong,nonatomic,nonnull)  NSString*  startTime;
+/// 查询的结束时间, UTC 时间, 格式: yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
+@property (strong,nonatomic,nonnull)  NSString*  endTime;
+/// 高防实例 Id 列表
+@property (strong,nonatomic,nonnull)  NSArray<NSString*>*  instanceId;
+/// 规则域名列表
+@property (strong,nonatomic,nonnull)  NSArray<NSString*>*  subDomain;
+-(id) initWithRegion:(NSString *)regionId
+startTime:(NSString*)startTime
+endTime:(NSString*)endTime
+instanceId:(NSArray<NSString*>*)instanceId
+subDomain:(NSArray<NSString*>*)subDomain;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+startTime:(NSString*)startTime
+endTime:(NSString*)endTime
+instanceId:(NSArray<NSString*>*)instanceId
+subDomain:(NSArray<NSString*>*)subDomain;
+
+@end
+
+@interface IpantiDescribeFwdGraphRequest:JDCloudRequest
+
+/// 开始时间, 最多查最近 60 天, UTC 时间, 格式: yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
+@property (strong,nonatomic,nonnull)  NSString*  startTime;
+/// 查询的结束时间, UTC 时间, 格式: yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
+@property (strong,nonatomic,nonnull)  NSString*  endTime;
+/// 高防实例 Id 列表
+@property (strong,nonatomic,nonnull)  NSArray<NSString*>*  instanceId;
+-(id) initWithRegion:(NSString *)regionId
+startTime:(NSString*)startTime
+endTime:(NSString*)endTime
+instanceId:(NSArray<NSString*>*)instanceId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+startTime:(NSString*)startTime
+endTime:(NSString*)endTime
+instanceId:(NSArray<NSString*>*)instanceId;
+
+@end
+
+@interface IpantiDescribeCCGraphResult : NSObject
+/// PostProtect
+ @property (strong,nonatomic,nonnull)  NSArray<NSNumber*>*  postProtect;
+/// PreProtect
+ @property (strong,nonatomic,nonnull)  NSArray<NSNumber*>*  preProtect;
+/// Time
+ @property (strong,nonatomic,nonnull)  NSArray<NSString*>*  time;
+/// 流量单位
+ @property (strong,nonatomic,nonnull)  NSString*  unit;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithPostProtect:(NSArray<NSNumber*>*) postProtect
+
+    preProtect:(NSArray<NSNumber*>*)preProtect
+
+    time:(NSArray<NSString*>*)time
+
+    unit:(NSString*)unit;
+@end
+
+@interface IpantiDescribeDDoSGraphResult : NSObject
+/// PreProtect
+ @property (strong,nonatomic,nonnull)  NSArray<NSNumber*>*  preProtect;
+/// PostProtect
+ @property (strong,nonatomic,nonnull)  NSArray<NSNumber*>*  postProtect;
+/// Time
+ @property (strong,nonatomic,nonnull)  NSArray<NSString*>*  time;
+/// 流量单位, bps, Kbps, Mbps, Gbps
+ @property (strong,nonatomic,nonnull)  NSString*  unit;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithPreProtect:(NSArray<NSNumber*>*) preProtect
+
+    postProtect:(NSArray<NSNumber*>*)postProtect
+
+    time:(NSArray<NSString*>*)time
+
+    unit:(NSString*)unit;
+@end
+
+@interface IpantiDescribeDDoSGraphRequest:JDCloudRequest
+
+/// 开始时间, 最多查最近 60 天, UTC 时间, 格式: yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
+@property (strong,nonatomic,nonnull)  NSString*  startTime;
+/// 查询的结束时间, UTC 时间, 格式: yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
+@property (strong,nonatomic,nonnull)  NSString*  endTime;
+/// 高防实例 Id 列表
+@property (strong,nonatomic,nonnull)  NSArray<NSString*>*  instanceId;
+-(id) initWithRegion:(NSString *)regionId
+startTime:(NSString*)startTime
+endTime:(NSString*)endTime
+instanceId:(NSArray<NSString*>*)instanceId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+startTime:(NSString*)startTime
+endTime:(NSString*)endTime
+instanceId:(NSArray<NSString*>*)instanceId;
+
+@end
+
+@interface IpantiDescribeIpSetRequest:JDCloudRequest
+
+/// 高防实例 Id
+@property (strong,nonatomic,nonnull)  NSString*  instanceId;
+/// IP 黑白名单 Id
+@property (strong,nonatomic,nonnull)  NSString*  ipSetId;
+-(id) initWithRegion:(NSString *)regionId
+instanceId:(NSString*)instanceId
+ipSetId:(NSString*)ipSetId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+instanceId:(NSString*)instanceId
+ipSetId:(NSString*)ipSetId;
+
+@end
+
+@interface IpantiDescribeIpSetUsageRequest:JDCloudRequest
+
+/// 高防实例 Id
+@property (strong,nonatomic,nonnull)  NSString*  instanceId;
+-(id) initWithRegion:(NSString *)regionId
+instanceId:(NSString*)instanceId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+instanceId:(NSString*)instanceId;
+
+@end
+
+@interface IpantiDescribeIpSetsRequest:JDCloudRequest
+
+/// 页码, 默认为1
+@property (strong,nonatomic,nonnull)  NSNumber*  pageNumber;
+/// 分页大小, 默认为10, 取值范围[10, 100]
+@property (strong,nonatomic,nonnull)  NSNumber*  pageSize;
+/// 高防实例 Id
+@property (strong,nonatomic,nonnull)  NSString*  instanceId;
+-(id) initWithRegion:(NSString *)regionId
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+instanceId:(NSString*)instanceId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+instanceId:(NSString*)instanceId;
+
+@end
+
+@interface IpantiDeleteIpSetRequest:JDCloudRequest
+
+/// 高防实例 Id
+@property (strong,nonatomic,nonnull)  NSString*  instanceId;
+/// IP 黑白名单 Id
+@property (strong,nonatomic,nonnull)  NSString*  ipSetId;
+-(id) initWithRegion:(NSString *)regionId
+instanceId:(NSString*)instanceId
+ipSetId:(NSString*)ipSetId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+instanceId:(NSString*)instanceId
+ipSetId:(NSString*)ipSetId;
+
+@end
+
+@interface IpantiCreateIpSetResult : NSObject
+/// 0: 添加失败, 1: 添加成功
+ @property (strong,nonatomic,nonnull)  NSNumber*  code;
+/// 添加失败时给出具体原因
+ @property (strong,nonatomic,nonnull)  NSString*  message;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithCode:(NSNumber*) code
+
+    message:(NSString*)message;
+@end
+
+@interface IpantiDescribeIpSetUsageResult : NSObject
+/// 实例已添加的 IP 黑白名单数量
+ @property (strong,nonatomic,nonnull)  NSNumber*  ipantiAllocatedNum;
+/// 实例还可添加的 IP 黑白名单数量
+ @property (strong,nonatomic,nonnull)  NSNumber*  surplusAllocateNum;
+/// 实例最多可添加的 IP 黑白名单数量
+ @property (strong,nonatomic,nonnull)  NSNumber*  maxAllocateNum;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithAllocatedNum:(NSNumber*) ipantiAllocatedNum
+
+    surplusAllocateNum:(NSNumber*)surplusAllocateNum
+
+    maxAllocateNum:(NSNumber*)maxAllocateNum;
+@end
+
+@interface IpantiCreateWhiteListRuleOfWebRuleRequest:JDCloudRequest
+
+/// 添加网站类规则的白名单规则请求参数
+@property (strong,nonatomic,nonnull)  WebWhiteListRuleSpec*  webWhiteListRuleSpec;
+/// 高防实例 Id
+@property (strong,nonatomic,nonnull)  NSString*  instanceId;
+/// 网站规则 Id
+@property (strong,nonatomic,nonnull)  NSString*  webRuleId;
+-(id) initWithRegion:(NSString *)regionId
+webWhiteListRuleSpec:(WebWhiteListRuleSpec*)webWhiteListRuleSpec
+instanceId:(NSString*)instanceId
+webRuleId:(NSString*)webRuleId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+webWhiteListRuleSpec:(WebWhiteListRuleSpec*)webWhiteListRuleSpec
+instanceId:(NSString*)instanceId
+webRuleId:(NSString*)webRuleId;
+
+@end
+
+@interface IpantiEnableWebRuleCCObserverModeResponse : NSObject
+
+@property NSString* requestId;
+
+@property ServiceError* error;
+
+@property IpantiEnableWebRuleCCObserverModeResult* result;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+
+-(id) initWithRequestId:(NSString*) requestId
+        error:(ServiceError*) error
+        result:(IpantiEnableWebRuleCCObserverModeResult*) result;
+@end
+
+@interface IpantiDisableWebRuleCCObserverModeResponse : NSObject
+
+@property NSString* requestId;
+
+@property ServiceError* error;
+
+@property IpantiDisableWebRuleCCObserverModeResult* result;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+
+-(id) initWithRequestId:(NSString*) requestId
+        error:(ServiceError*) error
+        result:(IpantiDisableWebRuleCCObserverModeResult*) result;
+@end
+
+@interface IpantiModifyCCProtectionConfigOfWebRuleResponse : NSObject
+
+@property NSString* requestId;
+
+@property ServiceError* error;
+
+@property IpantiModifyCCProtectionConfigOfWebRuleResult* result;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+
+-(id) initWithRequestId:(NSString*) requestId
+        error:(ServiceError*) error
+        result:(IpantiModifyCCProtectionConfigOfWebRuleResult*) result;
+@end
+
+@interface IpantiDescribeWebRuleResult : NSObject
+/// Data
+ @property (strong,nonatomic,nonnull)  WebRule*  data;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithData:(WebRule*) data;
+@end
+
+@interface IpantiEnableCCProtectionRuleOfWebRuleResponse : NSObject
+
+@property NSString* requestId;
+
+@property ServiceError* error;
+
+@property IpantiEnableCCProtectionRuleOfWebRuleResult* result;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+
+-(id) initWithRequestId:(NSString*) requestId
+        error:(ServiceError*) error
+        result:(IpantiEnableCCProtectionRuleOfWebRuleResult*) result;
+@end
+
+@interface IpantiCreateBlackListRuleOfWebRuleRequest:JDCloudRequest
+
+/// 添加网站类规则的黑名单规则请求参数
+@property (strong,nonatomic,nonnull)  WebBlackListRuleSpec*  webBlackListRuleSpec;
+/// 高防实例 Id
+@property (strong,nonatomic,nonnull)  NSString*  instanceId;
+/// 网站规则 Id
+@property (strong,nonatomic,nonnull)  NSString*  webRuleId;
+-(id) initWithRegion:(NSString *)regionId
+webBlackListRuleSpec:(WebBlackListRuleSpec*)webBlackListRuleSpec
+instanceId:(NSString*)instanceId
+webRuleId:(NSString*)webRuleId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+webBlackListRuleSpec:(WebBlackListRuleSpec*)webBlackListRuleSpec
+instanceId:(NSString*)instanceId
+webRuleId:(NSString*)webRuleId;
+
+@end
+
+@interface IpantiDescribeBlackListRuleOfWebRuleResult : NSObject
+/// Data
+ @property (strong,nonatomic,nonnull)  WebBlackListRule*  data;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithData:(WebBlackListRule*) data;
+@end
+
+@interface IpantiCreateCCProtectionRuleOfWebRuleRequest:JDCloudRequest
+
+/// 添加 CC 防护规则请求参数
+@property (strong,nonatomic,nonnull)  CCProtectionRuleSpec*  ccProtectionRuleSpec;
+/// 高防实例 Id
+@property (strong,nonatomic,nonnull)  NSString*  instanceId;
+/// 网站规则 Id
+@property (strong,nonatomic,nonnull)  NSString*  webRuleId;
+-(id) initWithRegion:(NSString *)regionId
+ccProtectionRuleSpec:(CCProtectionRuleSpec*)ccProtectionRuleSpec
+instanceId:(NSString*)instanceId
+webRuleId:(NSString*)webRuleId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+ccProtectionRuleSpec:(CCProtectionRuleSpec*)ccProtectionRuleSpec
+instanceId:(NSString*)instanceId
+webRuleId:(NSString*)webRuleId;
+
+@end
+
+@interface IpantiDescribeWhiteListRuleOfWebRuleResult : NSObject
+/// Data
+ @property (strong,nonatomic,nonnull)  WebWhiteListRule*  data;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithData:(WebWhiteListRule*) data;
+@end
+
+@interface IpantiEnableWhiteListRuleOfWebRuleResponse : NSObject
+
+@property NSString* requestId;
+
+@property ServiceError* error;
+
+@property IpantiEnableWhiteListRuleOfWebRuleResult* result;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+
+-(id) initWithRequestId:(NSString*) requestId
+        error:(ServiceError*) error
+        result:(IpantiEnableWhiteListRuleOfWebRuleResult*) result;
+@end
+
+@interface IpantiDescribeWebRulesResult : NSObject
+/// DataList
+ @property (strong,nonatomic,nonnull)  NSArray<WebRule*>*  dataList;
+/// 当前页数量
+ @property (strong,nonatomic,nonnull)  NSNumber*  currentCount;
+/// 总数
+ @property (strong,nonatomic,nonnull)  NSNumber*  totalCount;
+/// 总页数
+ @property (strong,nonatomic,nonnull)  NSNumber*  totalPage;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithDataList:(NSArray<WebRule*>*) dataList
+
+    currentCount:(NSNumber*)currentCount
+
+    totalCount:(NSNumber*)totalCount
+
+    totalPage:(NSNumber*)totalPage;
+@end
+
+@interface IpantiDescribeWebRulesResponse : NSObject
+
+@property NSString* requestId;
+
+@property ServiceError* error;
+
+@property IpantiDescribeWebRulesResult* result;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+
+-(id) initWithRequestId:(NSString*) requestId
+        error:(ServiceError*) error
+        result:(IpantiDescribeWebRulesResult*) result;
+@end
+
+@interface IpantiModifyCCProtectionRuleOfWebRuleRequest:JDCloudRequest
+
+/// 修改 CC 防护规则请求参数
+@property (strong,nonatomic,nonnull)  CCProtectionRuleSpec*  ccProtectionRuleSpec;
+/// 高防实例 Id
+@property (strong,nonatomic,nonnull)  NSString*  instanceId;
+/// 网站规则 Id
+@property (strong,nonatomic,nonnull)  NSString*  webRuleId;
+/// 网站类规则的 CC 防护规则 Id
+@property (strong,nonatomic,nonnull)  NSString*  ccProtectionRuleId;
+-(id) initWithRegion:(NSString *)regionId
+ccProtectionRuleSpec:(CCProtectionRuleSpec*)ccProtectionRuleSpec
+instanceId:(NSString*)instanceId
+webRuleId:(NSString*)webRuleId
+ccProtectionRuleId:(NSString*)ccProtectionRuleId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+ccProtectionRuleSpec:(CCProtectionRuleSpec*)ccProtectionRuleSpec
+instanceId:(NSString*)instanceId
+webRuleId:(NSString*)webRuleId
+ccProtectionRuleId:(NSString*)ccProtectionRuleId;
+
+@end
+
+@interface IpantiDescribeWebRuleBlackListGeoAreasResult : NSObject
+/// DataList
+ @property (strong,nonatomic,nonnull)  NSArray<Country*>*  dataList;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithDataList:(NSArray<Country*>*) dataList;
+@end
+
+@interface IpantiModifyCertInfoRequest:JDCloudRequest
+
+/// 编辑网站规则证书信息请求参数
+@property (strong,nonatomic,nonnull)  CertInfoModifySpec*  certInfoModifySpec;
+/// 高防实例 Id
+@property (strong,nonatomic,nonnull)  NSString*  instanceId;
+/// 网站规则 Id
+@property (strong,nonatomic,nonnull)  NSString*  webRuleId;
+-(id) initWithRegion:(NSString *)regionId
+certInfoModifySpec:(CertInfoModifySpec*)certInfoModifySpec
+instanceId:(NSString*)instanceId
+webRuleId:(NSString*)webRuleId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+certInfoModifySpec:(CertInfoModifySpec*)certInfoModifySpec
+instanceId:(NSString*)instanceId
+webRuleId:(NSString*)webRuleId;
+
+@end
+
+@interface IpantiDeleteBlackListRuleOfWebRuleResponse : NSObject
+
+@property NSString* requestId;
+
+@property ServiceError* error;
+
+@property IpantiDeleteBlackListRuleOfWebRuleResult* result;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+
+-(id) initWithRequestId:(NSString*) requestId
+        error:(ServiceError*) error
+        result:(IpantiDeleteBlackListRuleOfWebRuleResult*) result;
+@end
+
 @interface IpantiDeleteCCProtectionRuleOfWebRuleResponse : NSObject
 
 @property NSString* requestId;
@@ -845,20 +2379,6 @@ webRuleId:(NSString*)webRuleId;
 -(id) initWithRequestId:(NSString*) requestId
         error:(ServiceError*) error
         result:(IpantiDeleteCCProtectionRuleOfWebRuleResult*) result;
-@end
-
-@interface IpantiModifyCertInfoResult : NSObject
-/// 上传 SSL 证书结果, 0: 删除证书失败, 1: 删除证书成功
- @property (strong,nonatomic,nonnull)  NSNumber*  code;
-/// 上传成功时为证书 Id, 失败时给出具体原因
- @property (strong,nonatomic,nonnull)  NSString*  message;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithCode:(NSNumber*) code
-
-    message:(NSString*)message;
 @end
 
 @interface IpantiModifyCertInfoResponse : NSObject
@@ -944,20 +2464,6 @@ webRuleId:(NSString*)webRuleId;
         result:(IpantiEnableWebRuleWhiteListResult*) result;
 @end
 
-@interface IpantiDisableWebRuleBlackListResult : NSObject
-/// 关闭结果, 0: 关闭失败, 1: 关闭成功
- @property (strong,nonatomic,nonnull)  NSNumber*  code;
-/// 关闭失败时给出具体原因
- @property (strong,nonatomic,nonnull)  NSString*  message;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithCode:(NSNumber*) code
-
-    message:(NSString*)message;
-@end
-
 @interface IpantiDisableWebRuleBlackListResponse : NSObject
 
 @property NSString* requestId;
@@ -1014,20 +2520,6 @@ webRuleId:(NSString*)webRuleId;
         result:(IpantiDescribeWhiteListRulesOfWebRuleResult*) result;
 @end
 
-@interface IpantiDisableCCProtectionRuleOfWebRuleResult : NSObject
-/// 0: 关闭失败, 1: 关闭成功
- @property (strong,nonatomic,nonnull)  NSNumber*  code;
-/// 关闭失败时给出具体原因
- @property (strong,nonatomic,nonnull)  NSString*  message;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithCode:(NSNumber*) code
-
-    message:(NSString*)message;
-@end
-
 @interface IpantiDisableCCProtectionRuleOfWebRuleResponse : NSObject
 
 @property NSString* requestId;
@@ -1043,20 +2535,6 @@ webRuleId:(NSString*)webRuleId;
 -(id) initWithRequestId:(NSString*) requestId
         error:(ServiceError*) error
         result:(IpantiDisableCCProtectionRuleOfWebRuleResult*) result;
-@end
-
-@interface IpantiDeleteWhiteListRuleOfWebRuleResult : NSObject
-/// 删除结果, 0: 删除失败, 1: 删除成功
- @property (strong,nonatomic,nonnull)  NSNumber*  code;
-/// 删除失败时给出具体原因
- @property (strong,nonatomic,nonnull)  NSString*  message;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithCode:(NSNumber*) code
-
-    message:(NSString*)message;
 @end
 
 @interface IpantiDeleteWhiteListRuleOfWebRuleResponse : NSObject
@@ -1076,37 +2554,6 @@ webRuleId:(NSString*)webRuleId;
         result:(IpantiDeleteWhiteListRuleOfWebRuleResult*) result;
 @end
 
-@interface IpantiEnableWebRuleWhiteListRequest:JDCloudRequest
-
-/// 高防实例 Id
-@property (strong,nonatomic,nonnull)  NSString*  instanceId;
-/// 网站规则 Id
-@property (strong,nonatomic,nonnull)  NSString*  webRuleId;
--(id) initWithRegion:(NSString *)regionId
-instanceId:(NSString*)instanceId
-webRuleId:(NSString*)webRuleId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-instanceId:(NSString*)instanceId
-webRuleId:(NSString*)webRuleId;
-
-@end
-
-@interface IpantiCreateWhiteListRuleOfWebRuleResult : NSObject
-/// 0: 添加失败, 1: 添加成功
- @property (strong,nonatomic,nonnull)  NSNumber*  code;
-/// 添加失败时给出具体原因
- @property (strong,nonatomic,nonnull)  NSString*  message;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithCode:(NSNumber*) code
-
-    message:(NSString*)message;
-@end
-
 @interface IpantiCreateWhiteListRuleOfWebRuleResponse : NSObject
 
 @property NSString* requestId;
@@ -1122,20 +2569,6 @@ webRuleId:(NSString*)webRuleId;
 -(id) initWithRequestId:(NSString*) requestId
         error:(ServiceError*) error
         result:(IpantiCreateWhiteListRuleOfWebRuleResult*) result;
-@end
-
-@interface IpantiModifyWebRuleResult : NSObject
-/// 修改网站类规则结果, 0: 修改失败, 1: 修改成功
- @property (strong,nonatomic,nonnull)  NSNumber*  code;
-/// 修改失败时给出具体原因
- @property (strong,nonatomic,nonnull)  NSString*  message;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithCode:(NSNumber*) code
-
-    message:(NSString*)message;
 @end
 
 @interface IpantiModifyWebRuleResponse : NSObject
@@ -1172,23 +2605,6 @@ webRuleId:(NSString*)webRuleId;
         result:(IpantiDisableWebRuleCCResult*) result;
 @end
 
-@interface IpantiSwitchWebRuleProtectRequest:JDCloudRequest
-
-/// 高防实例 Id
-@property (strong,nonatomic,nonnull)  NSString*  instanceId;
-/// 网站规则 Id
-@property (strong,nonatomic,nonnull)  NSString*  webRuleId;
--(id) initWithRegion:(NSString *)regionId
-instanceId:(NSString*)instanceId
-webRuleId:(NSString*)webRuleId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-instanceId:(NSString*)instanceId
-webRuleId:(NSString*)webRuleId;
-
-@end
-
 @interface IpantiDescribeWebRuleBlackListGeoAreasResponse : NSObject
 
 @property NSString* requestId;
@@ -1204,20 +2620,6 @@ webRuleId:(NSString*)webRuleId;
 -(id) initWithRequestId:(NSString*) requestId
         error:(ServiceError*) error
         result:(IpantiDescribeWebRuleBlackListGeoAreasResult*) result;
-@end
-
-@interface IpantiEnableWebRuleCCResult : NSObject
-/// 0: 开启 CC 失败, 1: 开启 CC 成功
- @property (strong,nonatomic,nonnull)  NSNumber*  code;
-/// 开启 CC 失败时给出具体原因
- @property (strong,nonatomic,nonnull)  NSString*  message;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithCode:(NSNumber*) code
-
-    message:(NSString*)message;
 @end
 
 @interface IpantiModifyBlackListRuleOfWebRuleRequest:JDCloudRequest
@@ -1245,20 +2647,6 @@ webBlackListRuleId:(NSString*)webBlackListRuleId;
 
 @end
 
-@interface IpantiCreateWebRuleResult : NSObject
-/// 0: 添加失败, 1: 添加成功
- @property (strong,nonatomic,nonnull)  NSNumber*  code;
-/// 添加失败时给出具体原因
- @property (strong,nonatomic,nonnull)  NSString*  message;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithCode:(NSNumber*) code
-
-    message:(NSString*)message;
-@end
-
 @interface IpantiModifyBlackListRuleOfWebRuleResponse : NSObject
 
 @property NSString* requestId;
@@ -1274,20 +2662,6 @@ webBlackListRuleId:(NSString*)webBlackListRuleId;
 -(id) initWithRequestId:(NSString*) requestId
         error:(ServiceError*) error
         result:(IpantiModifyBlackListRuleOfWebRuleResult*) result;
-@end
-
-@interface IpantiDisableWhiteListRuleOfWebRuleResult : NSObject
-/// 关闭结果, 0: 关闭失败, 1: 关闭成功
- @property (strong,nonatomic,nonnull)  NSNumber*  code;
-/// 关闭失败时给出具体原因
- @property (strong,nonatomic,nonnull)  NSString*  message;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithCode:(NSNumber*) code
-
-    message:(NSString*)message;
 @end
 
 @interface IpantiDisableWhiteListRuleOfWebRuleResponse : NSObject
@@ -1332,28 +2706,6 @@ webWhiteListRuleId:(NSString*)webWhiteListRuleId;
 
 @end
 
-@interface IpantiDescribeWebRuleWhiteListUsageResult : NSObject
-/// 已配置的白名单规则数量
- @property (strong,nonatomic,nonnull)  NSNumber*  ipantiAllocatedNum;
-/// 开启的白名单规则数量
- @property (strong,nonatomic,nonnull)  NSNumber*  activeNum;
-/// 还可添加的白名单规则数量
- @property (strong,nonatomic,nonnull)  NSNumber*  surplusAllocateNum;
-/// 最多可添加的白名单规则数量
- @property (strong,nonatomic,nonnull)  NSNumber*  maxAllocateNum;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithAllocatedNum:(NSNumber*) ipantiAllocatedNum
-
-    activeNum:(NSNumber*)activeNum
-
-    surplusAllocateNum:(NSNumber*)surplusAllocateNum
-
-    maxAllocateNum:(NSNumber*)maxAllocateNum;
-@end
-
 @interface IpantiModifyWebRuleRequest:JDCloudRequest
 
 /// 更新网站类规则请求参数
@@ -1372,27 +2724,6 @@ webRuleId:(NSString*)webRuleId;
 webRuleSpec:(WebRuleSpec*)webRuleSpec
 instanceId:(NSString*)instanceId
 webRuleId:(NSString*)webRuleId;
-
-@end
-
-@interface IpantiEnableCCProtectionRuleOfWebRuleRequest:JDCloudRequest
-
-/// 高防实例 Id
-@property (strong,nonatomic,nonnull)  NSString*  instanceId;
-/// 网站规则 Id
-@property (strong,nonatomic,nonnull)  NSString*  webRuleId;
-/// 网站类规则的 CC 防护规则 Id
-@property (strong,nonatomic,nonnull)  NSString*  ccProtectionRuleId;
--(id) initWithRegion:(NSString *)regionId
-instanceId:(NSString*)instanceId
-webRuleId:(NSString*)webRuleId
-ccProtectionRuleId:(NSString*)ccProtectionRuleId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-instanceId:(NSString*)instanceId
-webRuleId:(NSString*)webRuleId
-ccProtectionRuleId:(NSString*)ccProtectionRuleId;
 
 @end
 
@@ -1440,100 +2771,11 @@ instanceId:(NSString*)instanceId;
 
 @end
 
-@interface IpantiEnableWebRuleCCRequest:JDCloudRequest
-
-/// 高防实例 Id
-@property (strong,nonatomic,nonnull)  NSString*  instanceId;
-/// 网站规则 Id
-@property (strong,nonatomic,nonnull)  NSString*  webRuleId;
--(id) initWithRegion:(NSString *)regionId
-instanceId:(NSString*)instanceId
-webRuleId:(NSString*)webRuleId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-instanceId:(NSString*)instanceId
-webRuleId:(NSString*)webRuleId;
-
-@end
-
 @interface IpantiDescribeWebRuleBlackListGeoAreasRequest:JDCloudRequest
 
 @end
 
-@interface IpantiDeleteWebRuleRequest:JDCloudRequest
-
-/// 高防实例 Id
-@property (strong,nonatomic,nonnull)  NSString*  instanceId;
-/// 网站规则 Id
-@property (strong,nonatomic,nonnull)  NSString*  webRuleId;
--(id) initWithRegion:(NSString *)regionId
-instanceId:(NSString*)instanceId
-webRuleId:(NSString*)webRuleId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-instanceId:(NSString*)instanceId
-webRuleId:(NSString*)webRuleId;
-
-@end
-
-@interface IpantiDeleteCCProtectionRuleOfWebRuleRequest:JDCloudRequest
-
-/// 高防实例 Id
-@property (strong,nonatomic,nonnull)  NSString*  instanceId;
-/// 网站规则 Id
-@property (strong,nonatomic,nonnull)  NSString*  webRuleId;
-/// 网站类规则的 CC 防护规则 Id
-@property (strong,nonatomic,nonnull)  NSString*  ccProtectionRuleId;
--(id) initWithRegion:(NSString *)regionId
-instanceId:(NSString*)instanceId
-webRuleId:(NSString*)webRuleId
-ccProtectionRuleId:(NSString*)ccProtectionRuleId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-instanceId:(NSString*)instanceId
-webRuleId:(NSString*)webRuleId
-ccProtectionRuleId:(NSString*)ccProtectionRuleId;
-
-@end
-
 @interface IpantiDescribeWebRuleWhiteListGeoAreasRequest:JDCloudRequest
-
-@end
-
-@interface IpantiSwitchWebRuleOriginRequest:JDCloudRequest
-
-/// 高防实例 Id
-@property (strong,nonatomic,nonnull)  NSString*  instanceId;
-/// 网站规则 Id
-@property (strong,nonatomic,nonnull)  NSString*  webRuleId;
--(id) initWithRegion:(NSString *)regionId
-instanceId:(NSString*)instanceId
-webRuleId:(NSString*)webRuleId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-instanceId:(NSString*)instanceId
-webRuleId:(NSString*)webRuleId;
-
-@end
-
-@interface IpantiDisableWebRuleCCRequest:JDCloudRequest
-
-/// 高防实例 Id
-@property (strong,nonatomic,nonnull)  NSString*  instanceId;
-/// 网站规则 Id
-@property (strong,nonatomic,nonnull)  NSString*  webRuleId;
--(id) initWithRegion:(NSString *)regionId
-instanceId:(NSString*)instanceId
-webRuleId:(NSString*)webRuleId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-instanceId:(NSString*)instanceId
-webRuleId:(NSString*)webRuleId;
 
 @end
 
@@ -1552,35 +2794,6 @@ webRuleId:(NSString*)webRuleId;
 -(id) initWithRequestId:(NSString*) requestId
         error:(ServiceError*) error
         result:(IpantiCreateBlackListRuleOfWebRuleResult*) result;
-@end
-
-@interface IpantiDescribeWebRulesRequest:JDCloudRequest
-
-/// 页码, 默认为1
-@property (strong,nonatomic,nonnull)  NSNumber*  pageNumber;
-/// 分页大小, 默认为10, 取值范围[10, 100]
-@property (strong,nonatomic,nonnull)  NSNumber*  pageSize;
-/// 查询类型名称, domain:源站域名, ip:源站 IP, rawDomain: 域名
-@property (strong,nonatomic,nonnull)  NSString*  searchType;
-/// 查询类型值
-@property (strong,nonatomic,nonnull)  NSString*  searchValue;
-/// 高防实例 Id
-@property (strong,nonatomic,nonnull)  NSString*  instanceId;
--(id) initWithRegion:(NSString *)regionId
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-searchType:(NSString*)searchType
-searchValue:(NSString*)searchValue
-instanceId:(NSString*)instanceId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-searchType:(NSString*)searchType
-searchValue:(NSString*)searchValue
-instanceId:(NSString*)instanceId;
-
 @end
 
 @interface IpantiDescribeCCProtectionConfigOfWebRuleResponse : NSObject
@@ -1634,23 +2847,6 @@ instanceId:(NSString*)instanceId;
         result:(IpantiDescribeWebRuleWhiteListUsageResult*) result;
 @end
 
-@interface IpantiDisableWebRuleWhiteListRequest:JDCloudRequest
-
-/// 高防实例 Id
-@property (strong,nonatomic,nonnull)  NSString*  instanceId;
-/// 网站规则 Id
-@property (strong,nonatomic,nonnull)  NSString*  webRuleId;
--(id) initWithRegion:(NSString *)regionId
-instanceId:(NSString*)instanceId
-webRuleId:(NSString*)webRuleId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-instanceId:(NSString*)instanceId
-webRuleId:(NSString*)webRuleId;
-
-@end
-
 @interface IpantiModifyCCProtectionConfigOfWebRuleRequest:JDCloudRequest
 
 /// 修改 CC 防护配置请求参数
@@ -1667,37 +2863,6 @@ webRuleId:(NSString*)webRuleId;
 -(id) initWithRegion:(NSString *)regionId
              version:(NSString *)version
 ccProtectionConfigSpec:(CCProtectionConfigSpec*)ccProtectionConfigSpec
-instanceId:(NSString*)instanceId
-webRuleId:(NSString*)webRuleId;
-
-@end
-
-@interface IpantiModifyWhiteListRuleOfWebRuleResult : NSObject
-/// 修改结果, 0: 修改失败, 1: 修改成功
- @property (strong,nonatomic,nonnull)  NSNumber*  code;
-/// 修改失败时给出具体原因
- @property (strong,nonatomic,nonnull)  NSString*  message;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithCode:(NSNumber*) code
-
-    message:(NSString*)message;
-@end
-
-@interface IpantiDescribeCCProtectionConfigOfWebRuleRequest:JDCloudRequest
-
-/// 高防实例 Id
-@property (strong,nonatomic,nonnull)  NSString*  instanceId;
-/// 网站规则 Id
-@property (strong,nonatomic,nonnull)  NSString*  webRuleId;
--(id) initWithRegion:(NSString *)regionId
-instanceId:(NSString*)instanceId
-webRuleId:(NSString*)webRuleId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
 instanceId:(NSString*)instanceId
 webRuleId:(NSString*)webRuleId;
 
@@ -1747,80 +2912,6 @@ webRuleId:(NSString*)webRuleId;
         result:(IpantiDescribeCCProtectionRuleOfWebRuleResult*) result;
 @end
 
-@interface IpantiDeleteBlackListRuleOfWebRuleRequest:JDCloudRequest
-
-/// 高防实例 Id
-@property (strong,nonatomic,nonnull)  NSString*  instanceId;
-/// 网站规则 Id
-@property (strong,nonatomic,nonnull)  NSString*  webRuleId;
-/// 网站类规则的黑名单规则 Id
-@property (strong,nonatomic,nonnull)  NSString*  webBlackListRuleId;
--(id) initWithRegion:(NSString *)regionId
-instanceId:(NSString*)instanceId
-webRuleId:(NSString*)webRuleId
-webBlackListRuleId:(NSString*)webBlackListRuleId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-instanceId:(NSString*)instanceId
-webRuleId:(NSString*)webRuleId
-webBlackListRuleId:(NSString*)webBlackListRuleId;
-
-@end
-
-@interface IpantiSwitchWebRuleProtectResult : NSObject
-/// 0: 规则切换成防御失败, 1: 规则切换成防御成功
- @property (strong,nonatomic,nonnull)  NSNumber*  code;
-/// 规则切换成防御失败时给出具体原因
- @property (strong,nonatomic,nonnull)  NSString*  message;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithCode:(NSNumber*) code
-
-    message:(NSString*)message;
-@end
-
-@interface IpantiModifyCCProtectionRuleOfWebRuleResult : NSObject
-/// 0: 修改失败, 1: 修改成功
- @property (strong,nonatomic,nonnull)  NSNumber*  code;
-/// 修改失败时给出具体原因
- @property (strong,nonatomic,nonnull)  NSString*  message;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithCode:(NSNumber*) code
-
-    message:(NSString*)message;
-@end
-
-@interface IpantiDescribeBlackListRulesOfWebRuleRequest:JDCloudRequest
-
-/// 页码, 默认为1
-@property (strong,nonatomic,nonnull)  NSNumber*  pageNumber;
-/// 分页大小, 默认为10, 取值范围[10, 100]
-@property (strong,nonatomic,nonnull)  NSNumber*  pageSize;
-/// 高防实例 Id
-@property (strong,nonatomic,nonnull)  NSString*  instanceId;
-/// 网站规则 Id
-@property (strong,nonatomic,nonnull)  NSString*  webRuleId;
--(id) initWithRegion:(NSString *)regionId
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-instanceId:(NSString*)instanceId
-webRuleId:(NSString*)webRuleId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-instanceId:(NSString*)instanceId
-webRuleId:(NSString*)webRuleId;
-
-@end
-
 @interface IpantiDescribeCCProtectionDefaultConfigOfWebRuleResult : NSObject
 /// Data
  @property (strong,nonatomic,nonnull)  CCProtectionDefaultConfig*  data;
@@ -1846,20 +2937,6 @@ webRuleId:(NSString*)webRuleId;
 -(id) initWithRequestId:(NSString*) requestId
         error:(ServiceError*) error
         result:(IpantiDescribeCCProtectionDefaultConfigOfWebRuleResult*) result;
-@end
-
-@interface IpantiEnableWebRuleBlackListResult : NSObject
-/// 开启结果, 0: 开启失败, 1: 开启成功
- @property (strong,nonatomic,nonnull)  NSNumber*  code;
-/// 开启失败时给出具体原因
- @property (strong,nonatomic,nonnull)  NSString*  message;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithCode:(NSNumber*) code
-
-    message:(NSString*)message;
 @end
 
 @interface IpantiDescribeWhiteListRuleOfWebRuleResponse : NSObject
@@ -1952,20 +3029,6 @@ webRuleId:(NSString*)webRuleId;
         result:(IpantiSwitchWebRuleOriginResult*) result;
 @end
 
-@interface IpantiEnableBlackListRuleOfWebRuleResult : NSObject
-/// 开启结果, 0: 开启失败, 1: 开启成功
- @property (strong,nonatomic,nonnull)  NSNumber*  code;
-/// 开启失败时给出具体原因
- @property (strong,nonatomic,nonnull)  NSString*  message;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithCode:(NSNumber*) code
-
-    message:(NSString*)message;
-@end
-
 @interface IpantiEnableWebRuleCCResponse : NSObject
 
 @property NSString* requestId;
@@ -1998,28 +3061,6 @@ webRuleId:(NSString*)webRuleId;
 -(id) initWithRequestId:(NSString*) requestId
         error:(ServiceError*) error
         result:(IpantiDisableWebRuleWhiteListResult*) result;
-@end
-
-@interface IpantiDescribeWebRuleBlackListUsageResult : NSObject
-/// 已配置的黑名单规则数量
- @property (strong,nonatomic,nonnull)  NSNumber*  ipantiAllocatedNum;
-/// 开启的黑名单规则数量
- @property (strong,nonatomic,nonnull)  NSNumber*  activeNum;
-/// 还可添加的黑名单规则数量
- @property (strong,nonatomic,nonnull)  NSNumber*  surplusAllocateNum;
-/// 最多可添加的黑名单规则数量
- @property (strong,nonatomic,nonnull)  NSNumber*  maxAllocateNum;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithAllocatedNum:(NSNumber*) ipantiAllocatedNum
-
-    activeNum:(NSNumber*)activeNum
-
-    surplusAllocateNum:(NSNumber*)surplusAllocateNum
-
-    maxAllocateNum:(NSNumber*)maxAllocateNum;
 @end
 
 @interface IpantiDescribeWebRuleBlackListUsageResponse : NSObject
@@ -2073,27 +3114,6 @@ webRuleId:(NSString*)webRuleId;
         result:(IpantiEnableWebRuleBlackListResult*) result;
 @end
 
-@interface IpantiEnableBlackListRuleOfWebRuleRequest:JDCloudRequest
-
-/// 高防实例 Id
-@property (strong,nonatomic,nonnull)  NSString*  instanceId;
-/// 网站规则 Id
-@property (strong,nonatomic,nonnull)  NSString*  webRuleId;
-/// 网站类规则的黑名单规则 Id
-@property (strong,nonatomic,nonnull)  NSString*  webBlackListRuleId;
--(id) initWithRegion:(NSString *)regionId
-instanceId:(NSString*)instanceId
-webRuleId:(NSString*)webRuleId
-webBlackListRuleId:(NSString*)webBlackListRuleId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-instanceId:(NSString*)instanceId
-webRuleId:(NSString*)webRuleId
-webBlackListRuleId:(NSString*)webBlackListRuleId;
-
-@end
-
 @interface IpantiDescribeWebRuleResponse : NSObject
 
 @property NSString* requestId;
@@ -2143,27 +3163,6 @@ webBlackListRuleId:(NSString*)webBlackListRuleId;
 -(id) initWithRequestId:(NSString*) requestId
         error:(ServiceError*) error
         result:(IpantiCreateCCProtectionRuleOfWebRuleResult*) result;
-@end
-
-@interface IpantiDescribeBlackListRuleOfWebRuleRequest:JDCloudRequest
-
-/// 高防实例 Id
-@property (strong,nonatomic,nonnull)  NSString*  instanceId;
-/// 网站规则 Id
-@property (strong,nonatomic,nonnull)  NSString*  webRuleId;
-/// 网站类规则的黑名单规则 Id
-@property (strong,nonatomic,nonnull)  NSString*  webBlackListRuleId;
--(id) initWithRegion:(NSString *)regionId
-instanceId:(NSString*)instanceId
-webRuleId:(NSString*)webRuleId
-webBlackListRuleId:(NSString*)webBlackListRuleId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-instanceId:(NSString*)instanceId
-webRuleId:(NSString*)webRuleId
-webBlackListRuleId:(NSString*)webBlackListRuleId;
-
 @end
 
 @interface IpantiSwitchWebRuleProtectResponse : NSObject
@@ -2217,87 +3216,6 @@ webBlackListRuleId:(NSString*)webBlackListRuleId;
         result:(IpantiModifyCCProtectionRuleOfWebRuleResult*) result;
 @end
 
-@interface IpantiDisableWhiteListRuleOfWebRuleRequest:JDCloudRequest
-
-/// 高防实例 Id
-@property (strong,nonatomic,nonnull)  NSString*  instanceId;
-/// 网站规则 Id
-@property (strong,nonatomic,nonnull)  NSString*  webRuleId;
-/// 网站类规则的白名单规则 Id
-@property (strong,nonatomic,nonnull)  NSString*  webWhiteListRuleId;
--(id) initWithRegion:(NSString *)regionId
-instanceId:(NSString*)instanceId
-webRuleId:(NSString*)webRuleId
-webWhiteListRuleId:(NSString*)webWhiteListRuleId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-instanceId:(NSString*)instanceId
-webRuleId:(NSString*)webRuleId
-webWhiteListRuleId:(NSString*)webWhiteListRuleId;
-
-@end
-
-@interface IpantiDisableWebRuleCCObserverModeRequest:JDCloudRequest
-
-/// 高防实例 Id
-@property (strong,nonatomic,nonnull)  NSString*  instanceId;
-/// 网站规则 Id
-@property (strong,nonatomic,nonnull)  NSString*  webRuleId;
--(id) initWithRegion:(NSString *)regionId
-instanceId:(NSString*)instanceId
-webRuleId:(NSString*)webRuleId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-instanceId:(NSString*)instanceId
-webRuleId:(NSString*)webRuleId;
-
-@end
-
-@interface IpantiDescribeForwardRulesRequest:JDCloudRequest
-
-/// 页码, 默认为1
-@property (strong,nonatomic,nonnull)  NSNumber*  pageNumber;
-/// 分页大小, 默认为10, 取值范围[10, 100]
-@property (strong,nonatomic,nonnull)  NSNumber*  pageSize;
-/// 查询类型名称, domain:源站域名, ip:源站 IP, port: 转发端口, originPort: 源站端口
-@property (strong,nonatomic,nonnull)  NSString*  searchType;
-/// 查询类型值
-@property (strong,nonatomic,nonnull)  NSString*  searchValue;
-/// 高防实例 Id
-@property (strong,nonatomic,nonnull)  NSString*  instanceId;
--(id) initWithRegion:(NSString *)regionId
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-searchType:(NSString*)searchType
-searchValue:(NSString*)searchValue
-instanceId:(NSString*)instanceId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-searchType:(NSString*)searchType
-searchValue:(NSString*)searchValue
-instanceId:(NSString*)instanceId;
-
-@end
-
-@interface IpantiEnableBlackListRuleOfForwardRuleResult : NSObject
-/// 开启结果, 0: 开启失败, 1: 开启成功
- @property (strong,nonatomic,nonnull)  NSNumber*  code;
-/// 开启失败时给出具体原因
- @property (strong,nonatomic,nonnull)  NSString*  message;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithCode:(NSNumber*) code
-
-    message:(NSString*)message;
-@end
-
 @interface IpantiEnableBlackListRuleOfForwardRuleResponse : NSObject
 
 @property NSString* requestId;
@@ -2313,51 +3231,6 @@ instanceId:(NSString*)instanceId;
 -(id) initWithRequestId:(NSString*) requestId
         error:(ServiceError*) error
         result:(IpantiEnableBlackListRuleOfForwardRuleResult*) result;
-@end
-
-@interface IpantiDescribeForwardRuleRequest:JDCloudRequest
-
-/// 高防实例 Id
-@property (strong,nonatomic,nonnull)  NSString*  instanceId;
-/// 转发规则 Id
-@property (strong,nonatomic,nonnull)  NSString*  forwardRuleId;
--(id) initWithRegion:(NSString *)regionId
-instanceId:(NSString*)instanceId
-forwardRuleId:(NSString*)forwardRuleId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-instanceId:(NSString*)instanceId
-forwardRuleId:(NSString*)forwardRuleId;
-
-@end
-
-@interface IpantiModifyForwardRuleResult : NSObject
-/// 0: 更新规则失败, 1: 更新规则成功
- @property (strong,nonatomic,nonnull)  NSNumber*  code;
-/// 更新规则失败时给出具体原因
- @property (strong,nonatomic,nonnull)  NSString*  message;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithCode:(NSNumber*) code
-
-    message:(NSString*)message;
-@end
-
-@interface IpantiCreateForwardRuleResult : NSObject
-/// 0: 添加规则失败, 1: 添加规则成功
- @property (strong,nonatomic,nonnull)  NSNumber*  code;
-/// 添加规则失败时给出具体原因
- @property (strong,nonatomic,nonnull)  NSString*  message;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithCode:(NSNumber*) code
-
-    message:(NSString*)message;
 @end
 
 @interface IpantiCreateForwardRuleResponse : NSObject
@@ -2404,37 +3277,6 @@ forwardRuleId:(NSString*)forwardRuleId;
         result:(IpantiDescribeGeoAreasResult*) result;
 @end
 
-@interface IpantiDescribeWhiteListRuleOfForwardRuleRequest:JDCloudRequest
-
-/// 高防实例 Id
-@property (strong,nonatomic,nonnull)  NSString*  instanceId;
-/// 转发规则 Id
-@property (strong,nonatomic,nonnull)  NSString*  forwardRuleId;
--(id) initWithRegion:(NSString *)regionId
-instanceId:(NSString*)instanceId
-forwardRuleId:(NSString*)forwardRuleId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-instanceId:(NSString*)instanceId
-forwardRuleId:(NSString*)forwardRuleId;
-
-@end
-
-@interface IpantiEnableWhiteListRuleOfForwardRuleResult : NSObject
-/// 开启结果, 0: 开启失败, 1: 开启成功
- @property (strong,nonatomic,nonnull)  NSNumber*  code;
-/// 开启失败时给出具体原因
- @property (strong,nonatomic,nonnull)  NSString*  message;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithCode:(NSNumber*) code
-
-    message:(NSString*)message;
-@end
-
 @interface IpantiDescribeProtectionRuleOfForwardRuleResult : NSObject
 /// ProtectionRule
  @property (strong,nonatomic,nonnull)  ForwardProtectionRule*  protectionRule;
@@ -2443,34 +3285,6 @@ forwardRuleId:(NSString*)forwardRuleId;
 
 -(id) initWithDic:(NSDictionary*)dictionary;
 -(id) initWithProtectionRule:(ForwardProtectionRule*) protectionRule;
-@end
-
-@interface IpantiModifyProtectionRuleOfForwardRuleResult : NSObject
-/// 0: 修改规则失败, 1: 修改规则成功
- @property (strong,nonatomic,nonnull)  NSNumber*  code;
-/// 修改规则失败时给出具体原因
- @property (strong,nonatomic,nonnull)  NSString*  message;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithCode:(NSNumber*) code
-
-    message:(NSString*)message;
-@end
-
-@interface IpantiModifyWhiteListRuleOfForwardRuleResult : NSObject
-/// 修改结果, 0: 修改失败, 1: 修改成功
- @property (strong,nonatomic,nonnull)  NSNumber*  code;
-/// 修改失败时给出具体原因
- @property (strong,nonatomic,nonnull)  NSString*  message;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithCode:(NSNumber*) code
-
-    message:(NSString*)message;
 @end
 
 @interface IpantiModifyWhiteListRuleOfForwardRuleResponse : NSObject
@@ -2490,54 +3304,6 @@ forwardRuleId:(NSString*)forwardRuleId;
         result:(IpantiModifyWhiteListRuleOfForwardRuleResult*) result;
 @end
 
-@interface IpantiEnableWhiteListRuleOfForwardRuleRequest:JDCloudRequest
-
-/// 高防实例 Id
-@property (strong,nonatomic,nonnull)  NSString*  instanceId;
-/// 转发规则 Id
-@property (strong,nonatomic,nonnull)  NSString*  forwardRuleId;
--(id) initWithRegion:(NSString *)regionId
-instanceId:(NSString*)instanceId
-forwardRuleId:(NSString*)forwardRuleId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-instanceId:(NSString*)instanceId
-forwardRuleId:(NSString*)forwardRuleId;
-
-@end
-
-@interface IpantiEnableBlackListRuleOfForwardRuleRequest:JDCloudRequest
-
-/// 高防实例 Id
-@property (strong,nonatomic,nonnull)  NSString*  instanceId;
-/// 转发规则 Id
-@property (strong,nonatomic,nonnull)  NSString*  forwardRuleId;
--(id) initWithRegion:(NSString *)regionId
-instanceId:(NSString*)instanceId
-forwardRuleId:(NSString*)forwardRuleId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-instanceId:(NSString*)instanceId
-forwardRuleId:(NSString*)forwardRuleId;
-
-@end
-
-@interface IpantiModifyBlackListRuleOfForwardRuleResult : NSObject
-/// 修改结果, 0: 修改失败, 1: 修改成功
- @property (strong,nonatomic,nonnull)  NSNumber*  code;
-/// 修改失败时给出具体原因
- @property (strong,nonatomic,nonnull)  NSString*  message;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithCode:(NSNumber*) code
-
-    message:(NSString*)message;
-@end
-
 @interface IpantiModifyBlackListRuleOfForwardRuleResponse : NSObject
 
 @property NSString* requestId;
@@ -2553,20 +3319,6 @@ forwardRuleId:(NSString*)forwardRuleId;
 -(id) initWithRequestId:(NSString*) requestId
         error:(ServiceError*) error
         result:(IpantiModifyBlackListRuleOfForwardRuleResult*) result;
-@end
-
-@interface IpantiDeleteForwardRuleResult : NSObject
-/// 0: 删除规则失败, 1: 删除规则成功
- @property (strong,nonatomic,nonnull)  NSNumber*  code;
-/// 删除规则失败时给出具体原因
- @property (strong,nonatomic,nonnull)  NSString*  message;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithCode:(NSNumber*) code
-
-    message:(NSString*)message;
 @end
 
 @interface IpantiDescribeWhiteListRuleOfForwardRuleResult : NSObject
@@ -2598,20 +3350,6 @@ forwardRuleId:(NSString*)forwardRuleId;
 
 @interface IpantiDescribeGeoAreasRequest:JDCloudRequest
 
-@end
-
-@interface IpantiDisableWhiteListRuleOfForwardRuleResult : NSObject
-/// 关闭结果, 0: 关闭失败, 1: 关闭成功
- @property (strong,nonatomic,nonnull)  NSNumber*  code;
-/// 关闭失败时给出具体原因
- @property (strong,nonatomic,nonnull)  NSString*  message;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithCode:(NSNumber*) code
-
-    message:(NSString*)message;
 @end
 
 @interface IpantiDisableWhiteListRuleOfForwardRuleResponse : NSObject
@@ -2656,37 +3394,6 @@ forwardRuleId:(NSString*)forwardRuleId;
 -(id) initWithRequestId:(NSString*) requestId
         error:(ServiceError*) error
         result:(IpantiDescribeForwardRuleResult*) result;
-@end
-
-@interface IpantiSwitchForwardRuleOriginRequest:JDCloudRequest
-
-/// 高防实例 Id
-@property (strong,nonatomic,nonnull)  NSString*  instanceId;
-/// 转发规则 Id
-@property (strong,nonatomic,nonnull)  NSString*  forwardRuleId;
--(id) initWithRegion:(NSString *)regionId
-instanceId:(NSString*)instanceId
-forwardRuleId:(NSString*)forwardRuleId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-instanceId:(NSString*)instanceId
-forwardRuleId:(NSString*)forwardRuleId;
-
-@end
-
-@interface IpantiSwitchForwardRuleOriginResult : NSObject
-/// 0: 切换失败, 1: 切换成功
- @property (strong,nonatomic,nonnull)  NSNumber*  code;
-/// 切换失败时给出具体原因
- @property (strong,nonatomic,nonnull)  NSString*  message;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithCode:(NSNumber*) code
-
-    message:(NSString*)message;
 @end
 
 @interface IpantiModifyForwardRuleRequest:JDCloudRequest
@@ -2766,40 +3473,6 @@ forwardRuleId:(NSString*)forwardRuleId;
         result:(IpantiDescribeProtectionRuleOfForwardRuleResult*) result;
 @end
 
-@interface IpantiSwitchForwardRuleProtectRequest:JDCloudRequest
-
-/// 高防实例 Id
-@property (strong,nonatomic,nonnull)  NSString*  instanceId;
-/// 转发规则 Id
-@property (strong,nonatomic,nonnull)  NSString*  forwardRuleId;
--(id) initWithRegion:(NSString *)regionId
-instanceId:(NSString*)instanceId
-forwardRuleId:(NSString*)forwardRuleId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-instanceId:(NSString*)instanceId
-forwardRuleId:(NSString*)forwardRuleId;
-
-@end
-
-@interface IpantiDescribeBlackListRuleOfForwardRuleRequest:JDCloudRequest
-
-/// 高防实例 Id
-@property (strong,nonatomic,nonnull)  NSString*  instanceId;
-/// 转发规则 Id
-@property (strong,nonatomic,nonnull)  NSString*  forwardRuleId;
--(id) initWithRegion:(NSString *)regionId
-instanceId:(NSString*)instanceId
-forwardRuleId:(NSString*)forwardRuleId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-instanceId:(NSString*)instanceId
-forwardRuleId:(NSString*)forwardRuleId;
-
-@end
-
 @interface IpantiEnableWhiteListRuleOfForwardRuleResponse : NSObject
 
 @property NSString* requestId;
@@ -2834,20 +3507,6 @@ instanceId:(NSString*)instanceId;
 
 @end
 
-@interface IpantiSwitchForwardRuleProtectResult : NSObject
-/// 0: 切换失败, 1: 切换成功
- @property (strong,nonatomic,nonnull)  NSNumber*  code;
-/// 切换失败时给出具体原因
- @property (strong,nonatomic,nonnull)  NSString*  message;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithCode:(NSNumber*) code
-
-    message:(NSString*)message;
-@end
-
 @interface IpantiModifyProtectionRuleOfForwardRuleResponse : NSObject
 
 @property NSString* requestId;
@@ -2863,23 +3522,6 @@ instanceId:(NSString*)instanceId;
 -(id) initWithRequestId:(NSString*) requestId
         error:(ServiceError*) error
         result:(IpantiModifyProtectionRuleOfForwardRuleResult*) result;
-@end
-
-@interface IpantiDeleteForwardRuleRequest:JDCloudRequest
-
-/// 高防实例 Id
-@property (strong,nonatomic,nonnull)  NSString*  instanceId;
-/// 转发规则 Id
-@property (strong,nonatomic,nonnull)  NSString*  forwardRuleId;
--(id) initWithRegion:(NSString *)regionId
-instanceId:(NSString*)instanceId
-forwardRuleId:(NSString*)forwardRuleId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-instanceId:(NSString*)instanceId
-forwardRuleId:(NSString*)forwardRuleId;
-
 @end
 
 @interface IpantiDescribeForwardRulesResponse : NSObject
@@ -2920,23 +3562,6 @@ forwardRuleId:(NSString*)forwardRuleId;
 
 @end
 
-@interface IpantiDescribeProtectionRuleOfForwardRuleRequest:JDCloudRequest
-
-/// 高防实例 Id
-@property (strong,nonatomic,nonnull)  NSString*  instanceId;
-/// 转发规则 Id
-@property (strong,nonatomic,nonnull)  NSString*  forwardRuleId;
--(id) initWithRegion:(NSString *)regionId
-instanceId:(NSString*)instanceId
-forwardRuleId:(NSString*)forwardRuleId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-instanceId:(NSString*)instanceId
-forwardRuleId:(NSString*)forwardRuleId;
-
-@end
-
 @interface IpantiSwitchForwardRuleProtectResponse : NSObject
 
 @property NSString* requestId;
@@ -2954,23 +3579,6 @@ forwardRuleId:(NSString*)forwardRuleId;
         result:(IpantiSwitchForwardRuleProtectResult*) result;
 @end
 
-@interface IpantiDisableBlackListRuleOfForwardRuleRequest:JDCloudRequest
-
-/// 高防实例 Id
-@property (strong,nonatomic,nonnull)  NSString*  instanceId;
-/// 转发规则 Id
-@property (strong,nonatomic,nonnull)  NSString*  forwardRuleId;
--(id) initWithRegion:(NSString *)regionId
-instanceId:(NSString*)instanceId
-forwardRuleId:(NSString*)forwardRuleId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-instanceId:(NSString*)instanceId
-forwardRuleId:(NSString*)forwardRuleId;
-
-@end
-
 @interface IpantiSwitchForwardRuleOriginResponse : NSObject
 
 @property NSString* requestId;
@@ -2986,37 +3594,6 @@ forwardRuleId:(NSString*)forwardRuleId;
 -(id) initWithRequestId:(NSString*) requestId
         error:(ServiceError*) error
         result:(IpantiSwitchForwardRuleOriginResult*) result;
-@end
-
-@interface IpantiDisableBlackListRuleOfForwardRuleResult : NSObject
-/// 关闭结果, 0: 关闭失败, 1: 关闭成功
- @property (strong,nonatomic,nonnull)  NSNumber*  code;
-/// 关闭失败时给出具体原因
- @property (strong,nonatomic,nonnull)  NSString*  message;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithCode:(NSNumber*) code
-
-    message:(NSString*)message;
-@end
-
-@interface IpantiDisableWhiteListRuleOfForwardRuleRequest:JDCloudRequest
-
-/// 高防实例 Id
-@property (strong,nonatomic,nonnull)  NSString*  instanceId;
-/// 转发规则 Id
-@property (strong,nonatomic,nonnull)  NSString*  forwardRuleId;
--(id) initWithRegion:(NSString *)regionId
-instanceId:(NSString*)instanceId
-forwardRuleId:(NSString*)forwardRuleId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-instanceId:(NSString*)instanceId
-forwardRuleId:(NSString*)forwardRuleId;
-
 @end
 
 @interface IpantiDescribeBlackListRuleOfForwardRuleResult : NSObject
@@ -3122,72 +3699,6 @@ forwardRuleId:(NSString*)forwardRuleId;
         result:(IpantiDisableBlackListRuleOfForwardRuleResult*) result;
 @end
 
-@interface IpantiDescribeCCAttackLogDetailsRequest:JDCloudRequest
-
-/// 页码, 默认为1
-@property (strong,nonatomic,nonnull)  NSNumber*  pageNumber;
-/// 分页大小, 默认为10, 取值范围[10, 100]
-@property (strong,nonatomic,nonnull)  NSNumber*  pageSize;
-/// 开始时间, 只能查询最近 60 天以内的数据, UTC 时间, 格式: yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
-@property (strong,nonatomic,nonnull)  NSString*  startTime;
-/// 查询的结束时间, UTC 时间, 格式: yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
-@property (strong,nonatomic,nonnull)  NSString*  endTime;
-/// 高防实例 ID
-@property (strong,nonatomic,nonnull)  NSString*  instanceId;
-/// 查询的子域名，只有选中某一个实例后才能多选子域名
-@property (strong,nonatomic,nonnull)  NSArray<NSString*>*  subDomain;
-/// CC 攻击记录Id
-@property (strong,nonatomic,nonnull)  NSString*  attackId;
--(id) initWithRegion:(NSString *)regionId
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-startTime:(NSString*)startTime
-endTime:(NSString*)endTime
-instanceId:(NSString*)instanceId
-subDomain:(NSArray<NSString*>*)subDomain
-attackId:(NSString*)attackId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-startTime:(NSString*)startTime
-endTime:(NSString*)endTime
-instanceId:(NSString*)instanceId
-subDomain:(NSArray<NSString*>*)subDomain
-attackId:(NSString*)attackId;
-
-@end
-
-@interface IpantiDescribeCCAttackLogsRequest:JDCloudRequest
-
-/// 页码, 默认为1
-@property (strong,nonatomic,nonnull)  NSNumber*  pageNumber;
-/// 分页大小, 默认为10, 取值范围[10, 100]
-@property (strong,nonatomic,nonnull)  NSNumber*  pageSize;
-/// 开始时间, 只能查询最近 60 天以内的数据, UTC 时间, 格式：yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
-@property (strong,nonatomic,nonnull)  NSString*  startTime;
-/// 查询的结束时间, UTC 时间, 格式：yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
-@property (strong,nonatomic,nonnull)  NSString*  endTime;
-/// 高防实例 ID
-@property (strong,nonatomic,nonnull)  NSArray<NSString*>*  instanceId;
--(id) initWithRegion:(NSString *)regionId
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-startTime:(NSString*)startTime
-endTime:(NSString*)endTime
-instanceId:(NSArray<NSString*>*)instanceId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-startTime:(NSString*)startTime
-endTime:(NSString*)endTime
-instanceId:(NSArray<NSString*>*)instanceId;
-
-@end
-
 @interface IpantiDescribeCCAttackLogsResult : NSObject
 /// DataList
  @property (strong,nonatomic,nonnull)  NSArray<CCAttackLog*>*  dataList;
@@ -3249,49 +3760,6 @@ instanceId:(NSArray<NSString*>*)instanceId;
     totalPage:(NSNumber*)totalPage;
 @end
 
-@interface IpantiDescribeAttackStatisticsRequest:JDCloudRequest
-
-/// 开始时间, 只能查询最近 60 天以内的数据, UTC 时间, 格式：yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
-@property (strong,nonatomic,nonnull)  NSString*  startTime;
-/// 查询的结束时间, UTC 时间, 格式：yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
-@property (strong,nonatomic,nonnull)  NSString*  endTime;
-/// 高防实例 ID
-@property (strong,nonatomic,nonnull)  NSArray<NSString*>*  instanceId;
-/// 攻击类型, 0 为 DDoS, 1 为 CC
-@property (strong,nonatomic,nonnull)  NSNumber*  type;
--(id) initWithRegion:(NSString *)regionId
-startTime:(NSString*)startTime
-endTime:(NSString*)endTime
-instanceId:(NSArray<NSString*>*)instanceId
-type:(NSNumber*)type;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-startTime:(NSString*)startTime
-endTime:(NSString*)endTime
-instanceId:(NSArray<NSString*>*)instanceId
-type:(NSNumber*)type;
-
-@end
-
-@interface IpantiDescribeAttackStatisticsResult : NSObject
-/// 攻击流量峰值
- @property (strong,nonatomic,nonnull)  NSNumber*  flow;
-/// 攻击次数
- @property (strong,nonatomic,nonnull)  NSNumber*  count;
-/// 流量单位, bps、Kbps、Mbps、Gbps
- @property (strong,nonatomic,nonnull)  NSString*  unit;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithFlow:(NSNumber*) flow
-
-    count:(NSNumber*)count
-
-    unit:(NSString*)unit;
-@end
-
 @interface IpantiDescribeAttackStatisticsResponse : NSObject
 
 @property NSString* requestId;
@@ -3341,27 +3809,6 @@ type:(NSNumber*)type;
 -(id) initWithDataList:(NSArray<AttackTypeCount*>*) dataList;
 @end
 
-@interface IpantiDescribeAttackTypeCountRequest:JDCloudRequest
-
-/// 开始时间, 只能查询最近 60 天以内的数据, UTC 时间, 格式：yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
-@property (strong,nonatomic,nonnull)  NSString*  startTime;
-/// 查询的结束时间, UTC 时间, 格式：yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
-@property (strong,nonatomic,nonnull)  NSString*  endTime;
-/// 高防实例 ID
-@property (strong,nonatomic,nonnull)  NSArray<NSString*>*  instanceId;
--(id) initWithRegion:(NSString *)regionId
-startTime:(NSString*)startTime
-endTime:(NSString*)endTime
-instanceId:(NSArray<NSString*>*)instanceId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-startTime:(NSString*)startTime
-endTime:(NSString*)endTime
-instanceId:(NSArray<NSString*>*)instanceId;
-
-@end
-
 @interface IpantiDescribeAttackTypeCountResponse : NSObject
 
 @property NSString* requestId;
@@ -3377,35 +3824,6 @@ instanceId:(NSArray<NSString*>*)instanceId;
 -(id) initWithRequestId:(NSString*) requestId
         error:(ServiceError*) error
         result:(IpantiDescribeAttackTypeCountResult*) result;
-@end
-
-@interface IpantiDescribeDDoSAttackLogsRequest:JDCloudRequest
-
-/// 页码, 默认为1
-@property (strong,nonatomic,nonnull)  NSNumber*  pageNumber;
-/// 分页大小, 默认为10, 取值范围[10, 100]
-@property (strong,nonatomic,nonnull)  NSNumber*  pageSize;
-/// 开始时间, 只能查询最近 60 天以内的数据, UTC 时间, 格式：yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
-@property (strong,nonatomic,nonnull)  NSString*  startTime;
-/// 查询的结束时间, UTC 时间, 格式：yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
-@property (strong,nonatomic,nonnull)  NSString*  endTime;
-/// 高防实例 ID
-@property (strong,nonatomic,nonnull)  NSArray<NSString*>*  instanceId;
--(id) initWithRegion:(NSString *)regionId
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-startTime:(NSString*)startTime
-endTime:(NSString*)endTime
-instanceId:(NSArray<NSString*>*)instanceId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-startTime:(NSString*)startTime
-endTime:(NSString*)endTime
-instanceId:(NSArray<NSString*>*)instanceId;
-
 @end
 
 @interface IpantiDescribeDDoSAttackLogsResponse : NSObject
@@ -3459,23 +3877,6 @@ instanceId:(NSString*)instanceId;
 
 @end
 
-@interface IpantiDescribeCpsIpListRequest:JDCloudRequest
-
-/// 页码, 默认为 1
-@property (strong,nonatomic,nonnull)  NSNumber*  pageNumber;
-/// 分页大小, 默认为 10, 取值范围 [0, 100], 0 表示全量
-@property (strong,nonatomic,nonnull)  NSNumber*  pageSize;
--(id) initWithRegion:(NSString *)regionId
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize;
-
-@end
-
 @interface IpantiModifyAlarmConfigRequest:JDCloudRequest
 
 /// 更新告警配置请求参数
@@ -3490,33 +3891,6 @@ instanceId:(NSString*)instanceId;
              version:(NSString *)version
 alarmConfigSpec:(AlarmConfigSpec*)alarmConfigSpec
 instanceId:(NSString*)instanceId;
-
-@end
-
-@interface IpantiCreateInstanceResult : NSObject
-/// 0: 新购或升级实例失败, 1: 新购或升级实例成功
- @property (strong,nonatomic,nonnull)  NSNumber*  code;
-/// 新购或升级成功时为 订单 id, 创建实例失败时给出具体原因
- @property (strong,nonatomic,nonnull)  NSString*  message;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithCode:(NSNumber*) code
-
-    message:(NSString*)message;
-@end
-
-@interface IpantiCheckNameRequest:JDCloudRequest
-
-/// 待检测实例名称
-@property (strong,nonatomic,nonnull)  NSString*  name;
--(id) initWithRegion:(NSString *)regionId
-name:(NSString*)name;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-name:(NSString*)name;
 
 @end
 
@@ -3555,69 +3929,6 @@ name:(NSString*)name;
 -(id) initWithRequestId:(NSString*) requestId
         error:(ServiceError*) error
         result:(IpantiDescribeAlarmConfigResult*) result;
-@end
-
-@interface IpantiModifyInstanceNameResult : NSObject
-/// 0: 修改实例名称失败, 1: 修改实例名称成功
- @property (strong,nonatomic,nonnull)  NSNumber*  code;
-/// 修改失败时给出具体原因
- @property (strong,nonatomic,nonnull)  NSString*  message;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithCode:(NSNumber*) code
-
-    message:(NSString*)message;
-@end
-
-@interface IpantiModifyAlarmConfigResult : NSObject
-/// 0: 修改失败, 1: 修改成功
- @property (strong,nonatomic,nonnull)  NSNumber*  code;
-/// 修改失败时给出具体原因
- @property (strong,nonatomic,nonnull)  NSString*  message;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithCode:(NSNumber*) code
-
-    message:(NSString*)message;
-@end
-
-@interface IpantiModifyEPBResult : NSObject
-/// 0: 修改失败, 1: 修改成功
- @property (strong,nonatomic,nonnull)  NSNumber*  code;
-/// 修改失败时给出具体原因
- @property (strong,nonatomic,nonnull)  NSString*  message;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithCode:(NSNumber*) code
-
-    message:(NSString*)message;
-@end
-
-@interface IpantiDescribeInstancesRequest:JDCloudRequest
-
-/// 页码, 默认为 1
-@property (strong,nonatomic,nonnull)  NSNumber*  pageNumber;
-/// 分页大小, 默认为 10, 取值范围[10, 100], 0 表示全量
-@property (strong,nonatomic,nonnull)  NSNumber*  pageSize;
-/// 实例名称，可模糊匹配
-@property (strong,nonatomic,nonnull)  NSString*  name;
--(id) initWithRegion:(NSString *)regionId
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-name:(NSString*)name;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-name:(NSString*)name;
-
 @end
 
 @interface IpantiDescribeVpcIpListResult : NSObject
@@ -3708,19 +4019,6 @@ name:(NSString*)name;
     totalPage:(NSNumber*)totalPage;
 @end
 
-@interface IpantiDescribeInstanceRequest:JDCloudRequest
-
-/// 实例 ID
-@property (strong,nonatomic,nonnull)  NSString*  instanceId;
--(id) initWithRegion:(NSString *)regionId
-instanceId:(NSString*)instanceId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-instanceId:(NSString*)instanceId;
-
-@end
-
 @interface IpantiModifyEPBResponse : NSObject
 
 @property NSString* requestId;
@@ -3766,20 +4064,6 @@ createInstanceSpec:(CreateInstanceSpec*)createInstanceSpec;
 -(id) initWithRequestId:(NSString*) requestId
         error:(ServiceError*) error
         result:(IpantiCreateInstanceResult*) result;
-@end
-
-@interface IpantiCheckNameResult : NSObject
-/// 检测结果 code, 0: 不可用, 1: 可用
- @property (strong,nonatomic,nonnull)  NSNumber*  code;
-/// 检测结果, 不可用时给出具体原因
- @property (strong,nonatomic,nonnull)  NSString*  message;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithCode:(NSNumber*) code
-
-    message:(NSString*)message;
 @end
 
 @interface IpantiDescribeInstancesResult : NSObject
@@ -3915,48 +4199,6 @@ createInstanceSpec:(CreateInstanceSpec*)createInstanceSpec;
         result:(IpantiDescribeCpsIpListResult*) result;
 @end
 
-@interface IpantiDescribeVpcIpListRequest:JDCloudRequest
-
-/// 页码, 默认为 1
-@property (strong,nonatomic,nonnull)  NSNumber*  pageNumber;
-/// 分页大小, 默认为 10, 取值范围 [0, 100], 0 表示全量
-@property (strong,nonatomic,nonnull)  NSNumber*  pageSize;
--(id) initWithRegion:(NSString *)regionId
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize;
-
-@end
-
-@interface IpantiDescribeNameListRequest:JDCloudRequest
-
-/// 高防实例 ID, 为空则查询所有实例名称
-@property (strong,nonatomic,nonnull)  NSString*  idValue;
-/// 实例名称, 可模糊匹配
-@property (strong,nonatomic,nonnull)  NSString*  name;
-/// 页码, 默认为 1
-@property (strong,nonatomic,nonnull)  NSNumber*  pageNumber;
-/// 分页大小, 默认为 10, 取值范围 [10, 100]
-@property (strong,nonatomic,nonnull)  NSNumber*  pageSize;
--(id) initWithRegion:(NSString *)regionId
-idValue:(NSString*)idValue
-name:(NSString*)name
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-idValue:(NSString*)idValue
-name:(NSString*)name
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize;
-
-@end
-
 @interface IpantiCheckNameResponse : NSObject
 
 @property NSString* requestId;
@@ -3991,19 +4233,6 @@ instanceId:(NSString*)instanceId;
 
 @end
 
-@interface IpantiDescribeAlarmConfigRequest:JDCloudRequest
-
-/// 实例 ID
-@property (strong,nonatomic,nonnull)  NSString*  instanceId;
--(id) initWithRegion:(NSString *)regionId
-instanceId:(NSString*)instanceId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-instanceId:(NSString*)instanceId;
-
-@end
-
 @interface IpantiModifyInstanceNameResponse : NSObject
 
 @property NSString* requestId;
@@ -4019,28 +4248,6 @@ instanceId:(NSString*)instanceId;
 -(id) initWithRequestId:(NSString*) requestId
         error:(ServiceError*) error
         result:(IpantiModifyInstanceNameResult*) result;
-@end
-
-@interface IpantiDescribeDDoSGraphResult : NSObject
-/// PreProtect
- @property (strong,nonatomic,nonnull)  NSArray<NSNumber*>*  preProtect;
-/// PostProtect
- @property (strong,nonatomic,nonnull)  NSArray<NSNumber*>*  postProtect;
-/// Time
- @property (strong,nonatomic,nonnull)  NSArray<NSString*>*  time;
-/// 流量单位, bps, Kbps, Mbps, Gbps
- @property (strong,nonatomic,nonnull)  NSString*  unit;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithPreProtect:(NSArray<NSNumber*>*) preProtect
-
-    postProtect:(NSArray<NSNumber*>*)postProtect
-
-    time:(NSArray<NSString*>*)time
-
-    unit:(NSString*)unit;
 @end
 
 @interface IpantiDescribeDDoSGraphResponse : NSObject
@@ -4060,49 +4267,6 @@ instanceId:(NSString*)instanceId;
         result:(IpantiDescribeDDoSGraphResult*) result;
 @end
 
-@interface IpantiDescribeFwdGraphResult : NSObject
-/// ForwardRecord
- @property (strong,nonatomic,nonnull)  NSArray<NSNumber*>*  forwardRecord;
-/// Time
- @property (strong,nonatomic,nonnull)  NSArray<NSString*>*  time;
-/// 流量单位, bps, Kbps, Mbps, Gbps
- @property (strong,nonatomic,nonnull)  NSString*  unit;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithForwardRecord:(NSArray<NSNumber*>*) forwardRecord
-
-    time:(NSArray<NSString*>*)time
-
-    unit:(NSString*)unit;
-@end
-
-@interface IpantiDescribeCCGraphRequest:JDCloudRequest
-
-/// 开始时间, 最多查最近 60 天, UTC 时间, 格式: yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
-@property (strong,nonatomic,nonnull)  NSString*  startTime;
-/// 查询的结束时间, UTC 时间, 格式: yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
-@property (strong,nonatomic,nonnull)  NSString*  endTime;
-/// 高防实例 Id 列表
-@property (strong,nonatomic,nonnull)  NSArray<NSString*>*  instanceId;
-/// 规则域名列表
-@property (strong,nonatomic,nonnull)  NSArray<NSString*>*  subDomain;
--(id) initWithRegion:(NSString *)regionId
-startTime:(NSString*)startTime
-endTime:(NSString*)endTime
-instanceId:(NSArray<NSString*>*)instanceId
-subDomain:(NSArray<NSString*>*)subDomain;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-startTime:(NSString*)startTime
-endTime:(NSString*)endTime
-instanceId:(NSArray<NSString*>*)instanceId
-subDomain:(NSArray<NSString*>*)subDomain;
-
-@end
-
 @interface IpantiDescribeFwdGraphResponse : NSObject
 
 @property NSString* requestId;
@@ -4120,49 +4284,6 @@ subDomain:(NSArray<NSString*>*)subDomain;
         result:(IpantiDescribeFwdGraphResult*) result;
 @end
 
-@interface IpantiDescribeFwdGraphRequest:JDCloudRequest
-
-/// 开始时间, 最多查最近 60 天, UTC 时间, 格式: yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
-@property (strong,nonatomic,nonnull)  NSString*  startTime;
-/// 查询的结束时间, UTC 时间, 格式: yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
-@property (strong,nonatomic,nonnull)  NSString*  endTime;
-/// 高防实例 Id 列表
-@property (strong,nonatomic,nonnull)  NSArray<NSString*>*  instanceId;
--(id) initWithRegion:(NSString *)regionId
-startTime:(NSString*)startTime
-endTime:(NSString*)endTime
-instanceId:(NSArray<NSString*>*)instanceId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-startTime:(NSString*)startTime
-endTime:(NSString*)endTime
-instanceId:(NSArray<NSString*>*)instanceId;
-
-@end
-
-@interface IpantiDescribeCCGraphResult : NSObject
-/// PostProtect
- @property (strong,nonatomic,nonnull)  NSArray<NSNumber*>*  postProtect;
-/// PreProtect
- @property (strong,nonatomic,nonnull)  NSArray<NSNumber*>*  preProtect;
-/// Time
- @property (strong,nonatomic,nonnull)  NSArray<NSString*>*  time;
-/// 流量单位
- @property (strong,nonatomic,nonnull)  NSString*  unit;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithPostProtect:(NSArray<NSNumber*>*) postProtect
-
-    preProtect:(NSArray<NSNumber*>*)preProtect
-
-    time:(NSArray<NSString*>*)time
-
-    unit:(NSString*)unit;
-@end
-
 @interface IpantiDescribeCCGraphResponse : NSObject
 
 @property NSString* requestId;
@@ -4178,44 +4299,6 @@ instanceId:(NSArray<NSString*>*)instanceId;
 -(id) initWithRequestId:(NSString*) requestId
         error:(ServiceError*) error
         result:(IpantiDescribeCCGraphResult*) result;
-@end
-
-@interface IpantiDescribeDDoSGraphRequest:JDCloudRequest
-
-/// 开始时间, 最多查最近 60 天, UTC 时间, 格式: yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
-@property (strong,nonatomic,nonnull)  NSString*  startTime;
-/// 查询的结束时间, UTC 时间, 格式: yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
-@property (strong,nonatomic,nonnull)  NSString*  endTime;
-/// 高防实例 Id 列表
-@property (strong,nonatomic,nonnull)  NSArray<NSString*>*  instanceId;
--(id) initWithRegion:(NSString *)regionId
-startTime:(NSString*)startTime
-endTime:(NSString*)endTime
-instanceId:(NSArray<NSString*>*)instanceId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-startTime:(NSString*)startTime
-endTime:(NSString*)endTime
-instanceId:(NSArray<NSString*>*)instanceId;
-
-@end
-
-@interface IpantiDescribeIpSetRequest:JDCloudRequest
-
-/// 高防实例 Id
-@property (strong,nonatomic,nonnull)  NSString*  instanceId;
-/// IP 黑白名单 Id
-@property (strong,nonatomic,nonnull)  NSString*  ipSetId;
--(id) initWithRegion:(NSString *)regionId
-instanceId:(NSString*)instanceId
-ipSetId:(NSString*)ipSetId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-instanceId:(NSString*)instanceId
-ipSetId:(NSString*)ipSetId;
-
 @end
 
 @interface IpantiDescribeIpSetResult : NSObject
@@ -4262,57 +4345,6 @@ instanceId:(NSString*)instanceId;
 
 @end
 
-@interface IpantiDescribeIpSetUsageRequest:JDCloudRequest
-
-/// 高防实例 Id
-@property (strong,nonatomic,nonnull)  NSString*  instanceId;
--(id) initWithRegion:(NSString *)regionId
-instanceId:(NSString*)instanceId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-instanceId:(NSString*)instanceId;
-
-@end
-
-@interface IpantiDescribeIpSetsRequest:JDCloudRequest
-
-/// 页码, 默认为1
-@property (strong,nonatomic,nonnull)  NSNumber*  pageNumber;
-/// 分页大小, 默认为10, 取值范围[10, 100]
-@property (strong,nonatomic,nonnull)  NSNumber*  pageSize;
-/// 高防实例 Id
-@property (strong,nonatomic,nonnull)  NSString*  instanceId;
--(id) initWithRegion:(NSString *)regionId
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-instanceId:(NSString*)instanceId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-instanceId:(NSString*)instanceId;
-
-@end
-
-@interface IpantiDeleteIpSetRequest:JDCloudRequest
-
-/// 高防实例 Id
-@property (strong,nonatomic,nonnull)  NSString*  instanceId;
-/// IP 黑白名单 Id
-@property (strong,nonatomic,nonnull)  NSString*  ipSetId;
--(id) initWithRegion:(NSString *)regionId
-instanceId:(NSString*)instanceId
-ipSetId:(NSString*)ipSetId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-instanceId:(NSString*)instanceId
-ipSetId:(NSString*)ipSetId;
-
-@end
-
 @interface IpantiDeleteIpSetResult : NSObject
 /// Data
  @property (strong,nonatomic,nonnull)  BatchResultDetail*  data;
@@ -4340,20 +4372,6 @@ ipSetId:(NSString*)ipSetId;
         result:(IpantiDeleteIpSetResult*) result;
 @end
 
-@interface IpantiCreateIpSetResult : NSObject
-/// 0: 添加失败, 1: 添加成功
- @property (strong,nonatomic,nonnull)  NSNumber*  code;
-/// 添加失败时给出具体原因
- @property (strong,nonatomic,nonnull)  NSString*  message;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithCode:(NSNumber*) code
-
-    message:(NSString*)message;
-@end
-
 @interface IpantiCreateIpSetResponse : NSObject
 
 @property NSString* requestId;
@@ -4369,24 +4387,6 @@ ipSetId:(NSString*)ipSetId;
 -(id) initWithRequestId:(NSString*) requestId
         error:(ServiceError*) error
         result:(IpantiCreateIpSetResult*) result;
-@end
-
-@interface IpantiDescribeIpSetUsageResult : NSObject
-/// 实例已添加的 IP 黑白名单数量
- @property (strong,nonatomic,nonnull)  NSNumber*  ipantiAllocatedNum;
-/// 实例还可添加的 IP 黑白名单数量
- @property (strong,nonatomic,nonnull)  NSNumber*  surplusAllocateNum;
-/// 实例最多可添加的 IP 黑白名单数量
- @property (strong,nonatomic,nonnull)  NSNumber*  maxAllocateNum;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithAllocatedNum:(NSNumber*) ipantiAllocatedNum
-
-    surplusAllocateNum:(NSNumber*)surplusAllocateNum
-
-    maxAllocateNum:(NSNumber*)maxAllocateNum;
 @end
 
 @interface IpantiDescribeIpSetUsageResponse : NSObject

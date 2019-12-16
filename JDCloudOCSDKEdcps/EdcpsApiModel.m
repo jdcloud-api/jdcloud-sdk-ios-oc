@@ -70,65 +70,6 @@ aliasIpId:(NSString*)aliasIpId {
 } 
 
 @end
-@implementation EdcpsDescribeAliasIpsResult
--(id) initWithAliasIps:(NSArray<AliasIp*>*) aliasIps
-        pageNumber:(NSNumber*)pageNumber
-        pageSize:(NSNumber*)pageSize
-        totalCount:(NSNumber*)totalCount { 
-    self.aliasIps = aliasIps;               
-    self.pageNumber = pageNumber;               
-    self.pageSize = pageSize;               
-    self.totalCount = totalCount;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self aliasIps])
-    {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self aliasIps] count]; i++) {
-            AliasIp* item = [[self aliasIps] objectAtIndex:i];
-            [arrayDic addObject:[item dictionary]];
-        }
-        [result setValue:arrayDic forKey:@"aliasIps"];
-    }
-    if([self pageNumber])
-    {
-        [result setValue:[self pageNumber] forKey:@"pageNumber"];
-    }
-    if([self pageSize])
-    {
-        [result setValue:[self pageSize] forKey:@"pageSize"];
-    }
-    if([self totalCount])
-    {
-        [result setValue:[self totalCount] forKey:@"totalCount"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    NSArray* aliasIpsArray = [dictionary objectForKey:@"aliasIps"];
-    if(aliasIpsArray&&![aliasIpsArray isKindOfClass:[NSNull class]])
-    {
-        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
-        for(int i = 0 ; i< [aliasIpsArray count];i++)
-        {
-            AliasIp* item = [[AliasIp alloc]initWithDic:[aliasIpsArray objectAtIndex:i]];
-            if(item)
-            {
-                [propertyArray addObject:item];
-            }
-        }
-        self.aliasIps = propertyArray;
-    }
-    self.pageNumber = [dictionary objectForKey:@"pageNumber"];
-    self.pageSize = [dictionary objectForKey:@"pageSize"];
-    self.totalCount = [dictionary objectForKey:@"totalCount"];
-    return self;
-} 
-
-@end
 @implementation EdcpsDescribeAliasIpsRequest
 -(id) initWithRegion:(NSString *)regionId
 pageNumber:(NSNumber*)pageNumber
@@ -201,202 +142,6 @@ cidr:(NSString*)cidr {
 } 
 
 @end
-@implementation EdcpsCreateAliasIpRequest
--(id) initWithRegion:(NSString *)regionId
-clientToken:(NSString*)clientToken
-aliasIpSpec:(AliasIpSpec*)aliasIpSpec { 
-    self.regionId = regionId;
-    self.clientToken = clientToken;
-    self.aliasIpSpec = aliasIpSpec;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-clientToken:(NSString*)clientToken
-aliasIpSpec:(AliasIpSpec*)aliasIpSpec { 
-    self.regionId = regionId;
-    self.version = version;
-    self.clientToken = clientToken;
-    self.aliasIpSpec = aliasIpSpec;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self clientToken])
-    {
-        [result setValue:[self clientToken] forKey:@"clientToken"];
-    }
-    if([self aliasIpSpec])
-    {
-        [result setValue:[[self aliasIpSpec] dictionary]forKey:@"aliasIpSpec"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.clientToken = [dictionary objectForKey:@"clientToken"];
-    self.aliasIpSpec = [[AliasIpSpec alloc]initWithDic:[dictionary objectForKey:@"aliasIpSpec"]];
-    return self;
-} 
-
-@end
-@implementation EdcpsCreateAliasIpResult
--(id) initWithSuccessList:(NSArray<AliasIpSuccessInfo*>*) successList
-        errorList:(NSArray<AliasIpErrorInfo*>*)errorList { 
-    self.successList = successList;               
-    self.errorList = errorList;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self successList])
-    {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self successList] count]; i++) {
-            AliasIpSuccessInfo* item = [[self successList] objectAtIndex:i];
-            [arrayDic addObject:[item dictionary]];
-        }
-        [result setValue:arrayDic forKey:@"successList"];
-    }
-    if([self errorList])
-    {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self errorList] count]; i++) {
-            AliasIpErrorInfo* item = [[self errorList] objectAtIndex:i];
-            [arrayDic addObject:[item dictionary]];
-        }
-        [result setValue:arrayDic forKey:@"errorList"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    NSArray* successListArray = [dictionary objectForKey:@"successList"];
-    if(successListArray&&![successListArray isKindOfClass:[NSNull class]])
-    {
-        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
-        for(int i = 0 ; i< [successListArray count];i++)
-        {
-            AliasIpSuccessInfo* item = [[AliasIpSuccessInfo alloc]initWithDic:[successListArray objectAtIndex:i]];
-            if(item)
-            {
-                [propertyArray addObject:item];
-            }
-        }
-        self.successList = propertyArray;
-    }
-    NSArray* errorListArray = [dictionary objectForKey:@"errorList"];
-    if(errorListArray&&![errorListArray isKindOfClass:[NSNull class]])
-    {
-        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
-        for(int i = 0 ; i< [errorListArray count];i++)
-        {
-            AliasIpErrorInfo* item = [[AliasIpErrorInfo alloc]initWithDic:[errorListArray objectAtIndex:i]];
-            if(item)
-            {
-                [propertyArray addObject:item];
-            }
-        }
-        self.errorList = propertyArray;
-    }
-    return self;
-} 
-
-@end
-  
-@implementation EdcpsCreateAliasIpResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-EdcpsCreateAliasIpResult* result = [[EdcpsCreateAliasIpResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(EdcpsCreateAliasIpResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
-  
-@implementation EdcpsDescribeAliasIpsResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-EdcpsDescribeAliasIpsResult* result = [[EdcpsDescribeAliasIpsResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(EdcpsDescribeAliasIpsResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
 @implementation EdcpsDeleteAliasIpResult
 -(id) initWithSuccess:(NSNumber*) success { 
     self.success = success;               
@@ -415,243 +160,6 @@ EdcpsDescribeAliasIpsResult* result = [[EdcpsDescribeAliasIpsResult alloc]initWi
     self.success = [dictionary objectForKey:@"success"];
     return self;
 } 
-
-@end
-  
-@implementation EdcpsDeleteAliasIpResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-EdcpsDeleteAliasIpResult* result = [[EdcpsDeleteAliasIpResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(EdcpsDeleteAliasIpResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
-@implementation EdcpsCreateSubnetResult
--(id) initWithSubnetId:(NSString*) subnetId { 
-    self.subnetId = subnetId;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self subnetId])
-    {
-        [result setValue:[self subnetId] forKey:@"subnetId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.subnetId = [dictionary objectForKey:@"subnetId"];
-    return self;
-} 
-
-@end
-  
-@implementation EdcpsCreateSubnetResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-EdcpsCreateSubnetResult* result = [[EdcpsCreateSubnetResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(EdcpsCreateSubnetResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
-@implementation EdcpsDescribeSubnetResult
--(id) initWithSubnet:(Subnet*) subnet { 
-    self.subnet = subnet;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self subnet])
-    {
-        [result setValue:[[self subnet] dictionary]forKey:@"subnet"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.subnet = [[Subnet alloc]initWithDic:[dictionary objectForKey:@"subnet"]];
-    return self;
-} 
-
-@end
-@implementation EdcpsModifySubnetResult
--(id) initWithSubnet:(Subnet*) subnet { 
-    self.subnet = subnet;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self subnet])
-    {
-        [result setValue:[[self subnet] dictionary]forKey:@"subnet"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.subnet = [[Subnet alloc]initWithDic:[dictionary objectForKey:@"subnet"]];
-    return self;
-} 
-
-@end
-@implementation EdcpsCreateSubnetRequest
--(id) initWithRegion:(NSString *)regionId
-clientToken:(NSString*)clientToken
-subnetSpec:(SubnetSpec*)subnetSpec { 
-    self.regionId = regionId;
-    self.clientToken = clientToken;
-    self.subnetSpec = subnetSpec;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-clientToken:(NSString*)clientToken
-subnetSpec:(SubnetSpec*)subnetSpec { 
-    self.regionId = regionId;
-    self.version = version;
-    self.clientToken = clientToken;
-    self.subnetSpec = subnetSpec;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self clientToken])
-    {
-        [result setValue:[self clientToken] forKey:@"clientToken"];
-    }
-    if([self subnetSpec])
-    {
-        [result setValue:[[self subnetSpec] dictionary]forKey:@"subnetSpec"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.clientToken = [dictionary objectForKey:@"clientToken"];
-    self.subnetSpec = [[SubnetSpec alloc]initWithDic:[dictionary objectForKey:@"subnetSpec"]];
-    return self;
-} 
-
-@end
-  
-@implementation EdcpsModifySubnetResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-EdcpsModifySubnetResult* result = [[EdcpsModifySubnetResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(EdcpsModifySubnetResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
 
 @end
 @implementation EdcpsModifySubnetRequest
@@ -764,193 +272,6 @@ subnetId:(NSString*)subnetId {
 } 
 
 @end
-  
-@implementation EdcpsDeleteSubnetResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-EdcpsDeleteSubnetResult* result = [[EdcpsDeleteSubnetResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(EdcpsDeleteSubnetResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
-  
-@implementation EdcpsDescribeSubnetResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-EdcpsDescribeSubnetResult* result = [[EdcpsDescribeSubnetResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(EdcpsDescribeSubnetResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
-@implementation EdcpsDescribeSubnetsRequest
--(id) initWithRegion:(NSString *)regionId
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-az:(NSString*)az
-name:(NSString*)name
-vpcId:(NSString*)vpcId
-filters:(NSArray<Filter*>*)filters { 
-    self.regionId = regionId;
-    self.pageNumber = pageNumber;
-    self.pageSize = pageSize;
-    self.az = az;
-    self.name = name;
-    self.vpcId = vpcId;
-    self.filters = filters;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-az:(NSString*)az
-name:(NSString*)name
-vpcId:(NSString*)vpcId
-filters:(NSArray<Filter*>*)filters { 
-    self.regionId = regionId;
-    self.version = version;
-    self.pageNumber = pageNumber;
-    self.pageSize = pageSize;
-    self.az = az;
-    self.name = name;
-    self.vpcId = vpcId;
-    self.filters = filters;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self pageNumber])
-    {
-        [result setValue:[self pageNumber] forKey:@"pageNumber"];
-    }
-    if([self pageSize])
-    {
-        [result setValue:[self pageSize] forKey:@"pageSize"];
-    }
-    if([self az])
-    {
-        [result setValue:[self az] forKey:@"az"];
-    }
-    if([self name])
-    {
-        [result setValue:[self name] forKey:@"name"];
-    }
-    if([self vpcId])
-    {
-        [result setValue:[self vpcId] forKey:@"vpcId"];
-    }
-    if([self filters])
-    {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self filters] count]; i++) {
-            Filter* item = [[self filters] objectAtIndex:i];
-            [arrayDic addObject:[item dictionary]];
-        }
-        [result setValue:arrayDic forKey:@"filters"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.pageNumber = [dictionary objectForKey:@"pageNumber"];
-    self.pageSize = [dictionary objectForKey:@"pageSize"];
-    self.az = [dictionary objectForKey:@"az"];
-    self.name = [dictionary objectForKey:@"name"];
-    self.vpcId = [dictionary objectForKey:@"vpcId"];
-    NSArray* filtersArray = [dictionary objectForKey:@"filters"];
-    if(filtersArray&&![filtersArray isKindOfClass:[NSNull class]])
-    {
-        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
-        for(int i = 0 ; i< [filtersArray count];i++)
-        {
-            Filter* item = [[Filter alloc]initWithDic:[filtersArray objectAtIndex:i]];
-            if(item)
-            {
-                [propertyArray addObject:item];
-            }
-        }
-        self.filters = propertyArray;
-    }
-    return self;
-} 
-
-@end
 @implementation EdcpsDeleteSubnetRequest
 -(id) initWithRegion:(NSString *)regionId
 clientToken:(NSString*)clientToken
@@ -996,107 +317,24 @@ subnetId:(NSString*)subnetId {
 } 
 
 @end
-@implementation EdcpsDescribeSubnetsResult
--(id) initWithSubnets:(NSArray<Subnet*>*) subnets
-        pageNumber:(NSNumber*)pageNumber
-        pageSize:(NSNumber*)pageSize
-        totalCount:(NSNumber*)totalCount { 
-    self.subnets = subnets;               
-    self.pageNumber = pageNumber;               
-    self.pageSize = pageSize;               
-    self.totalCount = totalCount;               
+@implementation EdcpsCreateSubnetResult
+-(id) initWithSubnetId:(NSString*) subnetId { 
+    self.subnetId = subnetId;               
     return self;
 }
 -(NSMutableDictionary*) dictionary{
     NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self subnets])
+    if([self subnetId])
     {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self subnets] count]; i++) {
-            Subnet* item = [[self subnets] objectAtIndex:i];
-            [arrayDic addObject:[item dictionary]];
-        }
-        [result setValue:arrayDic forKey:@"subnets"];
-    }
-    if([self pageNumber])
-    {
-        [result setValue:[self pageNumber] forKey:@"pageNumber"];
-    }
-    if([self pageSize])
-    {
-        [result setValue:[self pageSize] forKey:@"pageSize"];
-    }
-    if([self totalCount])
-    {
-        [result setValue:[self totalCount] forKey:@"totalCount"];
+        [result setValue:[self subnetId] forKey:@"subnetId"];
     }
     return result;
 }
 
 -(id) initWithDic:(NSDictionary*)dictionary{
-    NSArray* subnetsArray = [dictionary objectForKey:@"subnets"];
-    if(subnetsArray&&![subnetsArray isKindOfClass:[NSNull class]])
-    {
-        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
-        for(int i = 0 ; i< [subnetsArray count];i++)
-        {
-            Subnet* item = [[Subnet alloc]initWithDic:[subnetsArray objectAtIndex:i]];
-            if(item)
-            {
-                [propertyArray addObject:item];
-            }
-        }
-        self.subnets = propertyArray;
-    }
-    self.pageNumber = [dictionary objectForKey:@"pageNumber"];
-    self.pageSize = [dictionary objectForKey:@"pageSize"];
-    self.totalCount = [dictionary objectForKey:@"totalCount"];
+    self.subnetId = [dictionary objectForKey:@"subnetId"];
     return self;
 } 
-
-@end
-  
-@implementation EdcpsDescribeSubnetsResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-EdcpsDescribeSubnetsResult* result = [[EdcpsDescribeSubnetsResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(EdcpsDescribeSubnetsResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
 
 @end
 @implementation EdcpsDeleteelasticIpRequest
@@ -1142,155 +380,6 @@ elasticIpId:(NSString*)elasticIpId {
     self.elasticIpId = [dictionary objectForKey:@"elasticIpId"];
     return self;
 } 
-
-@end
-@implementation EdcpsDescribeElasticIpStockResult
--(id) initWithRegion:(NSString*) region
-        available:(NSNumber*)available
-        availableBandwidth:(NSNumber*)availableBandwidth
-        availableExtraUplinkBandwidth:(NSNumber*)availableExtraUplinkBandwidth { 
-    self.region = region;               
-    self.available = available;               
-    self.availableBandwidth = availableBandwidth;               
-    self.availableExtraUplinkBandwidth = availableExtraUplinkBandwidth;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self region])
-    {
-        [result setValue:[self region] forKey:@"region"];
-    }
-    if([self available])
-    {
-        [result setValue:[self available] forKey:@"available"];
-    }
-    if([self availableBandwidth])
-    {
-        [result setValue:[self availableBandwidth] forKey:@"availableBandwidth"];
-    }
-    if([self availableExtraUplinkBandwidth])
-    {
-        [result setValue:[self availableExtraUplinkBandwidth] forKey:@"availableExtraUplinkBandwidth"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.region = [dictionary objectForKey:@"region"];
-    self.available = [dictionary objectForKey:@"available"];
-    self.availableBandwidth = [dictionary objectForKey:@"availableBandwidth"];
-    self.availableExtraUplinkBandwidth = [dictionary objectForKey:@"availableExtraUplinkBandwidth"];
-    return self;
-} 
-
-@end
-  
-@implementation EdcpsDescribeElasticIpStockResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-EdcpsDescribeElasticIpStockResult* result = [[EdcpsDescribeElasticIpStockResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(EdcpsDescribeElasticIpStockResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
-@implementation EdcpsDeleteelasticIpResult
--(id) initWithSuccess:(NSNumber*) success { 
-    self.success = success;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self success])
-    {
-        [result setValue:[self success] forKey:@"success"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.success = [dictionary objectForKey:@"success"];
-    return self;
-} 
-
-@end
-  
-@implementation EdcpsDeleteelasticIpResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-EdcpsDeleteelasticIpResult* result = [[EdcpsDeleteelasticIpResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(EdcpsDeleteelasticIpResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
 
 @end
 @implementation EdcpsModifyElasticIpBandwidthRequest
@@ -1356,83 +445,43 @@ elasticIpId:(NSString*)elasticIpId {
 } 
 
 @end
-@implementation EdcpsDescribeElasticIpsRequest
--(id) initWithRegion:(NSString *)regionId
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-status:(NSString*)status
-filters:(NSArray<Filter*>*)filters { 
-    self.regionId = regionId;
-    self.pageNumber = pageNumber;
-    self.pageSize = pageSize;
-    self.status = status;
-    self.filters = filters;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-status:(NSString*)status
-filters:(NSArray<Filter*>*)filters { 
-    self.regionId = regionId;
-    self.version = version;
-    self.pageNumber = pageNumber;
-    self.pageSize = pageSize;
-    self.status = status;
-    self.filters = filters;
+@implementation EdcpsDescribeElasticIpStockResult
+-(id) initWithRegion:(NSString*) region
+        available:(NSNumber*)available
+        availableBandwidth:(NSNumber*)availableBandwidth
+        availableExtraUplinkBandwidth:(NSNumber*)availableExtraUplinkBandwidth { 
+    self.region = region;               
+    self.available = available;               
+    self.availableBandwidth = availableBandwidth;               
+    self.availableExtraUplinkBandwidth = availableExtraUplinkBandwidth;               
     return self;
 }
 -(NSMutableDictionary*) dictionary{
     NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
+    if([self region])
     {
-        [result addEntriesFromDictionary:superObjectDic];
+        [result setValue:[self region] forKey:@"region"];
     }
-    if([self pageNumber])
+    if([self available])
     {
-        [result setValue:[self pageNumber] forKey:@"pageNumber"];
+        [result setValue:[self available] forKey:@"available"];
     }
-    if([self pageSize])
+    if([self availableBandwidth])
     {
-        [result setValue:[self pageSize] forKey:@"pageSize"];
+        [result setValue:[self availableBandwidth] forKey:@"availableBandwidth"];
     }
-    if([self status])
+    if([self availableExtraUplinkBandwidth])
     {
-        [result setValue:[self status] forKey:@"status"];
-    }
-    if([self filters])
-    {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self filters] count]; i++) {
-            Filter* item = [[self filters] objectAtIndex:i];
-            [arrayDic addObject:[item dictionary]];
-        }
-        [result setValue:arrayDic forKey:@"filters"];
+        [result setValue:[self availableExtraUplinkBandwidth] forKey:@"availableExtraUplinkBandwidth"];
     }
     return result;
 }
 
 -(id) initWithDic:(NSDictionary*)dictionary{
-    self.pageNumber = [dictionary objectForKey:@"pageNumber"];
-    self.pageSize = [dictionary objectForKey:@"pageSize"];
-    self.status = [dictionary objectForKey:@"status"];
-    NSArray* filtersArray = [dictionary objectForKey:@"filters"];
-    if(filtersArray&&![filtersArray isKindOfClass:[NSNull class]])
-    {
-        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
-        for(int i = 0 ; i< [filtersArray count];i++)
-        {
-            Filter* item = [[Filter alloc]initWithDic:[filtersArray objectAtIndex:i]];
-            if(item)
-            {
-                [propertyArray addObject:item];
-            }
-        }
-        self.filters = propertyArray;
-    }
+    self.region = [dictionary objectForKey:@"region"];
+    self.available = [dictionary objectForKey:@"available"];
+    self.availableBandwidth = [dictionary objectForKey:@"availableBandwidth"];
+    self.availableExtraUplinkBandwidth = [dictionary objectForKey:@"availableExtraUplinkBandwidth"];
     return self;
 } 
 
@@ -1457,126 +506,22 @@ filters:(NSArray<Filter*>*)filters {
 } 
 
 @end
-@implementation EdcpsApplyElasticIpsRequest
--(id) initWithRegion:(NSString *)regionId
-clientToken:(NSString*)clientToken
-elasticIpSpec:(ElasticIpSpec*)elasticIpSpec { 
-    self.regionId = regionId;
-    self.clientToken = clientToken;
-    self.elasticIpSpec = elasticIpSpec;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-clientToken:(NSString*)clientToken
-elasticIpSpec:(ElasticIpSpec*)elasticIpSpec { 
-    self.regionId = regionId;
-    self.version = version;
-    self.clientToken = clientToken;
-    self.elasticIpSpec = elasticIpSpec;
+@implementation EdcpsDeleteelasticIpResult
+-(id) initWithSuccess:(NSNumber*) success { 
+    self.success = success;               
     return self;
 }
 -(NSMutableDictionary*) dictionary{
     NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
+    if([self success])
     {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self clientToken])
-    {
-        [result setValue:[self clientToken] forKey:@"clientToken"];
-    }
-    if([self elasticIpSpec])
-    {
-        [result setValue:[[self elasticIpSpec] dictionary]forKey:@"elasticIpSpec"];
+        [result setValue:[self success] forKey:@"success"];
     }
     return result;
 }
 
 -(id) initWithDic:(NSDictionary*)dictionary{
-    self.clientToken = [dictionary objectForKey:@"clientToken"];
-    self.elasticIpSpec = [[ElasticIpSpec alloc]initWithDic:[dictionary objectForKey:@"elasticIpSpec"]];
-    return self;
-} 
-
-@end
-@implementation EdcpsDescribeElasticIpResult
--(id) initWithElasticIp:(ElasticIp*) elasticIp { 
-    self.elasticIp = elasticIp;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self elasticIp])
-    {
-        [result setValue:[[self elasticIp] dictionary]forKey:@"elasticIp"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.elasticIp = [[ElasticIp alloc]initWithDic:[dictionary objectForKey:@"elasticIp"]];
-    return self;
-} 
-
-@end
-@implementation EdcpsDescribeElasticIpsResult
--(id) initWithElasticIps:(NSArray<ElasticIp*>*) elasticIps
-        pageNumber:(NSNumber*)pageNumber
-        pageSize:(NSNumber*)pageSize
-        totalCount:(NSNumber*)totalCount { 
-    self.elasticIps = elasticIps;               
-    self.pageNumber = pageNumber;               
-    self.pageSize = pageSize;               
-    self.totalCount = totalCount;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self elasticIps])
-    {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self elasticIps] count]; i++) {
-            ElasticIp* item = [[self elasticIps] objectAtIndex:i];
-            [arrayDic addObject:[item dictionary]];
-        }
-        [result setValue:arrayDic forKey:@"elasticIps"];
-    }
-    if([self pageNumber])
-    {
-        [result setValue:[self pageNumber] forKey:@"pageNumber"];
-    }
-    if([self pageSize])
-    {
-        [result setValue:[self pageSize] forKey:@"pageSize"];
-    }
-    if([self totalCount])
-    {
-        [result setValue:[self totalCount] forKey:@"totalCount"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    NSArray* elasticIpsArray = [dictionary objectForKey:@"elasticIps"];
-    if(elasticIpsArray&&![elasticIpsArray isKindOfClass:[NSNull class]])
-    {
-        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
-        for(int i = 0 ; i< [elasticIpsArray count];i++)
-        {
-            ElasticIp* item = [[ElasticIp alloc]initWithDic:[elasticIpsArray objectAtIndex:i]];
-            if(item)
-            {
-                [propertyArray addObject:item];
-            }
-        }
-        self.elasticIps = propertyArray;
-    }
-    self.pageNumber = [dictionary objectForKey:@"pageNumber"];
-    self.pageSize = [dictionary objectForKey:@"pageSize"];
-    self.totalCount = [dictionary objectForKey:@"totalCount"];
+    self.success = [dictionary objectForKey:@"success"];
     return self;
 } 
 
@@ -1599,50 +544,6 @@ elasticIpSpec:(ElasticIpSpec*)elasticIpSpec {
     self.elasticIpIds = [dictionary objectForKey:@"elasticIpIds"];
     return self;
 } 
-
-@end
-  
-@implementation EdcpsModifyElasticIpBandwidthResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-EdcpsModifyElasticIpBandwidthResult* result = [[EdcpsModifyElasticIpBandwidthResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(EdcpsModifyElasticIpBandwidthResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
 
 @end
 @implementation EdcpsDescribeElasticIpRequest
@@ -1677,252 +578,6 @@ elasticIpId:(NSString*)elasticIpId {
 
 -(id) initWithDic:(NSDictionary*)dictionary{
     self.elasticIpId = [dictionary objectForKey:@"elasticIpId"];
-    return self;
-} 
-
-@end
-  
-@implementation EdcpsDescribeElasticIpsResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-EdcpsDescribeElasticIpsResult* result = [[EdcpsDescribeElasticIpsResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(EdcpsDescribeElasticIpsResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
-@implementation EdcpsDescribeElasticIpStockRequest
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    return self;
-} 
-
-@end
-  
-@implementation EdcpsDescribeElasticIpResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-EdcpsDescribeElasticIpResult* result = [[EdcpsDescribeElasticIpResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(EdcpsDescribeElasticIpResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
-  
-@implementation EdcpsApplyElasticIpsResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-EdcpsApplyElasticIpsResult* result = [[EdcpsApplyElasticIpsResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(EdcpsApplyElasticIpsResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
-@implementation EdcpsDescribeLineTypesResult
--(id) initWithLineTypes:(NSArray<LineType*>*) lineTypes { 
-    self.lineTypes = lineTypes;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self lineTypes])
-    {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self lineTypes] count]; i++) {
-            LineType* item = [[self lineTypes] objectAtIndex:i];
-            [arrayDic addObject:[item dictionary]];
-        }
-        [result setValue:arrayDic forKey:@"lineTypes"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    NSArray* lineTypesArray = [dictionary objectForKey:@"lineTypes"];
-    if(lineTypesArray&&![lineTypesArray isKindOfClass:[NSNull class]])
-    {
-        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
-        for(int i = 0 ; i< [lineTypesArray count];i++)
-        {
-            LineType* item = [[LineType alloc]initWithDic:[lineTypesArray objectAtIndex:i]];
-            if(item)
-            {
-                [propertyArray addObject:item];
-            }
-        }
-        self.lineTypes = propertyArray;
-    }
-    return self;
-} 
-
-@end
-  
-@implementation EdcpsDescribeLineTypesResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-EdcpsDescribeLineTypesResult* result = [[EdcpsDescribeLineTypesResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(EdcpsDescribeLineTypesResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
-@implementation EdcpsDescribeLineTypesRequest
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
     return self;
 } 
 
@@ -1996,195 +651,6 @@ EdcpsDescribeLineTypesResult* result = [[EdcpsDescribeLineTypesResult alloc]init
 } 
 
 @end
-  
-@implementation EdcpsCreateKeypairsResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-EdcpsCreateKeypairsResult* result = [[EdcpsCreateKeypairsResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(EdcpsCreateKeypairsResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
-@implementation EdcpsDescribeKeypairResult
--(id) initWithServer:(Keypair*) server { 
-    self.server = server;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self server])
-    {
-        [result setValue:[[self server] dictionary]forKey:@"server"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.server = [[Keypair alloc]initWithDic:[dictionary objectForKey:@"server"]];
-    return self;
-} 
-
-@end
-  
-@implementation EdcpsDescribeKeypairResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-EdcpsDescribeKeypairResult* result = [[EdcpsDescribeKeypairResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(EdcpsDescribeKeypairResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
-@implementation EdcpsDescribeKeypairsRequest
--(id) initWithRegion:(NSString *)regionId
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-name:(NSString*)name
-filters:(NSArray<Filter*>*)filters { 
-    self.regionId = regionId;
-    self.pageNumber = pageNumber;
-    self.pageSize = pageSize;
-    self.name = name;
-    self.filters = filters;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-name:(NSString*)name
-filters:(NSArray<Filter*>*)filters { 
-    self.regionId = regionId;
-    self.version = version;
-    self.pageNumber = pageNumber;
-    self.pageSize = pageSize;
-    self.name = name;
-    self.filters = filters;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self pageNumber])
-    {
-        [result setValue:[self pageNumber] forKey:@"pageNumber"];
-    }
-    if([self pageSize])
-    {
-        [result setValue:[self pageSize] forKey:@"pageSize"];
-    }
-    if([self name])
-    {
-        [result setValue:[self name] forKey:@"name"];
-    }
-    if([self filters])
-    {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self filters] count]; i++) {
-            Filter* item = [[self filters] objectAtIndex:i];
-            [arrayDic addObject:[item dictionary]];
-        }
-        [result setValue:arrayDic forKey:@"filters"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.pageNumber = [dictionary objectForKey:@"pageNumber"];
-    self.pageSize = [dictionary objectForKey:@"pageSize"];
-    self.name = [dictionary objectForKey:@"name"];
-    NSArray* filtersArray = [dictionary objectForKey:@"filters"];
-    if(filtersArray&&![filtersArray isKindOfClass:[NSNull class]])
-    {
-        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
-        for(int i = 0 ; i< [filtersArray count];i++)
-        {
-            Filter* item = [[Filter alloc]initWithDic:[filtersArray objectAtIndex:i]];
-            if(item)
-            {
-                [propertyArray addObject:item];
-            }
-        }
-        self.filters = propertyArray;
-    }
-    return self;
-} 
-
-@end
 @implementation EdcpsDescribeKeypairRequest
 -(id) initWithRegion:(NSString *)regionId
 keypairId:(NSString*)keypairId { 
@@ -2219,109 +685,6 @@ keypairId:(NSString*)keypairId {
     self.keypairId = [dictionary objectForKey:@"keypairId"];
     return self;
 } 
-
-@end
-@implementation EdcpsDescribeKeypairsResult
--(id) initWithServers:(NSArray<Keypair*>*) servers
-        pageNumber:(NSNumber*)pageNumber
-        pageSize:(NSNumber*)pageSize
-        totalCount:(NSNumber*)totalCount { 
-    self.servers = servers;               
-    self.pageNumber = pageNumber;               
-    self.pageSize = pageSize;               
-    self.totalCount = totalCount;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self servers])
-    {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self servers] count]; i++) {
-            Keypair* item = [[self servers] objectAtIndex:i];
-            [arrayDic addObject:[item dictionary]];
-        }
-        [result setValue:arrayDic forKey:@"servers"];
-    }
-    if([self pageNumber])
-    {
-        [result setValue:[self pageNumber] forKey:@"pageNumber"];
-    }
-    if([self pageSize])
-    {
-        [result setValue:[self pageSize] forKey:@"pageSize"];
-    }
-    if([self totalCount])
-    {
-        [result setValue:[self totalCount] forKey:@"totalCount"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    NSArray* serversArray = [dictionary objectForKey:@"servers"];
-    if(serversArray&&![serversArray isKindOfClass:[NSNull class]])
-    {
-        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
-        for(int i = 0 ; i< [serversArray count];i++)
-        {
-            Keypair* item = [[Keypair alloc]initWithDic:[serversArray objectAtIndex:i]];
-            if(item)
-            {
-                [propertyArray addObject:item];
-            }
-        }
-        self.servers = propertyArray;
-    }
-    self.pageNumber = [dictionary objectForKey:@"pageNumber"];
-    self.pageSize = [dictionary objectForKey:@"pageSize"];
-    self.totalCount = [dictionary objectForKey:@"totalCount"];
-    return self;
-} 
-
-@end
-  
-@implementation EdcpsDescribeKeypairsResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-EdcpsDescribeKeypairsResult* result = [[EdcpsDescribeKeypairsResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(EdcpsDescribeKeypairsResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
 
 @end
 @implementation EdcpsImportKeypairsRequest
@@ -2505,50 +868,6 @@ name:(NSString*)name {
 } 
 
 @end
-  
-@implementation EdcpsDeleteKeypairsResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-EdcpsDeleteKeypairsResult* result = [[EdcpsDeleteKeypairsResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(EdcpsDeleteKeypairsResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
 @implementation EdcpsDeleteKeypairsRequest
 -(id) initWithRegion:(NSString *)regionId
 keypairId:(NSString*)keypairId { 
@@ -2583,50 +902,6 @@ keypairId:(NSString*)keypairId {
     self.keypairId = [dictionary objectForKey:@"keypairId"];
     return self;
 } 
-
-@end
-  
-@implementation EdcpsImportKeypairsResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-EdcpsImportKeypairsResult* result = [[EdcpsImportKeypairsResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(EdcpsImportKeypairsResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
 
 @end
 @implementation EdcpsDeleteSecondaryCidrRequest
@@ -2674,44 +949,6 @@ secondaryCidrId:(NSString*)secondaryCidrId {
 } 
 
 @end
-@implementation EdcpsDescribeSecondaryCidrsResult
--(id) initWithSecondaryCidrs:(NSArray<SecondaryCidr*>*) secondaryCidrs { 
-    self.secondaryCidrs = secondaryCidrs;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self secondaryCidrs])
-    {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self secondaryCidrs] count]; i++) {
-            SecondaryCidr* item = [[self secondaryCidrs] objectAtIndex:i];
-            [arrayDic addObject:[item dictionary]];
-        }
-        [result setValue:arrayDic forKey:@"secondaryCidrs"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    NSArray* secondaryCidrsArray = [dictionary objectForKey:@"secondaryCidrs"];
-    if(secondaryCidrsArray&&![secondaryCidrsArray isKindOfClass:[NSNull class]])
-    {
-        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
-        for(int i = 0 ; i< [secondaryCidrsArray count];i++)
-        {
-            SecondaryCidr* item = [[SecondaryCidr alloc]initWithDic:[secondaryCidrsArray objectAtIndex:i]];
-            if(item)
-            {
-                [propertyArray addObject:item];
-            }
-        }
-        self.secondaryCidrs = propertyArray;
-    }
-    return self;
-} 
-
-@end
 @implementation EdcpsDeleteSecondaryCidrResult
 -(id) initWithSuccess:(NSNumber*) success { 
     self.success = success;               
@@ -2732,50 +969,6 @@ secondaryCidrId:(NSString*)secondaryCidrId {
 } 
 
 @end
-  
-@implementation EdcpsDeleteSecondaryCidrResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-EdcpsDeleteSecondaryCidrResult* result = [[EdcpsDeleteSecondaryCidrResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(EdcpsDeleteSecondaryCidrResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
 @implementation EdcpsCreateSecondaryCidrResult
 -(id) initWithSecondaryCidrId:(NSString*) secondaryCidrId { 
     self.secondaryCidrId = secondaryCidrId;               
@@ -2794,139 +987,6 @@ EdcpsDeleteSecondaryCidrResult* result = [[EdcpsDeleteSecondaryCidrResult alloc]
     self.secondaryCidrId = [dictionary objectForKey:@"secondaryCidrId"];
     return self;
 } 
-
-@end
-  
-@implementation EdcpsCreateSecondaryCidrResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-EdcpsCreateSecondaryCidrResult* result = [[EdcpsCreateSecondaryCidrResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(EdcpsCreateSecondaryCidrResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
-@implementation EdcpsCreateSecondaryCidrRequest
--(id) initWithRegion:(NSString *)regionId
-clientToken:(NSString*)clientToken
-secondaryCidrSpec:(SecondaryCidrSpec*)secondaryCidrSpec { 
-    self.regionId = regionId;
-    self.clientToken = clientToken;
-    self.secondaryCidrSpec = secondaryCidrSpec;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-clientToken:(NSString*)clientToken
-secondaryCidrSpec:(SecondaryCidrSpec*)secondaryCidrSpec { 
-    self.regionId = regionId;
-    self.version = version;
-    self.clientToken = clientToken;
-    self.secondaryCidrSpec = secondaryCidrSpec;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self clientToken])
-    {
-        [result setValue:[self clientToken] forKey:@"clientToken"];
-    }
-    if([self secondaryCidrSpec])
-    {
-        [result setValue:[[self secondaryCidrSpec] dictionary]forKey:@"secondaryCidrSpec"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.clientToken = [dictionary objectForKey:@"clientToken"];
-    self.secondaryCidrSpec = [[SecondaryCidrSpec alloc]initWithDic:[dictionary objectForKey:@"secondaryCidrSpec"]];
-    return self;
-} 
-
-@end
-  
-@implementation EdcpsDescribeSecondaryCidrsResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-EdcpsDescribeSecondaryCidrsResult* result = [[EdcpsDescribeSecondaryCidrsResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(EdcpsDescribeSecondaryCidrsResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
 
 @end
 @implementation EdcpsDescribeSecondaryCidrsRequest
@@ -3042,229 +1102,6 @@ az:(NSString*)az {
 } 
 
 @end
-@implementation EdcpsDescribeOSResult
--(id) initWithOss:(NSArray<Os*>*) oss { 
-    self.oss = oss;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self oss])
-    {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self oss] count]; i++) {
-            Os* item = [[self oss] objectAtIndex:i];
-            [arrayDic addObject:[item dictionary]];
-        }
-        [result setValue:arrayDic forKey:@"oss"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    NSArray* ossArray = [dictionary objectForKey:@"oss"];
-    if(ossArray&&![ossArray isKindOfClass:[NSNull class]])
-    {
-        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
-        for(int i = 0 ; i< [ossArray count];i++)
-        {
-            Os* item = [[Os alloc]initWithDic:[ossArray objectAtIndex:i]];
-            if(item)
-            {
-                [propertyArray addObject:item];
-            }
-        }
-        self.oss = propertyArray;
-    }
-    return self;
-} 
-
-@end
-  
-@implementation EdcpsDescribeOSResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-EdcpsDescribeOSResult* result = [[EdcpsDescribeOSResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(EdcpsDescribeOSResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
-@implementation EdcpsDescribeInstancesResult
--(id) initWithInstances:(NSArray<Instance*>*) instances
-        pageNumber:(NSNumber*)pageNumber
-        pageSize:(NSNumber*)pageSize
-        totalCount:(NSNumber*)totalCount { 
-    self.instances = instances;               
-    self.pageNumber = pageNumber;               
-    self.pageSize = pageSize;               
-    self.totalCount = totalCount;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self instances])
-    {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self instances] count]; i++) {
-            Instance* item = [[self instances] objectAtIndex:i];
-            [arrayDic addObject:[item dictionary]];
-        }
-        [result setValue:arrayDic forKey:@"instances"];
-    }
-    if([self pageNumber])
-    {
-        [result setValue:[self pageNumber] forKey:@"pageNumber"];
-    }
-    if([self pageSize])
-    {
-        [result setValue:[self pageSize] forKey:@"pageSize"];
-    }
-    if([self totalCount])
-    {
-        [result setValue:[self totalCount] forKey:@"totalCount"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    NSArray* instancesArray = [dictionary objectForKey:@"instances"];
-    if(instancesArray&&![instancesArray isKindOfClass:[NSNull class]])
-    {
-        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
-        for(int i = 0 ; i< [instancesArray count];i++)
-        {
-            Instance* item = [[Instance alloc]initWithDic:[instancesArray objectAtIndex:i]];
-            if(item)
-            {
-                [propertyArray addObject:item];
-            }
-        }
-        self.instances = propertyArray;
-    }
-    self.pageNumber = [dictionary objectForKey:@"pageNumber"];
-    self.pageSize = [dictionary objectForKey:@"pageSize"];
-    self.totalCount = [dictionary objectForKey:@"totalCount"];
-    return self;
-} 
-
-@end
-@implementation EdcpsDescribeDeviceTypesResult
--(id) initWithDeviceTypes:(NSArray<DeviceType*>*) deviceTypes { 
-    self.deviceTypes = deviceTypes;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self deviceTypes])
-    {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self deviceTypes] count]; i++) {
-            DeviceType* item = [[self deviceTypes] objectAtIndex:i];
-            [arrayDic addObject:[item dictionary]];
-        }
-        [result setValue:arrayDic forKey:@"deviceTypes"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    NSArray* deviceTypesArray = [dictionary objectForKey:@"deviceTypes"];
-    if(deviceTypesArray&&![deviceTypesArray isKindOfClass:[NSNull class]])
-    {
-        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
-        for(int i = 0 ; i< [deviceTypesArray count];i++)
-        {
-            DeviceType* item = [[DeviceType alloc]initWithDic:[deviceTypesArray objectAtIndex:i]];
-            if(item)
-            {
-                [propertyArray addObject:item];
-            }
-        }
-        self.deviceTypes = propertyArray;
-    }
-    return self;
-} 
-
-@end
-  
-@implementation EdcpsDescribeDeviceTypesResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-EdcpsDescribeDeviceTypesResult* result = [[EdcpsDescribeDeviceTypesResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(EdcpsDescribeDeviceTypesResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
 @implementation EdcpsResetPasswordResult
 -(id) initWithSuccess:(NSNumber*) success { 
     self.success = success;               
@@ -3281,26 +1118,6 @@ EdcpsDescribeDeviceTypesResult* result = [[EdcpsDescribeDeviceTypesResult alloc]
 
 -(id) initWithDic:(NSDictionary*)dictionary{
     self.success = [dictionary objectForKey:@"success"];
-    return self;
-} 
-
-@end
-@implementation EdcpsDescribeInstanceResult
--(id) initWithInstance:(Instance*) instance { 
-    self.instance = instance;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self instance])
-    {
-        [result setValue:[[self instance] dictionary]forKey:@"instance"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.instance = [[Instance alloc]initWithDic:[dictionary objectForKey:@"instance"]];
     return self;
 } 
 
@@ -3370,60 +1187,6 @@ instanceId:(NSString*)instanceId {
 } 
 
 @end
-@implementation EdcpsReinstallInstanceRequest
--(id) initWithRegion:(NSString *)regionId
-clientToken:(NSString*)clientToken
-instanceSpec:(ReinstallInstanceSpec*)instanceSpec
-instanceId:(NSString*)instanceId { 
-    self.regionId = regionId;
-    self.clientToken = clientToken;
-    self.instanceSpec = instanceSpec;
-    self.instanceId = instanceId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-clientToken:(NSString*)clientToken
-instanceSpec:(ReinstallInstanceSpec*)instanceSpec
-instanceId:(NSString*)instanceId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.clientToken = clientToken;
-    self.instanceSpec = instanceSpec;
-    self.instanceId = instanceId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self clientToken])
-    {
-        [result setValue:[self clientToken] forKey:@"clientToken"];
-    }
-    if([self instanceSpec])
-    {
-        [result setValue:[[self instanceSpec] dictionary]forKey:@"instanceSpec"];
-    }
-    if([self instanceId])
-    {
-        [result setValue:[self instanceId] forKey:@"instanceId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.clientToken = [dictionary objectForKey:@"clientToken"];
-    self.instanceSpec = [[ReinstallInstanceSpec alloc]initWithDic:[dictionary objectForKey:@"instanceSpec"]];
-    self.instanceId = [dictionary objectForKey:@"instanceId"];
-    return self;
-} 
-
-@end
 @implementation EdcpsDescribeAvailablePrivateIpRequest
 -(id) initWithRegion:(NSString *)regionId
 instanceId:(NSString*)instanceId { 
@@ -3460,197 +1223,6 @@ instanceId:(NSString*)instanceId {
 } 
 
 @end
-@implementation EdcpsStopInstanceResult
--(id) initWithSuccess:(NSNumber*) success { 
-    self.success = success;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self success])
-    {
-        [result setValue:[self success] forKey:@"success"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.success = [dictionary objectForKey:@"success"];
-    return self;
-} 
-
-@end
-  
-@implementation EdcpsStopInstanceResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-EdcpsStopInstanceResult* result = [[EdcpsStopInstanceResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(EdcpsStopInstanceResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
-@implementation EdcpsCreateInstancesRequest
--(id) initWithRegion:(NSString *)regionId
-clientToken:(NSString*)clientToken
-instanceSpec:(InstanceSpec*)instanceSpec { 
-    self.regionId = regionId;
-    self.clientToken = clientToken;
-    self.instanceSpec = instanceSpec;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-clientToken:(NSString*)clientToken
-instanceSpec:(InstanceSpec*)instanceSpec { 
-    self.regionId = regionId;
-    self.version = version;
-    self.clientToken = clientToken;
-    self.instanceSpec = instanceSpec;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self clientToken])
-    {
-        [result setValue:[self clientToken] forKey:@"clientToken"];
-    }
-    if([self instanceSpec])
-    {
-        [result setValue:[[self instanceSpec] dictionary]forKey:@"instanceSpec"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.clientToken = [dictionary objectForKey:@"clientToken"];
-    self.instanceSpec = [[InstanceSpec alloc]initWithDic:[dictionary objectForKey:@"instanceSpec"]];
-    return self;
-} 
-
-@end
-@implementation EdcpsDescribeDeviceRaidsResult
--(id) initWithRaids:(NSArray<Raid*>*) raids { 
-    self.raids = raids;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self raids])
-    {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self raids] count]; i++) {
-            Raid* item = [[self raids] objectAtIndex:i];
-            [arrayDic addObject:[item dictionary]];
-        }
-        [result setValue:arrayDic forKey:@"raids"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    NSArray* raidsArray = [dictionary objectForKey:@"raids"];
-    if(raidsArray&&![raidsArray isKindOfClass:[NSNull class]])
-    {
-        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
-        for(int i = 0 ; i< [raidsArray count];i++)
-        {
-            Raid* item = [[Raid alloc]initWithDic:[raidsArray objectAtIndex:i]];
-            if(item)
-            {
-                [propertyArray addObject:item];
-            }
-        }
-        self.raids = propertyArray;
-    }
-    return self;
-} 
-
-@end
-  
-@implementation EdcpsDescribeDeviceRaidsResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-EdcpsDescribeDeviceRaidsResult* result = [[EdcpsDescribeDeviceRaidsResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(EdcpsDescribeDeviceRaidsResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
 @implementation EdcpsDescribeInstanceRequest
 -(id) initWithRegion:(NSString *)regionId
 instanceId:(NSString*)instanceId { 
@@ -3685,152 +1257,6 @@ instanceId:(NSString*)instanceId {
     self.instanceId = [dictionary objectForKey:@"instanceId"];
     return self;
 } 
-
-@end
-@implementation EdcpsDescribeDeviceStockResult
--(id) initWithDevicesStock:(NSArray<ResourceStock*>*) devicesStock { 
-    self.devicesStock = devicesStock;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self devicesStock])
-    {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self devicesStock] count]; i++) {
-            ResourceStock* item = [[self devicesStock] objectAtIndex:i];
-            [arrayDic addObject:[item dictionary]];
-        }
-        [result setValue:arrayDic forKey:@"devicesStock"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    NSArray* devicesStockArray = [dictionary objectForKey:@"devicesStock"];
-    if(devicesStockArray&&![devicesStockArray isKindOfClass:[NSNull class]])
-    {
-        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
-        for(int i = 0 ; i< [devicesStockArray count];i++)
-        {
-            ResourceStock* item = [[ResourceStock alloc]initWithDic:[devicesStockArray objectAtIndex:i]];
-            if(item)
-            {
-                [propertyArray addObject:item];
-            }
-        }
-        self.devicesStock = propertyArray;
-    }
-    return self;
-} 
-
-@end
-  
-@implementation EdcpsDescribeDeviceStockResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-EdcpsDescribeDeviceStockResult* result = [[EdcpsDescribeDeviceStockResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(EdcpsDescribeDeviceStockResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
-@implementation EdcpsDisassociateElasticIpResult
--(id) initWithSuccess:(NSNumber*) success { 
-    self.success = success;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self success])
-    {
-        [result setValue:[self success] forKey:@"success"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.success = [dictionary objectForKey:@"success"];
-    return self;
-} 
-
-@end
-  
-@implementation EdcpsDisassociateElasticIpResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-EdcpsDisassociateElasticIpResult* result = [[EdcpsDisassociateElasticIpResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(EdcpsDisassociateElasticIpResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
 
 @end
 @implementation EdcpsDisassociateElasticIpRequest
@@ -3919,141 +1345,6 @@ instanceId:(NSString*)instanceId {
 
 -(id) initWithDic:(NSDictionary*)dictionary{
     self.instanceId = [dictionary objectForKey:@"instanceId"];
-    return self;
-} 
-
-@end
-@implementation EdcpsDescribeInstancesRequest
--(id) initWithRegion:(NSString *)regionId
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-az:(NSString*)az
-name:(NSString*)name
-networkType:(NSString*)networkType
-deviceType:(NSString*)deviceType
-subnetId:(NSString*)subnetId
-enableInternet:(NSString*)enableInternet
-keypairId:(NSString*)keypairId
-filters:(NSArray<Filter*>*)filters { 
-    self.regionId = regionId;
-    self.pageNumber = pageNumber;
-    self.pageSize = pageSize;
-    self.az = az;
-    self.name = name;
-    self.networkType = networkType;
-    self.deviceType = deviceType;
-    self.subnetId = subnetId;
-    self.enableInternet = enableInternet;
-    self.keypairId = keypairId;
-    self.filters = filters;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-az:(NSString*)az
-name:(NSString*)name
-networkType:(NSString*)networkType
-deviceType:(NSString*)deviceType
-subnetId:(NSString*)subnetId
-enableInternet:(NSString*)enableInternet
-keypairId:(NSString*)keypairId
-filters:(NSArray<Filter*>*)filters { 
-    self.regionId = regionId;
-    self.version = version;
-    self.pageNumber = pageNumber;
-    self.pageSize = pageSize;
-    self.az = az;
-    self.name = name;
-    self.networkType = networkType;
-    self.deviceType = deviceType;
-    self.subnetId = subnetId;
-    self.enableInternet = enableInternet;
-    self.keypairId = keypairId;
-    self.filters = filters;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self pageNumber])
-    {
-        [result setValue:[self pageNumber] forKey:@"pageNumber"];
-    }
-    if([self pageSize])
-    {
-        [result setValue:[self pageSize] forKey:@"pageSize"];
-    }
-    if([self az])
-    {
-        [result setValue:[self az] forKey:@"az"];
-    }
-    if([self name])
-    {
-        [result setValue:[self name] forKey:@"name"];
-    }
-    if([self networkType])
-    {
-        [result setValue:[self networkType] forKey:@"networkType"];
-    }
-    if([self deviceType])
-    {
-        [result setValue:[self deviceType] forKey:@"deviceType"];
-    }
-    if([self subnetId])
-    {
-        [result setValue:[self subnetId] forKey:@"subnetId"];
-    }
-    if([self enableInternet])
-    {
-        [result setValue:[self enableInternet] forKey:@"enableInternet"];
-    }
-    if([self keypairId])
-    {
-        [result setValue:[self keypairId] forKey:@"keypairId"];
-    }
-    if([self filters])
-    {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self filters] count]; i++) {
-            Filter* item = [[self filters] objectAtIndex:i];
-            [arrayDic addObject:[item dictionary]];
-        }
-        [result setValue:arrayDic forKey:@"filters"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.pageNumber = [dictionary objectForKey:@"pageNumber"];
-    self.pageSize = [dictionary objectForKey:@"pageSize"];
-    self.az = [dictionary objectForKey:@"az"];
-    self.name = [dictionary objectForKey:@"name"];
-    self.networkType = [dictionary objectForKey:@"networkType"];
-    self.deviceType = [dictionary objectForKey:@"deviceType"];
-    self.subnetId = [dictionary objectForKey:@"subnetId"];
-    self.enableInternet = [dictionary objectForKey:@"enableInternet"];
-    self.keypairId = [dictionary objectForKey:@"keypairId"];
-    NSArray* filtersArray = [dictionary objectForKey:@"filters"];
-    if(filtersArray&&![filtersArray isKindOfClass:[NSNull class]])
-    {
-        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
-        for(int i = 0 ; i< [filtersArray count];i++)
-        {
-            Filter* item = [[Filter alloc]initWithDic:[filtersArray objectAtIndex:i]];
-            if(item)
-            {
-                [propertyArray addObject:item];
-            }
-        }
-        self.filters = propertyArray;
-    }
     return self;
 } 
 
@@ -4274,114 +1565,6 @@ osType:(NSString*)osType {
 } 
 
 @end
-@implementation EdcpsRestartInstanceResult
--(id) initWithSuccess:(NSNumber*) success { 
-    self.success = success;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self success])
-    {
-        [result setValue:[self success] forKey:@"success"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.success = [dictionary objectForKey:@"success"];
-    return self;
-} 
-
-@end
-  
-@implementation EdcpsRestartInstanceResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-EdcpsRestartInstanceResult* result = [[EdcpsRestartInstanceResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(EdcpsRestartInstanceResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
-  
-@implementation EdcpsDescribeInstanceStatusResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-EdcpsDescribeInstanceStatusResult* result = [[EdcpsDescribeInstanceStatusResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(EdcpsDescribeInstanceStatusResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
 @implementation EdcpsResetPasswordRequest
 -(id) initWithRegion:(NSString *)regionId
 clientToken:(NSString*)clientToken
@@ -4436,51 +1619,7 @@ instanceId:(NSString*)instanceId {
 } 
 
 @end
-  
-@implementation EdcpsDescribeInstanceNameResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-EdcpsDescribeInstanceNameResult* result = [[EdcpsDescribeInstanceNameResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(EdcpsDescribeInstanceNameResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
-@implementation EdcpsAssociateElasticIpResult
+@implementation EdcpsRestartInstanceResult
 -(id) initWithSuccess:(NSNumber*) success { 
     self.success = success;               
     return self;
@@ -4498,50 +1637,6 @@ EdcpsDescribeInstanceNameResult* result = [[EdcpsDescribeInstanceNameResult allo
     self.success = [dictionary objectForKey:@"success"];
     return self;
 } 
-
-@end
-  
-@implementation EdcpsAssociateElasticIpResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-EdcpsAssociateElasticIpResult* result = [[EdcpsAssociateElasticIpResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(EdcpsAssociateElasticIpResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
 
 @end
 @implementation EdcpsReinstallInstanceResult
@@ -4607,50 +1702,6 @@ instanceId:(NSString*)instanceId {
     self.instanceId = [dictionary objectForKey:@"instanceId"];
     return self;
 } 
-
-@end
-  
-@implementation EdcpsReinstallInstanceResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-EdcpsReinstallInstanceResult* result = [[EdcpsReinstallInstanceResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(EdcpsReinstallInstanceResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
 
 @end
 @implementation EdcpsDeleteInstanceRequest
@@ -4761,6 +1812,3339 @@ instanceId:(NSString*)instanceId {
 } 
 
 @end
+@implementation EdcpsStopInstanceResult
+-(id) initWithSuccess:(NSNumber*) success { 
+    self.success = success;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self success])
+    {
+        [result setValue:[self success] forKey:@"success"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.success = [dictionary objectForKey:@"success"];
+    return self;
+} 
+
+@end
+@implementation EdcpsModifyInstanceResult
+-(id) initWithName:(NSString*) name
+        descriptionValue:(NSString*)descriptionValue { 
+    self.name = name;               
+    self.descriptionValue = descriptionValue;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self name])
+    {
+        [result setValue:[self name] forKey:@"name"];
+    }
+    if([self descriptionValue])
+    {
+        [result setValue:[self descriptionValue] forKey:@"description"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.name = [dictionary objectForKey:@"name"];
+    self.descriptionValue = [dictionary objectForKey:@"description"];
+    return self;
+} 
+
+@end
+@implementation EdcpsDisassociateElasticIpResult
+-(id) initWithSuccess:(NSNumber*) success { 
+    self.success = success;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self success])
+    {
+        [result setValue:[self success] forKey:@"success"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.success = [dictionary objectForKey:@"success"];
+    return self;
+} 
+
+@end
+@implementation EdcpsDescribeDeviceRaidsRequest
+-(id) initWithRegion:(NSString *)regionId
+deviceType:(NSString*)deviceType
+volumeType:(NSString*)volumeType { 
+    self.regionId = regionId;
+    self.deviceType = deviceType;
+    self.volumeType = volumeType;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+deviceType:(NSString*)deviceType
+volumeType:(NSString*)volumeType { 
+    self.regionId = regionId;
+    self.version = version;
+    self.deviceType = deviceType;
+    self.volumeType = volumeType;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self deviceType])
+    {
+        [result setValue:[self deviceType] forKey:@"deviceType"];
+    }
+    if([self volumeType])
+    {
+        [result setValue:[self volumeType] forKey:@"volumeType"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.deviceType = [dictionary objectForKey:@"deviceType"];
+    self.volumeType = [dictionary objectForKey:@"volumeType"];
+    return self;
+} 
+
+@end
+@implementation EdcpsDescribeDeviceStockRequest
+-(id) initWithRegion:(NSString *)regionId
+deviceType:(NSString*)deviceType { 
+    self.regionId = regionId;
+    self.deviceType = deviceType;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+deviceType:(NSString*)deviceType { 
+    self.regionId = regionId;
+    self.version = version;
+    self.deviceType = deviceType;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self deviceType])
+    {
+        [result setValue:[self deviceType] forKey:@"deviceType"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.deviceType = [dictionary objectForKey:@"deviceType"];
+    return self;
+} 
+
+@end
+@implementation EdcpsDeleteInstanceResult
+-(id) initWithSuccess:(NSNumber*) success { 
+    self.success = success;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self success])
+    {
+        [result setValue:[self success] forKey:@"success"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.success = [dictionary objectForKey:@"success"];
+    return self;
+} 
+
+@end
+@implementation EdcpsStartInstanceRequest
+-(id) initWithRegion:(NSString *)regionId
+clientToken:(NSString*)clientToken
+instanceId:(NSString*)instanceId { 
+    self.regionId = regionId;
+    self.clientToken = clientToken;
+    self.instanceId = instanceId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+clientToken:(NSString*)clientToken
+instanceId:(NSString*)instanceId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.clientToken = clientToken;
+    self.instanceId = instanceId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self clientToken])
+    {
+        [result setValue:[self clientToken] forKey:@"clientToken"];
+    }
+    if([self instanceId])
+    {
+        [result setValue:[self instanceId] forKey:@"instanceId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.clientToken = [dictionary objectForKey:@"clientToken"];
+    self.instanceId = [dictionary objectForKey:@"instanceId"];
+    return self;
+} 
+
+@end
+@implementation EdcpsDescribeInstanceNameRequest
+-(id) initWithRegion:(NSString *)regionId
+instanceId:(NSString*)instanceId { 
+    self.regionId = regionId;
+    self.instanceId = instanceId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+instanceId:(NSString*)instanceId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.instanceId = instanceId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self instanceId])
+    {
+        [result setValue:[self instanceId] forKey:@"instanceId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.instanceId = [dictionary objectForKey:@"instanceId"];
+    return self;
+} 
+
+@end
+@implementation EdcpsAssociateElasticIpResult
+-(id) initWithSuccess:(NSNumber*) success { 
+    self.success = success;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self success])
+    {
+        [result setValue:[self success] forKey:@"success"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.success = [dictionary objectForKey:@"success"];
+    return self;
+} 
+
+@end
+@implementation EdcpsCreateVpcResult
+-(id) initWithVpcId:(NSString*) vpcId { 
+    self.vpcId = vpcId;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self vpcId])
+    {
+        [result setValue:[self vpcId] forKey:@"vpcId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.vpcId = [dictionary objectForKey:@"vpcId"];
+    return self;
+} 
+
+@end
+@implementation EdcpsDeleteVpcResult
+-(id) initWithSuccess:(NSNumber*) success { 
+    self.success = success;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self success])
+    {
+        [result setValue:[self success] forKey:@"success"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.success = [dictionary objectForKey:@"success"];
+    return self;
+} 
+
+@end
+@implementation EdcpsDeleteVpcRequest
+-(id) initWithRegion:(NSString *)regionId
+clientToken:(NSString*)clientToken
+vpcId:(NSString*)vpcId { 
+    self.regionId = regionId;
+    self.clientToken = clientToken;
+    self.vpcId = vpcId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+clientToken:(NSString*)clientToken
+vpcId:(NSString*)vpcId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.clientToken = clientToken;
+    self.vpcId = vpcId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self clientToken])
+    {
+        [result setValue:[self clientToken] forKey:@"clientToken"];
+    }
+    if([self vpcId])
+    {
+        [result setValue:[self vpcId] forKey:@"vpcId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.clientToken = [dictionary objectForKey:@"clientToken"];
+    self.vpcId = [dictionary objectForKey:@"vpcId"];
+    return self;
+} 
+
+@end
+@implementation EdcpsModifyVpcRequest
+-(id) initWithRegion:(NSString *)regionId
+name:(NSString*)name
+descriptionValue:(NSString*)descriptionValue
+vpcId:(NSString*)vpcId { 
+    self.regionId = regionId;
+    self.name = name;
+    self.descriptionValue = descriptionValue;
+    self.vpcId = vpcId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+name:(NSString*)name
+descriptionValue:(NSString*)descriptionValue
+vpcId:(NSString*)vpcId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.name = name;
+    self.descriptionValue = descriptionValue;
+    self.vpcId = vpcId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self name])
+    {
+        [result setValue:[self name] forKey:@"name"];
+    }
+    if([self descriptionValue])
+    {
+        [result setValue:[self descriptionValue] forKey:@"description"];
+    }
+    if([self vpcId])
+    {
+        [result setValue:[self vpcId] forKey:@"vpcId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.name = [dictionary objectForKey:@"name"];
+    self.descriptionValue = [dictionary objectForKey:@"description"];
+    self.vpcId = [dictionary objectForKey:@"vpcId"];
+    return self;
+} 
+
+@end
+@implementation EdcpsDescribeVpcRequest
+-(id) initWithRegion:(NSString *)regionId
+vpcId:(NSString*)vpcId { 
+    self.regionId = regionId;
+    self.vpcId = vpcId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+vpcId:(NSString*)vpcId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.vpcId = vpcId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self vpcId])
+    {
+        [result setValue:[self vpcId] forKey:@"vpcId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.vpcId = [dictionary objectForKey:@"vpcId"];
+    return self;
+} 
+
+@end
+@implementation EdcpsDescribeAliasIpsResult
+-(id) initWithAliasIps:(NSArray<AliasIp*>*) aliasIps
+        pageNumber:(NSNumber*)pageNumber
+        pageSize:(NSNumber*)pageSize
+        totalCount:(NSNumber*)totalCount { 
+    self.aliasIps = aliasIps;               
+    self.pageNumber = pageNumber;               
+    self.pageSize = pageSize;               
+    self.totalCount = totalCount;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self aliasIps])
+    {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self aliasIps] count]; i++) {
+            AliasIp* item = [[self aliasIps] objectAtIndex:i];
+            [arrayDic addObject:[item dictionary]];
+        }
+        [result setValue:arrayDic forKey:@"aliasIps"];
+    }
+    if([self pageNumber])
+    {
+        [result setValue:[self pageNumber] forKey:@"pageNumber"];
+    }
+    if([self pageSize])
+    {
+        [result setValue:[self pageSize] forKey:@"pageSize"];
+    }
+    if([self totalCount])
+    {
+        [result setValue:[self totalCount] forKey:@"totalCount"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    NSArray* aliasIpsArray = [dictionary objectForKey:@"aliasIps"];
+    if(aliasIpsArray&&![aliasIpsArray isKindOfClass:[NSNull class]])
+    {
+        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
+        for(int i = 0 ; i< [aliasIpsArray count];i++)
+        {
+        AliasIp* item = [[AliasIp alloc]initWithDic:[aliasIpsArray objectAtIndex:i]];
+            if(item)
+            {
+            [propertyArray addObject:item];
+            }
+        }
+        self.aliasIps = propertyArray;
+    }
+    self.pageNumber = [dictionary objectForKey:@"pageNumber"];
+    self.pageSize = [dictionary objectForKey:@"pageSize"];
+    self.totalCount = [dictionary objectForKey:@"totalCount"];
+    return self;
+} 
+
+@end
+@implementation EdcpsCreateAliasIpRequest
+-(id) initWithRegion:(NSString *)regionId
+clientToken:(NSString*)clientToken
+aliasIpSpec:(AliasIpSpec*)aliasIpSpec { 
+    self.regionId = regionId;
+    self.clientToken = clientToken;
+    self.aliasIpSpec = aliasIpSpec;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+clientToken:(NSString*)clientToken
+aliasIpSpec:(AliasIpSpec*)aliasIpSpec { 
+    self.regionId = regionId;
+    self.version = version;
+    self.clientToken = clientToken;
+    self.aliasIpSpec = aliasIpSpec;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self clientToken])
+    {
+        [result setValue:[self clientToken] forKey:@"clientToken"];
+    }
+    if([self aliasIpSpec])
+    {
+        [result setValue:[[self aliasIpSpec] dictionary]forKey:@"aliasIpSpec"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.clientToken = [dictionary objectForKey:@"clientToken"];
+    self.aliasIpSpec = [[AliasIpSpec alloc]initWithDic:[dictionary objectForKey:@"aliasIpSpec"]];
+    return self;
+} 
+
+@end
+@implementation EdcpsCreateAliasIpResult
+-(id) initWithSuccessList:(NSArray<AliasIpSuccessInfo*>*) successList
+        errorList:(NSArray<AliasIpErrorInfo*>*)errorList { 
+    self.successList = successList;               
+    self.errorList = errorList;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self successList])
+    {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self successList] count]; i++) {
+            AliasIpSuccessInfo* item = [[self successList] objectAtIndex:i];
+            [arrayDic addObject:[item dictionary]];
+        }
+        [result setValue:arrayDic forKey:@"successList"];
+    }
+    if([self errorList])
+    {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self errorList] count]; i++) {
+            AliasIpErrorInfo* item = [[self errorList] objectAtIndex:i];
+            [arrayDic addObject:[item dictionary]];
+        }
+        [result setValue:arrayDic forKey:@"errorList"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    NSArray* successListArray = [dictionary objectForKey:@"successList"];
+    if(successListArray&&![successListArray isKindOfClass:[NSNull class]])
+    {
+        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
+        for(int i = 0 ; i< [successListArray count];i++)
+        {
+        AliasIpSuccessInfo* item = [[AliasIpSuccessInfo alloc]initWithDic:[successListArray objectAtIndex:i]];
+            if(item)
+            {
+            [propertyArray addObject:item];
+            }
+        }
+        self.successList = propertyArray;
+    }
+    NSArray* errorListArray = [dictionary objectForKey:@"errorList"];
+    if(errorListArray&&![errorListArray isKindOfClass:[NSNull class]])
+    {
+        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
+        for(int i = 0 ; i< [errorListArray count];i++)
+        {
+        AliasIpErrorInfo* item = [[AliasIpErrorInfo alloc]initWithDic:[errorListArray objectAtIndex:i]];
+            if(item)
+            {
+            [propertyArray addObject:item];
+            }
+        }
+        self.errorList = propertyArray;
+    }
+    return self;
+} 
+
+@end
+  
+@implementation EdcpsCreateAliasIpResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+EdcpsCreateAliasIpResult* result = [[EdcpsCreateAliasIpResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(EdcpsCreateAliasIpResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+  
+@implementation EdcpsDescribeAliasIpsResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+EdcpsDescribeAliasIpsResult* result = [[EdcpsDescribeAliasIpsResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(EdcpsDescribeAliasIpsResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+  
+@implementation EdcpsDeleteAliasIpResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+EdcpsDeleteAliasIpResult* result = [[EdcpsDeleteAliasIpResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(EdcpsDeleteAliasIpResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+  
+@implementation EdcpsCreateSubnetResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+EdcpsCreateSubnetResult* result = [[EdcpsCreateSubnetResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(EdcpsCreateSubnetResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+@implementation EdcpsDescribeSubnetResult
+-(id) initWithSubnet:(Subnet*) subnet { 
+    self.subnet = subnet;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self subnet])
+    {
+        [result setValue:[[self subnet] dictionary]forKey:@"subnet"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.subnet = [[Subnet alloc]initWithDic:[dictionary objectForKey:@"subnet"]];
+    return self;
+} 
+
+@end
+@implementation EdcpsModifySubnetResult
+-(id) initWithSubnet:(Subnet*) subnet { 
+    self.subnet = subnet;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self subnet])
+    {
+        [result setValue:[[self subnet] dictionary]forKey:@"subnet"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.subnet = [[Subnet alloc]initWithDic:[dictionary objectForKey:@"subnet"]];
+    return self;
+} 
+
+@end
+@implementation EdcpsCreateSubnetRequest
+-(id) initWithRegion:(NSString *)regionId
+clientToken:(NSString*)clientToken
+subnetSpec:(SubnetSpec*)subnetSpec { 
+    self.regionId = regionId;
+    self.clientToken = clientToken;
+    self.subnetSpec = subnetSpec;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+clientToken:(NSString*)clientToken
+subnetSpec:(SubnetSpec*)subnetSpec { 
+    self.regionId = regionId;
+    self.version = version;
+    self.clientToken = clientToken;
+    self.subnetSpec = subnetSpec;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self clientToken])
+    {
+        [result setValue:[self clientToken] forKey:@"clientToken"];
+    }
+    if([self subnetSpec])
+    {
+        [result setValue:[[self subnetSpec] dictionary]forKey:@"subnetSpec"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.clientToken = [dictionary objectForKey:@"clientToken"];
+    self.subnetSpec = [[SubnetSpec alloc]initWithDic:[dictionary objectForKey:@"subnetSpec"]];
+    return self;
+} 
+
+@end
+  
+@implementation EdcpsModifySubnetResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+EdcpsModifySubnetResult* result = [[EdcpsModifySubnetResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(EdcpsModifySubnetResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+  
+@implementation EdcpsDeleteSubnetResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+EdcpsDeleteSubnetResult* result = [[EdcpsDeleteSubnetResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(EdcpsDeleteSubnetResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+  
+@implementation EdcpsDescribeSubnetResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+EdcpsDescribeSubnetResult* result = [[EdcpsDescribeSubnetResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(EdcpsDescribeSubnetResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+@implementation EdcpsDescribeSubnetsRequest
+-(id) initWithRegion:(NSString *)regionId
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+az:(NSString*)az
+name:(NSString*)name
+vpcId:(NSString*)vpcId
+filters:(NSArray<Filter*>*)filters { 
+    self.regionId = regionId;
+    self.pageNumber = pageNumber;
+    self.pageSize = pageSize;
+    self.az = az;
+    self.name = name;
+    self.vpcId = vpcId;
+    self.filters = filters;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+az:(NSString*)az
+name:(NSString*)name
+vpcId:(NSString*)vpcId
+filters:(NSArray<Filter*>*)filters { 
+    self.regionId = regionId;
+    self.version = version;
+    self.pageNumber = pageNumber;
+    self.pageSize = pageSize;
+    self.az = az;
+    self.name = name;
+    self.vpcId = vpcId;
+    self.filters = filters;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self pageNumber])
+    {
+        [result setValue:[self pageNumber] forKey:@"pageNumber"];
+    }
+    if([self pageSize])
+    {
+        [result setValue:[self pageSize] forKey:@"pageSize"];
+    }
+    if([self az])
+    {
+        [result setValue:[self az] forKey:@"az"];
+    }
+    if([self name])
+    {
+        [result setValue:[self name] forKey:@"name"];
+    }
+    if([self vpcId])
+    {
+        [result setValue:[self vpcId] forKey:@"vpcId"];
+    }
+    if([self filters])
+    {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self filters] count]; i++) {
+            Filter* item = [[self filters] objectAtIndex:i];
+            [arrayDic addObject:[item dictionary]];
+        }
+        [result setValue:arrayDic forKey:@"filters"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.pageNumber = [dictionary objectForKey:@"pageNumber"];
+    self.pageSize = [dictionary objectForKey:@"pageSize"];
+    self.az = [dictionary objectForKey:@"az"];
+    self.name = [dictionary objectForKey:@"name"];
+    self.vpcId = [dictionary objectForKey:@"vpcId"];
+    NSArray* filtersArray = [dictionary objectForKey:@"filters"];
+    if(filtersArray&&![filtersArray isKindOfClass:[NSNull class]])
+    {
+        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
+        for(int i = 0 ; i< [filtersArray count];i++)
+        {
+        Filter* item = [[Filter alloc]initWithDic:[filtersArray objectAtIndex:i]];
+            if(item)
+            {
+            [propertyArray addObject:item];
+            }
+        }
+        self.filters = propertyArray;
+    }
+    return self;
+} 
+
+@end
+@implementation EdcpsDescribeSubnetsResult
+-(id) initWithSubnets:(NSArray<Subnet*>*) subnets
+        pageNumber:(NSNumber*)pageNumber
+        pageSize:(NSNumber*)pageSize
+        totalCount:(NSNumber*)totalCount { 
+    self.subnets = subnets;               
+    self.pageNumber = pageNumber;               
+    self.pageSize = pageSize;               
+    self.totalCount = totalCount;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self subnets])
+    {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self subnets] count]; i++) {
+            Subnet* item = [[self subnets] objectAtIndex:i];
+            [arrayDic addObject:[item dictionary]];
+        }
+        [result setValue:arrayDic forKey:@"subnets"];
+    }
+    if([self pageNumber])
+    {
+        [result setValue:[self pageNumber] forKey:@"pageNumber"];
+    }
+    if([self pageSize])
+    {
+        [result setValue:[self pageSize] forKey:@"pageSize"];
+    }
+    if([self totalCount])
+    {
+        [result setValue:[self totalCount] forKey:@"totalCount"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    NSArray* subnetsArray = [dictionary objectForKey:@"subnets"];
+    if(subnetsArray&&![subnetsArray isKindOfClass:[NSNull class]])
+    {
+        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
+        for(int i = 0 ; i< [subnetsArray count];i++)
+        {
+        Subnet* item = [[Subnet alloc]initWithDic:[subnetsArray objectAtIndex:i]];
+            if(item)
+            {
+            [propertyArray addObject:item];
+            }
+        }
+        self.subnets = propertyArray;
+    }
+    self.pageNumber = [dictionary objectForKey:@"pageNumber"];
+    self.pageSize = [dictionary objectForKey:@"pageSize"];
+    self.totalCount = [dictionary objectForKey:@"totalCount"];
+    return self;
+} 
+
+@end
+  
+@implementation EdcpsDescribeSubnetsResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+EdcpsDescribeSubnetsResult* result = [[EdcpsDescribeSubnetsResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(EdcpsDescribeSubnetsResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+  
+@implementation EdcpsDescribeElasticIpStockResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+EdcpsDescribeElasticIpStockResult* result = [[EdcpsDescribeElasticIpStockResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(EdcpsDescribeElasticIpStockResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+  
+@implementation EdcpsDeleteelasticIpResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+EdcpsDeleteelasticIpResult* result = [[EdcpsDeleteelasticIpResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(EdcpsDeleteelasticIpResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+@implementation EdcpsDescribeElasticIpsRequest
+-(id) initWithRegion:(NSString *)regionId
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+status:(NSString*)status
+filters:(NSArray<Filter*>*)filters { 
+    self.regionId = regionId;
+    self.pageNumber = pageNumber;
+    self.pageSize = pageSize;
+    self.status = status;
+    self.filters = filters;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+status:(NSString*)status
+filters:(NSArray<Filter*>*)filters { 
+    self.regionId = regionId;
+    self.version = version;
+    self.pageNumber = pageNumber;
+    self.pageSize = pageSize;
+    self.status = status;
+    self.filters = filters;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self pageNumber])
+    {
+        [result setValue:[self pageNumber] forKey:@"pageNumber"];
+    }
+    if([self pageSize])
+    {
+        [result setValue:[self pageSize] forKey:@"pageSize"];
+    }
+    if([self status])
+    {
+        [result setValue:[self status] forKey:@"status"];
+    }
+    if([self filters])
+    {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self filters] count]; i++) {
+            Filter* item = [[self filters] objectAtIndex:i];
+            [arrayDic addObject:[item dictionary]];
+        }
+        [result setValue:arrayDic forKey:@"filters"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.pageNumber = [dictionary objectForKey:@"pageNumber"];
+    self.pageSize = [dictionary objectForKey:@"pageSize"];
+    self.status = [dictionary objectForKey:@"status"];
+    NSArray* filtersArray = [dictionary objectForKey:@"filters"];
+    if(filtersArray&&![filtersArray isKindOfClass:[NSNull class]])
+    {
+        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
+        for(int i = 0 ; i< [filtersArray count];i++)
+        {
+        Filter* item = [[Filter alloc]initWithDic:[filtersArray objectAtIndex:i]];
+            if(item)
+            {
+            [propertyArray addObject:item];
+            }
+        }
+        self.filters = propertyArray;
+    }
+    return self;
+} 
+
+@end
+@implementation EdcpsApplyElasticIpsRequest
+-(id) initWithRegion:(NSString *)regionId
+clientToken:(NSString*)clientToken
+elasticIpSpec:(ElasticIpSpec*)elasticIpSpec { 
+    self.regionId = regionId;
+    self.clientToken = clientToken;
+    self.elasticIpSpec = elasticIpSpec;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+clientToken:(NSString*)clientToken
+elasticIpSpec:(ElasticIpSpec*)elasticIpSpec { 
+    self.regionId = regionId;
+    self.version = version;
+    self.clientToken = clientToken;
+    self.elasticIpSpec = elasticIpSpec;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self clientToken])
+    {
+        [result setValue:[self clientToken] forKey:@"clientToken"];
+    }
+    if([self elasticIpSpec])
+    {
+        [result setValue:[[self elasticIpSpec] dictionary]forKey:@"elasticIpSpec"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.clientToken = [dictionary objectForKey:@"clientToken"];
+    self.elasticIpSpec = [[ElasticIpSpec alloc]initWithDic:[dictionary objectForKey:@"elasticIpSpec"]];
+    return self;
+} 
+
+@end
+@implementation EdcpsDescribeElasticIpResult
+-(id) initWithElasticIp:(ElasticIp*) elasticIp { 
+    self.elasticIp = elasticIp;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self elasticIp])
+    {
+        [result setValue:[[self elasticIp] dictionary]forKey:@"elasticIp"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.elasticIp = [[ElasticIp alloc]initWithDic:[dictionary objectForKey:@"elasticIp"]];
+    return self;
+} 
+
+@end
+@implementation EdcpsDescribeElasticIpsResult
+-(id) initWithElasticIps:(NSArray<ElasticIp*>*) elasticIps
+        pageNumber:(NSNumber*)pageNumber
+        pageSize:(NSNumber*)pageSize
+        totalCount:(NSNumber*)totalCount { 
+    self.elasticIps = elasticIps;               
+    self.pageNumber = pageNumber;               
+    self.pageSize = pageSize;               
+    self.totalCount = totalCount;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self elasticIps])
+    {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self elasticIps] count]; i++) {
+            ElasticIp* item = [[self elasticIps] objectAtIndex:i];
+            [arrayDic addObject:[item dictionary]];
+        }
+        [result setValue:arrayDic forKey:@"elasticIps"];
+    }
+    if([self pageNumber])
+    {
+        [result setValue:[self pageNumber] forKey:@"pageNumber"];
+    }
+    if([self pageSize])
+    {
+        [result setValue:[self pageSize] forKey:@"pageSize"];
+    }
+    if([self totalCount])
+    {
+        [result setValue:[self totalCount] forKey:@"totalCount"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    NSArray* elasticIpsArray = [dictionary objectForKey:@"elasticIps"];
+    if(elasticIpsArray&&![elasticIpsArray isKindOfClass:[NSNull class]])
+    {
+        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
+        for(int i = 0 ; i< [elasticIpsArray count];i++)
+        {
+        ElasticIp* item = [[ElasticIp alloc]initWithDic:[elasticIpsArray objectAtIndex:i]];
+            if(item)
+            {
+            [propertyArray addObject:item];
+            }
+        }
+        self.elasticIps = propertyArray;
+    }
+    self.pageNumber = [dictionary objectForKey:@"pageNumber"];
+    self.pageSize = [dictionary objectForKey:@"pageSize"];
+    self.totalCount = [dictionary objectForKey:@"totalCount"];
+    return self;
+} 
+
+@end
+  
+@implementation EdcpsModifyElasticIpBandwidthResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+EdcpsModifyElasticIpBandwidthResult* result = [[EdcpsModifyElasticIpBandwidthResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(EdcpsModifyElasticIpBandwidthResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+  
+@implementation EdcpsDescribeElasticIpsResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+EdcpsDescribeElasticIpsResult* result = [[EdcpsDescribeElasticIpsResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(EdcpsDescribeElasticIpsResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+@implementation EdcpsDescribeElasticIpStockRequest
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    return self;
+} 
+
+@end
+  
+@implementation EdcpsDescribeElasticIpResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+EdcpsDescribeElasticIpResult* result = [[EdcpsDescribeElasticIpResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(EdcpsDescribeElasticIpResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+  
+@implementation EdcpsApplyElasticIpsResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+EdcpsApplyElasticIpsResult* result = [[EdcpsApplyElasticIpsResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(EdcpsApplyElasticIpsResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+@implementation EdcpsDescribeLineTypesResult
+-(id) initWithLineTypes:(NSArray<LineType*>*) lineTypes { 
+    self.lineTypes = lineTypes;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self lineTypes])
+    {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self lineTypes] count]; i++) {
+            LineType* item = [[self lineTypes] objectAtIndex:i];
+            [arrayDic addObject:[item dictionary]];
+        }
+        [result setValue:arrayDic forKey:@"lineTypes"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    NSArray* lineTypesArray = [dictionary objectForKey:@"lineTypes"];
+    if(lineTypesArray&&![lineTypesArray isKindOfClass:[NSNull class]])
+    {
+        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
+        for(int i = 0 ; i< [lineTypesArray count];i++)
+        {
+        LineType* item = [[LineType alloc]initWithDic:[lineTypesArray objectAtIndex:i]];
+            if(item)
+            {
+            [propertyArray addObject:item];
+            }
+        }
+        self.lineTypes = propertyArray;
+    }
+    return self;
+} 
+
+@end
+  
+@implementation EdcpsDescribeLineTypesResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+EdcpsDescribeLineTypesResult* result = [[EdcpsDescribeLineTypesResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(EdcpsDescribeLineTypesResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+@implementation EdcpsDescribeLineTypesRequest
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    return self;
+} 
+
+@end
+  
+@implementation EdcpsCreateKeypairsResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+EdcpsCreateKeypairsResult* result = [[EdcpsCreateKeypairsResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(EdcpsCreateKeypairsResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+@implementation EdcpsDescribeKeypairResult
+-(id) initWithServer:(Keypair*) server { 
+    self.server = server;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self server])
+    {
+        [result setValue:[[self server] dictionary]forKey:@"server"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.server = [[Keypair alloc]initWithDic:[dictionary objectForKey:@"server"]];
+    return self;
+} 
+
+@end
+  
+@implementation EdcpsDescribeKeypairResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+EdcpsDescribeKeypairResult* result = [[EdcpsDescribeKeypairResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(EdcpsDescribeKeypairResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+@implementation EdcpsDescribeKeypairsRequest
+-(id) initWithRegion:(NSString *)regionId
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+name:(NSString*)name
+filters:(NSArray<Filter*>*)filters { 
+    self.regionId = regionId;
+    self.pageNumber = pageNumber;
+    self.pageSize = pageSize;
+    self.name = name;
+    self.filters = filters;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+name:(NSString*)name
+filters:(NSArray<Filter*>*)filters { 
+    self.regionId = regionId;
+    self.version = version;
+    self.pageNumber = pageNumber;
+    self.pageSize = pageSize;
+    self.name = name;
+    self.filters = filters;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self pageNumber])
+    {
+        [result setValue:[self pageNumber] forKey:@"pageNumber"];
+    }
+    if([self pageSize])
+    {
+        [result setValue:[self pageSize] forKey:@"pageSize"];
+    }
+    if([self name])
+    {
+        [result setValue:[self name] forKey:@"name"];
+    }
+    if([self filters])
+    {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self filters] count]; i++) {
+            Filter* item = [[self filters] objectAtIndex:i];
+            [arrayDic addObject:[item dictionary]];
+        }
+        [result setValue:arrayDic forKey:@"filters"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.pageNumber = [dictionary objectForKey:@"pageNumber"];
+    self.pageSize = [dictionary objectForKey:@"pageSize"];
+    self.name = [dictionary objectForKey:@"name"];
+    NSArray* filtersArray = [dictionary objectForKey:@"filters"];
+    if(filtersArray&&![filtersArray isKindOfClass:[NSNull class]])
+    {
+        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
+        for(int i = 0 ; i< [filtersArray count];i++)
+        {
+        Filter* item = [[Filter alloc]initWithDic:[filtersArray objectAtIndex:i]];
+            if(item)
+            {
+            [propertyArray addObject:item];
+            }
+        }
+        self.filters = propertyArray;
+    }
+    return self;
+} 
+
+@end
+@implementation EdcpsDescribeKeypairsResult
+-(id) initWithServers:(NSArray<Keypair*>*) servers
+        pageNumber:(NSNumber*)pageNumber
+        pageSize:(NSNumber*)pageSize
+        totalCount:(NSNumber*)totalCount { 
+    self.servers = servers;               
+    self.pageNumber = pageNumber;               
+    self.pageSize = pageSize;               
+    self.totalCount = totalCount;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self servers])
+    {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self servers] count]; i++) {
+            Keypair* item = [[self servers] objectAtIndex:i];
+            [arrayDic addObject:[item dictionary]];
+        }
+        [result setValue:arrayDic forKey:@"servers"];
+    }
+    if([self pageNumber])
+    {
+        [result setValue:[self pageNumber] forKey:@"pageNumber"];
+    }
+    if([self pageSize])
+    {
+        [result setValue:[self pageSize] forKey:@"pageSize"];
+    }
+    if([self totalCount])
+    {
+        [result setValue:[self totalCount] forKey:@"totalCount"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    NSArray* serversArray = [dictionary objectForKey:@"servers"];
+    if(serversArray&&![serversArray isKindOfClass:[NSNull class]])
+    {
+        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
+        for(int i = 0 ; i< [serversArray count];i++)
+        {
+        Keypair* item = [[Keypair alloc]initWithDic:[serversArray objectAtIndex:i]];
+            if(item)
+            {
+            [propertyArray addObject:item];
+            }
+        }
+        self.servers = propertyArray;
+    }
+    self.pageNumber = [dictionary objectForKey:@"pageNumber"];
+    self.pageSize = [dictionary objectForKey:@"pageSize"];
+    self.totalCount = [dictionary objectForKey:@"totalCount"];
+    return self;
+} 
+
+@end
+  
+@implementation EdcpsDescribeKeypairsResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+EdcpsDescribeKeypairsResult* result = [[EdcpsDescribeKeypairsResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(EdcpsDescribeKeypairsResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+  
+@implementation EdcpsDeleteKeypairsResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+EdcpsDeleteKeypairsResult* result = [[EdcpsDeleteKeypairsResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(EdcpsDeleteKeypairsResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+  
+@implementation EdcpsImportKeypairsResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+EdcpsImportKeypairsResult* result = [[EdcpsImportKeypairsResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(EdcpsImportKeypairsResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+@implementation EdcpsDescribeSecondaryCidrsResult
+-(id) initWithSecondaryCidrs:(NSArray<SecondaryCidr*>*) secondaryCidrs { 
+    self.secondaryCidrs = secondaryCidrs;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self secondaryCidrs])
+    {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self secondaryCidrs] count]; i++) {
+            SecondaryCidr* item = [[self secondaryCidrs] objectAtIndex:i];
+            [arrayDic addObject:[item dictionary]];
+        }
+        [result setValue:arrayDic forKey:@"secondaryCidrs"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    NSArray* secondaryCidrsArray = [dictionary objectForKey:@"secondaryCidrs"];
+    if(secondaryCidrsArray&&![secondaryCidrsArray isKindOfClass:[NSNull class]])
+    {
+        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
+        for(int i = 0 ; i< [secondaryCidrsArray count];i++)
+        {
+        SecondaryCidr* item = [[SecondaryCidr alloc]initWithDic:[secondaryCidrsArray objectAtIndex:i]];
+            if(item)
+            {
+            [propertyArray addObject:item];
+            }
+        }
+        self.secondaryCidrs = propertyArray;
+    }
+    return self;
+} 
+
+@end
+  
+@implementation EdcpsDeleteSecondaryCidrResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+EdcpsDeleteSecondaryCidrResult* result = [[EdcpsDeleteSecondaryCidrResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(EdcpsDeleteSecondaryCidrResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+  
+@implementation EdcpsCreateSecondaryCidrResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+EdcpsCreateSecondaryCidrResult* result = [[EdcpsCreateSecondaryCidrResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(EdcpsCreateSecondaryCidrResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+@implementation EdcpsCreateSecondaryCidrRequest
+-(id) initWithRegion:(NSString *)regionId
+clientToken:(NSString*)clientToken
+secondaryCidrSpec:(SecondaryCidrSpec*)secondaryCidrSpec { 
+    self.regionId = regionId;
+    self.clientToken = clientToken;
+    self.secondaryCidrSpec = secondaryCidrSpec;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+clientToken:(NSString*)clientToken
+secondaryCidrSpec:(SecondaryCidrSpec*)secondaryCidrSpec { 
+    self.regionId = regionId;
+    self.version = version;
+    self.clientToken = clientToken;
+    self.secondaryCidrSpec = secondaryCidrSpec;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self clientToken])
+    {
+        [result setValue:[self clientToken] forKey:@"clientToken"];
+    }
+    if([self secondaryCidrSpec])
+    {
+        [result setValue:[[self secondaryCidrSpec] dictionary]forKey:@"secondaryCidrSpec"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.clientToken = [dictionary objectForKey:@"clientToken"];
+    self.secondaryCidrSpec = [[SecondaryCidrSpec alloc]initWithDic:[dictionary objectForKey:@"secondaryCidrSpec"]];
+    return self;
+} 
+
+@end
+  
+@implementation EdcpsDescribeSecondaryCidrsResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+EdcpsDescribeSecondaryCidrsResult* result = [[EdcpsDescribeSecondaryCidrsResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(EdcpsDescribeSecondaryCidrsResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+@implementation EdcpsDescribeOSResult
+-(id) initWithOss:(NSArray<Os*>*) oss { 
+    self.oss = oss;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self oss])
+    {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self oss] count]; i++) {
+            Os* item = [[self oss] objectAtIndex:i];
+            [arrayDic addObject:[item dictionary]];
+        }
+        [result setValue:arrayDic forKey:@"oss"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    NSArray* ossArray = [dictionary objectForKey:@"oss"];
+    if(ossArray&&![ossArray isKindOfClass:[NSNull class]])
+    {
+        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
+        for(int i = 0 ; i< [ossArray count];i++)
+        {
+        Os* item = [[Os alloc]initWithDic:[ossArray objectAtIndex:i]];
+            if(item)
+            {
+            [propertyArray addObject:item];
+            }
+        }
+        self.oss = propertyArray;
+    }
+    return self;
+} 
+
+@end
+  
+@implementation EdcpsDescribeOSResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+EdcpsDescribeOSResult* result = [[EdcpsDescribeOSResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(EdcpsDescribeOSResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+@implementation EdcpsDescribeInstancesResult
+-(id) initWithInstances:(NSArray<Instance*>*) instances
+        pageNumber:(NSNumber*)pageNumber
+        pageSize:(NSNumber*)pageSize
+        totalCount:(NSNumber*)totalCount { 
+    self.instances = instances;               
+    self.pageNumber = pageNumber;               
+    self.pageSize = pageSize;               
+    self.totalCount = totalCount;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self instances])
+    {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self instances] count]; i++) {
+            Instance* item = [[self instances] objectAtIndex:i];
+            [arrayDic addObject:[item dictionary]];
+        }
+        [result setValue:arrayDic forKey:@"instances"];
+    }
+    if([self pageNumber])
+    {
+        [result setValue:[self pageNumber] forKey:@"pageNumber"];
+    }
+    if([self pageSize])
+    {
+        [result setValue:[self pageSize] forKey:@"pageSize"];
+    }
+    if([self totalCount])
+    {
+        [result setValue:[self totalCount] forKey:@"totalCount"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    NSArray* instancesArray = [dictionary objectForKey:@"instances"];
+    if(instancesArray&&![instancesArray isKindOfClass:[NSNull class]])
+    {
+        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
+        for(int i = 0 ; i< [instancesArray count];i++)
+        {
+        Instance* item = [[Instance alloc]initWithDic:[instancesArray objectAtIndex:i]];
+            if(item)
+            {
+            [propertyArray addObject:item];
+            }
+        }
+        self.instances = propertyArray;
+    }
+    self.pageNumber = [dictionary objectForKey:@"pageNumber"];
+    self.pageSize = [dictionary objectForKey:@"pageSize"];
+    self.totalCount = [dictionary objectForKey:@"totalCount"];
+    return self;
+} 
+
+@end
+@implementation EdcpsDescribeDeviceTypesResult
+-(id) initWithDeviceTypes:(NSArray<DeviceType*>*) deviceTypes { 
+    self.deviceTypes = deviceTypes;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self deviceTypes])
+    {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self deviceTypes] count]; i++) {
+            DeviceType* item = [[self deviceTypes] objectAtIndex:i];
+            [arrayDic addObject:[item dictionary]];
+        }
+        [result setValue:arrayDic forKey:@"deviceTypes"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    NSArray* deviceTypesArray = [dictionary objectForKey:@"deviceTypes"];
+    if(deviceTypesArray&&![deviceTypesArray isKindOfClass:[NSNull class]])
+    {
+        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
+        for(int i = 0 ; i< [deviceTypesArray count];i++)
+        {
+        DeviceType* item = [[DeviceType alloc]initWithDic:[deviceTypesArray objectAtIndex:i]];
+            if(item)
+            {
+            [propertyArray addObject:item];
+            }
+        }
+        self.deviceTypes = propertyArray;
+    }
+    return self;
+} 
+
+@end
+  
+@implementation EdcpsDescribeDeviceTypesResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+EdcpsDescribeDeviceTypesResult* result = [[EdcpsDescribeDeviceTypesResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(EdcpsDescribeDeviceTypesResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+@implementation EdcpsDescribeInstanceResult
+-(id) initWithInstance:(Instance*) instance { 
+    self.instance = instance;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self instance])
+    {
+        [result setValue:[[self instance] dictionary]forKey:@"instance"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.instance = [[Instance alloc]initWithDic:[dictionary objectForKey:@"instance"]];
+    return self;
+} 
+
+@end
+@implementation EdcpsReinstallInstanceRequest
+-(id) initWithRegion:(NSString *)regionId
+clientToken:(NSString*)clientToken
+instanceSpec:(ReinstallInstanceSpec*)instanceSpec
+instanceId:(NSString*)instanceId { 
+    self.regionId = regionId;
+    self.clientToken = clientToken;
+    self.instanceSpec = instanceSpec;
+    self.instanceId = instanceId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+clientToken:(NSString*)clientToken
+instanceSpec:(ReinstallInstanceSpec*)instanceSpec
+instanceId:(NSString*)instanceId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.clientToken = clientToken;
+    self.instanceSpec = instanceSpec;
+    self.instanceId = instanceId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self clientToken])
+    {
+        [result setValue:[self clientToken] forKey:@"clientToken"];
+    }
+    if([self instanceSpec])
+    {
+        [result setValue:[[self instanceSpec] dictionary]forKey:@"instanceSpec"];
+    }
+    if([self instanceId])
+    {
+        [result setValue:[self instanceId] forKey:@"instanceId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.clientToken = [dictionary objectForKey:@"clientToken"];
+    self.instanceSpec = [[ReinstallInstanceSpec alloc]initWithDic:[dictionary objectForKey:@"instanceSpec"]];
+    self.instanceId = [dictionary objectForKey:@"instanceId"];
+    return self;
+} 
+
+@end
+  
+@implementation EdcpsStopInstanceResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+EdcpsStopInstanceResult* result = [[EdcpsStopInstanceResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(EdcpsStopInstanceResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+@implementation EdcpsCreateInstancesRequest
+-(id) initWithRegion:(NSString *)regionId
+clientToken:(NSString*)clientToken
+instanceSpec:(InstanceSpec*)instanceSpec { 
+    self.regionId = regionId;
+    self.clientToken = clientToken;
+    self.instanceSpec = instanceSpec;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+clientToken:(NSString*)clientToken
+instanceSpec:(InstanceSpec*)instanceSpec { 
+    self.regionId = regionId;
+    self.version = version;
+    self.clientToken = clientToken;
+    self.instanceSpec = instanceSpec;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self clientToken])
+    {
+        [result setValue:[self clientToken] forKey:@"clientToken"];
+    }
+    if([self instanceSpec])
+    {
+        [result setValue:[[self instanceSpec] dictionary]forKey:@"instanceSpec"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.clientToken = [dictionary objectForKey:@"clientToken"];
+    self.instanceSpec = [[InstanceSpec alloc]initWithDic:[dictionary objectForKey:@"instanceSpec"]];
+    return self;
+} 
+
+@end
+@implementation EdcpsDescribeDeviceRaidsResult
+-(id) initWithRaids:(NSArray<Raid*>*) raids { 
+    self.raids = raids;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self raids])
+    {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self raids] count]; i++) {
+            Raid* item = [[self raids] objectAtIndex:i];
+            [arrayDic addObject:[item dictionary]];
+        }
+        [result setValue:arrayDic forKey:@"raids"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    NSArray* raidsArray = [dictionary objectForKey:@"raids"];
+    if(raidsArray&&![raidsArray isKindOfClass:[NSNull class]])
+    {
+        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
+        for(int i = 0 ; i< [raidsArray count];i++)
+        {
+        Raid* item = [[Raid alloc]initWithDic:[raidsArray objectAtIndex:i]];
+            if(item)
+            {
+            [propertyArray addObject:item];
+            }
+        }
+        self.raids = propertyArray;
+    }
+    return self;
+} 
+
+@end
+  
+@implementation EdcpsDescribeDeviceRaidsResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+EdcpsDescribeDeviceRaidsResult* result = [[EdcpsDescribeDeviceRaidsResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(EdcpsDescribeDeviceRaidsResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+@implementation EdcpsDescribeDeviceStockResult
+-(id) initWithDevicesStock:(NSArray<ResourceStock*>*) devicesStock { 
+    self.devicesStock = devicesStock;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self devicesStock])
+    {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self devicesStock] count]; i++) {
+            ResourceStock* item = [[self devicesStock] objectAtIndex:i];
+            [arrayDic addObject:[item dictionary]];
+        }
+        [result setValue:arrayDic forKey:@"devicesStock"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    NSArray* devicesStockArray = [dictionary objectForKey:@"devicesStock"];
+    if(devicesStockArray&&![devicesStockArray isKindOfClass:[NSNull class]])
+    {
+        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
+        for(int i = 0 ; i< [devicesStockArray count];i++)
+        {
+        ResourceStock* item = [[ResourceStock alloc]initWithDic:[devicesStockArray objectAtIndex:i]];
+            if(item)
+            {
+            [propertyArray addObject:item];
+            }
+        }
+        self.devicesStock = propertyArray;
+    }
+    return self;
+} 
+
+@end
+  
+@implementation EdcpsDescribeDeviceStockResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+EdcpsDescribeDeviceStockResult* result = [[EdcpsDescribeDeviceStockResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(EdcpsDescribeDeviceStockResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+  
+@implementation EdcpsDisassociateElasticIpResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+EdcpsDisassociateElasticIpResult* result = [[EdcpsDisassociateElasticIpResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(EdcpsDisassociateElasticIpResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+@implementation EdcpsDescribeInstancesRequest
+-(id) initWithRegion:(NSString *)regionId
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+az:(NSString*)az
+name:(NSString*)name
+networkType:(NSString*)networkType
+deviceType:(NSString*)deviceType
+subnetId:(NSString*)subnetId
+enableInternet:(NSString*)enableInternet
+keypairId:(NSString*)keypairId
+filters:(NSArray<Filter*>*)filters { 
+    self.regionId = regionId;
+    self.pageNumber = pageNumber;
+    self.pageSize = pageSize;
+    self.az = az;
+    self.name = name;
+    self.networkType = networkType;
+    self.deviceType = deviceType;
+    self.subnetId = subnetId;
+    self.enableInternet = enableInternet;
+    self.keypairId = keypairId;
+    self.filters = filters;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+az:(NSString*)az
+name:(NSString*)name
+networkType:(NSString*)networkType
+deviceType:(NSString*)deviceType
+subnetId:(NSString*)subnetId
+enableInternet:(NSString*)enableInternet
+keypairId:(NSString*)keypairId
+filters:(NSArray<Filter*>*)filters { 
+    self.regionId = regionId;
+    self.version = version;
+    self.pageNumber = pageNumber;
+    self.pageSize = pageSize;
+    self.az = az;
+    self.name = name;
+    self.networkType = networkType;
+    self.deviceType = deviceType;
+    self.subnetId = subnetId;
+    self.enableInternet = enableInternet;
+    self.keypairId = keypairId;
+    self.filters = filters;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self pageNumber])
+    {
+        [result setValue:[self pageNumber] forKey:@"pageNumber"];
+    }
+    if([self pageSize])
+    {
+        [result setValue:[self pageSize] forKey:@"pageSize"];
+    }
+    if([self az])
+    {
+        [result setValue:[self az] forKey:@"az"];
+    }
+    if([self name])
+    {
+        [result setValue:[self name] forKey:@"name"];
+    }
+    if([self networkType])
+    {
+        [result setValue:[self networkType] forKey:@"networkType"];
+    }
+    if([self deviceType])
+    {
+        [result setValue:[self deviceType] forKey:@"deviceType"];
+    }
+    if([self subnetId])
+    {
+        [result setValue:[self subnetId] forKey:@"subnetId"];
+    }
+    if([self enableInternet])
+    {
+        [result setValue:[self enableInternet] forKey:@"enableInternet"];
+    }
+    if([self keypairId])
+    {
+        [result setValue:[self keypairId] forKey:@"keypairId"];
+    }
+    if([self filters])
+    {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self filters] count]; i++) {
+            Filter* item = [[self filters] objectAtIndex:i];
+            [arrayDic addObject:[item dictionary]];
+        }
+        [result setValue:arrayDic forKey:@"filters"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.pageNumber = [dictionary objectForKey:@"pageNumber"];
+    self.pageSize = [dictionary objectForKey:@"pageSize"];
+    self.az = [dictionary objectForKey:@"az"];
+    self.name = [dictionary objectForKey:@"name"];
+    self.networkType = [dictionary objectForKey:@"networkType"];
+    self.deviceType = [dictionary objectForKey:@"deviceType"];
+    self.subnetId = [dictionary objectForKey:@"subnetId"];
+    self.enableInternet = [dictionary objectForKey:@"enableInternet"];
+    self.keypairId = [dictionary objectForKey:@"keypairId"];
+    NSArray* filtersArray = [dictionary objectForKey:@"filters"];
+    if(filtersArray&&![filtersArray isKindOfClass:[NSNull class]])
+    {
+        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
+        for(int i = 0 ; i< [filtersArray count];i++)
+        {
+        Filter* item = [[Filter alloc]initWithDic:[filtersArray objectAtIndex:i]];
+            if(item)
+            {
+            [propertyArray addObject:item];
+            }
+        }
+        self.filters = propertyArray;
+    }
+    return self;
+} 
+
+@end
+  
+@implementation EdcpsRestartInstanceResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+EdcpsRestartInstanceResult* result = [[EdcpsRestartInstanceResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(EdcpsRestartInstanceResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+  
+@implementation EdcpsDescribeInstanceStatusResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+EdcpsDescribeInstanceStatusResult* result = [[EdcpsDescribeInstanceStatusResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(EdcpsDescribeInstanceStatusResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+  
+@implementation EdcpsDescribeInstanceNameResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+EdcpsDescribeInstanceNameResult* result = [[EdcpsDescribeInstanceNameResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(EdcpsDescribeInstanceNameResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+  
+@implementation EdcpsAssociateElasticIpResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+EdcpsAssociateElasticIpResult* result = [[EdcpsAssociateElasticIpResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(EdcpsAssociateElasticIpResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+  
+@implementation EdcpsReinstallInstanceResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+EdcpsReinstallInstanceResult* result = [[EdcpsReinstallInstanceResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(EdcpsReinstallInstanceResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
 @implementation EdcpsDescribeAvailablePrivateIpResult
 -(NSMutableDictionary*) dictionary{
     NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
@@ -4816,33 +5200,6 @@ EdcpsDescribeInstanceResult* result = [[EdcpsDescribeInstanceResult alloc]initWi
 }
 
 @end
-@implementation EdcpsModifyInstanceResult
--(id) initWithName:(NSString*) name
-        descriptionValue:(NSString*)descriptionValue { 
-    self.name = name;               
-    self.descriptionValue = descriptionValue;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self name])
-    {
-        [result setValue:[self name] forKey:@"name"];
-    }
-    if([self descriptionValue])
-    {
-        [result setValue:[self descriptionValue] forKey:@"description"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.name = [dictionary objectForKey:@"name"];
-    self.descriptionValue = [dictionary objectForKey:@"description"];
-    return self;
-} 
-
-@end
   
 @implementation EdcpsCreateInstancesResponse
 -(NSMutableDictionary*) dictionary
@@ -4885,26 +5242,6 @@ EdcpsCreateInstancesResult* result = [[EdcpsCreateInstancesResult alloc]initWith
     self.requestId = requestId;
     return self;
 }
-
-@end
-@implementation EdcpsDeleteInstanceResult
--(id) initWithSuccess:(NSNumber*) success { 
-    self.success = success;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self success])
-    {
-        [result setValue:[self success] forKey:@"success"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.success = [dictionary objectForKey:@"success"];
-    return self;
-} 
 
 @end
   
@@ -5039,51 +5376,6 @@ EdcpsDescribeInstanceRaidResult* result = [[EdcpsDescribeInstanceRaidResult allo
 }
 
 @end
-@implementation EdcpsDescribeDeviceRaidsRequest
--(id) initWithRegion:(NSString *)regionId
-deviceType:(NSString*)deviceType
-volumeType:(NSString*)volumeType { 
-    self.regionId = regionId;
-    self.deviceType = deviceType;
-    self.volumeType = volumeType;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-deviceType:(NSString*)deviceType
-volumeType:(NSString*)volumeType { 
-    self.regionId = regionId;
-    self.version = version;
-    self.deviceType = deviceType;
-    self.volumeType = volumeType;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self deviceType])
-    {
-        [result setValue:[self deviceType] forKey:@"deviceType"];
-    }
-    if([self volumeType])
-    {
-        [result setValue:[self volumeType] forKey:@"volumeType"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.deviceType = [dictionary objectForKey:@"deviceType"];
-    self.volumeType = [dictionary objectForKey:@"volumeType"];
-    return self;
-} 
-
-@end
   
 @implementation EdcpsResetPasswordResponse
 -(NSMutableDictionary*) dictionary
@@ -5216,87 +5508,6 @@ EdcpsStartInstanceResult* result = [[EdcpsStartInstanceResult alloc]initWithDic:
 }
 
 @end
-@implementation EdcpsDescribeDeviceStockRequest
--(id) initWithRegion:(NSString *)regionId
-deviceType:(NSString*)deviceType { 
-    self.regionId = regionId;
-    self.deviceType = deviceType;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-deviceType:(NSString*)deviceType { 
-    self.regionId = regionId;
-    self.version = version;
-    self.deviceType = deviceType;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self deviceType])
-    {
-        [result setValue:[self deviceType] forKey:@"deviceType"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.deviceType = [dictionary objectForKey:@"deviceType"];
-    return self;
-} 
-
-@end
-@implementation EdcpsStartInstanceRequest
--(id) initWithRegion:(NSString *)regionId
-clientToken:(NSString*)clientToken
-instanceId:(NSString*)instanceId { 
-    self.regionId = regionId;
-    self.clientToken = clientToken;
-    self.instanceId = instanceId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-clientToken:(NSString*)clientToken
-instanceId:(NSString*)instanceId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.clientToken = clientToken;
-    self.instanceId = instanceId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self clientToken])
-    {
-        [result setValue:[self clientToken] forKey:@"clientToken"];
-    }
-    if([self instanceId])
-    {
-        [result setValue:[self instanceId] forKey:@"instanceId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.clientToken = [dictionary objectForKey:@"clientToken"];
-    self.instanceId = [dictionary objectForKey:@"instanceId"];
-    return self;
-} 
-
-@end
   
 @implementation EdcpsDescribeAvailablePrivateIpResponse
 -(NSMutableDictionary*) dictionary
@@ -5341,82 +5552,6 @@ EdcpsDescribeAvailablePrivateIpResult* result = [[EdcpsDescribeAvailablePrivateI
 }
 
 @end
-@implementation EdcpsDescribeInstanceNameRequest
--(id) initWithRegion:(NSString *)regionId
-instanceId:(NSString*)instanceId { 
-    self.regionId = regionId;
-    self.instanceId = instanceId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-instanceId:(NSString*)instanceId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.instanceId = instanceId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self instanceId])
-    {
-        [result setValue:[self instanceId] forKey:@"instanceId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.instanceId = [dictionary objectForKey:@"instanceId"];
-    return self;
-} 
-
-@end
-@implementation EdcpsCreateVpcResult
--(id) initWithVpcId:(NSString*) vpcId { 
-    self.vpcId = vpcId;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self vpcId])
-    {
-        [result setValue:[self vpcId] forKey:@"vpcId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.vpcId = [dictionary objectForKey:@"vpcId"];
-    return self;
-} 
-
-@end
-@implementation EdcpsDeleteVpcResult
--(id) initWithSuccess:(NSNumber*) success { 
-    self.success = success;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self success])
-    {
-        [result setValue:[self success] forKey:@"success"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.success = [dictionary objectForKey:@"success"];
-    return self;
-} 
-
-@end
 @implementation EdcpsDescribeVpcsResult
 -(id) initWithVpcs:(NSArray<Vpc*>*) vpcs
         pageNumber:(NSNumber*)pageNumber
@@ -5432,8 +5567,8 @@ instanceId:(NSString*)instanceId {
     NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
     if([self vpcs])
     {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self vpcs] count]; i++) {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self vpcs] count]; i++) {
             Vpc* item = [[self vpcs] objectAtIndex:i];
             [arrayDic addObject:[item dictionary]];
         }
@@ -5461,10 +5596,10 @@ instanceId:(NSString*)instanceId {
         NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
         for(int i = 0 ; i< [vpcsArray count];i++)
         {
-            Vpc* item = [[Vpc alloc]initWithDic:[vpcsArray objectAtIndex:i]];
+        Vpc* item = [[Vpc alloc]initWithDic:[vpcsArray objectAtIndex:i]];
             if(item)
             {
-                [propertyArray addObject:item];
+            [propertyArray addObject:item];
             }
         }
         self.vpcs = propertyArray;
@@ -5584,51 +5719,6 @@ EdcpsModifyVpcResult* result = [[EdcpsModifyVpcResult alloc]initWithDic:[diction
 }
 
 @end
-@implementation EdcpsDeleteVpcRequest
--(id) initWithRegion:(NSString *)regionId
-clientToken:(NSString*)clientToken
-vpcId:(NSString*)vpcId { 
-    self.regionId = regionId;
-    self.clientToken = clientToken;
-    self.vpcId = vpcId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-clientToken:(NSString*)clientToken
-vpcId:(NSString*)vpcId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.clientToken = clientToken;
-    self.vpcId = vpcId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self clientToken])
-    {
-        [result setValue:[self clientToken] forKey:@"clientToken"];
-    }
-    if([self vpcId])
-    {
-        [result setValue:[self vpcId] forKey:@"vpcId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.clientToken = [dictionary objectForKey:@"clientToken"];
-    self.vpcId = [dictionary objectForKey:@"vpcId"];
-    return self;
-} 
-
-@end
 @implementation EdcpsDescribeVpcResult
 -(id) initWithVpc:(Vpc*) vpc { 
     self.vpc = vpc;               
@@ -5698,8 +5788,8 @@ filters:(NSArray<Filter*>*)filters {
     }
     if([self filters])
     {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self filters] count]; i++) {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self filters] count]; i++) {
             Filter* item = [[self filters] objectAtIndex:i];
             [arrayDic addObject:[item dictionary]];
         }
@@ -5718,68 +5808,14 @@ filters:(NSArray<Filter*>*)filters {
         NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
         for(int i = 0 ; i< [filtersArray count];i++)
         {
-            Filter* item = [[Filter alloc]initWithDic:[filtersArray objectAtIndex:i]];
+        Filter* item = [[Filter alloc]initWithDic:[filtersArray objectAtIndex:i]];
             if(item)
             {
-                [propertyArray addObject:item];
+            [propertyArray addObject:item];
             }
         }
         self.filters = propertyArray;
     }
-    return self;
-} 
-
-@end
-@implementation EdcpsModifyVpcRequest
--(id) initWithRegion:(NSString *)regionId
-name:(NSString*)name
-descriptionValue:(NSString*)descriptionValue
-vpcId:(NSString*)vpcId { 
-    self.regionId = regionId;
-    self.name = name;
-    self.descriptionValue = descriptionValue;
-    self.vpcId = vpcId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-name:(NSString*)name
-descriptionValue:(NSString*)descriptionValue
-vpcId:(NSString*)vpcId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.name = name;
-    self.descriptionValue = descriptionValue;
-    self.vpcId = vpcId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self name])
-    {
-        [result setValue:[self name] forKey:@"name"];
-    }
-    if([self descriptionValue])
-    {
-        [result setValue:[self descriptionValue] forKey:@"description"];
-    }
-    if([self vpcId])
-    {
-        [result setValue:[self vpcId] forKey:@"vpcId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.name = [dictionary objectForKey:@"name"];
-    self.descriptionValue = [dictionary objectForKey:@"description"];
-    self.vpcId = [dictionary objectForKey:@"vpcId"];
     return self;
 } 
 
@@ -5825,42 +5861,6 @@ vpcSpec:(VpcSpec*)vpcSpec {
 -(id) initWithDic:(NSDictionary*)dictionary{
     self.clientToken = [dictionary objectForKey:@"clientToken"];
     self.vpcSpec = [[VpcSpec alloc]initWithDic:[dictionary objectForKey:@"vpcSpec"]];
-    return self;
-} 
-
-@end
-@implementation EdcpsDescribeVpcRequest
--(id) initWithRegion:(NSString *)regionId
-vpcId:(NSString*)vpcId { 
-    self.regionId = regionId;
-    self.vpcId = vpcId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-vpcId:(NSString*)vpcId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.vpcId = vpcId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self vpcId])
-    {
-        [result setValue:[self vpcId] forKey:@"vpcId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.vpcId = [dictionary objectForKey:@"vpcId"];
     return self;
 } 
 
@@ -6006,8 +6006,8 @@ EdcpsDescribeVpcResult* result = [[EdcpsDescribeVpcResult alloc]initWithDic:[dic
     NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
     if([self regions])
     {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self regions] count]; i++) {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self regions] count]; i++) {
             Region* item = [[self regions] objectAtIndex:i];
             [arrayDic addObject:[item dictionary]];
         }
@@ -6023,10 +6023,10 @@ EdcpsDescribeVpcResult* result = [[EdcpsDescribeVpcResult alloc]initWithDic:[dic
         NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
         for(int i = 0 ; i< [regionsArray count];i++)
         {
-            Region* item = [[Region alloc]initWithDic:[regionsArray objectAtIndex:i]];
+        Region* item = [[Region alloc]initWithDic:[regionsArray objectAtIndex:i]];
             if(item)
             {
-                [propertyArray addObject:item];
+            [propertyArray addObject:item];
             }
         }
         self.regions = propertyArray;

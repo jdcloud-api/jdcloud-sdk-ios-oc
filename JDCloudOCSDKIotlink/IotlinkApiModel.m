@@ -97,6 +97,222 @@ iccid:(NSString*)iccid {
 } 
 
 @end
+@implementation IotlinkCloseIotCardRequest
+-(id) initWithRegion:(NSString *)regionId
+iccids:(NSArray<NSString*>*)iccids { 
+    self.regionId = regionId;
+    self.iccids = iccids;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+iccids:(NSArray<NSString*>*)iccids { 
+    self.regionId = regionId;
+    self.version = version;
+    self.iccids = iccids;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self iccids])
+    {
+        [result setValue:[self iccids] forKey:@"iccids"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.iccids = [dictionary objectForKey:@"iccids"];
+    return self;
+} 
+
+@end
+@implementation IotlinkOpenIotCardRequest
+-(id) initWithRegion:(NSString *)regionId
+iccids:(NSArray<NSString*>*)iccids { 
+    self.regionId = regionId;
+    self.iccids = iccids;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+iccids:(NSArray<NSString*>*)iccids { 
+    self.regionId = regionId;
+    self.version = version;
+    self.iccids = iccids;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self iccids])
+    {
+        [result setValue:[self iccids] forKey:@"iccids"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.iccids = [dictionary objectForKey:@"iccids"];
+    return self;
+} 
+
+@end
+@implementation IotlinkLifeStatusRequest
+-(id) initWithRegion:(NSString *)regionId
+iccid:(NSString*)iccid { 
+    self.regionId = regionId;
+    self.iccid = iccid;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+iccid:(NSString*)iccid { 
+    self.regionId = regionId;
+    self.version = version;
+    self.iccid = iccid;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self iccid])
+    {
+        [result setValue:[self iccid] forKey:@"iccid"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.iccid = [dictionary objectForKey:@"iccid"];
+    return self;
+} 
+
+@end
+@implementation IotlinkCloseIotFlowRequest
+-(id) initWithRegion:(NSString *)regionId
+iccids:(NSArray<NSString*>*)iccids { 
+    self.regionId = regionId;
+    self.iccids = iccids;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+iccids:(NSArray<NSString*>*)iccids { 
+    self.regionId = regionId;
+    self.version = version;
+    self.iccids = iccids;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self iccids])
+    {
+        [result setValue:[self iccids] forKey:@"iccids"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.iccids = [dictionary objectForKey:@"iccids"];
+    return self;
+} 
+
+@end
+@implementation IotlinkGprsRealtimeInfoRequest
+-(id) initWithRegion:(NSString *)regionId
+iccid:(NSString*)iccid { 
+    self.regionId = regionId;
+    self.iccid = iccid;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+iccid:(NSString*)iccid { 
+    self.regionId = regionId;
+    self.version = version;
+    self.iccid = iccid;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self iccid])
+    {
+        [result setValue:[self iccid] forKey:@"iccid"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.iccid = [dictionary objectForKey:@"iccid"];
+    return self;
+} 
+
+@end
+@implementation IotlinkGprsStatusRequest
+-(id) initWithRegion:(NSString *)regionId
+iccid:(NSString*)iccid { 
+    self.regionId = regionId;
+    self.iccid = iccid;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+iccid:(NSString*)iccid { 
+    self.regionId = regionId;
+    self.version = version;
+    self.iccid = iccid;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self iccid])
+    {
+        [result setValue:[self iccid] forKey:@"iccid"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.iccid = [dictionary objectForKey:@"iccid"];
+    return self;
+} 
+
+@end
 @implementation IotlinkCloseIotCardResult
 -(id) initWithStatus:(NSString*) status
         message:(NSString*)message
@@ -118,8 +334,8 @@ iccid:(NSString*)iccid {
     }
     if([self result])
     {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self result] count]; i++) {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self result] count]; i++) {
             OperationIotlinkResp* item = [[self result] objectAtIndex:i];
             [arrayDic addObject:[item dictionary]];
         }
@@ -137,10 +353,10 @@ iccid:(NSString*)iccid {
         NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
         for(int i = 0 ; i< [resultArray count];i++)
         {
-            OperationIotlinkResp* item = [[OperationIotlinkResp alloc]initWithDic:[resultArray objectAtIndex:i]];
+        OperationIotlinkResp* item = [[OperationIotlinkResp alloc]initWithDic:[resultArray objectAtIndex:i]];
             if(item)
             {
-                [propertyArray addObject:item];
+            [propertyArray addObject:item];
             }
         }
         self.result = propertyArray;
@@ -214,8 +430,8 @@ IotlinkCloseIotCardResult* result = [[IotlinkCloseIotCardResult alloc]initWithDi
     }
     if([self result])
     {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self result] count]; i++) {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self result] count]; i++) {
             OperationIotlinkResp* item = [[self result] objectAtIndex:i];
             [arrayDic addObject:[item dictionary]];
         }
@@ -233,10 +449,10 @@ IotlinkCloseIotCardResult* result = [[IotlinkCloseIotCardResult alloc]initWithDi
         NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
         for(int i = 0 ; i< [resultArray count];i++)
         {
-            OperationIotlinkResp* item = [[OperationIotlinkResp alloc]initWithDic:[resultArray objectAtIndex:i]];
+        OperationIotlinkResp* item = [[OperationIotlinkResp alloc]initWithDic:[resultArray objectAtIndex:i]];
             if(item)
             {
-                [propertyArray addObject:item];
+            [propertyArray addObject:item];
             }
         }
         self.result = propertyArray;
@@ -289,42 +505,6 @@ IotlinkCloseIotFlowResult* result = [[IotlinkCloseIotFlowResult alloc]initWithDi
 }
 
 @end
-@implementation IotlinkCloseIotCardRequest
--(id) initWithRegion:(NSString *)regionId
-iccids:(NSArray<NSString*>*)iccids { 
-    self.regionId = regionId;
-    self.iccids = iccids;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-iccids:(NSArray<NSString*>*)iccids { 
-    self.regionId = regionId;
-    self.version = version;
-    self.iccids = iccids;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self iccids])
-    {
-        [result setValue:[self iccids] forKey:@"iccids"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.iccids = [dictionary objectForKey:@"iccids"];
-    return self;
-} 
-
-@end
 @implementation IotlinkOpenIotCardResult
 -(id) initWithStatus:(NSString*) status
         message:(NSString*)message
@@ -346,8 +526,8 @@ iccids:(NSArray<NSString*>*)iccids {
     }
     if([self result])
     {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self result] count]; i++) {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self result] count]; i++) {
             OperationIotlinkResp* item = [[self result] objectAtIndex:i];
             [arrayDic addObject:[item dictionary]];
         }
@@ -365,10 +545,10 @@ iccids:(NSArray<NSString*>*)iccids {
         NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
         for(int i = 0 ; i< [resultArray count];i++)
         {
-            OperationIotlinkResp* item = [[OperationIotlinkResp alloc]initWithDic:[resultArray objectAtIndex:i]];
+        OperationIotlinkResp* item = [[OperationIotlinkResp alloc]initWithDic:[resultArray objectAtIndex:i]];
             if(item)
             {
-                [propertyArray addObject:item];
+            [propertyArray addObject:item];
             }
         }
         self.result = propertyArray;
@@ -519,78 +699,6 @@ IotlinkLifeStatusResult* result = [[IotlinkLifeStatusResult alloc]initWithDic:[d
     self.status = [dictionary objectForKey:@"status"];
     self.message = [dictionary objectForKey:@"message"];
     self.result = [[GprsStatusResp alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    return self;
-} 
-
-@end
-@implementation IotlinkOpenIotCardRequest
--(id) initWithRegion:(NSString *)regionId
-iccids:(NSArray<NSString*>*)iccids { 
-    self.regionId = regionId;
-    self.iccids = iccids;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-iccids:(NSArray<NSString*>*)iccids { 
-    self.regionId = regionId;
-    self.version = version;
-    self.iccids = iccids;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self iccids])
-    {
-        [result setValue:[self iccids] forKey:@"iccids"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.iccids = [dictionary objectForKey:@"iccids"];
-    return self;
-} 
-
-@end
-@implementation IotlinkLifeStatusRequest
--(id) initWithRegion:(NSString *)regionId
-iccid:(NSString*)iccid { 
-    self.regionId = regionId;
-    self.iccid = iccid;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-iccid:(NSString*)iccid { 
-    self.regionId = regionId;
-    self.version = version;
-    self.iccid = iccid;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self iccid])
-    {
-        [result setValue:[self iccid] forKey:@"iccid"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.iccid = [dictionary objectForKey:@"iccid"];
     return self;
 } 
 
@@ -826,8 +934,8 @@ IotlinkOpenIotCardResult* result = [[IotlinkOpenIotCardResult alloc]initWithDic:
     }
     if([self result])
     {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self result] count]; i++) {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self result] count]; i++) {
             OperationIotlinkResp* item = [[self result] objectAtIndex:i];
             [arrayDic addObject:[item dictionary]];
         }
@@ -845,10 +953,10 @@ IotlinkOpenIotCardResult* result = [[IotlinkOpenIotCardResult alloc]initWithDic:
         NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
         for(int i = 0 ; i< [resultArray count];i++)
         {
-            OperationIotlinkResp* item = [[OperationIotlinkResp alloc]initWithDic:[resultArray objectAtIndex:i]];
+        OperationIotlinkResp* item = [[OperationIotlinkResp alloc]initWithDic:[resultArray objectAtIndex:i]];
             if(item)
             {
-                [propertyArray addObject:item];
+            [propertyArray addObject:item];
             }
         }
         self.result = propertyArray;
@@ -899,114 +1007,6 @@ IotlinkOpenIotFlowResult* result = [[IotlinkOpenIotFlowResult alloc]initWithDic:
     self.requestId = requestId;
     return self;
 }
-
-@end
-@implementation IotlinkCloseIotFlowRequest
--(id) initWithRegion:(NSString *)regionId
-iccids:(NSArray<NSString*>*)iccids { 
-    self.regionId = regionId;
-    self.iccids = iccids;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-iccids:(NSArray<NSString*>*)iccids { 
-    self.regionId = regionId;
-    self.version = version;
-    self.iccids = iccids;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self iccids])
-    {
-        [result setValue:[self iccids] forKey:@"iccids"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.iccids = [dictionary objectForKey:@"iccids"];
-    return self;
-} 
-
-@end
-@implementation IotlinkGprsRealtimeInfoRequest
--(id) initWithRegion:(NSString *)regionId
-iccid:(NSString*)iccid { 
-    self.regionId = regionId;
-    self.iccid = iccid;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-iccid:(NSString*)iccid { 
-    self.regionId = regionId;
-    self.version = version;
-    self.iccid = iccid;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self iccid])
-    {
-        [result setValue:[self iccid] forKey:@"iccid"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.iccid = [dictionary objectForKey:@"iccid"];
-    return self;
-} 
-
-@end
-@implementation IotlinkGprsStatusRequest
--(id) initWithRegion:(NSString *)regionId
-iccid:(NSString*)iccid { 
-    self.regionId = regionId;
-    self.iccid = iccid;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-iccid:(NSString*)iccid { 
-    self.regionId = regionId;
-    self.version = version;
-    self.iccid = iccid;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self iccid])
-    {
-        [result setValue:[self iccid] forKey:@"iccid"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.iccid = [dictionary objectForKey:@"iccid"];
-    return self;
-} 
 
 @end
  

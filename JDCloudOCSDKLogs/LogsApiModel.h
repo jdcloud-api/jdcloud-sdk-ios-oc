@@ -65,37 +65,6 @@ logtopicUID:(NSString*)logtopicUID;
 
 @end
 
-@interface LogsSearchLogContextResult : NSObject
-/// 结果条目 map[string]interface{} key包含:content,id,anchor
- @property (strong,nonatomic,nonnull)  NSArray<NSMutableDictionary<NSString*,NSObject*>*>*  data;
-/// 总数
- @property (strong,nonatomic,nonnull)  NSNumber*  total;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithData:(NSArray<NSMutableDictionary<NSString*,NSObject*>*>*) data
-
-    total:(NSNumber*)total;
-@end
-
-@interface LogsSearchLogContextResponse : NSObject
-
-@property NSString* requestId;
-
-@property ServiceError* error;
-
-@property LogsSearchLogContextResult* result;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
-
--(id) initWithRequestId:(NSString*) requestId
-        error:(ServiceError*) error
-        result:(LogsSearchLogContextResult*) result;
-@end
-
 @interface LogsSearchResult : NSObject
 /// 结果条目 map[string]interface{} key包含:content,id,anchor
  @property (strong,nonatomic,nonnull)  NSArray<NSMutableDictionary<NSString*,NSObject*>*>*  data;
@@ -108,23 +77,6 @@ logtopicUID:(NSString*)logtopicUID;
 -(id) initWithData:(NSArray<NSMutableDictionary<NSString*,NSObject*>*>*) data
 
     total:(NSNumber*)total;
-@end
-
-@interface LogsSearchResponse : NSObject
-
-@property NSString* requestId;
-
-@property ServiceError* error;
-
-@property LogsSearchResult* result;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
-
--(id) initWithRequestId:(NSString*) requestId
-        error:(ServiceError*) error
-        result:(LogsSearchResult*) result;
 @end
 
 @interface LogsSearchRequest:JDCloudRequest
@@ -172,111 +124,18 @@ logtopicUID:(NSString*)logtopicUID;
 
 @end
 
-@interface LogsPutResult : NSObject
+@interface LogsSearchLogContextResult : NSObject
+/// 结果条目 map[string]interface{} key包含:content,id,anchor
+ @property (strong,nonatomic,nonnull)  NSArray<NSMutableDictionary<NSString*,NSObject*>*>*  data;
+/// 总数
+ @property (strong,nonatomic,nonnull)  NSNumber*  total;
 
 -(NSMutableDictionary*) dictionary;
 
 -(id) initWithDic:(NSDictionary*)dictionary;
-@end
+-(id) initWithData:(NSArray<NSMutableDictionary<NSString*,NSObject*>*>*) data
 
-@interface LogsPutResponse : NSObject
-
-@property NSString* requestId;
-
-@property ServiceError* error;
-
-@property LogsPutResult* result;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
-
--(id) initWithRequestId:(NSString*) requestId
-        error:(ServiceError*) error
-        result:(LogsPutResult*) result;
-@end
-
-@interface LogsPutRequest:JDCloudRequest
-
-/// 全局 strean 日志流标识符（建议起能唯一界定一个文件的名字，如 /i-iqnvqpinkjiq/app.log），不传则写入default日志流中（会导致很多文件混合在一起，不推荐）
-@property (strong,nonatomic,nonnull)  NSString*  stream;
-/// 全局时间戳，UTC格式，最多支持到纳秒级别，不传入则取服务器时间。如 2019-04-08T03:08:04.437670934Z、2019-04-08T03:08:04Z、2019-04-08T03:08:04.123Z
-@property (strong,nonatomic,nonnull)  NSString*  timestamp;
-/// 日志数据
-@property (strong,nonatomic,nonnull)  NSArray<Entry*>*  entries;
-/// 日志主题uid
-@property (strong,nonatomic,nonnull)  NSString*  logtopicUID;
--(id) initWithRegion:(NSString *)regionId
-stream:(NSString*)stream
-timestamp:(NSString*)timestamp
-entries:(NSArray<Entry*>*)entries
-logtopicUID:(NSString*)logtopicUID;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-stream:(NSString*)stream
-timestamp:(NSString*)timestamp
-entries:(NSArray<Entry*>*)entries
-logtopicUID:(NSString*)logtopicUID;
-
-@end
-
-@interface LogsTestMetricTaskResult : NSObject
-/// Lines
- @property (strong,nonatomic,nonnull)  NSArray<NSString*>*  lines;
-/// 监控值
- @property (strong,nonatomic,nonnull)  NSNumber*  value;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithLines:(NSArray<NSString*>*) lines
-
-    value:(NSNumber*)value;
-@end
-
-@interface LogsTestMetricTaskResponse : NSObject
-
-@property NSString* requestId;
-
-@property ServiceError* error;
-
-@property LogsTestMetricTaskResult* result;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
-
--(id) initWithRequestId:(NSString*) requestId
-        error:(ServiceError*) error
-        result:(LogsTestMetricTaskResult*) result;
-@end
-
-@interface LogsUpdateMetricTaskResult : NSObject
-/// Suc
- @property (strong,nonatomic,nonnull)  NSString*  suc;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithSuc:(NSString*) suc;
-@end
-
-@interface LogsUpdateMetricTaskResponse : NSObject
-
-@property NSString* requestId;
-
-@property ServiceError* error;
-
-@property LogsUpdateMetricTaskResult* result;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
-
--(id) initWithRequestId:(NSString*) requestId
-        error:(ServiceError*) error
-        result:(LogsUpdateMetricTaskResult*) result;
+    total:(NSNumber*)total;
 @end
 
 @interface LogsDescribeMetricTaskRequest:JDCloudRequest
@@ -314,31 +173,14 @@ logmetrictaskUID:(NSString*)logmetrictaskUID;
     suc:(NSString*)suc;
 @end
 
-@interface LogsDescribeMetricTaskResult : NSObject
-/// Data
- @property (strong,nonatomic,nonnull)  MetrictaskDetailEnd*  data;
+@interface LogsUpdateMetricTaskResult : NSObject
+/// Suc
+ @property (strong,nonatomic,nonnull)  NSString*  suc;
 
 -(NSMutableDictionary*) dictionary;
 
 -(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithData:(MetrictaskDetailEnd*) data;
-@end
-
-@interface LogsDescribeMetricTaskResponse : NSObject
-
-@property NSString* requestId;
-
-@property ServiceError* error;
-
-@property LogsDescribeMetricTaskResult* result;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
-
--(id) initWithRequestId:(NSString*) requestId
-        error:(ServiceError*) error
-        result:(LogsDescribeMetricTaskResult*) result;
+-(id) initWithSuc:(NSString*) suc;
 @end
 
 @interface LogsTestMetricTaskRequest:JDCloudRequest
@@ -439,6 +281,20 @@ logtopicUID:(NSString*)logtopicUID;
 
 @end
 
+@interface LogsTestMetricTaskResult : NSObject
+/// Lines
+ @property (strong,nonatomic,nonnull)  NSArray<NSString*>*  lines;
+/// 监控值
+ @property (strong,nonatomic,nonnull)  NSNumber*  value;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithLines:(NSArray<NSString*>*) lines
+
+    value:(NSNumber*)value;
+@end
+
 @interface LogsDescribeMetricTasksRequest:JDCloudRequest
 
 /// 当前所在页，默认为1
@@ -464,33 +320,6 @@ pageSize:(NSNumber*)pageSize
 logsetUID:(NSString*)logsetUID
 logtopicUID:(NSString*)logtopicUID;
 
-@end
-
-@interface LogsDeleteMetricTaskResult : NSObject
-/// Suc
- @property (strong,nonatomic,nonnull)  NSString*  suc;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithSuc:(NSString*) suc;
-@end
-
-@interface LogsDeleteMetricTaskResponse : NSObject
-
-@property NSString* requestId;
-
-@property ServiceError* error;
-
-@property LogsDeleteMetricTaskResult* result;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
-
--(id) initWithRequestId:(NSString*) requestId
-        error:(ServiceError*) error
-        result:(LogsDeleteMetricTaskResult*) result;
 @end
 
 @interface LogsUpdateMetricTaskRequest:JDCloudRequest
@@ -536,6 +365,564 @@ logsetUID:(NSString*)logsetUID
 logtopicUID:(NSString*)logtopicUID
 logmetrictaskUID:(NSString*)logmetrictaskUID;
 
+@end
+
+@interface LogsDeleteMetricTaskRequest:JDCloudRequest
+
+/// 日志集 UID
+@property (strong,nonatomic,nonnull)  NSString*  logsetUID;
+/// 日志主题 UID
+@property (strong,nonatomic,nonnull)  NSString*  logtopicUID;
+/// LogmetrictaskUID
+@property (strong,nonatomic,nonnull)  NSString*  logmetrictaskUID;
+-(id) initWithRegion:(NSString *)regionId
+logsetUID:(NSString*)logsetUID
+logtopicUID:(NSString*)logtopicUID
+logmetrictaskUID:(NSString*)logmetrictaskUID;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+logsetUID:(NSString*)logsetUID
+logtopicUID:(NSString*)logtopicUID
+logmetrictaskUID:(NSString*)logmetrictaskUID;
+
+@end
+
+@interface LogsDeleteMetricTaskResult : NSObject
+/// Suc
+ @property (strong,nonatomic,nonnull)  NSString*  suc;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithSuc:(NSString*) suc;
+@end
+
+@interface LogsCreateLogsetRequest:JDCloudRequest
+
+/// 日志集名称
+@property (strong,nonatomic,nonnull)  NSString*  name;
+/// 日志集描述
+@property (strong,nonatomic,nonnull)  NSString*  descriptionValue;
+/// 保存周期，只能是 7， 15， 30
+@property (strong,nonatomic,nonnull)  NSNumber*  lifeCycle;
+-(id) initWithRegion:(NSString *)regionId
+name:(NSString*)name
+descriptionValue:(NSString*)descriptionValue
+lifeCycle:(NSNumber*)lifeCycle;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+name:(NSString*)name
+descriptionValue:(NSString*)descriptionValue
+lifeCycle:(NSNumber*)lifeCycle;
+
+@end
+
+@interface LogsDescribeLogsetResult : NSObject
+/// UID
+ @property (strong,nonatomic,nonnull)  NSString*  uID;
+/// 创建时间
+ @property (strong,nonatomic,nonnull)  NSString*  createTime;
+/// 描述信息
+ @property (strong,nonatomic,nonnull)  NSString*  descriptionValue;
+/// 是否存在日志主题
+ @property (strong,nonatomic,nonnull)  NSNumber*  hasTopic;
+/// 保存周期
+ @property (strong,nonatomic,nonnull)  NSNumber*  lifeCycle;
+/// 日志集名称
+ @property (strong,nonatomic,nonnull)  NSString*  name;
+/// 地域信息
+ @property (strong,nonatomic,nonnull)  NSString*  region;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithUID:(NSString*) uID
+
+    createTime:(NSString*)createTime
+
+    descriptionValue:(NSString*)descriptionValue
+
+    hasTopic:(NSNumber*)hasTopic
+
+    lifeCycle:(NSNumber*)lifeCycle
+
+    name:(NSString*)name
+
+    region:(NSString*)region;
+@end
+
+@interface LogsDescribeLogsetRequest:JDCloudRequest
+
+/// 日志集 UID
+@property (strong,nonatomic,nonnull)  NSString*  logsetUID;
+-(id) initWithRegion:(NSString *)regionId
+logsetUID:(NSString*)logsetUID;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+logsetUID:(NSString*)logsetUID;
+
+@end
+
+@interface LogsCreateLogsetResult : NSObject
+/// UID
+ @property (strong,nonatomic,nonnull)  NSString*  uID;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithUID:(NSString*) uID;
+@end
+
+@interface LogsUpdateLogsetRequest:JDCloudRequest
+
+/// 日志集描述
+@property (strong,nonatomic,nonnull)  NSString*  descriptionValue;
+/// 保存周期，只能是 7， 15， 30
+@property (strong,nonatomic,nonnull)  NSNumber*  lifeCycle;
+/// 日志集 UID
+@property (strong,nonatomic,nonnull)  NSString*  logsetUID;
+-(id) initWithRegion:(NSString *)regionId
+descriptionValue:(NSString*)descriptionValue
+lifeCycle:(NSNumber*)lifeCycle
+logsetUID:(NSString*)logsetUID;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+descriptionValue:(NSString*)descriptionValue
+lifeCycle:(NSNumber*)lifeCycle
+logsetUID:(NSString*)logsetUID;
+
+@end
+
+@interface LogsDeleteLogsetRequest:JDCloudRequest
+
+/// 日志集ID，多个日志集ID以逗号分割
+@property (strong,nonatomic,nonnull)  NSString*  logsetUIDs;
+-(id) initWithRegion:(NSString *)regionId
+logsetUIDs:(NSString*)logsetUIDs;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+logsetUIDs:(NSString*)logsetUIDs;
+
+@end
+
+@interface LogsDescribeLogsetsRequest:JDCloudRequest
+
+/// 当前所在页，默认为1
+@property (strong,nonatomic,nonnull)  NSNumber*  pageNumber;
+/// 页面大小，默认为20；取值范围[1, 100]
+@property (strong,nonatomic,nonnull)  NSNumber*  pageSize;
+/// 日志集名称
+@property (strong,nonatomic,nonnull)  NSString*  name;
+-(id) initWithRegion:(NSString *)regionId
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+name:(NSString*)name;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+name:(NSString*)name;
+
+@end
+
+@interface LogsDescribeInstanceCollectConfsRequest:JDCloudRequest
+
+/// instanceId
+@property (strong,nonatomic,nonnull)  NSString*  instanceId;
+-(id) initWithRegion:(NSString *)regionId
+instanceId:(NSString*)instanceId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+instanceId:(NSString*)instanceId;
+
+@end
+
+@interface LogsDescribeLogdCARequest:JDCloudRequest
+
+/// instanceId
+@property (strong,nonatomic,nonnull)  NSString*  instanceId;
+-(id) initWithRegion:(NSString *)regionId
+instanceId:(NSString*)instanceId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+instanceId:(NSString*)instanceId;
+
+@end
+
+@interface LogsDescribeLogdCAResult : NSObject
+/// public 证书
+ @property (strong,nonatomic,nonnull)  NSString*  cert;
+/// expiryDate 证书到期日
+ @property (strong,nonatomic,nonnull)  NSNumber*  expiryDate;
+/// 私钥
+ @property (strong,nonatomic,nonnull)  NSString*  privateKey;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithCert:(NSString*) cert
+
+    expiryDate:(NSNumber*)expiryDate
+
+    privateKey:(NSString*)privateKey;
+@end
+
+@interface LogsCreateCollectInfoResult : NSObject
+/// UID
+ @property (strong,nonatomic,nonnull)  NSString*  uID;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithUID:(NSString*) uID;
+@end
+
+@interface LogsDescribeCollectInfoRequest:JDCloudRequest
+
+/// 采集配置 UID
+@property (strong,nonatomic,nonnull)  NSString*  collectInfoUID;
+-(id) initWithRegion:(NSString *)regionId
+collectInfoUID:(NSString*)collectInfoUID;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+collectInfoUID:(NSString*)collectInfoUID;
+
+@end
+
+@interface LogsDescribeCollectResourcesRequest:JDCloudRequest
+
+/// 当前所在页，默认为1
+@property (strong,nonatomic,nonnull)  NSNumber*  pageNumber;
+/// 页面大小，默认为20；取值范围[1, 100]
+@property (strong,nonatomic,nonnull)  NSNumber*  pageSize;
+/// 采集配置 UID
+@property (strong,nonatomic,nonnull)  NSString*  collectInfoUID;
+-(id) initWithRegion:(NSString *)regionId
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+collectInfoUID:(NSString*)collectInfoUID;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+collectInfoUID:(NSString*)collectInfoUID;
+
+@end
+
+@interface LogsDeleteLogtopicRequest:JDCloudRequest
+
+/// 日志集 UID
+@property (strong,nonatomic,nonnull)  NSString*  logsetUID;
+/// 日志主题ID，多个日志主题ID以逗号分割
+@property (strong,nonatomic,nonnull)  NSString*  logtopicUIDs;
+-(id) initWithRegion:(NSString *)regionId
+logsetUID:(NSString*)logsetUID
+logtopicUIDs:(NSString*)logtopicUIDs;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+logsetUID:(NSString*)logsetUID
+logtopicUIDs:(NSString*)logtopicUIDs;
+
+@end
+
+@interface LogsDescribeLogtopicResult : NSObject
+/// UID
+ @property (strong,nonatomic,nonnull)  NSString*  uID;
+/// 日志来源,只在查询单个日志主题并且创建了采集配置时返回值
+ @property (strong,nonatomic,nonnull)  NSString*  appCode;
+/// 采集配置UID
+ @property (strong,nonatomic,nonnull)  NSString*  collectInfoUID;
+/// 创建时间
+ @property (strong,nonatomic,nonnull)  NSString*  createTime;
+/// 描述信息
+ @property (strong,nonatomic,nonnull)  NSString*  descriptionValue;
+/// 所属日志集名称
+ @property (strong,nonatomic,nonnull)  NSString*  logsetName;
+/// 所属日志集
+ @property (strong,nonatomic,nonnull)  NSString*  logsetUID;
+/// 日志主题名称
+ @property (strong,nonatomic,nonnull)  NSString*  name;
+/// 地域信息
+ @property (strong,nonatomic,nonnull)  NSString*  region;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithUID:(NSString*) uID
+
+    appCode:(NSString*)appCode
+
+    collectInfoUID:(NSString*)collectInfoUID
+
+    createTime:(NSString*)createTime
+
+    descriptionValue:(NSString*)descriptionValue
+
+    logsetName:(NSString*)logsetName
+
+    logsetUID:(NSString*)logsetUID
+
+    name:(NSString*)name
+
+    region:(NSString*)region;
+@end
+
+@interface LogsUpdateLogtopicRequest:JDCloudRequest
+
+/// 日志主题描述
+@property (strong,nonatomic,nonnull)  NSString*  descriptionValue;
+/// 日志主题 UID
+@property (strong,nonatomic,nonnull)  NSString*  logtopicUID;
+-(id) initWithRegion:(NSString *)regionId
+descriptionValue:(NSString*)descriptionValue
+logtopicUID:(NSString*)logtopicUID;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+descriptionValue:(NSString*)descriptionValue
+logtopicUID:(NSString*)logtopicUID;
+
+@end
+
+@interface LogsCreateLogtopicRequest:JDCloudRequest
+
+/// 日志主题名称
+@property (strong,nonatomic,nonnull)  NSString*  name;
+/// 日志集描述
+@property (strong,nonatomic,nonnull)  NSString*  descriptionValue;
+/// 日志集 UID
+@property (strong,nonatomic,nonnull)  NSString*  logsetUID;
+-(id) initWithRegion:(NSString *)regionId
+name:(NSString*)name
+descriptionValue:(NSString*)descriptionValue
+logsetUID:(NSString*)logsetUID;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+name:(NSString*)name
+descriptionValue:(NSString*)descriptionValue
+logsetUID:(NSString*)logsetUID;
+
+@end
+
+@interface LogsDescribeLogtopicRequest:JDCloudRequest
+
+/// 日志主题 UID
+@property (strong,nonatomic,nonnull)  NSString*  logtopicUID;
+-(id) initWithRegion:(NSString *)regionId
+logtopicUID:(NSString*)logtopicUID;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+logtopicUID:(NSString*)logtopicUID;
+
+@end
+
+@interface LogsDescribeLogtopicsRequest:JDCloudRequest
+
+/// 当前所在页，默认为1
+@property (strong,nonatomic,nonnull)  NSNumber*  pageNumber;
+/// 页面大小，默认为20；取值范围[1, 100]
+@property (strong,nonatomic,nonnull)  NSNumber*  pageSize;
+/// 日志主题名称
+@property (strong,nonatomic,nonnull)  NSString*  name;
+/// 日志集 UID
+@property (strong,nonatomic,nonnull)  NSString*  logsetUID;
+-(id) initWithRegion:(NSString *)regionId
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+name:(NSString*)name
+logsetUID:(NSString*)logsetUID;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+name:(NSString*)name
+logsetUID:(NSString*)logsetUID;
+
+@end
+
+@interface LogsCreateLogtopicResult : NSObject
+/// UID
+ @property (strong,nonatomic,nonnull)  NSString*  uID;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithUID:(NSString*) uID;
+@end
+
+@interface LogsSearchLogContextResponse : NSObject
+
+@property NSString* requestId;
+
+@property ServiceError* error;
+
+@property LogsSearchLogContextResult* result;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+
+-(id) initWithRequestId:(NSString*) requestId
+        error:(ServiceError*) error
+        result:(LogsSearchLogContextResult*) result;
+@end
+
+@interface LogsSearchResponse : NSObject
+
+@property NSString* requestId;
+
+@property ServiceError* error;
+
+@property LogsSearchResult* result;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+
+-(id) initWithRequestId:(NSString*) requestId
+        error:(ServiceError*) error
+        result:(LogsSearchResult*) result;
+@end
+
+@interface LogsPutResult : NSObject
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+@end
+
+@interface LogsPutResponse : NSObject
+
+@property NSString* requestId;
+
+@property ServiceError* error;
+
+@property LogsPutResult* result;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+
+-(id) initWithRequestId:(NSString*) requestId
+        error:(ServiceError*) error
+        result:(LogsPutResult*) result;
+@end
+
+@interface LogsPutRequest:JDCloudRequest
+
+/// 全局 strean 日志流标识符（建议起能唯一界定一个文件的名字，如 /i-iqnvqpinkjiq/app.log），不传则写入default日志流中（会导致很多文件混合在一起，不推荐）
+@property (strong,nonatomic,nonnull)  NSString*  stream;
+/// 全局时间戳，UTC格式，最多支持到纳秒级别，不传入则取服务器时间。如 2019-04-08T03:08:04.437670934Z、2019-04-08T03:08:04Z、2019-04-08T03:08:04.123Z
+@property (strong,nonatomic,nonnull)  NSString*  timestamp;
+/// 日志数据
+@property (strong,nonatomic,nonnull)  NSArray<Entry*>*  entries;
+/// 日志主题uid
+@property (strong,nonatomic,nonnull)  NSString*  logtopicUID;
+-(id) initWithRegion:(NSString *)regionId
+stream:(NSString*)stream
+timestamp:(NSString*)timestamp
+entries:(NSArray<Entry*>*)entries
+logtopicUID:(NSString*)logtopicUID;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+stream:(NSString*)stream
+timestamp:(NSString*)timestamp
+entries:(NSArray<Entry*>*)entries
+logtopicUID:(NSString*)logtopicUID;
+
+@end
+
+@interface LogsTestMetricTaskResponse : NSObject
+
+@property NSString* requestId;
+
+@property ServiceError* error;
+
+@property LogsTestMetricTaskResult* result;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+
+-(id) initWithRequestId:(NSString*) requestId
+        error:(ServiceError*) error
+        result:(LogsTestMetricTaskResult*) result;
+@end
+
+@interface LogsUpdateMetricTaskResponse : NSObject
+
+@property NSString* requestId;
+
+@property ServiceError* error;
+
+@property LogsUpdateMetricTaskResult* result;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+
+-(id) initWithRequestId:(NSString*) requestId
+        error:(ServiceError*) error
+        result:(LogsUpdateMetricTaskResult*) result;
+@end
+
+@interface LogsDescribeMetricTaskResult : NSObject
+/// Data
+ @property (strong,nonatomic,nonnull)  MetrictaskDetailEnd*  data;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithData:(MetrictaskDetailEnd*) data;
+@end
+
+@interface LogsDescribeMetricTaskResponse : NSObject
+
+@property NSString* requestId;
+
+@property ServiceError* error;
+
+@property LogsDescribeMetricTaskResult* result;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+
+-(id) initWithRequestId:(NSString*) requestId
+        error:(ServiceError*) error
+        result:(LogsDescribeMetricTaskResult*) result;
+@end
+
+@interface LogsDeleteMetricTaskResponse : NSObject
+
+@property NSString* requestId;
+
+@property ServiceError* error;
+
+@property LogsDeleteMetricTaskResult* result;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+
+-(id) initWithRequestId:(NSString*) requestId
+        error:(ServiceError*) error
+        result:(LogsDeleteMetricTaskResult*) result;
 @end
 
 @interface LogsDescribeMetricTasksResult : NSObject
@@ -598,27 +985,6 @@ logmetrictaskUID:(NSString*)logmetrictaskUID;
         result:(LogsCreateMetricTaskResult*) result;
 @end
 
-@interface LogsDeleteMetricTaskRequest:JDCloudRequest
-
-/// 日志集 UID
-@property (strong,nonatomic,nonnull)  NSString*  logsetUID;
-/// 日志主题 UID
-@property (strong,nonatomic,nonnull)  NSString*  logtopicUID;
-/// LogmetrictaskUID
-@property (strong,nonatomic,nonnull)  NSString*  logmetrictaskUID;
--(id) initWithRegion:(NSString *)regionId
-logsetUID:(NSString*)logsetUID
-logtopicUID:(NSString*)logtopicUID
-logmetrictaskUID:(NSString*)logmetrictaskUID;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-logsetUID:(NSString*)logsetUID
-logtopicUID:(NSString*)logtopicUID
-logmetrictaskUID:(NSString*)logmetrictaskUID;
-
-@end
-
 @interface LogsDescribeLogsetsResult : NSObject
 /// Data
  @property (strong,nonatomic,nonnull)  NSArray<LogsetEnd*>*  data;
@@ -643,27 +1009,6 @@ logmetrictaskUID:(NSString*)logmetrictaskUID;
     pageNumber:(NSNumber*)pageNumber
 
     pageSize:(NSNumber*)pageSize;
-@end
-
-@interface LogsCreateLogsetRequest:JDCloudRequest
-
-/// 日志集名称
-@property (strong,nonatomic,nonnull)  NSString*  name;
-/// 日志集描述
-@property (strong,nonatomic,nonnull)  NSString*  descriptionValue;
-/// 保存周期，只能是 7， 15， 30
-@property (strong,nonatomic,nonnull)  NSNumber*  lifeCycle;
--(id) initWithRegion:(NSString *)regionId
-name:(NSString*)name
-descriptionValue:(NSString*)descriptionValue
-lifeCycle:(NSNumber*)lifeCycle;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-name:(NSString*)name
-descriptionValue:(NSString*)descriptionValue
-lifeCycle:(NSNumber*)lifeCycle;
-
 @end
 
 @interface LogsUpdateLogsetResult : NSObject
@@ -714,53 +1059,6 @@ lifeCycle:(NSNumber*)lifeCycle;
         result:(LogsDeleteLogsetResult*) result;
 @end
 
-@interface LogsDescribeLogsetResult : NSObject
-/// UID
- @property (strong,nonatomic,nonnull)  NSString*  uID;
-/// 创建时间
- @property (strong,nonatomic,nonnull)  NSString*  createTime;
-/// 描述信息
- @property (strong,nonatomic,nonnull)  NSString*  descriptionValue;
-/// 是否存在日志主题
- @property (strong,nonatomic,nonnull)  NSNumber*  hasTopic;
-/// 保存周期
- @property (strong,nonatomic,nonnull)  NSNumber*  lifeCycle;
-/// 日志集名称
- @property (strong,nonatomic,nonnull)  NSString*  name;
-/// 地域信息
- @property (strong,nonatomic,nonnull)  NSString*  region;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithUID:(NSString*) uID
-
-    createTime:(NSString*)createTime
-
-    descriptionValue:(NSString*)descriptionValue
-
-    hasTopic:(NSNumber*)hasTopic
-
-    lifeCycle:(NSNumber*)lifeCycle
-
-    name:(NSString*)name
-
-    region:(NSString*)region;
-@end
-
-@interface LogsDescribeLogsetRequest:JDCloudRequest
-
-/// 日志集 UID
-@property (strong,nonatomic,nonnull)  NSString*  logsetUID;
--(id) initWithRegion:(NSString *)regionId
-logsetUID:(NSString*)logsetUID;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-logsetUID:(NSString*)logsetUID;
-
-@end
-
 @interface LogsDescribeLogsetResponse : NSObject
 
 @property NSString* requestId;
@@ -795,50 +1093,6 @@ logsetUID:(NSString*)logsetUID;
         result:(LogsDescribeLogsetsResult*) result;
 @end
 
-@interface LogsCreateLogsetResult : NSObject
-/// UID
- @property (strong,nonatomic,nonnull)  NSString*  uID;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithUID:(NSString*) uID;
-@end
-
-@interface LogsUpdateLogsetRequest:JDCloudRequest
-
-/// 日志集描述
-@property (strong,nonatomic,nonnull)  NSString*  descriptionValue;
-/// 保存周期，只能是 7， 15， 30
-@property (strong,nonatomic,nonnull)  NSNumber*  lifeCycle;
-/// 日志集 UID
-@property (strong,nonatomic,nonnull)  NSString*  logsetUID;
--(id) initWithRegion:(NSString *)regionId
-descriptionValue:(NSString*)descriptionValue
-lifeCycle:(NSNumber*)lifeCycle
-logsetUID:(NSString*)logsetUID;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-descriptionValue:(NSString*)descriptionValue
-lifeCycle:(NSNumber*)lifeCycle
-logsetUID:(NSString*)logsetUID;
-
-@end
-
-@interface LogsDeleteLogsetRequest:JDCloudRequest
-
-/// 日志集ID，多个日志集ID以逗号分割
-@property (strong,nonatomic,nonnull)  NSString*  logsetUIDs;
--(id) initWithRegion:(NSString *)regionId
-logsetUIDs:(NSString*)logsetUIDs;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-logsetUIDs:(NSString*)logsetUIDs;
-
-@end
-
 @interface LogsCreateLogsetResponse : NSObject
 
 @property NSString* requestId;
@@ -856,40 +1110,6 @@ logsetUIDs:(NSString*)logsetUIDs;
         result:(LogsCreateLogsetResult*) result;
 @end
 
-@interface LogsDescribeLogsetsRequest:JDCloudRequest
-
-/// 当前所在页，默认为1
-@property (strong,nonatomic,nonnull)  NSNumber*  pageNumber;
-/// 页面大小，默认为20；取值范围[1, 100]
-@property (strong,nonatomic,nonnull)  NSNumber*  pageSize;
-/// 日志集名称
-@property (strong,nonatomic,nonnull)  NSString*  name;
--(id) initWithRegion:(NSString *)regionId
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-name:(NSString*)name;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-name:(NSString*)name;
-
-@end
-
-@interface LogsDescribeInstanceCollectConfsRequest:JDCloudRequest
-
-/// instanceId
-@property (strong,nonatomic,nonnull)  NSString*  instanceId;
--(id) initWithRegion:(NSString *)regionId
-instanceId:(NSString*)instanceId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-instanceId:(NSString*)instanceId;
-
-@end
-
 @interface LogsDescribeInstanceCollectConfsResult : NSObject
 /// Confs
  @property (strong,nonatomic,nonnull)  NSArray<CollectConf*>*  confs;
@@ -898,19 +1118,6 @@ instanceId:(NSString*)instanceId;
 
 -(id) initWithDic:(NSDictionary*)dictionary;
 -(id) initWithConfs:(NSArray<CollectConf*>*) confs;
-@end
-
-@interface LogsDescribeLogdCARequest:JDCloudRequest
-
-/// instanceId
-@property (strong,nonatomic,nonnull)  NSString*  instanceId;
--(id) initWithRegion:(NSString *)regionId
-instanceId:(NSString*)instanceId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-instanceId:(NSString*)instanceId;
-
 @end
 
 @interface LogsDescribeInstanceCollectConfsResponse : NSObject
@@ -928,24 +1135,6 @@ instanceId:(NSString*)instanceId;
 -(id) initWithRequestId:(NSString*) requestId
         error:(ServiceError*) error
         result:(LogsDescribeInstanceCollectConfsResult*) result;
-@end
-
-@interface LogsDescribeLogdCAResult : NSObject
-/// public 证书
- @property (strong,nonatomic,nonnull)  NSString*  cert;
-/// expiryDate 证书到期日
- @property (strong,nonatomic,nonnull)  NSNumber*  expiryDate;
-/// 私钥
- @property (strong,nonatomic,nonnull)  NSString*  privateKey;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithCert:(NSString*) cert
-
-    expiryDate:(NSNumber*)expiryDate
-
-    privateKey:(NSString*)privateKey;
 @end
 
 @interface LogsDescribeLogdCAResponse : NSObject
@@ -987,16 +1176,6 @@ instanceId:(NSString*)instanceId;
 -(id) initWithRequestId:(NSString*) requestId
         error:(ServiceError*) error
         result:(LogsUpdateCollectResourcesResult*) result;
-@end
-
-@interface LogsCreateCollectInfoResult : NSObject
-/// UID
- @property (strong,nonatomic,nonnull)  NSString*  uID;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithUID:(NSString*) uID;
 @end
 
 @interface LogsDescribeCollectResourcesResult : NSObject
@@ -1086,19 +1265,6 @@ logPath:(NSString*)logPath
 logFile:(NSString*)logFile
 logFilters:(NSArray<NSString*>*)logFilters
 filterEnabled:(NSNumber*)filterEnabled
-collectInfoUID:(NSString*)collectInfoUID;
-
-@end
-
-@interface LogsDescribeCollectInfoRequest:JDCloudRequest
-
-/// 采集配置 UID
-@property (strong,nonatomic,nonnull)  NSString*  collectInfoUID;
--(id) initWithRegion:(NSString *)regionId
-collectInfoUID:(NSString*)collectInfoUID;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
 collectInfoUID:(NSString*)collectInfoUID;
 
 @end
@@ -1244,27 +1410,6 @@ logtopicUID:(NSString*)logtopicUID;
 
 @end
 
-@interface LogsDescribeCollectResourcesRequest:JDCloudRequest
-
-/// 当前所在页，默认为1
-@property (strong,nonatomic,nonnull)  NSNumber*  pageNumber;
-/// 页面大小，默认为20；取值范围[1, 100]
-@property (strong,nonatomic,nonnull)  NSNumber*  pageSize;
-/// 采集配置 UID
-@property (strong,nonatomic,nonnull)  NSString*  collectInfoUID;
--(id) initWithRegion:(NSString *)regionId
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-collectInfoUID:(NSString*)collectInfoUID;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-collectInfoUID:(NSString*)collectInfoUID;
-
-@end
-
 @interface LogsDescribeCollectInfoResponse : NSObject
 
 @property NSString* requestId;
@@ -1323,103 +1468,6 @@ collectInfoUID:(NSString*)collectInfoUID;
         result:(LogsDeleteLogtopicResult*) result;
 @end
 
-@interface LogsDeleteLogtopicRequest:JDCloudRequest
-
-/// 日志集 UID
-@property (strong,nonatomic,nonnull)  NSString*  logsetUID;
-/// 日志主题ID，多个日志主题ID以逗号分割
-@property (strong,nonatomic,nonnull)  NSString*  logtopicUIDs;
--(id) initWithRegion:(NSString *)regionId
-logsetUID:(NSString*)logsetUID
-logtopicUIDs:(NSString*)logtopicUIDs;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-logsetUID:(NSString*)logsetUID
-logtopicUIDs:(NSString*)logtopicUIDs;
-
-@end
-
-@interface LogsDescribeLogtopicResult : NSObject
-/// UID
- @property (strong,nonatomic,nonnull)  NSString*  uID;
-/// 日志来源,只在查询单个日志主题并且创建了采集配置时返回值
- @property (strong,nonatomic,nonnull)  NSString*  appCode;
-/// 采集配置UID
- @property (strong,nonatomic,nonnull)  NSString*  collectInfoUID;
-/// 创建时间
- @property (strong,nonatomic,nonnull)  NSString*  createTime;
-/// 描述信息
- @property (strong,nonatomic,nonnull)  NSString*  descriptionValue;
-/// 所属日志集名称
- @property (strong,nonatomic,nonnull)  NSString*  logsetName;
-/// 所属日志集
- @property (strong,nonatomic,nonnull)  NSString*  logsetUID;
-/// 日志主题名称
- @property (strong,nonatomic,nonnull)  NSString*  name;
-/// 地域信息
- @property (strong,nonatomic,nonnull)  NSString*  region;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithUID:(NSString*) uID
-
-    appCode:(NSString*)appCode
-
-    collectInfoUID:(NSString*)collectInfoUID
-
-    createTime:(NSString*)createTime
-
-    descriptionValue:(NSString*)descriptionValue
-
-    logsetName:(NSString*)logsetName
-
-    logsetUID:(NSString*)logsetUID
-
-    name:(NSString*)name
-
-    region:(NSString*)region;
-@end
-
-@interface LogsUpdateLogtopicRequest:JDCloudRequest
-
-/// 日志主题描述
-@property (strong,nonatomic,nonnull)  NSString*  descriptionValue;
-/// 日志主题 UID
-@property (strong,nonatomic,nonnull)  NSString*  logtopicUID;
--(id) initWithRegion:(NSString *)regionId
-descriptionValue:(NSString*)descriptionValue
-logtopicUID:(NSString*)logtopicUID;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-descriptionValue:(NSString*)descriptionValue
-logtopicUID:(NSString*)logtopicUID;
-
-@end
-
-@interface LogsCreateLogtopicRequest:JDCloudRequest
-
-/// 日志主题名称
-@property (strong,nonatomic,nonnull)  NSString*  name;
-/// 日志集描述
-@property (strong,nonatomic,nonnull)  NSString*  descriptionValue;
-/// 日志集 UID
-@property (strong,nonatomic,nonnull)  NSString*  logsetUID;
--(id) initWithRegion:(NSString *)regionId
-name:(NSString*)name
-descriptionValue:(NSString*)descriptionValue
-logsetUID:(NSString*)logsetUID;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-name:(NSString*)name
-descriptionValue:(NSString*)descriptionValue
-logsetUID:(NSString*)logsetUID;
-
-@end
-
 @interface LogsUpdateLogtopicResult : NSObject
 
 -(NSMutableDictionary*) dictionary;
@@ -1442,44 +1490,6 @@ logsetUID:(NSString*)logsetUID;
 -(id) initWithRequestId:(NSString*) requestId
         error:(ServiceError*) error
         result:(LogsUpdateLogtopicResult*) result;
-@end
-
-@interface LogsDescribeLogtopicRequest:JDCloudRequest
-
-/// 日志主题 UID
-@property (strong,nonatomic,nonnull)  NSString*  logtopicUID;
--(id) initWithRegion:(NSString *)regionId
-logtopicUID:(NSString*)logtopicUID;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-logtopicUID:(NSString*)logtopicUID;
-
-@end
-
-@interface LogsDescribeLogtopicsRequest:JDCloudRequest
-
-/// 当前所在页，默认为1
-@property (strong,nonatomic,nonnull)  NSNumber*  pageNumber;
-/// 页面大小，默认为20；取值范围[1, 100]
-@property (strong,nonatomic,nonnull)  NSNumber*  pageSize;
-/// 日志主题名称
-@property (strong,nonatomic,nonnull)  NSString*  name;
-/// 日志集 UID
-@property (strong,nonatomic,nonnull)  NSString*  logsetUID;
--(id) initWithRegion:(NSString *)regionId
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-name:(NSString*)name
-logsetUID:(NSString*)logsetUID;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-name:(NSString*)name
-logsetUID:(NSString*)logsetUID;
-
 @end
 
 @interface LogsDescribeLogtopicsResult : NSObject
@@ -1540,16 +1550,6 @@ logsetUID:(NSString*)logsetUID;
 -(id) initWithRequestId:(NSString*) requestId
         error:(ServiceError*) error
         result:(LogsDescribeLogtopicResult*) result;
-@end
-
-@interface LogsCreateLogtopicResult : NSObject
-/// UID
- @property (strong,nonatomic,nonnull)  NSString*  uID;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithUID:(NSString*) uID;
 @end
 
 @interface LogsCreateLogtopicResponse : NSObject

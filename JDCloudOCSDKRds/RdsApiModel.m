@@ -79,106 +79,6 @@ backupId:(NSString*)backupId {
 } 
 
 @end
-@implementation RdsDescribeBackupsResult
--(id) initWithBackup:(NSArray<Backup*>*) backup
-        totalCount:(NSNumber*)totalCount { 
-    self.backup = backup;               
-    self.totalCount = totalCount;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self backup])
-    {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self backup] count]; i++) {
-            Backup* item = [[self backup] objectAtIndex:i];
-            [arrayDic addObject:[item dictionary]];
-        }
-        [result setValue:arrayDic forKey:@"backup"];
-    }
-    if([self totalCount])
-    {
-        [result setValue:[self totalCount] forKey:@"totalCount"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    NSArray* backupArray = [dictionary objectForKey:@"backup"];
-    if(backupArray&&![backupArray isKindOfClass:[NSNull class]])
-    {
-        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
-        for(int i = 0 ; i< [backupArray count];i++)
-        {
-            Backup* item = [[Backup alloc]initWithDic:[backupArray objectAtIndex:i]];
-            if(item)
-            {
-                [propertyArray addObject:item];
-            }
-        }
-        self.backup = propertyArray;
-    }
-    self.totalCount = [dictionary objectForKey:@"totalCount"];
-    return self;
-} 
-
-@end
-@implementation RdsDeleteBackupResult
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    return self;
-} 
-
-@end
-  
-@implementation RdsDeleteBackupResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-RdsDeleteBackupResult* result = [[RdsDeleteBackupResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(RdsDeleteBackupResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
 @implementation RdsDescribeBackupDownloadURLResult
 -(id) initWithPublicURL:(NSString*) publicURL
         internalURL:(NSString*)internalURL { 
@@ -209,7 +109,7 @@ RdsDeleteBackupResult* result = [[RdsDeleteBackupResult alloc]initWithDic:[dicti
 @implementation RdsDescribeBackupsRequest
 -(id) initWithRegion:(NSString *)regionId
 instanceId:(NSString*)instanceId
-auto:(NSNumber*)auto
+propertyAuto:(NSNumber*)propertyAuto
 backupTypeFilter:(NSString*)backupTypeFilter
 dbNameFilter:(NSString*)dbNameFilter
 backupTimeRangeStartFilter:(NSString*)backupTimeRangeStartFilter
@@ -218,7 +118,7 @@ pageNumber:(NSNumber*)pageNumber
 pageSize:(NSNumber*)pageSize { 
     self.regionId = regionId;
     self.instanceId = instanceId;
-    self.auto = auto;
+    self.propertyAuto = propertyAuto;
     self.backupTypeFilter = backupTypeFilter;
     self.dbNameFilter = dbNameFilter;
     self.backupTimeRangeStartFilter = backupTimeRangeStartFilter;
@@ -231,7 +131,7 @@ pageSize:(NSNumber*)pageSize {
 -(id) initWithRegion:(NSString *)regionId
              version:(NSString *)version
 instanceId:(NSString*)instanceId
-auto:(NSNumber*)auto
+propertyAuto:(NSNumber*)propertyAuto
 backupTypeFilter:(NSString*)backupTypeFilter
 dbNameFilter:(NSString*)dbNameFilter
 backupTimeRangeStartFilter:(NSString*)backupTimeRangeStartFilter
@@ -241,7 +141,7 @@ pageSize:(NSNumber*)pageSize {
     self.regionId = regionId;
     self.version = version;
     self.instanceId = instanceId;
-    self.auto = auto;
+    self.propertyAuto = propertyAuto;
     self.backupTypeFilter = backupTypeFilter;
     self.dbNameFilter = dbNameFilter;
     self.backupTimeRangeStartFilter = backupTimeRangeStartFilter;
@@ -261,9 +161,9 @@ pageSize:(NSNumber*)pageSize {
     {
         [result setValue:[self instanceId] forKey:@"instanceId"];
     }
-    if([self auto])
+    if([self propertyAuto])
     {
-        [result setValue:[self auto] forKey:@"auto"];
+        [result setValue:[self propertyAuto] forKey:@"auto"];
     }
     if([self backupTypeFilter])
     {
@@ -294,7 +194,7 @@ pageSize:(NSNumber*)pageSize {
 
 -(id) initWithDic:(NSDictionary*)dictionary{
     self.instanceId = [dictionary objectForKey:@"instanceId"];
-    self.auto = [dictionary objectForKey:@"auto"];
+    self.propertyAuto = [dictionary objectForKey:@"auto"];
     self.backupTypeFilter = [dictionary objectForKey:@"backupTypeFilter"];
     self.dbNameFilter = [dictionary objectForKey:@"dbNameFilter"];
     self.backupTimeRangeStartFilter = [dictionary objectForKey:@"backupTimeRangeStartFilter"];
@@ -323,138 +223,6 @@ pageSize:(NSNumber*)pageSize {
     self.backupId = [dictionary objectForKey:@"backupId"];
     return self;
 } 
-
-@end
-  
-@implementation RdsDescribeBackupsResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-RdsDescribeBackupsResult* result = [[RdsDescribeBackupsResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(RdsDescribeBackupsResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
-  
-@implementation RdsCreateBackupResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-RdsCreateBackupResult* result = [[RdsCreateBackupResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(RdsCreateBackupResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
-  
-@implementation RdsDescribeBackupDownloadURLResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-RdsDescribeBackupDownloadURLResult* result = [[RdsDescribeBackupDownloadURLResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(RdsDescribeBackupDownloadURLResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
 
 @end
 @implementation RdsDeleteBackupRequest
@@ -491,133 +259,6 @@ backupId:(NSString*)backupId {
     self.backupId = [dictionary objectForKey:@"backupId"];
     return self;
 } 
-
-@end
-@implementation RdsCreateBackupRequest
--(id) initWithRegion:(NSString *)regionId
-instanceId:(NSString*)instanceId
-backupSpec:(BackupSpec*)backupSpec { 
-    self.regionId = regionId;
-    self.instanceId = instanceId;
-    self.backupSpec = backupSpec;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-instanceId:(NSString*)instanceId
-backupSpec:(BackupSpec*)backupSpec { 
-    self.regionId = regionId;
-    self.version = version;
-    self.instanceId = instanceId;
-    self.backupSpec = backupSpec;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self instanceId])
-    {
-        [result setValue:[self instanceId] forKey:@"instanceId"];
-    }
-    if([self backupSpec])
-    {
-        [result setValue:[[self backupSpec] dictionary]forKey:@"backupSpec"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.instanceId = [dictionary objectForKey:@"instanceId"];
-    self.backupSpec = [[BackupSpec alloc]initWithDic:[dictionary objectForKey:@"backupSpec"]];
-    return self;
-} 
-
-@end
-@implementation RdsDescribeErrorLogsResult
--(id) initWithErrorLogs:(NSArray<ErrorLog*>*) errorLogs { 
-    self.errorLogs = errorLogs;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self errorLogs])
-    {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self errorLogs] count]; i++) {
-            ErrorLog* item = [[self errorLogs] objectAtIndex:i];
-            [arrayDic addObject:[item dictionary]];
-        }
-        [result setValue:arrayDic forKey:@"errorLogs"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    NSArray* errorLogsArray = [dictionary objectForKey:@"errorLogs"];
-    if(errorLogsArray&&![errorLogsArray isKindOfClass:[NSNull class]])
-    {
-        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
-        for(int i = 0 ; i< [errorLogsArray count];i++)
-        {
-            ErrorLog* item = [[ErrorLog alloc]initWithDic:[errorLogsArray objectAtIndex:i]];
-            if(item)
-            {
-                [propertyArray addObject:item];
-            }
-        }
-        self.errorLogs = propertyArray;
-    }
-    return self;
-} 
-
-@end
-  
-@implementation RdsDescribeErrorLogsResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-RdsDescribeErrorLogsResult* result = [[RdsDescribeErrorLogsResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(RdsDescribeErrorLogsResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
 
 @end
 @implementation RdsDescribeErrorLogsRequest
@@ -710,117 +351,6 @@ instanceId:(NSString*)instanceId {
 } 
 
 @end
-@implementation RdsDisableInterceptResult
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    return self;
-} 
-
-@end
-@implementation RdsDescribeInterceptResultResult
--(id) initWithInterceptResult:(NSArray<InterceptResult*>*) interceptResult
-        totalCount:(NSNumber*)totalCount { 
-    self.interceptResult = interceptResult;               
-    self.totalCount = totalCount;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self interceptResult])
-    {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self interceptResult] count]; i++) {
-            InterceptResult* item = [[self interceptResult] objectAtIndex:i];
-            [arrayDic addObject:[item dictionary]];
-        }
-        [result setValue:arrayDic forKey:@"interceptResult"];
-    }
-    if([self totalCount])
-    {
-        [result setValue:[self totalCount] forKey:@"totalCount"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    NSArray* interceptResultArray = [dictionary objectForKey:@"interceptResult"];
-    if(interceptResultArray&&![interceptResultArray isKindOfClass:[NSNull class]])
-    {
-        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
-        for(int i = 0 ; i< [interceptResultArray count];i++)
-        {
-            InterceptResult* item = [[InterceptResult alloc]initWithDic:[interceptResultArray objectAtIndex:i]];
-            if(item)
-            {
-                [propertyArray addObject:item];
-            }
-        }
-        self.interceptResult = propertyArray;
-    }
-    self.totalCount = [dictionary objectForKey:@"totalCount"];
-    return self;
-} 
-
-@end
-@implementation RdsEnableInterceptResult
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    return self;
-} 
-
-@end
-  
-@implementation RdsDescribeInterceptResultResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-RdsDescribeInterceptResultResult* result = [[RdsDescribeInterceptResultResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(RdsDescribeInterceptResultResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
 @implementation RdsEnableInterceptRequest
 -(id) initWithRegion:(NSString *)regionId
 instanceId:(NSString*)instanceId { 
@@ -855,50 +385,6 @@ instanceId:(NSString*)instanceId {
     self.instanceId = [dictionary objectForKey:@"instanceId"];
     return self;
 } 
-
-@end
-  
-@implementation RdsEnableInterceptResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-RdsEnableInterceptResult* result = [[RdsEnableInterceptResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(RdsEnableInterceptResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
 
 @end
 @implementation RdsDescribeInterceptResult
@@ -957,50 +443,6 @@ instanceId:(NSString*)instanceId {
 } 
 
 @end
-  
-@implementation RdsDescribeInterceptResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-RdsDescribeInterceptResult* result = [[RdsDescribeInterceptResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(RdsDescribeInterceptResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
 @implementation RdsDescribeInterceptRequest
 -(id) initWithRegion:(NSString *)regionId
 instanceId:(NSString*)instanceId { 
@@ -1035,114 +477,6 @@ instanceId:(NSString*)instanceId {
     self.instanceId = [dictionary objectForKey:@"instanceId"];
     return self;
 } 
-
-@end
-  
-@implementation RdsDisableInterceptResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-RdsDisableInterceptResult* result = [[RdsDisableInterceptResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(RdsDisableInterceptResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
-@implementation RdsDescribeTdeResult
--(id) initWithStatus:(NSString*) status { 
-    self.status = status;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self status])
-    {
-        [result setValue:[self status] forKey:@"status"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.status = [dictionary objectForKey:@"status"];
-    return self;
-} 
-
-@end
-  
-@implementation RdsDescribeTdeResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-RdsDescribeTdeResult* result = [[RdsDescribeTdeResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(RdsDescribeTdeResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
 
 @end
 @implementation RdsEnableTdeRequest
@@ -1181,13 +515,22 @@ instanceId:(NSString*)instanceId {
 } 
 
 @end
-@implementation RdsEnableTdeResult
+@implementation RdsDescribeTdeResult
+-(id) initWithStatus:(NSString*) status { 
+    self.status = status;               
+    return self;
+}
 -(NSMutableDictionary*) dictionary{
     NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self status])
+    {
+        [result setValue:[self status] forKey:@"status"];
+    }
     return result;
 }
 
 -(id) initWithDic:(NSDictionary*)dictionary{
+    self.status = [dictionary objectForKey:@"status"];
     return self;
 } 
 
@@ -1224,61 +567,6 @@ instanceId:(NSString*)instanceId {
 
 -(id) initWithDic:(NSDictionary*)dictionary{
     self.instanceId = [dictionary objectForKey:@"instanceId"];
-    return self;
-} 
-
-@end
-  
-@implementation RdsEnableTdeResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-RdsEnableTdeResult* result = [[RdsEnableTdeResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(RdsEnableTdeResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
-@implementation RdsDeleteAuditResult
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
     return self;
 } 
 
@@ -1333,360 +621,6 @@ instanceId:(NSString*)instanceId {
     self.add = [dictionary objectForKey:@"add"];
     self.drop = [dictionary objectForKey:@"drop"];
     self.instanceId = [dictionary objectForKey:@"instanceId"];
-    return self;
-} 
-
-@end
-@implementation RdsDescribeAuditFilesResult
--(id) initWithAuditFiles:(NSArray<AuditFile*>*) auditFiles { 
-    self.auditFiles = auditFiles;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self auditFiles])
-    {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self auditFiles] count]; i++) {
-            AuditFile* item = [[self auditFiles] objectAtIndex:i];
-            [arrayDic addObject:[item dictionary]];
-        }
-        [result setValue:arrayDic forKey:@"auditFiles"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    NSArray* auditFilesArray = [dictionary objectForKey:@"auditFiles"];
-    if(auditFilesArray&&![auditFilesArray isKindOfClass:[NSNull class]])
-    {
-        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
-        for(int i = 0 ; i< [auditFilesArray count];i++)
-        {
-            AuditFile* item = [[AuditFile alloc]initWithDic:[auditFilesArray objectAtIndex:i]];
-            if(item)
-            {
-                [propertyArray addObject:item];
-            }
-        }
-        self.auditFiles = propertyArray;
-    }
-    return self;
-} 
-
-@end
-  
-@implementation RdsDescribeAuditFilesResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-RdsDescribeAuditFilesResult* result = [[RdsDescribeAuditFilesResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(RdsDescribeAuditFilesResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
-@implementation RdsDescribeAuditResultRequest
--(id) initWithRegion:(NSString *)regionId
-startTime:(NSString*)startTime
-endTime:(NSString*)endTime
-dbName:(NSString*)dbName
-accountName:(NSString*)accountName
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-filters:(NSArray<Filter*>*)filters
-instanceId:(NSString*)instanceId { 
-    self.regionId = regionId;
-    self.startTime = startTime;
-    self.endTime = endTime;
-    self.dbName = dbName;
-    self.accountName = accountName;
-    self.pageNumber = pageNumber;
-    self.pageSize = pageSize;
-    self.filters = filters;
-    self.instanceId = instanceId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-startTime:(NSString*)startTime
-endTime:(NSString*)endTime
-dbName:(NSString*)dbName
-accountName:(NSString*)accountName
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-filters:(NSArray<Filter*>*)filters
-instanceId:(NSString*)instanceId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.startTime = startTime;
-    self.endTime = endTime;
-    self.dbName = dbName;
-    self.accountName = accountName;
-    self.pageNumber = pageNumber;
-    self.pageSize = pageSize;
-    self.filters = filters;
-    self.instanceId = instanceId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self startTime])
-    {
-        [result setValue:[self startTime] forKey:@"startTime"];
-    }
-    if([self endTime])
-    {
-        [result setValue:[self endTime] forKey:@"endTime"];
-    }
-    if([self dbName])
-    {
-        [result setValue:[self dbName] forKey:@"dbName"];
-    }
-    if([self accountName])
-    {
-        [result setValue:[self accountName] forKey:@"accountName"];
-    }
-    if([self pageNumber])
-    {
-        [result setValue:[self pageNumber] forKey:@"pageNumber"];
-    }
-    if([self pageSize])
-    {
-        [result setValue:[self pageSize] forKey:@"pageSize"];
-    }
-    if([self filters])
-    {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self filters] count]; i++) {
-            Filter* item = [[self filters] objectAtIndex:i];
-            [arrayDic addObject:[item dictionary]];
-        }
-        [result setValue:arrayDic forKey:@"filters"];
-    }
-    if([self instanceId])
-    {
-        [result setValue:[self instanceId] forKey:@"instanceId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.startTime = [dictionary objectForKey:@"startTime"];
-    self.endTime = [dictionary objectForKey:@"endTime"];
-    self.dbName = [dictionary objectForKey:@"dbName"];
-    self.accountName = [dictionary objectForKey:@"accountName"];
-    self.pageNumber = [dictionary objectForKey:@"pageNumber"];
-    self.pageSize = [dictionary objectForKey:@"pageSize"];
-    NSArray* filtersArray = [dictionary objectForKey:@"filters"];
-    if(filtersArray&&![filtersArray isKindOfClass:[NSNull class]])
-    {
-        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
-        for(int i = 0 ; i< [filtersArray count];i++)
-        {
-            Filter* item = [[Filter alloc]initWithDic:[filtersArray objectAtIndex:i]];
-            if(item)
-            {
-                [propertyArray addObject:item];
-            }
-        }
-        self.filters = propertyArray;
-    }
-    self.instanceId = [dictionary objectForKey:@"instanceId"];
-    return self;
-} 
-
-@end
-@implementation RdsEnableAuditResult
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    return self;
-} 
-
-@end
-  
-@implementation RdsEnableAuditResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-RdsEnableAuditResult* result = [[RdsEnableAuditResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(RdsEnableAuditResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
-@implementation RdsDescribeAuditResultResult
--(id) initWithAuditResult:(NSArray<AuditResult*>*) auditResult
-        totalCount:(NSNumber*)totalCount { 
-    self.auditResult = auditResult;               
-    self.totalCount = totalCount;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self auditResult])
-    {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self auditResult] count]; i++) {
-            AuditResult* item = [[self auditResult] objectAtIndex:i];
-            [arrayDic addObject:[item dictionary]];
-        }
-        [result setValue:arrayDic forKey:@"auditResult"];
-    }
-    if([self totalCount])
-    {
-        [result setValue:[self totalCount] forKey:@"totalCount"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    NSArray* auditResultArray = [dictionary objectForKey:@"auditResult"];
-    if(auditResultArray&&![auditResultArray isKindOfClass:[NSNull class]])
-    {
-        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
-        for(int i = 0 ; i< [auditResultArray count];i++)
-        {
-            AuditResult* item = [[AuditResult alloc]initWithDic:[auditResultArray objectAtIndex:i]];
-            if(item)
-            {
-                [propertyArray addObject:item];
-            }
-        }
-        self.auditResult = propertyArray;
-    }
-    self.totalCount = [dictionary objectForKey:@"totalCount"];
-    return self;
-} 
-
-@end
-  
-@implementation RdsDescribeAuditResultResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-RdsDescribeAuditResultResult* result = [[RdsDescribeAuditResultResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(RdsDescribeAuditResultResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
-@implementation RdsCreateAuditResult
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
     return self;
 } 
 
@@ -1761,61 +695,6 @@ instanceId:(NSString*)instanceId {
     self.instanceId = [dictionary objectForKey:@"instanceId"];
     return self;
 } 
-
-@end
-@implementation RdsDisableAuditResult
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    return self;
-} 
-
-@end
-  
-@implementation RdsDisableAuditResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-RdsDisableAuditResult* result = [[RdsDisableAuditResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(RdsDisableAuditResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
 
 @end
 @implementation RdsDescribeAuditDownloadURLResult
@@ -1906,50 +785,6 @@ instanceId:(NSString*)instanceId {
     self.instanceId = [dictionary objectForKey:@"instanceId"];
     return self;
 } 
-
-@end
-  
-@implementation RdsDescribeAuditOptionsResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-RdsDescribeAuditOptionsResult* result = [[RdsDescribeAuditOptionsResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(RdsDescribeAuditOptionsResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
 
 @end
 @implementation RdsDeleteAuditRequest
@@ -2078,50 +913,6 @@ instanceId:(NSString*)instanceId {
 } 
 
 @end
-  
-@implementation RdsCreateAuditResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-RdsCreateAuditResult* result = [[RdsCreateAuditResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(RdsCreateAuditResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
 @implementation RdsDescribeAuditRequest
 -(id) initWithRegion:(NSString *)regionId
 instanceId:(NSString*)instanceId { 
@@ -2156,61 +947,6 @@ instanceId:(NSString*)instanceId {
     self.instanceId = [dictionary objectForKey:@"instanceId"];
     return self;
 } 
-
-@end
-@implementation RdsModifyAuditResult
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    return self;
-} 
-
-@end
-  
-@implementation RdsModifyAuditResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-RdsModifyAuditResult* result = [[RdsModifyAuditResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(RdsModifyAuditResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
 
 @end
 @implementation RdsDescribeAuditOptionsRequest
@@ -2278,227 +1014,6 @@ instanceId:(NSString*)instanceId {
 } 
 
 @end
-  
-@implementation RdsDescribeAuditResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-RdsDescribeAuditResult* result = [[RdsDescribeAuditResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(RdsDescribeAuditResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
-  
-@implementation RdsDescribeAuditDownloadURLResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-RdsDescribeAuditDownloadURLResult* result = [[RdsDescribeAuditDownloadURLResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(RdsDescribeAuditDownloadURLResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
-  
-@implementation RdsDeleteAuditResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-RdsDeleteAuditResult* result = [[RdsDeleteAuditResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(RdsDeleteAuditResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
-@implementation RdsDescribeBinlogsResult
--(id) initWithTotalCount:(NSNumber*) totalCount
-        binlogs:(NSArray<Binlog*>*)binlogs { 
-    self.totalCount = totalCount;               
-    self.binlogs = binlogs;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self totalCount])
-    {
-        [result setValue:[self totalCount] forKey:@"totalCount"];
-    }
-    if([self binlogs])
-    {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self binlogs] count]; i++) {
-            Binlog* item = [[self binlogs] objectAtIndex:i];
-            [arrayDic addObject:[item dictionary]];
-        }
-        [result setValue:arrayDic forKey:@"binlogs"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.totalCount = [dictionary objectForKey:@"totalCount"];
-    NSArray* binlogsArray = [dictionary objectForKey:@"binlogs"];
-    if(binlogsArray&&![binlogsArray isKindOfClass:[NSNull class]])
-    {
-        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
-        for(int i = 0 ; i< [binlogsArray count];i++)
-        {
-            Binlog* item = [[Binlog alloc]initWithDic:[binlogsArray objectAtIndex:i]];
-            if(item)
-            {
-                [propertyArray addObject:item];
-            }
-        }
-        self.binlogs = propertyArray;
-    }
-    return self;
-} 
-
-@end
-  
-@implementation RdsDescribeBinlogsResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-RdsDescribeBinlogsResult* result = [[RdsDescribeBinlogsResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(RdsDescribeBinlogsResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
 @implementation RdsDescribeBinlogDownloadURLRequest
 -(id) initWithRegion:(NSString *)regionId
 seconds:(NSNumber*)seconds
@@ -2551,61 +1066,6 @@ binlogBackupId:(NSString*)binlogBackupId {
     self.binlogBackupId = [dictionary objectForKey:@"binlogBackupId"];
     return self;
 } 
-
-@end
-@implementation RdsClearBinlogsResult
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    return self;
-} 
-
-@end
-  
-@implementation RdsClearBinlogsResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-RdsClearBinlogsResult* result = [[RdsClearBinlogsResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(RdsClearBinlogsResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
 
 @end
 @implementation RdsDescribeBinlogDownloadURLResult
@@ -2707,50 +1167,6 @@ instanceId:(NSString*)instanceId {
 } 
 
 @end
-  
-@implementation RdsDescribeBinlogDownloadURLResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-RdsDescribeBinlogDownloadURLResult* result = [[RdsDescribeBinlogDownloadURLResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(RdsDescribeBinlogDownloadURLResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
 @implementation RdsClearBinlogsRequest
 -(id) initWithRegion:(NSString *)regionId
 instanceId:(NSString*)instanceId { 
@@ -2841,105 +1257,6 @@ engine:(NSString*)engine {
     self.engine = [dictionary objectForKey:@"engine"];
     return self;
 } 
-
-@end
-  
-@implementation RdsDescribeAzsResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-RdsDescribeAzsResult* result = [[RdsDescribeAzsResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(RdsDescribeAzsResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
-@implementation RdsSetImportFileSharedResult
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    return self;
-} 
-
-@end
-  
-@implementation RdsSetImportFileSharedResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-RdsSetImportFileSharedResult* result = [[RdsSetImportFileSharedResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(RdsSetImportFileSharedResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
 
 @end
 @implementation RdsGetUploadKeyRequest
@@ -3106,187 +1423,6 @@ fileName:(NSString*)fileName {
 } 
 
 @end
-  
-@implementation RdsGetUploadKeyResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-RdsGetUploadKeyResult* result = [[RdsGetUploadKeyResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(RdsGetUploadKeyResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
-@implementation RdsDeleteImportFileResult
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    return self;
-} 
-
-@end
-  
-@implementation RdsDeleteImportFileResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-RdsDeleteImportFileResult* result = [[RdsDeleteImportFileResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(RdsDeleteImportFileResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
-@implementation RdsDescribeImportFilesResult
--(id) initWithImportFiles:(NSArray<ImportFile*>*) importFiles { 
-    self.importFiles = importFiles;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self importFiles])
-    {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self importFiles] count]; i++) {
-            ImportFile* item = [[self importFiles] objectAtIndex:i];
-            [arrayDic addObject:[item dictionary]];
-        }
-        [result setValue:arrayDic forKey:@"importFiles"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    NSArray* importFilesArray = [dictionary objectForKey:@"importFiles"];
-    if(importFilesArray&&![importFilesArray isKindOfClass:[NSNull class]])
-    {
-        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
-        for(int i = 0 ; i< [importFilesArray count];i++)
-        {
-            ImportFile* item = [[ImportFile alloc]initWithDic:[importFilesArray objectAtIndex:i]];
-            if(item)
-            {
-                [propertyArray addObject:item];
-            }
-        }
-        self.importFiles = propertyArray;
-    }
-    return self;
-} 
-
-@end
-  
-@implementation RdsDescribeImportFilesResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-RdsDescribeImportFilesResult* result = [[RdsDescribeImportFilesResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(RdsDescribeImportFilesResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
 @implementation RdsDescribeImportFilesRequest
 -(id) initWithRegion:(NSString *)regionId
 instanceId:(NSString*)instanceId { 
@@ -3319,55 +1455,6 @@ instanceId:(NSString*)instanceId {
 
 -(id) initWithDic:(NSDictionary*)dictionary{
     self.instanceId = [dictionary objectForKey:@"instanceId"];
-    return self;
-} 
-
-@end
-@implementation RdsDescribeWhiteListResult
--(id) initWithWhiteLists:(NSArray<WhiteList*>*) whiteLists { 
-    self.whiteLists = whiteLists;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self whiteLists])
-    {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self whiteLists] count]; i++) {
-            WhiteList* item = [[self whiteLists] objectAtIndex:i];
-            [arrayDic addObject:[item dictionary]];
-        }
-        [result setValue:arrayDic forKey:@"whiteLists"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    NSArray* whiteListsArray = [dictionary objectForKey:@"whiteLists"];
-    if(whiteListsArray&&![whiteListsArray isKindOfClass:[NSNull class]])
-    {
-        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
-        for(int i = 0 ; i< [whiteListsArray count];i++)
-        {
-            WhiteList* item = [[WhiteList alloc]initWithDic:[whiteListsArray objectAtIndex:i]];
-            if(item)
-            {
-                [propertyArray addObject:item];
-            }
-        }
-        self.whiteLists = propertyArray;
-    }
-    return self;
-} 
-
-@end
-@implementation RdsModifyWhiteListResult
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
     return self;
 } 
 
@@ -3417,50 +1504,6 @@ instanceId:(NSString*)instanceId {
 } 
 
 @end
-  
-@implementation RdsModifyWhiteListResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-RdsModifyWhiteListResult* result = [[RdsModifyWhiteListResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(RdsModifyWhiteListResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
 @implementation RdsDescribeWhiteListRequest
 -(id) initWithRegion:(NSString *)regionId
 instanceId:(NSString*)instanceId { 
@@ -3495,210 +1538,6 @@ instanceId:(NSString*)instanceId {
     self.instanceId = [dictionary objectForKey:@"instanceId"];
     return self;
 } 
-
-@end
-  
-@implementation RdsDescribeWhiteListResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-RdsDescribeWhiteListResult* result = [[RdsDescribeWhiteListResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(RdsDescribeWhiteListResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
-@implementation RdsDescribeLogsResult
--(id) initWithLogs:(NSArray<Log*>*) logs
-        totalCount:(NSNumber*)totalCount { 
-    self.logs = logs;               
-    self.totalCount = totalCount;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self logs])
-    {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self logs] count]; i++) {
-            Log* item = [[self logs] objectAtIndex:i];
-            [arrayDic addObject:[item dictionary]];
-        }
-        [result setValue:arrayDic forKey:@"logs"];
-    }
-    if([self totalCount])
-    {
-        [result setValue:[self totalCount] forKey:@"totalCount"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    NSArray* logsArray = [dictionary objectForKey:@"logs"];
-    if(logsArray&&![logsArray isKindOfClass:[NSNull class]])
-    {
-        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
-        for(int i = 0 ; i< [logsArray count];i++)
-        {
-            Log* item = [[Log alloc]initWithDic:[logsArray objectAtIndex:i]];
-            if(item)
-            {
-                [propertyArray addObject:item];
-            }
-        }
-        self.logs = propertyArray;
-    }
-    self.totalCount = [dictionary objectForKey:@"totalCount"];
-    return self;
-} 
-
-@end
-  
-@implementation RdsDescribeLogsResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-RdsDescribeLogsResult* result = [[RdsDescribeLogsResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(RdsDescribeLogsResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
-@implementation RdsUpdateLogDownloadURLInternalResult
--(id) initWithPublicURL:(NSString*) publicURL
-        internalURL:(NSString*)internalURL { 
-    self.publicURL = publicURL;               
-    self.internalURL = internalURL;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self publicURL])
-    {
-        [result setValue:[self publicURL] forKey:@"publicURL"];
-    }
-    if([self internalURL])
-    {
-        [result setValue:[self internalURL] forKey:@"internalURL"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.publicURL = [dictionary objectForKey:@"publicURL"];
-    self.internalURL = [dictionary objectForKey:@"internalURL"];
-    return self;
-} 
-
-@end
-  
-@implementation RdsUpdateLogDownloadURLInternalResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-RdsUpdateLogDownloadURLInternalResult* result = [[RdsUpdateLogDownloadURLInternalResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(RdsUpdateLogDownloadURLInternalResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
 
 @end
 @implementation RdsDescribeLogDownloadURLRequest
@@ -3836,127 +1675,29 @@ logId:(NSString*)logId {
 } 
 
 @end
-  
-@implementation RdsDescribeLogDownloadURLResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-RdsDescribeLogDownloadURLResult* result = [[RdsDescribeLogDownloadURLResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(RdsDescribeLogDownloadURLResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
-@implementation RdsDescribeLogsRequest
--(id) initWithRegion:(NSString *)regionId
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-filters:(NSArray<Filter*>*)filters
-instanceId:(NSString*)instanceId { 
-    self.regionId = regionId;
-    self.pageNumber = pageNumber;
-    self.pageSize = pageSize;
-    self.filters = filters;
-    self.instanceId = instanceId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-filters:(NSArray<Filter*>*)filters
-instanceId:(NSString*)instanceId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.pageNumber = pageNumber;
-    self.pageSize = pageSize;
-    self.filters = filters;
-    self.instanceId = instanceId;
+@implementation RdsUpdateLogDownloadURLInternalResult
+-(id) initWithPublicURL:(NSString*) publicURL
+        internalURL:(NSString*)internalURL { 
+    self.publicURL = publicURL;               
+    self.internalURL = internalURL;               
     return self;
 }
 -(NSMutableDictionary*) dictionary{
     NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
+    if([self publicURL])
     {
-        [result addEntriesFromDictionary:superObjectDic];
+        [result setValue:[self publicURL] forKey:@"publicURL"];
     }
-    if([self pageNumber])
+    if([self internalURL])
     {
-        [result setValue:[self pageNumber] forKey:@"pageNumber"];
-    }
-    if([self pageSize])
-    {
-        [result setValue:[self pageSize] forKey:@"pageSize"];
-    }
-    if([self filters])
-    {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self filters] count]; i++) {
-            Filter* item = [[self filters] objectAtIndex:i];
-            [arrayDic addObject:[item dictionary]];
-        }
-        [result setValue:arrayDic forKey:@"filters"];
-    }
-    if([self instanceId])
-    {
-        [result setValue:[self instanceId] forKey:@"instanceId"];
+        [result setValue:[self internalURL] forKey:@"internalURL"];
     }
     return result;
 }
 
 -(id) initWithDic:(NSDictionary*)dictionary{
-    self.pageNumber = [dictionary objectForKey:@"pageNumber"];
-    self.pageSize = [dictionary objectForKey:@"pageSize"];
-    NSArray* filtersArray = [dictionary objectForKey:@"filters"];
-    if(filtersArray&&![filtersArray isKindOfClass:[NSNull class]])
-    {
-        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
-        for(int i = 0 ; i< [filtersArray count];i++)
-        {
-            Filter* item = [[Filter alloc]initWithDic:[filtersArray objectAtIndex:i]];
-            if(item)
-            {
-                [propertyArray addObject:item];
-            }
-        }
-        self.filters = propertyArray;
-    }
-    self.instanceId = [dictionary objectForKey:@"instanceId"];
+    self.publicURL = [dictionary objectForKey:@"publicURL"];
+    self.internalURL = [dictionary objectForKey:@"internalURL"];
     return self;
 } 
 
@@ -3997,61 +1738,6 @@ instanceId:(NSString*)instanceId {
 } 
 
 @end
-@implementation RdsModifyParameterGroupResult
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    return self;
-} 
-
-@end
-  
-@implementation RdsModifyParameterGroupResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-RdsModifyParameterGroupResult* result = [[RdsModifyParameterGroupResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(RdsModifyParameterGroupResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
 @implementation RdsModifyInstanceSpecResult
 -(id) initWithOrderId:(NSString*) orderId { 
     self.orderId = orderId;               
@@ -4068,28 +1754,6 @@ RdsModifyParameterGroupResult* result = [[RdsModifyParameterGroupResult alloc]in
 
 -(id) initWithDic:(NSDictionary*)dictionary{
     self.orderId = [dictionary objectForKey:@"orderId"];
-    return self;
-} 
-
-@end
-@implementation RdsRebootInstanceResult
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    return self;
-} 
-
-@end
-@implementation RdsEnableInternetAccessResult
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
     return self;
 } 
 
@@ -4276,47 +1940,274 @@ instanceId:(NSString*)instanceId {
 } 
 
 @end
-@implementation RdsDescribeInstancesResult
--(id) initWithDbInstances:(NSArray<DBInstance*>*) dbInstances
-        totalCount:(NSNumber*)totalCount { 
-    self.dbInstances = dbInstances;               
-    self.totalCount = totalCount;               
+@implementation RdsCreateInstanceByTimeResult
+-(id) initWithInstanceId:(NSString*) instanceId { 
+    self.instanceId = instanceId;               
     return self;
 }
 -(NSMutableDictionary*) dictionary{
     NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self dbInstances])
+    if([self instanceId])
     {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self dbInstances] count]; i++) {
-            DBInstance* item = [[self dbInstances] objectAtIndex:i];
-            [arrayDic addObject:[item dictionary]];
-        }
-        [result setValue:arrayDic forKey:@"dbInstances"];
-    }
-    if([self totalCount])
-    {
-        [result setValue:[self totalCount] forKey:@"totalCount"];
+        [result setValue:[self instanceId] forKey:@"instanceId"];
     }
     return result;
 }
 
 -(id) initWithDic:(NSDictionary*)dictionary{
-    NSArray* dbInstancesArray = [dictionary objectForKey:@"dbInstances"];
-    if(dbInstancesArray&&![dbInstancesArray isKindOfClass:[NSNull class]])
+    self.instanceId = [dictionary objectForKey:@"instanceId"];
+    return self;
+} 
+
+@end
+@implementation RdsModifyInstanceNameRequest
+-(id) initWithRegion:(NSString *)regionId
+instanceName:(NSString*)instanceName
+instanceId:(NSString*)instanceId { 
+    self.regionId = regionId;
+    self.instanceName = instanceName;
+    self.instanceId = instanceId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+instanceName:(NSString*)instanceName
+instanceId:(NSString*)instanceId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.instanceName = instanceName;
+    self.instanceId = instanceId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
     {
-        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
-        for(int i = 0 ; i< [dbInstancesArray count];i++)
-        {
-            DBInstance* item = [[DBInstance alloc]initWithDic:[dbInstancesArray objectAtIndex:i]];
-            if(item)
-            {
-                [propertyArray addObject:item];
-            }
-        }
-        self.dbInstances = propertyArray;
+        [result addEntriesFromDictionary:superObjectDic];
     }
-    self.totalCount = [dictionary objectForKey:@"totalCount"];
+    if([self instanceName])
+    {
+        [result setValue:[self instanceName] forKey:@"instanceName"];
+    }
+    if([self instanceId])
+    {
+        [result setValue:[self instanceId] forKey:@"instanceId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.instanceName = [dictionary objectForKey:@"instanceName"];
+    self.instanceId = [dictionary objectForKey:@"instanceId"];
+    return self;
+} 
+
+@end
+@implementation RdsDescribeLatestRestoreTimeRequest
+-(id) initWithRegion:(NSString *)regionId
+instanceId:(NSString*)instanceId { 
+    self.regionId = regionId;
+    self.instanceId = instanceId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+instanceId:(NSString*)instanceId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.instanceId = instanceId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self instanceId])
+    {
+        [result setValue:[self instanceId] forKey:@"instanceId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.instanceId = [dictionary objectForKey:@"instanceId"];
+    return self;
+} 
+
+@end
+@implementation RdsRestoreInstanceRequest
+-(id) initWithRegion:(NSString *)regionId
+backupId:(NSString*)backupId
+instanceId:(NSString*)instanceId { 
+    self.regionId = regionId;
+    self.backupId = backupId;
+    self.instanceId = instanceId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+backupId:(NSString*)backupId
+instanceId:(NSString*)instanceId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.backupId = backupId;
+    self.instanceId = instanceId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self backupId])
+    {
+        [result setValue:[self backupId] forKey:@"backupId"];
+    }
+    if([self instanceId])
+    {
+        [result setValue:[self instanceId] forKey:@"instanceId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.backupId = [dictionary objectForKey:@"backupId"];
+    self.instanceId = [dictionary objectForKey:@"instanceId"];
+    return self;
+} 
+
+@end
+@implementation RdsModifyParameterGroupRequest
+-(id) initWithRegion:(NSString *)regionId
+parameterGroupId:(NSString*)parameterGroupId
+instanceId:(NSString*)instanceId { 
+    self.regionId = regionId;
+    self.parameterGroupId = parameterGroupId;
+    self.instanceId = instanceId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+parameterGroupId:(NSString*)parameterGroupId
+instanceId:(NSString*)instanceId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.parameterGroupId = parameterGroupId;
+    self.instanceId = instanceId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self parameterGroupId])
+    {
+        [result setValue:[self parameterGroupId] forKey:@"parameterGroupId"];
+    }
+    if([self instanceId])
+    {
+        [result setValue:[self instanceId] forKey:@"instanceId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.parameterGroupId = [dictionary objectForKey:@"parameterGroupId"];
+    self.instanceId = [dictionary objectForKey:@"instanceId"];
+    return self;
+} 
+
+@end
+@implementation RdsModifyConnectionModeRequest
+-(id) initWithRegion:(NSString *)regionId
+connectionMode:(NSString*)connectionMode
+instanceId:(NSString*)instanceId { 
+    self.regionId = regionId;
+    self.connectionMode = connectionMode;
+    self.instanceId = instanceId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+connectionMode:(NSString*)connectionMode
+instanceId:(NSString*)instanceId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.connectionMode = connectionMode;
+    self.instanceId = instanceId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self connectionMode])
+    {
+        [result setValue:[self connectionMode] forKey:@"connectionMode"];
+    }
+    if([self instanceId])
+    {
+        [result setValue:[self instanceId] forKey:@"instanceId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.connectionMode = [dictionary objectForKey:@"connectionMode"];
+    self.instanceId = [dictionary objectForKey:@"instanceId"];
+    return self;
+} 
+
+@end
+@implementation RdsFailoverInstanceRequest
+-(id) initWithRegion:(NSString *)regionId
+instanceId:(NSString*)instanceId { 
+    self.regionId = regionId;
+    self.instanceId = instanceId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+instanceId:(NSString*)instanceId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.instanceId = instanceId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self instanceId])
+    {
+        [result setValue:[self instanceId] forKey:@"instanceId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.instanceId = [dictionary objectForKey:@"instanceId"];
     return self;
 } 
 
@@ -4337,6 +2228,4553 @@ instanceId:(NSString*)instanceId {
 
 -(id) initWithDic:(NSDictionary*)dictionary{
     self.instanceId = [dictionary objectForKey:@"instanceId"];
+    return self;
+} 
+
+@end
+@implementation RdsRebootInstanceRequest
+-(id) initWithRegion:(NSString *)regionId
+rebootMaster:(NSNumber*)rebootMaster
+rebootSlave:(NSNumber*)rebootSlave
+instanceId:(NSString*)instanceId { 
+    self.regionId = regionId;
+    self.rebootMaster = rebootMaster;
+    self.rebootSlave = rebootSlave;
+    self.instanceId = instanceId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+rebootMaster:(NSNumber*)rebootMaster
+rebootSlave:(NSNumber*)rebootSlave
+instanceId:(NSString*)instanceId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.rebootMaster = rebootMaster;
+    self.rebootSlave = rebootSlave;
+    self.instanceId = instanceId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self rebootMaster])
+    {
+        [result setValue:[self rebootMaster] forKey:@"rebootMaster"];
+    }
+    if([self rebootSlave])
+    {
+        [result setValue:[self rebootSlave] forKey:@"rebootSlave"];
+    }
+    if([self instanceId])
+    {
+        [result setValue:[self instanceId] forKey:@"instanceId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.rebootMaster = [dictionary objectForKey:@"rebootMaster"];
+    self.rebootSlave = [dictionary objectForKey:@"rebootSlave"];
+    self.instanceId = [dictionary objectForKey:@"instanceId"];
+    return self;
+} 
+
+@end
+@implementation RdsDescribeInstanceAttributesRequest
+-(id) initWithRegion:(NSString *)regionId
+instanceId:(NSString*)instanceId { 
+    self.regionId = regionId;
+    self.instanceId = instanceId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+instanceId:(NSString*)instanceId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.instanceId = instanceId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self instanceId])
+    {
+        [result setValue:[self instanceId] forKey:@"instanceId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.instanceId = [dictionary objectForKey:@"instanceId"];
+    return self;
+} 
+
+@end
+@implementation RdsModifyBackupPolicyRequest
+-(id) initWithRegion:(NSString *)regionId
+startWindow:(NSString*)startWindow
+instanceId:(NSString*)instanceId { 
+    self.regionId = regionId;
+    self.startWindow = startWindow;
+    self.instanceId = instanceId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+startWindow:(NSString*)startWindow
+instanceId:(NSString*)instanceId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.startWindow = startWindow;
+    self.instanceId = instanceId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self startWindow])
+    {
+        [result setValue:[self startWindow] forKey:@"startWindow"];
+    }
+    if([self instanceId])
+    {
+        [result setValue:[self instanceId] forKey:@"instanceId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.startWindow = [dictionary objectForKey:@"startWindow"];
+    self.instanceId = [dictionary objectForKey:@"instanceId"];
+    return self;
+} 
+
+@end
+@implementation RdsDeleteInstanceRequest
+-(id) initWithRegion:(NSString *)regionId
+instanceId:(NSString*)instanceId { 
+    self.regionId = regionId;
+    self.instanceId = instanceId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+instanceId:(NSString*)instanceId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.instanceId = instanceId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self instanceId])
+    {
+        [result setValue:[self instanceId] forKey:@"instanceId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.instanceId = [dictionary objectForKey:@"instanceId"];
+    return self;
+} 
+
+@end
+@implementation RdsModifyInstanceSpecRequest
+-(id) initWithRegion:(NSString *)regionId
+rdsNewInstanceClass:(NSString*)rdsNewInstanceClass
+rdsNewInstanceStorageGB:(NSNumber*)rdsNewInstanceStorageGB
+rdsNewInstanceStorageType:(NSString*)rdsNewInstanceStorageType
+storageEncrypted:(NSNumber*)storageEncrypted
+instanceId:(NSString*)instanceId { 
+    self.regionId = regionId;
+    self.rdsNewInstanceClass = rdsNewInstanceClass;
+    self.rdsNewInstanceStorageGB = rdsNewInstanceStorageGB;
+    self.rdsNewInstanceStorageType = rdsNewInstanceStorageType;
+    self.storageEncrypted = storageEncrypted;
+    self.instanceId = instanceId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+rdsNewInstanceClass:(NSString*)rdsNewInstanceClass
+rdsNewInstanceStorageGB:(NSNumber*)rdsNewInstanceStorageGB
+rdsNewInstanceStorageType:(NSString*)rdsNewInstanceStorageType
+storageEncrypted:(NSNumber*)storageEncrypted
+instanceId:(NSString*)instanceId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.rdsNewInstanceClass = rdsNewInstanceClass;
+    self.rdsNewInstanceStorageGB = rdsNewInstanceStorageGB;
+    self.rdsNewInstanceStorageType = rdsNewInstanceStorageType;
+    self.storageEncrypted = storageEncrypted;
+    self.instanceId = instanceId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self rdsNewInstanceClass])
+    {
+        [result setValue:[self rdsNewInstanceClass] forKey:@"newInstanceClass"];
+    }
+    if([self rdsNewInstanceStorageGB])
+    {
+        [result setValue:[self rdsNewInstanceStorageGB] forKey:@"newInstanceStorageGB"];
+    }
+    if([self rdsNewInstanceStorageType])
+    {
+        [result setValue:[self rdsNewInstanceStorageType] forKey:@"newInstanceStorageType"];
+    }
+    if([self storageEncrypted])
+    {
+        [result setValue:[self storageEncrypted] forKey:@"storageEncrypted"];
+    }
+    if([self instanceId])
+    {
+        [result setValue:[self instanceId] forKey:@"instanceId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.rdsNewInstanceClass = [dictionary objectForKey:@"newInstanceClass"];
+    self.rdsNewInstanceStorageGB = [dictionary objectForKey:@"newInstanceStorageGB"];
+    self.rdsNewInstanceStorageType = [dictionary objectForKey:@"newInstanceStorageType"];
+    self.storageEncrypted = [dictionary objectForKey:@"storageEncrypted"];
+    self.instanceId = [dictionary objectForKey:@"instanceId"];
+    return self;
+} 
+
+@end
+@implementation RdsCreateROInstanceResult
+-(id) initWithRoInstanceId:(NSArray<NSString*>*) roInstanceId
+        orderId:(NSString*)orderId { 
+    self.roInstanceId = roInstanceId;               
+    self.orderId = orderId;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self roInstanceId])
+    {
+        [result setValue:[self roInstanceId] forKey:@"roInstanceId"];
+    }
+    if([self orderId])
+    {
+        [result setValue:[self orderId] forKey:@"orderId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.roInstanceId = [dictionary objectForKey:@"roInstanceId"];
+    self.orderId = [dictionary objectForKey:@"orderId"];
+    return self;
+} 
+
+@end
+@implementation RdsDescribeBackupPolicyRequest
+-(id) initWithRegion:(NSString *)regionId
+instanceId:(NSString*)instanceId { 
+    self.regionId = regionId;
+    self.instanceId = instanceId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+instanceId:(NSString*)instanceId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.instanceId = instanceId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self instanceId])
+    {
+        [result setValue:[self instanceId] forKey:@"instanceId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.instanceId = [dictionary objectForKey:@"instanceId"];
+    return self;
+} 
+
+@end
+@implementation RdsDescribeLatestRestoreTimeResult
+-(id) initWithLatestRestoreTime:(NSString*) latestRestoreTime { 
+    self.latestRestoreTime = latestRestoreTime;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self latestRestoreTime])
+    {
+        [result setValue:[self latestRestoreTime] forKey:@"latestRestoreTime"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.latestRestoreTime = [dictionary objectForKey:@"latestRestoreTime"];
+    return self;
+} 
+
+@end
+@implementation RdsDescribeBackupPolicyResult
+-(id) initWithStartWindow:(NSString*) startWindow
+        retentionPeriod:(NSNumber*)retentionPeriod
+        cycleMode:(NSNumber*)cycleMode
+        backupBinlog:(NSString*)backupBinlog { 
+    self.startWindow = startWindow;               
+    self.retentionPeriod = retentionPeriod;               
+    self.cycleMode = cycleMode;               
+    self.backupBinlog = backupBinlog;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self startWindow])
+    {
+        [result setValue:[self startWindow] forKey:@"startWindow"];
+    }
+    if([self retentionPeriod])
+    {
+        [result setValue:[self retentionPeriod] forKey:@"retentionPeriod"];
+    }
+    if([self cycleMode])
+    {
+        [result setValue:[self cycleMode] forKey:@"cycleMode"];
+    }
+    if([self backupBinlog])
+    {
+        [result setValue:[self backupBinlog] forKey:@"backupBinlog"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.startWindow = [dictionary objectForKey:@"startWindow"];
+    self.retentionPeriod = [dictionary objectForKey:@"retentionPeriod"];
+    self.cycleMode = [dictionary objectForKey:@"cycleMode"];
+    self.backupBinlog = [dictionary objectForKey:@"backupBinlog"];
+    return self;
+} 
+
+@end
+@implementation RdsExchangeInstanceDnsRequest
+-(id) initWithRegion:(NSString *)regionId
+targetInstanceId:(NSString*)targetInstanceId
+instanceId:(NSString*)instanceId { 
+    self.regionId = regionId;
+    self.targetInstanceId = targetInstanceId;
+    self.instanceId = instanceId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+targetInstanceId:(NSString*)targetInstanceId
+instanceId:(NSString*)instanceId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.targetInstanceId = targetInstanceId;
+    self.instanceId = instanceId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self targetInstanceId])
+    {
+        [result setValue:[self targetInstanceId] forKey:@"targetInstanceId"];
+    }
+    if([self instanceId])
+    {
+        [result setValue:[self instanceId] forKey:@"instanceId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.targetInstanceId = [dictionary objectForKey:@"targetInstanceId"];
+    self.instanceId = [dictionary objectForKey:@"instanceId"];
+    return self;
+} 
+
+@end
+@implementation RdsDeleteDatabaseRequest
+-(id) initWithRegion:(NSString *)regionId
+instanceId:(NSString*)instanceId
+dbName:(NSString*)dbName { 
+    self.regionId = regionId;
+    self.instanceId = instanceId;
+    self.dbName = dbName;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+instanceId:(NSString*)instanceId
+dbName:(NSString*)dbName { 
+    self.regionId = regionId;
+    self.version = version;
+    self.instanceId = instanceId;
+    self.dbName = dbName;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self instanceId])
+    {
+        [result setValue:[self instanceId] forKey:@"instanceId"];
+    }
+    if([self dbName])
+    {
+        [result setValue:[self dbName] forKey:@"dbName"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.instanceId = [dictionary objectForKey:@"instanceId"];
+    self.dbName = [dictionary objectForKey:@"dbName"];
+    return self;
+} 
+
+@end
+@implementation RdsDescribeDatabasesRequest
+-(id) initWithRegion:(NSString *)regionId
+dbName:(NSString*)dbName
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+instanceId:(NSString*)instanceId { 
+    self.regionId = regionId;
+    self.dbName = dbName;
+    self.pageNumber = pageNumber;
+    self.pageSize = pageSize;
+    self.instanceId = instanceId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+dbName:(NSString*)dbName
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+instanceId:(NSString*)instanceId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.dbName = dbName;
+    self.pageNumber = pageNumber;
+    self.pageSize = pageSize;
+    self.instanceId = instanceId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self dbName])
+    {
+        [result setValue:[self dbName] forKey:@"dbName"];
+    }
+    if([self pageNumber])
+    {
+        [result setValue:[self pageNumber] forKey:@"pageNumber"];
+    }
+    if([self pageSize])
+    {
+        [result setValue:[self pageSize] forKey:@"pageSize"];
+    }
+    if([self instanceId])
+    {
+        [result setValue:[self instanceId] forKey:@"instanceId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.dbName = [dictionary objectForKey:@"dbName"];
+    self.pageNumber = [dictionary objectForKey:@"pageNumber"];
+    self.pageSize = [dictionary objectForKey:@"pageSize"];
+    self.instanceId = [dictionary objectForKey:@"instanceId"];
+    return self;
+} 
+
+@end
+@implementation RdsCreateDatabaseRequest
+-(id) initWithRegion:(NSString *)regionId
+dbName:(NSString*)dbName
+characterSetName:(NSString*)characterSetName
+instanceId:(NSString*)instanceId { 
+    self.regionId = regionId;
+    self.dbName = dbName;
+    self.characterSetName = characterSetName;
+    self.instanceId = instanceId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+dbName:(NSString*)dbName
+characterSetName:(NSString*)characterSetName
+instanceId:(NSString*)instanceId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.dbName = dbName;
+    self.characterSetName = characterSetName;
+    self.instanceId = instanceId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self dbName])
+    {
+        [result setValue:[self dbName] forKey:@"dbName"];
+    }
+    if([self characterSetName])
+    {
+        [result setValue:[self characterSetName] forKey:@"characterSetName"];
+    }
+    if([self instanceId])
+    {
+        [result setValue:[self instanceId] forKey:@"instanceId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.dbName = [dictionary objectForKey:@"dbName"];
+    self.characterSetName = [dictionary objectForKey:@"characterSetName"];
+    self.instanceId = [dictionary objectForKey:@"instanceId"];
+    return self;
+} 
+
+@end
+@implementation RdsRestoreDatabaseFromFileRequest
+-(id) initWithRegion:(NSString *)regionId
+sharedFileGid:(NSString*)sharedFileGid
+fileName:(NSString*)fileName
+instanceId:(NSString*)instanceId
+dbName:(NSString*)dbName { 
+    self.regionId = regionId;
+    self.sharedFileGid = sharedFileGid;
+    self.fileName = fileName;
+    self.instanceId = instanceId;
+    self.dbName = dbName;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+sharedFileGid:(NSString*)sharedFileGid
+fileName:(NSString*)fileName
+instanceId:(NSString*)instanceId
+dbName:(NSString*)dbName { 
+    self.regionId = regionId;
+    self.version = version;
+    self.sharedFileGid = sharedFileGid;
+    self.fileName = fileName;
+    self.instanceId = instanceId;
+    self.dbName = dbName;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self sharedFileGid])
+    {
+        [result setValue:[self sharedFileGid] forKey:@"sharedFileGid"];
+    }
+    if([self fileName])
+    {
+        [result setValue:[self fileName] forKey:@"fileName"];
+    }
+    if([self instanceId])
+    {
+        [result setValue:[self instanceId] forKey:@"instanceId"];
+    }
+    if([self dbName])
+    {
+        [result setValue:[self dbName] forKey:@"dbName"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.sharedFileGid = [dictionary objectForKey:@"sharedFileGid"];
+    self.fileName = [dictionary objectForKey:@"fileName"];
+    self.instanceId = [dictionary objectForKey:@"instanceId"];
+    self.dbName = [dictionary objectForKey:@"dbName"];
+    return self;
+} 
+
+@end
+@implementation RdsRestoreDatabaseFromBackupRequest
+-(id) initWithRegion:(NSString *)regionId
+backupId:(NSString*)backupId
+backupFileName:(NSString*)backupFileName
+instanceId:(NSString*)instanceId
+dbName:(NSString*)dbName { 
+    self.regionId = regionId;
+    self.backupId = backupId;
+    self.backupFileName = backupFileName;
+    self.instanceId = instanceId;
+    self.dbName = dbName;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+backupId:(NSString*)backupId
+backupFileName:(NSString*)backupFileName
+instanceId:(NSString*)instanceId
+dbName:(NSString*)dbName { 
+    self.regionId = regionId;
+    self.version = version;
+    self.backupId = backupId;
+    self.backupFileName = backupFileName;
+    self.instanceId = instanceId;
+    self.dbName = dbName;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self backupId])
+    {
+        [result setValue:[self backupId] forKey:@"backupId"];
+    }
+    if([self backupFileName])
+    {
+        [result setValue:[self backupFileName] forKey:@"backupFileName"];
+    }
+    if([self instanceId])
+    {
+        [result setValue:[self instanceId] forKey:@"instanceId"];
+    }
+    if([self dbName])
+    {
+        [result setValue:[self dbName] forKey:@"dbName"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.backupId = [dictionary objectForKey:@"backupId"];
+    self.backupFileName = [dictionary objectForKey:@"backupFileName"];
+    self.instanceId = [dictionary objectForKey:@"instanceId"];
+    self.dbName = [dictionary objectForKey:@"dbName"];
+    return self;
+} 
+
+@end
+@implementation RdsRestoreDatabaseFromOSSRequest
+-(id) initWithRegion:(NSString *)regionId
+ossURL:(NSString*)ossURL
+instanceId:(NSString*)instanceId
+dbName:(NSString*)dbName { 
+    self.regionId = regionId;
+    self.ossURL = ossURL;
+    self.instanceId = instanceId;
+    self.dbName = dbName;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+ossURL:(NSString*)ossURL
+instanceId:(NSString*)instanceId
+dbName:(NSString*)dbName { 
+    self.regionId = regionId;
+    self.version = version;
+    self.ossURL = ossURL;
+    self.instanceId = instanceId;
+    self.dbName = dbName;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self ossURL])
+    {
+        [result setValue:[self ossURL] forKey:@"ossURL"];
+    }
+    if([self instanceId])
+    {
+        [result setValue:[self instanceId] forKey:@"instanceId"];
+    }
+    if([self dbName])
+    {
+        [result setValue:[self dbName] forKey:@"dbName"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.ossURL = [dictionary objectForKey:@"ossURL"];
+    self.instanceId = [dictionary objectForKey:@"instanceId"];
+    self.dbName = [dictionary objectForKey:@"dbName"];
+    return self;
+} 
+
+@end
+@implementation RdsCreateBackupSynchronicityRequest
+-(id) initWithRegion:(NSString *)regionId
+instanceId:(NSString*)instanceId
+destRegion:(NSString*)destRegion { 
+    self.regionId = regionId;
+    self.instanceId = instanceId;
+    self.destRegion = destRegion;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+instanceId:(NSString*)instanceId
+destRegion:(NSString*)destRegion { 
+    self.regionId = regionId;
+    self.version = version;
+    self.instanceId = instanceId;
+    self.destRegion = destRegion;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self instanceId])
+    {
+        [result setValue:[self instanceId] forKey:@"instanceId"];
+    }
+    if([self destRegion])
+    {
+        [result setValue:[self destRegion] forKey:@"destRegion"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.instanceId = [dictionary objectForKey:@"instanceId"];
+    self.destRegion = [dictionary objectForKey:@"destRegion"];
+    return self;
+} 
+
+@end
+@implementation RdsCreateInstanceByTimeInCrossRegionResult
+-(id) initWithInstanceId:(NSString*) instanceId { 
+    self.instanceId = instanceId;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self instanceId])
+    {
+        [result setValue:[self instanceId] forKey:@"instanceId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.instanceId = [dictionary objectForKey:@"instanceId"];
+    return self;
+} 
+
+@end
+@implementation RdsCreateBackupSynchronicityResult
+-(id) initWithServiceId:(NSString*) serviceId { 
+    self.serviceId = serviceId;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self serviceId])
+    {
+        [result setValue:[self serviceId] forKey:@"serviceId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.serviceId = [dictionary objectForKey:@"serviceId"];
+    return self;
+} 
+
+@end
+@implementation RdsDescribeBackupSynchronicitiesRequest
+-(id) initWithRegion:(NSString *)regionId
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize { 
+    self.regionId = regionId;
+    self.pageNumber = pageNumber;
+    self.pageSize = pageSize;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize { 
+    self.regionId = regionId;
+    self.version = version;
+    self.pageNumber = pageNumber;
+    self.pageSize = pageSize;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self pageNumber])
+    {
+        [result setValue:[self pageNumber] forKey:@"pageNumber"];
+    }
+    if([self pageSize])
+    {
+        [result setValue:[self pageSize] forKey:@"pageSize"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.pageNumber = [dictionary objectForKey:@"pageNumber"];
+    self.pageSize = [dictionary objectForKey:@"pageSize"];
+    return self;
+} 
+
+@end
+@implementation RdsDeleteBackupSynchronicityRequest
+-(id) initWithRegion:(NSString *)regionId
+serviceId:(NSString*)serviceId { 
+    self.regionId = regionId;
+    self.serviceId = serviceId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+serviceId:(NSString*)serviceId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.serviceId = serviceId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self serviceId])
+    {
+        [result setValue:[self serviceId] forKey:@"serviceId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.serviceId = [dictionary objectForKey:@"serviceId"];
+    return self;
+} 
+
+@end
+@implementation RdsCreateAccountRequest
+-(id) initWithRegion:(NSString *)regionId
+accountName:(NSString*)accountName
+accountPassword:(NSString*)accountPassword
+instanceId:(NSString*)instanceId { 
+    self.regionId = regionId;
+    self.accountName = accountName;
+    self.accountPassword = accountPassword;
+    self.instanceId = instanceId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+accountName:(NSString*)accountName
+accountPassword:(NSString*)accountPassword
+instanceId:(NSString*)instanceId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.accountName = accountName;
+    self.accountPassword = accountPassword;
+    self.instanceId = instanceId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self accountName])
+    {
+        [result setValue:[self accountName] forKey:@"accountName"];
+    }
+    if([self accountPassword])
+    {
+        [result setValue:[self accountPassword] forKey:@"accountPassword"];
+    }
+    if([self instanceId])
+    {
+        [result setValue:[self instanceId] forKey:@"instanceId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.accountName = [dictionary objectForKey:@"accountName"];
+    self.accountPassword = [dictionary objectForKey:@"accountPassword"];
+    self.instanceId = [dictionary objectForKey:@"instanceId"];
+    return self;
+} 
+
+@end
+@implementation RdsCreateSuperAccountRequest
+-(id) initWithRegion:(NSString *)regionId
+accountName:(NSString*)accountName
+accountPassword:(NSString*)accountPassword
+instanceId:(NSString*)instanceId { 
+    self.regionId = regionId;
+    self.accountName = accountName;
+    self.accountPassword = accountPassword;
+    self.instanceId = instanceId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+accountName:(NSString*)accountName
+accountPassword:(NSString*)accountPassword
+instanceId:(NSString*)instanceId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.accountName = accountName;
+    self.accountPassword = accountPassword;
+    self.instanceId = instanceId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self accountName])
+    {
+        [result setValue:[self accountName] forKey:@"accountName"];
+    }
+    if([self accountPassword])
+    {
+        [result setValue:[self accountPassword] forKey:@"accountPassword"];
+    }
+    if([self instanceId])
+    {
+        [result setValue:[self instanceId] forKey:@"instanceId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.accountName = [dictionary objectForKey:@"accountName"];
+    self.accountPassword = [dictionary objectForKey:@"accountPassword"];
+    self.instanceId = [dictionary objectForKey:@"instanceId"];
+    return self;
+} 
+
+@end
+@implementation RdsResetPasswordRequest
+-(id) initWithRegion:(NSString *)regionId
+accountPassword:(NSString*)accountPassword
+instanceId:(NSString*)instanceId
+accountName:(NSString*)accountName { 
+    self.regionId = regionId;
+    self.accountPassword = accountPassword;
+    self.instanceId = instanceId;
+    self.accountName = accountName;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+accountPassword:(NSString*)accountPassword
+instanceId:(NSString*)instanceId
+accountName:(NSString*)accountName { 
+    self.regionId = regionId;
+    self.version = version;
+    self.accountPassword = accountPassword;
+    self.instanceId = instanceId;
+    self.accountName = accountName;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self accountPassword])
+    {
+        [result setValue:[self accountPassword] forKey:@"accountPassword"];
+    }
+    if([self instanceId])
+    {
+        [result setValue:[self instanceId] forKey:@"instanceId"];
+    }
+    if([self accountName])
+    {
+        [result setValue:[self accountName] forKey:@"accountName"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.accountPassword = [dictionary objectForKey:@"accountPassword"];
+    self.instanceId = [dictionary objectForKey:@"instanceId"];
+    self.accountName = [dictionary objectForKey:@"accountName"];
+    return self;
+} 
+
+@end
+@implementation RdsRevokePrivilegeRequest
+-(id) initWithRegion:(NSString *)regionId
+dbNames:(NSArray<NSString*>*)dbNames
+instanceId:(NSString*)instanceId
+accountName:(NSString*)accountName { 
+    self.regionId = regionId;
+    self.dbNames = dbNames;
+    self.instanceId = instanceId;
+    self.accountName = accountName;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+dbNames:(NSArray<NSString*>*)dbNames
+instanceId:(NSString*)instanceId
+accountName:(NSString*)accountName { 
+    self.regionId = regionId;
+    self.version = version;
+    self.dbNames = dbNames;
+    self.instanceId = instanceId;
+    self.accountName = accountName;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self dbNames])
+    {
+        [result setValue:[self dbNames] forKey:@"dbNames"];
+    }
+    if([self instanceId])
+    {
+        [result setValue:[self instanceId] forKey:@"instanceId"];
+    }
+    if([self accountName])
+    {
+        [result setValue:[self accountName] forKey:@"accountName"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.dbNames = [dictionary objectForKey:@"dbNames"];
+    self.instanceId = [dictionary objectForKey:@"instanceId"];
+    self.accountName = [dictionary objectForKey:@"accountName"];
+    return self;
+} 
+
+@end
+@implementation RdsDeleteAccountRequest
+-(id) initWithRegion:(NSString *)regionId
+instanceId:(NSString*)instanceId
+accountName:(NSString*)accountName { 
+    self.regionId = regionId;
+    self.instanceId = instanceId;
+    self.accountName = accountName;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+instanceId:(NSString*)instanceId
+accountName:(NSString*)accountName { 
+    self.regionId = regionId;
+    self.version = version;
+    self.instanceId = instanceId;
+    self.accountName = accountName;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self instanceId])
+    {
+        [result setValue:[self instanceId] forKey:@"instanceId"];
+    }
+    if([self accountName])
+    {
+        [result setValue:[self accountName] forKey:@"accountName"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.instanceId = [dictionary objectForKey:@"instanceId"];
+    self.accountName = [dictionary objectForKey:@"accountName"];
+    return self;
+} 
+
+@end
+@implementation RdsDescribeAccountsRequest
+-(id) initWithRegion:(NSString *)regionId
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+instanceId:(NSString*)instanceId { 
+    self.regionId = regionId;
+    self.pageNumber = pageNumber;
+    self.pageSize = pageSize;
+    self.instanceId = instanceId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+instanceId:(NSString*)instanceId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.pageNumber = pageNumber;
+    self.pageSize = pageSize;
+    self.instanceId = instanceId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self pageNumber])
+    {
+        [result setValue:[self pageNumber] forKey:@"pageNumber"];
+    }
+    if([self pageSize])
+    {
+        [result setValue:[self pageSize] forKey:@"pageSize"];
+    }
+    if([self instanceId])
+    {
+        [result setValue:[self instanceId] forKey:@"instanceId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.pageNumber = [dictionary objectForKey:@"pageNumber"];
+    self.pageSize = [dictionary objectForKey:@"pageSize"];
+    self.instanceId = [dictionary objectForKey:@"instanceId"];
+    return self;
+} 
+
+@end
+@implementation RdsAlterTableWithOnlineDDLRequest
+-(id) initWithRegion:(NSString *)regionId
+database:(NSString*)database
+table:(NSString*)table
+command:(NSString*)command
+instanceId:(NSString*)instanceId { 
+    self.regionId = regionId;
+    self.database = database;
+    self.table = table;
+    self.command = command;
+    self.instanceId = instanceId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+database:(NSString*)database
+table:(NSString*)table
+command:(NSString*)command
+instanceId:(NSString*)instanceId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.database = database;
+    self.table = table;
+    self.command = command;
+    self.instanceId = instanceId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self database])
+    {
+        [result setValue:[self database] forKey:@"database"];
+    }
+    if([self table])
+    {
+        [result setValue:[self table] forKey:@"table"];
+    }
+    if([self command])
+    {
+        [result setValue:[self command] forKey:@"command"];
+    }
+    if([self instanceId])
+    {
+        [result setValue:[self instanceId] forKey:@"instanceId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.database = [dictionary objectForKey:@"database"];
+    self.table = [dictionary objectForKey:@"table"];
+    self.command = [dictionary objectForKey:@"command"];
+    self.instanceId = [dictionary objectForKey:@"instanceId"];
+    return self;
+} 
+
+@end
+@implementation RdsDescribeSlowLogAttributesRequest
+-(id) initWithRegion:(NSString *)regionId
+startTime:(NSString*)startTime
+endTime:(NSString*)endTime
+dbName:(NSString*)dbName
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+instanceId:(NSString*)instanceId { 
+    self.regionId = regionId;
+    self.startTime = startTime;
+    self.endTime = endTime;
+    self.dbName = dbName;
+    self.pageNumber = pageNumber;
+    self.pageSize = pageSize;
+    self.instanceId = instanceId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+startTime:(NSString*)startTime
+endTime:(NSString*)endTime
+dbName:(NSString*)dbName
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+instanceId:(NSString*)instanceId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.startTime = startTime;
+    self.endTime = endTime;
+    self.dbName = dbName;
+    self.pageNumber = pageNumber;
+    self.pageSize = pageSize;
+    self.instanceId = instanceId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self startTime])
+    {
+        [result setValue:[self startTime] forKey:@"startTime"];
+    }
+    if([self endTime])
+    {
+        [result setValue:[self endTime] forKey:@"endTime"];
+    }
+    if([self dbName])
+    {
+        [result setValue:[self dbName] forKey:@"dbName"];
+    }
+    if([self pageNumber])
+    {
+        [result setValue:[self pageNumber] forKey:@"pageNumber"];
+    }
+    if([self pageSize])
+    {
+        [result setValue:[self pageSize] forKey:@"pageSize"];
+    }
+    if([self instanceId])
+    {
+        [result setValue:[self instanceId] forKey:@"instanceId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.startTime = [dictionary objectForKey:@"startTime"];
+    self.endTime = [dictionary objectForKey:@"endTime"];
+    self.dbName = [dictionary objectForKey:@"dbName"];
+    self.pageNumber = [dictionary objectForKey:@"pageNumber"];
+    self.pageSize = [dictionary objectForKey:@"pageSize"];
+    self.instanceId = [dictionary objectForKey:@"instanceId"];
+    return self;
+} 
+
+@end
+@implementation RdsDescribeActiveQueryPerformanceRequest
+-(id) initWithRegion:(NSString *)regionId
+db:(NSString*)db
+threshold:(NSNumber*)threshold
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+instanceId:(NSString*)instanceId { 
+    self.regionId = regionId;
+    self.db = db;
+    self.threshold = threshold;
+    self.pageNumber = pageNumber;
+    self.pageSize = pageSize;
+    self.instanceId = instanceId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+db:(NSString*)db
+threshold:(NSNumber*)threshold
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+instanceId:(NSString*)instanceId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.db = db;
+    self.threshold = threshold;
+    self.pageNumber = pageNumber;
+    self.pageSize = pageSize;
+    self.instanceId = instanceId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self db])
+    {
+        [result setValue:[self db] forKey:@"db"];
+    }
+    if([self threshold])
+    {
+        [result setValue:[self threshold] forKey:@"threshold"];
+    }
+    if([self pageNumber])
+    {
+        [result setValue:[self pageNumber] forKey:@"pageNumber"];
+    }
+    if([self pageSize])
+    {
+        [result setValue:[self pageSize] forKey:@"pageSize"];
+    }
+    if([self instanceId])
+    {
+        [result setValue:[self instanceId] forKey:@"instanceId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.db = [dictionary objectForKey:@"db"];
+    self.threshold = [dictionary objectForKey:@"threshold"];
+    self.pageNumber = [dictionary objectForKey:@"pageNumber"];
+    self.pageSize = [dictionary objectForKey:@"pageSize"];
+    self.instanceId = [dictionary objectForKey:@"instanceId"];
+    return self;
+} 
+
+@end
+@implementation RdsDescribeIndexPerformanceRequest
+-(id) initWithRegion:(NSString *)regionId
+queryType:(NSString*)queryType
+db:(NSString*)db
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+instanceId:(NSString*)instanceId { 
+    self.regionId = regionId;
+    self.queryType = queryType;
+    self.db = db;
+    self.pageNumber = pageNumber;
+    self.pageSize = pageSize;
+    self.instanceId = instanceId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+queryType:(NSString*)queryType
+db:(NSString*)db
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+instanceId:(NSString*)instanceId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.queryType = queryType;
+    self.db = db;
+    self.pageNumber = pageNumber;
+    self.pageSize = pageSize;
+    self.instanceId = instanceId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self queryType])
+    {
+        [result setValue:[self queryType] forKey:@"queryType"];
+    }
+    if([self db])
+    {
+        [result setValue:[self db] forKey:@"db"];
+    }
+    if([self pageNumber])
+    {
+        [result setValue:[self pageNumber] forKey:@"pageNumber"];
+    }
+    if([self pageSize])
+    {
+        [result setValue:[self pageSize] forKey:@"pageSize"];
+    }
+    if([self instanceId])
+    {
+        [result setValue:[self instanceId] forKey:@"instanceId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.queryType = [dictionary objectForKey:@"queryType"];
+    self.db = [dictionary objectForKey:@"db"];
+    self.pageNumber = [dictionary objectForKey:@"pageNumber"];
+    self.pageSize = [dictionary objectForKey:@"pageSize"];
+    self.instanceId = [dictionary objectForKey:@"instanceId"];
+    return self;
+} 
+
+@end
+@implementation RdsDescribeSlowLogsRequest
+-(id) initWithRegion:(NSString *)regionId
+startTime:(NSString*)startTime
+endTime:(NSString*)endTime
+dbName:(NSString*)dbName
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+instanceId:(NSString*)instanceId { 
+    self.regionId = regionId;
+    self.startTime = startTime;
+    self.endTime = endTime;
+    self.dbName = dbName;
+    self.pageNumber = pageNumber;
+    self.pageSize = pageSize;
+    self.instanceId = instanceId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+startTime:(NSString*)startTime
+endTime:(NSString*)endTime
+dbName:(NSString*)dbName
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+instanceId:(NSString*)instanceId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.startTime = startTime;
+    self.endTime = endTime;
+    self.dbName = dbName;
+    self.pageNumber = pageNumber;
+    self.pageSize = pageSize;
+    self.instanceId = instanceId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self startTime])
+    {
+        [result setValue:[self startTime] forKey:@"startTime"];
+    }
+    if([self endTime])
+    {
+        [result setValue:[self endTime] forKey:@"endTime"];
+    }
+    if([self dbName])
+    {
+        [result setValue:[self dbName] forKey:@"dbName"];
+    }
+    if([self pageNumber])
+    {
+        [result setValue:[self pageNumber] forKey:@"pageNumber"];
+    }
+    if([self pageSize])
+    {
+        [result setValue:[self pageSize] forKey:@"pageSize"];
+    }
+    if([self instanceId])
+    {
+        [result setValue:[self instanceId] forKey:@"instanceId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.startTime = [dictionary objectForKey:@"startTime"];
+    self.endTime = [dictionary objectForKey:@"endTime"];
+    self.dbName = [dictionary objectForKey:@"dbName"];
+    self.pageNumber = [dictionary objectForKey:@"pageNumber"];
+    self.pageSize = [dictionary objectForKey:@"pageSize"];
+    self.instanceId = [dictionary objectForKey:@"instanceId"];
+    return self;
+} 
+
+@end
+@implementation RdsDescribeQueryPerformanceRequest
+-(id) initWithRegion:(NSString *)regionId
+queryType:(NSString*)queryType
+threshold:(NSNumber*)threshold
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+instanceId:(NSString*)instanceId { 
+    self.regionId = regionId;
+    self.queryType = queryType;
+    self.threshold = threshold;
+    self.pageNumber = pageNumber;
+    self.pageSize = pageSize;
+    self.instanceId = instanceId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+queryType:(NSString*)queryType
+threshold:(NSNumber*)threshold
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+instanceId:(NSString*)instanceId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.queryType = queryType;
+    self.threshold = threshold;
+    self.pageNumber = pageNumber;
+    self.pageSize = pageSize;
+    self.instanceId = instanceId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self queryType])
+    {
+        [result setValue:[self queryType] forKey:@"queryType"];
+    }
+    if([self threshold])
+    {
+        [result setValue:[self threshold] forKey:@"threshold"];
+    }
+    if([self pageNumber])
+    {
+        [result setValue:[self pageNumber] forKey:@"pageNumber"];
+    }
+    if([self pageSize])
+    {
+        [result setValue:[self pageSize] forKey:@"pageSize"];
+    }
+    if([self instanceId])
+    {
+        [result setValue:[self instanceId] forKey:@"instanceId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.queryType = [dictionary objectForKey:@"queryType"];
+    self.threshold = [dictionary objectForKey:@"threshold"];
+    self.pageNumber = [dictionary objectForKey:@"pageNumber"];
+    self.pageSize = [dictionary objectForKey:@"pageSize"];
+    self.instanceId = [dictionary objectForKey:@"instanceId"];
+    return self;
+} 
+
+@end
+@implementation RdsDescribeParametersRequest
+-(id) initWithRegion:(NSString *)regionId
+instanceId:(NSString*)instanceId { 
+    self.regionId = regionId;
+    self.instanceId = instanceId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+instanceId:(NSString*)instanceId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.instanceId = instanceId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self instanceId])
+    {
+        [result setValue:[self instanceId] forKey:@"instanceId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.instanceId = [dictionary objectForKey:@"instanceId"];
+    return self;
+} 
+
+@end
+@implementation RdsDescribeParameterGroupParametersRequest
+-(id) initWithRegion:(NSString *)regionId
+parameterGroupId:(NSString*)parameterGroupId { 
+    self.regionId = regionId;
+    self.parameterGroupId = parameterGroupId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+parameterGroupId:(NSString*)parameterGroupId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.parameterGroupId = parameterGroupId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self parameterGroupId])
+    {
+        [result setValue:[self parameterGroupId] forKey:@"parameterGroupId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.parameterGroupId = [dictionary objectForKey:@"parameterGroupId"];
+    return self;
+} 
+
+@end
+@implementation RdsModifyParameterGroupAttributeRequest
+-(id) initWithRegion:(NSString *)regionId
+parameterGroupName:(NSString*)parameterGroupName
+descriptionValue:(NSString*)descriptionValue
+parameterGroupId:(NSString*)parameterGroupId { 
+    self.regionId = regionId;
+    self.parameterGroupName = parameterGroupName;
+    self.descriptionValue = descriptionValue;
+    self.parameterGroupId = parameterGroupId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+parameterGroupName:(NSString*)parameterGroupName
+descriptionValue:(NSString*)descriptionValue
+parameterGroupId:(NSString*)parameterGroupId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.parameterGroupName = parameterGroupName;
+    self.descriptionValue = descriptionValue;
+    self.parameterGroupId = parameterGroupId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self parameterGroupName])
+    {
+        [result setValue:[self parameterGroupName] forKey:@"parameterGroupName"];
+    }
+    if([self descriptionValue])
+    {
+        [result setValue:[self descriptionValue] forKey:@"description"];
+    }
+    if([self parameterGroupId])
+    {
+        [result setValue:[self parameterGroupId] forKey:@"parameterGroupId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.parameterGroupName = [dictionary objectForKey:@"parameterGroupName"];
+    self.descriptionValue = [dictionary objectForKey:@"description"];
+    self.parameterGroupId = [dictionary objectForKey:@"parameterGroupId"];
+    return self;
+} 
+
+@end
+@implementation RdsDescribeParameterGroupAttachedInstancesRequest
+-(id) initWithRegion:(NSString *)regionId
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+parameterGroupId:(NSString*)parameterGroupId { 
+    self.regionId = regionId;
+    self.pageNumber = pageNumber;
+    self.pageSize = pageSize;
+    self.parameterGroupId = parameterGroupId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+parameterGroupId:(NSString*)parameterGroupId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.pageNumber = pageNumber;
+    self.pageSize = pageSize;
+    self.parameterGroupId = parameterGroupId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self pageNumber])
+    {
+        [result setValue:[self pageNumber] forKey:@"pageNumber"];
+    }
+    if([self pageSize])
+    {
+        [result setValue:[self pageSize] forKey:@"pageSize"];
+    }
+    if([self parameterGroupId])
+    {
+        [result setValue:[self parameterGroupId] forKey:@"parameterGroupId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.pageNumber = [dictionary objectForKey:@"pageNumber"];
+    self.pageSize = [dictionary objectForKey:@"pageSize"];
+    self.parameterGroupId = [dictionary objectForKey:@"parameterGroupId"];
+    return self;
+} 
+
+@end
+@implementation RdsCopyParameterGroupRequest
+-(id) initWithRegion:(NSString *)regionId
+parameterGroupId:(NSString*)parameterGroupId
+parameterGroupName:(NSString*)parameterGroupName
+descriptionValue:(NSString*)descriptionValue { 
+    self.regionId = regionId;
+    self.parameterGroupId = parameterGroupId;
+    self.parameterGroupName = parameterGroupName;
+    self.descriptionValue = descriptionValue;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+parameterGroupId:(NSString*)parameterGroupId
+parameterGroupName:(NSString*)parameterGroupName
+descriptionValue:(NSString*)descriptionValue { 
+    self.regionId = regionId;
+    self.version = version;
+    self.parameterGroupId = parameterGroupId;
+    self.parameterGroupName = parameterGroupName;
+    self.descriptionValue = descriptionValue;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self parameterGroupId])
+    {
+        [result setValue:[self parameterGroupId] forKey:@"parameterGroupId"];
+    }
+    if([self parameterGroupName])
+    {
+        [result setValue:[self parameterGroupName] forKey:@"parameterGroupName"];
+    }
+    if([self descriptionValue])
+    {
+        [result setValue:[self descriptionValue] forKey:@"description"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.parameterGroupId = [dictionary objectForKey:@"parameterGroupId"];
+    self.parameterGroupName = [dictionary objectForKey:@"parameterGroupName"];
+    self.descriptionValue = [dictionary objectForKey:@"description"];
+    return self;
+} 
+
+@end
+@implementation RdsCreateParameterGroupRequest
+-(id) initWithRegion:(NSString *)regionId
+engine:(NSString*)engine
+engineVersion:(NSString*)engineVersion
+parameterGroupName:(NSString*)parameterGroupName
+descriptionValue:(NSString*)descriptionValue { 
+    self.regionId = regionId;
+    self.engine = engine;
+    self.engineVersion = engineVersion;
+    self.parameterGroupName = parameterGroupName;
+    self.descriptionValue = descriptionValue;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+engine:(NSString*)engine
+engineVersion:(NSString*)engineVersion
+parameterGroupName:(NSString*)parameterGroupName
+descriptionValue:(NSString*)descriptionValue { 
+    self.regionId = regionId;
+    self.version = version;
+    self.engine = engine;
+    self.engineVersion = engineVersion;
+    self.parameterGroupName = parameterGroupName;
+    self.descriptionValue = descriptionValue;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self engine])
+    {
+        [result setValue:[self engine] forKey:@"engine"];
+    }
+    if([self engineVersion])
+    {
+        [result setValue:[self engineVersion] forKey:@"engineVersion"];
+    }
+    if([self parameterGroupName])
+    {
+        [result setValue:[self parameterGroupName] forKey:@"parameterGroupName"];
+    }
+    if([self descriptionValue])
+    {
+        [result setValue:[self descriptionValue] forKey:@"description"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.engine = [dictionary objectForKey:@"engine"];
+    self.engineVersion = [dictionary objectForKey:@"engineVersion"];
+    self.parameterGroupName = [dictionary objectForKey:@"parameterGroupName"];
+    self.descriptionValue = [dictionary objectForKey:@"description"];
+    return self;
+} 
+
+@end
+@implementation RdsDeleteParameterGroupRequest
+-(id) initWithRegion:(NSString *)regionId
+parameterGroupId:(NSString*)parameterGroupId { 
+    self.regionId = regionId;
+    self.parameterGroupId = parameterGroupId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+parameterGroupId:(NSString*)parameterGroupId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.parameterGroupId = parameterGroupId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self parameterGroupId])
+    {
+        [result setValue:[self parameterGroupId] forKey:@"parameterGroupId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.parameterGroupId = [dictionary objectForKey:@"parameterGroupId"];
+    return self;
+} 
+
+@end
+@implementation RdsDescribeParameterModifyRecordsRequest
+-(id) initWithRegion:(NSString *)regionId
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+startTime:(NSString*)startTime
+endTime:(NSString*)endTime
+parameterGroupId:(NSString*)parameterGroupId { 
+    self.regionId = regionId;
+    self.pageNumber = pageNumber;
+    self.pageSize = pageSize;
+    self.startTime = startTime;
+    self.endTime = endTime;
+    self.parameterGroupId = parameterGroupId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+startTime:(NSString*)startTime
+endTime:(NSString*)endTime
+parameterGroupId:(NSString*)parameterGroupId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.pageNumber = pageNumber;
+    self.pageSize = pageSize;
+    self.startTime = startTime;
+    self.endTime = endTime;
+    self.parameterGroupId = parameterGroupId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self pageNumber])
+    {
+        [result setValue:[self pageNumber] forKey:@"pageNumber"];
+    }
+    if([self pageSize])
+    {
+        [result setValue:[self pageSize] forKey:@"pageSize"];
+    }
+    if([self startTime])
+    {
+        [result setValue:[self startTime] forKey:@"startTime"];
+    }
+    if([self endTime])
+    {
+        [result setValue:[self endTime] forKey:@"endTime"];
+    }
+    if([self parameterGroupId])
+    {
+        [result setValue:[self parameterGroupId] forKey:@"parameterGroupId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.pageNumber = [dictionary objectForKey:@"pageNumber"];
+    self.pageSize = [dictionary objectForKey:@"pageSize"];
+    self.startTime = [dictionary objectForKey:@"startTime"];
+    self.endTime = [dictionary objectForKey:@"endTime"];
+    self.parameterGroupId = [dictionary objectForKey:@"parameterGroupId"];
+    return self;
+} 
+
+@end
+@implementation RdsDescribeParameterGroupsRequest
+-(id) initWithRegion:(NSString *)regionId
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize { 
+    self.regionId = regionId;
+    self.pageNumber = pageNumber;
+    self.pageSize = pageSize;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize { 
+    self.regionId = regionId;
+    self.version = version;
+    self.pageNumber = pageNumber;
+    self.pageSize = pageSize;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self pageNumber])
+    {
+        [result setValue:[self pageNumber] forKey:@"pageNumber"];
+    }
+    if([self pageSize])
+    {
+        [result setValue:[self pageSize] forKey:@"pageSize"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.pageNumber = [dictionary objectForKey:@"pageNumber"];
+    self.pageSize = [dictionary objectForKey:@"pageSize"];
+    return self;
+} 
+
+@end
+@implementation RdsCreateParameterGroupResult
+-(id) initWithParameterGroupId:(NSString*) parameterGroupId { 
+    self.parameterGroupId = parameterGroupId;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self parameterGroupId])
+    {
+        [result setValue:[self parameterGroupId] forKey:@"parameterGroupId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.parameterGroupId = [dictionary objectForKey:@"parameterGroupId"];
+    return self;
+} 
+
+@end
+@implementation RdsCopyParameterGroupResult
+-(id) initWithParameterGroupId:(NSString*) parameterGroupId { 
+    self.parameterGroupId = parameterGroupId;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self parameterGroupId])
+    {
+        [result setValue:[self parameterGroupId] forKey:@"parameterGroupId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.parameterGroupId = [dictionary objectForKey:@"parameterGroupId"];
+    return self;
+} 
+
+@end
+@implementation RdsDescribeBackupsResult
+-(id) initWithBackup:(NSArray<Backup*>*) backup
+        totalCount:(NSNumber*)totalCount { 
+    self.backup = backup;               
+    self.totalCount = totalCount;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self backup])
+    {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self backup] count]; i++) {
+            Backup* item = [[self backup] objectAtIndex:i];
+            [arrayDic addObject:[item dictionary]];
+        }
+        [result setValue:arrayDic forKey:@"backup"];
+    }
+    if([self totalCount])
+    {
+        [result setValue:[self totalCount] forKey:@"totalCount"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    NSArray* backupArray = [dictionary objectForKey:@"backup"];
+    if(backupArray&&![backupArray isKindOfClass:[NSNull class]])
+    {
+        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
+        for(int i = 0 ; i< [backupArray count];i++)
+        {
+        Backup* item = [[Backup alloc]initWithDic:[backupArray objectAtIndex:i]];
+            if(item)
+            {
+            [propertyArray addObject:item];
+            }
+        }
+        self.backup = propertyArray;
+    }
+    self.totalCount = [dictionary objectForKey:@"totalCount"];
+    return self;
+} 
+
+@end
+@implementation RdsDeleteBackupResult
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    return self;
+} 
+
+@end
+  
+@implementation RdsDeleteBackupResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+RdsDeleteBackupResult* result = [[RdsDeleteBackupResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(RdsDeleteBackupResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+  
+@implementation RdsDescribeBackupsResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+RdsDescribeBackupsResult* result = [[RdsDescribeBackupsResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(RdsDescribeBackupsResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+  
+@implementation RdsCreateBackupResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+RdsCreateBackupResult* result = [[RdsCreateBackupResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(RdsCreateBackupResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+  
+@implementation RdsDescribeBackupDownloadURLResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+RdsDescribeBackupDownloadURLResult* result = [[RdsDescribeBackupDownloadURLResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(RdsDescribeBackupDownloadURLResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+@implementation RdsCreateBackupRequest
+-(id) initWithRegion:(NSString *)regionId
+instanceId:(NSString*)instanceId
+backupSpec:(BackupSpec*)backupSpec { 
+    self.regionId = regionId;
+    self.instanceId = instanceId;
+    self.backupSpec = backupSpec;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+instanceId:(NSString*)instanceId
+backupSpec:(BackupSpec*)backupSpec { 
+    self.regionId = regionId;
+    self.version = version;
+    self.instanceId = instanceId;
+    self.backupSpec = backupSpec;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self instanceId])
+    {
+        [result setValue:[self instanceId] forKey:@"instanceId"];
+    }
+    if([self backupSpec])
+    {
+        [result setValue:[[self backupSpec] dictionary]forKey:@"backupSpec"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.instanceId = [dictionary objectForKey:@"instanceId"];
+    self.backupSpec = [[BackupSpec alloc]initWithDic:[dictionary objectForKey:@"backupSpec"]];
+    return self;
+} 
+
+@end
+@implementation RdsDescribeErrorLogsResult
+-(id) initWithErrorLogs:(NSArray<ErrorLog*>*) errorLogs { 
+    self.errorLogs = errorLogs;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self errorLogs])
+    {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self errorLogs] count]; i++) {
+            ErrorLog* item = [[self errorLogs] objectAtIndex:i];
+            [arrayDic addObject:[item dictionary]];
+        }
+        [result setValue:arrayDic forKey:@"errorLogs"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    NSArray* errorLogsArray = [dictionary objectForKey:@"errorLogs"];
+    if(errorLogsArray&&![errorLogsArray isKindOfClass:[NSNull class]])
+    {
+        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
+        for(int i = 0 ; i< [errorLogsArray count];i++)
+        {
+        ErrorLog* item = [[ErrorLog alloc]initWithDic:[errorLogsArray objectAtIndex:i]];
+            if(item)
+            {
+            [propertyArray addObject:item];
+            }
+        }
+        self.errorLogs = propertyArray;
+    }
+    return self;
+} 
+
+@end
+  
+@implementation RdsDescribeErrorLogsResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+RdsDescribeErrorLogsResult* result = [[RdsDescribeErrorLogsResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(RdsDescribeErrorLogsResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+@implementation RdsDisableInterceptResult
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    return self;
+} 
+
+@end
+@implementation RdsDescribeInterceptResultResult
+-(id) initWithInterceptResult:(NSArray<InterceptResult*>*) interceptResult
+        totalCount:(NSNumber*)totalCount { 
+    self.interceptResult = interceptResult;               
+    self.totalCount = totalCount;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self interceptResult])
+    {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self interceptResult] count]; i++) {
+            InterceptResult* item = [[self interceptResult] objectAtIndex:i];
+            [arrayDic addObject:[item dictionary]];
+        }
+        [result setValue:arrayDic forKey:@"interceptResult"];
+    }
+    if([self totalCount])
+    {
+        [result setValue:[self totalCount] forKey:@"totalCount"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    NSArray* interceptResultArray = [dictionary objectForKey:@"interceptResult"];
+    if(interceptResultArray&&![interceptResultArray isKindOfClass:[NSNull class]])
+    {
+        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
+        for(int i = 0 ; i< [interceptResultArray count];i++)
+        {
+        InterceptResult* item = [[InterceptResult alloc]initWithDic:[interceptResultArray objectAtIndex:i]];
+            if(item)
+            {
+            [propertyArray addObject:item];
+            }
+        }
+        self.interceptResult = propertyArray;
+    }
+    self.totalCount = [dictionary objectForKey:@"totalCount"];
+    return self;
+} 
+
+@end
+@implementation RdsEnableInterceptResult
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    return self;
+} 
+
+@end
+  
+@implementation RdsDescribeInterceptResultResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+RdsDescribeInterceptResultResult* result = [[RdsDescribeInterceptResultResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(RdsDescribeInterceptResultResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+  
+@implementation RdsEnableInterceptResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+RdsEnableInterceptResult* result = [[RdsEnableInterceptResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(RdsEnableInterceptResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+  
+@implementation RdsDescribeInterceptResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+RdsDescribeInterceptResult* result = [[RdsDescribeInterceptResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(RdsDescribeInterceptResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+  
+@implementation RdsDisableInterceptResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+RdsDisableInterceptResult* result = [[RdsDisableInterceptResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(RdsDisableInterceptResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+  
+@implementation RdsDescribeTdeResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+RdsDescribeTdeResult* result = [[RdsDescribeTdeResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(RdsDescribeTdeResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+@implementation RdsEnableTdeResult
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    return self;
+} 
+
+@end
+  
+@implementation RdsEnableTdeResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+RdsEnableTdeResult* result = [[RdsEnableTdeResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(RdsEnableTdeResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+@implementation RdsDeleteAuditResult
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    return self;
+} 
+
+@end
+@implementation RdsDescribeAuditFilesResult
+-(id) initWithAuditFiles:(NSArray<AuditFile*>*) auditFiles { 
+    self.auditFiles = auditFiles;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self auditFiles])
+    {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self auditFiles] count]; i++) {
+            AuditFile* item = [[self auditFiles] objectAtIndex:i];
+            [arrayDic addObject:[item dictionary]];
+        }
+        [result setValue:arrayDic forKey:@"auditFiles"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    NSArray* auditFilesArray = [dictionary objectForKey:@"auditFiles"];
+    if(auditFilesArray&&![auditFilesArray isKindOfClass:[NSNull class]])
+    {
+        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
+        for(int i = 0 ; i< [auditFilesArray count];i++)
+        {
+        AuditFile* item = [[AuditFile alloc]initWithDic:[auditFilesArray objectAtIndex:i]];
+            if(item)
+            {
+            [propertyArray addObject:item];
+            }
+        }
+        self.auditFiles = propertyArray;
+    }
+    return self;
+} 
+
+@end
+  
+@implementation RdsDescribeAuditFilesResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+RdsDescribeAuditFilesResult* result = [[RdsDescribeAuditFilesResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(RdsDescribeAuditFilesResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+@implementation RdsDescribeAuditResultRequest
+-(id) initWithRegion:(NSString *)regionId
+startTime:(NSString*)startTime
+endTime:(NSString*)endTime
+dbName:(NSString*)dbName
+accountName:(NSString*)accountName
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+filters:(NSArray<Filter*>*)filters
+instanceId:(NSString*)instanceId { 
+    self.regionId = regionId;
+    self.startTime = startTime;
+    self.endTime = endTime;
+    self.dbName = dbName;
+    self.accountName = accountName;
+    self.pageNumber = pageNumber;
+    self.pageSize = pageSize;
+    self.filters = filters;
+    self.instanceId = instanceId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+startTime:(NSString*)startTime
+endTime:(NSString*)endTime
+dbName:(NSString*)dbName
+accountName:(NSString*)accountName
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+filters:(NSArray<Filter*>*)filters
+instanceId:(NSString*)instanceId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.startTime = startTime;
+    self.endTime = endTime;
+    self.dbName = dbName;
+    self.accountName = accountName;
+    self.pageNumber = pageNumber;
+    self.pageSize = pageSize;
+    self.filters = filters;
+    self.instanceId = instanceId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self startTime])
+    {
+        [result setValue:[self startTime] forKey:@"startTime"];
+    }
+    if([self endTime])
+    {
+        [result setValue:[self endTime] forKey:@"endTime"];
+    }
+    if([self dbName])
+    {
+        [result setValue:[self dbName] forKey:@"dbName"];
+    }
+    if([self accountName])
+    {
+        [result setValue:[self accountName] forKey:@"accountName"];
+    }
+    if([self pageNumber])
+    {
+        [result setValue:[self pageNumber] forKey:@"pageNumber"];
+    }
+    if([self pageSize])
+    {
+        [result setValue:[self pageSize] forKey:@"pageSize"];
+    }
+    if([self filters])
+    {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self filters] count]; i++) {
+            Filter* item = [[self filters] objectAtIndex:i];
+            [arrayDic addObject:[item dictionary]];
+        }
+        [result setValue:arrayDic forKey:@"filters"];
+    }
+    if([self instanceId])
+    {
+        [result setValue:[self instanceId] forKey:@"instanceId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.startTime = [dictionary objectForKey:@"startTime"];
+    self.endTime = [dictionary objectForKey:@"endTime"];
+    self.dbName = [dictionary objectForKey:@"dbName"];
+    self.accountName = [dictionary objectForKey:@"accountName"];
+    self.pageNumber = [dictionary objectForKey:@"pageNumber"];
+    self.pageSize = [dictionary objectForKey:@"pageSize"];
+    NSArray* filtersArray = [dictionary objectForKey:@"filters"];
+    if(filtersArray&&![filtersArray isKindOfClass:[NSNull class]])
+    {
+        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
+        for(int i = 0 ; i< [filtersArray count];i++)
+        {
+        Filter* item = [[Filter alloc]initWithDic:[filtersArray objectAtIndex:i]];
+            if(item)
+            {
+            [propertyArray addObject:item];
+            }
+        }
+        self.filters = propertyArray;
+    }
+    self.instanceId = [dictionary objectForKey:@"instanceId"];
+    return self;
+} 
+
+@end
+@implementation RdsEnableAuditResult
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    return self;
+} 
+
+@end
+  
+@implementation RdsEnableAuditResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+RdsEnableAuditResult* result = [[RdsEnableAuditResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(RdsEnableAuditResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+@implementation RdsDescribeAuditResultResult
+-(id) initWithAuditResult:(NSArray<AuditResult*>*) auditResult
+        totalCount:(NSNumber*)totalCount { 
+    self.auditResult = auditResult;               
+    self.totalCount = totalCount;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self auditResult])
+    {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self auditResult] count]; i++) {
+            AuditResult* item = [[self auditResult] objectAtIndex:i];
+            [arrayDic addObject:[item dictionary]];
+        }
+        [result setValue:arrayDic forKey:@"auditResult"];
+    }
+    if([self totalCount])
+    {
+        [result setValue:[self totalCount] forKey:@"totalCount"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    NSArray* auditResultArray = [dictionary objectForKey:@"auditResult"];
+    if(auditResultArray&&![auditResultArray isKindOfClass:[NSNull class]])
+    {
+        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
+        for(int i = 0 ; i< [auditResultArray count];i++)
+        {
+        AuditResult* item = [[AuditResult alloc]initWithDic:[auditResultArray objectAtIndex:i]];
+            if(item)
+            {
+            [propertyArray addObject:item];
+            }
+        }
+        self.auditResult = propertyArray;
+    }
+    self.totalCount = [dictionary objectForKey:@"totalCount"];
+    return self;
+} 
+
+@end
+  
+@implementation RdsDescribeAuditResultResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+RdsDescribeAuditResultResult* result = [[RdsDescribeAuditResultResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(RdsDescribeAuditResultResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+@implementation RdsCreateAuditResult
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    return self;
+} 
+
+@end
+@implementation RdsDisableAuditResult
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    return self;
+} 
+
+@end
+  
+@implementation RdsDisableAuditResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+RdsDisableAuditResult* result = [[RdsDisableAuditResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(RdsDisableAuditResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+  
+@implementation RdsDescribeAuditOptionsResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+RdsDescribeAuditOptionsResult* result = [[RdsDescribeAuditOptionsResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(RdsDescribeAuditOptionsResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+  
+@implementation RdsCreateAuditResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+RdsCreateAuditResult* result = [[RdsCreateAuditResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(RdsCreateAuditResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+@implementation RdsModifyAuditResult
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    return self;
+} 
+
+@end
+  
+@implementation RdsModifyAuditResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+RdsModifyAuditResult* result = [[RdsModifyAuditResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(RdsModifyAuditResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+  
+@implementation RdsDescribeAuditResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+RdsDescribeAuditResult* result = [[RdsDescribeAuditResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(RdsDescribeAuditResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+  
+@implementation RdsDescribeAuditDownloadURLResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+RdsDescribeAuditDownloadURLResult* result = [[RdsDescribeAuditDownloadURLResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(RdsDescribeAuditDownloadURLResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+  
+@implementation RdsDeleteAuditResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+RdsDeleteAuditResult* result = [[RdsDeleteAuditResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(RdsDeleteAuditResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+@implementation RdsDescribeBinlogsResult
+-(id) initWithTotalCount:(NSNumber*) totalCount
+        binlogs:(NSArray<Binlog*>*)binlogs { 
+    self.totalCount = totalCount;               
+    self.binlogs = binlogs;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self totalCount])
+    {
+        [result setValue:[self totalCount] forKey:@"totalCount"];
+    }
+    if([self binlogs])
+    {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self binlogs] count]; i++) {
+            Binlog* item = [[self binlogs] objectAtIndex:i];
+            [arrayDic addObject:[item dictionary]];
+        }
+        [result setValue:arrayDic forKey:@"binlogs"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.totalCount = [dictionary objectForKey:@"totalCount"];
+    NSArray* binlogsArray = [dictionary objectForKey:@"binlogs"];
+    if(binlogsArray&&![binlogsArray isKindOfClass:[NSNull class]])
+    {
+        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
+        for(int i = 0 ; i< [binlogsArray count];i++)
+        {
+        Binlog* item = [[Binlog alloc]initWithDic:[binlogsArray objectAtIndex:i]];
+            if(item)
+            {
+            [propertyArray addObject:item];
+            }
+        }
+        self.binlogs = propertyArray;
+    }
+    return self;
+} 
+
+@end
+  
+@implementation RdsDescribeBinlogsResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+RdsDescribeBinlogsResult* result = [[RdsDescribeBinlogsResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(RdsDescribeBinlogsResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+@implementation RdsClearBinlogsResult
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    return self;
+} 
+
+@end
+  
+@implementation RdsClearBinlogsResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+RdsClearBinlogsResult* result = [[RdsClearBinlogsResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(RdsClearBinlogsResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+  
+@implementation RdsDescribeBinlogDownloadURLResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+RdsDescribeBinlogDownloadURLResult* result = [[RdsDescribeBinlogDownloadURLResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(RdsDescribeBinlogDownloadURLResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+  
+@implementation RdsDescribeAzsResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+RdsDescribeAzsResult* result = [[RdsDescribeAzsResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(RdsDescribeAzsResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+@implementation RdsSetImportFileSharedResult
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    return self;
+} 
+
+@end
+  
+@implementation RdsSetImportFileSharedResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+RdsSetImportFileSharedResult* result = [[RdsSetImportFileSharedResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(RdsSetImportFileSharedResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+  
+@implementation RdsGetUploadKeyResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+RdsGetUploadKeyResult* result = [[RdsGetUploadKeyResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(RdsGetUploadKeyResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+@implementation RdsDeleteImportFileResult
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    return self;
+} 
+
+@end
+  
+@implementation RdsDeleteImportFileResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+RdsDeleteImportFileResult* result = [[RdsDeleteImportFileResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(RdsDeleteImportFileResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+@implementation RdsDescribeImportFilesResult
+-(id) initWithImportFiles:(NSArray<ImportFile*>*) importFiles { 
+    self.importFiles = importFiles;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self importFiles])
+    {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self importFiles] count]; i++) {
+            ImportFile* item = [[self importFiles] objectAtIndex:i];
+            [arrayDic addObject:[item dictionary]];
+        }
+        [result setValue:arrayDic forKey:@"importFiles"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    NSArray* importFilesArray = [dictionary objectForKey:@"importFiles"];
+    if(importFilesArray&&![importFilesArray isKindOfClass:[NSNull class]])
+    {
+        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
+        for(int i = 0 ; i< [importFilesArray count];i++)
+        {
+        ImportFile* item = [[ImportFile alloc]initWithDic:[importFilesArray objectAtIndex:i]];
+            if(item)
+            {
+            [propertyArray addObject:item];
+            }
+        }
+        self.importFiles = propertyArray;
+    }
+    return self;
+} 
+
+@end
+  
+@implementation RdsDescribeImportFilesResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+RdsDescribeImportFilesResult* result = [[RdsDescribeImportFilesResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(RdsDescribeImportFilesResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+@implementation RdsDescribeWhiteListResult
+-(id) initWithWhiteLists:(NSArray<WhiteList*>*) whiteLists { 
+    self.whiteLists = whiteLists;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self whiteLists])
+    {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self whiteLists] count]; i++) {
+            WhiteList* item = [[self whiteLists] objectAtIndex:i];
+            [arrayDic addObject:[item dictionary]];
+        }
+        [result setValue:arrayDic forKey:@"whiteLists"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    NSArray* whiteListsArray = [dictionary objectForKey:@"whiteLists"];
+    if(whiteListsArray&&![whiteListsArray isKindOfClass:[NSNull class]])
+    {
+        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
+        for(int i = 0 ; i< [whiteListsArray count];i++)
+        {
+        WhiteList* item = [[WhiteList alloc]initWithDic:[whiteListsArray objectAtIndex:i]];
+            if(item)
+            {
+            [propertyArray addObject:item];
+            }
+        }
+        self.whiteLists = propertyArray;
+    }
+    return self;
+} 
+
+@end
+@implementation RdsModifyWhiteListResult
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    return self;
+} 
+
+@end
+  
+@implementation RdsModifyWhiteListResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+RdsModifyWhiteListResult* result = [[RdsModifyWhiteListResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(RdsModifyWhiteListResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+  
+@implementation RdsDescribeWhiteListResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+RdsDescribeWhiteListResult* result = [[RdsDescribeWhiteListResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(RdsDescribeWhiteListResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+@implementation RdsDescribeLogsResult
+-(id) initWithLogs:(NSArray<Log*>*) logs
+        totalCount:(NSNumber*)totalCount { 
+    self.logs = logs;               
+    self.totalCount = totalCount;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self logs])
+    {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self logs] count]; i++) {
+            Log* item = [[self logs] objectAtIndex:i];
+            [arrayDic addObject:[item dictionary]];
+        }
+        [result setValue:arrayDic forKey:@"logs"];
+    }
+    if([self totalCount])
+    {
+        [result setValue:[self totalCount] forKey:@"totalCount"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    NSArray* logsArray = [dictionary objectForKey:@"logs"];
+    if(logsArray&&![logsArray isKindOfClass:[NSNull class]])
+    {
+        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
+        for(int i = 0 ; i< [logsArray count];i++)
+        {
+        Log* item = [[Log alloc]initWithDic:[logsArray objectAtIndex:i]];
+            if(item)
+            {
+            [propertyArray addObject:item];
+            }
+        }
+        self.logs = propertyArray;
+    }
+    self.totalCount = [dictionary objectForKey:@"totalCount"];
+    return self;
+} 
+
+@end
+  
+@implementation RdsDescribeLogsResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+RdsDescribeLogsResult* result = [[RdsDescribeLogsResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(RdsDescribeLogsResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+  
+@implementation RdsUpdateLogDownloadURLInternalResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+RdsUpdateLogDownloadURLInternalResult* result = [[RdsUpdateLogDownloadURLInternalResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(RdsUpdateLogDownloadURLInternalResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+  
+@implementation RdsDescribeLogDownloadURLResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+RdsDescribeLogDownloadURLResult* result = [[RdsDescribeLogDownloadURLResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(RdsDescribeLogDownloadURLResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+@implementation RdsDescribeLogsRequest
+-(id) initWithRegion:(NSString *)regionId
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+filters:(NSArray<Filter*>*)filters
+instanceId:(NSString*)instanceId { 
+    self.regionId = regionId;
+    self.pageNumber = pageNumber;
+    self.pageSize = pageSize;
+    self.filters = filters;
+    self.instanceId = instanceId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+filters:(NSArray<Filter*>*)filters
+instanceId:(NSString*)instanceId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.pageNumber = pageNumber;
+    self.pageSize = pageSize;
+    self.filters = filters;
+    self.instanceId = instanceId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self pageNumber])
+    {
+        [result setValue:[self pageNumber] forKey:@"pageNumber"];
+    }
+    if([self pageSize])
+    {
+        [result setValue:[self pageSize] forKey:@"pageSize"];
+    }
+    if([self filters])
+    {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self filters] count]; i++) {
+            Filter* item = [[self filters] objectAtIndex:i];
+            [arrayDic addObject:[item dictionary]];
+        }
+        [result setValue:arrayDic forKey:@"filters"];
+    }
+    if([self instanceId])
+    {
+        [result setValue:[self instanceId] forKey:@"instanceId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.pageNumber = [dictionary objectForKey:@"pageNumber"];
+    self.pageSize = [dictionary objectForKey:@"pageSize"];
+    NSArray* filtersArray = [dictionary objectForKey:@"filters"];
+    if(filtersArray&&![filtersArray isKindOfClass:[NSNull class]])
+    {
+        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
+        for(int i = 0 ; i< [filtersArray count];i++)
+        {
+        Filter* item = [[Filter alloc]initWithDic:[filtersArray objectAtIndex:i]];
+            if(item)
+            {
+            [propertyArray addObject:item];
+            }
+        }
+        self.filters = propertyArray;
+    }
+    self.instanceId = [dictionary objectForKey:@"instanceId"];
+    return self;
+} 
+
+@end
+@implementation RdsModifyParameterGroupResult
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    return self;
+} 
+
+@end
+  
+@implementation RdsModifyParameterGroupResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+RdsModifyParameterGroupResult* result = [[RdsModifyParameterGroupResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(RdsModifyParameterGroupResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+@implementation RdsRebootInstanceResult
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    return self;
+} 
+
+@end
+@implementation RdsEnableInternetAccessResult
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    return self;
+} 
+
+@end
+@implementation RdsDescribeInstancesResult
+-(id) initWithDbInstances:(NSArray<DBInstance*>*) dbInstances
+        totalCount:(NSNumber*)totalCount { 
+    self.dbInstances = dbInstances;               
+    self.totalCount = totalCount;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self dbInstances])
+    {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self dbInstances] count]; i++) {
+            DBInstance* item = [[self dbInstances] objectAtIndex:i];
+            [arrayDic addObject:[item dictionary]];
+        }
+        [result setValue:arrayDic forKey:@"dbInstances"];
+    }
+    if([self totalCount])
+    {
+        [result setValue:[self totalCount] forKey:@"totalCount"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    NSArray* dbInstancesArray = [dictionary objectForKey:@"dbInstances"];
+    if(dbInstancesArray&&![dbInstancesArray isKindOfClass:[NSNull class]])
+    {
+        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
+        for(int i = 0 ; i< [dbInstancesArray count];i++)
+        {
+        DBInstance* item = [[DBInstance alloc]initWithDic:[dbInstancesArray objectAtIndex:i]];
+            if(item)
+            {
+            [propertyArray addObject:item];
+            }
+        }
+        self.dbInstances = propertyArray;
+    }
+    self.totalCount = [dictionary objectForKey:@"totalCount"];
     return self;
 } 
 
@@ -4385,33 +6823,6 @@ RdsCreateInstanceFromBackupResult* result = [[RdsCreateInstanceFromBackupResult 
 }
 
 @end
-@implementation RdsCreateROInstanceResult
--(id) initWithRoInstanceId:(NSArray<NSString*>*) roInstanceId
-        orderId:(NSString*)orderId { 
-    self.roInstanceId = roInstanceId;               
-    self.orderId = orderId;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self roInstanceId])
-    {
-        [result setValue:[self roInstanceId] forKey:@"roInstanceId"];
-    }
-    if([self orderId])
-    {
-        [result setValue:[self orderId] forKey:@"orderId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.roInstanceId = [dictionary objectForKey:@"roInstanceId"];
-    self.orderId = [dictionary objectForKey:@"orderId"];
-    return self;
-} 
-
-@end
   
 @implementation RdsCreateROInstanceResponse
 -(NSMutableDictionary*) dictionary
@@ -4454,26 +6865,6 @@ RdsCreateROInstanceResult* result = [[RdsCreateROInstanceResult alloc]initWithDi
     self.requestId = requestId;
     return self;
 }
-
-@end
-@implementation RdsCreateInstanceByTimeResult
--(id) initWithInstanceId:(NSString*) instanceId { 
-    self.instanceId = instanceId;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self instanceId])
-    {
-        [result setValue:[self instanceId] forKey:@"instanceId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.instanceId = [dictionary objectForKey:@"instanceId"];
-    return self;
-} 
 
 @end
 @implementation RdsRestoreInstanceResult
@@ -4529,51 +6920,6 @@ RdsRestoreInstanceResult* result = [[RdsRestoreInstanceResult alloc]initWithDic:
     self.requestId = requestId;
     return self;
 }
-
-@end
-@implementation RdsModifyInstanceNameRequest
--(id) initWithRegion:(NSString *)regionId
-instanceName:(NSString*)instanceName
-instanceId:(NSString*)instanceId { 
-    self.regionId = regionId;
-    self.instanceName = instanceName;
-    self.instanceId = instanceId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-instanceName:(NSString*)instanceName
-instanceId:(NSString*)instanceId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.instanceName = instanceName;
-    self.instanceId = instanceId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self instanceName])
-    {
-        [result setValue:[self instanceName] forKey:@"instanceName"];
-    }
-    if([self instanceId])
-    {
-        [result setValue:[self instanceId] forKey:@"instanceId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.instanceName = [dictionary objectForKey:@"instanceName"];
-    self.instanceId = [dictionary objectForKey:@"instanceId"];
-    return self;
-} 
 
 @end
   
@@ -4675,62 +7021,6 @@ RdsModifyInstanceNameResult* result = [[RdsModifyInstanceNameResult alloc]initWi
 }
 
 @end
-@implementation RdsDescribeLatestRestoreTimeRequest
--(id) initWithRegion:(NSString *)regionId
-instanceId:(NSString*)instanceId { 
-    self.regionId = regionId;
-    self.instanceId = instanceId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-instanceId:(NSString*)instanceId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.instanceId = instanceId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self instanceId])
-    {
-        [result setValue:[self instanceId] forKey:@"instanceId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.instanceId = [dictionary objectForKey:@"instanceId"];
-    return self;
-} 
-
-@end
-@implementation RdsDescribeLatestRestoreTimeResult
--(id) initWithLatestRestoreTime:(NSString*) latestRestoreTime { 
-    self.latestRestoreTime = latestRestoreTime;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self latestRestoreTime])
-    {
-        [result setValue:[self latestRestoreTime] forKey:@"latestRestoreTime"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.latestRestoreTime = [dictionary objectForKey:@"latestRestoreTime"];
-    return self;
-} 
-
-@end
   
 @implementation RdsDescribeLatestRestoreTimeResponse
 -(NSMutableDictionary*) dictionary
@@ -4807,51 +7097,6 @@ instanceSpec:(DBInstanceSpec*)instanceSpec {
 
 -(id) initWithDic:(NSDictionary*)dictionary{
     self.instanceSpec = [[DBInstanceSpec alloc]initWithDic:[dictionary objectForKey:@"instanceSpec"]];
-    return self;
-} 
-
-@end
-@implementation RdsRestoreInstanceRequest
--(id) initWithRegion:(NSString *)regionId
-backupId:(NSString*)backupId
-instanceId:(NSString*)instanceId { 
-    self.regionId = regionId;
-    self.backupId = backupId;
-    self.instanceId = instanceId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-backupId:(NSString*)backupId
-instanceId:(NSString*)instanceId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.backupId = backupId;
-    self.instanceId = instanceId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self backupId])
-    {
-        [result setValue:[self backupId] forKey:@"backupId"];
-    }
-    if([self instanceId])
-    {
-        [result setValue:[self instanceId] forKey:@"instanceId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.backupId = [dictionary objectForKey:@"backupId"];
-    self.instanceId = [dictionary objectForKey:@"instanceId"];
     return self;
 } 
 
@@ -5043,8 +7288,8 @@ tagFilters:(NSArray<TagFilter*>*)tagFilters {
     }
     if([self filters])
     {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self filters] count]; i++) {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self filters] count]; i++) {
             Filter* item = [[self filters] objectAtIndex:i];
             [arrayDic addObject:[item dictionary]];
         }
@@ -5052,8 +7297,8 @@ tagFilters:(NSArray<TagFilter*>*)tagFilters {
     }
     if([self tagFilters])
     {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self tagFilters] count]; i++) {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self tagFilters] count]; i++) {
             TagFilter* item = [[self tagFilters] objectAtIndex:i];
             [arrayDic addObject:[item dictionary]];
         }
@@ -5071,10 +7316,10 @@ tagFilters:(NSArray<TagFilter*>*)tagFilters {
         NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
         for(int i = 0 ; i< [filtersArray count];i++)
         {
-            Filter* item = [[Filter alloc]initWithDic:[filtersArray objectAtIndex:i]];
+        Filter* item = [[Filter alloc]initWithDic:[filtersArray objectAtIndex:i]];
             if(item)
             {
-                [propertyArray addObject:item];
+            [propertyArray addObject:item];
             }
         }
         self.filters = propertyArray;
@@ -5085,10 +7330,10 @@ tagFilters:(NSArray<TagFilter*>*)tagFilters {
         NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
         for(int i = 0 ; i< [tagFiltersArray count];i++)
         {
-            TagFilter* item = [[TagFilter alloc]initWithDic:[tagFiltersArray objectAtIndex:i]];
+        TagFilter* item = [[TagFilter alloc]initWithDic:[tagFiltersArray objectAtIndex:i]];
             if(item)
             {
-                [propertyArray addObject:item];
+            [propertyArray addObject:item];
             }
         }
         self.tagFilters = propertyArray;
@@ -5115,51 +7360,6 @@ tagFilters:(NSArray<TagFilter*>*)tagFilters {
 }
 
 -(id) initWithDic:(NSDictionary*)dictionary{
-    return self;
-} 
-
-@end
-@implementation RdsModifyParameterGroupRequest
--(id) initWithRegion:(NSString *)regionId
-parameterGroupId:(NSString*)parameterGroupId
-instanceId:(NSString*)instanceId { 
-    self.regionId = regionId;
-    self.parameterGroupId = parameterGroupId;
-    self.instanceId = instanceId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-parameterGroupId:(NSString*)parameterGroupId
-instanceId:(NSString*)instanceId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.parameterGroupId = parameterGroupId;
-    self.instanceId = instanceId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self parameterGroupId])
-    {
-        [result setValue:[self parameterGroupId] forKey:@"parameterGroupId"];
-    }
-    if([self instanceId])
-    {
-        [result setValue:[self instanceId] forKey:@"instanceId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.parameterGroupId = [dictionary objectForKey:@"parameterGroupId"];
-    self.instanceId = [dictionary objectForKey:@"instanceId"];
     return self;
 } 
 
@@ -5304,51 +7504,6 @@ instanceSpec:(RestoredNewDBInstanceSpec*)instanceSpec {
 } 
 
 @end
-@implementation RdsModifyConnectionModeRequest
--(id) initWithRegion:(NSString *)regionId
-connectionMode:(NSString*)connectionMode
-instanceId:(NSString*)instanceId { 
-    self.regionId = regionId;
-    self.connectionMode = connectionMode;
-    self.instanceId = instanceId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-connectionMode:(NSString*)connectionMode
-instanceId:(NSString*)instanceId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.connectionMode = connectionMode;
-    self.instanceId = instanceId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self connectionMode])
-    {
-        [result setValue:[self connectionMode] forKey:@"connectionMode"];
-    }
-    if([self instanceId])
-    {
-        [result setValue:[self instanceId] forKey:@"instanceId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.connectionMode = [dictionary objectForKey:@"connectionMode"];
-    self.instanceId = [dictionary objectForKey:@"instanceId"];
-    return self;
-} 
-
-@end
 @implementation RdsExchangeInstanceDnsResult
 -(NSMutableDictionary*) dictionary{
     NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
@@ -5404,42 +7559,6 @@ RdsDisableInternetAccessResult* result = [[RdsDisableInternetAccessResult alloc]
 }
 
 @end
-@implementation RdsFailoverInstanceRequest
--(id) initWithRegion:(NSString *)regionId
-instanceId:(NSString*)instanceId { 
-    self.regionId = regionId;
-    self.instanceId = instanceId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-instanceId:(NSString*)instanceId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.instanceId = instanceId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self instanceId])
-    {
-        [result setValue:[self instanceId] forKey:@"instanceId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.instanceId = [dictionary objectForKey:@"instanceId"];
-    return self;
-} 
-
-@end
   
 @implementation RdsModifyBackupPolicyResponse
 -(NSMutableDictionary*) dictionary
@@ -5484,47 +7603,6 @@ RdsModifyBackupPolicyResult* result = [[RdsModifyBackupPolicyResult alloc]initWi
 }
 
 @end
-@implementation RdsDescribeBackupPolicyResult
--(id) initWithStartWindow:(NSString*) startWindow
-        retentionPeriod:(NSNumber*)retentionPeriod
-        cycleMode:(NSNumber*)cycleMode
-        backupBinlog:(NSString*)backupBinlog { 
-    self.startWindow = startWindow;               
-    self.retentionPeriod = retentionPeriod;               
-    self.cycleMode = cycleMode;               
-    self.backupBinlog = backupBinlog;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self startWindow])
-    {
-        [result setValue:[self startWindow] forKey:@"startWindow"];
-    }
-    if([self retentionPeriod])
-    {
-        [result setValue:[self retentionPeriod] forKey:@"retentionPeriod"];
-    }
-    if([self cycleMode])
-    {
-        [result setValue:[self cycleMode] forKey:@"cycleMode"];
-    }
-    if([self backupBinlog])
-    {
-        [result setValue:[self backupBinlog] forKey:@"backupBinlog"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.startWindow = [dictionary objectForKey:@"startWindow"];
-    self.retentionPeriod = [dictionary objectForKey:@"retentionPeriod"];
-    self.cycleMode = [dictionary objectForKey:@"cycleMode"];
-    self.backupBinlog = [dictionary objectForKey:@"backupBinlog"];
-    return self;
-} 
-
-@end
   
 @implementation RdsDescribeBackupPolicyResponse
 -(NSMutableDictionary*) dictionary
@@ -5567,141 +7645,6 @@ RdsDescribeBackupPolicyResult* result = [[RdsDescribeBackupPolicyResult alloc]in
     self.requestId = requestId;
     return self;
 }
-
-@end
-@implementation RdsRebootInstanceRequest
--(id) initWithRegion:(NSString *)regionId
-rebootMaster:(NSNumber*)rebootMaster
-rebootSlave:(NSNumber*)rebootSlave
-instanceId:(NSString*)instanceId { 
-    self.regionId = regionId;
-    self.rebootMaster = rebootMaster;
-    self.rebootSlave = rebootSlave;
-    self.instanceId = instanceId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-rebootMaster:(NSNumber*)rebootMaster
-rebootSlave:(NSNumber*)rebootSlave
-instanceId:(NSString*)instanceId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.rebootMaster = rebootMaster;
-    self.rebootSlave = rebootSlave;
-    self.instanceId = instanceId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self rebootMaster])
-    {
-        [result setValue:[self rebootMaster] forKey:@"rebootMaster"];
-    }
-    if([self rebootSlave])
-    {
-        [result setValue:[self rebootSlave] forKey:@"rebootSlave"];
-    }
-    if([self instanceId])
-    {
-        [result setValue:[self instanceId] forKey:@"instanceId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.rebootMaster = [dictionary objectForKey:@"rebootMaster"];
-    self.rebootSlave = [dictionary objectForKey:@"rebootSlave"];
-    self.instanceId = [dictionary objectForKey:@"instanceId"];
-    return self;
-} 
-
-@end
-@implementation RdsDescribeInstanceAttributesRequest
--(id) initWithRegion:(NSString *)regionId
-instanceId:(NSString*)instanceId { 
-    self.regionId = regionId;
-    self.instanceId = instanceId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-instanceId:(NSString*)instanceId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.instanceId = instanceId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self instanceId])
-    {
-        [result setValue:[self instanceId] forKey:@"instanceId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.instanceId = [dictionary objectForKey:@"instanceId"];
-    return self;
-} 
-
-@end
-@implementation RdsModifyBackupPolicyRequest
--(id) initWithRegion:(NSString *)regionId
-startWindow:(NSString*)startWindow
-instanceId:(NSString*)instanceId { 
-    self.regionId = regionId;
-    self.startWindow = startWindow;
-    self.instanceId = instanceId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-startWindow:(NSString*)startWindow
-instanceId:(NSString*)instanceId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.startWindow = startWindow;
-    self.instanceId = instanceId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self startWindow])
-    {
-        [result setValue:[self startWindow] forKey:@"startWindow"];
-    }
-    if([self instanceId])
-    {
-        [result setValue:[self instanceId] forKey:@"instanceId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.startWindow = [dictionary objectForKey:@"startWindow"];
-    self.instanceId = [dictionary objectForKey:@"instanceId"];
-    return self;
-} 
 
 @end
   
@@ -5847,114 +7790,6 @@ RdsDescribeInstanceAttributesResult* result = [[RdsDescribeInstanceAttributesRes
 }
 
 @end
-@implementation RdsDeleteInstanceRequest
--(id) initWithRegion:(NSString *)regionId
-instanceId:(NSString*)instanceId { 
-    self.regionId = regionId;
-    self.instanceId = instanceId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-instanceId:(NSString*)instanceId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.instanceId = instanceId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self instanceId])
-    {
-        [result setValue:[self instanceId] forKey:@"instanceId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.instanceId = [dictionary objectForKey:@"instanceId"];
-    return self;
-} 
-
-@end
-@implementation RdsModifyInstanceSpecRequest
--(id) initWithRegion:(NSString *)regionId
-rdsNewInstanceClass:(NSString*)rdsNewInstanceClass
-rdsNewInstanceStorageGB:(NSNumber*)rdsNewInstanceStorageGB
-rdsNewInstanceStorageType:(NSString*)rdsNewInstanceStorageType
-storageEncrypted:(NSNumber*)storageEncrypted
-instanceId:(NSString*)instanceId { 
-    self.regionId = regionId;
-    self.rdsNewInstanceClass = rdsNewInstanceClass;
-    self.rdsNewInstanceStorageGB = rdsNewInstanceStorageGB;
-    self.rdsNewInstanceStorageType = rdsNewInstanceStorageType;
-    self.storageEncrypted = storageEncrypted;
-    self.instanceId = instanceId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-rdsNewInstanceClass:(NSString*)rdsNewInstanceClass
-rdsNewInstanceStorageGB:(NSNumber*)rdsNewInstanceStorageGB
-rdsNewInstanceStorageType:(NSString*)rdsNewInstanceStorageType
-storageEncrypted:(NSNumber*)storageEncrypted
-instanceId:(NSString*)instanceId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.rdsNewInstanceClass = rdsNewInstanceClass;
-    self.rdsNewInstanceStorageGB = rdsNewInstanceStorageGB;
-    self.rdsNewInstanceStorageType = rdsNewInstanceStorageType;
-    self.storageEncrypted = storageEncrypted;
-    self.instanceId = instanceId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self rdsNewInstanceClass])
-    {
-        [result setValue:[self rdsNewInstanceClass] forKey:@"newInstanceClass"];
-    }
-    if([self rdsNewInstanceStorageGB])
-    {
-        [result setValue:[self rdsNewInstanceStorageGB] forKey:@"newInstanceStorageGB"];
-    }
-    if([self rdsNewInstanceStorageType])
-    {
-        [result setValue:[self rdsNewInstanceStorageType] forKey:@"newInstanceStorageType"];
-    }
-    if([self storageEncrypted])
-    {
-        [result setValue:[self storageEncrypted] forKey:@"storageEncrypted"];
-    }
-    if([self instanceId])
-    {
-        [result setValue:[self instanceId] forKey:@"instanceId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.rdsNewInstanceClass = [dictionary objectForKey:@"newInstanceClass"];
-    self.rdsNewInstanceStorageGB = [dictionary objectForKey:@"newInstanceStorageGB"];
-    self.rdsNewInstanceStorageType = [dictionary objectForKey:@"newInstanceStorageType"];
-    self.storageEncrypted = [dictionary objectForKey:@"storageEncrypted"];
-    self.instanceId = [dictionary objectForKey:@"instanceId"];
-    return self;
-} 
-
-@end
   
 @implementation RdsRebootInstanceResponse
 -(NSMutableDictionary*) dictionary
@@ -5997,42 +7832,6 @@ RdsRebootInstanceResult* result = [[RdsRebootInstanceResult alloc]initWithDic:[d
     self.requestId = requestId;
     return self;
 }
-
-@end
-@implementation RdsDescribeBackupPolicyRequest
--(id) initWithRegion:(NSString *)regionId
-instanceId:(NSString*)instanceId { 
-    self.regionId = regionId;
-    self.instanceId = instanceId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-instanceId:(NSString*)instanceId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.instanceId = instanceId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self instanceId])
-    {
-        [result setValue:[self instanceId] forKey:@"instanceId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.instanceId = [dictionary objectForKey:@"instanceId"];
-    return self;
-} 
 
 @end
   
@@ -6121,51 +7920,6 @@ RdsFailoverInstanceResult* result = [[RdsFailoverInstanceResult alloc]initWithDi
     self.requestId = requestId;
     return self;
 }
-
-@end
-@implementation RdsExchangeInstanceDnsRequest
--(id) initWithRegion:(NSString *)regionId
-targetInstanceId:(NSString*)targetInstanceId
-instanceId:(NSString*)instanceId { 
-    self.regionId = regionId;
-    self.targetInstanceId = targetInstanceId;
-    self.instanceId = instanceId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-targetInstanceId:(NSString*)targetInstanceId
-instanceId:(NSString*)instanceId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.targetInstanceId = targetInstanceId;
-    self.instanceId = instanceId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self targetInstanceId])
-    {
-        [result setValue:[self targetInstanceId] forKey:@"targetInstanceId"];
-    }
-    if([self instanceId])
-    {
-        [result setValue:[self instanceId] forKey:@"instanceId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.targetInstanceId = [dictionary objectForKey:@"targetInstanceId"];
-    self.instanceId = [dictionary objectForKey:@"instanceId"];
-    return self;
-} 
 
 @end
   
@@ -6267,51 +8021,6 @@ RdsDeleteDatabaseResult* result = [[RdsDeleteDatabaseResult alloc]initWithDic:[d
 }
 
 @end
-@implementation RdsDeleteDatabaseRequest
--(id) initWithRegion:(NSString *)regionId
-instanceId:(NSString*)instanceId
-dbName:(NSString*)dbName { 
-    self.regionId = regionId;
-    self.instanceId = instanceId;
-    self.dbName = dbName;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-instanceId:(NSString*)instanceId
-dbName:(NSString*)dbName { 
-    self.regionId = regionId;
-    self.version = version;
-    self.instanceId = instanceId;
-    self.dbName = dbName;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self instanceId])
-    {
-        [result setValue:[self instanceId] forKey:@"instanceId"];
-    }
-    if([self dbName])
-    {
-        [result setValue:[self dbName] forKey:@"dbName"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.instanceId = [dictionary objectForKey:@"instanceId"];
-    self.dbName = [dictionary objectForKey:@"dbName"];
-    return self;
-} 
-
-@end
 @implementation RdsDescribeDatabasesResult
 -(id) initWithDatabases:(NSArray<Database*>*) databases
         totalCount:(NSNumber*)totalCount { 
@@ -6323,8 +8032,8 @@ dbName:(NSString*)dbName {
     NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
     if([self databases])
     {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self databases] count]; i++) {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self databases] count]; i++) {
             Database* item = [[self databases] objectAtIndex:i];
             [arrayDic addObject:[item dictionary]];
         }
@@ -6344,10 +8053,10 @@ dbName:(NSString*)dbName {
         NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
         for(int i = 0 ; i< [databasesArray count];i++)
         {
-            Database* item = [[Database alloc]initWithDic:[databasesArray objectAtIndex:i]];
+        Database* item = [[Database alloc]initWithDic:[databasesArray objectAtIndex:i]];
             if(item)
             {
-                [propertyArray addObject:item];
+            [propertyArray addObject:item];
             }
         }
         self.databases = propertyArray;
@@ -6522,186 +8231,6 @@ RdsRestoreDatabaseFromFileResult* result = [[RdsRestoreDatabaseFromFileResult al
 }
 
 @end
-@implementation RdsDescribeDatabasesRequest
--(id) initWithRegion:(NSString *)regionId
-dbName:(NSString*)dbName
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-instanceId:(NSString*)instanceId { 
-    self.regionId = regionId;
-    self.dbName = dbName;
-    self.pageNumber = pageNumber;
-    self.pageSize = pageSize;
-    self.instanceId = instanceId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-dbName:(NSString*)dbName
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-instanceId:(NSString*)instanceId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.dbName = dbName;
-    self.pageNumber = pageNumber;
-    self.pageSize = pageSize;
-    self.instanceId = instanceId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self dbName])
-    {
-        [result setValue:[self dbName] forKey:@"dbName"];
-    }
-    if([self pageNumber])
-    {
-        [result setValue:[self pageNumber] forKey:@"pageNumber"];
-    }
-    if([self pageSize])
-    {
-        [result setValue:[self pageSize] forKey:@"pageSize"];
-    }
-    if([self instanceId])
-    {
-        [result setValue:[self instanceId] forKey:@"instanceId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.dbName = [dictionary objectForKey:@"dbName"];
-    self.pageNumber = [dictionary objectForKey:@"pageNumber"];
-    self.pageSize = [dictionary objectForKey:@"pageSize"];
-    self.instanceId = [dictionary objectForKey:@"instanceId"];
-    return self;
-} 
-
-@end
-@implementation RdsCreateDatabaseRequest
--(id) initWithRegion:(NSString *)regionId
-dbName:(NSString*)dbName
-characterSetName:(NSString*)characterSetName
-instanceId:(NSString*)instanceId { 
-    self.regionId = regionId;
-    self.dbName = dbName;
-    self.characterSetName = characterSetName;
-    self.instanceId = instanceId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-dbName:(NSString*)dbName
-characterSetName:(NSString*)characterSetName
-instanceId:(NSString*)instanceId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.dbName = dbName;
-    self.characterSetName = characterSetName;
-    self.instanceId = instanceId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self dbName])
-    {
-        [result setValue:[self dbName] forKey:@"dbName"];
-    }
-    if([self characterSetName])
-    {
-        [result setValue:[self characterSetName] forKey:@"characterSetName"];
-    }
-    if([self instanceId])
-    {
-        [result setValue:[self instanceId] forKey:@"instanceId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.dbName = [dictionary objectForKey:@"dbName"];
-    self.characterSetName = [dictionary objectForKey:@"characterSetName"];
-    self.instanceId = [dictionary objectForKey:@"instanceId"];
-    return self;
-} 
-
-@end
-@implementation RdsRestoreDatabaseFromFileRequest
--(id) initWithRegion:(NSString *)regionId
-sharedFileGid:(NSString*)sharedFileGid
-fileName:(NSString*)fileName
-instanceId:(NSString*)instanceId
-dbName:(NSString*)dbName { 
-    self.regionId = regionId;
-    self.sharedFileGid = sharedFileGid;
-    self.fileName = fileName;
-    self.instanceId = instanceId;
-    self.dbName = dbName;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-sharedFileGid:(NSString*)sharedFileGid
-fileName:(NSString*)fileName
-instanceId:(NSString*)instanceId
-dbName:(NSString*)dbName { 
-    self.regionId = regionId;
-    self.version = version;
-    self.sharedFileGid = sharedFileGid;
-    self.fileName = fileName;
-    self.instanceId = instanceId;
-    self.dbName = dbName;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self sharedFileGid])
-    {
-        [result setValue:[self sharedFileGid] forKey:@"sharedFileGid"];
-    }
-    if([self fileName])
-    {
-        [result setValue:[self fileName] forKey:@"fileName"];
-    }
-    if([self instanceId])
-    {
-        [result setValue:[self instanceId] forKey:@"instanceId"];
-    }
-    if([self dbName])
-    {
-        [result setValue:[self dbName] forKey:@"dbName"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.sharedFileGid = [dictionary objectForKey:@"sharedFileGid"];
-    self.fileName = [dictionary objectForKey:@"fileName"];
-    self.instanceId = [dictionary objectForKey:@"instanceId"];
-    self.dbName = [dictionary objectForKey:@"dbName"];
-    return self;
-} 
-
-@end
   
 @implementation RdsRestoreDatabaseFromBackupResponse
 -(NSMutableDictionary*) dictionary
@@ -6801,143 +8330,6 @@ RdsCreateDatabaseResult* result = [[RdsCreateDatabaseResult alloc]initWithDic:[d
 }
 
 @end
-@implementation RdsRestoreDatabaseFromBackupRequest
--(id) initWithRegion:(NSString *)regionId
-backupId:(NSString*)backupId
-backupFileName:(NSString*)backupFileName
-instanceId:(NSString*)instanceId
-dbName:(NSString*)dbName { 
-    self.regionId = regionId;
-    self.backupId = backupId;
-    self.backupFileName = backupFileName;
-    self.instanceId = instanceId;
-    self.dbName = dbName;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-backupId:(NSString*)backupId
-backupFileName:(NSString*)backupFileName
-instanceId:(NSString*)instanceId
-dbName:(NSString*)dbName { 
-    self.regionId = regionId;
-    self.version = version;
-    self.backupId = backupId;
-    self.backupFileName = backupFileName;
-    self.instanceId = instanceId;
-    self.dbName = dbName;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self backupId])
-    {
-        [result setValue:[self backupId] forKey:@"backupId"];
-    }
-    if([self backupFileName])
-    {
-        [result setValue:[self backupFileName] forKey:@"backupFileName"];
-    }
-    if([self instanceId])
-    {
-        [result setValue:[self instanceId] forKey:@"instanceId"];
-    }
-    if([self dbName])
-    {
-        [result setValue:[self dbName] forKey:@"dbName"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.backupId = [dictionary objectForKey:@"backupId"];
-    self.backupFileName = [dictionary objectForKey:@"backupFileName"];
-    self.instanceId = [dictionary objectForKey:@"instanceId"];
-    self.dbName = [dictionary objectForKey:@"dbName"];
-    return self;
-} 
-
-@end
-@implementation RdsRestoreDatabaseFromOSSRequest
--(id) initWithRegion:(NSString *)regionId
-ossURL:(NSString*)ossURL
-instanceId:(NSString*)instanceId
-dbName:(NSString*)dbName { 
-    self.regionId = regionId;
-    self.ossURL = ossURL;
-    self.instanceId = instanceId;
-    self.dbName = dbName;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-ossURL:(NSString*)ossURL
-instanceId:(NSString*)instanceId
-dbName:(NSString*)dbName { 
-    self.regionId = regionId;
-    self.version = version;
-    self.ossURL = ossURL;
-    self.instanceId = instanceId;
-    self.dbName = dbName;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self ossURL])
-    {
-        [result setValue:[self ossURL] forKey:@"ossURL"];
-    }
-    if([self instanceId])
-    {
-        [result setValue:[self instanceId] forKey:@"instanceId"];
-    }
-    if([self dbName])
-    {
-        [result setValue:[self dbName] forKey:@"dbName"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.ossURL = [dictionary objectForKey:@"ossURL"];
-    self.instanceId = [dictionary objectForKey:@"instanceId"];
-    self.dbName = [dictionary objectForKey:@"dbName"];
-    return self;
-} 
-
-@end
-@implementation RdsCreateBackupSynchronicityResult
--(id) initWithServiceId:(NSString*) serviceId { 
-    self.serviceId = serviceId;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self serviceId])
-    {
-        [result setValue:[self serviceId] forKey:@"serviceId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.serviceId = [dictionary objectForKey:@"serviceId"];
-    return self;
-} 
-
-@end
   
 @implementation RdsCreateBackupSynchronicityResponse
 -(NSMutableDictionary*) dictionary
@@ -6980,71 +8372,6 @@ RdsCreateBackupSynchronicityResult* result = [[RdsCreateBackupSynchronicityResul
     self.requestId = requestId;
     return self;
 }
-
-@end
-@implementation RdsCreateBackupSynchronicityRequest
--(id) initWithRegion:(NSString *)regionId
-instanceId:(NSString*)instanceId
-destRegion:(NSString*)destRegion { 
-    self.regionId = regionId;
-    self.instanceId = instanceId;
-    self.destRegion = destRegion;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-instanceId:(NSString*)instanceId
-destRegion:(NSString*)destRegion { 
-    self.regionId = regionId;
-    self.version = version;
-    self.instanceId = instanceId;
-    self.destRegion = destRegion;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self instanceId])
-    {
-        [result setValue:[self instanceId] forKey:@"instanceId"];
-    }
-    if([self destRegion])
-    {
-        [result setValue:[self destRegion] forKey:@"destRegion"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.instanceId = [dictionary objectForKey:@"instanceId"];
-    self.destRegion = [dictionary objectForKey:@"destRegion"];
-    return self;
-} 
-
-@end
-@implementation RdsCreateInstanceByTimeInCrossRegionResult
--(id) initWithInstanceId:(NSString*) instanceId { 
-    self.instanceId = instanceId;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self instanceId])
-    {
-        [result setValue:[self instanceId] forKey:@"instanceId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.instanceId = [dictionary objectForKey:@"instanceId"];
-    return self;
-} 
 
 @end
 @implementation RdsDeleteBackupSynchronicityResult
@@ -7113,8 +8440,8 @@ RdsDeleteBackupSynchronicityResult* result = [[RdsDeleteBackupSynchronicityResul
     NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
     if([self backupSynchronicities])
     {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self backupSynchronicities] count]; i++) {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self backupSynchronicities] count]; i++) {
             BackupSynchronicity* item = [[self backupSynchronicities] objectAtIndex:i];
             [arrayDic addObject:[item dictionary]];
         }
@@ -7134,10 +8461,10 @@ RdsDeleteBackupSynchronicityResult* result = [[RdsDeleteBackupSynchronicityResul
         NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
         for(int i = 0 ; i< [backupSynchronicitiesArray count];i++)
         {
-            BackupSynchronicity* item = [[BackupSynchronicity alloc]initWithDic:[backupSynchronicitiesArray objectAtIndex:i]];
+        BackupSynchronicity* item = [[BackupSynchronicity alloc]initWithDic:[backupSynchronicitiesArray objectAtIndex:i]];
             if(item)
             {
-                [propertyArray addObject:item];
+            [propertyArray addObject:item];
             }
         }
         self.backupSynchronicities = propertyArray;
@@ -7245,51 +8572,6 @@ instanceSpec:(RestoredNewDBInstanceSpec*)instanceSpec {
 } 
 
 @end
-@implementation RdsDescribeBackupSynchronicitiesRequest
--(id) initWithRegion:(NSString *)regionId
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize { 
-    self.regionId = regionId;
-    self.pageNumber = pageNumber;
-    self.pageSize = pageSize;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize { 
-    self.regionId = regionId;
-    self.version = version;
-    self.pageNumber = pageNumber;
-    self.pageSize = pageSize;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self pageNumber])
-    {
-        [result setValue:[self pageNumber] forKey:@"pageNumber"];
-    }
-    if([self pageSize])
-    {
-        [result setValue:[self pageSize] forKey:@"pageSize"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.pageNumber = [dictionary objectForKey:@"pageNumber"];
-    self.pageSize = [dictionary objectForKey:@"pageSize"];
-    return self;
-} 
-
-@end
   
 @implementation RdsCreateInstanceByTimeInCrossRegionResponse
 -(NSMutableDictionary*) dictionary
@@ -7334,150 +8616,6 @@ RdsCreateInstanceByTimeInCrossRegionResult* result = [[RdsCreateInstanceByTimeIn
 }
 
 @end
-@implementation RdsDeleteBackupSynchronicityRequest
--(id) initWithRegion:(NSString *)regionId
-serviceId:(NSString*)serviceId { 
-    self.regionId = regionId;
-    self.serviceId = serviceId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-serviceId:(NSString*)serviceId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.serviceId = serviceId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self serviceId])
-    {
-        [result setValue:[self serviceId] forKey:@"serviceId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.serviceId = [dictionary objectForKey:@"serviceId"];
-    return self;
-} 
-
-@end
-@implementation RdsCreateAccountRequest
--(id) initWithRegion:(NSString *)regionId
-accountName:(NSString*)accountName
-accountPassword:(NSString*)accountPassword
-instanceId:(NSString*)instanceId { 
-    self.regionId = regionId;
-    self.accountName = accountName;
-    self.accountPassword = accountPassword;
-    self.instanceId = instanceId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-accountName:(NSString*)accountName
-accountPassword:(NSString*)accountPassword
-instanceId:(NSString*)instanceId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.accountName = accountName;
-    self.accountPassword = accountPassword;
-    self.instanceId = instanceId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self accountName])
-    {
-        [result setValue:[self accountName] forKey:@"accountName"];
-    }
-    if([self accountPassword])
-    {
-        [result setValue:[self accountPassword] forKey:@"accountPassword"];
-    }
-    if([self instanceId])
-    {
-        [result setValue:[self instanceId] forKey:@"instanceId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.accountName = [dictionary objectForKey:@"accountName"];
-    self.accountPassword = [dictionary objectForKey:@"accountPassword"];
-    self.instanceId = [dictionary objectForKey:@"instanceId"];
-    return self;
-} 
-
-@end
-@implementation RdsCreateSuperAccountRequest
--(id) initWithRegion:(NSString *)regionId
-accountName:(NSString*)accountName
-accountPassword:(NSString*)accountPassword
-instanceId:(NSString*)instanceId { 
-    self.regionId = regionId;
-    self.accountName = accountName;
-    self.accountPassword = accountPassword;
-    self.instanceId = instanceId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-accountName:(NSString*)accountName
-accountPassword:(NSString*)accountPassword
-instanceId:(NSString*)instanceId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.accountName = accountName;
-    self.accountPassword = accountPassword;
-    self.instanceId = instanceId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self accountName])
-    {
-        [result setValue:[self accountName] forKey:@"accountName"];
-    }
-    if([self accountPassword])
-    {
-        [result setValue:[self accountPassword] forKey:@"accountPassword"];
-    }
-    if([self instanceId])
-    {
-        [result setValue:[self instanceId] forKey:@"instanceId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.accountName = [dictionary objectForKey:@"accountName"];
-    self.accountPassword = [dictionary objectForKey:@"accountPassword"];
-    self.instanceId = [dictionary objectForKey:@"instanceId"];
-    return self;
-} 
-
-@end
 @implementation RdsRevokePrivilegeResult
 -(NSMutableDictionary*) dictionary{
     NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
@@ -7485,60 +8623,6 @@ instanceId:(NSString*)instanceId {
 }
 
 -(id) initWithDic:(NSDictionary*)dictionary{
-    return self;
-} 
-
-@end
-@implementation RdsResetPasswordRequest
--(id) initWithRegion:(NSString *)regionId
-accountPassword:(NSString*)accountPassword
-instanceId:(NSString*)instanceId
-accountName:(NSString*)accountName { 
-    self.regionId = regionId;
-    self.accountPassword = accountPassword;
-    self.instanceId = instanceId;
-    self.accountName = accountName;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-accountPassword:(NSString*)accountPassword
-instanceId:(NSString*)instanceId
-accountName:(NSString*)accountName { 
-    self.regionId = regionId;
-    self.version = version;
-    self.accountPassword = accountPassword;
-    self.instanceId = instanceId;
-    self.accountName = accountName;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self accountPassword])
-    {
-        [result setValue:[self accountPassword] forKey:@"accountPassword"];
-    }
-    if([self instanceId])
-    {
-        [result setValue:[self instanceId] forKey:@"instanceId"];
-    }
-    if([self accountName])
-    {
-        [result setValue:[self accountName] forKey:@"accountName"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.accountPassword = [dictionary objectForKey:@"accountPassword"];
-    self.instanceId = [dictionary objectForKey:@"instanceId"];
-    self.accountName = [dictionary objectForKey:@"accountName"];
     return self;
 } 
 
@@ -7620,8 +8704,8 @@ RdsDeleteAccountResult* result = [[RdsDeleteAccountResult alloc]initWithDic:[dic
     NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
     if([self accounts])
     {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self accounts] count]; i++) {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self accounts] count]; i++) {
             Account* item = [[self accounts] objectAtIndex:i];
             [arrayDic addObject:[item dictionary]];
         }
@@ -7641,10 +8725,10 @@ RdsDeleteAccountResult* result = [[RdsDeleteAccountResult alloc]initWithDic:[dic
         NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
         for(int i = 0 ; i< [accountsArray count];i++)
         {
-            Account* item = [[Account alloc]initWithDic:[accountsArray objectAtIndex:i]];
+        Account* item = [[Account alloc]initWithDic:[accountsArray objectAtIndex:i]];
             if(item)
             {
-                [propertyArray addObject:item];
+            [propertyArray addObject:item];
             }
         }
         self.accounts = propertyArray;
@@ -7687,8 +8771,8 @@ accountName:(NSString*)accountName {
     }
     if([self accountPrivileges])
     {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self accountPrivileges] count]; i++) {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self accountPrivileges] count]; i++) {
             AccountPrivilege* item = [[self accountPrivileges] objectAtIndex:i];
             [arrayDic addObject:[item dictionary]];
         }
@@ -7712,10 +8796,10 @@ accountName:(NSString*)accountName {
         NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
         for(int i = 0 ; i< [accountPrivilegesArray count];i++)
         {
-            AccountPrivilege* item = [[AccountPrivilege alloc]initWithDic:[accountPrivilegesArray objectAtIndex:i]];
+        AccountPrivilege* item = [[AccountPrivilege alloc]initWithDic:[accountPrivilegesArray objectAtIndex:i]];
             if(item)
             {
-                [propertyArray addObject:item];
+            [propertyArray addObject:item];
             }
         }
         self.accountPrivileges = propertyArray;
@@ -7781,105 +8865,6 @@ RdsCreateSuperAccountResult* result = [[RdsCreateSuperAccountResult alloc]initWi
 }
 
 @end
-@implementation RdsRevokePrivilegeRequest
--(id) initWithRegion:(NSString *)regionId
-dbNames:(NSArray<NSString*>*)dbNames
-instanceId:(NSString*)instanceId
-accountName:(NSString*)accountName { 
-    self.regionId = regionId;
-    self.dbNames = dbNames;
-    self.instanceId = instanceId;
-    self.accountName = accountName;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-dbNames:(NSArray<NSString*>*)dbNames
-instanceId:(NSString*)instanceId
-accountName:(NSString*)accountName { 
-    self.regionId = regionId;
-    self.version = version;
-    self.dbNames = dbNames;
-    self.instanceId = instanceId;
-    self.accountName = accountName;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self dbNames])
-    {
-        [result setValue:[self dbNames] forKey:@"dbNames"];
-    }
-    if([self instanceId])
-    {
-        [result setValue:[self instanceId] forKey:@"instanceId"];
-    }
-    if([self accountName])
-    {
-        [result setValue:[self accountName] forKey:@"accountName"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.dbNames = [dictionary objectForKey:@"dbNames"];
-    self.instanceId = [dictionary objectForKey:@"instanceId"];
-    self.accountName = [dictionary objectForKey:@"accountName"];
-    return self;
-} 
-
-@end
-@implementation RdsDeleteAccountRequest
--(id) initWithRegion:(NSString *)regionId
-instanceId:(NSString*)instanceId
-accountName:(NSString*)accountName { 
-    self.regionId = regionId;
-    self.instanceId = instanceId;
-    self.accountName = accountName;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-instanceId:(NSString*)instanceId
-accountName:(NSString*)accountName { 
-    self.regionId = regionId;
-    self.version = version;
-    self.instanceId = instanceId;
-    self.accountName = accountName;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self instanceId])
-    {
-        [result setValue:[self instanceId] forKey:@"instanceId"];
-    }
-    if([self accountName])
-    {
-        [result setValue:[self accountName] forKey:@"accountName"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.instanceId = [dictionary objectForKey:@"instanceId"];
-    self.accountName = [dictionary objectForKey:@"accountName"];
-    return self;
-} 
-
-@end
   
 @implementation RdsRevokePrivilegeResponse
 -(NSMutableDictionary*) dictionary
@@ -7931,60 +8916,6 @@ RdsRevokePrivilegeResult* result = [[RdsRevokePrivilegeResult alloc]initWithDic:
 }
 
 -(id) initWithDic:(NSDictionary*)dictionary{
-    return self;
-} 
-
-@end
-@implementation RdsDescribeAccountsRequest
--(id) initWithRegion:(NSString *)regionId
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-instanceId:(NSString*)instanceId { 
-    self.regionId = regionId;
-    self.pageNumber = pageNumber;
-    self.pageSize = pageSize;
-    self.instanceId = instanceId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-instanceId:(NSString*)instanceId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.pageNumber = pageNumber;
-    self.pageSize = pageSize;
-    self.instanceId = instanceId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self pageNumber])
-    {
-        [result setValue:[self pageNumber] forKey:@"pageNumber"];
-    }
-    if([self pageSize])
-    {
-        [result setValue:[self pageSize] forKey:@"pageSize"];
-    }
-    if([self instanceId])
-    {
-        [result setValue:[self instanceId] forKey:@"instanceId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.pageNumber = [dictionary objectForKey:@"pageNumber"];
-    self.pageSize = [dictionary objectForKey:@"pageSize"];
-    self.instanceId = [dictionary objectForKey:@"instanceId"];
     return self;
 } 
 
@@ -8231,69 +9162,6 @@ RdsAlterTableWithOnlineDDLResult* result = [[RdsAlterTableWithOnlineDDLResult al
 }
 
 @end
-@implementation RdsAlterTableWithOnlineDDLRequest
--(id) initWithRegion:(NSString *)regionId
-database:(NSString*)database
-table:(NSString*)table
-command:(NSString*)command
-instanceId:(NSString*)instanceId { 
-    self.regionId = regionId;
-    self.database = database;
-    self.table = table;
-    self.command = command;
-    self.instanceId = instanceId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-database:(NSString*)database
-table:(NSString*)table
-command:(NSString*)command
-instanceId:(NSString*)instanceId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.database = database;
-    self.table = table;
-    self.command = command;
-    self.instanceId = instanceId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self database])
-    {
-        [result setValue:[self database] forKey:@"database"];
-    }
-    if([self table])
-    {
-        [result setValue:[self table] forKey:@"table"];
-    }
-    if([self command])
-    {
-        [result setValue:[self command] forKey:@"command"];
-    }
-    if([self instanceId])
-    {
-        [result setValue:[self instanceId] forKey:@"instanceId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.database = [dictionary objectForKey:@"database"];
-    self.table = [dictionary objectForKey:@"table"];
-    self.command = [dictionary objectForKey:@"command"];
-    self.instanceId = [dictionary objectForKey:@"instanceId"];
-    return self;
-} 
-
-@end
 @implementation RdsDescribeIndexPerformanceResult
 -(id) initWithMissingIndexResult:(NSArray<MissingIndexResult*>*) missingIndexResult
         indexPerformanceResult:(NSArray<IndexPerformanceResult*>*)indexPerformanceResult
@@ -8311,8 +9179,8 @@ instanceId:(NSString*)instanceId {
     NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
     if([self missingIndexResult])
     {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self missingIndexResult] count]; i++) {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self missingIndexResult] count]; i++) {
             MissingIndexResult* item = [[self missingIndexResult] objectAtIndex:i];
             [arrayDic addObject:[item dictionary]];
         }
@@ -8320,8 +9188,8 @@ instanceId:(NSString*)instanceId {
     }
     if([self indexPerformanceResult])
     {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self indexPerformanceResult] count]; i++) {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self indexPerformanceResult] count]; i++) {
             IndexPerformanceResult* item = [[self indexPerformanceResult] objectAtIndex:i];
             [arrayDic addObject:[item dictionary]];
         }
@@ -8349,10 +9217,10 @@ instanceId:(NSString*)instanceId {
         NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
         for(int i = 0 ; i< [missingIndexResultArray count];i++)
         {
-            MissingIndexResult* item = [[MissingIndexResult alloc]initWithDic:[missingIndexResultArray objectAtIndex:i]];
+        MissingIndexResult* item = [[MissingIndexResult alloc]initWithDic:[missingIndexResultArray objectAtIndex:i]];
             if(item)
             {
-                [propertyArray addObject:item];
+            [propertyArray addObject:item];
             }
         }
         self.missingIndexResult = propertyArray;
@@ -8363,10 +9231,10 @@ instanceId:(NSString*)instanceId {
         NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
         for(int i = 0 ; i< [indexPerformanceResultArray count];i++)
         {
-            IndexPerformanceResult* item = [[IndexPerformanceResult alloc]initWithDic:[indexPerformanceResultArray objectAtIndex:i]];
+        IndexPerformanceResult* item = [[IndexPerformanceResult alloc]initWithDic:[indexPerformanceResultArray objectAtIndex:i]];
             if(item)
             {
-                [propertyArray addObject:item];
+            [propertyArray addObject:item];
             }
         }
         self.indexPerformanceResult = propertyArray;
@@ -8433,8 +9301,8 @@ RdsDescribeIndexPerformanceResult* result = [[RdsDescribeIndexPerformanceResult 
     NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
     if([self slowLogsAttributes])
     {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self slowLogsAttributes] count]; i++) {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self slowLogsAttributes] count]; i++) {
             SlowLogAttributes* item = [[self slowLogsAttributes] objectAtIndex:i];
             [arrayDic addObject:[item dictionary]];
         }
@@ -8454,10 +9322,10 @@ RdsDescribeIndexPerformanceResult* result = [[RdsDescribeIndexPerformanceResult 
         NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
         for(int i = 0 ; i< [slowLogsAttributesArray count];i++)
         {
-            SlowLogAttributes* item = [[SlowLogAttributes alloc]initWithDic:[slowLogsAttributesArray objectAtIndex:i]];
+        SlowLogAttributes* item = [[SlowLogAttributes alloc]initWithDic:[slowLogsAttributesArray objectAtIndex:i]];
             if(item)
             {
-                [propertyArray addObject:item];
+            [propertyArray addObject:item];
             }
         }
         self.slowLogsAttributes = propertyArray;
@@ -8482,8 +9350,8 @@ RdsDescribeIndexPerformanceResult* result = [[RdsDescribeIndexPerformanceResult 
     NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
     if([self queryPerformanceResult])
     {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self queryPerformanceResult] count]; i++) {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self queryPerformanceResult] count]; i++) {
             QueryPerformanceResult* item = [[self queryPerformanceResult] objectAtIndex:i];
             [arrayDic addObject:[item dictionary]];
         }
@@ -8511,10 +9379,10 @@ RdsDescribeIndexPerformanceResult* result = [[RdsDescribeIndexPerformanceResult 
         NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
         for(int i = 0 ; i< [queryPerformanceResultArray count];i++)
         {
-            QueryPerformanceResult* item = [[QueryPerformanceResult alloc]initWithDic:[queryPerformanceResultArray objectAtIndex:i]];
+        QueryPerformanceResult* item = [[QueryPerformanceResult alloc]initWithDic:[queryPerformanceResultArray objectAtIndex:i]];
             if(item)
             {
-                [propertyArray addObject:item];
+            [propertyArray addObject:item];
             }
         }
         self.queryPerformanceResult = propertyArray;
@@ -8629,8 +9497,8 @@ RdsDescribeSlowLogAttributesResult* result = [[RdsDescribeSlowLogAttributesResul
     NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
     if([self activeQueryPerformanceResult])
     {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self activeQueryPerformanceResult] count]; i++) {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self activeQueryPerformanceResult] count]; i++) {
             ActiveQueryPerformanceResult* item = [[self activeQueryPerformanceResult] objectAtIndex:i];
             [arrayDic addObject:[item dictionary]];
         }
@@ -8658,10 +9526,10 @@ RdsDescribeSlowLogAttributesResult* result = [[RdsDescribeSlowLogAttributesResul
         NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
         for(int i = 0 ; i< [activeQueryPerformanceResultArray count];i++)
         {
-            ActiveQueryPerformanceResult* item = [[ActiveQueryPerformanceResult alloc]initWithDic:[activeQueryPerformanceResultArray objectAtIndex:i]];
+        ActiveQueryPerformanceResult* item = [[ActiveQueryPerformanceResult alloc]initWithDic:[activeQueryPerformanceResultArray objectAtIndex:i]];
             if(item)
             {
-                [propertyArray addObject:item];
+            [propertyArray addObject:item];
             }
         }
         self.activeQueryPerformanceResult = propertyArray;
@@ -8717,159 +9585,6 @@ RdsDescribeActiveQueryPerformanceResult* result = [[RdsDescribeActiveQueryPerfor
 }
 
 @end
-@implementation RdsDescribeSlowLogAttributesRequest
--(id) initWithRegion:(NSString *)regionId
-startTime:(NSString*)startTime
-endTime:(NSString*)endTime
-dbName:(NSString*)dbName
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-instanceId:(NSString*)instanceId { 
-    self.regionId = regionId;
-    self.startTime = startTime;
-    self.endTime = endTime;
-    self.dbName = dbName;
-    self.pageNumber = pageNumber;
-    self.pageSize = pageSize;
-    self.instanceId = instanceId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-startTime:(NSString*)startTime
-endTime:(NSString*)endTime
-dbName:(NSString*)dbName
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-instanceId:(NSString*)instanceId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.startTime = startTime;
-    self.endTime = endTime;
-    self.dbName = dbName;
-    self.pageNumber = pageNumber;
-    self.pageSize = pageSize;
-    self.instanceId = instanceId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self startTime])
-    {
-        [result setValue:[self startTime] forKey:@"startTime"];
-    }
-    if([self endTime])
-    {
-        [result setValue:[self endTime] forKey:@"endTime"];
-    }
-    if([self dbName])
-    {
-        [result setValue:[self dbName] forKey:@"dbName"];
-    }
-    if([self pageNumber])
-    {
-        [result setValue:[self pageNumber] forKey:@"pageNumber"];
-    }
-    if([self pageSize])
-    {
-        [result setValue:[self pageSize] forKey:@"pageSize"];
-    }
-    if([self instanceId])
-    {
-        [result setValue:[self instanceId] forKey:@"instanceId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.startTime = [dictionary objectForKey:@"startTime"];
-    self.endTime = [dictionary objectForKey:@"endTime"];
-    self.dbName = [dictionary objectForKey:@"dbName"];
-    self.pageNumber = [dictionary objectForKey:@"pageNumber"];
-    self.pageSize = [dictionary objectForKey:@"pageSize"];
-    self.instanceId = [dictionary objectForKey:@"instanceId"];
-    return self;
-} 
-
-@end
-@implementation RdsDescribeActiveQueryPerformanceRequest
--(id) initWithRegion:(NSString *)regionId
-db:(NSString*)db
-threshold:(NSNumber*)threshold
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-instanceId:(NSString*)instanceId { 
-    self.regionId = regionId;
-    self.db = db;
-    self.threshold = threshold;
-    self.pageNumber = pageNumber;
-    self.pageSize = pageSize;
-    self.instanceId = instanceId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-db:(NSString*)db
-threshold:(NSNumber*)threshold
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-instanceId:(NSString*)instanceId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.db = db;
-    self.threshold = threshold;
-    self.pageNumber = pageNumber;
-    self.pageSize = pageSize;
-    self.instanceId = instanceId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self db])
-    {
-        [result setValue:[self db] forKey:@"db"];
-    }
-    if([self threshold])
-    {
-        [result setValue:[self threshold] forKey:@"threshold"];
-    }
-    if([self pageNumber])
-    {
-        [result setValue:[self pageNumber] forKey:@"pageNumber"];
-    }
-    if([self pageSize])
-    {
-        [result setValue:[self pageSize] forKey:@"pageSize"];
-    }
-    if([self instanceId])
-    {
-        [result setValue:[self instanceId] forKey:@"instanceId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.db = [dictionary objectForKey:@"db"];
-    self.threshold = [dictionary objectForKey:@"threshold"];
-    self.pageNumber = [dictionary objectForKey:@"pageNumber"];
-    self.pageSize = [dictionary objectForKey:@"pageSize"];
-    self.instanceId = [dictionary objectForKey:@"instanceId"];
-    return self;
-} 
-
-@end
 @implementation RdsDescribeSlowLogsResult
 -(id) initWithSlowLogs:(NSArray<SlowLogDigest*>*) slowLogs
         totalCount:(NSNumber*)totalCount { 
@@ -8881,8 +9596,8 @@ instanceId:(NSString*)instanceId {
     NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
     if([self slowLogs])
     {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self slowLogs] count]; i++) {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self slowLogs] count]; i++) {
             SlowLogDigest* item = [[self slowLogs] objectAtIndex:i];
             [arrayDic addObject:[item dictionary]];
         }
@@ -8902,240 +9617,15 @@ instanceId:(NSString*)instanceId {
         NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
         for(int i = 0 ; i< [slowLogsArray count];i++)
         {
-            SlowLogDigest* item = [[SlowLogDigest alloc]initWithDic:[slowLogsArray objectAtIndex:i]];
+        SlowLogDigest* item = [[SlowLogDigest alloc]initWithDic:[slowLogsArray objectAtIndex:i]];
             if(item)
             {
-                [propertyArray addObject:item];
+            [propertyArray addObject:item];
             }
         }
         self.slowLogs = propertyArray;
     }
     self.totalCount = [dictionary objectForKey:@"totalCount"];
-    return self;
-} 
-
-@end
-@implementation RdsDescribeIndexPerformanceRequest
--(id) initWithRegion:(NSString *)regionId
-queryType:(NSString*)queryType
-db:(NSString*)db
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-instanceId:(NSString*)instanceId { 
-    self.regionId = regionId;
-    self.queryType = queryType;
-    self.db = db;
-    self.pageNumber = pageNumber;
-    self.pageSize = pageSize;
-    self.instanceId = instanceId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-queryType:(NSString*)queryType
-db:(NSString*)db
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-instanceId:(NSString*)instanceId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.queryType = queryType;
-    self.db = db;
-    self.pageNumber = pageNumber;
-    self.pageSize = pageSize;
-    self.instanceId = instanceId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self queryType])
-    {
-        [result setValue:[self queryType] forKey:@"queryType"];
-    }
-    if([self db])
-    {
-        [result setValue:[self db] forKey:@"db"];
-    }
-    if([self pageNumber])
-    {
-        [result setValue:[self pageNumber] forKey:@"pageNumber"];
-    }
-    if([self pageSize])
-    {
-        [result setValue:[self pageSize] forKey:@"pageSize"];
-    }
-    if([self instanceId])
-    {
-        [result setValue:[self instanceId] forKey:@"instanceId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.queryType = [dictionary objectForKey:@"queryType"];
-    self.db = [dictionary objectForKey:@"db"];
-    self.pageNumber = [dictionary objectForKey:@"pageNumber"];
-    self.pageSize = [dictionary objectForKey:@"pageSize"];
-    self.instanceId = [dictionary objectForKey:@"instanceId"];
-    return self;
-} 
-
-@end
-@implementation RdsDescribeSlowLogsRequest
--(id) initWithRegion:(NSString *)regionId
-startTime:(NSString*)startTime
-endTime:(NSString*)endTime
-dbName:(NSString*)dbName
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-instanceId:(NSString*)instanceId { 
-    self.regionId = regionId;
-    self.startTime = startTime;
-    self.endTime = endTime;
-    self.dbName = dbName;
-    self.pageNumber = pageNumber;
-    self.pageSize = pageSize;
-    self.instanceId = instanceId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-startTime:(NSString*)startTime
-endTime:(NSString*)endTime
-dbName:(NSString*)dbName
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-instanceId:(NSString*)instanceId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.startTime = startTime;
-    self.endTime = endTime;
-    self.dbName = dbName;
-    self.pageNumber = pageNumber;
-    self.pageSize = pageSize;
-    self.instanceId = instanceId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self startTime])
-    {
-        [result setValue:[self startTime] forKey:@"startTime"];
-    }
-    if([self endTime])
-    {
-        [result setValue:[self endTime] forKey:@"endTime"];
-    }
-    if([self dbName])
-    {
-        [result setValue:[self dbName] forKey:@"dbName"];
-    }
-    if([self pageNumber])
-    {
-        [result setValue:[self pageNumber] forKey:@"pageNumber"];
-    }
-    if([self pageSize])
-    {
-        [result setValue:[self pageSize] forKey:@"pageSize"];
-    }
-    if([self instanceId])
-    {
-        [result setValue:[self instanceId] forKey:@"instanceId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.startTime = [dictionary objectForKey:@"startTime"];
-    self.endTime = [dictionary objectForKey:@"endTime"];
-    self.dbName = [dictionary objectForKey:@"dbName"];
-    self.pageNumber = [dictionary objectForKey:@"pageNumber"];
-    self.pageSize = [dictionary objectForKey:@"pageSize"];
-    self.instanceId = [dictionary objectForKey:@"instanceId"];
-    return self;
-} 
-
-@end
-@implementation RdsDescribeQueryPerformanceRequest
--(id) initWithRegion:(NSString *)regionId
-queryType:(NSString*)queryType
-threshold:(NSNumber*)threshold
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-instanceId:(NSString*)instanceId { 
-    self.regionId = regionId;
-    self.queryType = queryType;
-    self.threshold = threshold;
-    self.pageNumber = pageNumber;
-    self.pageSize = pageSize;
-    self.instanceId = instanceId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-queryType:(NSString*)queryType
-threshold:(NSNumber*)threshold
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-instanceId:(NSString*)instanceId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.queryType = queryType;
-    self.threshold = threshold;
-    self.pageNumber = pageNumber;
-    self.pageSize = pageSize;
-    self.instanceId = instanceId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self queryType])
-    {
-        [result setValue:[self queryType] forKey:@"queryType"];
-    }
-    if([self threshold])
-    {
-        [result setValue:[self threshold] forKey:@"threshold"];
-    }
-    if([self pageNumber])
-    {
-        [result setValue:[self pageNumber] forKey:@"pageNumber"];
-    }
-    if([self pageSize])
-    {
-        [result setValue:[self pageSize] forKey:@"pageSize"];
-    }
-    if([self instanceId])
-    {
-        [result setValue:[self instanceId] forKey:@"instanceId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.queryType = [dictionary objectForKey:@"queryType"];
-    self.threshold = [dictionary objectForKey:@"threshold"];
-    self.pageNumber = [dictionary objectForKey:@"pageNumber"];
-    self.pageSize = [dictionary objectForKey:@"pageSize"];
-    self.instanceId = [dictionary objectForKey:@"instanceId"];
     return self;
 } 
 
@@ -9184,42 +9674,6 @@ RdsDescribeSlowLogsResult* result = [[RdsDescribeSlowLogsResult alloc]initWithDi
 }
 
 @end
-@implementation RdsDescribeParametersRequest
--(id) initWithRegion:(NSString *)regionId
-instanceId:(NSString*)instanceId { 
-    self.regionId = regionId;
-    self.instanceId = instanceId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-instanceId:(NSString*)instanceId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.instanceId = instanceId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self instanceId])
-    {
-        [result setValue:[self instanceId] forKey:@"instanceId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.instanceId = [dictionary objectForKey:@"instanceId"];
-    return self;
-} 
-
-@end
 @implementation RdsDescribeParametersResult
 -(id) initWithParameters:(NSArray<DBInstanceParameter*>*) parameters { 
     self.parameters = parameters;               
@@ -9229,8 +9683,8 @@ instanceId:(NSString*)instanceId {
     NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
     if([self parameters])
     {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self parameters] count]; i++) {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self parameters] count]; i++) {
             DBInstanceParameter* item = [[self parameters] objectAtIndex:i];
             [arrayDic addObject:[item dictionary]];
         }
@@ -9246,10 +9700,10 @@ instanceId:(NSString*)instanceId {
         NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
         for(int i = 0 ; i< [parametersArray count];i++)
         {
-            DBInstanceParameter* item = [[DBInstanceParameter alloc]initWithDic:[parametersArray objectAtIndex:i]];
+        DBInstanceParameter* item = [[DBInstanceParameter alloc]initWithDic:[parametersArray objectAtIndex:i]];
             if(item)
             {
-                [propertyArray addObject:item];
+            [propertyArray addObject:item];
             }
         }
         self.parameters = propertyArray;
@@ -9342,8 +9796,8 @@ instanceId:(NSString*)instanceId {
     }
     if([self parameters])
     {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self parameters] count]; i++) {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self parameters] count]; i++) {
             Parameter* item = [[self parameters] objectAtIndex:i];
             [arrayDic addObject:[item dictionary]];
         }
@@ -9363,10 +9817,10 @@ instanceId:(NSString*)instanceId {
         NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
         for(int i = 0 ; i< [parametersArray count];i++)
         {
-            Parameter* item = [[Parameter alloc]initWithDic:[parametersArray objectAtIndex:i]];
+        Parameter* item = [[Parameter alloc]initWithDic:[parametersArray objectAtIndex:i]];
             if(item)
             {
-                [propertyArray addObject:item];
+            [propertyArray addObject:item];
             }
         }
         self.parameters = propertyArray;
@@ -9418,42 +9872,6 @@ RdsModifyParametersResult* result = [[RdsModifyParametersResult alloc]initWithDi
     self.requestId = requestId;
     return self;
 }
-
-@end
-@implementation RdsDescribeParameterGroupParametersRequest
--(id) initWithRegion:(NSString *)regionId
-parameterGroupId:(NSString*)parameterGroupId { 
-    self.regionId = regionId;
-    self.parameterGroupId = parameterGroupId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-parameterGroupId:(NSString*)parameterGroupId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.parameterGroupId = parameterGroupId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self parameterGroupId])
-    {
-        [result setValue:[self parameterGroupId] forKey:@"parameterGroupId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.parameterGroupId = [dictionary objectForKey:@"parameterGroupId"];
-    return self;
-} 
 
 @end
 @implementation RdsModifyParameterGroupAttributeResult
@@ -9522,8 +9940,8 @@ RdsModifyParameterGroupAttributeResult* result = [[RdsModifyParameterGroupAttrib
     NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
     if([self records])
     {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self records] count]; i++) {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self records] count]; i++) {
             ParameterModifyRecords* item = [[self records] objectAtIndex:i];
             [arrayDic addObject:[item dictionary]];
         }
@@ -9543,10 +9961,10 @@ RdsModifyParameterGroupAttributeResult* result = [[RdsModifyParameterGroupAttrib
         NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
         for(int i = 0 ; i< [recordsArray count];i++)
         {
-            ParameterModifyRecords* item = [[ParameterModifyRecords alloc]initWithDic:[recordsArray objectAtIndex:i]];
+        ParameterModifyRecords* item = [[ParameterModifyRecords alloc]initWithDic:[recordsArray objectAtIndex:i]];
             if(item)
             {
-                [propertyArray addObject:item];
+            [propertyArray addObject:item];
             }
         }
         self.records = propertyArray;
@@ -9600,60 +10018,6 @@ RdsDescribeParameterModifyRecordsResult* result = [[RdsDescribeParameterModifyRe
 }
 
 @end
-@implementation RdsModifyParameterGroupAttributeRequest
--(id) initWithRegion:(NSString *)regionId
-parameterGroupName:(NSString*)parameterGroupName
-descriptionValue:(NSString*)descriptionValue
-parameterGroupId:(NSString*)parameterGroupId { 
-    self.regionId = regionId;
-    self.parameterGroupName = parameterGroupName;
-    self.descriptionValue = descriptionValue;
-    self.parameterGroupId = parameterGroupId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-parameterGroupName:(NSString*)parameterGroupName
-descriptionValue:(NSString*)descriptionValue
-parameterGroupId:(NSString*)parameterGroupId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.parameterGroupName = parameterGroupName;
-    self.descriptionValue = descriptionValue;
-    self.parameterGroupId = parameterGroupId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self parameterGroupName])
-    {
-        [result setValue:[self parameterGroupName] forKey:@"parameterGroupName"];
-    }
-    if([self descriptionValue])
-    {
-        [result setValue:[self descriptionValue] forKey:@"description"];
-    }
-    if([self parameterGroupId])
-    {
-        [result setValue:[self parameterGroupId] forKey:@"parameterGroupId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.parameterGroupName = [dictionary objectForKey:@"parameterGroupName"];
-    self.descriptionValue = [dictionary objectForKey:@"description"];
-    self.parameterGroupId = [dictionary objectForKey:@"parameterGroupId"];
-    return self;
-} 
-
-@end
 @implementation RdsDescribeParameterGroupParametersResult
 -(id) initWithParameters:(NSArray<ParameterGroupParameter*>*) parameters { 
     self.parameters = parameters;               
@@ -9663,8 +10027,8 @@ parameterGroupId:(NSString*)parameterGroupId {
     NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
     if([self parameters])
     {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self parameters] count]; i++) {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self parameters] count]; i++) {
             ParameterGroupParameter* item = [[self parameters] objectAtIndex:i];
             [arrayDic addObject:[item dictionary]];
         }
@@ -9680,10 +10044,10 @@ parameterGroupId:(NSString*)parameterGroupId {
         NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
         for(int i = 0 ; i< [parametersArray count];i++)
         {
-            ParameterGroupParameter* item = [[ParameterGroupParameter alloc]initWithDic:[parametersArray objectAtIndex:i]];
+        ParameterGroupParameter* item = [[ParameterGroupParameter alloc]initWithDic:[parametersArray objectAtIndex:i]];
             if(item)
             {
-                [propertyArray addObject:item];
+            [propertyArray addObject:item];
             }
         }
         self.parameters = propertyArray;
@@ -9747,8 +10111,8 @@ RdsDescribeParameterGroupParametersResult* result = [[RdsDescribeParameterGroupP
     NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
     if([self instances])
     {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self instances] count]; i++) {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self instances] count]; i++) {
             AttachedDBInstance* item = [[self instances] objectAtIndex:i];
             [arrayDic addObject:[item dictionary]];
         }
@@ -9768,10 +10132,10 @@ RdsDescribeParameterGroupParametersResult* result = [[RdsDescribeParameterGroupP
         NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
         for(int i = 0 ; i< [instancesArray count];i++)
         {
-            AttachedDBInstance* item = [[AttachedDBInstance alloc]initWithDic:[instancesArray objectAtIndex:i]];
+        AttachedDBInstance* item = [[AttachedDBInstance alloc]initWithDic:[instancesArray objectAtIndex:i]];
             if(item)
             {
-                [propertyArray addObject:item];
+            [propertyArray addObject:item];
             }
         }
         self.instances = propertyArray;
@@ -9825,197 +10189,6 @@ RdsDescribeParameterGroupAttachedInstancesResult* result = [[RdsDescribeParamete
 }
 
 @end
-@implementation RdsDescribeParameterGroupAttachedInstancesRequest
--(id) initWithRegion:(NSString *)regionId
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-parameterGroupId:(NSString*)parameterGroupId { 
-    self.regionId = regionId;
-    self.pageNumber = pageNumber;
-    self.pageSize = pageSize;
-    self.parameterGroupId = parameterGroupId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-parameterGroupId:(NSString*)parameterGroupId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.pageNumber = pageNumber;
-    self.pageSize = pageSize;
-    self.parameterGroupId = parameterGroupId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self pageNumber])
-    {
-        [result setValue:[self pageNumber] forKey:@"pageNumber"];
-    }
-    if([self pageSize])
-    {
-        [result setValue:[self pageSize] forKey:@"pageSize"];
-    }
-    if([self parameterGroupId])
-    {
-        [result setValue:[self parameterGroupId] forKey:@"parameterGroupId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.pageNumber = [dictionary objectForKey:@"pageNumber"];
-    self.pageSize = [dictionary objectForKey:@"pageSize"];
-    self.parameterGroupId = [dictionary objectForKey:@"parameterGroupId"];
-    return self;
-} 
-
-@end
-@implementation RdsCopyParameterGroupRequest
--(id) initWithRegion:(NSString *)regionId
-parameterGroupId:(NSString*)parameterGroupId
-parameterGroupName:(NSString*)parameterGroupName
-descriptionValue:(NSString*)descriptionValue { 
-    self.regionId = regionId;
-    self.parameterGroupId = parameterGroupId;
-    self.parameterGroupName = parameterGroupName;
-    self.descriptionValue = descriptionValue;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-parameterGroupId:(NSString*)parameterGroupId
-parameterGroupName:(NSString*)parameterGroupName
-descriptionValue:(NSString*)descriptionValue { 
-    self.regionId = regionId;
-    self.version = version;
-    self.parameterGroupId = parameterGroupId;
-    self.parameterGroupName = parameterGroupName;
-    self.descriptionValue = descriptionValue;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self parameterGroupId])
-    {
-        [result setValue:[self parameterGroupId] forKey:@"parameterGroupId"];
-    }
-    if([self parameterGroupName])
-    {
-        [result setValue:[self parameterGroupName] forKey:@"parameterGroupName"];
-    }
-    if([self descriptionValue])
-    {
-        [result setValue:[self descriptionValue] forKey:@"description"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.parameterGroupId = [dictionary objectForKey:@"parameterGroupId"];
-    self.parameterGroupName = [dictionary objectForKey:@"parameterGroupName"];
-    self.descriptionValue = [dictionary objectForKey:@"description"];
-    return self;
-} 
-
-@end
-@implementation RdsCreateParameterGroupRequest
--(id) initWithRegion:(NSString *)regionId
-engine:(NSString*)engine
-engineVersion:(NSString*)engineVersion
-parameterGroupName:(NSString*)parameterGroupName
-descriptionValue:(NSString*)descriptionValue { 
-    self.regionId = regionId;
-    self.engine = engine;
-    self.engineVersion = engineVersion;
-    self.parameterGroupName = parameterGroupName;
-    self.descriptionValue = descriptionValue;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-engine:(NSString*)engine
-engineVersion:(NSString*)engineVersion
-parameterGroupName:(NSString*)parameterGroupName
-descriptionValue:(NSString*)descriptionValue { 
-    self.regionId = regionId;
-    self.version = version;
-    self.engine = engine;
-    self.engineVersion = engineVersion;
-    self.parameterGroupName = parameterGroupName;
-    self.descriptionValue = descriptionValue;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self engine])
-    {
-        [result setValue:[self engine] forKey:@"engine"];
-    }
-    if([self engineVersion])
-    {
-        [result setValue:[self engineVersion] forKey:@"engineVersion"];
-    }
-    if([self parameterGroupName])
-    {
-        [result setValue:[self parameterGroupName] forKey:@"parameterGroupName"];
-    }
-    if([self descriptionValue])
-    {
-        [result setValue:[self descriptionValue] forKey:@"description"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.engine = [dictionary objectForKey:@"engine"];
-    self.engineVersion = [dictionary objectForKey:@"engineVersion"];
-    self.parameterGroupName = [dictionary objectForKey:@"parameterGroupName"];
-    self.descriptionValue = [dictionary objectForKey:@"description"];
-    return self;
-} 
-
-@end
-@implementation RdsCopyParameterGroupResult
--(id) initWithParameterGroupId:(NSString*) parameterGroupId { 
-    self.parameterGroupId = parameterGroupId;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self parameterGroupId])
-    {
-        [result setValue:[self parameterGroupId] forKey:@"parameterGroupId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.parameterGroupId = [dictionary objectForKey:@"parameterGroupId"];
-    return self;
-} 
-
-@end
   
 @implementation RdsCopyParameterGroupResponse
 -(NSMutableDictionary*) dictionary
@@ -10058,26 +10231,6 @@ RdsCopyParameterGroupResult* result = [[RdsCopyParameterGroupResult alloc]initWi
     self.requestId = requestId;
     return self;
 }
-
-@end
-@implementation RdsCreateParameterGroupResult
--(id) initWithParameterGroupId:(NSString*) parameterGroupId { 
-    self.parameterGroupId = parameterGroupId;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self parameterGroupId])
-    {
-        [result setValue:[self parameterGroupId] forKey:@"parameterGroupId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.parameterGroupId = [dictionary objectForKey:@"parameterGroupId"];
-    return self;
-} 
 
 @end
   
@@ -10179,114 +10332,6 @@ RdsDeleteParameterGroupResult* result = [[RdsDeleteParameterGroupResult alloc]in
 }
 
 @end
-@implementation RdsDeleteParameterGroupRequest
--(id) initWithRegion:(NSString *)regionId
-parameterGroupId:(NSString*)parameterGroupId { 
-    self.regionId = regionId;
-    self.parameterGroupId = parameterGroupId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-parameterGroupId:(NSString*)parameterGroupId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.parameterGroupId = parameterGroupId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self parameterGroupId])
-    {
-        [result setValue:[self parameterGroupId] forKey:@"parameterGroupId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.parameterGroupId = [dictionary objectForKey:@"parameterGroupId"];
-    return self;
-} 
-
-@end
-@implementation RdsDescribeParameterModifyRecordsRequest
--(id) initWithRegion:(NSString *)regionId
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-startTime:(NSString*)startTime
-endTime:(NSString*)endTime
-parameterGroupId:(NSString*)parameterGroupId { 
-    self.regionId = regionId;
-    self.pageNumber = pageNumber;
-    self.pageSize = pageSize;
-    self.startTime = startTime;
-    self.endTime = endTime;
-    self.parameterGroupId = parameterGroupId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-startTime:(NSString*)startTime
-endTime:(NSString*)endTime
-parameterGroupId:(NSString*)parameterGroupId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.pageNumber = pageNumber;
-    self.pageSize = pageSize;
-    self.startTime = startTime;
-    self.endTime = endTime;
-    self.parameterGroupId = parameterGroupId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self pageNumber])
-    {
-        [result setValue:[self pageNumber] forKey:@"pageNumber"];
-    }
-    if([self pageSize])
-    {
-        [result setValue:[self pageSize] forKey:@"pageSize"];
-    }
-    if([self startTime])
-    {
-        [result setValue:[self startTime] forKey:@"startTime"];
-    }
-    if([self endTime])
-    {
-        [result setValue:[self endTime] forKey:@"endTime"];
-    }
-    if([self parameterGroupId])
-    {
-        [result setValue:[self parameterGroupId] forKey:@"parameterGroupId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.pageNumber = [dictionary objectForKey:@"pageNumber"];
-    self.pageSize = [dictionary objectForKey:@"pageSize"];
-    self.startTime = [dictionary objectForKey:@"startTime"];
-    self.endTime = [dictionary objectForKey:@"endTime"];
-    self.parameterGroupId = [dictionary objectForKey:@"parameterGroupId"];
-    return self;
-} 
-
-@end
 @implementation RdsDescribeParameterGroupsResult
 -(id) initWithParameterGroups:(NSArray<ParameterGroup*>*) parameterGroups
         totalCount:(NSNumber*)totalCount { 
@@ -10298,8 +10343,8 @@ parameterGroupId:(NSString*)parameterGroupId {
     NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
     if([self parameterGroups])
     {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self parameterGroups] count]; i++) {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self parameterGroups] count]; i++) {
             ParameterGroup* item = [[self parameterGroups] objectAtIndex:i];
             [arrayDic addObject:[item dictionary]];
         }
@@ -10319,10 +10364,10 @@ parameterGroupId:(NSString*)parameterGroupId {
         NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
         for(int i = 0 ; i< [parameterGroupsArray count];i++)
         {
-            ParameterGroup* item = [[ParameterGroup alloc]initWithDic:[parameterGroupsArray objectAtIndex:i]];
+        ParameterGroup* item = [[ParameterGroup alloc]initWithDic:[parameterGroupsArray objectAtIndex:i]];
             if(item)
             {
-                [propertyArray addObject:item];
+            [propertyArray addObject:item];
             }
         }
         self.parameterGroups = propertyArray;
@@ -10405,8 +10450,8 @@ parameterGroupId:(NSString*)parameterGroupId {
     }
     if([self parameters])
     {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self parameters] count]; i++) {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self parameters] count]; i++) {
             Parameter* item = [[self parameters] objectAtIndex:i];
             [arrayDic addObject:[item dictionary]];
         }
@@ -10426,60 +10471,15 @@ parameterGroupId:(NSString*)parameterGroupId {
         NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
         for(int i = 0 ; i< [parametersArray count];i++)
         {
-            Parameter* item = [[Parameter alloc]initWithDic:[parametersArray objectAtIndex:i]];
+        Parameter* item = [[Parameter alloc]initWithDic:[parametersArray objectAtIndex:i]];
             if(item)
             {
-                [propertyArray addObject:item];
+            [propertyArray addObject:item];
             }
         }
         self.parameters = propertyArray;
     }
     self.parameterGroupId = [dictionary objectForKey:@"parameterGroupId"];
-    return self;
-} 
-
-@end
-@implementation RdsDescribeParameterGroupsRequest
--(id) initWithRegion:(NSString *)regionId
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize { 
-    self.regionId = regionId;
-    self.pageNumber = pageNumber;
-    self.pageSize = pageSize;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize { 
-    self.regionId = regionId;
-    self.version = version;
-    self.pageNumber = pageNumber;
-    self.pageSize = pageSize;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self pageNumber])
-    {
-        [result setValue:[self pageNumber] forKey:@"pageNumber"];
-    }
-    if([self pageSize])
-    {
-        [result setValue:[self pageSize] forKey:@"pageSize"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.pageNumber = [dictionary objectForKey:@"pageNumber"];
-    self.pageSize = [dictionary objectForKey:@"pageSize"];
     return self;
 } 
 

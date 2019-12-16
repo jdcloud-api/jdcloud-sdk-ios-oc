@@ -85,37 +85,6 @@ offset:(NSNumber*)offset;
 
 @end
 
-@interface IasAppsResult : NSObject
-/// Pagination
- @property (strong,nonatomic,nonnull)  Pagination*  pagination;
-/// Result
- @property (strong,nonatomic,nonnull)  NSArray<AppQueryResultItem*>*  result;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithPagination:(Pagination*) pagination
-
-    result:(NSArray<AppQueryResultItem*>*)result;
-@end
-
-@interface IasAppsResponse : NSObject
-
-@property NSString* requestId;
-
-@property ServiceError* error;
-
-@property IasAppsResult* result;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
-
--(id) initWithRequestId:(NSString*) requestId
-        error:(ServiceError*) error
-        result:(IasAppsResult*) result;
-@end
-
 @interface IasAppDetailResult : NSObject
 /// 应用
  @property (strong,nonatomic,nonnull)  NSString*  clientId;
@@ -218,37 +187,6 @@ offset:(NSNumber*)offset;
     state:(NSString*)state;
 @end
 
-@interface IasStateRequest:JDCloudRequest
-
-@end
-
-@interface IasStateResult : NSObject
-/// States
- @property (strong,nonatomic,nonnull)  NSArray<State*>*  states;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithStates:(NSArray<State*>*) states;
-@end
-
-@interface IasStateResponse : NSObject
-
-@property NSString* requestId;
-
-@property ServiceError* error;
-
-@property IasStateResult* result;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
-
--(id) initWithRequestId:(NSString*) requestId
-        error:(ServiceError*) error
-        result:(IasStateResult*) result;
-@end
-
 @interface IasAppDetailRequest:JDCloudRequest
 
 /// ClientId
@@ -260,23 +198,6 @@ clientId:(NSString*)clientId;
              version:(NSString *)version
 clientId:(NSString*)clientId;
 
-@end
-
-@interface IasAppDetailResponse : NSObject
-
-@property NSString* requestId;
-
-@property ServiceError* error;
-
-@property IasAppDetailResult* result;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
-
--(id) initWithRequestId:(NSString*) requestId
-        error:(ServiceError*) error
-        result:(IasAppDetailResult*) result;
 @end
 
 @interface IasCreateAppRequest:JDCloudRequest
@@ -543,138 +464,6 @@ clientId:(NSString*)clientId;
     userType:(NSString*)userType;
 @end
 
-@interface IasCreateAppResult : NSObject
-/// 应用ID，由京东云分配的16位数字ID
- @property (strong,nonatomic,nonnull)  NSString*  clientId;
-/// clientName参数值
- @property (strong,nonatomic,nonnull)  NSString*  clientName;
-/// tokenEndpointAuthMethod参数值
- @property (strong,nonatomic,nonnull)  NSString*  tokenEndpointAuthMethod;
-/// grantTypes参数值
- @property (strong,nonatomic,nonnull)  NSString*  grantTypes;
-/// 当grantTypes为authorization_code时，responseTypes为code；当grantTypes为implicit时，responseTypes为token
- @property (strong,nonatomic,nonnull)  NSString*  responseTypes;
-/// redirectUris参数值
- @property (strong,nonatomic,nonnull)  NSString*  redirectUris;
-/// clientUri参数值
- @property (strong,nonatomic,nonnull)  NSString*  clientUri;
-/// logoUri参数值
- @property (strong,nonatomic,nonnull)  NSString*  logoUri;
-/// tosUri参数值
- @property (strong,nonatomic,nonnull)  NSString*  tosUri;
-/// policyUri参数值
- @property (strong,nonatomic,nonnull)  NSString*  policyUri;
-/// scope参数值
- @property (strong,nonatomic,nonnull)  NSString*  scope;
-/// jwksUri参数值
- @property (strong,nonatomic,nonnull)  NSString*  jwksUri;
-/// jwks参数值
- @property (strong,nonatomic,nonnull)  NSString*  jwks;
-/// contacts参数值
- @property (strong,nonatomic,nonnull)  NSString*  contacts;
-/// extension参数值
- @property (strong,nonatomic,nonnull)  NSString*  extension;
-/// accessTokenValiditySeconds参数值
- @property (strong,nonatomic,nonnull)  NSNumber*  accessTokenValiditySeconds;
-/// refreshTokenValiditySeconds参数值
- @property (strong,nonatomic,nonnull)  NSNumber*  refreshTokenValiditySeconds;
-/// multiTenant参数值
- @property (strong,nonatomic,nonnull)  NSNumber*  multiTenant;
-/// secretUpdateTime参数值
- @property (strong,nonatomic,nonnull)  NSNumber*  secretUpdateTime;
-/// updateTime参数值
- @property (strong,nonatomic,nonnull)  NSNumber*  updateTime;
-/// createTime参数值
- @property (strong,nonatomic,nonnull)  NSNumber*  createTime;
-/// 创建应用的账户用户名
- @property (strong,nonatomic,nonnull)  NSString*  account;
-/// userType参数值
- @property (strong,nonatomic,nonnull)  NSString*  userType;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithClientId:(NSString*) clientId
-
-    clientName:(NSString*)clientName
-
-    tokenEndpointAuthMethod:(NSString*)tokenEndpointAuthMethod
-
-    grantTypes:(NSString*)grantTypes
-
-    responseTypes:(NSString*)responseTypes
-
-    redirectUris:(NSString*)redirectUris
-
-    clientUri:(NSString*)clientUri
-
-    logoUri:(NSString*)logoUri
-
-    tosUri:(NSString*)tosUri
-
-    policyUri:(NSString*)policyUri
-
-    scope:(NSString*)scope
-
-    jwksUri:(NSString*)jwksUri
-
-    jwks:(NSString*)jwks
-
-    contacts:(NSString*)contacts
-
-    extension:(NSString*)extension
-
-    accessTokenValiditySeconds:(NSNumber*)accessTokenValiditySeconds
-
-    refreshTokenValiditySeconds:(NSNumber*)refreshTokenValiditySeconds
-
-    multiTenant:(NSNumber*)multiTenant
-
-    secretUpdateTime:(NSNumber*)secretUpdateTime
-
-    updateTime:(NSNumber*)updateTime
-
-    createTime:(NSNumber*)createTime
-
-    account:(NSString*)account
-
-    userType:(NSString*)userType;
-@end
-
-@interface IasCreateAppResponse : NSObject
-
-@property NSString* requestId;
-
-@property ServiceError* error;
-
-@property IasCreateAppResult* result;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
-
--(id) initWithRequestId:(NSString*) requestId
-        error:(ServiceError*) error
-        result:(IasCreateAppResult*) result;
-@end
-
-@interface IasUpdateAppResponse : NSObject
-
-@property NSString* requestId;
-
-@property ServiceError* error;
-
-@property IasUpdateAppResult* result;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
-
--(id) initWithRequestId:(NSString*) requestId
-        error:(ServiceError*) error
-        result:(IasUpdateAppResult*) result;
-@end
-
 @interface IasDeleteAppRequest:JDCloudRequest
 
 /// 应用ID，应用创建时由京东云分配的16位数字ID
@@ -796,6 +585,230 @@ clientId:(NSString*)clientId;
     userType:(NSString*)userType;
 @end
 
+@interface IasCreateAppResult : NSObject
+/// 应用ID，由京东云分配的16位数字ID
+ @property (strong,nonatomic,nonnull)  NSString*  clientId;
+/// clientName参数值
+ @property (strong,nonatomic,nonnull)  NSString*  clientName;
+/// tokenEndpointAuthMethod参数值
+ @property (strong,nonatomic,nonnull)  NSString*  tokenEndpointAuthMethod;
+/// grantTypes参数值
+ @property (strong,nonatomic,nonnull)  NSString*  grantTypes;
+/// 当grantTypes为authorization_code时，responseTypes为code；当grantTypes为implicit时，responseTypes为token
+ @property (strong,nonatomic,nonnull)  NSString*  responseTypes;
+/// redirectUris参数值
+ @property (strong,nonatomic,nonnull)  NSString*  redirectUris;
+/// clientUri参数值
+ @property (strong,nonatomic,nonnull)  NSString*  clientUri;
+/// logoUri参数值
+ @property (strong,nonatomic,nonnull)  NSString*  logoUri;
+/// tosUri参数值
+ @property (strong,nonatomic,nonnull)  NSString*  tosUri;
+/// policyUri参数值
+ @property (strong,nonatomic,nonnull)  NSString*  policyUri;
+/// scope参数值
+ @property (strong,nonatomic,nonnull)  NSString*  scope;
+/// jwksUri参数值
+ @property (strong,nonatomic,nonnull)  NSString*  jwksUri;
+/// jwks参数值
+ @property (strong,nonatomic,nonnull)  NSString*  jwks;
+/// contacts参数值
+ @property (strong,nonatomic,nonnull)  NSString*  contacts;
+/// extension参数值
+ @property (strong,nonatomic,nonnull)  NSString*  extension;
+/// accessTokenValiditySeconds参数值
+ @property (strong,nonatomic,nonnull)  NSNumber*  accessTokenValiditySeconds;
+/// refreshTokenValiditySeconds参数值
+ @property (strong,nonatomic,nonnull)  NSNumber*  refreshTokenValiditySeconds;
+/// multiTenant参数值
+ @property (strong,nonatomic,nonnull)  NSNumber*  multiTenant;
+/// secretUpdateTime参数值
+ @property (strong,nonatomic,nonnull)  NSNumber*  secretUpdateTime;
+/// updateTime参数值
+ @property (strong,nonatomic,nonnull)  NSNumber*  updateTime;
+/// createTime参数值
+ @property (strong,nonatomic,nonnull)  NSNumber*  createTime;
+/// 创建应用的账户用户名
+ @property (strong,nonatomic,nonnull)  NSString*  account;
+/// userType参数值
+ @property (strong,nonatomic,nonnull)  NSString*  userType;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithClientId:(NSString*) clientId
+
+    clientName:(NSString*)clientName
+
+    tokenEndpointAuthMethod:(NSString*)tokenEndpointAuthMethod
+
+    grantTypes:(NSString*)grantTypes
+
+    responseTypes:(NSString*)responseTypes
+
+    redirectUris:(NSString*)redirectUris
+
+    clientUri:(NSString*)clientUri
+
+    logoUri:(NSString*)logoUri
+
+    tosUri:(NSString*)tosUri
+
+    policyUri:(NSString*)policyUri
+
+    scope:(NSString*)scope
+
+    jwksUri:(NSString*)jwksUri
+
+    jwks:(NSString*)jwks
+
+    contacts:(NSString*)contacts
+
+    extension:(NSString*)extension
+
+    accessTokenValiditySeconds:(NSNumber*)accessTokenValiditySeconds
+
+    refreshTokenValiditySeconds:(NSNumber*)refreshTokenValiditySeconds
+
+    multiTenant:(NSNumber*)multiTenant
+
+    secretUpdateTime:(NSNumber*)secretUpdateTime
+
+    updateTime:(NSNumber*)updateTime
+
+    createTime:(NSNumber*)createTime
+
+    account:(NSString*)account
+
+    userType:(NSString*)userType;
+@end
+
+@interface IasGetAppRequest:JDCloudRequest
+
+/// 应用ID，应用创建时由京东云分配的16位数字ID
+@property (strong,nonatomic,nonnull)  NSString*  clientId;
+-(id) initWithRegion:(NSString *)regionId
+clientId:(NSString*)clientId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+clientId:(NSString*)clientId;
+
+@end
+
+@interface IasAppsResult : NSObject
+/// Pagination
+ @property (strong,nonatomic,nonnull)  Pagination*  pagination;
+/// Result
+ @property (strong,nonatomic,nonnull)  NSArray<AppQueryResultItem*>*  result;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithPagination:(Pagination*) pagination
+
+    result:(NSArray<AppQueryResultItem*>*)result;
+@end
+
+@interface IasAppsResponse : NSObject
+
+@property NSString* requestId;
+
+@property ServiceError* error;
+
+@property IasAppsResult* result;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+
+-(id) initWithRequestId:(NSString*) requestId
+        error:(ServiceError*) error
+        result:(IasAppsResult*) result;
+@end
+
+@interface IasStateRequest:JDCloudRequest
+
+@end
+
+@interface IasStateResult : NSObject
+/// States
+ @property (strong,nonatomic,nonnull)  NSArray<State*>*  states;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithStates:(NSArray<State*>*) states;
+@end
+
+@interface IasStateResponse : NSObject
+
+@property NSString* requestId;
+
+@property ServiceError* error;
+
+@property IasStateResult* result;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+
+-(id) initWithRequestId:(NSString*) requestId
+        error:(ServiceError*) error
+        result:(IasStateResult*) result;
+@end
+
+@interface IasAppDetailResponse : NSObject
+
+@property NSString* requestId;
+
+@property ServiceError* error;
+
+@property IasAppDetailResult* result;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+
+-(id) initWithRequestId:(NSString*) requestId
+        error:(ServiceError*) error
+        result:(IasAppDetailResult*) result;
+@end
+
+@interface IasCreateAppResponse : NSObject
+
+@property NSString* requestId;
+
+@property ServiceError* error;
+
+@property IasCreateAppResult* result;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+
+-(id) initWithRequestId:(NSString*) requestId
+        error:(ServiceError*) error
+        result:(IasCreateAppResult*) result;
+@end
+
+@interface IasUpdateAppResponse : NSObject
+
+@property NSString* requestId;
+
+@property ServiceError* error;
+
+@property IasUpdateAppResult* result;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+
+-(id) initWithRequestId:(NSString*) requestId
+        error:(ServiceError*) error
+        result:(IasUpdateAppResult*) result;
+@end
+
 @interface IasDeleteAppResponse : NSObject
 
 @property NSString* requestId;
@@ -855,19 +868,6 @@ clientId:(NSString*)clientId;
 -(id) initWithRequestId:(NSString*) requestId
         error:(ServiceError*) error
         result:(IasGetAppsResult*) result;
-@end
-
-@interface IasGetAppRequest:JDCloudRequest
-
-/// 应用ID，应用创建时由京东云分配的16位数字ID
-@property (strong,nonatomic,nonnull)  NSString*  clientId;
--(id) initWithRegion:(NSString *)regionId
-clientId:(NSString*)clientId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-clientId:(NSString*)clientId;
-
 @end
 
 @interface IasGetAppsRequest:JDCloudRequest

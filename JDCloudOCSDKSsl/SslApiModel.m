@@ -106,158 +106,6 @@ certId:(NSString*)certId {
 } 
 
 @end
-@implementation SslDescribeCertResult
--(id) initWithCertId:(NSString*) certId
-        certName:(NSString*)certName
-        commonName:(NSString*)commonName
-        certType:(NSString*)certType
-        issuer:(NSString*)issuer
-        startTime:(NSString*)startTime
-        endTime:(NSString*)endTime
-        dnsNames:(NSArray<NSString*>*)dnsNames
-        digest:(NSString*)digest
-        totalCount:(NSNumber*)totalCount
-        usedBy:(NSArray<CertBindInfo*>*)usedBy { 
-    self.certId = certId;               
-    self.certName = certName;               
-    self.commonName = commonName;               
-    self.certType = certType;               
-    self.issuer = issuer;               
-    self.startTime = startTime;               
-    self.endTime = endTime;               
-    self.dnsNames = dnsNames;               
-    self.digest = digest;               
-    self.totalCount = totalCount;               
-    self.usedBy = usedBy;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self certId])
-    {
-        [result setValue:[self certId] forKey:@"certId"];
-    }
-    if([self certName])
-    {
-        [result setValue:[self certName] forKey:@"certName"];
-    }
-    if([self commonName])
-    {
-        [result setValue:[self commonName] forKey:@"commonName"];
-    }
-    if([self certType])
-    {
-        [result setValue:[self certType] forKey:@"certType"];
-    }
-    if([self issuer])
-    {
-        [result setValue:[self issuer] forKey:@"issuer"];
-    }
-    if([self startTime])
-    {
-        [result setValue:[self startTime] forKey:@"startTime"];
-    }
-    if([self endTime])
-    {
-        [result setValue:[self endTime] forKey:@"endTime"];
-    }
-    if([self dnsNames])
-    {
-        [result setValue:[self dnsNames] forKey:@"dnsNames"];
-    }
-    if([self digest])
-    {
-        [result setValue:[self digest] forKey:@"digest"];
-    }
-    if([self totalCount])
-    {
-        [result setValue:[self totalCount] forKey:@"totalCount"];
-    }
-    if([self usedBy])
-    {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self usedBy] count]; i++) {
-            CertBindInfo* item = [[self usedBy] objectAtIndex:i];
-            [arrayDic addObject:[item dictionary]];
-        }
-        [result setValue:arrayDic forKey:@"usedBy"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.certId = [dictionary objectForKey:@"certId"];
-    self.certName = [dictionary objectForKey:@"certName"];
-    self.commonName = [dictionary objectForKey:@"commonName"];
-    self.certType = [dictionary objectForKey:@"certType"];
-    self.issuer = [dictionary objectForKey:@"issuer"];
-    self.startTime = [dictionary objectForKey:@"startTime"];
-    self.endTime = [dictionary objectForKey:@"endTime"];
-    self.dnsNames = [dictionary objectForKey:@"dnsNames"];
-    self.digest = [dictionary objectForKey:@"digest"];
-    self.totalCount = [dictionary objectForKey:@"totalCount"];
-    NSArray* usedByArray = [dictionary objectForKey:@"usedBy"];
-    if(usedByArray&&![usedByArray isKindOfClass:[NSNull class]])
-    {
-        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
-        for(int i = 0 ; i< [usedByArray count];i++)
-        {
-            CertBindInfo* item = [[CertBindInfo alloc]initWithDic:[usedByArray objectAtIndex:i]];
-            if(item)
-            {
-                [propertyArray addObject:item];
-            }
-        }
-        self.usedBy = propertyArray;
-    }
-    return self;
-} 
-
-@end
-  
-@implementation SslDescribeCertResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-SslDescribeCertResult* result = [[SslDescribeCertResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(SslDescribeCertResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
 @implementation SslDownloadCertRequest
 -(id) initWithRegion:(NSString *)regionId
 serverType:(NSString*)serverType
@@ -330,77 +178,6 @@ certId:(NSString*)certId {
 } 
 
 @end
-@implementation SslUploadCertResult
--(id) initWithCertId:(NSString*) certId
-        digest:(NSString*)digest { 
-    self.certId = certId;               
-    self.digest = digest;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self certId])
-    {
-        [result setValue:[self certId] forKey:@"certId"];
-    }
-    if([self digest])
-    {
-        [result setValue:[self digest] forKey:@"digest"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.certId = [dictionary objectForKey:@"certId"];
-    self.digest = [dictionary objectForKey:@"digest"];
-    return self;
-} 
-
-@end
-  
-@implementation SslUploadCertResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-SslUploadCertResult* result = [[SslUploadCertResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(SslUploadCertResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
 @implementation SslDeleteCertsResult
 -(id) initWithCode:(NSNumber*) code
         message:(NSString*)message { 
@@ -428,130 +205,31 @@ SslUploadCertResult* result = [[SslUploadCertResult alloc]initWithDic:[dictionar
 } 
 
 @end
-@implementation SslDownloadCertResult
--(id) initWithCertDesc:(NSArray<DownloadCertDesc*>*) certDesc { 
-    self.certDesc = certDesc;               
+@implementation SslUploadCertResult
+-(id) initWithCertId:(NSString*) certId
+        digest:(NSString*)digest { 
+    self.certId = certId;               
+    self.digest = digest;               
     return self;
 }
 -(NSMutableDictionary*) dictionary{
     NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self certDesc])
+    if([self certId])
     {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self certDesc] count]; i++) {
-            DownloadCertDesc* item = [[self certDesc] objectAtIndex:i];
-            [arrayDic addObject:[item dictionary]];
-        }
-        [result setValue:arrayDic forKey:@"certDesc"];
+        [result setValue:[self certId] forKey:@"certId"];
+    }
+    if([self digest])
+    {
+        [result setValue:[self digest] forKey:@"digest"];
     }
     return result;
 }
 
 -(id) initWithDic:(NSDictionary*)dictionary{
-    NSArray* certDescArray = [dictionary objectForKey:@"certDesc"];
-    if(certDescArray&&![certDescArray isKindOfClass:[NSNull class]])
-    {
-        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
-        for(int i = 0 ; i< [certDescArray count];i++)
-        {
-            DownloadCertDesc* item = [[DownloadCertDesc alloc]initWithDic:[certDescArray objectAtIndex:i]];
-            if(item)
-            {
-                [propertyArray addObject:item];
-            }
-        }
-        self.certDesc = propertyArray;
-    }
+    self.certId = [dictionary objectForKey:@"certId"];
+    self.digest = [dictionary objectForKey:@"digest"];
     return self;
 } 
-
-@end
-  
-@implementation SslDownloadCertResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-SslDownloadCertResult* result = [[SslDownloadCertResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(SslDownloadCertResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
-  
-@implementation SslDeleteCertsResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-SslDeleteCertsResult* result = [[SslDeleteCertsResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(SslDeleteCertsResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
 
 @end
 @implementation SslUpdateCertRequest
@@ -651,183 +329,6 @@ certName:(NSString*)certName {
     self.certName = [dictionary objectForKey:@"certName"];
     return self;
 } 
-
-@end
-  
-@implementation SslUpdateCertNameResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-SslUpdateCertNameResult* result = [[SslUpdateCertNameResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(SslUpdateCertNameResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
-  
-@implementation SslUpdateCertResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-SslUpdateCertResult* result = [[SslUpdateCertResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(SslUpdateCertResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
-@implementation SslDescribeCertsResult
--(id) initWithCertListDetails:(NSArray<CertListDetail*>*) certListDetails
-        totalCount:(NSNumber*)totalCount { 
-    self.certListDetails = certListDetails;               
-    self.totalCount = totalCount;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self certListDetails])
-    {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self certListDetails] count]; i++) {
-            CertListDetail* item = [[self certListDetails] objectAtIndex:i];
-            [arrayDic addObject:[item dictionary]];
-        }
-        [result setValue:arrayDic forKey:@"certListDetails"];
-    }
-    if([self totalCount])
-    {
-        [result setValue:[self totalCount] forKey:@"totalCount"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    NSArray* certListDetailsArray = [dictionary objectForKey:@"certListDetails"];
-    if(certListDetailsArray&&![certListDetailsArray isKindOfClass:[NSNull class]])
-    {
-        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
-        for(int i = 0 ; i< [certListDetailsArray count];i++)
-        {
-            CertListDetail* item = [[CertListDetail alloc]initWithDic:[certListDetailsArray objectAtIndex:i]];
-            if(item)
-            {
-                [propertyArray addObject:item];
-            }
-        }
-        self.certListDetails = propertyArray;
-    }
-    self.totalCount = [dictionary objectForKey:@"totalCount"];
-    return self;
-} 
-
-@end
-  
-@implementation SslDescribeCertsResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-SslDescribeCertsResult* result = [[SslDescribeCertsResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(SslDescribeCertsResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
 
 @end
 @implementation SslUploadCertRequest
@@ -990,6 +491,505 @@ certId:(NSString*)certId {
     self.certId = [dictionary objectForKey:@"certId"];
     return self;
 } 
+
+@end
+@implementation SslDescribeCertResult
+-(id) initWithCertId:(NSString*) certId
+        certName:(NSString*)certName
+        commonName:(NSString*)commonName
+        certType:(NSString*)certType
+        issuer:(NSString*)issuer
+        startTime:(NSString*)startTime
+        endTime:(NSString*)endTime
+        dnsNames:(NSArray<NSString*>*)dnsNames
+        digest:(NSString*)digest
+        totalCount:(NSNumber*)totalCount
+        usedBy:(NSArray<CertBindInfo*>*)usedBy { 
+    self.certId = certId;               
+    self.certName = certName;               
+    self.commonName = commonName;               
+    self.certType = certType;               
+    self.issuer = issuer;               
+    self.startTime = startTime;               
+    self.endTime = endTime;               
+    self.dnsNames = dnsNames;               
+    self.digest = digest;               
+    self.totalCount = totalCount;               
+    self.usedBy = usedBy;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self certId])
+    {
+        [result setValue:[self certId] forKey:@"certId"];
+    }
+    if([self certName])
+    {
+        [result setValue:[self certName] forKey:@"certName"];
+    }
+    if([self commonName])
+    {
+        [result setValue:[self commonName] forKey:@"commonName"];
+    }
+    if([self certType])
+    {
+        [result setValue:[self certType] forKey:@"certType"];
+    }
+    if([self issuer])
+    {
+        [result setValue:[self issuer] forKey:@"issuer"];
+    }
+    if([self startTime])
+    {
+        [result setValue:[self startTime] forKey:@"startTime"];
+    }
+    if([self endTime])
+    {
+        [result setValue:[self endTime] forKey:@"endTime"];
+    }
+    if([self dnsNames])
+    {
+        [result setValue:[self dnsNames] forKey:@"dnsNames"];
+    }
+    if([self digest])
+    {
+        [result setValue:[self digest] forKey:@"digest"];
+    }
+    if([self totalCount])
+    {
+        [result setValue:[self totalCount] forKey:@"totalCount"];
+    }
+    if([self usedBy])
+    {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self usedBy] count]; i++) {
+            CertBindInfo* item = [[self usedBy] objectAtIndex:i];
+            [arrayDic addObject:[item dictionary]];
+        }
+        [result setValue:arrayDic forKey:@"usedBy"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.certId = [dictionary objectForKey:@"certId"];
+    self.certName = [dictionary objectForKey:@"certName"];
+    self.commonName = [dictionary objectForKey:@"commonName"];
+    self.certType = [dictionary objectForKey:@"certType"];
+    self.issuer = [dictionary objectForKey:@"issuer"];
+    self.startTime = [dictionary objectForKey:@"startTime"];
+    self.endTime = [dictionary objectForKey:@"endTime"];
+    self.dnsNames = [dictionary objectForKey:@"dnsNames"];
+    self.digest = [dictionary objectForKey:@"digest"];
+    self.totalCount = [dictionary objectForKey:@"totalCount"];
+    NSArray* usedByArray = [dictionary objectForKey:@"usedBy"];
+    if(usedByArray&&![usedByArray isKindOfClass:[NSNull class]])
+    {
+        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
+        for(int i = 0 ; i< [usedByArray count];i++)
+        {
+        CertBindInfo* item = [[CertBindInfo alloc]initWithDic:[usedByArray objectAtIndex:i]];
+            if(item)
+            {
+            [propertyArray addObject:item];
+            }
+        }
+        self.usedBy = propertyArray;
+    }
+    return self;
+} 
+
+@end
+  
+@implementation SslDescribeCertResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+SslDescribeCertResult* result = [[SslDescribeCertResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(SslDescribeCertResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+  
+@implementation SslUploadCertResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+SslUploadCertResult* result = [[SslUploadCertResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(SslUploadCertResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+@implementation SslDownloadCertResult
+-(id) initWithCertDesc:(NSArray<DownloadCertDesc*>*) certDesc { 
+    self.certDesc = certDesc;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self certDesc])
+    {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self certDesc] count]; i++) {
+            DownloadCertDesc* item = [[self certDesc] objectAtIndex:i];
+            [arrayDic addObject:[item dictionary]];
+        }
+        [result setValue:arrayDic forKey:@"certDesc"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    NSArray* certDescArray = [dictionary objectForKey:@"certDesc"];
+    if(certDescArray&&![certDescArray isKindOfClass:[NSNull class]])
+    {
+        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
+        for(int i = 0 ; i< [certDescArray count];i++)
+        {
+        DownloadCertDesc* item = [[DownloadCertDesc alloc]initWithDic:[certDescArray objectAtIndex:i]];
+            if(item)
+            {
+            [propertyArray addObject:item];
+            }
+        }
+        self.certDesc = propertyArray;
+    }
+    return self;
+} 
+
+@end
+  
+@implementation SslDownloadCertResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+SslDownloadCertResult* result = [[SslDownloadCertResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(SslDownloadCertResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+  
+@implementation SslDeleteCertsResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+SslDeleteCertsResult* result = [[SslDeleteCertsResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(SslDeleteCertsResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+  
+@implementation SslUpdateCertNameResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+SslUpdateCertNameResult* result = [[SslUpdateCertNameResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(SslUpdateCertNameResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+  
+@implementation SslUpdateCertResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+SslUpdateCertResult* result = [[SslUpdateCertResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(SslUpdateCertResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+@implementation SslDescribeCertsResult
+-(id) initWithCertListDetails:(NSArray<CertListDetail*>*) certListDetails
+        totalCount:(NSNumber*)totalCount { 
+    self.certListDetails = certListDetails;               
+    self.totalCount = totalCount;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self certListDetails])
+    {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self certListDetails] count]; i++) {
+            CertListDetail* item = [[self certListDetails] objectAtIndex:i];
+            [arrayDic addObject:[item dictionary]];
+        }
+        [result setValue:arrayDic forKey:@"certListDetails"];
+    }
+    if([self totalCount])
+    {
+        [result setValue:[self totalCount] forKey:@"totalCount"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    NSArray* certListDetailsArray = [dictionary objectForKey:@"certListDetails"];
+    if(certListDetailsArray&&![certListDetailsArray isKindOfClass:[NSNull class]])
+    {
+        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
+        for(int i = 0 ; i< [certListDetailsArray count];i++)
+        {
+        CertListDetail* item = [[CertListDetail alloc]initWithDic:[certListDetailsArray objectAtIndex:i]];
+            if(item)
+            {
+            [propertyArray addObject:item];
+            }
+        }
+        self.certListDetails = propertyArray;
+    }
+    self.totalCount = [dictionary objectForKey:@"totalCount"];
+    return self;
+} 
+
+@end
+  
+@implementation SslDescribeCertsResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+SslDescribeCertsResult* result = [[SslDescribeCertsResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(SslDescribeCertsResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
 
 @end
  

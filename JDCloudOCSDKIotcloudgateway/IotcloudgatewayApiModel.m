@@ -61,61 +61,6 @@ instanceId:(NSString*)instanceId {
 } 
 
 @end
-@implementation IotcloudgatewayDeviceControlResult
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    return self;
-} 
-
-@end
-  
-@implementation IotcloudgatewayDeviceControlResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-IotcloudgatewayDeviceControlResult* result = [[IotcloudgatewayDeviceControlResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(IotcloudgatewayDeviceControlResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
 @implementation IotcloudgatewayQueryInstanceExposeDomainRequest
 -(id) initWithRegion:(NSString *)regionId
 instanceId:(NSString*)instanceId { 
@@ -150,77 +95,6 @@ instanceId:(NSString*)instanceId {
     self.instanceId = [dictionary objectForKey:@"instanceId"];
     return self;
 } 
-
-@end
-@implementation IotcloudgatewayQueryInstanceExposeDomainResult
--(id) initWithIotgwd:(NSString*) iotgwd
-        iotgwu:(NSString*)iotgwu { 
-    self.iotgwd = iotgwd;               
-    self.iotgwu = iotgwu;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self iotgwd])
-    {
-        [result setValue:[self iotgwd] forKey:@"iotgwd"];
-    }
-    if([self iotgwu])
-    {
-        [result setValue:[self iotgwu] forKey:@"iotgwu"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.iotgwd = [dictionary objectForKey:@"iotgwd"];
-    self.iotgwu = [dictionary objectForKey:@"iotgwu"];
-    return self;
-} 
-
-@end
-  
-@implementation IotcloudgatewayQueryInstanceExposeDomainResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-IotcloudgatewayQueryInstanceExposeDomainResult* result = [[IotcloudgatewayQueryInstanceExposeDomainResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(IotcloudgatewayQueryInstanceExposeDomainResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
 
 @end
 @implementation IotcloudgatewayDescribeInstancesRequest
@@ -288,6 +162,168 @@ pageSize:(NSNumber*)pageSize {
 } 
 
 @end
+@implementation IotcloudgatewayQueryInstanceExposeDomainResult
+-(id) initWithIotgwd:(NSString*) iotgwd
+        iotgwu:(NSString*)iotgwu { 
+    self.iotgwd = iotgwd;               
+    self.iotgwu = iotgwu;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self iotgwd])
+    {
+        [result setValue:[self iotgwd] forKey:@"iotgwd"];
+    }
+    if([self iotgwu])
+    {
+        [result setValue:[self iotgwu] forKey:@"iotgwu"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.iotgwd = [dictionary objectForKey:@"iotgwd"];
+    self.iotgwu = [dictionary objectForKey:@"iotgwu"];
+    return self;
+} 
+
+@end
+@implementation IotcloudgatewayQueryInstanceStatusRequest
+-(id) initWithRegion:(NSString *)regionId
+instanceId:(NSString*)instanceId { 
+    self.regionId = regionId;
+    self.instanceId = instanceId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+instanceId:(NSString*)instanceId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.instanceId = instanceId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self instanceId])
+    {
+        [result setValue:[self instanceId] forKey:@"instanceId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.instanceId = [dictionary objectForKey:@"instanceId"];
+    return self;
+} 
+
+@end
+@implementation IotcloudgatewayDeviceControlResult
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    return self;
+} 
+
+@end
+  
+@implementation IotcloudgatewayDeviceControlResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+IotcloudgatewayDeviceControlResult* result = [[IotcloudgatewayDeviceControlResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(IotcloudgatewayDeviceControlResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+  
+@implementation IotcloudgatewayQueryInstanceExposeDomainResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+IotcloudgatewayQueryInstanceExposeDomainResult* result = [[IotcloudgatewayQueryInstanceExposeDomainResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(IotcloudgatewayQueryInstanceExposeDomainResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
   
 @implementation IotcloudgatewayQueryInstanceStatusResponse
 -(NSMutableDictionary*) dictionary
@@ -343,8 +379,8 @@ IotcloudgatewayQueryInstanceStatusResult* result = [[IotcloudgatewayQueryInstanc
     NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
     if([self instances])
     {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self instances] count]; i++) {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self instances] count]; i++) {
             Instance* item = [[self instances] objectAtIndex:i];
             [arrayDic addObject:[item dictionary]];
         }
@@ -364,10 +400,10 @@ IotcloudgatewayQueryInstanceStatusResult* result = [[IotcloudgatewayQueryInstanc
         NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
         for(int i = 0 ; i< [instancesArray count];i++)
         {
-            Instance* item = [[Instance alloc]initWithDic:[instancesArray objectAtIndex:i]];
+        Instance* item = [[Instance alloc]initWithDic:[instancesArray objectAtIndex:i]];
             if(item)
             {
-                [propertyArray addObject:item];
+            [propertyArray addObject:item];
             }
         }
         self.instances = propertyArray;
@@ -525,42 +561,6 @@ instanceId:(NSString*)instanceId {
 
 -(id) initWithDic:(NSDictionary*)dictionary{
     self.devicecmd = [[DeviceControlSpec alloc]initWithDic:[dictionary objectForKey:@"devicecmd"]];
-    self.instanceId = [dictionary objectForKey:@"instanceId"];
-    return self;
-} 
-
-@end
-@implementation IotcloudgatewayQueryInstanceStatusRequest
--(id) initWithRegion:(NSString *)regionId
-instanceId:(NSString*)instanceId { 
-    self.regionId = regionId;
-    self.instanceId = instanceId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-instanceId:(NSString*)instanceId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.instanceId = instanceId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self instanceId])
-    {
-        [result setValue:[self instanceId] forKey:@"instanceId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
     self.instanceId = [dictionary objectForKey:@"instanceId"];
     return self;
 } 

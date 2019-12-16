@@ -115,6 +115,96 @@ venderName:(NSString*)venderName {
 } 
 
 @end
+@implementation YundingdatapushDeleteDatapushVenderRequest
+-(id) initWithRegion:(NSString *)regionId
+appkey:(NSString*)appkey
+ydRdsInstanceId:(NSString*)ydRdsInstanceId
+venderId:(NSString*)venderId { 
+    self.regionId = regionId;
+    self.appkey = appkey;
+    self.ydRdsInstanceId = ydRdsInstanceId;
+    self.venderId = venderId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+appkey:(NSString*)appkey
+ydRdsInstanceId:(NSString*)ydRdsInstanceId
+venderId:(NSString*)venderId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.appkey = appkey;
+    self.ydRdsInstanceId = ydRdsInstanceId;
+    self.venderId = venderId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self appkey])
+    {
+        [result setValue:[self appkey] forKey:@"appkey"];
+    }
+    if([self ydRdsInstanceId])
+    {
+        [result setValue:[self ydRdsInstanceId] forKey:@"ydRdsInstanceId"];
+    }
+    if([self venderId])
+    {
+        [result setValue:[self venderId] forKey:@"venderId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.appkey = [dictionary objectForKey:@"appkey"];
+    self.ydRdsInstanceId = [dictionary objectForKey:@"ydRdsInstanceId"];
+    self.venderId = [dictionary objectForKey:@"venderId"];
+    return self;
+} 
+
+@end
+@implementation YundingdatapushDescribeRdsInstancesRequest
+-(id) initWithRegion:(NSString *)regionId
+appkey:(NSString*)appkey { 
+    self.regionId = regionId;
+    self.appkey = appkey;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+appkey:(NSString*)appkey { 
+    self.regionId = regionId;
+    self.version = version;
+    self.appkey = appkey;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self appkey])
+    {
+        [result setValue:[self appkey] forKey:@"appkey"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.appkey = [dictionary objectForKey:@"appkey"];
+    return self;
+} 
+
+@end
 @implementation YundingdatapushAddDatapushVenderResult
 -(NSMutableDictionary*) dictionary{
     NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
@@ -135,8 +225,8 @@ venderName:(NSString*)venderName {
     NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
     if([self venders])
     {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self venders] count]; i++) {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self venders] count]; i++) {
             VenderShow* item = [[self venders] objectAtIndex:i];
             [arrayDic addObject:[item dictionary]];
         }
@@ -152,10 +242,10 @@ venderName:(NSString*)venderName {
         NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
         for(int i = 0 ; i< [vendersArray count];i++)
         {
-            VenderShow* item = [[VenderShow alloc]initWithDic:[vendersArray objectAtIndex:i]];
+        VenderShow* item = [[VenderShow alloc]initWithDic:[vendersArray objectAtIndex:i]];
             if(item)
             {
-                [propertyArray addObject:item];
+            [propertyArray addObject:item];
             }
         }
         self.venders = propertyArray;
@@ -297,8 +387,8 @@ YundingdatapushAddDatapushVenderResult* result = [[YundingdatapushAddDatapushVen
     NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
     if([self venders])
     {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self venders] count]; i++) {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self venders] count]; i++) {
             RdsInstance* item = [[self venders] objectAtIndex:i];
             [arrayDic addObject:[item dictionary]];
         }
@@ -314,104 +404,14 @@ YundingdatapushAddDatapushVenderResult* result = [[YundingdatapushAddDatapushVen
         NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
         for(int i = 0 ; i< [vendersArray count];i++)
         {
-            RdsInstance* item = [[RdsInstance alloc]initWithDic:[vendersArray objectAtIndex:i]];
+        RdsInstance* item = [[RdsInstance alloc]initWithDic:[vendersArray objectAtIndex:i]];
             if(item)
             {
-                [propertyArray addObject:item];
+            [propertyArray addObject:item];
             }
         }
         self.venders = propertyArray;
     }
-    return self;
-} 
-
-@end
-@implementation YundingdatapushDeleteDatapushVenderRequest
--(id) initWithRegion:(NSString *)regionId
-appkey:(NSString*)appkey
-ydRdsInstanceId:(NSString*)ydRdsInstanceId
-venderId:(NSString*)venderId { 
-    self.regionId = regionId;
-    self.appkey = appkey;
-    self.ydRdsInstanceId = ydRdsInstanceId;
-    self.venderId = venderId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-appkey:(NSString*)appkey
-ydRdsInstanceId:(NSString*)ydRdsInstanceId
-venderId:(NSString*)venderId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.appkey = appkey;
-    self.ydRdsInstanceId = ydRdsInstanceId;
-    self.venderId = venderId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self appkey])
-    {
-        [result setValue:[self appkey] forKey:@"appkey"];
-    }
-    if([self ydRdsInstanceId])
-    {
-        [result setValue:[self ydRdsInstanceId] forKey:@"ydRdsInstanceId"];
-    }
-    if([self venderId])
-    {
-        [result setValue:[self venderId] forKey:@"venderId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.appkey = [dictionary objectForKey:@"appkey"];
-    self.ydRdsInstanceId = [dictionary objectForKey:@"ydRdsInstanceId"];
-    self.venderId = [dictionary objectForKey:@"venderId"];
-    return self;
-} 
-
-@end
-@implementation YundingdatapushDescribeRdsInstancesRequest
--(id) initWithRegion:(NSString *)regionId
-appkey:(NSString*)appkey { 
-    self.regionId = regionId;
-    self.appkey = appkey;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-appkey:(NSString*)appkey { 
-    self.regionId = regionId;
-    self.version = version;
-    self.appkey = appkey;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self appkey])
-    {
-        [result setValue:[self appkey] forKey:@"appkey"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.appkey = [dictionary objectForKey:@"appkey"];
     return self;
 } 
 

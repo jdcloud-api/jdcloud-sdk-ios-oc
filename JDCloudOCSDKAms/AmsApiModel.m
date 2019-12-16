@@ -79,6 +79,99 @@ streamId:(NSString*)streamId {
 } 
 
 @end
+@implementation AmsDescribeAuthenticateRequest
+-(id) initWithRegion:(NSString *)regionId
+ver:(NSNumber*)ver
+pId:(NSString*)pId { 
+    self.regionId = regionId;
+    self.ver = ver;
+    self.pId = pId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+ver:(NSNumber*)ver
+pId:(NSString*)pId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.ver = ver;
+    self.pId = pId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self ver])
+    {
+        [result setValue:[self ver] forKey:@"ver"];
+    }
+    if([self pId])
+    {
+        [result setValue:[self pId] forKey:@"pId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.ver = [dictionary objectForKey:@"ver"];
+    self.pId = [dictionary objectForKey:@"pId"];
+    return self;
+} 
+
+@end
+@implementation AmsDescribeAuthenticateResult
+-(id) initWithPId:(NSString*) pId
+        ver:(NSNumber*)ver
+        blacklist:(NSNumber*)blacklist
+        status:(NSNumber*)status
+        license:(NSString*)license { 
+    self.pId = pId;               
+    self.ver = ver;               
+    self.blacklist = blacklist;               
+    self.status = status;               
+    self.license = license;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self pId])
+    {
+        [result setValue:[self pId] forKey:@"pId"];
+    }
+    if([self ver])
+    {
+        [result setValue:[self ver] forKey:@"ver"];
+    }
+    if([self blacklist])
+    {
+        [result setValue:[self blacklist] forKey:@"blacklist"];
+    }
+    if([self status])
+    {
+        [result setValue:[self status] forKey:@"status"];
+    }
+    if([self license])
+    {
+        [result setValue:[self license] forKey:@"license"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.pId = [dictionary objectForKey:@"pId"];
+    self.ver = [dictionary objectForKey:@"ver"];
+    self.blacklist = [dictionary objectForKey:@"blacklist"];
+    self.status = [dictionary objectForKey:@"status"];
+    self.license = [dictionary objectForKey:@"license"];
+    return self;
+} 
+
+@end
 @implementation AmsDescribeStreamsInputResult
 -(id) initWithStreamInputDatas:(NSArray<StreamInputData*>*) streamInputDatas { 
     self.streamInputDatas = streamInputDatas;               
@@ -88,8 +181,8 @@ streamId:(NSString*)streamId {
     NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
     if([self streamInputDatas])
     {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self streamInputDatas] count]; i++) {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self streamInputDatas] count]; i++) {
             StreamInputData* item = [[self streamInputDatas] objectAtIndex:i];
             [arrayDic addObject:[item dictionary]];
         }
@@ -105,10 +198,10 @@ streamId:(NSString*)streamId {
         NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
         for(int i = 0 ; i< [streamInputDatasArray count];i++)
         {
-            StreamInputData* item = [[StreamInputData alloc]initWithDic:[streamInputDatasArray objectAtIndex:i]];
+        StreamInputData* item = [[StreamInputData alloc]initWithDic:[streamInputDatasArray objectAtIndex:i]];
             if(item)
             {
-                [propertyArray addObject:item];
+            [propertyArray addObject:item];
             }
         }
         self.streamInputDatas = propertyArray;
@@ -161,54 +254,6 @@ AmsDescribeStreamsInputResult* result = [[AmsDescribeStreamsInputResult alloc]in
 }
 
 @end
-@implementation AmsDescribeAuthenticateResult
--(id) initWithPId:(NSString*) pId
-        ver:(NSNumber*)ver
-        blacklist:(NSNumber*)blacklist
-        status:(NSNumber*)status
-        license:(NSString*)license { 
-    self.pId = pId;               
-    self.ver = ver;               
-    self.blacklist = blacklist;               
-    self.status = status;               
-    self.license = license;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self pId])
-    {
-        [result setValue:[self pId] forKey:@"pId"];
-    }
-    if([self ver])
-    {
-        [result setValue:[self ver] forKey:@"ver"];
-    }
-    if([self blacklist])
-    {
-        [result setValue:[self blacklist] forKey:@"blacklist"];
-    }
-    if([self status])
-    {
-        [result setValue:[self status] forKey:@"status"];
-    }
-    if([self license])
-    {
-        [result setValue:[self license] forKey:@"license"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.pId = [dictionary objectForKey:@"pId"];
-    self.ver = [dictionary objectForKey:@"ver"];
-    self.blacklist = [dictionary objectForKey:@"blacklist"];
-    self.status = [dictionary objectForKey:@"status"];
-    self.license = [dictionary objectForKey:@"license"];
-    return self;
-} 
-
-@end
   
 @implementation AmsDescribeAuthenticateResponse
 -(NSMutableDictionary*) dictionary
@@ -251,51 +296,6 @@ AmsDescribeAuthenticateResult* result = [[AmsDescribeAuthenticateResult alloc]in
     self.requestId = requestId;
     return self;
 }
-
-@end
-@implementation AmsDescribeAuthenticateRequest
--(id) initWithRegion:(NSString *)regionId
-ver:(NSNumber*)ver
-pId:(NSString*)pId { 
-    self.regionId = regionId;
-    self.ver = ver;
-    self.pId = pId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-ver:(NSNumber*)ver
-pId:(NSString*)pId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.ver = ver;
-    self.pId = pId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self ver])
-    {
-        [result setValue:[self ver] forKey:@"ver"];
-    }
-    if([self pId])
-    {
-        [result setValue:[self pId] forKey:@"pId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.ver = [dictionary objectForKey:@"ver"];
-    self.pId = [dictionary objectForKey:@"pId"];
-    return self;
-} 
 
 @end
  

@@ -58,6 +58,124 @@ clientToken:(NSString*)clientToken;
 
 @end
 
+@interface ZfsDeleteMountTargetRequest:JDCloudRequest
+
+/// 挂载目标ID
+@property (strong,nonatomic,nonnull)  NSString*  mountTargetId;
+-(id) initWithRegion:(NSString *)regionId
+mountTargetId:(NSString*)mountTargetId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+mountTargetId:(NSString*)mountTargetId;
+
+@end
+
+@interface ZfsDescribeMountTargetRequest:JDCloudRequest
+
+/// 挂载目标ID
+@property (strong,nonatomic,nonnull)  NSString*  mountTargetId;
+-(id) initWithRegion:(NSString *)regionId
+mountTargetId:(NSString*)mountTargetId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+mountTargetId:(NSString*)mountTargetId;
+
+@end
+
+@interface ZfsCreateMountTargetResult : NSObject
+/// 挂载目标 ID
+ @property (strong,nonatomic,nonnull)  NSString*  mountTargetId;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithMountTargetId:(NSString*) mountTargetId;
+@end
+
+@interface ZfsCreateFileSystemResult : NSObject
+/// 文件系统 ID
+ @property (strong,nonatomic,nonnull)  NSString*  fileSystemId;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithFileSystemId:(NSString*) fileSystemId;
+@end
+
+@interface ZfsCreateFileSystemRequest:JDCloudRequest
+
+/// 文件系统名称
+@property (strong,nonatomic,nonnull)  NSString*  name;
+/// 文件系统描述
+@property (strong,nonatomic,nonnull)  NSString*  descriptionValue;
+/// 幂等性参数(只支持数字、大小写字母，且不能超过64字符)
+@property (strong,nonatomic,nonnull)  NSString*  clientToken;
+/// 文件系统类型(通用型:gp1,容量型:std1),默认为通用型
+@property (strong,nonatomic,nonnull)  NSString*  fileSystemType;
+-(id) initWithRegion:(NSString *)regionId
+name:(NSString*)name
+descriptionValue:(NSString*)descriptionValue
+clientToken:(NSString*)clientToken
+fileSystemType:(NSString*)fileSystemType;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+name:(NSString*)name
+descriptionValue:(NSString*)descriptionValue
+clientToken:(NSString*)clientToken
+fileSystemType:(NSString*)fileSystemType;
+
+@end
+
+@interface ZfsDescribeFileSystemRequest:JDCloudRequest
+
+/// 文件系统ID
+@property (strong,nonatomic,nonnull)  NSString*  fileSystemId;
+-(id) initWithRegion:(NSString *)regionId
+fileSystemId:(NSString*)fileSystemId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+fileSystemId:(NSString*)fileSystemId;
+
+@end
+
+@interface ZfsDeleteFileSystemRequest:JDCloudRequest
+
+/// 文件系统ID
+@property (strong,nonatomic,nonnull)  NSString*  fileSystemId;
+-(id) initWithRegion:(NSString *)regionId
+fileSystemId:(NSString*)fileSystemId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+fileSystemId:(NSString*)fileSystemId;
+
+@end
+
+@interface ZfsModifyFileSystemAttributeRequest:JDCloudRequest
+
+/// 文件系统名称(参数规则：不可为空，只支持中文、数字、大小写字母、英文下划线“_”及中划线“-”，且不能超过32字符)
+@property (strong,nonatomic,nonnull)  NSString*  name;
+/// 文件系统描述(参数规则：不能超过256字符)
+@property (strong,nonatomic,nonnull)  NSString*  descriptionValue;
+/// 文件系统ID
+@property (strong,nonatomic,nonnull)  NSString*  fileSystemId;
+-(id) initWithRegion:(NSString *)regionId
+name:(NSString*)name
+descriptionValue:(NSString*)descriptionValue
+fileSystemId:(NSString*)fileSystemId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+name:(NSString*)name
+descriptionValue:(NSString*)descriptionValue
+fileSystemId:(NSString*)fileSystemId;
+
+@end
+
 @interface ZfsDeleteMountTargetResult : NSObject
 
 -(NSMutableDictionary*) dictionary;
@@ -82,16 +200,6 @@ clientToken:(NSString*)clientToken;
         result:(ZfsDeleteMountTargetResult*) result;
 @end
 
-@interface ZfsCreateMountTargetResult : NSObject
-/// 挂载目标 ID
- @property (strong,nonatomic,nonnull)  NSString*  mountTargetId;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithMountTargetId:(NSString*) mountTargetId;
-@end
-
 @interface ZfsCreateMountTargetResponse : NSObject
 
 @property NSString* requestId;
@@ -107,19 +215,6 @@ clientToken:(NSString*)clientToken;
 -(id) initWithRequestId:(NSString*) requestId
         error:(ServiceError*) error
         result:(ZfsCreateMountTargetResult*) result;
-@end
-
-@interface ZfsDeleteMountTargetRequest:JDCloudRequest
-
-/// 挂载目标ID
-@property (strong,nonatomic,nonnull)  NSString*  mountTargetId;
--(id) initWithRegion:(NSString *)regionId
-mountTargetId:(NSString*)mountTargetId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-mountTargetId:(NSString*)mountTargetId;
-
 @end
 
 @interface ZfsDescribeMountTargetResult : NSObject
@@ -161,19 +256,6 @@ mountTargetId:(NSString*)mountTargetId;
 -(id) initWithMountTargets:(NSArray<MountTarget*>*) mountTargets
 
     totalCount:(NSNumber*)totalCount;
-@end
-
-@interface ZfsDescribeMountTargetRequest:JDCloudRequest
-
-/// 挂载目标ID
-@property (strong,nonatomic,nonnull)  NSString*  mountTargetId;
--(id) initWithRegion:(NSString *)regionId
-mountTargetId:(NSString*)mountTargetId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-mountTargetId:(NSString*)mountTargetId;
-
 @end
 
 @interface ZfsDescribeMountTargetsResponse : NSObject
@@ -278,16 +360,6 @@ filters:(NSArray<Filter*>*)filters;
 -(id) initWithDic:(NSDictionary*)dictionary;
 @end
 
-@interface ZfsCreateFileSystemResult : NSObject
-/// 文件系统 ID
- @property (strong,nonatomic,nonnull)  NSString*  fileSystemId;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithFileSystemId:(NSString*) fileSystemId;
-@end
-
 @interface ZfsCreateFileSystemResponse : NSObject
 
 @property NSString* requestId;
@@ -360,31 +432,6 @@ filters:(NSArray<Filter*>*)filters;
         result:(ZfsDeleteFileSystemResult*) result;
 @end
 
-@interface ZfsCreateFileSystemRequest:JDCloudRequest
-
-/// 文件系统名称
-@property (strong,nonatomic,nonnull)  NSString*  name;
-/// 文件系统描述
-@property (strong,nonatomic,nonnull)  NSString*  descriptionValue;
-/// 幂等性参数(只支持数字、大小写字母，且不能超过64字符)
-@property (strong,nonatomic,nonnull)  NSString*  clientToken;
-/// 文件系统类型(通用型:gp1,容量型:std1),默认为通用型
-@property (strong,nonatomic,nonnull)  NSString*  fileSystemType;
--(id) initWithRegion:(NSString *)regionId
-name:(NSString*)name
-descriptionValue:(NSString*)descriptionValue
-clientToken:(NSString*)clientToken
-fileSystemType:(NSString*)fileSystemType;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-name:(NSString*)name
-descriptionValue:(NSString*)descriptionValue
-clientToken:(NSString*)clientToken
-fileSystemType:(NSString*)fileSystemType;
-
-@end
-
 @interface ZfsModifyFileSystemAttributeResponse : NSObject
 
 @property NSString* requestId;
@@ -400,53 +447,6 @@ fileSystemType:(NSString*)fileSystemType;
 -(id) initWithRequestId:(NSString*) requestId
         error:(ServiceError*) error
         result:(ZfsModifyFileSystemAttributeResult*) result;
-@end
-
-@interface ZfsDescribeFileSystemRequest:JDCloudRequest
-
-/// 文件系统ID
-@property (strong,nonatomic,nonnull)  NSString*  fileSystemId;
--(id) initWithRegion:(NSString *)regionId
-fileSystemId:(NSString*)fileSystemId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-fileSystemId:(NSString*)fileSystemId;
-
-@end
-
-@interface ZfsDeleteFileSystemRequest:JDCloudRequest
-
-/// 文件系统ID
-@property (strong,nonatomic,nonnull)  NSString*  fileSystemId;
--(id) initWithRegion:(NSString *)regionId
-fileSystemId:(NSString*)fileSystemId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-fileSystemId:(NSString*)fileSystemId;
-
-@end
-
-@interface ZfsModifyFileSystemAttributeRequest:JDCloudRequest
-
-/// 文件系统名称(参数规则：不可为空，只支持中文、数字、大小写字母、英文下划线“_”及中划线“-”，且不能超过32字符)
-@property (strong,nonatomic,nonnull)  NSString*  name;
-/// 文件系统描述(参数规则：不能超过256字符)
-@property (strong,nonatomic,nonnull)  NSString*  descriptionValue;
-/// 文件系统ID
-@property (strong,nonatomic,nonnull)  NSString*  fileSystemId;
--(id) initWithRegion:(NSString *)regionId
-name:(NSString*)name
-descriptionValue:(NSString*)descriptionValue
-fileSystemId:(NSString*)fileSystemId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-name:(NSString*)name
-descriptionValue:(NSString*)descriptionValue
-fileSystemId:(NSString*)fileSystemId;
-
 @end
 
 #endif /* ZfsApiModel_h */

@@ -63,6 +63,166 @@ certId:(NSString*)certId;
 
 @end
 
+@interface SslDownloadCertRequest:JDCloudRequest
+
+/// 证书应用的服务器类型(Nginx Apache Tomcat IIS Other)
+@property (strong,nonatomic,nonnull)  NSString*  serverType;
+/// 证书 Id
+@property (strong,nonatomic,nonnull)  NSString*  certId;
+-(id) initWithRegion:(NSString *)regionId
+serverType:(NSString*)serverType
+certId:(NSString*)certId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+serverType:(NSString*)serverType
+certId:(NSString*)certId;
+
+@end
+
+@interface SslUpdateCertResult : NSObject
+/// 待更新证书ID
+ @property (strong,nonatomic,nonnull)  NSString*  certId;
+/// 对私钥文件使用sha256算法计算的摘要信息
+ @property (strong,nonatomic,nonnull)  NSString*  digest;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithCertId:(NSString*) certId
+
+    digest:(NSString*)digest;
+@end
+
+@interface SslDeleteCertsResult : NSObject
+/// 状态码
+ @property (strong,nonatomic,nonnull)  NSNumber*  code;
+/// 消息
+ @property (strong,nonatomic,nonnull)  NSString*  message;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithCode:(NSNumber*) code
+
+    message:(NSString*)message;
+@end
+
+@interface SslUploadCertResult : NSObject
+/// CertId
+ @property (strong,nonatomic,nonnull)  NSString*  certId;
+/// 对私钥文件使用sha256算法计算的摘要信息
+ @property (strong,nonatomic,nonnull)  NSString*  digest;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithCertId:(NSString*) certId
+
+    digest:(NSString*)digest;
+@end
+
+@interface SslUpdateCertRequest:JDCloudRequest
+
+/// 证书ID
+@property (strong,nonatomic,nonnull)  NSString*  certId;
+/// 私钥
+@property (strong,nonatomic,nonnull)  NSString*  keyFile;
+/// 证书
+@property (strong,nonatomic,nonnull)  NSString*  certFile;
+-(id) initWithRegion:(NSString *)regionId
+certId:(NSString*)certId
+keyFile:(NSString*)keyFile
+certFile:(NSString*)certFile;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+certId:(NSString*)certId
+keyFile:(NSString*)keyFile
+certFile:(NSString*)certFile;
+
+@end
+
+@interface SslUpdateCertNameRequest:JDCloudRequest
+
+/// 证书Id
+@property (strong,nonatomic,nonnull)  NSString*  certId;
+/// 证书名称
+@property (strong,nonatomic,nonnull)  NSString*  certName;
+-(id) initWithRegion:(NSString *)regionId
+certId:(NSString*)certId
+certName:(NSString*)certName;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+certId:(NSString*)certId
+certName:(NSString*)certName;
+
+@end
+
+@interface SslUploadCertRequest:JDCloudRequest
+
+/// 证书名称
+@property (strong,nonatomic,nonnull)  NSString*  certName;
+/// 私钥
+@property (strong,nonatomic,nonnull)  NSString*  keyFile;
+/// 证书
+@property (strong,nonatomic,nonnull)  NSString*  certFile;
+/// 证书别名
+@property (strong,nonatomic,nonnull)  NSString*  aliasName;
+-(id) initWithRegion:(NSString *)regionId
+certName:(NSString*)certName
+keyFile:(NSString*)keyFile
+certFile:(NSString*)certFile
+aliasName:(NSString*)aliasName;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+certName:(NSString*)certName
+keyFile:(NSString*)keyFile
+certFile:(NSString*)certFile
+aliasName:(NSString*)aliasName;
+
+@end
+
+@interface SslDescribeCertsRequest:JDCloudRequest
+
+/// 第几页，从1开始计数
+@property (strong,nonatomic,nonnull)  NSNumber*  pageNumber;
+/// 每页显示的数目
+@property (strong,nonatomic,nonnull)  NSNumber*  pageSize;
+/// 域名，支持按照域名检索证书
+@property (strong,nonatomic,nonnull)  NSString*  domainName;
+/// 证书id/别名
+@property (strong,nonatomic,nonnull)  NSString*  certIds;
+-(id) initWithRegion:(NSString *)regionId
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+domainName:(NSString*)domainName
+certIds:(NSString*)certIds;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+domainName:(NSString*)domainName
+certIds:(NSString*)certIds;
+
+@end
+
+@interface SslDeleteCertsRequest:JDCloudRequest
+
+/// 证书 Id
+@property (strong,nonatomic,nonnull)  NSString*  certId;
+-(id) initWithRegion:(NSString *)regionId
+certId:(NSString*)certId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+certId:(NSString*)certId;
+
+@end
+
 @interface SslDescribeCertResult : NSObject
 /// 证书Id
  @property (strong,nonatomic,nonnull)  NSString*  certId;
@@ -130,51 +290,6 @@ certId:(NSString*)certId;
         result:(SslDescribeCertResult*) result;
 @end
 
-@interface SslDownloadCertRequest:JDCloudRequest
-
-/// 证书应用的服务器类型(Nginx Apache Tomcat IIS Other)
-@property (strong,nonatomic,nonnull)  NSString*  serverType;
-/// 证书 Id
-@property (strong,nonatomic,nonnull)  NSString*  certId;
--(id) initWithRegion:(NSString *)regionId
-serverType:(NSString*)serverType
-certId:(NSString*)certId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-serverType:(NSString*)serverType
-certId:(NSString*)certId;
-
-@end
-
-@interface SslUpdateCertResult : NSObject
-/// 待更新证书ID
- @property (strong,nonatomic,nonnull)  NSString*  certId;
-/// 对私钥文件使用sha256算法计算的摘要信息
- @property (strong,nonatomic,nonnull)  NSString*  digest;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithCertId:(NSString*) certId
-
-    digest:(NSString*)digest;
-@end
-
-@interface SslUploadCertResult : NSObject
-/// CertId
- @property (strong,nonatomic,nonnull)  NSString*  certId;
-/// 对私钥文件使用sha256算法计算的摘要信息
- @property (strong,nonatomic,nonnull)  NSString*  digest;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithCertId:(NSString*) certId
-
-    digest:(NSString*)digest;
-@end
-
 @interface SslUploadCertResponse : NSObject
 
 @property NSString* requestId;
@@ -190,20 +305,6 @@ certId:(NSString*)certId;
 -(id) initWithRequestId:(NSString*) requestId
         error:(ServiceError*) error
         result:(SslUploadCertResult*) result;
-@end
-
-@interface SslDeleteCertsResult : NSObject
-/// 状态码
- @property (strong,nonatomic,nonnull)  NSNumber*  code;
-/// 消息
- @property (strong,nonatomic,nonnull)  NSString*  message;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithCode:(NSNumber*) code
-
-    message:(NSString*)message;
 @end
 
 @interface SslDownloadCertResult : NSObject
@@ -248,44 +349,6 @@ certId:(NSString*)certId;
 -(id) initWithRequestId:(NSString*) requestId
         error:(ServiceError*) error
         result:(SslDeleteCertsResult*) result;
-@end
-
-@interface SslUpdateCertRequest:JDCloudRequest
-
-/// 证书ID
-@property (strong,nonatomic,nonnull)  NSString*  certId;
-/// 私钥
-@property (strong,nonatomic,nonnull)  NSString*  keyFile;
-/// 证书
-@property (strong,nonatomic,nonnull)  NSString*  certFile;
--(id) initWithRegion:(NSString *)regionId
-certId:(NSString*)certId
-keyFile:(NSString*)keyFile
-certFile:(NSString*)certFile;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-certId:(NSString*)certId
-keyFile:(NSString*)keyFile
-certFile:(NSString*)certFile;
-
-@end
-
-@interface SslUpdateCertNameRequest:JDCloudRequest
-
-/// 证书Id
-@property (strong,nonatomic,nonnull)  NSString*  certId;
-/// 证书名称
-@property (strong,nonatomic,nonnull)  NSString*  certName;
--(id) initWithRegion:(NSString *)regionId
-certId:(NSString*)certId
-certName:(NSString*)certName;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-certId:(NSString*)certId
-certName:(NSString*)certName;
-
 @end
 
 @interface SslUpdateCertNameResponse : NSObject
@@ -351,69 +414,6 @@ certName:(NSString*)certName;
 -(id) initWithRequestId:(NSString*) requestId
         error:(ServiceError*) error
         result:(SslDescribeCertsResult*) result;
-@end
-
-@interface SslUploadCertRequest:JDCloudRequest
-
-/// 证书名称
-@property (strong,nonatomic,nonnull)  NSString*  certName;
-/// 私钥
-@property (strong,nonatomic,nonnull)  NSString*  keyFile;
-/// 证书
-@property (strong,nonatomic,nonnull)  NSString*  certFile;
-/// 证书别名
-@property (strong,nonatomic,nonnull)  NSString*  aliasName;
--(id) initWithRegion:(NSString *)regionId
-certName:(NSString*)certName
-keyFile:(NSString*)keyFile
-certFile:(NSString*)certFile
-aliasName:(NSString*)aliasName;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-certName:(NSString*)certName
-keyFile:(NSString*)keyFile
-certFile:(NSString*)certFile
-aliasName:(NSString*)aliasName;
-
-@end
-
-@interface SslDescribeCertsRequest:JDCloudRequest
-
-/// 第几页，从1开始计数
-@property (strong,nonatomic,nonnull)  NSNumber*  pageNumber;
-/// 每页显示的数目
-@property (strong,nonatomic,nonnull)  NSNumber*  pageSize;
-/// 域名，支持按照域名检索证书
-@property (strong,nonatomic,nonnull)  NSString*  domainName;
-/// 证书id/别名
-@property (strong,nonatomic,nonnull)  NSString*  certIds;
--(id) initWithRegion:(NSString *)regionId
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-domainName:(NSString*)domainName
-certIds:(NSString*)certIds;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-domainName:(NSString*)domainName
-certIds:(NSString*)certIds;
-
-@end
-
-@interface SslDeleteCertsRequest:JDCloudRequest
-
-/// 证书 Id
-@property (strong,nonatomic,nonnull)  NSString*  certId;
--(id) initWithRegion:(NSString *)regionId
-certId:(NSString*)certId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-certId:(NSString*)certId;
-
 @end
 
 #endif /* SslApiModel_h */

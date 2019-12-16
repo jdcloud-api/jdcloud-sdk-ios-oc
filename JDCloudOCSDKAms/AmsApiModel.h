@@ -49,31 +49,21 @@ streamId:(NSString*)streamId;
 
 @end
 
-@interface AmsDescribeStreamsInputResult : NSObject
-/// StreamInputDatas
- @property (strong,nonatomic,nonnull)  NSArray<StreamInputData*>*  streamInputDatas;
+@interface AmsDescribeAuthenticateRequest:JDCloudRequest
 
--(NSMutableDictionary*) dictionary;
+/// 版本
+@property (strong,nonatomic,nonnull)  NSNumber*  ver;
+/// PinId
+@property (strong,nonatomic,nonnull)  NSString*  pId;
+-(id) initWithRegion:(NSString *)regionId
+ver:(NSNumber*)ver
+pId:(NSString*)pId;
 
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithStreamInputDatas:(NSArray<StreamInputData*>*) streamInputDatas;
-@end
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+ver:(NSNumber*)ver
+pId:(NSString*)pId;
 
-@interface AmsDescribeStreamsInputResponse : NSObject
-
-@property NSString* requestId;
-
-@property ServiceError* error;
-
-@property AmsDescribeStreamsInputResult* result;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
-
--(id) initWithRequestId:(NSString*) requestId
-        error:(ServiceError*) error
-        result:(AmsDescribeStreamsInputResult*) result;
 @end
 
 @interface AmsDescribeAuthenticateResult : NSObject
@@ -102,6 +92,33 @@ streamId:(NSString*)streamId;
     license:(NSString*)license;
 @end
 
+@interface AmsDescribeStreamsInputResult : NSObject
+/// StreamInputDatas
+ @property (strong,nonatomic,nonnull)  NSArray<StreamInputData*>*  streamInputDatas;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithStreamInputDatas:(NSArray<StreamInputData*>*) streamInputDatas;
+@end
+
+@interface AmsDescribeStreamsInputResponse : NSObject
+
+@property NSString* requestId;
+
+@property ServiceError* error;
+
+@property AmsDescribeStreamsInputResult* result;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+
+-(id) initWithRequestId:(NSString*) requestId
+        error:(ServiceError*) error
+        result:(AmsDescribeStreamsInputResult*) result;
+@end
+
 @interface AmsDescribeAuthenticateResponse : NSObject
 
 @property NSString* requestId;
@@ -117,23 +134,6 @@ streamId:(NSString*)streamId;
 -(id) initWithRequestId:(NSString*) requestId
         error:(ServiceError*) error
         result:(AmsDescribeAuthenticateResult*) result;
-@end
-
-@interface AmsDescribeAuthenticateRequest:JDCloudRequest
-
-/// 版本
-@property (strong,nonatomic,nonnull)  NSNumber*  ver;
-/// PinId
-@property (strong,nonatomic,nonnull)  NSString*  pId;
--(id) initWithRegion:(NSString *)regionId
-ver:(NSNumber*)ver
-pId:(NSString*)pId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-ver:(NSNumber*)ver
-pId:(NSString*)pId;
-
 @end
 
 #endif /* AmsApiModel_h */

@@ -70,61 +70,6 @@ pageSize:(NSNumber*)pageSize {
 } 
 
 @end
-@implementation KmsEnableSecretResult
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    return self;
-} 
-
-@end
-  
-@implementation KmsEnableSecretResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-KmsEnableSecretResult* result = [[KmsEnableSecretResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(KmsEnableSecretResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
 @implementation KmsDescribeSecretVersionInfoRequest
 -(id) initWithRegion:(NSString *)regionId
 secretId:(NSString*)secretId { 
@@ -159,61 +104,6 @@ secretId:(NSString*)secretId {
     self.secretId = [dictionary objectForKey:@"secretId"];
     return self;
 } 
-
-@end
-@implementation KmsEnableSecretVersionResult
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    return self;
-} 
-
-@end
-  
-@implementation KmsEnableSecretVersionResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-KmsEnableSecretVersionResult* result = [[KmsEnableSecretVersionResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(KmsEnableSecretVersionResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
 
 @end
 @implementation KmsEnableSecretVersionRequest
@@ -270,6 +160,1327 @@ secretId:(NSString*)secretId {
     self.secretId = [dictionary objectForKey:@"secretId"];
     return self;
 } 
+
+@end
+@implementation KmsDisableSecretVersionRequest
+-(id) initWithRegion:(NSString *)regionId
+secretId:(NSString*)secretId { 
+    self.regionId = regionId;
+    self.secretId = secretId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+secretId:(NSString*)secretId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.secretId = secretId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self secretId])
+    {
+        [result setValue:[self secretId] forKey:@"secretId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.secretId = [dictionary objectForKey:@"secretId"];
+    return self;
+} 
+
+@end
+@implementation KmsEnableSecretRequest
+-(id) initWithRegion:(NSString *)regionId
+secretId:(NSString*)secretId { 
+    self.regionId = regionId;
+    self.secretId = secretId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+secretId:(NSString*)secretId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.secretId = secretId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self secretId])
+    {
+        [result setValue:[self secretId] forKey:@"secretId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.secretId = [dictionary objectForKey:@"secretId"];
+    return self;
+} 
+
+@end
+@implementation KmsDisableSecretRequest
+-(id) initWithRegion:(NSString *)regionId
+secretId:(NSString*)secretId { 
+    self.regionId = regionId;
+    self.secretId = secretId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+secretId:(NSString*)secretId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.secretId = secretId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self secretId])
+    {
+        [result setValue:[self secretId] forKey:@"secretId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.secretId = [dictionary objectForKey:@"secretId"];
+    return self;
+} 
+
+@end
+@implementation KmsDescribeSecretVersionListRequest
+-(id) initWithRegion:(NSString *)regionId
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+secretId:(NSString*)secretId { 
+    self.regionId = regionId;
+    self.pageNumber = pageNumber;
+    self.pageSize = pageSize;
+    self.secretId = secretId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+secretId:(NSString*)secretId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.pageNumber = pageNumber;
+    self.pageSize = pageSize;
+    self.secretId = secretId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self pageNumber])
+    {
+        [result setValue:[self pageNumber] forKey:@"pageNumber"];
+    }
+    if([self pageSize])
+    {
+        [result setValue:[self pageSize] forKey:@"pageSize"];
+    }
+    if([self secretId])
+    {
+        [result setValue:[self secretId] forKey:@"secretId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.pageNumber = [dictionary objectForKey:@"pageNumber"];
+    self.pageSize = [dictionary objectForKey:@"pageSize"];
+    self.secretId = [dictionary objectForKey:@"secretId"];
+    return self;
+} 
+
+@end
+@implementation KmsDeleteSecretRequest
+-(id) initWithRegion:(NSString *)regionId
+secretId:(NSString*)secretId { 
+    self.regionId = regionId;
+    self.secretId = secretId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+secretId:(NSString*)secretId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.secretId = secretId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self secretId])
+    {
+        [result setValue:[self secretId] forKey:@"secretId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.secretId = [dictionary objectForKey:@"secretId"];
+    return self;
+} 
+
+@end
+@implementation KmsExportSecretRequest
+-(id) initWithRegion:(NSString *)regionId
+secretId:(NSString*)secretId { 
+    self.regionId = regionId;
+    self.secretId = secretId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+secretId:(NSString*)secretId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.secretId = secretId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self secretId])
+    {
+        [result setValue:[self secretId] forKey:@"secretId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.secretId = [dictionary objectForKey:@"secretId"];
+    return self;
+} 
+
+@end
+@implementation KmsExportSecretResult
+-(id) initWithSecretPackage:(NSString*) secretPackage { 
+    self.secretPackage = secretPackage;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self secretPackage])
+    {
+        [result setValue:[self secretPackage] forKey:@"secretPackage"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.secretPackage = [dictionary objectForKey:@"secretPackage"];
+    return self;
+} 
+
+@end
+@implementation KmsDeleteSecretVersionRequest
+-(id) initWithRegion:(NSString *)regionId
+secretId:(NSString*)secretId { 
+    self.regionId = regionId;
+    self.secretId = secretId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+secretId:(NSString*)secretId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.secretId = secretId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self secretId])
+    {
+        [result setValue:[self secretId] forKey:@"secretId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.secretId = [dictionary objectForKey:@"secretId"];
+    return self;
+} 
+
+@end
+@implementation KmsImportSecretRequest
+-(id) initWithRegion:(NSString *)regionId
+secretPackage:(NSString*)secretPackage { 
+    self.regionId = regionId;
+    self.secretPackage = secretPackage;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+secretPackage:(NSString*)secretPackage { 
+    self.regionId = regionId;
+    self.version = version;
+    self.secretPackage = secretPackage;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self secretPackage])
+    {
+        [result setValue:[self secretPackage] forKey:@"secretPackage"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.secretPackage = [dictionary objectForKey:@"secretPackage"];
+    return self;
+} 
+
+@end
+@implementation KmsGetPublicKeyRequest
+-(id) initWithRegion:(NSString *)regionId
+keyId:(NSString*)keyId { 
+    self.regionId = regionId;
+    self.keyId = keyId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+keyId:(NSString*)keyId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.keyId = keyId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self keyId])
+    {
+        [result setValue:[self keyId] forKey:@"keyId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.keyId = [dictionary objectForKey:@"keyId"];
+    return self;
+} 
+
+@end
+@implementation KmsKeyRotationRequest
+-(id) initWithRegion:(NSString *)regionId
+keyId:(NSString*)keyId { 
+    self.regionId = regionId;
+    self.keyId = keyId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+keyId:(NSString*)keyId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.keyId = keyId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self keyId])
+    {
+        [result setValue:[self keyId] forKey:@"keyId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.keyId = [dictionary objectForKey:@"keyId"];
+    return self;
+} 
+
+@end
+@implementation KmsGenerateDataKeyRequest
+-(id) initWithRegion:(NSString *)regionId
+keyId:(NSString*)keyId { 
+    self.regionId = regionId;
+    self.keyId = keyId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+keyId:(NSString*)keyId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.keyId = keyId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self keyId])
+    {
+        [result setValue:[self keyId] forKey:@"keyId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.keyId = [dictionary objectForKey:@"keyId"];
+    return self;
+} 
+
+@end
+@implementation KmsEncryptResult
+-(id) initWithCiphertextBlob:(NSString*) ciphertextBlob { 
+    self.ciphertextBlob = ciphertextBlob;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self ciphertextBlob])
+    {
+        [result setValue:[self ciphertextBlob] forKey:@"ciphertextBlob"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.ciphertextBlob = [dictionary objectForKey:@"ciphertextBlob"];
+    return self;
+} 
+
+@end
+@implementation KmsEnableKeyVersionRequest
+-(id) initWithRegion:(NSString *)regionId
+keyId:(NSString*)keyId { 
+    self.regionId = regionId;
+    self.keyId = keyId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+keyId:(NSString*)keyId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.keyId = keyId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self keyId])
+    {
+        [result setValue:[self keyId] forKey:@"keyId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.keyId = [dictionary objectForKey:@"keyId"];
+    return self;
+} 
+
+@end
+@implementation KmsValidateResult
+-(id) initWithValidated:(NSNumber*) validated { 
+    self.validated = validated;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self validated])
+    {
+        [result setValue:[self validated] forKey:@"validated"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.validated = [dictionary objectForKey:@"validated"];
+    return self;
+} 
+
+@end
+@implementation KmsGenerateDataKeyResult
+-(id) initWithPlaintext:(NSString*) plaintext
+        ciphertextBlob:(NSString*)ciphertextBlob { 
+    self.plaintext = plaintext;               
+    self.ciphertextBlob = ciphertextBlob;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self plaintext])
+    {
+        [result setValue:[self plaintext] forKey:@"plaintext"];
+    }
+    if([self ciphertextBlob])
+    {
+        [result setValue:[self ciphertextBlob] forKey:@"ciphertextBlob"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.plaintext = [dictionary objectForKey:@"plaintext"];
+    self.ciphertextBlob = [dictionary objectForKey:@"ciphertextBlob"];
+    return self;
+} 
+
+@end
+@implementation KmsCancelKeyVersionDeletionRequest
+-(id) initWithRegion:(NSString *)regionId
+keyId:(NSString*)keyId { 
+    self.regionId = regionId;
+    self.keyId = keyId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+keyId:(NSString*)keyId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.keyId = keyId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self keyId])
+    {
+        [result setValue:[self keyId] forKey:@"keyId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.keyId = [dictionary objectForKey:@"keyId"];
+    return self;
+} 
+
+@end
+@implementation KmsDecryptRequest
+-(id) initWithRegion:(NSString *)regionId
+ciphertextBlob:(NSString*)ciphertextBlob
+keyId:(NSString*)keyId { 
+    self.regionId = regionId;
+    self.ciphertextBlob = ciphertextBlob;
+    self.keyId = keyId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+ciphertextBlob:(NSString*)ciphertextBlob
+keyId:(NSString*)keyId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.ciphertextBlob = ciphertextBlob;
+    self.keyId = keyId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self ciphertextBlob])
+    {
+        [result setValue:[self ciphertextBlob] forKey:@"ciphertextBlob"];
+    }
+    if([self keyId])
+    {
+        [result setValue:[self keyId] forKey:@"keyId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.ciphertextBlob = [dictionary objectForKey:@"ciphertextBlob"];
+    self.keyId = [dictionary objectForKey:@"keyId"];
+    return self;
+} 
+
+@end
+@implementation KmsGetPublicKeyResult
+-(id) initWithPublicKeyBlob:(NSString*) publicKeyBlob { 
+    self.publicKeyBlob = publicKeyBlob;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self publicKeyBlob])
+    {
+        [result setValue:[self publicKeyBlob] forKey:@"publicKeyBlob"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.publicKeyBlob = [dictionary objectForKey:@"publicKeyBlob"];
+    return self;
+} 
+
+@end
+@implementation KmsDescribeKeyListRequest
+-(id) initWithRegion:(NSString *)regionId
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize { 
+    self.regionId = regionId;
+    self.pageNumber = pageNumber;
+    self.pageSize = pageSize;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize { 
+    self.regionId = regionId;
+    self.version = version;
+    self.pageNumber = pageNumber;
+    self.pageSize = pageSize;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self pageNumber])
+    {
+        [result setValue:[self pageNumber] forKey:@"pageNumber"];
+    }
+    if([self pageSize])
+    {
+        [result setValue:[self pageSize] forKey:@"pageSize"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.pageNumber = [dictionary objectForKey:@"pageNumber"];
+    self.pageSize = [dictionary objectForKey:@"pageSize"];
+    return self;
+} 
+
+@end
+@implementation KmsDescribeKeyDetailRequest
+-(id) initWithRegion:(NSString *)regionId
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+keyId:(NSString*)keyId { 
+    self.regionId = regionId;
+    self.pageNumber = pageNumber;
+    self.pageSize = pageSize;
+    self.keyId = keyId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+keyId:(NSString*)keyId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.pageNumber = pageNumber;
+    self.pageSize = pageSize;
+    self.keyId = keyId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self pageNumber])
+    {
+        [result setValue:[self pageNumber] forKey:@"pageNumber"];
+    }
+    if([self pageSize])
+    {
+        [result setValue:[self pageSize] forKey:@"pageSize"];
+    }
+    if([self keyId])
+    {
+        [result setValue:[self keyId] forKey:@"keyId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.pageNumber = [dictionary objectForKey:@"pageNumber"];
+    self.pageSize = [dictionary objectForKey:@"pageSize"];
+    self.keyId = [dictionary objectForKey:@"keyId"];
+    return self;
+} 
+
+@end
+@implementation KmsScheduleKeyVersionDeletionRequest
+-(id) initWithRegion:(NSString *)regionId
+delayDays:(NSNumber*)delayDays
+keyId:(NSString*)keyId { 
+    self.regionId = regionId;
+    self.delayDays = delayDays;
+    self.keyId = keyId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+delayDays:(NSNumber*)delayDays
+keyId:(NSString*)keyId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.delayDays = delayDays;
+    self.keyId = keyId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self delayDays])
+    {
+        [result setValue:[self delayDays] forKey:@"delayDays"];
+    }
+    if([self keyId])
+    {
+        [result setValue:[self keyId] forKey:@"keyId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.delayDays = [dictionary objectForKey:@"delayDays"];
+    self.keyId = [dictionary objectForKey:@"keyId"];
+    return self;
+} 
+
+@end
+@implementation KmsValidateRequest
+-(id) initWithRegion:(NSString *)regionId
+plaintext:(NSString*)plaintext
+signature:(NSString*)signature
+keyId:(NSString*)keyId { 
+    self.regionId = regionId;
+    self.plaintext = plaintext;
+    self.signature = signature;
+    self.keyId = keyId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+plaintext:(NSString*)plaintext
+signature:(NSString*)signature
+keyId:(NSString*)keyId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.plaintext = plaintext;
+    self.signature = signature;
+    self.keyId = keyId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self plaintext])
+    {
+        [result setValue:[self plaintext] forKey:@"plaintext"];
+    }
+    if([self signature])
+    {
+        [result setValue:[self signature] forKey:@"signature"];
+    }
+    if([self keyId])
+    {
+        [result setValue:[self keyId] forKey:@"keyId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.plaintext = [dictionary objectForKey:@"plaintext"];
+    self.signature = [dictionary objectForKey:@"signature"];
+    self.keyId = [dictionary objectForKey:@"keyId"];
+    return self;
+} 
+
+@end
+@implementation KmsCreateKeyResult
+-(id) initWithKeyId:(NSString*) keyId { 
+    self.keyId = keyId;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self keyId])
+    {
+        [result setValue:[self keyId] forKey:@"keyId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.keyId = [dictionary objectForKey:@"keyId"];
+    return self;
+} 
+
+@end
+@implementation KmsSignResult
+-(id) initWithSignature:(NSString*) signature { 
+    self.signature = signature;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self signature])
+    {
+        [result setValue:[self signature] forKey:@"signature"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.signature = [dictionary objectForKey:@"signature"];
+    return self;
+} 
+
+@end
+@implementation KmsCancelKeyDeletionRequest
+-(id) initWithRegion:(NSString *)regionId
+keyId:(NSString*)keyId { 
+    self.regionId = regionId;
+    self.keyId = keyId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+keyId:(NSString*)keyId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.keyId = keyId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self keyId])
+    {
+        [result setValue:[self keyId] forKey:@"keyId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.keyId = [dictionary objectForKey:@"keyId"];
+    return self;
+} 
+
+@end
+@implementation KmsEncryptRequest
+-(id) initWithRegion:(NSString *)regionId
+plaintext:(NSString*)plaintext
+keyId:(NSString*)keyId { 
+    self.regionId = regionId;
+    self.plaintext = plaintext;
+    self.keyId = keyId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+plaintext:(NSString*)plaintext
+keyId:(NSString*)keyId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.plaintext = plaintext;
+    self.keyId = keyId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self plaintext])
+    {
+        [result setValue:[self plaintext] forKey:@"plaintext"];
+    }
+    if([self keyId])
+    {
+        [result setValue:[self keyId] forKey:@"keyId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.plaintext = [dictionary objectForKey:@"plaintext"];
+    self.keyId = [dictionary objectForKey:@"keyId"];
+    return self;
+} 
+
+@end
+@implementation KmsSignRequest
+-(id) initWithRegion:(NSString *)regionId
+plaintext:(NSString*)plaintext
+keyId:(NSString*)keyId { 
+    self.regionId = regionId;
+    self.plaintext = plaintext;
+    self.keyId = keyId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+plaintext:(NSString*)plaintext
+keyId:(NSString*)keyId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.plaintext = plaintext;
+    self.keyId = keyId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self plaintext])
+    {
+        [result setValue:[self plaintext] forKey:@"plaintext"];
+    }
+    if([self keyId])
+    {
+        [result setValue:[self keyId] forKey:@"keyId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.plaintext = [dictionary objectForKey:@"plaintext"];
+    self.keyId = [dictionary objectForKey:@"keyId"];
+    return self;
+} 
+
+@end
+@implementation KmsScheduleKeyDeletionRequest
+-(id) initWithRegion:(NSString *)regionId
+delayDays:(NSNumber*)delayDays
+keyId:(NSString*)keyId { 
+    self.regionId = regionId;
+    self.delayDays = delayDays;
+    self.keyId = keyId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+delayDays:(NSNumber*)delayDays
+keyId:(NSString*)keyId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.delayDays = delayDays;
+    self.keyId = keyId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self delayDays])
+    {
+        [result setValue:[self delayDays] forKey:@"delayDays"];
+    }
+    if([self keyId])
+    {
+        [result setValue:[self keyId] forKey:@"keyId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.delayDays = [dictionary objectForKey:@"delayDays"];
+    self.keyId = [dictionary objectForKey:@"keyId"];
+    return self;
+} 
+
+@end
+@implementation KmsDisableKeyRequest
+-(id) initWithRegion:(NSString *)regionId
+keyId:(NSString*)keyId { 
+    self.regionId = regionId;
+    self.keyId = keyId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+keyId:(NSString*)keyId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.keyId = keyId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self keyId])
+    {
+        [result setValue:[self keyId] forKey:@"keyId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.keyId = [dictionary objectForKey:@"keyId"];
+    return self;
+} 
+
+@end
+@implementation KmsDescribeKeyRequest
+-(id) initWithRegion:(NSString *)regionId
+keyId:(NSString*)keyId { 
+    self.regionId = regionId;
+    self.keyId = keyId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+keyId:(NSString*)keyId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.keyId = keyId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self keyId])
+    {
+        [result setValue:[self keyId] forKey:@"keyId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.keyId = [dictionary objectForKey:@"keyId"];
+    return self;
+} 
+
+@end
+@implementation KmsEnableKeyRequest
+-(id) initWithRegion:(NSString *)regionId
+keyId:(NSString*)keyId { 
+    self.regionId = regionId;
+    self.keyId = keyId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+keyId:(NSString*)keyId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.keyId = keyId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self keyId])
+    {
+        [result setValue:[self keyId] forKey:@"keyId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.keyId = [dictionary objectForKey:@"keyId"];
+    return self;
+} 
+
+@end
+@implementation KmsDecryptResult
+-(id) initWithPlaintext:(NSString*) plaintext { 
+    self.plaintext = plaintext;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self plaintext])
+    {
+        [result setValue:[self plaintext] forKey:@"plaintext"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.plaintext = [dictionary objectForKey:@"plaintext"];
+    return self;
+} 
+
+@end
+@implementation KmsDisableKeyVersionRequest
+-(id) initWithRegion:(NSString *)regionId
+keyId:(NSString*)keyId { 
+    self.regionId = regionId;
+    self.keyId = keyId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+keyId:(NSString*)keyId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.keyId = keyId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self keyId])
+    {
+        [result setValue:[self keyId] forKey:@"keyId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.keyId = [dictionary objectForKey:@"keyId"];
+    return self;
+} 
+
+@end
+@implementation KmsEnableSecretResult
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    return self;
+} 
+
+@end
+  
+@implementation KmsEnableSecretResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+KmsEnableSecretResult* result = [[KmsEnableSecretResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(KmsEnableSecretResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+@implementation KmsEnableSecretVersionResult
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    return self;
+} 
+
+@end
+  
+@implementation KmsEnableSecretVersionResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+KmsEnableSecretVersionResult* result = [[KmsEnableSecretVersionResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(KmsEnableSecretVersionResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
 
 @end
 @implementation KmsCreateSecretVersionResult
@@ -467,42 +1678,6 @@ KmsDescribeSecretVersionInfoResult* result = [[KmsDescribeSecretVersionInfoResul
 }
 
 @end
-@implementation KmsDisableSecretVersionRequest
--(id) initWithRegion:(NSString *)regionId
-secretId:(NSString*)secretId { 
-    self.regionId = regionId;
-    self.secretId = secretId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-secretId:(NSString*)secretId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.secretId = secretId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self secretId])
-    {
-        [result setValue:[self secretId] forKey:@"secretId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.secretId = [dictionary objectForKey:@"secretId"];
-    return self;
-} 
-
-@end
   
 @implementation KmsDescribeSecretVersionListResponse
 -(NSMutableDictionary*) dictionary
@@ -647,78 +1822,6 @@ KmsDeleteSecretVersionResult* result = [[KmsDeleteSecretVersionResult alloc]init
 }
 
 @end
-@implementation KmsEnableSecretRequest
--(id) initWithRegion:(NSString *)regionId
-secretId:(NSString*)secretId { 
-    self.regionId = regionId;
-    self.secretId = secretId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-secretId:(NSString*)secretId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.secretId = secretId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self secretId])
-    {
-        [result setValue:[self secretId] forKey:@"secretId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.secretId = [dictionary objectForKey:@"secretId"];
-    return self;
-} 
-
-@end
-@implementation KmsDisableSecretRequest
--(id) initWithRegion:(NSString *)regionId
-secretId:(NSString*)secretId { 
-    self.regionId = regionId;
-    self.secretId = secretId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-secretId:(NSString*)secretId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.secretId = secretId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self secretId])
-    {
-        [result setValue:[self secretId] forKey:@"secretId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.secretId = [dictionary objectForKey:@"secretId"];
-    return self;
-} 
-
-@end
 @implementation KmsDeleteSecretResult
 -(NSMutableDictionary*) dictionary{
     NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
@@ -785,8 +1888,8 @@ KmsDeleteSecretResult* result = [[KmsDeleteSecretResult alloc]initWithDic:[dicti
     NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
     if([self secretList])
     {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self secretList] count]; i++) {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self secretList] count]; i++) {
             SecretInfo* item = [[self secretList] objectAtIndex:i];
             [arrayDic addObject:[item dictionary]];
         }
@@ -806,10 +1909,10 @@ KmsDeleteSecretResult* result = [[KmsDeleteSecretResult alloc]initWithDic:[dicti
         NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
         for(int i = 0 ; i< [secretListArray count];i++)
         {
-            SecretInfo* item = [[SecretInfo alloc]initWithDic:[secretListArray objectAtIndex:i]];
+        SecretInfo* item = [[SecretInfo alloc]initWithDic:[secretListArray objectAtIndex:i]];
             if(item)
             {
-                [propertyArray addObject:item];
+            [propertyArray addObject:item];
             }
         }
         self.secretList = propertyArray;
@@ -861,60 +1964,6 @@ KmsCreateSecretResult* result = [[KmsCreateSecretResult alloc]initWithDic:[dicti
     self.requestId = requestId;
     return self;
 }
-
-@end
-@implementation KmsDescribeSecretVersionListRequest
--(id) initWithRegion:(NSString *)regionId
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-secretId:(NSString*)secretId { 
-    self.regionId = regionId;
-    self.pageNumber = pageNumber;
-    self.pageSize = pageSize;
-    self.secretId = secretId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-secretId:(NSString*)secretId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.pageNumber = pageNumber;
-    self.pageSize = pageSize;
-    self.secretId = secretId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self pageNumber])
-    {
-        [result setValue:[self pageNumber] forKey:@"pageNumber"];
-    }
-    if([self pageSize])
-    {
-        [result setValue:[self pageSize] forKey:@"pageSize"];
-    }
-    if([self secretId])
-    {
-        [result setValue:[self secretId] forKey:@"secretId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.pageNumber = [dictionary objectForKey:@"pageNumber"];
-    self.pageSize = [dictionary objectForKey:@"pageSize"];
-    self.secretId = [dictionary objectForKey:@"secretId"];
-    return self;
-} 
 
 @end
   
@@ -1075,42 +2124,6 @@ secretCfg:(SecretCfg*)secretCfg {
 } 
 
 @end
-@implementation KmsDeleteSecretRequest
--(id) initWithRegion:(NSString *)regionId
-secretId:(NSString*)secretId { 
-    self.regionId = regionId;
-    self.secretId = secretId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-secretId:(NSString*)secretId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.secretId = secretId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self secretId])
-    {
-        [result setValue:[self secretId] forKey:@"secretId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.secretId = [dictionary objectForKey:@"secretId"];
-    return self;
-} 
-
-@end
 @implementation KmsDisableSecretResult
 -(NSMutableDictionary*) dictionary{
     NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
@@ -1164,62 +2177,6 @@ KmsDisableSecretResult* result = [[KmsDisableSecretResult alloc]initWithDic:[dic
     self.requestId = requestId;
     return self;
 }
-
-@end
-@implementation KmsExportSecretRequest
--(id) initWithRegion:(NSString *)regionId
-secretId:(NSString*)secretId { 
-    self.regionId = regionId;
-    self.secretId = secretId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-secretId:(NSString*)secretId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.secretId = secretId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self secretId])
-    {
-        [result setValue:[self secretId] forKey:@"secretId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.secretId = [dictionary objectForKey:@"secretId"];
-    return self;
-} 
-
-@end
-@implementation KmsExportSecretResult
--(id) initWithSecretPackage:(NSString*) secretPackage { 
-    self.secretPackage = secretPackage;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self secretPackage])
-    {
-        [result setValue:[self secretPackage] forKey:@"secretPackage"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.secretPackage = [dictionary objectForKey:@"secretPackage"];
-    return self;
-} 
 
 @end
   
@@ -1354,42 +2311,6 @@ KmsDescribeSecretListResult* result = [[KmsDescribeSecretListResult alloc]initWi
 }
 
 @end
-@implementation KmsDeleteSecretVersionRequest
--(id) initWithRegion:(NSString *)regionId
-secretId:(NSString*)secretId { 
-    self.regionId = regionId;
-    self.secretId = secretId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-secretId:(NSString*)secretId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.secretId = secretId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self secretId])
-    {
-        [result setValue:[self secretId] forKey:@"secretId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.secretId = [dictionary objectForKey:@"secretId"];
-    return self;
-} 
-
-@end
   
 @implementation KmsExportSecretResponse
 -(NSMutableDictionary*) dictionary
@@ -1478,42 +2399,6 @@ KmsUpdateSecretVersionResult* result = [[KmsUpdateSecretVersionResult alloc]init
 }
 
 @end
-@implementation KmsImportSecretRequest
--(id) initWithRegion:(NSString *)regionId
-secretPackage:(NSString*)secretPackage { 
-    self.regionId = regionId;
-    self.secretPackage = secretPackage;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-secretPackage:(NSString*)secretPackage { 
-    self.regionId = regionId;
-    self.version = version;
-    self.secretPackage = secretPackage;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self secretPackage])
-    {
-        [result setValue:[self secretPackage] forKey:@"secretPackage"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.secretPackage = [dictionary objectForKey:@"secretPackage"];
-    return self;
-} 
-
-@end
 @implementation KmsDisableKeyVersionResult
 -(NSMutableDictionary*) dictionary{
     NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
@@ -1600,42 +2485,6 @@ KmsDisableKeyVersionResult* result = [[KmsDisableKeyVersionResult alloc]initWith
 } 
 
 @end
-@implementation KmsGetPublicKeyRequest
--(id) initWithRegion:(NSString *)regionId
-keyId:(NSString*)keyId { 
-    self.regionId = regionId;
-    self.keyId = keyId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-keyId:(NSString*)keyId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.keyId = keyId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self keyId])
-    {
-        [result setValue:[self keyId] forKey:@"keyId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.keyId = [dictionary objectForKey:@"keyId"];
-    return self;
-} 
-
-@end
 @implementation KmsUpdateKeyDescriptionRequest
 -(id) initWithRegion:(NSString *)regionId
 keyCfg:(KeyCfg*)keyCfg
@@ -1681,98 +2530,6 @@ keyId:(NSString*)keyId {
 } 
 
 @end
-@implementation KmsKeyRotationRequest
--(id) initWithRegion:(NSString *)regionId
-keyId:(NSString*)keyId { 
-    self.regionId = regionId;
-    self.keyId = keyId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-keyId:(NSString*)keyId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.keyId = keyId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self keyId])
-    {
-        [result setValue:[self keyId] forKey:@"keyId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.keyId = [dictionary objectForKey:@"keyId"];
-    return self;
-} 
-
-@end
-@implementation KmsGenerateDataKeyRequest
--(id) initWithRegion:(NSString *)regionId
-keyId:(NSString*)keyId { 
-    self.regionId = regionId;
-    self.keyId = keyId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-keyId:(NSString*)keyId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.keyId = keyId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self keyId])
-    {
-        [result setValue:[self keyId] forKey:@"keyId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.keyId = [dictionary objectForKey:@"keyId"];
-    return self;
-} 
-
-@end
-@implementation KmsEncryptResult
--(id) initWithCiphertextBlob:(NSString*) ciphertextBlob { 
-    self.ciphertextBlob = ciphertextBlob;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self ciphertextBlob])
-    {
-        [result setValue:[self ciphertextBlob] forKey:@"ciphertextBlob"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.ciphertextBlob = [dictionary objectForKey:@"ciphertextBlob"];
-    return self;
-} 
-
-@end
 @implementation KmsScheduleKeyVersionDeletionResult
 -(NSMutableDictionary*) dictionary{
     NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
@@ -1780,89 +2537,6 @@ keyId:(NSString*)keyId {
 }
 
 -(id) initWithDic:(NSDictionary*)dictionary{
-    return self;
-} 
-
-@end
-@implementation KmsEnableKeyVersionRequest
--(id) initWithRegion:(NSString *)regionId
-keyId:(NSString*)keyId { 
-    self.regionId = regionId;
-    self.keyId = keyId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-keyId:(NSString*)keyId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.keyId = keyId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self keyId])
-    {
-        [result setValue:[self keyId] forKey:@"keyId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.keyId = [dictionary objectForKey:@"keyId"];
-    return self;
-} 
-
-@end
-@implementation KmsValidateResult
--(id) initWithValidated:(NSNumber*) validated { 
-    self.validated = validated;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self validated])
-    {
-        [result setValue:[self validated] forKey:@"validated"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.validated = [dictionary objectForKey:@"validated"];
-    return self;
-} 
-
-@end
-@implementation KmsGenerateDataKeyResult
--(id) initWithPlaintext:(NSString*) plaintext
-        ciphertextBlob:(NSString*)ciphertextBlob { 
-    self.plaintext = plaintext;               
-    self.ciphertextBlob = ciphertextBlob;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self plaintext])
-    {
-        [result setValue:[self plaintext] forKey:@"plaintext"];
-    }
-    if([self ciphertextBlob])
-    {
-        [result setValue:[self ciphertextBlob] forKey:@"ciphertextBlob"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.plaintext = [dictionary objectForKey:@"plaintext"];
-    self.ciphertextBlob = [dictionary objectForKey:@"ciphertextBlob"];
     return self;
 } 
 
@@ -1955,107 +2629,6 @@ KmsValidateResult* result = [[KmsValidateResult alloc]initWithDic:[dictionary ob
 }
 
 @end
-@implementation KmsCancelKeyVersionDeletionRequest
--(id) initWithRegion:(NSString *)regionId
-keyId:(NSString*)keyId { 
-    self.regionId = regionId;
-    self.keyId = keyId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-keyId:(NSString*)keyId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.keyId = keyId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self keyId])
-    {
-        [result setValue:[self keyId] forKey:@"keyId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.keyId = [dictionary objectForKey:@"keyId"];
-    return self;
-} 
-
-@end
-@implementation KmsDecryptRequest
--(id) initWithRegion:(NSString *)regionId
-ciphertextBlob:(NSString*)ciphertextBlob
-keyId:(NSString*)keyId { 
-    self.regionId = regionId;
-    self.ciphertextBlob = ciphertextBlob;
-    self.keyId = keyId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-ciphertextBlob:(NSString*)ciphertextBlob
-keyId:(NSString*)keyId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.ciphertextBlob = ciphertextBlob;
-    self.keyId = keyId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self ciphertextBlob])
-    {
-        [result setValue:[self ciphertextBlob] forKey:@"ciphertextBlob"];
-    }
-    if([self keyId])
-    {
-        [result setValue:[self keyId] forKey:@"keyId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.ciphertextBlob = [dictionary objectForKey:@"ciphertextBlob"];
-    self.keyId = [dictionary objectForKey:@"keyId"];
-    return self;
-} 
-
-@end
-@implementation KmsSignResult
--(id) initWithSignature:(NSString*) signature { 
-    self.signature = signature;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self signature])
-    {
-        [result setValue:[self signature] forKey:@"signature"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.signature = [dictionary objectForKey:@"signature"];
-    return self;
-} 
-
-@end
   
 @implementation KmsSignResponse
 -(NSMutableDictionary*) dictionary
@@ -2107,26 +2680,6 @@ KmsSignResult* result = [[KmsSignResult alloc]initWithDic:[dictionary objectForK
 }
 
 -(id) initWithDic:(NSDictionary*)dictionary{
-    return self;
-} 
-
-@end
-@implementation KmsGetPublicKeyResult
--(id) initWithPublicKeyBlob:(NSString*) publicKeyBlob { 
-    self.publicKeyBlob = publicKeyBlob;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self publicKeyBlob])
-    {
-        [result setValue:[self publicKeyBlob] forKey:@"publicKeyBlob"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.publicKeyBlob = [dictionary objectForKey:@"publicKeyBlob"];
     return self;
 } 
 
@@ -2186,51 +2739,6 @@ KmsScheduleKeyDeletionResult* result = [[KmsScheduleKeyDeletionResult alloc]init
 }
 
 @end
-@implementation KmsDescribeKeyListRequest
--(id) initWithRegion:(NSString *)regionId
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize { 
-    self.regionId = regionId;
-    self.pageNumber = pageNumber;
-    self.pageSize = pageSize;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize { 
-    self.regionId = regionId;
-    self.version = version;
-    self.pageNumber = pageNumber;
-    self.pageSize = pageSize;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self pageNumber])
-    {
-        [result setValue:[self pageNumber] forKey:@"pageNumber"];
-    }
-    if([self pageSize])
-    {
-        [result setValue:[self pageSize] forKey:@"pageSize"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.pageNumber = [dictionary objectForKey:@"pageNumber"];
-    self.pageSize = [dictionary objectForKey:@"pageSize"];
-    return self;
-} 
-
-@end
   
 @implementation KmsGetPublicKeyResponse
 -(NSMutableDictionary*) dictionary
@@ -2273,60 +2781,6 @@ KmsGetPublicKeyResult* result = [[KmsGetPublicKeyResult alloc]initWithDic:[dicti
     self.requestId = requestId;
     return self;
 }
-
-@end
-@implementation KmsDescribeKeyDetailRequest
--(id) initWithRegion:(NSString *)regionId
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-keyId:(NSString*)keyId { 
-    self.regionId = regionId;
-    self.pageNumber = pageNumber;
-    self.pageSize = pageSize;
-    self.keyId = keyId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-keyId:(NSString*)keyId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.pageNumber = pageNumber;
-    self.pageSize = pageSize;
-    self.keyId = keyId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self pageNumber])
-    {
-        [result setValue:[self pageNumber] forKey:@"pageNumber"];
-    }
-    if([self pageSize])
-    {
-        [result setValue:[self pageSize] forKey:@"pageSize"];
-    }
-    if([self keyId])
-    {
-        [result setValue:[self keyId] forKey:@"keyId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.pageNumber = [dictionary objectForKey:@"pageNumber"];
-    self.pageSize = [dictionary objectForKey:@"pageSize"];
-    self.keyId = [dictionary objectForKey:@"keyId"];
-    return self;
-} 
 
 @end
 @implementation KmsEnableKeyVersionResult
@@ -2503,51 +2957,6 @@ KmsDescribeKeyResult* result = [[KmsDescribeKeyResult alloc]initWithDic:[diction
 } 
 
 @end
-@implementation KmsScheduleKeyVersionDeletionRequest
--(id) initWithRegion:(NSString *)regionId
-delayDays:(NSNumber*)delayDays
-keyId:(NSString*)keyId { 
-    self.regionId = regionId;
-    self.delayDays = delayDays;
-    self.keyId = keyId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-delayDays:(NSNumber*)delayDays
-keyId:(NSString*)keyId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.delayDays = delayDays;
-    self.keyId = keyId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self delayDays])
-    {
-        [result setValue:[self delayDays] forKey:@"delayDays"];
-    }
-    if([self keyId])
-    {
-        [result setValue:[self keyId] forKey:@"keyId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.delayDays = [dictionary objectForKey:@"delayDays"];
-    self.keyId = [dictionary objectForKey:@"keyId"];
-    return self;
-} 
-
-@end
 @implementation KmsEnableKeyResult
 -(NSMutableDictionary*) dictionary{
     NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
@@ -2612,80 +3021,6 @@ KmsCancelKeyDeletionResult* result = [[KmsCancelKeyDeletionResult alloc]initWith
     self.requestId = requestId;
     return self;
 }
-
-@end
-@implementation KmsValidateRequest
--(id) initWithRegion:(NSString *)regionId
-plaintext:(NSString*)plaintext
-signature:(NSString*)signature
-keyId:(NSString*)keyId { 
-    self.regionId = regionId;
-    self.plaintext = plaintext;
-    self.signature = signature;
-    self.keyId = keyId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-plaintext:(NSString*)plaintext
-signature:(NSString*)signature
-keyId:(NSString*)keyId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.plaintext = plaintext;
-    self.signature = signature;
-    self.keyId = keyId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self plaintext])
-    {
-        [result setValue:[self plaintext] forKey:@"plaintext"];
-    }
-    if([self signature])
-    {
-        [result setValue:[self signature] forKey:@"signature"];
-    }
-    if([self keyId])
-    {
-        [result setValue:[self keyId] forKey:@"keyId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.plaintext = [dictionary objectForKey:@"plaintext"];
-    self.signature = [dictionary objectForKey:@"signature"];
-    self.keyId = [dictionary objectForKey:@"keyId"];
-    return self;
-} 
-
-@end
-@implementation KmsCreateKeyResult
--(id) initWithKeyId:(NSString*) keyId { 
-    self.keyId = keyId;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self keyId])
-    {
-        [result setValue:[self keyId] forKey:@"keyId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.keyId = [dictionary objectForKey:@"keyId"];
-    return self;
-} 
 
 @end
   
@@ -2875,177 +3210,6 @@ KmsEncryptResult* result = [[KmsEncryptResult alloc]initWithDic:[dictionary obje
 }
 
 @end
-@implementation KmsCancelKeyDeletionRequest
--(id) initWithRegion:(NSString *)regionId
-keyId:(NSString*)keyId { 
-    self.regionId = regionId;
-    self.keyId = keyId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-keyId:(NSString*)keyId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.keyId = keyId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self keyId])
-    {
-        [result setValue:[self keyId] forKey:@"keyId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.keyId = [dictionary objectForKey:@"keyId"];
-    return self;
-} 
-
-@end
-@implementation KmsEncryptRequest
--(id) initWithRegion:(NSString *)regionId
-plaintext:(NSString*)plaintext
-keyId:(NSString*)keyId { 
-    self.regionId = regionId;
-    self.plaintext = plaintext;
-    self.keyId = keyId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-plaintext:(NSString*)plaintext
-keyId:(NSString*)keyId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.plaintext = plaintext;
-    self.keyId = keyId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self plaintext])
-    {
-        [result setValue:[self plaintext] forKey:@"plaintext"];
-    }
-    if([self keyId])
-    {
-        [result setValue:[self keyId] forKey:@"keyId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.plaintext = [dictionary objectForKey:@"plaintext"];
-    self.keyId = [dictionary objectForKey:@"keyId"];
-    return self;
-} 
-
-@end
-@implementation KmsSignRequest
--(id) initWithRegion:(NSString *)regionId
-plaintext:(NSString*)plaintext
-keyId:(NSString*)keyId { 
-    self.regionId = regionId;
-    self.plaintext = plaintext;
-    self.keyId = keyId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-plaintext:(NSString*)plaintext
-keyId:(NSString*)keyId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.plaintext = plaintext;
-    self.keyId = keyId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self plaintext])
-    {
-        [result setValue:[self plaintext] forKey:@"plaintext"];
-    }
-    if([self keyId])
-    {
-        [result setValue:[self keyId] forKey:@"keyId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.plaintext = [dictionary objectForKey:@"plaintext"];
-    self.keyId = [dictionary objectForKey:@"keyId"];
-    return self;
-} 
-
-@end
-@implementation KmsScheduleKeyDeletionRequest
--(id) initWithRegion:(NSString *)regionId
-delayDays:(NSNumber*)delayDays
-keyId:(NSString*)keyId { 
-    self.regionId = regionId;
-    self.delayDays = delayDays;
-    self.keyId = keyId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-delayDays:(NSNumber*)delayDays
-keyId:(NSString*)keyId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.delayDays = delayDays;
-    self.keyId = keyId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self delayDays])
-    {
-        [result setValue:[self delayDays] forKey:@"delayDays"];
-    }
-    if([self keyId])
-    {
-        [result setValue:[self keyId] forKey:@"keyId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.delayDays = [dictionary objectForKey:@"delayDays"];
-    self.keyId = [dictionary objectForKey:@"keyId"];
-    return self;
-} 
-
-@end
   
 @implementation KmsUpdateKeyDescriptionResponse
 -(NSMutableDictionary*) dictionary
@@ -3088,26 +3252,6 @@ KmsUpdateKeyDescriptionResult* result = [[KmsUpdateKeyDescriptionResult alloc]in
     self.requestId = requestId;
     return self;
 }
-
-@end
-@implementation KmsDecryptResult
--(id) initWithPlaintext:(NSString*) plaintext { 
-    self.plaintext = plaintext;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self plaintext])
-    {
-        [result setValue:[self plaintext] forKey:@"plaintext"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.plaintext = [dictionary objectForKey:@"plaintext"];
-    return self;
-} 
 
 @end
   
@@ -3198,42 +3342,6 @@ KmsEnableKeyResult* result = [[KmsEnableKeyResult alloc]initWithDic:[dictionary 
 }
 
 @end
-@implementation KmsDisableKeyRequest
--(id) initWithRegion:(NSString *)regionId
-keyId:(NSString*)keyId { 
-    self.regionId = regionId;
-    self.keyId = keyId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-keyId:(NSString*)keyId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.keyId = keyId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self keyId])
-    {
-        [result setValue:[self keyId] forKey:@"keyId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.keyId = [dictionary objectForKey:@"keyId"];
-    return self;
-} 
-
-@end
   
 @implementation KmsCreateKeyResponse
 -(NSMutableDictionary*) dictionary
@@ -3278,42 +3386,6 @@ KmsCreateKeyResult* result = [[KmsCreateKeyResult alloc]initWithDic:[dictionary 
 }
 
 @end
-@implementation KmsDescribeKeyRequest
--(id) initWithRegion:(NSString *)regionId
-keyId:(NSString*)keyId { 
-    self.regionId = regionId;
-    self.keyId = keyId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-keyId:(NSString*)keyId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.keyId = keyId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self keyId])
-    {
-        [result setValue:[self keyId] forKey:@"keyId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.keyId = [dictionary objectForKey:@"keyId"];
-    return self;
-} 
-
-@end
 @implementation KmsDescribeKeyListResult
 -(id) initWithKeyList:(NSArray<KeyInfo*>*) keyList
         totalCount:(NSNumber*)totalCount { 
@@ -3325,8 +3397,8 @@ keyId:(NSString*)keyId {
     NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
     if([self keyList])
     {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self keyList] count]; i++) {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self keyList] count]; i++) {
             KeyInfo* item = [[self keyList] objectAtIndex:i];
             [arrayDic addObject:[item dictionary]];
         }
@@ -3346,10 +3418,10 @@ keyId:(NSString*)keyId {
         NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
         for(int i = 0 ; i< [keyListArray count];i++)
         {
-            KeyInfo* item = [[KeyInfo alloc]initWithDic:[keyListArray objectAtIndex:i]];
+        KeyInfo* item = [[KeyInfo alloc]initWithDic:[keyListArray objectAtIndex:i]];
             if(item)
             {
-                [propertyArray addObject:item];
+            [propertyArray addObject:item];
             }
         }
         self.keyList = propertyArray;
@@ -3401,42 +3473,6 @@ KmsDescribeKeyListResult* result = [[KmsDescribeKeyListResult alloc]initWithDic:
     self.requestId = requestId;
     return self;
 }
-
-@end
-@implementation KmsEnableKeyRequest
--(id) initWithRegion:(NSString *)regionId
-keyId:(NSString*)keyId { 
-    self.regionId = regionId;
-    self.keyId = keyId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-keyId:(NSString*)keyId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.keyId = keyId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self keyId])
-    {
-        [result setValue:[self keyId] forKey:@"keyId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.keyId = [dictionary objectForKey:@"keyId"];
-    return self;
-} 
 
 @end
   
@@ -3515,42 +3551,6 @@ keyCfg:(KeyCfg*)keyCfg {
 
 -(id) initWithDic:(NSDictionary*)dictionary{
     self.keyCfg = [[KeyCfg alloc]initWithDic:[dictionary objectForKey:@"keyCfg"]];
-    return self;
-} 
-
-@end
-@implementation KmsDisableKeyVersionRequest
--(id) initWithRegion:(NSString *)regionId
-keyId:(NSString*)keyId { 
-    self.regionId = regionId;
-    self.keyId = keyId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-keyId:(NSString*)keyId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.keyId = keyId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self keyId])
-    {
-        [result setValue:[self keyId] forKey:@"keyId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.keyId = [dictionary objectForKey:@"keyId"];
     return self;
 } 
 

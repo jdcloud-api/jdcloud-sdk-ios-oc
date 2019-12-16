@@ -48,28 +48,6 @@ aliasIpId:(NSString*)aliasIpId;
 
 @end
 
-@interface EdcpsDescribeAliasIpsResult : NSObject
-/// AliasIps
- @property (strong,nonatomic,nonnull)  NSArray<AliasIp*>*  aliasIps;
-/// 页码；默认为1
- @property (strong,nonatomic,nonnull)  NSNumber*  pageNumber;
-/// 分页大小；默认为20；取值范围[20, 100]
- @property (strong,nonatomic,nonnull)  NSNumber*  pageSize;
-/// 查询结果总数
- @property (strong,nonatomic,nonnull)  NSNumber*  totalCount;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithAliasIps:(NSArray<AliasIp*>*) aliasIps
-
-    pageNumber:(NSNumber*)pageNumber
-
-    pageSize:(NSNumber*)pageSize
-
-    totalCount:(NSNumber*)totalCount;
-@end
-
 @interface EdcpsDescribeAliasIpsRequest:JDCloudRequest
 
 /// 页码；默认为1
@@ -99,73 +77,6 @@ cidr:(NSString*)cidr;
 
 @end
 
-@interface EdcpsCreateAliasIpRequest:JDCloudRequest
-
-/// 由客户端生成，用于保证请求的幂等性，长度不能超过36个字符；&lt;br/&gt;
-   /// 如果多个请求使用了相同的clientToken，只会执行第一个请求，之后的请求直接返回第一个请求的结果&lt;br/&gt;
-   /// 
-@property (strong,nonatomic,nonnull)  NSString*  clientToken;
-/// 别名IP配置
-@property (strong,nonatomic,nonnull)  AliasIpSpec*  aliasIpSpec;
--(id) initWithRegion:(NSString *)regionId
-clientToken:(NSString*)clientToken
-aliasIpSpec:(AliasIpSpec*)aliasIpSpec;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-clientToken:(NSString*)clientToken
-aliasIpSpec:(AliasIpSpec*)aliasIpSpec;
-
-@end
-
-@interface EdcpsCreateAliasIpResult : NSObject
-/// SuccessList
- @property (strong,nonatomic,nonnull)  NSArray<AliasIpSuccessInfo*>*  successList;
-/// ErrorList
- @property (strong,nonatomic,nonnull)  NSArray<AliasIpErrorInfo*>*  errorList;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithSuccessList:(NSArray<AliasIpSuccessInfo*>*) successList
-
-    errorList:(NSArray<AliasIpErrorInfo*>*)errorList;
-@end
-
-@interface EdcpsCreateAliasIpResponse : NSObject
-
-@property NSString* requestId;
-
-@property ServiceError* error;
-
-@property EdcpsCreateAliasIpResult* result;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
-
--(id) initWithRequestId:(NSString*) requestId
-        error:(ServiceError*) error
-        result:(EdcpsCreateAliasIpResult*) result;
-@end
-
-@interface EdcpsDescribeAliasIpsResponse : NSObject
-
-@property NSString* requestId;
-
-@property ServiceError* error;
-
-@property EdcpsDescribeAliasIpsResult* result;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
-
--(id) initWithRequestId:(NSString*) requestId
-        error:(ServiceError*) error
-        result:(EdcpsDescribeAliasIpsResult*) result;
-@end
-
 @interface EdcpsDeleteAliasIpResult : NSObject
 /// 删除操作是否成功
  @property (strong,nonatomic,nonnull)  NSNumber*  success;
@@ -174,106 +85,6 @@ aliasIpSpec:(AliasIpSpec*)aliasIpSpec;
 
 -(id) initWithDic:(NSDictionary*)dictionary;
 -(id) initWithSuccess:(NSNumber*) success;
-@end
-
-@interface EdcpsDeleteAliasIpResponse : NSObject
-
-@property NSString* requestId;
-
-@property ServiceError* error;
-
-@property EdcpsDeleteAliasIpResult* result;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
-
--(id) initWithRequestId:(NSString*) requestId
-        error:(ServiceError*) error
-        result:(EdcpsDeleteAliasIpResult*) result;
-@end
-
-@interface EdcpsCreateSubnetResult : NSObject
-/// 子网ID
- @property (strong,nonatomic,nonnull)  NSString*  subnetId;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithSubnetId:(NSString*) subnetId;
-@end
-
-@interface EdcpsCreateSubnetResponse : NSObject
-
-@property NSString* requestId;
-
-@property ServiceError* error;
-
-@property EdcpsCreateSubnetResult* result;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
-
--(id) initWithRequestId:(NSString*) requestId
-        error:(ServiceError*) error
-        result:(EdcpsCreateSubnetResult*) result;
-@end
-
-@interface EdcpsDescribeSubnetResult : NSObject
-/// 子网详细信息
- @property (strong,nonatomic,nonnull)  Subnet*  subnet;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithSubnet:(Subnet*) subnet;
-@end
-
-@interface EdcpsModifySubnetResult : NSObject
-/// 子网详细信息
- @property (strong,nonatomic,nonnull)  Subnet*  subnet;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithSubnet:(Subnet*) subnet;
-@end
-
-@interface EdcpsCreateSubnetRequest:JDCloudRequest
-
-/// 由客户端生成，用于保证请求的幂等性，长度不能超过36个字符；&lt;br/&gt;
-   /// 如果多个请求使用了相同的clientToken，只会执行第一个请求，之后的请求直接返回第一个请求的结果&lt;br/&gt;
-   /// 
-@property (strong,nonatomic,nonnull)  NSString*  clientToken;
-/// 子网配置
-@property (strong,nonatomic,nonnull)  SubnetSpec*  subnetSpec;
--(id) initWithRegion:(NSString *)regionId
-clientToken:(NSString*)clientToken
-subnetSpec:(SubnetSpec*)subnetSpec;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-clientToken:(NSString*)clientToken
-subnetSpec:(SubnetSpec*)subnetSpec;
-
-@end
-
-@interface EdcpsModifySubnetResponse : NSObject
-
-@property NSString* requestId;
-
-@property ServiceError* error;
-
-@property EdcpsModifySubnetResult* result;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
-
--(id) initWithRequestId:(NSString*) requestId
-        error:(ServiceError*) error
-        result:(EdcpsModifySubnetResult*) result;
 @end
 
 @interface EdcpsModifySubnetRequest:JDCloudRequest
@@ -320,74 +131,6 @@ subnetId:(NSString*)subnetId;
 -(id) initWithSuccess:(NSNumber*) success;
 @end
 
-@interface EdcpsDeleteSubnetResponse : NSObject
-
-@property NSString* requestId;
-
-@property ServiceError* error;
-
-@property EdcpsDeleteSubnetResult* result;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
-
--(id) initWithRequestId:(NSString*) requestId
-        error:(ServiceError*) error
-        result:(EdcpsDeleteSubnetResult*) result;
-@end
-
-@interface EdcpsDescribeSubnetResponse : NSObject
-
-@property NSString* requestId;
-
-@property ServiceError* error;
-
-@property EdcpsDescribeSubnetResult* result;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
-
--(id) initWithRequestId:(NSString*) requestId
-        error:(ServiceError*) error
-        result:(EdcpsDescribeSubnetResult*) result;
-@end
-
-@interface EdcpsDescribeSubnetsRequest:JDCloudRequest
-
-/// 页码；默认为1
-@property (strong,nonatomic,nonnull)  NSNumber*  pageNumber;
-/// 分页大小；默认为20；取值范围[20, 100]
-@property (strong,nonatomic,nonnull)  NSNumber*  pageSize;
-/// 可用区，精确匹配
-@property (strong,nonatomic,nonnull)  NSString*  az;
-/// 子网名称
-@property (strong,nonatomic,nonnull)  NSString*  name;
-/// 私有网络ID，精确匹配
-@property (strong,nonatomic,nonnull)  NSString*  vpcId;
-/// subnetId - 子网ID，精确匹配，支持多个
-   /// 
-@property (strong,nonatomic,nonnull)  NSArray<Filter*>*  filters;
--(id) initWithRegion:(NSString *)regionId
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-az:(NSString*)az
-name:(NSString*)name
-vpcId:(NSString*)vpcId
-filters:(NSArray<Filter*>*)filters;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-az:(NSString*)az
-name:(NSString*)name
-vpcId:(NSString*)vpcId
-filters:(NSArray<Filter*>*)filters;
-
-@end
-
 @interface EdcpsDeleteSubnetRequest:JDCloudRequest
 
 /// 由客户端生成，用于保证请求的幂等性，长度不能超过36个字符；&lt;br/&gt;
@@ -407,43 +150,14 @@ subnetId:(NSString*)subnetId;
 
 @end
 
-@interface EdcpsDescribeSubnetsResult : NSObject
-/// Subnets
- @property (strong,nonatomic,nonnull)  NSArray<Subnet*>*  subnets;
-/// 页码；默认为1
- @property (strong,nonatomic,nonnull)  NSNumber*  pageNumber;
-/// 分页大小；默认为20；取值范围[20, 100]
- @property (strong,nonatomic,nonnull)  NSNumber*  pageSize;
-/// 查询结果总数
- @property (strong,nonatomic,nonnull)  NSNumber*  totalCount;
+@interface EdcpsCreateSubnetResult : NSObject
+/// 子网ID
+ @property (strong,nonatomic,nonnull)  NSString*  subnetId;
 
 -(NSMutableDictionary*) dictionary;
 
 -(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithSubnets:(NSArray<Subnet*>*) subnets
-
-    pageNumber:(NSNumber*)pageNumber
-
-    pageSize:(NSNumber*)pageSize
-
-    totalCount:(NSNumber*)totalCount;
-@end
-
-@interface EdcpsDescribeSubnetsResponse : NSObject
-
-@property NSString* requestId;
-
-@property ServiceError* error;
-
-@property EdcpsDescribeSubnetsResult* result;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
-
--(id) initWithRequestId:(NSString*) requestId
-        error:(ServiceError*) error
-        result:(EdcpsDescribeSubnetsResult*) result;
+-(id) initWithSubnetId:(NSString*) subnetId;
 @end
 
 @interface EdcpsDeleteelasticIpRequest:JDCloudRequest
@@ -463,72 +177,6 @@ elasticIpId:(NSString*)elasticIpId;
 clientToken:(NSString*)clientToken
 elasticIpId:(NSString*)elasticIpId;
 
-@end
-
-@interface EdcpsDescribeElasticIpStockResult : NSObject
-/// 地域
- @property (strong,nonatomic,nonnull)  NSString*  region;
-/// 可用弹性公网IP库存
- @property (strong,nonatomic,nonnull)  NSNumber*  available;
-/// 可用带宽库存
- @property (strong,nonatomic,nonnull)  NSNumber*  availableBandwidth;
-/// 可用额外上行带宽库存
- @property (strong,nonatomic,nonnull)  NSNumber*  availableExtraUplinkBandwidth;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithRegion:(NSString*) region
-
-    available:(NSNumber*)available
-
-    availableBandwidth:(NSNumber*)availableBandwidth
-
-    availableExtraUplinkBandwidth:(NSNumber*)availableExtraUplinkBandwidth;
-@end
-
-@interface EdcpsDescribeElasticIpStockResponse : NSObject
-
-@property NSString* requestId;
-
-@property ServiceError* error;
-
-@property EdcpsDescribeElasticIpStockResult* result;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
-
--(id) initWithRequestId:(NSString*) requestId
-        error:(ServiceError*) error
-        result:(EdcpsDescribeElasticIpStockResult*) result;
-@end
-
-@interface EdcpsDeleteelasticIpResult : NSObject
-/// 删除操作是否成功
- @property (strong,nonatomic,nonnull)  NSNumber*  success;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithSuccess:(NSNumber*) success;
-@end
-
-@interface EdcpsDeleteelasticIpResponse : NSObject
-
-@property NSString* requestId;
-
-@property ServiceError* error;
-
-@property EdcpsDeleteelasticIpResult* result;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
-
--(id) initWithRequestId:(NSString*) requestId
-        error:(ServiceError*) error
-        result:(EdcpsDeleteelasticIpResult*) result;
 @end
 
 @interface EdcpsModifyElasticIpBandwidthRequest:JDCloudRequest
@@ -558,31 +206,26 @@ elasticIpId:(NSString*)elasticIpId;
 
 @end
 
-@interface EdcpsDescribeElasticIpsRequest:JDCloudRequest
+@interface EdcpsDescribeElasticIpStockResult : NSObject
+/// 地域
+ @property (strong,nonatomic,nonnull)  NSString*  region;
+/// 可用弹性公网IP库存
+ @property (strong,nonatomic,nonnull)  NSNumber*  available;
+/// 可用带宽库存
+ @property (strong,nonatomic,nonnull)  NSNumber*  availableBandwidth;
+/// 可用额外上行带宽库存
+ @property (strong,nonatomic,nonnull)  NSNumber*  availableExtraUplinkBandwidth;
 
-/// 页码；默认为1
-@property (strong,nonatomic,nonnull)  NSNumber*  pageNumber;
-/// 分页大小；默认为20；取值范围[20, 100]
-@property (strong,nonatomic,nonnull)  NSNumber*  pageSize;
-/// 弹性公网IP状态，取值范围：associate、disassociate
-@property (strong,nonatomic,nonnull)  NSString*  status;
-/// elasticIpId - 弹性公网IPID，精确匹配，支持多个&lt;br/&gt;
-   /// elasticIp - 弹性公网IP，精确匹配，支持多个
-   /// 
-@property (strong,nonatomic,nonnull)  NSArray<Filter*>*  filters;
--(id) initWithRegion:(NSString *)regionId
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-status:(NSString*)status
-filters:(NSArray<Filter*>*)filters;
+-(NSMutableDictionary*) dictionary;
 
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-status:(NSString*)status
-filters:(NSArray<Filter*>*)filters;
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithRegion:(NSString*) region
 
+    available:(NSNumber*)available
+
+    availableBandwidth:(NSNumber*)availableBandwidth
+
+    availableExtraUplinkBandwidth:(NSNumber*)availableExtraUplinkBandwidth;
 @end
 
 @interface EdcpsModifyElasticIpBandwidthResult : NSObject
@@ -595,55 +238,14 @@ filters:(NSArray<Filter*>*)filters;
 -(id) initWithSuccess:(NSNumber*) success;
 @end
 
-@interface EdcpsApplyElasticIpsRequest:JDCloudRequest
-
-/// 由客户端生成，用于保证请求的幂等性，长度不能超过36个字符；&lt;br/&gt;
-   /// 如果多个请求使用了相同的clientToken，只会执行第一个请求，之后的请求直接返回第一个请求的结果&lt;br/&gt;
-   /// 
-@property (strong,nonatomic,nonnull)  NSString*  clientToken;
-/// 弹性公网IP配置
-@property (strong,nonatomic,nonnull)  ElasticIpSpec*  elasticIpSpec;
--(id) initWithRegion:(NSString *)regionId
-clientToken:(NSString*)clientToken
-elasticIpSpec:(ElasticIpSpec*)elasticIpSpec;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-clientToken:(NSString*)clientToken
-elasticIpSpec:(ElasticIpSpec*)elasticIpSpec;
-
-@end
-
-@interface EdcpsDescribeElasticIpResult : NSObject
-/// 弹性公网IP详细信息
- @property (strong,nonatomic,nonnull)  ElasticIp*  elasticIp;
+@interface EdcpsDeleteelasticIpResult : NSObject
+/// 删除操作是否成功
+ @property (strong,nonatomic,nonnull)  NSNumber*  success;
 
 -(NSMutableDictionary*) dictionary;
 
 -(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithElasticIp:(ElasticIp*) elasticIp;
-@end
-
-@interface EdcpsDescribeElasticIpsResult : NSObject
-/// ElasticIps
- @property (strong,nonatomic,nonnull)  NSArray<ElasticIp*>*  elasticIps;
-/// 页码；默认为1
- @property (strong,nonatomic,nonnull)  NSNumber*  pageNumber;
-/// 分页大小；默认为20；取值范围[20, 100]
- @property (strong,nonatomic,nonnull)  NSNumber*  pageSize;
-/// 查询结果总数
- @property (strong,nonatomic,nonnull)  NSNumber*  totalCount;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithElasticIps:(NSArray<ElasticIp*>*) elasticIps
-
-    pageNumber:(NSNumber*)pageNumber
-
-    pageSize:(NSNumber*)pageSize
-
-    totalCount:(NSNumber*)totalCount;
+-(id) initWithSuccess:(NSNumber*) success;
 @end
 
 @interface EdcpsApplyElasticIpsResult : NSObject
@@ -656,23 +258,6 @@ elasticIpSpec:(ElasticIpSpec*)elasticIpSpec;
 -(id) initWithElasticIpIds:(NSArray<NSString*>*) elasticIpIds;
 @end
 
-@interface EdcpsModifyElasticIpBandwidthResponse : NSObject
-
-@property NSString* requestId;
-
-@property ServiceError* error;
-
-@property EdcpsModifyElasticIpBandwidthResult* result;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
-
--(id) initWithRequestId:(NSString*) requestId
-        error:(ServiceError*) error
-        result:(EdcpsModifyElasticIpBandwidthResult*) result;
-@end
-
 @interface EdcpsDescribeElasticIpRequest:JDCloudRequest
 
 /// 弹性公网IPID
@@ -683,92 +268,6 @@ elasticIpId:(NSString*)elasticIpId;
 -(id) initWithRegion:(NSString *)regionId
              version:(NSString *)version
 elasticIpId:(NSString*)elasticIpId;
-
-@end
-
-@interface EdcpsDescribeElasticIpsResponse : NSObject
-
-@property NSString* requestId;
-
-@property ServiceError* error;
-
-@property EdcpsDescribeElasticIpsResult* result;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
-
--(id) initWithRequestId:(NSString*) requestId
-        error:(ServiceError*) error
-        result:(EdcpsDescribeElasticIpsResult*) result;
-@end
-
-@interface EdcpsDescribeElasticIpStockRequest:JDCloudRequest
-
-@end
-
-@interface EdcpsDescribeElasticIpResponse : NSObject
-
-@property NSString* requestId;
-
-@property ServiceError* error;
-
-@property EdcpsDescribeElasticIpResult* result;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
-
--(id) initWithRequestId:(NSString*) requestId
-        error:(ServiceError*) error
-        result:(EdcpsDescribeElasticIpResult*) result;
-@end
-
-@interface EdcpsApplyElasticIpsResponse : NSObject
-
-@property NSString* requestId;
-
-@property ServiceError* error;
-
-@property EdcpsApplyElasticIpsResult* result;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
-
--(id) initWithRequestId:(NSString*) requestId
-        error:(ServiceError*) error
-        result:(EdcpsApplyElasticIpsResult*) result;
-@end
-
-@interface EdcpsDescribeLineTypesResult : NSObject
-/// LineTypes
- @property (strong,nonatomic,nonnull)  NSArray<LineType*>*  lineTypes;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithLineTypes:(NSArray<LineType*>*) lineTypes;
-@end
-
-@interface EdcpsDescribeLineTypesResponse : NSObject
-
-@property NSString* requestId;
-
-@property ServiceError* error;
-
-@property EdcpsDescribeLineTypesResult* result;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
-
--(id) initWithRequestId:(NSString*) requestId
-        error:(ServiceError*) error
-        result:(EdcpsDescribeLineTypesResult*) result;
-@end
-
-@interface EdcpsDescribeLineTypesRequest:JDCloudRequest
 
 @end
 
@@ -810,76 +309,6 @@ elasticIpId:(NSString*)elasticIpId;
     privateKey:(NSString*)privateKey;
 @end
 
-@interface EdcpsCreateKeypairsResponse : NSObject
-
-@property NSString* requestId;
-
-@property ServiceError* error;
-
-@property EdcpsCreateKeypairsResult* result;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
-
--(id) initWithRequestId:(NSString*) requestId
-        error:(ServiceError*) error
-        result:(EdcpsCreateKeypairsResult*) result;
-@end
-
-@interface EdcpsDescribeKeypairResult : NSObject
-/// 密钥对详细信息
- @property (strong,nonatomic,nonnull)  Keypair*  server;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithServer:(Keypair*) server;
-@end
-
-@interface EdcpsDescribeKeypairResponse : NSObject
-
-@property NSString* requestId;
-
-@property ServiceError* error;
-
-@property EdcpsDescribeKeypairResult* result;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
-
--(id) initWithRequestId:(NSString*) requestId
-        error:(ServiceError*) error
-        result:(EdcpsDescribeKeypairResult*) result;
-@end
-
-@interface EdcpsDescribeKeypairsRequest:JDCloudRequest
-
-/// 页码；默认为1
-@property (strong,nonatomic,nonnull)  NSNumber*  pageNumber;
-/// 分页大小；默认为20；取值范围[20, 100]
-@property (strong,nonatomic,nonnull)  NSNumber*  pageSize;
-/// 密钥对名称
-@property (strong,nonatomic,nonnull)  NSString*  name;
-/// keypairId  - 密钥对ID，精确匹配，支持多个
-   /// 
-@property (strong,nonatomic,nonnull)  NSArray<Filter*>*  filters;
--(id) initWithRegion:(NSString *)regionId
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-name:(NSString*)name
-filters:(NSArray<Filter*>*)filters;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-name:(NSString*)name
-filters:(NSArray<Filter*>*)filters;
-
-@end
-
 @interface EdcpsDescribeKeypairRequest:JDCloudRequest
 
 /// 密钥对ID
@@ -891,45 +320,6 @@ keypairId:(NSString*)keypairId;
              version:(NSString *)version
 keypairId:(NSString*)keypairId;
 
-@end
-
-@interface EdcpsDescribeKeypairsResult : NSObject
-/// Servers
- @property (strong,nonatomic,nonnull)  NSArray<Keypair*>*  servers;
-/// 页码；默认为1
- @property (strong,nonatomic,nonnull)  NSNumber*  pageNumber;
-/// 分页大小；默认为20；取值范围[20, 100]
- @property (strong,nonatomic,nonnull)  NSNumber*  pageSize;
-/// 查询结果总数
- @property (strong,nonatomic,nonnull)  NSNumber*  totalCount;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithServers:(NSArray<Keypair*>*) servers
-
-    pageNumber:(NSNumber*)pageNumber
-
-    pageSize:(NSNumber*)pageSize
-
-    totalCount:(NSNumber*)totalCount;
-@end
-
-@interface EdcpsDescribeKeypairsResponse : NSObject
-
-@property NSString* requestId;
-
-@property ServiceError* error;
-
-@property EdcpsDescribeKeypairsResult* result;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
-
--(id) initWithRequestId:(NSString*) requestId
-        error:(ServiceError*) error
-        result:(EdcpsDescribeKeypairsResult*) result;
 @end
 
 @interface EdcpsImportKeypairsRequest:JDCloudRequest
@@ -1018,23 +408,6 @@ name:(NSString*)name;
     updateTime:(NSString*)updateTime;
 @end
 
-@interface EdcpsDeleteKeypairsResponse : NSObject
-
-@property NSString* requestId;
-
-@property ServiceError* error;
-
-@property EdcpsDeleteKeypairsResult* result;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
-
--(id) initWithRequestId:(NSString*) requestId
-        error:(ServiceError*) error
-        result:(EdcpsDeleteKeypairsResult*) result;
-@end
-
 @interface EdcpsDeleteKeypairsRequest:JDCloudRequest
 
 /// 密钥对ID
@@ -1046,23 +419,6 @@ keypairId:(NSString*)keypairId;
              version:(NSString *)version
 keypairId:(NSString*)keypairId;
 
-@end
-
-@interface EdcpsImportKeypairsResponse : NSObject
-
-@property NSString* requestId;
-
-@property ServiceError* error;
-
-@property EdcpsImportKeypairsResult* result;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
-
--(id) initWithRequestId:(NSString*) requestId
-        error:(ServiceError*) error
-        result:(EdcpsImportKeypairsResult*) result;
 @end
 
 @interface EdcpsDeleteSecondaryCidrRequest:JDCloudRequest
@@ -1084,16 +440,6 @@ secondaryCidrId:(NSString*)secondaryCidrId;
 
 @end
 
-@interface EdcpsDescribeSecondaryCidrsResult : NSObject
-/// SecondaryCidrs
- @property (strong,nonatomic,nonnull)  NSArray<SecondaryCidr*>*  secondaryCidrs;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithSecondaryCidrs:(NSArray<SecondaryCidr*>*) secondaryCidrs;
-@end
-
 @interface EdcpsDeleteSecondaryCidrResult : NSObject
 /// 删除操作是否成功
  @property (strong,nonatomic,nonnull)  NSNumber*  success;
@@ -1104,23 +450,6 @@ secondaryCidrId:(NSString*)secondaryCidrId;
 -(id) initWithSuccess:(NSNumber*) success;
 @end
 
-@interface EdcpsDeleteSecondaryCidrResponse : NSObject
-
-@property NSString* requestId;
-
-@property ServiceError* error;
-
-@property EdcpsDeleteSecondaryCidrResult* result;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
-
--(id) initWithRequestId:(NSString*) requestId
-        error:(ServiceError*) error
-        result:(EdcpsDeleteSecondaryCidrResult*) result;
-@end
-
 @interface EdcpsCreateSecondaryCidrResult : NSObject
 /// 次要cidr的ID
  @property (strong,nonatomic,nonnull)  NSString*  secondaryCidrId;
@@ -1129,59 +458,6 @@ secondaryCidrId:(NSString*)secondaryCidrId;
 
 -(id) initWithDic:(NSDictionary*)dictionary;
 -(id) initWithSecondaryCidrId:(NSString*) secondaryCidrId;
-@end
-
-@interface EdcpsCreateSecondaryCidrResponse : NSObject
-
-@property NSString* requestId;
-
-@property ServiceError* error;
-
-@property EdcpsCreateSecondaryCidrResult* result;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
-
--(id) initWithRequestId:(NSString*) requestId
-        error:(ServiceError*) error
-        result:(EdcpsCreateSecondaryCidrResult*) result;
-@end
-
-@interface EdcpsCreateSecondaryCidrRequest:JDCloudRequest
-
-/// 由客户端生成，用于保证请求的幂等性，长度不能超过36个字符；&lt;br/&gt;
-   /// 如果多个请求使用了相同的clientToken，只会执行第一个请求，之后的请求直接返回第一个请求的结果&lt;br/&gt;
-   /// 
-@property (strong,nonatomic,nonnull)  NSString*  clientToken;
-/// 次要cidr配置
-@property (strong,nonatomic,nonnull)  SecondaryCidrSpec*  secondaryCidrSpec;
--(id) initWithRegion:(NSString *)regionId
-clientToken:(NSString*)clientToken
-secondaryCidrSpec:(SecondaryCidrSpec*)secondaryCidrSpec;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-clientToken:(NSString*)clientToken
-secondaryCidrSpec:(SecondaryCidrSpec*)secondaryCidrSpec;
-
-@end
-
-@interface EdcpsDescribeSecondaryCidrsResponse : NSObject
-
-@property NSString* requestId;
-
-@property ServiceError* error;
-
-@property EdcpsDescribeSecondaryCidrsResult* result;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
-
--(id) initWithRequestId:(NSString*) requestId
-        error:(ServiceError*) error
-        result:(EdcpsDescribeSecondaryCidrsResult*) result;
 @end
 
 @interface EdcpsDescribeSecondaryCidrsRequest:JDCloudRequest
@@ -1232,82 +508,6 @@ az:(NSString*)az;
 
 @end
 
-@interface EdcpsDescribeOSResult : NSObject
-/// Oss
- @property (strong,nonatomic,nonnull)  NSArray<Os*>*  oss;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithOss:(NSArray<Os*>*) oss;
-@end
-
-@interface EdcpsDescribeOSResponse : NSObject
-
-@property NSString* requestId;
-
-@property ServiceError* error;
-
-@property EdcpsDescribeOSResult* result;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
-
--(id) initWithRequestId:(NSString*) requestId
-        error:(ServiceError*) error
-        result:(EdcpsDescribeOSResult*) result;
-@end
-
-@interface EdcpsDescribeInstancesResult : NSObject
-/// Instances
- @property (strong,nonatomic,nonnull)  NSArray<Instance*>*  instances;
-/// 页码；默认为1
- @property (strong,nonatomic,nonnull)  NSNumber*  pageNumber;
-/// 分页大小；默认为20；取值范围[20, 100]
- @property (strong,nonatomic,nonnull)  NSNumber*  pageSize;
-/// 查询结果总数
- @property (strong,nonatomic,nonnull)  NSNumber*  totalCount;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithInstances:(NSArray<Instance*>*) instances
-
-    pageNumber:(NSNumber*)pageNumber
-
-    pageSize:(NSNumber*)pageSize
-
-    totalCount:(NSNumber*)totalCount;
-@end
-
-@interface EdcpsDescribeDeviceTypesResult : NSObject
-/// DeviceTypes
- @property (strong,nonatomic,nonnull)  NSArray<DeviceType*>*  deviceTypes;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithDeviceTypes:(NSArray<DeviceType*>*) deviceTypes;
-@end
-
-@interface EdcpsDescribeDeviceTypesResponse : NSObject
-
-@property NSString* requestId;
-
-@property ServiceError* error;
-
-@property EdcpsDescribeDeviceTypesResult* result;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
-
--(id) initWithRequestId:(NSString*) requestId
-        error:(ServiceError*) error
-        result:(EdcpsDescribeDeviceTypesResult*) result;
-@end
-
 @interface EdcpsResetPasswordResult : NSObject
 /// 重置结果
  @property (strong,nonatomic,nonnull)  NSNumber*  success;
@@ -1316,16 +516,6 @@ az:(NSString*)az;
 
 -(id) initWithDic:(NSDictionary*)dictionary;
 -(id) initWithSuccess:(NSNumber*) success;
-@end
-
-@interface EdcpsDescribeInstanceResult : NSObject
-/// Instance
- @property (strong,nonatomic,nonnull)  Instance*  instance;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithInstance:(Instance*) instance;
 @end
 
 @interface EdcpsStopInstanceRequest:JDCloudRequest
@@ -1357,29 +547,6 @@ instanceId:(NSString*)instanceId;
 -(id) initWithSuccess:(NSNumber*) success;
 @end
 
-@interface EdcpsReinstallInstanceRequest:JDCloudRequest
-
-/// 由客户端生成，用于保证请求的幂等性，长度不能超过36个字符；&lt;br/&gt;
-   /// 如果多个请求使用了相同的clientToken，只会执行第一个请求，之后的请求直接返回第一个请求的结果&lt;br/&gt;
-   /// 
-@property (strong,nonatomic,nonnull)  NSString*  clientToken;
-/// 分布式云物理服务器配置
-@property (strong,nonatomic,nonnull)  ReinstallInstanceSpec*  instanceSpec;
-/// 分布式云物理服务器ID
-@property (strong,nonatomic,nonnull)  NSString*  instanceId;
--(id) initWithRegion:(NSString *)regionId
-clientToken:(NSString*)clientToken
-instanceSpec:(ReinstallInstanceSpec*)instanceSpec
-instanceId:(NSString*)instanceId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-clientToken:(NSString*)clientToken
-instanceSpec:(ReinstallInstanceSpec*)instanceSpec
-instanceId:(NSString*)instanceId;
-
-@end
-
 @interface EdcpsDescribeAvailablePrivateIpRequest:JDCloudRequest
 
 /// 分布式云物理服务器ID
@@ -1393,79 +560,6 @@ instanceId:(NSString*)instanceId;
 
 @end
 
-@interface EdcpsStopInstanceResult : NSObject
-/// 关机操作是否成功
- @property (strong,nonatomic,nonnull)  NSNumber*  success;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithSuccess:(NSNumber*) success;
-@end
-
-@interface EdcpsStopInstanceResponse : NSObject
-
-@property NSString* requestId;
-
-@property ServiceError* error;
-
-@property EdcpsStopInstanceResult* result;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
-
--(id) initWithRequestId:(NSString*) requestId
-        error:(ServiceError*) error
-        result:(EdcpsStopInstanceResult*) result;
-@end
-
-@interface EdcpsCreateInstancesRequest:JDCloudRequest
-
-/// 由客户端生成，用于保证请求的幂等性，长度不能超过36个字符；&lt;br/&gt;
-   /// 如果多个请求使用了相同的clientToken，只会执行第一个请求，之后的请求直接返回第一个请求的结果&lt;br/&gt;
-   /// 
-@property (strong,nonatomic,nonnull)  NSString*  clientToken;
-/// 描述分布式云物理服务器配置
-@property (strong,nonatomic,nonnull)  InstanceSpec*  instanceSpec;
--(id) initWithRegion:(NSString *)regionId
-clientToken:(NSString*)clientToken
-instanceSpec:(InstanceSpec*)instanceSpec;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-clientToken:(NSString*)clientToken
-instanceSpec:(InstanceSpec*)instanceSpec;
-
-@end
-
-@interface EdcpsDescribeDeviceRaidsResult : NSObject
-/// Raids
- @property (strong,nonatomic,nonnull)  NSArray<Raid*>*  raids;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithRaids:(NSArray<Raid*>*) raids;
-@end
-
-@interface EdcpsDescribeDeviceRaidsResponse : NSObject
-
-@property NSString* requestId;
-
-@property ServiceError* error;
-
-@property EdcpsDescribeDeviceRaidsResult* result;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
-
--(id) initWithRequestId:(NSString*) requestId
-        error:(ServiceError*) error
-        result:(EdcpsDescribeDeviceRaidsResult*) result;
-@end
-
 @interface EdcpsDescribeInstanceRequest:JDCloudRequest
 
 /// 分布式云物理服务器ID
@@ -1477,60 +571,6 @@ instanceId:(NSString*)instanceId;
              version:(NSString *)version
 instanceId:(NSString*)instanceId;
 
-@end
-
-@interface EdcpsDescribeDeviceStockResult : NSObject
-/// DevicesStock
- @property (strong,nonatomic,nonnull)  NSArray<ResourceStock*>*  devicesStock;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithDevicesStock:(NSArray<ResourceStock*>*) devicesStock;
-@end
-
-@interface EdcpsDescribeDeviceStockResponse : NSObject
-
-@property NSString* requestId;
-
-@property ServiceError* error;
-
-@property EdcpsDescribeDeviceStockResult* result;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
-
--(id) initWithRequestId:(NSString*) requestId
-        error:(ServiceError*) error
-        result:(EdcpsDescribeDeviceStockResult*) result;
-@end
-
-@interface EdcpsDisassociateElasticIpResult : NSObject
-/// 解绑结果
- @property (strong,nonatomic,nonnull)  NSNumber*  success;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithSuccess:(NSNumber*) success;
-@end
-
-@interface EdcpsDisassociateElasticIpResponse : NSObject
-
-@property NSString* requestId;
-
-@property ServiceError* error;
-
-@property EdcpsDisassociateElasticIpResult* result;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
-
--(id) initWithRequestId:(NSString*) requestId
-        error:(ServiceError*) error
-        result:(EdcpsDisassociateElasticIpResult*) result;
 @end
 
 @interface EdcpsDisassociateElasticIpRequest:JDCloudRequest
@@ -1566,58 +606,6 @@ instanceId:(NSString*)instanceId;
 -(id) initWithRegion:(NSString *)regionId
              version:(NSString *)version
 instanceId:(NSString*)instanceId;
-
-@end
-
-@interface EdcpsDescribeInstancesRequest:JDCloudRequest
-
-/// 页码；默认为1
-@property (strong,nonatomic,nonnull)  NSNumber*  pageNumber;
-/// 分页大小；默认为20；取值范围[20, 100]
-@property (strong,nonatomic,nonnull)  NSNumber*  pageSize;
-/// 可用区，精确匹配
-@property (strong,nonatomic,nonnull)  NSString*  az;
-/// 分布式云物理服务器名称，支持模糊匹配
-@property (strong,nonatomic,nonnull)  NSString*  name;
-/// 网络类型，精确匹配，支持vpc
-@property (strong,nonatomic,nonnull)  NSString*  networkType;
-/// 实例类型，精确匹配，调用接口（describeDeviceTypes）获取实例类型
-@property (strong,nonatomic,nonnull)  NSString*  deviceType;
-/// 子网ID
-@property (strong,nonatomic,nonnull)  NSString*  subnetId;
-/// 是否启用外网, yes/no
-@property (strong,nonatomic,nonnull)  NSString*  enableInternet;
-/// 密钥对id
-@property (strong,nonatomic,nonnull)  NSString*  keypairId;
-/// instanceId - 分布式云物理服务器ID，精确匹配，支持多个&lt;br/&gt;
-   /// privateIp - 分布式云物理服务器内网IP，精确匹配，支持多个&lt;br/&gt;
-   /// status - 分布式云物理服务器状态，参考分布式云物理服务器状态，精确匹配，支持多个
-   /// 
-@property (strong,nonatomic,nonnull)  NSArray<Filter*>*  filters;
--(id) initWithRegion:(NSString *)regionId
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-az:(NSString*)az
-name:(NSString*)name
-networkType:(NSString*)networkType
-deviceType:(NSString*)deviceType
-subnetId:(NSString*)subnetId
-enableInternet:(NSString*)enableInternet
-keypairId:(NSString*)keypairId
-filters:(NSArray<Filter*>*)filters;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-az:(NSString*)az
-name:(NSString*)name
-networkType:(NSString*)networkType
-deviceType:(NSString*)deviceType
-subnetId:(NSString*)subnetId
-enableInternet:(NSString*)enableInternet
-keypairId:(NSString*)keypairId
-filters:(NSArray<Filter*>*)filters;
 
 @end
 
@@ -1714,50 +702,6 @@ osType:(NSString*)osType;
     dataRaidType:(NSString*)dataRaidType;
 @end
 
-@interface EdcpsRestartInstanceResult : NSObject
-/// 重启操作是否成功
- @property (strong,nonatomic,nonnull)  NSNumber*  success;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithSuccess:(NSNumber*) success;
-@end
-
-@interface EdcpsRestartInstanceResponse : NSObject
-
-@property NSString* requestId;
-
-@property ServiceError* error;
-
-@property EdcpsRestartInstanceResult* result;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
-
--(id) initWithRequestId:(NSString*) requestId
-        error:(ServiceError*) error
-        result:(EdcpsRestartInstanceResult*) result;
-@end
-
-@interface EdcpsDescribeInstanceStatusResponse : NSObject
-
-@property NSString* requestId;
-
-@property ServiceError* error;
-
-@property EdcpsDescribeInstanceStatusResult* result;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
-
--(id) initWithRequestId:(NSString*) requestId
-        error:(ServiceError*) error
-        result:(EdcpsDescribeInstanceStatusResult*) result;
-@end
-
 @interface EdcpsResetPasswordRequest:JDCloudRequest
 
 /// 由客户端生成，用于保证请求的幂等性，长度不能超过36个字符；&lt;br/&gt;
@@ -1781,48 +725,14 @@ instanceId:(NSString*)instanceId;
 
 @end
 
-@interface EdcpsDescribeInstanceNameResponse : NSObject
-
-@property NSString* requestId;
-
-@property ServiceError* error;
-
-@property EdcpsDescribeInstanceNameResult* result;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
-
--(id) initWithRequestId:(NSString*) requestId
-        error:(ServiceError*) error
-        result:(EdcpsDescribeInstanceNameResult*) result;
-@end
-
-@interface EdcpsAssociateElasticIpResult : NSObject
-/// 绑定结果
+@interface EdcpsRestartInstanceResult : NSObject
+/// 重启操作是否成功
  @property (strong,nonatomic,nonnull)  NSNumber*  success;
 
 -(NSMutableDictionary*) dictionary;
 
 -(id) initWithDic:(NSDictionary*)dictionary;
 -(id) initWithSuccess:(NSNumber*) success;
-@end
-
-@interface EdcpsAssociateElasticIpResponse : NSObject
-
-@property NSString* requestId;
-
-@property ServiceError* error;
-
-@property EdcpsAssociateElasticIpResult* result;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
-
--(id) initWithRequestId:(NSString*) requestId
-        error:(ServiceError*) error
-        result:(EdcpsAssociateElasticIpResult*) result;
 @end
 
 @interface EdcpsReinstallInstanceResult : NSObject
@@ -1852,23 +762,6 @@ instanceId:(NSString*)instanceId;
 clientToken:(NSString*)clientToken
 instanceId:(NSString*)instanceId;
 
-@end
-
-@interface EdcpsReinstallInstanceResponse : NSObject
-
-@property NSString* requestId;
-
-@property ServiceError* error;
-
-@property EdcpsReinstallInstanceResult* result;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
-
--(id) initWithRequestId:(NSString*) requestId
-        error:(ServiceError*) error
-        result:(EdcpsReinstallInstanceResult*) result;
 @end
 
 @interface EdcpsDeleteInstanceRequest:JDCloudRequest
@@ -1917,6 +810,1272 @@ instanceId:(NSString*)instanceId;
 
 @end
 
+@interface EdcpsStopInstanceResult : NSObject
+/// 关机操作是否成功
+ @property (strong,nonatomic,nonnull)  NSNumber*  success;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithSuccess:(NSNumber*) success;
+@end
+
+@interface EdcpsModifyInstanceResult : NSObject
+/// 分布式云物理服务器名称
+ @property (strong,nonatomic,nonnull)  NSString*  name;
+/// 分布式云物理服务器描述
+ @property (strong,nonatomic,nonnull)  NSString*  descriptionValue;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithName:(NSString*) name
+
+    descriptionValue:(NSString*)descriptionValue;
+@end
+
+@interface EdcpsDisassociateElasticIpResult : NSObject
+/// 解绑结果
+ @property (strong,nonatomic,nonnull)  NSNumber*  success;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithSuccess:(NSNumber*) success;
+@end
+
+@interface EdcpsDescribeDeviceRaidsRequest:JDCloudRequest
+
+/// 实例类型，可调用（describeDeviceTypes）接口获取指定地域的实例类型，例如：edcps.c.normal1
+@property (strong,nonatomic,nonnull)  NSString*  deviceType;
+/// 磁盘类型，取值范围：system、data
+@property (strong,nonatomic,nonnull)  NSString*  volumeType;
+-(id) initWithRegion:(NSString *)regionId
+deviceType:(NSString*)deviceType
+volumeType:(NSString*)volumeType;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+deviceType:(NSString*)deviceType
+volumeType:(NSString*)volumeType;
+
+@end
+
+@interface EdcpsDescribeDeviceStockRequest:JDCloudRequest
+
+/// 实例类型，调用接口（describeDeviceTypes）获取实例类型
+@property (strong,nonatomic,nonnull)  NSString*  deviceType;
+-(id) initWithRegion:(NSString *)regionId
+deviceType:(NSString*)deviceType;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+deviceType:(NSString*)deviceType;
+
+@end
+
+@interface EdcpsDeleteInstanceResult : NSObject
+/// 删除操作是否成功
+ @property (strong,nonatomic,nonnull)  NSNumber*  success;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithSuccess:(NSNumber*) success;
+@end
+
+@interface EdcpsStartInstanceRequest:JDCloudRequest
+
+/// 由客户端生成，用于保证请求的幂等性，长度不能超过36个字符；&lt;br/&gt;
+   /// 如果多个请求使用了相同的clientToken，只会执行第一个请求，之后的请求直接返回第一个请求的结果&lt;br/&gt;
+   /// 
+@property (strong,nonatomic,nonnull)  NSString*  clientToken;
+/// 分布式云物理服务器ID
+@property (strong,nonatomic,nonnull)  NSString*  instanceId;
+-(id) initWithRegion:(NSString *)regionId
+clientToken:(NSString*)clientToken
+instanceId:(NSString*)instanceId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+clientToken:(NSString*)clientToken
+instanceId:(NSString*)instanceId;
+
+@end
+
+@interface EdcpsDescribeInstanceNameRequest:JDCloudRequest
+
+/// 分布式云物理服务器ID
+@property (strong,nonatomic,nonnull)  NSString*  instanceId;
+-(id) initWithRegion:(NSString *)regionId
+instanceId:(NSString*)instanceId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+instanceId:(NSString*)instanceId;
+
+@end
+
+@interface EdcpsAssociateElasticIpResult : NSObject
+/// 绑定结果
+ @property (strong,nonatomic,nonnull)  NSNumber*  success;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithSuccess:(NSNumber*) success;
+@end
+
+@interface EdcpsCreateVpcResult : NSObject
+/// 私有网络ID
+ @property (strong,nonatomic,nonnull)  NSString*  vpcId;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithVpcId:(NSString*) vpcId;
+@end
+
+@interface EdcpsDeleteVpcResult : NSObject
+/// 删除操作是否成功
+ @property (strong,nonatomic,nonnull)  NSNumber*  success;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithSuccess:(NSNumber*) success;
+@end
+
+@interface EdcpsDeleteVpcRequest:JDCloudRequest
+
+/// 由客户端生成，用于保证请求的幂等性，长度不能超过36个字符；&lt;br/&gt;
+   /// 如果多个请求使用了相同的clientToken，只会执行第一个请求，之后的请求直接返回第一个请求的结果&lt;br/&gt;
+   /// 
+@property (strong,nonatomic,nonnull)  NSString*  clientToken;
+/// 私有网络ID
+@property (strong,nonatomic,nonnull)  NSString*  vpcId;
+-(id) initWithRegion:(NSString *)regionId
+clientToken:(NSString*)clientToken
+vpcId:(NSString*)vpcId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+clientToken:(NSString*)clientToken
+vpcId:(NSString*)vpcId;
+
+@end
+
+@interface EdcpsModifyVpcRequest:JDCloudRequest
+
+/// 名称
+@property (strong,nonatomic,nonnull)  NSString*  name;
+/// 描述
+@property (strong,nonatomic,nonnull)  NSString*  descriptionValue;
+/// 私有网络ID
+@property (strong,nonatomic,nonnull)  NSString*  vpcId;
+-(id) initWithRegion:(NSString *)regionId
+name:(NSString*)name
+descriptionValue:(NSString*)descriptionValue
+vpcId:(NSString*)vpcId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+name:(NSString*)name
+descriptionValue:(NSString*)descriptionValue
+vpcId:(NSString*)vpcId;
+
+@end
+
+@interface EdcpsDescribeVpcRequest:JDCloudRequest
+
+/// 私有网络ID
+@property (strong,nonatomic,nonnull)  NSString*  vpcId;
+-(id) initWithRegion:(NSString *)regionId
+vpcId:(NSString*)vpcId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+vpcId:(NSString*)vpcId;
+
+@end
+
+@interface EdcpsDescribeAliasIpsResult : NSObject
+/// AliasIps
+ @property (strong,nonatomic,nonnull)  NSArray<AliasIp*>*  aliasIps;
+/// 页码；默认为1
+ @property (strong,nonatomic,nonnull)  NSNumber*  pageNumber;
+/// 分页大小；默认为20；取值范围[20, 100]
+ @property (strong,nonatomic,nonnull)  NSNumber*  pageSize;
+/// 查询结果总数
+ @property (strong,nonatomic,nonnull)  NSNumber*  totalCount;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithAliasIps:(NSArray<AliasIp*>*) aliasIps
+
+    pageNumber:(NSNumber*)pageNumber
+
+    pageSize:(NSNumber*)pageSize
+
+    totalCount:(NSNumber*)totalCount;
+@end
+
+@interface EdcpsCreateAliasIpRequest:JDCloudRequest
+
+/// 由客户端生成，用于保证请求的幂等性，长度不能超过36个字符；&lt;br/&gt;
+   /// 如果多个请求使用了相同的clientToken，只会执行第一个请求，之后的请求直接返回第一个请求的结果&lt;br/&gt;
+   /// 
+@property (strong,nonatomic,nonnull)  NSString*  clientToken;
+/// 别名IP配置
+@property (strong,nonatomic,nonnull)  AliasIpSpec*  aliasIpSpec;
+-(id) initWithRegion:(NSString *)regionId
+clientToken:(NSString*)clientToken
+aliasIpSpec:(AliasIpSpec*)aliasIpSpec;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+clientToken:(NSString*)clientToken
+aliasIpSpec:(AliasIpSpec*)aliasIpSpec;
+
+@end
+
+@interface EdcpsCreateAliasIpResult : NSObject
+/// SuccessList
+ @property (strong,nonatomic,nonnull)  NSArray<AliasIpSuccessInfo*>*  successList;
+/// ErrorList
+ @property (strong,nonatomic,nonnull)  NSArray<AliasIpErrorInfo*>*  errorList;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithSuccessList:(NSArray<AliasIpSuccessInfo*>*) successList
+
+    errorList:(NSArray<AliasIpErrorInfo*>*)errorList;
+@end
+
+@interface EdcpsCreateAliasIpResponse : NSObject
+
+@property NSString* requestId;
+
+@property ServiceError* error;
+
+@property EdcpsCreateAliasIpResult* result;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+
+-(id) initWithRequestId:(NSString*) requestId
+        error:(ServiceError*) error
+        result:(EdcpsCreateAliasIpResult*) result;
+@end
+
+@interface EdcpsDescribeAliasIpsResponse : NSObject
+
+@property NSString* requestId;
+
+@property ServiceError* error;
+
+@property EdcpsDescribeAliasIpsResult* result;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+
+-(id) initWithRequestId:(NSString*) requestId
+        error:(ServiceError*) error
+        result:(EdcpsDescribeAliasIpsResult*) result;
+@end
+
+@interface EdcpsDeleteAliasIpResponse : NSObject
+
+@property NSString* requestId;
+
+@property ServiceError* error;
+
+@property EdcpsDeleteAliasIpResult* result;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+
+-(id) initWithRequestId:(NSString*) requestId
+        error:(ServiceError*) error
+        result:(EdcpsDeleteAliasIpResult*) result;
+@end
+
+@interface EdcpsCreateSubnetResponse : NSObject
+
+@property NSString* requestId;
+
+@property ServiceError* error;
+
+@property EdcpsCreateSubnetResult* result;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+
+-(id) initWithRequestId:(NSString*) requestId
+        error:(ServiceError*) error
+        result:(EdcpsCreateSubnetResult*) result;
+@end
+
+@interface EdcpsDescribeSubnetResult : NSObject
+/// 子网详细信息
+ @property (strong,nonatomic,nonnull)  Subnet*  subnet;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithSubnet:(Subnet*) subnet;
+@end
+
+@interface EdcpsModifySubnetResult : NSObject
+/// 子网详细信息
+ @property (strong,nonatomic,nonnull)  Subnet*  subnet;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithSubnet:(Subnet*) subnet;
+@end
+
+@interface EdcpsCreateSubnetRequest:JDCloudRequest
+
+/// 由客户端生成，用于保证请求的幂等性，长度不能超过36个字符；&lt;br/&gt;
+   /// 如果多个请求使用了相同的clientToken，只会执行第一个请求，之后的请求直接返回第一个请求的结果&lt;br/&gt;
+   /// 
+@property (strong,nonatomic,nonnull)  NSString*  clientToken;
+/// 子网配置
+@property (strong,nonatomic,nonnull)  SubnetSpec*  subnetSpec;
+-(id) initWithRegion:(NSString *)regionId
+clientToken:(NSString*)clientToken
+subnetSpec:(SubnetSpec*)subnetSpec;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+clientToken:(NSString*)clientToken
+subnetSpec:(SubnetSpec*)subnetSpec;
+
+@end
+
+@interface EdcpsModifySubnetResponse : NSObject
+
+@property NSString* requestId;
+
+@property ServiceError* error;
+
+@property EdcpsModifySubnetResult* result;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+
+-(id) initWithRequestId:(NSString*) requestId
+        error:(ServiceError*) error
+        result:(EdcpsModifySubnetResult*) result;
+@end
+
+@interface EdcpsDeleteSubnetResponse : NSObject
+
+@property NSString* requestId;
+
+@property ServiceError* error;
+
+@property EdcpsDeleteSubnetResult* result;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+
+-(id) initWithRequestId:(NSString*) requestId
+        error:(ServiceError*) error
+        result:(EdcpsDeleteSubnetResult*) result;
+@end
+
+@interface EdcpsDescribeSubnetResponse : NSObject
+
+@property NSString* requestId;
+
+@property ServiceError* error;
+
+@property EdcpsDescribeSubnetResult* result;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+
+-(id) initWithRequestId:(NSString*) requestId
+        error:(ServiceError*) error
+        result:(EdcpsDescribeSubnetResult*) result;
+@end
+
+@interface EdcpsDescribeSubnetsRequest:JDCloudRequest
+
+/// 页码；默认为1
+@property (strong,nonatomic,nonnull)  NSNumber*  pageNumber;
+/// 分页大小；默认为20；取值范围[20, 100]
+@property (strong,nonatomic,nonnull)  NSNumber*  pageSize;
+/// 可用区，精确匹配
+@property (strong,nonatomic,nonnull)  NSString*  az;
+/// 子网名称
+@property (strong,nonatomic,nonnull)  NSString*  name;
+/// 私有网络ID，精确匹配
+@property (strong,nonatomic,nonnull)  NSString*  vpcId;
+/// subnetId - 子网ID，精确匹配，支持多个
+   /// 
+@property (strong,nonatomic,nonnull)  NSArray<Filter*>*  filters;
+-(id) initWithRegion:(NSString *)regionId
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+az:(NSString*)az
+name:(NSString*)name
+vpcId:(NSString*)vpcId
+filters:(NSArray<Filter*>*)filters;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+az:(NSString*)az
+name:(NSString*)name
+vpcId:(NSString*)vpcId
+filters:(NSArray<Filter*>*)filters;
+
+@end
+
+@interface EdcpsDescribeSubnetsResult : NSObject
+/// Subnets
+ @property (strong,nonatomic,nonnull)  NSArray<Subnet*>*  subnets;
+/// 页码；默认为1
+ @property (strong,nonatomic,nonnull)  NSNumber*  pageNumber;
+/// 分页大小；默认为20；取值范围[20, 100]
+ @property (strong,nonatomic,nonnull)  NSNumber*  pageSize;
+/// 查询结果总数
+ @property (strong,nonatomic,nonnull)  NSNumber*  totalCount;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithSubnets:(NSArray<Subnet*>*) subnets
+
+    pageNumber:(NSNumber*)pageNumber
+
+    pageSize:(NSNumber*)pageSize
+
+    totalCount:(NSNumber*)totalCount;
+@end
+
+@interface EdcpsDescribeSubnetsResponse : NSObject
+
+@property NSString* requestId;
+
+@property ServiceError* error;
+
+@property EdcpsDescribeSubnetsResult* result;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+
+-(id) initWithRequestId:(NSString*) requestId
+        error:(ServiceError*) error
+        result:(EdcpsDescribeSubnetsResult*) result;
+@end
+
+@interface EdcpsDescribeElasticIpStockResponse : NSObject
+
+@property NSString* requestId;
+
+@property ServiceError* error;
+
+@property EdcpsDescribeElasticIpStockResult* result;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+
+-(id) initWithRequestId:(NSString*) requestId
+        error:(ServiceError*) error
+        result:(EdcpsDescribeElasticIpStockResult*) result;
+@end
+
+@interface EdcpsDeleteelasticIpResponse : NSObject
+
+@property NSString* requestId;
+
+@property ServiceError* error;
+
+@property EdcpsDeleteelasticIpResult* result;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+
+-(id) initWithRequestId:(NSString*) requestId
+        error:(ServiceError*) error
+        result:(EdcpsDeleteelasticIpResult*) result;
+@end
+
+@interface EdcpsDescribeElasticIpsRequest:JDCloudRequest
+
+/// 页码；默认为1
+@property (strong,nonatomic,nonnull)  NSNumber*  pageNumber;
+/// 分页大小；默认为20；取值范围[20, 100]
+@property (strong,nonatomic,nonnull)  NSNumber*  pageSize;
+/// 弹性公网IP状态，取值范围：associate、disassociate
+@property (strong,nonatomic,nonnull)  NSString*  status;
+/// elasticIpId - 弹性公网IPID，精确匹配，支持多个&lt;br/&gt;
+   /// elasticIp - 弹性公网IP，精确匹配，支持多个
+   /// 
+@property (strong,nonatomic,nonnull)  NSArray<Filter*>*  filters;
+-(id) initWithRegion:(NSString *)regionId
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+status:(NSString*)status
+filters:(NSArray<Filter*>*)filters;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+status:(NSString*)status
+filters:(NSArray<Filter*>*)filters;
+
+@end
+
+@interface EdcpsApplyElasticIpsRequest:JDCloudRequest
+
+/// 由客户端生成，用于保证请求的幂等性，长度不能超过36个字符；&lt;br/&gt;
+   /// 如果多个请求使用了相同的clientToken，只会执行第一个请求，之后的请求直接返回第一个请求的结果&lt;br/&gt;
+   /// 
+@property (strong,nonatomic,nonnull)  NSString*  clientToken;
+/// 弹性公网IP配置
+@property (strong,nonatomic,nonnull)  ElasticIpSpec*  elasticIpSpec;
+-(id) initWithRegion:(NSString *)regionId
+clientToken:(NSString*)clientToken
+elasticIpSpec:(ElasticIpSpec*)elasticIpSpec;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+clientToken:(NSString*)clientToken
+elasticIpSpec:(ElasticIpSpec*)elasticIpSpec;
+
+@end
+
+@interface EdcpsDescribeElasticIpResult : NSObject
+/// 弹性公网IP详细信息
+ @property (strong,nonatomic,nonnull)  ElasticIp*  elasticIp;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithElasticIp:(ElasticIp*) elasticIp;
+@end
+
+@interface EdcpsDescribeElasticIpsResult : NSObject
+/// ElasticIps
+ @property (strong,nonatomic,nonnull)  NSArray<ElasticIp*>*  elasticIps;
+/// 页码；默认为1
+ @property (strong,nonatomic,nonnull)  NSNumber*  pageNumber;
+/// 分页大小；默认为20；取值范围[20, 100]
+ @property (strong,nonatomic,nonnull)  NSNumber*  pageSize;
+/// 查询结果总数
+ @property (strong,nonatomic,nonnull)  NSNumber*  totalCount;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithElasticIps:(NSArray<ElasticIp*>*) elasticIps
+
+    pageNumber:(NSNumber*)pageNumber
+
+    pageSize:(NSNumber*)pageSize
+
+    totalCount:(NSNumber*)totalCount;
+@end
+
+@interface EdcpsModifyElasticIpBandwidthResponse : NSObject
+
+@property NSString* requestId;
+
+@property ServiceError* error;
+
+@property EdcpsModifyElasticIpBandwidthResult* result;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+
+-(id) initWithRequestId:(NSString*) requestId
+        error:(ServiceError*) error
+        result:(EdcpsModifyElasticIpBandwidthResult*) result;
+@end
+
+@interface EdcpsDescribeElasticIpsResponse : NSObject
+
+@property NSString* requestId;
+
+@property ServiceError* error;
+
+@property EdcpsDescribeElasticIpsResult* result;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+
+-(id) initWithRequestId:(NSString*) requestId
+        error:(ServiceError*) error
+        result:(EdcpsDescribeElasticIpsResult*) result;
+@end
+
+@interface EdcpsDescribeElasticIpStockRequest:JDCloudRequest
+
+@end
+
+@interface EdcpsDescribeElasticIpResponse : NSObject
+
+@property NSString* requestId;
+
+@property ServiceError* error;
+
+@property EdcpsDescribeElasticIpResult* result;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+
+-(id) initWithRequestId:(NSString*) requestId
+        error:(ServiceError*) error
+        result:(EdcpsDescribeElasticIpResult*) result;
+@end
+
+@interface EdcpsApplyElasticIpsResponse : NSObject
+
+@property NSString* requestId;
+
+@property ServiceError* error;
+
+@property EdcpsApplyElasticIpsResult* result;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+
+-(id) initWithRequestId:(NSString*) requestId
+        error:(ServiceError*) error
+        result:(EdcpsApplyElasticIpsResult*) result;
+@end
+
+@interface EdcpsDescribeLineTypesResult : NSObject
+/// LineTypes
+ @property (strong,nonatomic,nonnull)  NSArray<LineType*>*  lineTypes;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithLineTypes:(NSArray<LineType*>*) lineTypes;
+@end
+
+@interface EdcpsDescribeLineTypesResponse : NSObject
+
+@property NSString* requestId;
+
+@property ServiceError* error;
+
+@property EdcpsDescribeLineTypesResult* result;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+
+-(id) initWithRequestId:(NSString*) requestId
+        error:(ServiceError*) error
+        result:(EdcpsDescribeLineTypesResult*) result;
+@end
+
+@interface EdcpsDescribeLineTypesRequest:JDCloudRequest
+
+@end
+
+@interface EdcpsCreateKeypairsResponse : NSObject
+
+@property NSString* requestId;
+
+@property ServiceError* error;
+
+@property EdcpsCreateKeypairsResult* result;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+
+-(id) initWithRequestId:(NSString*) requestId
+        error:(ServiceError*) error
+        result:(EdcpsCreateKeypairsResult*) result;
+@end
+
+@interface EdcpsDescribeKeypairResult : NSObject
+/// 密钥对详细信息
+ @property (strong,nonatomic,nonnull)  Keypair*  server;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithServer:(Keypair*) server;
+@end
+
+@interface EdcpsDescribeKeypairResponse : NSObject
+
+@property NSString* requestId;
+
+@property ServiceError* error;
+
+@property EdcpsDescribeKeypairResult* result;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+
+-(id) initWithRequestId:(NSString*) requestId
+        error:(ServiceError*) error
+        result:(EdcpsDescribeKeypairResult*) result;
+@end
+
+@interface EdcpsDescribeKeypairsRequest:JDCloudRequest
+
+/// 页码；默认为1
+@property (strong,nonatomic,nonnull)  NSNumber*  pageNumber;
+/// 分页大小；默认为20；取值范围[20, 100]
+@property (strong,nonatomic,nonnull)  NSNumber*  pageSize;
+/// 密钥对名称
+@property (strong,nonatomic,nonnull)  NSString*  name;
+/// keypairId  - 密钥对ID，精确匹配，支持多个
+   /// 
+@property (strong,nonatomic,nonnull)  NSArray<Filter*>*  filters;
+-(id) initWithRegion:(NSString *)regionId
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+name:(NSString*)name
+filters:(NSArray<Filter*>*)filters;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+name:(NSString*)name
+filters:(NSArray<Filter*>*)filters;
+
+@end
+
+@interface EdcpsDescribeKeypairsResult : NSObject
+/// Servers
+ @property (strong,nonatomic,nonnull)  NSArray<Keypair*>*  servers;
+/// 页码；默认为1
+ @property (strong,nonatomic,nonnull)  NSNumber*  pageNumber;
+/// 分页大小；默认为20；取值范围[20, 100]
+ @property (strong,nonatomic,nonnull)  NSNumber*  pageSize;
+/// 查询结果总数
+ @property (strong,nonatomic,nonnull)  NSNumber*  totalCount;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithServers:(NSArray<Keypair*>*) servers
+
+    pageNumber:(NSNumber*)pageNumber
+
+    pageSize:(NSNumber*)pageSize
+
+    totalCount:(NSNumber*)totalCount;
+@end
+
+@interface EdcpsDescribeKeypairsResponse : NSObject
+
+@property NSString* requestId;
+
+@property ServiceError* error;
+
+@property EdcpsDescribeKeypairsResult* result;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+
+-(id) initWithRequestId:(NSString*) requestId
+        error:(ServiceError*) error
+        result:(EdcpsDescribeKeypairsResult*) result;
+@end
+
+@interface EdcpsDeleteKeypairsResponse : NSObject
+
+@property NSString* requestId;
+
+@property ServiceError* error;
+
+@property EdcpsDeleteKeypairsResult* result;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+
+-(id) initWithRequestId:(NSString*) requestId
+        error:(ServiceError*) error
+        result:(EdcpsDeleteKeypairsResult*) result;
+@end
+
+@interface EdcpsImportKeypairsResponse : NSObject
+
+@property NSString* requestId;
+
+@property ServiceError* error;
+
+@property EdcpsImportKeypairsResult* result;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+
+-(id) initWithRequestId:(NSString*) requestId
+        error:(ServiceError*) error
+        result:(EdcpsImportKeypairsResult*) result;
+@end
+
+@interface EdcpsDescribeSecondaryCidrsResult : NSObject
+/// SecondaryCidrs
+ @property (strong,nonatomic,nonnull)  NSArray<SecondaryCidr*>*  secondaryCidrs;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithSecondaryCidrs:(NSArray<SecondaryCidr*>*) secondaryCidrs;
+@end
+
+@interface EdcpsDeleteSecondaryCidrResponse : NSObject
+
+@property NSString* requestId;
+
+@property ServiceError* error;
+
+@property EdcpsDeleteSecondaryCidrResult* result;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+
+-(id) initWithRequestId:(NSString*) requestId
+        error:(ServiceError*) error
+        result:(EdcpsDeleteSecondaryCidrResult*) result;
+@end
+
+@interface EdcpsCreateSecondaryCidrResponse : NSObject
+
+@property NSString* requestId;
+
+@property ServiceError* error;
+
+@property EdcpsCreateSecondaryCidrResult* result;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+
+-(id) initWithRequestId:(NSString*) requestId
+        error:(ServiceError*) error
+        result:(EdcpsCreateSecondaryCidrResult*) result;
+@end
+
+@interface EdcpsCreateSecondaryCidrRequest:JDCloudRequest
+
+/// 由客户端生成，用于保证请求的幂等性，长度不能超过36个字符；&lt;br/&gt;
+   /// 如果多个请求使用了相同的clientToken，只会执行第一个请求，之后的请求直接返回第一个请求的结果&lt;br/&gt;
+   /// 
+@property (strong,nonatomic,nonnull)  NSString*  clientToken;
+/// 次要cidr配置
+@property (strong,nonatomic,nonnull)  SecondaryCidrSpec*  secondaryCidrSpec;
+-(id) initWithRegion:(NSString *)regionId
+clientToken:(NSString*)clientToken
+secondaryCidrSpec:(SecondaryCidrSpec*)secondaryCidrSpec;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+clientToken:(NSString*)clientToken
+secondaryCidrSpec:(SecondaryCidrSpec*)secondaryCidrSpec;
+
+@end
+
+@interface EdcpsDescribeSecondaryCidrsResponse : NSObject
+
+@property NSString* requestId;
+
+@property ServiceError* error;
+
+@property EdcpsDescribeSecondaryCidrsResult* result;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+
+-(id) initWithRequestId:(NSString*) requestId
+        error:(ServiceError*) error
+        result:(EdcpsDescribeSecondaryCidrsResult*) result;
+@end
+
+@interface EdcpsDescribeOSResult : NSObject
+/// Oss
+ @property (strong,nonatomic,nonnull)  NSArray<Os*>*  oss;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithOss:(NSArray<Os*>*) oss;
+@end
+
+@interface EdcpsDescribeOSResponse : NSObject
+
+@property NSString* requestId;
+
+@property ServiceError* error;
+
+@property EdcpsDescribeOSResult* result;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+
+-(id) initWithRequestId:(NSString*) requestId
+        error:(ServiceError*) error
+        result:(EdcpsDescribeOSResult*) result;
+@end
+
+@interface EdcpsDescribeInstancesResult : NSObject
+/// Instances
+ @property (strong,nonatomic,nonnull)  NSArray<Instance*>*  instances;
+/// 页码；默认为1
+ @property (strong,nonatomic,nonnull)  NSNumber*  pageNumber;
+/// 分页大小；默认为20；取值范围[20, 100]
+ @property (strong,nonatomic,nonnull)  NSNumber*  pageSize;
+/// 查询结果总数
+ @property (strong,nonatomic,nonnull)  NSNumber*  totalCount;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithInstances:(NSArray<Instance*>*) instances
+
+    pageNumber:(NSNumber*)pageNumber
+
+    pageSize:(NSNumber*)pageSize
+
+    totalCount:(NSNumber*)totalCount;
+@end
+
+@interface EdcpsDescribeDeviceTypesResult : NSObject
+/// DeviceTypes
+ @property (strong,nonatomic,nonnull)  NSArray<DeviceType*>*  deviceTypes;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithDeviceTypes:(NSArray<DeviceType*>*) deviceTypes;
+@end
+
+@interface EdcpsDescribeDeviceTypesResponse : NSObject
+
+@property NSString* requestId;
+
+@property ServiceError* error;
+
+@property EdcpsDescribeDeviceTypesResult* result;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+
+-(id) initWithRequestId:(NSString*) requestId
+        error:(ServiceError*) error
+        result:(EdcpsDescribeDeviceTypesResult*) result;
+@end
+
+@interface EdcpsDescribeInstanceResult : NSObject
+/// Instance
+ @property (strong,nonatomic,nonnull)  Instance*  instance;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithInstance:(Instance*) instance;
+@end
+
+@interface EdcpsReinstallInstanceRequest:JDCloudRequest
+
+/// 由客户端生成，用于保证请求的幂等性，长度不能超过36个字符；&lt;br/&gt;
+   /// 如果多个请求使用了相同的clientToken，只会执行第一个请求，之后的请求直接返回第一个请求的结果&lt;br/&gt;
+   /// 
+@property (strong,nonatomic,nonnull)  NSString*  clientToken;
+/// 分布式云物理服务器配置
+@property (strong,nonatomic,nonnull)  ReinstallInstanceSpec*  instanceSpec;
+/// 分布式云物理服务器ID
+@property (strong,nonatomic,nonnull)  NSString*  instanceId;
+-(id) initWithRegion:(NSString *)regionId
+clientToken:(NSString*)clientToken
+instanceSpec:(ReinstallInstanceSpec*)instanceSpec
+instanceId:(NSString*)instanceId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+clientToken:(NSString*)clientToken
+instanceSpec:(ReinstallInstanceSpec*)instanceSpec
+instanceId:(NSString*)instanceId;
+
+@end
+
+@interface EdcpsStopInstanceResponse : NSObject
+
+@property NSString* requestId;
+
+@property ServiceError* error;
+
+@property EdcpsStopInstanceResult* result;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+
+-(id) initWithRequestId:(NSString*) requestId
+        error:(ServiceError*) error
+        result:(EdcpsStopInstanceResult*) result;
+@end
+
+@interface EdcpsCreateInstancesRequest:JDCloudRequest
+
+/// 由客户端生成，用于保证请求的幂等性，长度不能超过36个字符；&lt;br/&gt;
+   /// 如果多个请求使用了相同的clientToken，只会执行第一个请求，之后的请求直接返回第一个请求的结果&lt;br/&gt;
+   /// 
+@property (strong,nonatomic,nonnull)  NSString*  clientToken;
+/// 描述分布式云物理服务器配置
+@property (strong,nonatomic,nonnull)  InstanceSpec*  instanceSpec;
+-(id) initWithRegion:(NSString *)regionId
+clientToken:(NSString*)clientToken
+instanceSpec:(InstanceSpec*)instanceSpec;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+clientToken:(NSString*)clientToken
+instanceSpec:(InstanceSpec*)instanceSpec;
+
+@end
+
+@interface EdcpsDescribeDeviceRaidsResult : NSObject
+/// Raids
+ @property (strong,nonatomic,nonnull)  NSArray<Raid*>*  raids;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithRaids:(NSArray<Raid*>*) raids;
+@end
+
+@interface EdcpsDescribeDeviceRaidsResponse : NSObject
+
+@property NSString* requestId;
+
+@property ServiceError* error;
+
+@property EdcpsDescribeDeviceRaidsResult* result;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+
+-(id) initWithRequestId:(NSString*) requestId
+        error:(ServiceError*) error
+        result:(EdcpsDescribeDeviceRaidsResult*) result;
+@end
+
+@interface EdcpsDescribeDeviceStockResult : NSObject
+/// DevicesStock
+ @property (strong,nonatomic,nonnull)  NSArray<ResourceStock*>*  devicesStock;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithDevicesStock:(NSArray<ResourceStock*>*) devicesStock;
+@end
+
+@interface EdcpsDescribeDeviceStockResponse : NSObject
+
+@property NSString* requestId;
+
+@property ServiceError* error;
+
+@property EdcpsDescribeDeviceStockResult* result;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+
+-(id) initWithRequestId:(NSString*) requestId
+        error:(ServiceError*) error
+        result:(EdcpsDescribeDeviceStockResult*) result;
+@end
+
+@interface EdcpsDisassociateElasticIpResponse : NSObject
+
+@property NSString* requestId;
+
+@property ServiceError* error;
+
+@property EdcpsDisassociateElasticIpResult* result;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+
+-(id) initWithRequestId:(NSString*) requestId
+        error:(ServiceError*) error
+        result:(EdcpsDisassociateElasticIpResult*) result;
+@end
+
+@interface EdcpsDescribeInstancesRequest:JDCloudRequest
+
+/// 页码；默认为1
+@property (strong,nonatomic,nonnull)  NSNumber*  pageNumber;
+/// 分页大小；默认为20；取值范围[20, 100]
+@property (strong,nonatomic,nonnull)  NSNumber*  pageSize;
+/// 可用区，精确匹配
+@property (strong,nonatomic,nonnull)  NSString*  az;
+/// 分布式云物理服务器名称，支持模糊匹配
+@property (strong,nonatomic,nonnull)  NSString*  name;
+/// 网络类型，精确匹配，支持vpc
+@property (strong,nonatomic,nonnull)  NSString*  networkType;
+/// 实例类型，精确匹配，调用接口（describeDeviceTypes）获取实例类型
+@property (strong,nonatomic,nonnull)  NSString*  deviceType;
+/// 子网ID
+@property (strong,nonatomic,nonnull)  NSString*  subnetId;
+/// 是否启用外网, yes/no
+@property (strong,nonatomic,nonnull)  NSString*  enableInternet;
+/// 密钥对id
+@property (strong,nonatomic,nonnull)  NSString*  keypairId;
+/// instanceId - 分布式云物理服务器ID，精确匹配，支持多个&lt;br/&gt;
+   /// privateIp - 分布式云物理服务器内网IP，精确匹配，支持多个&lt;br/&gt;
+   /// status - 分布式云物理服务器状态，参考分布式云物理服务器状态，精确匹配，支持多个
+   /// 
+@property (strong,nonatomic,nonnull)  NSArray<Filter*>*  filters;
+-(id) initWithRegion:(NSString *)regionId
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+az:(NSString*)az
+name:(NSString*)name
+networkType:(NSString*)networkType
+deviceType:(NSString*)deviceType
+subnetId:(NSString*)subnetId
+enableInternet:(NSString*)enableInternet
+keypairId:(NSString*)keypairId
+filters:(NSArray<Filter*>*)filters;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+az:(NSString*)az
+name:(NSString*)name
+networkType:(NSString*)networkType
+deviceType:(NSString*)deviceType
+subnetId:(NSString*)subnetId
+enableInternet:(NSString*)enableInternet
+keypairId:(NSString*)keypairId
+filters:(NSArray<Filter*>*)filters;
+
+@end
+
+@interface EdcpsRestartInstanceResponse : NSObject
+
+@property NSString* requestId;
+
+@property ServiceError* error;
+
+@property EdcpsRestartInstanceResult* result;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+
+-(id) initWithRequestId:(NSString*) requestId
+        error:(ServiceError*) error
+        result:(EdcpsRestartInstanceResult*) result;
+@end
+
+@interface EdcpsDescribeInstanceStatusResponse : NSObject
+
+@property NSString* requestId;
+
+@property ServiceError* error;
+
+@property EdcpsDescribeInstanceStatusResult* result;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+
+-(id) initWithRequestId:(NSString*) requestId
+        error:(ServiceError*) error
+        result:(EdcpsDescribeInstanceStatusResult*) result;
+@end
+
+@interface EdcpsDescribeInstanceNameResponse : NSObject
+
+@property NSString* requestId;
+
+@property ServiceError* error;
+
+@property EdcpsDescribeInstanceNameResult* result;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+
+-(id) initWithRequestId:(NSString*) requestId
+        error:(ServiceError*) error
+        result:(EdcpsDescribeInstanceNameResult*) result;
+@end
+
+@interface EdcpsAssociateElasticIpResponse : NSObject
+
+@property NSString* requestId;
+
+@property ServiceError* error;
+
+@property EdcpsAssociateElasticIpResult* result;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+
+-(id) initWithRequestId:(NSString*) requestId
+        error:(ServiceError*) error
+        result:(EdcpsAssociateElasticIpResult*) result;
+@end
+
+@interface EdcpsReinstallInstanceResponse : NSObject
+
+@property NSString* requestId;
+
+@property ServiceError* error;
+
+@property EdcpsReinstallInstanceResult* result;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+
+-(id) initWithRequestId:(NSString*) requestId
+        error:(ServiceError*) error
+        result:(EdcpsReinstallInstanceResult*) result;
+@end
+
 @interface EdcpsDescribeAvailablePrivateIpResult : NSObject
 
 -(NSMutableDictionary*) dictionary;
@@ -1941,20 +2100,6 @@ instanceId:(NSString*)instanceId;
         result:(EdcpsDescribeInstanceResult*) result;
 @end
 
-@interface EdcpsModifyInstanceResult : NSObject
-/// 分布式云物理服务器名称
- @property (strong,nonatomic,nonnull)  NSString*  name;
-/// 分布式云物理服务器描述
- @property (strong,nonatomic,nonnull)  NSString*  descriptionValue;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithName:(NSString*) name
-
-    descriptionValue:(NSString*)descriptionValue;
-@end
-
 @interface EdcpsCreateInstancesResponse : NSObject
 
 @property NSString* requestId;
@@ -1970,16 +2115,6 @@ instanceId:(NSString*)instanceId;
 -(id) initWithRequestId:(NSString*) requestId
         error:(ServiceError*) error
         result:(EdcpsCreateInstancesResult*) result;
-@end
-
-@interface EdcpsDeleteInstanceResult : NSObject
-/// 删除操作是否成功
- @property (strong,nonatomic,nonnull)  NSNumber*  success;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithSuccess:(NSNumber*) success;
 @end
 
 @interface EdcpsDeleteInstanceResponse : NSObject
@@ -2033,23 +2168,6 @@ instanceId:(NSString*)instanceId;
         result:(EdcpsDescribeInstanceRaidResult*) result;
 @end
 
-@interface EdcpsDescribeDeviceRaidsRequest:JDCloudRequest
-
-/// 实例类型，可调用（describeDeviceTypes）接口获取指定地域的实例类型，例如：edcps.c.normal1
-@property (strong,nonatomic,nonnull)  NSString*  deviceType;
-/// 磁盘类型，取值范围：system、data
-@property (strong,nonatomic,nonnull)  NSString*  volumeType;
--(id) initWithRegion:(NSString *)regionId
-deviceType:(NSString*)deviceType
-volumeType:(NSString*)volumeType;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-deviceType:(NSString*)deviceType
-volumeType:(NSString*)volumeType;
-
-@end
-
 @interface EdcpsResetPasswordResponse : NSObject
 
 @property NSString* requestId;
@@ -2101,38 +2219,6 @@ volumeType:(NSString*)volumeType;
         result:(EdcpsStartInstanceResult*) result;
 @end
 
-@interface EdcpsDescribeDeviceStockRequest:JDCloudRequest
-
-/// 实例类型，调用接口（describeDeviceTypes）获取实例类型
-@property (strong,nonatomic,nonnull)  NSString*  deviceType;
--(id) initWithRegion:(NSString *)regionId
-deviceType:(NSString*)deviceType;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-deviceType:(NSString*)deviceType;
-
-@end
-
-@interface EdcpsStartInstanceRequest:JDCloudRequest
-
-/// 由客户端生成，用于保证请求的幂等性，长度不能超过36个字符；&lt;br/&gt;
-   /// 如果多个请求使用了相同的clientToken，只会执行第一个请求，之后的请求直接返回第一个请求的结果&lt;br/&gt;
-   /// 
-@property (strong,nonatomic,nonnull)  NSString*  clientToken;
-/// 分布式云物理服务器ID
-@property (strong,nonatomic,nonnull)  NSString*  instanceId;
--(id) initWithRegion:(NSString *)regionId
-clientToken:(NSString*)clientToken
-instanceId:(NSString*)instanceId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-clientToken:(NSString*)clientToken
-instanceId:(NSString*)instanceId;
-
-@end
-
 @interface EdcpsDescribeAvailablePrivateIpResponse : NSObject
 
 @property NSString* requestId;
@@ -2148,39 +2234,6 @@ instanceId:(NSString*)instanceId;
 -(id) initWithRequestId:(NSString*) requestId
         error:(ServiceError*) error
         result:(EdcpsDescribeAvailablePrivateIpResult*) result;
-@end
-
-@interface EdcpsDescribeInstanceNameRequest:JDCloudRequest
-
-/// 分布式云物理服务器ID
-@property (strong,nonatomic,nonnull)  NSString*  instanceId;
--(id) initWithRegion:(NSString *)regionId
-instanceId:(NSString*)instanceId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-instanceId:(NSString*)instanceId;
-
-@end
-
-@interface EdcpsCreateVpcResult : NSObject
-/// 私有网络ID
- @property (strong,nonatomic,nonnull)  NSString*  vpcId;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithVpcId:(NSString*) vpcId;
-@end
-
-@interface EdcpsDeleteVpcResult : NSObject
-/// 删除操作是否成功
- @property (strong,nonatomic,nonnull)  NSNumber*  success;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithSuccess:(NSNumber*) success;
 @end
 
 @interface EdcpsDescribeVpcsResult : NSObject
@@ -2249,25 +2302,6 @@ instanceId:(NSString*)instanceId;
         result:(EdcpsModifyVpcResult*) result;
 @end
 
-@interface EdcpsDeleteVpcRequest:JDCloudRequest
-
-/// 由客户端生成，用于保证请求的幂等性，长度不能超过36个字符；&lt;br/&gt;
-   /// 如果多个请求使用了相同的clientToken，只会执行第一个请求，之后的请求直接返回第一个请求的结果&lt;br/&gt;
-   /// 
-@property (strong,nonatomic,nonnull)  NSString*  clientToken;
-/// 私有网络ID
-@property (strong,nonatomic,nonnull)  NSString*  vpcId;
--(id) initWithRegion:(NSString *)regionId
-clientToken:(NSString*)clientToken
-vpcId:(NSString*)vpcId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-clientToken:(NSString*)clientToken
-vpcId:(NSString*)vpcId;
-
-@end
-
 @interface EdcpsDescribeVpcResult : NSObject
 /// 私有网络详细信息
  @property (strong,nonatomic,nonnull)  Vpc*  vpc;
@@ -2304,27 +2338,6 @@ filters:(NSArray<Filter*>*)filters;
 
 @end
 
-@interface EdcpsModifyVpcRequest:JDCloudRequest
-
-/// 名称
-@property (strong,nonatomic,nonnull)  NSString*  name;
-/// 描述
-@property (strong,nonatomic,nonnull)  NSString*  descriptionValue;
-/// 私有网络ID
-@property (strong,nonatomic,nonnull)  NSString*  vpcId;
--(id) initWithRegion:(NSString *)regionId
-name:(NSString*)name
-descriptionValue:(NSString*)descriptionValue
-vpcId:(NSString*)vpcId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-name:(NSString*)name
-descriptionValue:(NSString*)descriptionValue
-vpcId:(NSString*)vpcId;
-
-@end
-
 @interface EdcpsCreateVpcRequest:JDCloudRequest
 
 /// 由客户端生成，用于保证请求的幂等性，长度不能超过36个字符；&lt;br/&gt;
@@ -2341,19 +2354,6 @@ vpcSpec:(VpcSpec*)vpcSpec;
              version:(NSString *)version
 clientToken:(NSString*)clientToken
 vpcSpec:(VpcSpec*)vpcSpec;
-
-@end
-
-@interface EdcpsDescribeVpcRequest:JDCloudRequest
-
-/// 私有网络ID
-@property (strong,nonatomic,nonnull)  NSString*  vpcId;
--(id) initWithRegion:(NSString *)regionId
-vpcId:(NSString*)vpcId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-vpcId:(NSString*)vpcId;
 
 @end
 

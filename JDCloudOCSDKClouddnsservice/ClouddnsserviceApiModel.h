@@ -62,6 +62,86 @@ domainName:(NSString*)domainName;
 
 @end
 
+@interface ClouddnsserviceGetDomainQueryTrafficResult : NSObject
+/// Time
+ @property (strong,nonatomic,nonnull)  NSArray<NSNumber*>*  time;
+/// 数据序列的单位
+ @property (strong,nonatomic,nonnull)  NSString*  unit;
+/// Traffic
+ @property (strong,nonatomic,nonnull)  NSArray<NSNumber*>*  traffic;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithTime:(NSArray<NSNumber*>*) time
+
+    unit:(NSString*)unit
+
+    traffic:(NSArray<NSNumber*>*)traffic;
+@end
+
+@interface ClouddnsserviceAddDomainRequest:JDCloudRequest
+
+/// 主域名的套餐类型, 0-&gt;免费 ,1-&gt;企业版, 2-&gt;高级版
+@property (strong,nonatomic,nonnull)  NSNumber*  packId;
+/// 要添加的主域名
+@property (strong,nonatomic,nonnull)  NSString*  domainName;
+/// 主域名的ID，升级套餐必填，请使用getDomains获取
+@property (strong,nonatomic,nonnull)  NSNumber*  domainId;
+/// 1-&gt;新购买、3-&gt;升级，收费套餐的域名必填
+@property (strong,nonatomic,nonnull)  NSNumber*  buyType;
+/// 取值1，2，3 ，含义：时长，收费套餐的域名必填
+@property (strong,nonatomic,nonnull)  NSNumber*  timeSpan;
+/// 时间单位，收费套餐的域名必填，1：小时，2：天，3：月，4：年
+@property (strong,nonatomic,nonnull)  NSNumber*  timeUnit;
+/// 计费类型，可以不传此参数。
+@property (strong,nonatomic,nonnull)  NSNumber*  billingType;
+-(id) initWithRegion:(NSString *)regionId
+packId:(NSNumber*)packId
+domainName:(NSString*)domainName
+domainId:(NSNumber*)domainId
+buyType:(NSNumber*)buyType
+timeSpan:(NSNumber*)timeSpan
+timeUnit:(NSNumber*)timeUnit
+billingType:(NSNumber*)billingType;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+packId:(NSNumber*)packId
+domainName:(NSString*)domainName
+domainId:(NSNumber*)domainId
+buyType:(NSNumber*)buyType
+timeSpan:(NSNumber*)timeSpan
+timeUnit:(NSNumber*)timeUnit
+billingType:(NSNumber*)billingType;
+
+@end
+
+@interface ClouddnsserviceGetDomainQueryTrafficRequest:JDCloudRequest
+
+/// 主域名，请使用getDomains接口获取
+@property (strong,nonatomic,nonnull)  NSString*  domainName;
+/// 时间段的起始时间, UTC时间，例如2017-11-10T23:00:00Z
+@property (strong,nonatomic,nonnull)  NSString*  start;
+/// 时间段的终止时间, UTC时间，例如2017-11-10T23:00:00Z
+@property (strong,nonatomic,nonnull)  NSString*  end;
+/// 域名ID，请使用getDomains接口获取。
+@property (strong,nonatomic,nonnull)  NSString*  domainId;
+-(id) initWithRegion:(NSString *)regionId
+domainName:(NSString*)domainName
+start:(NSString*)start
+end:(NSString*)end
+domainId:(NSString*)domainId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+domainName:(NSString*)domainName
+start:(NSString*)start
+end:(NSString*)end
+domainId:(NSString*)domainId;
+
+@end
+
 @interface ClouddnsserviceGetDomainQueryCountResult : NSObject
 /// Time
  @property (strong,nonatomic,nonnull)  NSArray<NSNumber*>*  time;
@@ -74,6 +154,382 @@ domainName:(NSString*)domainName;
 -(id) initWithTime:(NSArray<NSNumber*>*) time
 
     traffic:(NSArray<NSNumber*>*)traffic;
+@end
+
+@interface ClouddnsserviceUpdateDomainRequest:JDCloudRequest
+
+/// 需要修改的主域名，请使用getDomains接口获取
+@property (strong,nonatomic,nonnull)  NSString*  domainName;
+/// 需要修改的主域名ID，请使用getDomains接口获取
+@property (strong,nonatomic,nonnull)  NSNumber*  idValue;
+-(id) initWithRegion:(NSString *)regionId
+domainName:(NSString*)domainName
+idValue:(NSNumber*)idValue;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+domainName:(NSString*)domainName
+idValue:(NSNumber*)idValue;
+
+@end
+
+@interface ClouddnsserviceGetDomainQueryCountRequest:JDCloudRequest
+
+/// 查询的主域名，，请使用getDomains接口获取
+@property (strong,nonatomic,nonnull)  NSString*  domainName;
+/// 查询时间段的起始时间, UTC时间，例如2017-11-10T23:00:00Z
+@property (strong,nonatomic,nonnull)  NSString*  start;
+/// 查询时间段的终止时间, UTC时间，例如2017-11-10T23:00:00Z
+@property (strong,nonatomic,nonnull)  NSString*  end;
+/// 域名ID，请使用getDomains接口获取。
+@property (strong,nonatomic,nonnull)  NSString*  domainId;
+-(id) initWithRegion:(NSString *)regionId
+domainName:(NSString*)domainName
+start:(NSString*)start
+end:(NSString*)end
+domainId:(NSString*)domainId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+domainName:(NSString*)domainName
+start:(NSString*)start
+end:(NSString*)end
+domainId:(NSString*)domainId;
+
+@end
+
+@interface ClouddnsserviceOperateMonitorRequest:JDCloudRequest
+
+/// 删除del, 暂停stop, 开启start, 手动恢复recover，手动切换switch
+@property (strong,nonatomic,nonnull)  NSString*  action;
+/// 监控项ID
+@property (strong,nonatomic,nonnull)  NSArray<NSNumber*>*  ids;
+/// 监控项的主机值, 手动切换时必填
+@property (strong,nonatomic,nonnull)  NSString*  switchTarget;
+/// 域名ID，请使用getDomains接口获取。
+@property (strong,nonatomic,nonnull)  NSString*  domainId;
+-(id) initWithRegion:(NSString *)regionId
+action:(NSString*)action
+ids:(NSArray<NSNumber*>*)ids
+switchTarget:(NSString*)switchTarget
+domainId:(NSString*)domainId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+action:(NSString*)action
+ids:(NSArray<NSNumber*>*)ids
+switchTarget:(NSString*)switchTarget
+domainId:(NSString*)domainId;
+
+@end
+
+@interface ClouddnsserviceGetMonitorRequest:JDCloudRequest
+
+/// 当前页数，起始值为1，默认为1
+@property (strong,nonatomic,nonnull)  NSNumber*  pageIndex;
+/// 分页查询时设置的每页行数
+@property (strong,nonatomic,nonnull)  NSNumber*  pageSize;
+/// 查询的值
+@property (strong,nonatomic,nonnull)  NSString*  searchValue;
+/// 域名ID，请使用getDomains接口获取。
+@property (strong,nonatomic,nonnull)  NSString*  domainId;
+-(id) initWithRegion:(NSString *)regionId
+pageIndex:(NSNumber*)pageIndex
+pageSize:(NSNumber*)pageSize
+searchValue:(NSString*)searchValue
+domainId:(NSString*)domainId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+pageIndex:(NSNumber*)pageIndex
+pageSize:(NSNumber*)pageSize
+searchValue:(NSString*)searchValue
+domainId:(NSString*)domainId;
+
+@end
+
+@interface ClouddnsserviceGetMonitorAlarmInfoRequest:JDCloudRequest
+
+/// 当前页数，起始值为1，默认为1
+@property (strong,nonatomic,nonnull)  NSNumber*  pageIndex;
+/// 分页查询时设置的每页行数
+@property (strong,nonatomic,nonnull)  NSNumber*  pageSize;
+/// 关键字
+@property (strong,nonatomic,nonnull)  NSString*  searchValue;
+/// 域名ID，请使用getDomains接口获取。
+@property (strong,nonatomic,nonnull)  NSString*  domainId;
+-(id) initWithRegion:(NSString *)regionId
+pageIndex:(NSNumber*)pageIndex
+pageSize:(NSNumber*)pageSize
+searchValue:(NSString*)searchValue
+domainId:(NSString*)domainId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+pageIndex:(NSNumber*)pageIndex
+pageSize:(NSNumber*)pageSize
+searchValue:(NSString*)searchValue
+domainId:(NSString*)domainId;
+
+@end
+
+@interface ClouddnsserviceGetTargetsRequest:JDCloudRequest
+
+/// 子域名
+@property (strong,nonatomic,nonnull)  NSString*  subDomainName;
+/// 域名ID，请使用getDomains接口获取。
+@property (strong,nonatomic,nonnull)  NSString*  domainId;
+-(id) initWithRegion:(NSString *)regionId
+subDomainName:(NSString*)subDomainName
+domainId:(NSString*)domainId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+subDomainName:(NSString*)subDomainName
+domainId:(NSString*)domainId;
+
+@end
+
+@interface ClouddnsserviceAddMonitorRequest:JDCloudRequest
+
+/// 子域名
+@property (strong,nonatomic,nonnull)  NSString*  subDomainName;
+/// 域名ID，请使用getDomains接口获取。
+@property (strong,nonatomic,nonnull)  NSString*  domainId;
+-(id) initWithRegion:(NSString *)regionId
+subDomainName:(NSString*)subDomainName
+domainId:(NSString*)domainId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+subDomainName:(NSString*)subDomainName
+domainId:(NSString*)domainId;
+
+@end
+
+@interface ClouddnsserviceGetTargetsResult : NSObject
+/// Data
+ @property (strong,nonatomic,nonnull)  NSArray<NSString*>*  data;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithData:(NSArray<NSString*>*) data;
+@end
+
+@interface ClouddnsserviceAddMonitorTargetRequest:JDCloudRequest
+
+/// 子域名
+@property (strong,nonatomic,nonnull)  NSString*  subDomainName;
+/// 子域名可用监控对象的数组
+@property (strong,nonatomic,nonnull)  NSArray<NSString*>*  targets;
+/// 域名ID，请使用getDomains接口获取。
+@property (strong,nonatomic,nonnull)  NSString*  domainId;
+-(id) initWithRegion:(NSString *)regionId
+subDomainName:(NSString*)subDomainName
+targets:(NSArray<NSString*>*)targets
+domainId:(NSString*)domainId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+subDomainName:(NSString*)subDomainName
+targets:(NSArray<NSString*>*)targets
+domainId:(NSString*)domainId;
+
+@end
+
+@interface ClouddnsserviceBatchSetDnsResolveResult : NSObject
+/// Data
+ @property (strong,nonatomic,nonnull)  NSArray<NSString*>*  data;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithData:(NSArray<NSString*>*) data;
+@end
+
+@interface ClouddnsserviceGetViewTreeRequest:JDCloudRequest
+
+/// 展示方式，暂时不使用
+@property (strong,nonatomic,nonnull)  NSNumber*  loadMode;
+/// 套餐ID，0-&gt;免费版 1-&gt;企业版 2-&gt;企业高级版
+@property (strong,nonatomic,nonnull)  NSNumber*  packId;
+/// view ID，默认为-1
+@property (strong,nonatomic,nonnull)  NSNumber*  viewId;
+/// 域名ID，请使用getDomains接口获取。
+@property (strong,nonatomic,nonnull)  NSString*  domainId;
+-(id) initWithRegion:(NSString *)regionId
+loadMode:(NSNumber*)loadMode
+packId:(NSNumber*)packId
+viewId:(NSNumber*)viewId
+domainId:(NSString*)domainId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+loadMode:(NSNumber*)loadMode
+packId:(NSNumber*)packId
+viewId:(NSNumber*)viewId
+domainId:(NSString*)domainId;
+
+@end
+
+@interface ClouddnsserviceSearchRRRequest:JDCloudRequest
+
+/// 当前页数，起始值为1，默认为1
+@property (strong,nonatomic,nonnull)  NSNumber*  pageNumber;
+/// 分页查询时设置的每页行数, 默认为10
+@property (strong,nonatomic,nonnull)  NSNumber*  pageSize;
+/// 域名ID，请使用getDomains接口获取。
+@property (strong,nonatomic,nonnull)  NSString*  domainId;
+-(id) initWithRegion:(NSString *)regionId
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+domainId:(NSString*)domainId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+domainId:(NSString*)domainId;
+
+@end
+
+@interface ClouddnsserviceOperateRRRequest:JDCloudRequest
+
+/// 需要操作的解析记录ID，请使用searchRR接口获取。
+@property (strong,nonatomic,nonnull)  NSArray<NSNumber*>*  ids;
+/// 操作类型，on-&gt;启用 off-&gt;停用 del-&gt;删除
+@property (strong,nonatomic,nonnull)  NSString*  action;
+/// 域名ID，请使用getDomains接口获取。
+@property (strong,nonatomic,nonnull)  NSString*  domainId;
+-(id) initWithRegion:(NSString *)regionId
+ids:(NSArray<NSNumber*>*)ids
+action:(NSString*)action
+domainId:(NSString*)domainId;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+ids:(NSArray<NSNumber*>*)ids
+action:(NSString*)action
+domainId:(NSString*)domainId;
+
+@end
+
+@interface ClouddnsserviceGetUserViewRequest:JDCloudRequest
+
+/// 主域名ID
+@property (strong,nonatomic,nonnull)  NSNumber*  domainId;
+/// 自定义线路ID
+@property (strong,nonatomic,nonnull)  NSNumber*  viewId;
+/// 自定义线路名称, 最多64个字符
+@property (strong,nonatomic,nonnull)  NSString*  viewName;
+/// 分页参数，页的序号
+@property (strong,nonatomic,nonnull)  NSNumber*  pageNumber;
+/// 分页参数，每页含有的结果的数目
+@property (strong,nonatomic,nonnull)  NSNumber*  pageSize;
+-(id) initWithRegion:(NSString *)regionId
+domainId:(NSNumber*)domainId
+viewId:(NSNumber*)viewId
+viewName:(NSString*)viewName
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+domainId:(NSNumber*)domainId
+viewId:(NSNumber*)viewId
+viewName:(NSString*)viewName
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize;
+
+@end
+
+@interface ClouddnsserviceGetUserViewIPResult : NSObject
+/// DataList
+ @property (strong,nonatomic,nonnull)  NSArray<NSString*>*  dataList;
+/// 当前页的IP列表里的个数
+ @property (strong,nonatomic,nonnull)  NSNumber*  currentCount;
+/// IP列表里的IP段的个数
+ @property (strong,nonatomic,nonnull)  NSNumber*  totalCount;
+/// IP列表按照分页参数一共的页数
+ @property (strong,nonatomic,nonnull)  NSNumber*  totalPage;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithDataList:(NSArray<NSString*>*) dataList
+
+    currentCount:(NSNumber*)currentCount
+
+    totalCount:(NSNumber*)totalCount
+
+    totalPage:(NSNumber*)totalPage;
+@end
+
+@interface ClouddnsserviceGetUserViewIPRequest:JDCloudRequest
+
+/// 主域名ID
+@property (strong,nonatomic,nonnull)  NSNumber*  domainId;
+/// 自定义线路ID
+@property (strong,nonatomic,nonnull)  NSNumber*  viewId;
+/// 自定义线路名称, 最多64个字符
+@property (strong,nonatomic,nonnull)  NSString*  viewName;
+/// 分页参数，页的序号, 默认为1
+@property (strong,nonatomic,nonnull)  NSNumber*  pageNumber;
+/// 分页参数，每页含有的结果的数目，默认为10
+@property (strong,nonatomic,nonnull)  NSNumber*  pageSize;
+-(id) initWithRegion:(NSString *)regionId
+domainId:(NSNumber*)domainId
+viewId:(NSNumber*)viewId
+viewName:(NSString*)viewName
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+domainId:(NSNumber*)domainId
+viewId:(NSNumber*)viewId
+viewName:(NSString*)viewName
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize;
+
+@end
+
+@interface ClouddnsserviceGetActionLogRequest:JDCloudRequest
+
+/// 分页参数，页的序号，默认是1
+@property (strong,nonatomic,nonnull)  NSNumber*  pageNumber;
+/// 分页参数，每页含有的结果的数目，默认是10
+@property (strong,nonatomic,nonnull)  NSNumber*  pageSize;
+/// 记录的起始时间，格式：UTC时间例如2017-11-10T23:00:00Z
+@property (strong,nonatomic,nonnull)  NSString*  startTime;
+/// 记录的终止时间，格式：UTC时间例如2017-11-10T23:00:00Z
+@property (strong,nonatomic,nonnull)  NSString*  endTime;
+/// 日志需要匹配的关键词
+@property (strong,nonatomic,nonnull)  NSString*  keyWord;
+/// 日志里面的结果是成功还是失败
+@property (strong,nonatomic,nonnull)  NSNumber*  success;
+/// 日志的类型
+@property (strong,nonatomic,nonnull)  NSNumber*  type;
+-(id) initWithRegion:(NSString *)regionId
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+startTime:(NSString*)startTime
+endTime:(NSString*)endTime
+keyWord:(NSString*)keyWord
+success:(NSNumber*)success
+type:(NSNumber*)type;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+startTime:(NSString*)startTime
+endTime:(NSString*)endTime
+keyWord:(NSString*)keyWord
+success:(NSNumber*)success
+type:(NSNumber*)type;
+
 @end
 
 @interface ClouddnsserviceGetDomainQueryCountResponse : NSObject
@@ -91,24 +547,6 @@ domainName:(NSString*)domainName;
 -(id) initWithRequestId:(NSString*) requestId
         error:(ServiceError*) error
         result:(ClouddnsserviceGetDomainQueryCountResult*) result;
-@end
-
-@interface ClouddnsserviceGetDomainQueryTrafficResult : NSObject
-/// Time
- @property (strong,nonatomic,nonnull)  NSArray<NSNumber*>*  time;
-/// 数据序列的单位
- @property (strong,nonatomic,nonnull)  NSString*  unit;
-/// Traffic
- @property (strong,nonatomic,nonnull)  NSArray<NSNumber*>*  traffic;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithTime:(NSArray<NSNumber*>*) time
-
-    unit:(NSString*)unit
-
-    traffic:(NSArray<NSNumber*>*)traffic;
 @end
 
 @interface ClouddnsserviceAddDomainResult : NSObject
@@ -156,43 +594,6 @@ domainName:(NSString*)domainName;
         result:(ClouddnsserviceUpdateDomainResult*) result;
 @end
 
-@interface ClouddnsserviceAddDomainRequest:JDCloudRequest
-
-/// 主域名的套餐类型, 0-&gt;免费 ,1-&gt;企业版, 2-&gt;高级版
-@property (strong,nonatomic,nonnull)  NSNumber*  packId;
-/// 要添加的主域名
-@property (strong,nonatomic,nonnull)  NSString*  domainName;
-/// 主域名的ID，升级套餐必填，请使用getDomains获取
-@property (strong,nonatomic,nonnull)  NSNumber*  domainId;
-/// 1-&gt;新购买、3-&gt;升级，收费套餐的域名必填
-@property (strong,nonatomic,nonnull)  NSNumber*  buyType;
-/// 取值1，2，3 ，含义：时长，收费套餐的域名必填
-@property (strong,nonatomic,nonnull)  NSNumber*  timeSpan;
-/// 时间单位，收费套餐的域名必填，1：小时，2：天，3：月，4：年
-@property (strong,nonatomic,nonnull)  NSNumber*  timeUnit;
-/// 计费类型，可以不传此参数。
-@property (strong,nonatomic,nonnull)  NSNumber*  billingType;
--(id) initWithRegion:(NSString *)regionId
-packId:(NSNumber*)packId
-domainName:(NSString*)domainName
-domainId:(NSNumber*)domainId
-buyType:(NSNumber*)buyType
-timeSpan:(NSNumber*)timeSpan
-timeUnit:(NSNumber*)timeUnit
-billingType:(NSNumber*)billingType;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-packId:(NSNumber*)packId
-domainName:(NSString*)domainName
-domainId:(NSNumber*)domainId
-buyType:(NSNumber*)buyType
-timeSpan:(NSNumber*)timeSpan
-timeUnit:(NSNumber*)timeUnit
-billingType:(NSNumber*)billingType;
-
-@end
-
 @interface ClouddnsserviceGetDomainsResult : NSObject
 /// DataList
  @property (strong,nonatomic,nonnull)  NSArray<Domain*>*  dataList;
@@ -213,31 +614,6 @@ billingType:(NSNumber*)billingType;
     totalCount:(NSNumber*)totalCount
 
     totalPage:(NSNumber*)totalPage;
-@end
-
-@interface ClouddnsserviceGetDomainQueryTrafficRequest:JDCloudRequest
-
-/// 主域名，请使用getDomains接口获取
-@property (strong,nonatomic,nonnull)  NSString*  domainName;
-/// 时间段的起始时间, UTC时间，例如2017-11-10T23:00:00Z
-@property (strong,nonatomic,nonnull)  NSString*  start;
-/// 时间段的终止时间, UTC时间，例如2017-11-10T23:00:00Z
-@property (strong,nonatomic,nonnull)  NSString*  end;
-/// 域名ID，请使用getDomains接口获取。
-@property (strong,nonatomic,nonnull)  NSString*  domainId;
--(id) initWithRegion:(NSString *)regionId
-domainName:(NSString*)domainName
-start:(NSString*)start
-end:(NSString*)end
-domainId:(NSString*)domainId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-domainName:(NSString*)domainName
-start:(NSString*)start
-end:(NSString*)end
-domainId:(NSString*)domainId;
-
 @end
 
 @interface ClouddnsserviceGetDomainQueryTrafficResponse : NSObject
@@ -291,23 +667,6 @@ domainId:(NSString*)domainId;
         result:(ClouddnsserviceDelDomainResult*) result;
 @end
 
-@interface ClouddnsserviceUpdateDomainRequest:JDCloudRequest
-
-/// 需要修改的主域名，请使用getDomains接口获取
-@property (strong,nonatomic,nonnull)  NSString*  domainName;
-/// 需要修改的主域名ID，请使用getDomains接口获取
-@property (strong,nonatomic,nonnull)  NSNumber*  idValue;
--(id) initWithRegion:(NSString *)regionId
-domainName:(NSString*)domainName
-idValue:(NSNumber*)idValue;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-domainName:(NSString*)domainName
-idValue:(NSNumber*)idValue;
-
-@end
-
 @interface ClouddnsserviceGetDomainsResponse : NSObject
 
 @property NSString* requestId;
@@ -323,31 +682,6 @@ idValue:(NSNumber*)idValue;
 -(id) initWithRequestId:(NSString*) requestId
         error:(ServiceError*) error
         result:(ClouddnsserviceGetDomainsResult*) result;
-@end
-
-@interface ClouddnsserviceGetDomainQueryCountRequest:JDCloudRequest
-
-/// 查询的主域名，，请使用getDomains接口获取
-@property (strong,nonatomic,nonnull)  NSString*  domainName;
-/// 查询时间段的起始时间, UTC时间，例如2017-11-10T23:00:00Z
-@property (strong,nonatomic,nonnull)  NSString*  start;
-/// 查询时间段的终止时间, UTC时间，例如2017-11-10T23:00:00Z
-@property (strong,nonatomic,nonnull)  NSString*  end;
-/// 域名ID，请使用getDomains接口获取。
-@property (strong,nonatomic,nonnull)  NSString*  domainId;
--(id) initWithRegion:(NSString *)regionId
-domainName:(NSString*)domainName
-start:(NSString*)start
-end:(NSString*)end
-domainId:(NSString*)domainId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-domainName:(NSString*)domainName
-start:(NSString*)start
-end:(NSString*)end
-domainId:(NSString*)domainId;
-
 @end
 
 @interface ClouddnsserviceAddMonitorResult : NSObject
@@ -415,56 +749,6 @@ domainId:(NSString*)domainId;
         result:(ClouddnsserviceAddMonitorTargetResult*) result;
 @end
 
-@interface ClouddnsserviceOperateMonitorRequest:JDCloudRequest
-
-/// 删除del, 暂停stop, 开启start, 手动恢复recover，手动切换switch
-@property (strong,nonatomic,nonnull)  NSString*  action;
-/// 监控项ID
-@property (strong,nonatomic,nonnull)  NSArray<NSNumber*>*  ids;
-/// 监控项的主机值, 手动切换时必填
-@property (strong,nonatomic,nonnull)  NSString*  switchTarget;
-/// 域名ID，请使用getDomains接口获取。
-@property (strong,nonatomic,nonnull)  NSString*  domainId;
--(id) initWithRegion:(NSString *)regionId
-action:(NSString*)action
-ids:(NSArray<NSNumber*>*)ids
-switchTarget:(NSString*)switchTarget
-domainId:(NSString*)domainId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-action:(NSString*)action
-ids:(NSArray<NSNumber*>*)ids
-switchTarget:(NSString*)switchTarget
-domainId:(NSString*)domainId;
-
-@end
-
-@interface ClouddnsserviceGetMonitorRequest:JDCloudRequest
-
-/// 当前页数，起始值为1，默认为1
-@property (strong,nonatomic,nonnull)  NSNumber*  pageIndex;
-/// 分页查询时设置的每页行数
-@property (strong,nonatomic,nonnull)  NSNumber*  pageSize;
-/// 查询的值
-@property (strong,nonatomic,nonnull)  NSString*  searchValue;
-/// 域名ID，请使用getDomains接口获取。
-@property (strong,nonatomic,nonnull)  NSString*  domainId;
--(id) initWithRegion:(NSString *)regionId
-pageIndex:(NSNumber*)pageIndex
-pageSize:(NSNumber*)pageSize
-searchValue:(NSString*)searchValue
-domainId:(NSString*)domainId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-pageIndex:(NSNumber*)pageIndex
-pageSize:(NSNumber*)pageSize
-searchValue:(NSString*)searchValue
-domainId:(NSString*)domainId;
-
-@end
-
 @interface ClouddnsserviceGetMonitorResult : NSObject
 /// 当前页面网站监控项的个数
  @property (strong,nonatomic,nonnull)  NSNumber*  currentCount;
@@ -509,58 +793,6 @@ domainId:(NSString*)domainId;
 -(NSMutableDictionary*) dictionary;
 
 -(id) initWithDic:(NSDictionary*)dictionary;
-@end
-
-@interface ClouddnsserviceGetMonitorAlarmInfoRequest:JDCloudRequest
-
-/// 当前页数，起始值为1，默认为1
-@property (strong,nonatomic,nonnull)  NSNumber*  pageIndex;
-/// 分页查询时设置的每页行数
-@property (strong,nonatomic,nonnull)  NSNumber*  pageSize;
-/// 关键字
-@property (strong,nonatomic,nonnull)  NSString*  searchValue;
-/// 域名ID，请使用getDomains接口获取。
-@property (strong,nonatomic,nonnull)  NSString*  domainId;
--(id) initWithRegion:(NSString *)regionId
-pageIndex:(NSNumber*)pageIndex
-pageSize:(NSNumber*)pageSize
-searchValue:(NSString*)searchValue
-domainId:(NSString*)domainId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-pageIndex:(NSNumber*)pageIndex
-pageSize:(NSNumber*)pageSize
-searchValue:(NSString*)searchValue
-domainId:(NSString*)domainId;
-
-@end
-
-@interface ClouddnsserviceGetTargetsRequest:JDCloudRequest
-
-/// 子域名
-@property (strong,nonatomic,nonnull)  NSString*  subDomainName;
-/// 域名ID，请使用getDomains接口获取。
-@property (strong,nonatomic,nonnull)  NSString*  domainId;
--(id) initWithRegion:(NSString *)regionId
-subDomainName:(NSString*)subDomainName
-domainId:(NSString*)domainId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-subDomainName:(NSString*)subDomainName
-domainId:(NSString*)domainId;
-
-@end
-
-@interface ClouddnsserviceGetTargetsResult : NSObject
-/// Data
- @property (strong,nonatomic,nonnull)  NSArray<NSString*>*  data;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithData:(NSArray<NSString*>*) data;
 @end
 
 @interface ClouddnsserviceGetTargetsResponse : NSObject
@@ -643,23 +875,6 @@ domainId:(NSString*)domainId;
         result:(ClouddnsserviceGetMonitorAlarmInfoResult*) result;
 @end
 
-@interface ClouddnsserviceAddMonitorRequest:JDCloudRequest
-
-/// 子域名
-@property (strong,nonatomic,nonnull)  NSString*  subDomainName;
-/// 域名ID，请使用getDomains接口获取。
-@property (strong,nonatomic,nonnull)  NSString*  domainId;
--(id) initWithRegion:(NSString *)regionId
-subDomainName:(NSString*)subDomainName
-domainId:(NSString*)domainId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-subDomainName:(NSString*)subDomainName
-domainId:(NSString*)domainId;
-
-@end
-
 @interface ClouddnsserviceOperateMonitorResponse : NSObject
 
 @property NSString* requestId;
@@ -675,27 +890,6 @@ domainId:(NSString*)domainId;
 -(id) initWithRequestId:(NSString*) requestId
         error:(ServiceError*) error
         result:(ClouddnsserviceOperateMonitorResult*) result;
-@end
-
-@interface ClouddnsserviceAddMonitorTargetRequest:JDCloudRequest
-
-/// 子域名
-@property (strong,nonatomic,nonnull)  NSString*  subDomainName;
-/// 子域名可用监控对象的数组
-@property (strong,nonatomic,nonnull)  NSArray<NSString*>*  targets;
-/// 域名ID，请使用getDomains接口获取。
-@property (strong,nonatomic,nonnull)  NSString*  domainId;
--(id) initWithRegion:(NSString *)regionId
-subDomainName:(NSString*)subDomainName
-targets:(NSArray<NSString*>*)targets
-domainId:(NSString*)domainId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-subDomainName:(NSString*)subDomainName
-targets:(NSArray<NSString*>*)targets
-domainId:(NSString*)domainId;
-
 @end
 
 @interface ClouddnsserviceUpdateRRResult : NSObject
@@ -747,16 +941,6 @@ domainId:(NSString*)domainId;
 -(id) initWithRequestId:(NSString*) requestId
         error:(ServiceError*) error
         result:(ClouddnsserviceAddRRResult*) result;
-@end
-
-@interface ClouddnsserviceBatchSetDnsResolveResult : NSObject
-/// Data
- @property (strong,nonatomic,nonnull)  NSArray<NSString*>*  data;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithData:(NSArray<NSString*>*) data;
 @end
 
 @interface ClouddnsserviceGetViewTreeResult : NSObject
@@ -876,31 +1060,6 @@ domainId:(NSString*)domainId;
         result:(ClouddnsserviceUpdateRRResult*) result;
 @end
 
-@interface ClouddnsserviceGetViewTreeRequest:JDCloudRequest
-
-/// 展示方式，暂时不使用
-@property (strong,nonatomic,nonnull)  NSNumber*  loadMode;
-/// 套餐ID，0-&gt;免费版 1-&gt;企业版 2-&gt;企业高级版
-@property (strong,nonatomic,nonnull)  NSNumber*  packId;
-/// view ID，默认为-1
-@property (strong,nonatomic,nonnull)  NSNumber*  viewId;
-/// 域名ID，请使用getDomains接口获取。
-@property (strong,nonatomic,nonnull)  NSString*  domainId;
--(id) initWithRegion:(NSString *)regionId
-loadMode:(NSNumber*)loadMode
-packId:(NSNumber*)packId
-viewId:(NSNumber*)viewId
-domainId:(NSString*)domainId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-loadMode:(NSNumber*)loadMode
-packId:(NSNumber*)packId
-viewId:(NSNumber*)viewId
-domainId:(NSString*)domainId;
-
-@end
-
 @interface ClouddnsserviceBatchSetDnsResolveRequest:JDCloudRequest
 
 /// 需要设置的解析记录列表
@@ -938,82 +1097,11 @@ req:(NSArray<BatchSetDNS*>*)req;
         result:(ClouddnsserviceOperateRRResult*) result;
 @end
 
-@interface ClouddnsserviceSearchRRRequest:JDCloudRequest
-
-/// 当前页数，起始值为1，默认为1
-@property (strong,nonatomic,nonnull)  NSNumber*  pageNumber;
-/// 分页查询时设置的每页行数, 默认为10
-@property (strong,nonatomic,nonnull)  NSNumber*  pageSize;
-/// 域名ID，请使用getDomains接口获取。
-@property (strong,nonatomic,nonnull)  NSString*  domainId;
--(id) initWithRegion:(NSString *)regionId
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-domainId:(NSString*)domainId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-domainId:(NSString*)domainId;
-
-@end
-
-@interface ClouddnsserviceOperateRRRequest:JDCloudRequest
-
-/// 需要操作的解析记录ID，请使用searchRR接口获取。
-@property (strong,nonatomic,nonnull)  NSArray<NSNumber*>*  ids;
-/// 操作类型，on-&gt;启用 off-&gt;停用 del-&gt;删除
-@property (strong,nonatomic,nonnull)  NSString*  action;
-/// 域名ID，请使用getDomains接口获取。
-@property (strong,nonatomic,nonnull)  NSString*  domainId;
--(id) initWithRegion:(NSString *)regionId
-ids:(NSArray<NSNumber*>*)ids
-action:(NSString*)action
-domainId:(NSString*)domainId;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-ids:(NSArray<NSNumber*>*)ids
-action:(NSString*)action
-domainId:(NSString*)domainId;
-
-@end
-
 @interface ClouddnsserviceAddUserViewIPResult : NSObject
 
 -(NSMutableDictionary*) dictionary;
 
 -(id) initWithDic:(NSDictionary*)dictionary;
-@end
-
-@interface ClouddnsserviceGetUserViewRequest:JDCloudRequest
-
-/// 主域名ID
-@property (strong,nonatomic,nonnull)  NSNumber*  domainId;
-/// 自定义线路ID
-@property (strong,nonatomic,nonnull)  NSNumber*  viewId;
-/// 自定义线路名称, 最多64个字符
-@property (strong,nonatomic,nonnull)  NSString*  viewName;
-/// 分页参数，页的序号
-@property (strong,nonatomic,nonnull)  NSNumber*  pageNumber;
-/// 分页参数，每页含有的结果的数目
-@property (strong,nonatomic,nonnull)  NSNumber*  pageSize;
--(id) initWithRegion:(NSString *)regionId
-domainId:(NSNumber*)domainId
-viewId:(NSNumber*)viewId
-viewName:(NSString*)viewName
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-domainId:(NSNumber*)domainId
-viewId:(NSNumber*)viewId
-viewName:(NSString*)viewName
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize;
-
 @end
 
 @interface ClouddnsserviceAddUserViewResult : NSObject
@@ -1061,28 +1149,6 @@ req:(AddViewIP*)req;
 -(id) initWithRequestId:(NSString*) requestId
         error:(ServiceError*) error
         result:(ClouddnsserviceDelUserViewIPResult*) result;
-@end
-
-@interface ClouddnsserviceGetUserViewIPResult : NSObject
-/// DataList
- @property (strong,nonatomic,nonnull)  NSArray<NSString*>*  dataList;
-/// 当前页的IP列表里的个数
- @property (strong,nonatomic,nonnull)  NSNumber*  currentCount;
-/// IP列表里的IP段的个数
- @property (strong,nonatomic,nonnull)  NSNumber*  totalCount;
-/// IP列表按照分页参数一共的页数
- @property (strong,nonatomic,nonnull)  NSNumber*  totalPage;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithDataList:(NSArray<NSString*>*) dataList
-
-    currentCount:(NSNumber*)currentCount
-
-    totalCount:(NSNumber*)totalCount
-
-    totalPage:(NSNumber*)totalPage;
 @end
 
 @interface ClouddnsserviceGetUserViewIPResponse : NSObject
@@ -1204,35 +1270,6 @@ req:(DelViewIP*)req;
 
 @end
 
-@interface ClouddnsserviceGetUserViewIPRequest:JDCloudRequest
-
-/// 主域名ID
-@property (strong,nonatomic,nonnull)  NSNumber*  domainId;
-/// 自定义线路ID
-@property (strong,nonatomic,nonnull)  NSNumber*  viewId;
-/// 自定义线路名称, 最多64个字符
-@property (strong,nonatomic,nonnull)  NSString*  viewName;
-/// 分页参数，页的序号, 默认为1
-@property (strong,nonatomic,nonnull)  NSNumber*  pageNumber;
-/// 分页参数，每页含有的结果的数目，默认为10
-@property (strong,nonatomic,nonnull)  NSNumber*  pageSize;
--(id) initWithRegion:(NSString *)regionId
-domainId:(NSNumber*)domainId
-viewId:(NSNumber*)viewId
-viewName:(NSString*)viewName
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-domainId:(NSNumber*)domainId
-viewId:(NSNumber*)viewId
-viewName:(NSString*)viewName
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize;
-
-@end
-
 @interface ClouddnsserviceAddUserViewResponse : NSObject
 
 @property NSString* requestId;
@@ -1304,43 +1341,6 @@ pageSize:(NSNumber*)pageSize;
 -(id) initWithRequestId:(NSString*) requestId
         error:(ServiceError*) error
         result:(ClouddnsserviceGetActionLogResult*) result;
-@end
-
-@interface ClouddnsserviceGetActionLogRequest:JDCloudRequest
-
-/// 分页参数，页的序号，默认是1
-@property (strong,nonatomic,nonnull)  NSNumber*  pageNumber;
-/// 分页参数，每页含有的结果的数目，默认是10
-@property (strong,nonatomic,nonnull)  NSNumber*  pageSize;
-/// 记录的起始时间，格式：UTC时间例如2017-11-10T23:00:00Z
-@property (strong,nonatomic,nonnull)  NSString*  startTime;
-/// 记录的终止时间，格式：UTC时间例如2017-11-10T23:00:00Z
-@property (strong,nonatomic,nonnull)  NSString*  endTime;
-/// 日志需要匹配的关键词
-@property (strong,nonatomic,nonnull)  NSString*  keyWord;
-/// 日志里面的结果是成功还是失败
-@property (strong,nonatomic,nonnull)  NSNumber*  success;
-/// 日志的类型
-@property (strong,nonatomic,nonnull)  NSNumber*  type;
--(id) initWithRegion:(NSString *)regionId
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-startTime:(NSString*)startTime
-endTime:(NSString*)endTime
-keyWord:(NSString*)keyWord
-success:(NSNumber*)success
-type:(NSNumber*)type;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-startTime:(NSString*)startTime
-endTime:(NSString*)endTime
-keyWord:(NSString*)keyWord
-success:(NSNumber*)success
-type:(NSNumber*)type;
-
 @end
 
 #endif /* ClouddnsserviceApiModel_h */

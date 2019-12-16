@@ -46,16 +46,6 @@ bandwidthId:(NSString*)bandwidthId;
 
 @end
 
-@interface JdccsDescribeBandwidthTrafficResult : NSObject
-/// 带宽（出口）流量（资源）详情
- @property (strong,nonatomic,nonnull)  BandwidthTraffic*  bandwidthTraffic;
-
--(NSMutableDictionary*) dictionary;
-
--(id) initWithDic:(NSDictionary*)dictionary;
--(id) initWithBandwidthTraffic:(BandwidthTraffic*) bandwidthTraffic;
-@end
-
 @interface JdccsLastDownsampleRequest:JDCloudRequest
 
 /// 资源ID，支持多个resourceId批量查询，每个id用竖线 | 分隔
@@ -75,6 +65,87 @@ resourceId:(NSString*)resourceId
 idc:(NSString*)idc
 metric:(NSString*)metric;
 
+@end
+
+@interface JdccsDescribeMetricDataRequest:JDCloudRequest
+
+/// 资源ID
+@property (strong,nonatomic,nonnull)  NSString*  resourceId;
+/// 查询时间范围的开始时间， UNIX时间戳，（最多支持最近90天数据查询）
+@property (strong,nonatomic,nonnull)  NSNumber*  startTime;
+/// 查询时间范围的结束时间， UNIX时间戳，（最多支持最近90天数据查询）
+@property (strong,nonatomic,nonnull)  NSNumber*  endTime;
+/// 时间间隔：分钟m、小时h、天d，如： 10分钟&#x3D;10m、1小时&#x3D;1h，3天&#x3D;3d；默认5m，最小支持5m，最大90d
+@property (strong,nonatomic,nonnull)  NSString*  timeInterval;
+/// IDC机房ID
+@property (strong,nonatomic,nonnull)  NSString*  idc;
+/// 监控项英文标识(id)
+@property (strong,nonatomic,nonnull)  NSString*  metric;
+-(id) initWithRegion:(NSString *)regionId
+resourceId:(NSString*)resourceId
+startTime:(NSNumber*)startTime
+endTime:(NSNumber*)endTime
+timeInterval:(NSString*)timeInterval
+idc:(NSString*)idc
+metric:(NSString*)metric;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+resourceId:(NSString*)resourceId
+startTime:(NSNumber*)startTime
+endTime:(NSNumber*)endTime
+timeInterval:(NSString*)timeInterval
+idc:(NSString*)idc
+metric:(NSString*)metric;
+
+@end
+
+@interface JdccsDescribeBandwidthTrafficsRequest:JDCloudRequest
+
+/// 页码, 默认为1
+@property (strong,nonatomic,nonnull)  NSNumber*  pageNumber;
+/// 分页大小，默认为20
+@property (strong,nonatomic,nonnull)  NSNumber*  pageSize;
+/// IDC机房ID
+@property (strong,nonatomic,nonnull)  NSString*  idc;
+-(id) initWithRegion:(NSString *)regionId
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+idc:(NSString*)idc;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+idc:(NSString*)idc;
+
+@end
+
+@interface JdccsDescribeIdcsRequest:JDCloudRequest
+
+/// 页码, 默认为1
+@property (strong,nonatomic,nonnull)  NSNumber*  pageNumber;
+/// 分页大小，默认为20
+@property (strong,nonatomic,nonnull)  NSNumber*  pageSize;
+-(id) initWithRegion:(NSString *)regionId
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize;
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize;
+
+@end
+
+@interface JdccsDescribeBandwidthTrafficResult : NSObject
+/// 带宽（出口）流量（资源）详情
+ @property (strong,nonatomic,nonnull)  BandwidthTraffic*  bandwidthTraffic;
+
+-(NSMutableDictionary*) dictionary;
+
+-(id) initWithDic:(NSDictionary*)dictionary;
+-(id) initWithBandwidthTraffic:(BandwidthTraffic*) bandwidthTraffic;
 @end
 
 @interface JdccsDescribeBandwidthTrafficsResult : NSObject
@@ -114,39 +185,6 @@ metric:(NSString*)metric;
 -(id) initWithRequestId:(NSString*) requestId
         error:(ServiceError*) error
         result:(JdccsDescribeBandwidthTrafficsResult*) result;
-@end
-
-@interface JdccsDescribeMetricDataRequest:JDCloudRequest
-
-/// 资源ID
-@property (strong,nonatomic,nonnull)  NSString*  resourceId;
-/// 查询时间范围的开始时间， UNIX时间戳，（最多支持最近90天数据查询）
-@property (strong,nonatomic,nonnull)  NSNumber*  startTime;
-/// 查询时间范围的结束时间， UNIX时间戳，（最多支持最近90天数据查询）
-@property (strong,nonatomic,nonnull)  NSNumber*  endTime;
-/// 时间间隔：分钟m、小时h、天d，如： 10分钟&#x3D;10m、1小时&#x3D;1h，3天&#x3D;3d；默认5m，最小支持5m，最大90d
-@property (strong,nonatomic,nonnull)  NSString*  timeInterval;
-/// IDC机房ID
-@property (strong,nonatomic,nonnull)  NSString*  idc;
-/// 监控项英文标识(id)
-@property (strong,nonatomic,nonnull)  NSString*  metric;
--(id) initWithRegion:(NSString *)regionId
-resourceId:(NSString*)resourceId
-startTime:(NSNumber*)startTime
-endTime:(NSNumber*)endTime
-timeInterval:(NSString*)timeInterval
-idc:(NSString*)idc
-metric:(NSString*)metric;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-resourceId:(NSString*)resourceId
-startTime:(NSNumber*)startTime
-endTime:(NSNumber*)endTime
-timeInterval:(NSString*)timeInterval
-idc:(NSString*)idc
-metric:(NSString*)metric;
-
 @end
 
 @interface JdccsDescribeMetricsRequest:JDCloudRequest
@@ -249,27 +287,6 @@ metric:(NSString*)metric;
 -(id) initWithRequestId:(NSString*) requestId
         error:(ServiceError*) error
         result:(JdccsDescribeBandwidthTrafficResult*) result;
-@end
-
-@interface JdccsDescribeBandwidthTrafficsRequest:JDCloudRequest
-
-/// 页码, 默认为1
-@property (strong,nonatomic,nonnull)  NSNumber*  pageNumber;
-/// 分页大小，默认为20
-@property (strong,nonatomic,nonnull)  NSNumber*  pageSize;
-/// IDC机房ID
-@property (strong,nonatomic,nonnull)  NSString*  idc;
--(id) initWithRegion:(NSString *)regionId
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-idc:(NSString*)idc;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-idc:(NSString*)idc;
-
 @end
 
 @interface JdccsDescribeCabinetsResult : NSObject
@@ -440,23 +457,6 @@ idc:(NSString*)idc;
 -(id) initWithRequestId:(NSString*) requestId
         error:(ServiceError*) error
         result:(JdccsDescribeCabinetsResult*) result;
-@end
-
-@interface JdccsDescribeIdcsRequest:JDCloudRequest
-
-/// 页码, 默认为1
-@property (strong,nonatomic,nonnull)  NSNumber*  pageNumber;
-/// 分页大小，默认为20
-@property (strong,nonatomic,nonnull)  NSNumber*  pageSize;
--(id) initWithRegion:(NSString *)regionId
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize;
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize;
-
 @end
 
 #endif /* JdccsApiModel_h */

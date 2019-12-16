@@ -124,65 +124,6 @@ phoneList:(NSArray<NSString*>*)phoneList {
 } 
 
 @end
-@implementation SmsStatusReportResult
--(id) initWithData:(NSArray<StatusReportResp*>*) data
-        status:(NSNumber*)status
-        code:(NSString*)code
-        message:(NSString*)message { 
-    self.data = data;               
-    self.status = status;               
-    self.code = code;               
-    self.message = message;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self data])
-    {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self data] count]; i++) {
-            StatusReportResp* item = [[self data] objectAtIndex:i];
-            [arrayDic addObject:[item dictionary]];
-        }
-        [result setValue:arrayDic forKey:@"data"];
-    }
-    if([self status])
-    {
-        [result setValue:[self status] forKey:@"status"];
-    }
-    if([self code])
-    {
-        [result setValue:[self code] forKey:@"code"];
-    }
-    if([self message])
-    {
-        [result setValue:[self message] forKey:@"message"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    NSArray* dataArray = [dictionary objectForKey:@"data"];
-    if(dataArray&&![dataArray isKindOfClass:[NSNull class]])
-    {
-        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
-        for(int i = 0 ; i< [dataArray count];i++)
-        {
-            StatusReportResp* item = [[StatusReportResp alloc]initWithDic:[dataArray objectAtIndex:i]];
-            if(item)
-            {
-                [propertyArray addObject:item];
-            }
-        }
-        self.data = propertyArray;
-    }
-    self.status = [dictionary objectForKey:@"status"];
-    self.code = [dictionary objectForKey:@"code"];
-    self.message = [dictionary objectForKey:@"message"];
-    return self;
-} 
-
-@end
 @implementation SmsBatchSendRequest
 -(id) initWithRegion:(NSString *)regionId
 templateId:(NSString*)templateId
@@ -242,6 +183,65 @@ params:(NSArray<NSString*>*)params {
     self.signId = [dictionary objectForKey:@"signId"];
     self.phoneList = [dictionary objectForKey:@"phoneList"];
     self.params = [dictionary objectForKey:@"params"];
+    return self;
+} 
+
+@end
+@implementation SmsStatusReportResult
+-(id) initWithData:(NSArray<StatusReportResp*>*) data
+        status:(NSNumber*)status
+        code:(NSString*)code
+        message:(NSString*)message { 
+    self.data = data;               
+    self.status = status;               
+    self.code = code;               
+    self.message = message;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self data])
+    {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self data] count]; i++) {
+            StatusReportResp* item = [[self data] objectAtIndex:i];
+            [arrayDic addObject:[item dictionary]];
+        }
+        [result setValue:arrayDic forKey:@"data"];
+    }
+    if([self status])
+    {
+        [result setValue:[self status] forKey:@"status"];
+    }
+    if([self code])
+    {
+        [result setValue:[self code] forKey:@"code"];
+    }
+    if([self message])
+    {
+        [result setValue:[self message] forKey:@"message"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    NSArray* dataArray = [dictionary objectForKey:@"data"];
+    if(dataArray&&![dataArray isKindOfClass:[NSNull class]])
+    {
+        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
+        for(int i = 0 ; i< [dataArray count];i++)
+        {
+        StatusReportResp* item = [[StatusReportResp alloc]initWithDic:[dataArray objectAtIndex:i]];
+            if(item)
+            {
+            [propertyArray addObject:item];
+            }
+        }
+        self.data = propertyArray;
+    }
+    self.status = [dictionary objectForKey:@"status"];
+    self.code = [dictionary objectForKey:@"code"];
+    self.message = [dictionary objectForKey:@"message"];
     return self;
 } 
 
@@ -390,8 +390,8 @@ SmsBatchSendResult* result = [[SmsBatchSendResult alloc]initWithDic:[dictionary 
     NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
     if([self data])
     {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self data] count]; i++) {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self data] count]; i++) {
             ReplyResp* item = [[self data] objectAtIndex:i];
             [arrayDic addObject:[item dictionary]];
         }
@@ -419,10 +419,10 @@ SmsBatchSendResult* result = [[SmsBatchSendResult alloc]initWithDic:[dictionary 
         NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
         for(int i = 0 ; i< [dataArray count];i++)
         {
-            ReplyResp* item = [[ReplyResp alloc]initWithDic:[dataArray objectAtIndex:i]];
+        ReplyResp* item = [[ReplyResp alloc]initWithDic:[dataArray objectAtIndex:i]];
             if(item)
             {
-                [propertyArray addObject:item];
+            [propertyArray addObject:item];
             }
         }
         self.data = propertyArray;

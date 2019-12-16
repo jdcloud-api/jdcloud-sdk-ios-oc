@@ -115,60 +115,6 @@ webRuleId:(NSString*)webRuleId {
 } 
 
 @end
-@implementation IpantiCreateWhiteListRuleOfWebRuleRequest
--(id) initWithRegion:(NSString *)regionId
-webWhiteListRuleSpec:(WebWhiteListRuleSpec*)webWhiteListRuleSpec
-instanceId:(NSString*)instanceId
-webRuleId:(NSString*)webRuleId { 
-    self.regionId = regionId;
-    self.webWhiteListRuleSpec = webWhiteListRuleSpec;
-    self.instanceId = instanceId;
-    self.webRuleId = webRuleId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-webWhiteListRuleSpec:(WebWhiteListRuleSpec*)webWhiteListRuleSpec
-instanceId:(NSString*)instanceId
-webRuleId:(NSString*)webRuleId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.webWhiteListRuleSpec = webWhiteListRuleSpec;
-    self.instanceId = instanceId;
-    self.webRuleId = webRuleId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self webWhiteListRuleSpec])
-    {
-        [result setValue:[[self webWhiteListRuleSpec] dictionary]forKey:@"webWhiteListRuleSpec"];
-    }
-    if([self instanceId])
-    {
-        [result setValue:[self instanceId] forKey:@"instanceId"];
-    }
-    if([self webRuleId])
-    {
-        [result setValue:[self webRuleId] forKey:@"webRuleId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.webWhiteListRuleSpec = [[WebWhiteListRuleSpec alloc]initWithDic:[dictionary objectForKey:@"webWhiteListRuleSpec"]];
-    self.instanceId = [dictionary objectForKey:@"instanceId"];
-    self.webRuleId = [dictionary objectForKey:@"webRuleId"];
-    return self;
-} 
-
-@end
 @implementation IpantiEnableWebRuleCCObserverModeResult
 -(id) initWithCode:(NSNumber*) code
         message:(NSString*)message { 
@@ -194,50 +140,6 @@ webRuleId:(NSString*)webRuleId {
     self.message = [dictionary objectForKey:@"message"];
     return self;
 } 
-
-@end
-  
-@implementation IpantiEnableWebRuleCCObserverModeResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-IpantiEnableWebRuleCCObserverModeResult* result = [[IpantiEnableWebRuleCCObserverModeResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(IpantiEnableWebRuleCCObserverModeResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
 
 @end
 @implementation IpantiDescribeWebRuleBlackListUsageRequest
@@ -283,77 +185,6 @@ webRuleId:(NSString*)webRuleId {
     self.webRuleId = [dictionary objectForKey:@"webRuleId"];
     return self;
 } 
-
-@end
-@implementation IpantiDisableWebRuleCCObserverModeResult
--(id) initWithCode:(NSNumber*) code
-        message:(NSString*)message { 
-    self.code = code;               
-    self.message = message;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self code])
-    {
-        [result setValue:[self code] forKey:@"code"];
-    }
-    if([self message])
-    {
-        [result setValue:[self message] forKey:@"message"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.code = [dictionary objectForKey:@"code"];
-    self.message = [dictionary objectForKey:@"message"];
-    return self;
-} 
-
-@end
-  
-@implementation IpantiDisableWebRuleCCObserverModeResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-IpantiDisableWebRuleCCObserverModeResult* result = [[IpantiDisableWebRuleCCObserverModeResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(IpantiDisableWebRuleCCObserverModeResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
 
 @end
 @implementation IpantiDeleteWebRuleResult
@@ -455,50 +286,6 @@ webRuleId:(NSString*)webRuleId {
 } 
 
 @end
-  
-@implementation IpantiModifyCCProtectionConfigOfWebRuleResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-IpantiModifyCCProtectionConfigOfWebRuleResult* result = [[IpantiModifyCCProtectionConfigOfWebRuleResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(IpantiModifyCCProtectionConfigOfWebRuleResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
 @implementation IpantiDescribeWhiteListRuleOfWebRuleRequest
 -(id) initWithRegion:(NSString *)regionId
 instanceId:(NSString*)instanceId
@@ -549,26 +336,6 @@ webWhiteListRuleId:(NSString*)webWhiteListRuleId {
     self.instanceId = [dictionary objectForKey:@"instanceId"];
     self.webRuleId = [dictionary objectForKey:@"webRuleId"];
     self.webWhiteListRuleId = [dictionary objectForKey:@"webWhiteListRuleId"];
-    return self;
-} 
-
-@end
-@implementation IpantiDescribeWebRuleResult
--(id) initWithData:(WebRule*) data { 
-    self.data = data;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self data])
-    {
-        [result setValue:[[self data] dictionary]forKey:@"data"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.data = [[WebRule alloc]initWithDic:[dictionary objectForKey:@"data"]];
     return self;
 } 
 
@@ -663,77 +430,6 @@ webRuleId:(NSString*)webRuleId {
 } 
 
 @end
-@implementation IpantiEnableCCProtectionRuleOfWebRuleResult
--(id) initWithCode:(NSNumber*) code
-        message:(NSString*)message { 
-    self.code = code;               
-    self.message = message;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self code])
-    {
-        [result setValue:[self code] forKey:@"code"];
-    }
-    if([self message])
-    {
-        [result setValue:[self message] forKey:@"message"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.code = [dictionary objectForKey:@"code"];
-    self.message = [dictionary objectForKey:@"message"];
-    return self;
-} 
-
-@end
-  
-@implementation IpantiEnableCCProtectionRuleOfWebRuleResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-IpantiEnableCCProtectionRuleOfWebRuleResult* result = [[IpantiEnableCCProtectionRuleOfWebRuleResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(IpantiEnableCCProtectionRuleOfWebRuleResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
 @implementation IpantiDisableWebRuleWhiteListResult
 -(id) initWithCode:(NSNumber*) code
         message:(NSString*)message { 
@@ -757,80 +453,6 @@ IpantiEnableCCProtectionRuleOfWebRuleResult* result = [[IpantiEnableCCProtection
 -(id) initWithDic:(NSDictionary*)dictionary{
     self.code = [dictionary objectForKey:@"code"];
     self.message = [dictionary objectForKey:@"message"];
-    return self;
-} 
-
-@end
-@implementation IpantiCreateBlackListRuleOfWebRuleRequest
--(id) initWithRegion:(NSString *)regionId
-webBlackListRuleSpec:(WebBlackListRuleSpec*)webBlackListRuleSpec
-instanceId:(NSString*)instanceId
-webRuleId:(NSString*)webRuleId { 
-    self.regionId = regionId;
-    self.webBlackListRuleSpec = webBlackListRuleSpec;
-    self.instanceId = instanceId;
-    self.webRuleId = webRuleId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-webBlackListRuleSpec:(WebBlackListRuleSpec*)webBlackListRuleSpec
-instanceId:(NSString*)instanceId
-webRuleId:(NSString*)webRuleId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.webBlackListRuleSpec = webBlackListRuleSpec;
-    self.instanceId = instanceId;
-    self.webRuleId = webRuleId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self webBlackListRuleSpec])
-    {
-        [result setValue:[[self webBlackListRuleSpec] dictionary]forKey:@"webBlackListRuleSpec"];
-    }
-    if([self instanceId])
-    {
-        [result setValue:[self instanceId] forKey:@"instanceId"];
-    }
-    if([self webRuleId])
-    {
-        [result setValue:[self webRuleId] forKey:@"webRuleId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.webBlackListRuleSpec = [[WebBlackListRuleSpec alloc]initWithDic:[dictionary objectForKey:@"webBlackListRuleSpec"]];
-    self.instanceId = [dictionary objectForKey:@"instanceId"];
-    self.webRuleId = [dictionary objectForKey:@"webRuleId"];
-    return self;
-} 
-
-@end
-@implementation IpantiDescribeBlackListRuleOfWebRuleResult
--(id) initWithData:(WebBlackListRule*) data { 
-    self.data = data;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self data])
-    {
-        [result setValue:[[self data] dictionary]forKey:@"data"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.data = [[WebBlackListRule alloc]initWithDic:[dictionary objectForKey:@"data"]];
     return self;
 } 
 
@@ -889,60 +511,6 @@ webBlackListRuleId:(NSString*)webBlackListRuleId {
 } 
 
 @end
-@implementation IpantiCreateCCProtectionRuleOfWebRuleRequest
--(id) initWithRegion:(NSString *)regionId
-ccProtectionRuleSpec:(CCProtectionRuleSpec*)ccProtectionRuleSpec
-instanceId:(NSString*)instanceId
-webRuleId:(NSString*)webRuleId { 
-    self.regionId = regionId;
-    self.ccProtectionRuleSpec = ccProtectionRuleSpec;
-    self.instanceId = instanceId;
-    self.webRuleId = webRuleId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-ccProtectionRuleSpec:(CCProtectionRuleSpec*)ccProtectionRuleSpec
-instanceId:(NSString*)instanceId
-webRuleId:(NSString*)webRuleId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.ccProtectionRuleSpec = ccProtectionRuleSpec;
-    self.instanceId = instanceId;
-    self.webRuleId = webRuleId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self ccProtectionRuleSpec])
-    {
-        [result setValue:[[self ccProtectionRuleSpec] dictionary]forKey:@"ccProtectionRuleSpec"];
-    }
-    if([self instanceId])
-    {
-        [result setValue:[self instanceId] forKey:@"instanceId"];
-    }
-    if([self webRuleId])
-    {
-        [result setValue:[self webRuleId] forKey:@"webRuleId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.ccProtectionRuleSpec = [[CCProtectionRuleSpec alloc]initWithDic:[dictionary objectForKey:@"ccProtectionRuleSpec"]];
-    self.instanceId = [dictionary objectForKey:@"instanceId"];
-    self.webRuleId = [dictionary objectForKey:@"webRuleId"];
-    return self;
-} 
-
-@end
 @implementation IpantiEnableWebRuleCCObserverModeRequest
 -(id) initWithRegion:(NSString *)regionId
 instanceId:(NSString*)instanceId
@@ -984,26 +552,6 @@ webRuleId:(NSString*)webRuleId {
 -(id) initWithDic:(NSDictionary*)dictionary{
     self.instanceId = [dictionary objectForKey:@"instanceId"];
     self.webRuleId = [dictionary objectForKey:@"webRuleId"];
-    return self;
-} 
-
-@end
-@implementation IpantiDescribeWhiteListRuleOfWebRuleResult
--(id) initWithData:(WebWhiteListRule*) data { 
-    self.data = data;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self data])
-    {
-        [result setValue:[[self data] dictionary]forKey:@"data"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.data = [[WebWhiteListRule alloc]initWithDic:[dictionary objectForKey:@"data"]];
     return self;
 } 
 
@@ -1215,77 +763,6 @@ webWhiteListRuleId:(NSString*)webWhiteListRuleId {
 } 
 
 @end
-@implementation IpantiEnableWhiteListRuleOfWebRuleResult
--(id) initWithCode:(NSNumber*) code
-        message:(NSString*)message { 
-    self.code = code;               
-    self.message = message;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self code])
-    {
-        [result setValue:[self code] forKey:@"code"];
-    }
-    if([self message])
-    {
-        [result setValue:[self message] forKey:@"message"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.code = [dictionary objectForKey:@"code"];
-    self.message = [dictionary objectForKey:@"message"];
-    return self;
-} 
-
-@end
-  
-@implementation IpantiEnableWhiteListRuleOfWebRuleResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-IpantiEnableWhiteListRuleOfWebRuleResult* result = [[IpantiEnableWhiteListRuleOfWebRuleResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(IpantiEnableWhiteListRuleOfWebRuleResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
 @implementation IpantiDisableCCProtectionRuleOfWebRuleRequest
 -(id) initWithRegion:(NSString *)regionId
 instanceId:(NSString*)instanceId
@@ -1340,172 +817,6 @@ ccProtectionRuleId:(NSString*)ccProtectionRuleId {
 } 
 
 @end
-@implementation IpantiDescribeWebRulesResult
--(id) initWithDataList:(NSArray<WebRule*>*) dataList
-        currentCount:(NSNumber*)currentCount
-        totalCount:(NSNumber*)totalCount
-        totalPage:(NSNumber*)totalPage { 
-    self.dataList = dataList;               
-    self.currentCount = currentCount;               
-    self.totalCount = totalCount;               
-    self.totalPage = totalPage;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self dataList])
-    {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self dataList] count]; i++) {
-            WebRule* item = [[self dataList] objectAtIndex:i];
-            [arrayDic addObject:[item dictionary]];
-        }
-        [result setValue:arrayDic forKey:@"dataList"];
-    }
-    if([self currentCount])
-    {
-        [result setValue:[self currentCount] forKey:@"currentCount"];
-    }
-    if([self totalCount])
-    {
-        [result setValue:[self totalCount] forKey:@"totalCount"];
-    }
-    if([self totalPage])
-    {
-        [result setValue:[self totalPage] forKey:@"totalPage"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    NSArray* dataListArray = [dictionary objectForKey:@"dataList"];
-    if(dataListArray&&![dataListArray isKindOfClass:[NSNull class]])
-    {
-        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
-        for(int i = 0 ; i< [dataListArray count];i++)
-        {
-            WebRule* item = [[WebRule alloc]initWithDic:[dataListArray objectAtIndex:i]];
-            if(item)
-            {
-                [propertyArray addObject:item];
-            }
-        }
-        self.dataList = propertyArray;
-    }
-    self.currentCount = [dictionary objectForKey:@"currentCount"];
-    self.totalCount = [dictionary objectForKey:@"totalCount"];
-    self.totalPage = [dictionary objectForKey:@"totalPage"];
-    return self;
-} 
-
-@end
-  
-@implementation IpantiDescribeWebRulesResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-IpantiDescribeWebRulesResult* result = [[IpantiDescribeWebRulesResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(IpantiDescribeWebRulesResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
-@implementation IpantiModifyCCProtectionRuleOfWebRuleRequest
--(id) initWithRegion:(NSString *)regionId
-ccProtectionRuleSpec:(CCProtectionRuleSpec*)ccProtectionRuleSpec
-instanceId:(NSString*)instanceId
-webRuleId:(NSString*)webRuleId
-ccProtectionRuleId:(NSString*)ccProtectionRuleId { 
-    self.regionId = regionId;
-    self.ccProtectionRuleSpec = ccProtectionRuleSpec;
-    self.instanceId = instanceId;
-    self.webRuleId = webRuleId;
-    self.ccProtectionRuleId = ccProtectionRuleId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-ccProtectionRuleSpec:(CCProtectionRuleSpec*)ccProtectionRuleSpec
-instanceId:(NSString*)instanceId
-webRuleId:(NSString*)webRuleId
-ccProtectionRuleId:(NSString*)ccProtectionRuleId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.ccProtectionRuleSpec = ccProtectionRuleSpec;
-    self.instanceId = instanceId;
-    self.webRuleId = webRuleId;
-    self.ccProtectionRuleId = ccProtectionRuleId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self ccProtectionRuleSpec])
-    {
-        [result setValue:[[self ccProtectionRuleSpec] dictionary]forKey:@"ccProtectionRuleSpec"];
-    }
-    if([self instanceId])
-    {
-        [result setValue:[self instanceId] forKey:@"instanceId"];
-    }
-    if([self webRuleId])
-    {
-        [result setValue:[self webRuleId] forKey:@"webRuleId"];
-    }
-    if([self ccProtectionRuleId])
-    {
-        [result setValue:[self ccProtectionRuleId] forKey:@"ccProtectionRuleId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.ccProtectionRuleSpec = [[CCProtectionRuleSpec alloc]initWithDic:[dictionary objectForKey:@"ccProtectionRuleSpec"]];
-    self.instanceId = [dictionary objectForKey:@"instanceId"];
-    self.webRuleId = [dictionary objectForKey:@"webRuleId"];
-    self.ccProtectionRuleId = [dictionary objectForKey:@"ccProtectionRuleId"];
-    return self;
-} 
-
-@end
 @implementation IpantiCreateBlackListRuleOfWebRuleResult
 -(id) initWithCode:(NSNumber*) code
         message:(NSString*)message { 
@@ -1529,44 +840,6 @@ ccProtectionRuleId:(NSString*)ccProtectionRuleId {
 -(id) initWithDic:(NSDictionary*)dictionary{
     self.code = [dictionary objectForKey:@"code"];
     self.message = [dictionary objectForKey:@"message"];
-    return self;
-} 
-
-@end
-@implementation IpantiDescribeWebRuleBlackListGeoAreasResult
--(id) initWithDataList:(NSArray<Country*>*) dataList { 
-    self.dataList = dataList;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self dataList])
-    {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self dataList] count]; i++) {
-            Country* item = [[self dataList] objectAtIndex:i];
-            [arrayDic addObject:[item dictionary]];
-        }
-        [result setValue:arrayDic forKey:@"dataList"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    NSArray* dataListArray = [dictionary objectForKey:@"dataList"];
-    if(dataListArray&&![dataListArray isKindOfClass:[NSNull class]])
-    {
-        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
-        for(int i = 0 ; i< [dataListArray count];i++)
-        {
-            Country* item = [[Country alloc]initWithDic:[dataListArray objectAtIndex:i]];
-            if(item)
-            {
-                [propertyArray addObject:item];
-            }
-        }
-        self.dataList = propertyArray;
-    }
     return self;
 } 
 
@@ -1695,104 +968,6 @@ webRuleId:(NSString*)webRuleId {
     self.message = [dictionary objectForKey:@"message"];
     return self;
 } 
-
-@end
-@implementation IpantiModifyCertInfoRequest
--(id) initWithRegion:(NSString *)regionId
-certInfoModifySpec:(CertInfoModifySpec*)certInfoModifySpec
-instanceId:(NSString*)instanceId
-webRuleId:(NSString*)webRuleId { 
-    self.regionId = regionId;
-    self.certInfoModifySpec = certInfoModifySpec;
-    self.instanceId = instanceId;
-    self.webRuleId = webRuleId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-certInfoModifySpec:(CertInfoModifySpec*)certInfoModifySpec
-instanceId:(NSString*)instanceId
-webRuleId:(NSString*)webRuleId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.certInfoModifySpec = certInfoModifySpec;
-    self.instanceId = instanceId;
-    self.webRuleId = webRuleId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self certInfoModifySpec])
-    {
-        [result setValue:[[self certInfoModifySpec] dictionary]forKey:@"certInfoModifySpec"];
-    }
-    if([self instanceId])
-    {
-        [result setValue:[self instanceId] forKey:@"instanceId"];
-    }
-    if([self webRuleId])
-    {
-        [result setValue:[self webRuleId] forKey:@"webRuleId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.certInfoModifySpec = [[CertInfoModifySpec alloc]initWithDic:[dictionary objectForKey:@"certInfoModifySpec"]];
-    self.instanceId = [dictionary objectForKey:@"instanceId"];
-    self.webRuleId = [dictionary objectForKey:@"webRuleId"];
-    return self;
-} 
-
-@end
-  
-@implementation IpantiDeleteBlackListRuleOfWebRuleResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-IpantiDeleteBlackListRuleOfWebRuleResult* result = [[IpantiDeleteBlackListRuleOfWebRuleResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(IpantiDeleteBlackListRuleOfWebRuleResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
 
 @end
 @implementation IpantiCreateCCProtectionRuleOfWebRuleResult
@@ -1948,51 +1123,7 @@ webRuleId:(NSString*)webRuleId {
 } 
 
 @end
-  
-@implementation IpantiDeleteCCProtectionRuleOfWebRuleResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-IpantiDeleteCCProtectionRuleOfWebRuleResult* result = [[IpantiDeleteCCProtectionRuleOfWebRuleResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(IpantiDeleteCCProtectionRuleOfWebRuleResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
-@implementation IpantiModifyCertInfoResult
+@implementation IpantiEnableWhiteListRuleOfWebRuleResult
 -(id) initWithCode:(NSNumber*) code
         message:(NSString*)message { 
     self.code = code;               
@@ -2017,551 +1148,6 @@ IpantiDeleteCCProtectionRuleOfWebRuleResult* result = [[IpantiDeleteCCProtection
     self.message = [dictionary objectForKey:@"message"];
     return self;
 } 
-
-@end
-  
-@implementation IpantiModifyCertInfoResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-IpantiModifyCertInfoResult* result = [[IpantiModifyCertInfoResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(IpantiModifyCertInfoResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
-@implementation IpantiDescribeWebRuleWhiteListGeoAreasResult
--(id) initWithDataList:(NSArray<Country*>*) dataList { 
-    self.dataList = dataList;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self dataList])
-    {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self dataList] count]; i++) {
-            Country* item = [[self dataList] objectAtIndex:i];
-            [arrayDic addObject:[item dictionary]];
-        }
-        [result setValue:arrayDic forKey:@"dataList"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    NSArray* dataListArray = [dictionary objectForKey:@"dataList"];
-    if(dataListArray&&![dataListArray isKindOfClass:[NSNull class]])
-    {
-        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
-        for(int i = 0 ; i< [dataListArray count];i++)
-        {
-            Country* item = [[Country alloc]initWithDic:[dataListArray objectAtIndex:i]];
-            if(item)
-            {
-                [propertyArray addObject:item];
-            }
-        }
-        self.dataList = propertyArray;
-    }
-    return self;
-} 
-
-@end
-  
-@implementation IpantiDescribeWebRuleWhiteListGeoAreasResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-IpantiDescribeWebRuleWhiteListGeoAreasResult* result = [[IpantiDescribeWebRuleWhiteListGeoAreasResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(IpantiDescribeWebRuleWhiteListGeoAreasResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
-@implementation IpantiDescribeCCProtectionRulesOfWebRuleResult
--(id) initWithDataList:(NSArray<CCProtectionRule*>*) dataList
-        currentCount:(NSNumber*)currentCount
-        totalCount:(NSNumber*)totalCount
-        totalPage:(NSNumber*)totalPage { 
-    self.dataList = dataList;               
-    self.currentCount = currentCount;               
-    self.totalCount = totalCount;               
-    self.totalPage = totalPage;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self dataList])
-    {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self dataList] count]; i++) {
-            CCProtectionRule* item = [[self dataList] objectAtIndex:i];
-            [arrayDic addObject:[item dictionary]];
-        }
-        [result setValue:arrayDic forKey:@"dataList"];
-    }
-    if([self currentCount])
-    {
-        [result setValue:[self currentCount] forKey:@"currentCount"];
-    }
-    if([self totalCount])
-    {
-        [result setValue:[self totalCount] forKey:@"totalCount"];
-    }
-    if([self totalPage])
-    {
-        [result setValue:[self totalPage] forKey:@"totalPage"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    NSArray* dataListArray = [dictionary objectForKey:@"dataList"];
-    if(dataListArray&&![dataListArray isKindOfClass:[NSNull class]])
-    {
-        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
-        for(int i = 0 ; i< [dataListArray count];i++)
-        {
-            CCProtectionRule* item = [[CCProtectionRule alloc]initWithDic:[dataListArray objectAtIndex:i]];
-            if(item)
-            {
-                [propertyArray addObject:item];
-            }
-        }
-        self.dataList = propertyArray;
-    }
-    self.currentCount = [dictionary objectForKey:@"currentCount"];
-    self.totalCount = [dictionary objectForKey:@"totalCount"];
-    self.totalPage = [dictionary objectForKey:@"totalPage"];
-    return self;
-} 
-
-@end
-  
-@implementation IpantiEnableWebRuleWhiteListResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-IpantiEnableWebRuleWhiteListResult* result = [[IpantiEnableWebRuleWhiteListResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(IpantiEnableWebRuleWhiteListResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
-@implementation IpantiDisableWebRuleBlackListResult
--(id) initWithCode:(NSNumber*) code
-        message:(NSString*)message { 
-    self.code = code;               
-    self.message = message;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self code])
-    {
-        [result setValue:[self code] forKey:@"code"];
-    }
-    if([self message])
-    {
-        [result setValue:[self message] forKey:@"message"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.code = [dictionary objectForKey:@"code"];
-    self.message = [dictionary objectForKey:@"message"];
-    return self;
-} 
-
-@end
-  
-@implementation IpantiDisableWebRuleBlackListResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-IpantiDisableWebRuleBlackListResult* result = [[IpantiDisableWebRuleBlackListResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(IpantiDisableWebRuleBlackListResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
-@implementation IpantiDescribeWhiteListRulesOfWebRuleResult
--(id) initWithDataList:(NSArray<WebWhiteListRule*>*) dataList
-        currentCount:(NSNumber*)currentCount
-        totalCount:(NSNumber*)totalCount
-        totalPage:(NSNumber*)totalPage { 
-    self.dataList = dataList;               
-    self.currentCount = currentCount;               
-    self.totalCount = totalCount;               
-    self.totalPage = totalPage;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self dataList])
-    {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self dataList] count]; i++) {
-            WebWhiteListRule* item = [[self dataList] objectAtIndex:i];
-            [arrayDic addObject:[item dictionary]];
-        }
-        [result setValue:arrayDic forKey:@"dataList"];
-    }
-    if([self currentCount])
-    {
-        [result setValue:[self currentCount] forKey:@"currentCount"];
-    }
-    if([self totalCount])
-    {
-        [result setValue:[self totalCount] forKey:@"totalCount"];
-    }
-    if([self totalPage])
-    {
-        [result setValue:[self totalPage] forKey:@"totalPage"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    NSArray* dataListArray = [dictionary objectForKey:@"dataList"];
-    if(dataListArray&&![dataListArray isKindOfClass:[NSNull class]])
-    {
-        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
-        for(int i = 0 ; i< [dataListArray count];i++)
-        {
-            WebWhiteListRule* item = [[WebWhiteListRule alloc]initWithDic:[dataListArray objectAtIndex:i]];
-            if(item)
-            {
-                [propertyArray addObject:item];
-            }
-        }
-        self.dataList = propertyArray;
-    }
-    self.currentCount = [dictionary objectForKey:@"currentCount"];
-    self.totalCount = [dictionary objectForKey:@"totalCount"];
-    self.totalPage = [dictionary objectForKey:@"totalPage"];
-    return self;
-} 
-
-@end
-  
-@implementation IpantiDescribeWhiteListRulesOfWebRuleResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-IpantiDescribeWhiteListRulesOfWebRuleResult* result = [[IpantiDescribeWhiteListRulesOfWebRuleResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(IpantiDescribeWhiteListRulesOfWebRuleResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
-@implementation IpantiDisableCCProtectionRuleOfWebRuleResult
--(id) initWithCode:(NSNumber*) code
-        message:(NSString*)message { 
-    self.code = code;               
-    self.message = message;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self code])
-    {
-        [result setValue:[self code] forKey:@"code"];
-    }
-    if([self message])
-    {
-        [result setValue:[self message] forKey:@"message"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.code = [dictionary objectForKey:@"code"];
-    self.message = [dictionary objectForKey:@"message"];
-    return self;
-} 
-
-@end
-  
-@implementation IpantiDisableCCProtectionRuleOfWebRuleResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-IpantiDisableCCProtectionRuleOfWebRuleResult* result = [[IpantiDisableCCProtectionRuleOfWebRuleResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(IpantiDisableCCProtectionRuleOfWebRuleResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
-@implementation IpantiDeleteWhiteListRuleOfWebRuleResult
--(id) initWithCode:(NSNumber*) code
-        message:(NSString*)message { 
-    self.code = code;               
-    self.message = message;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self code])
-    {
-        [result setValue:[self code] forKey:@"code"];
-    }
-    if([self message])
-    {
-        [result setValue:[self message] forKey:@"message"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.code = [dictionary objectForKey:@"code"];
-    self.message = [dictionary objectForKey:@"message"];
-    return self;
-} 
-
-@end
-  
-@implementation IpantiDeleteWhiteListRuleOfWebRuleResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-IpantiDeleteWhiteListRuleOfWebRuleResult* result = [[IpantiDeleteWhiteListRuleOfWebRuleResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(IpantiDeleteWhiteListRuleOfWebRuleResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
 
 @end
 @implementation IpantiEnableWebRuleWhiteListRequest
@@ -2609,192 +1195,6 @@ webRuleId:(NSString*)webRuleId {
 } 
 
 @end
-@implementation IpantiCreateWhiteListRuleOfWebRuleResult
--(id) initWithCode:(NSNumber*) code
-        message:(NSString*)message { 
-    self.code = code;               
-    self.message = message;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self code])
-    {
-        [result setValue:[self code] forKey:@"code"];
-    }
-    if([self message])
-    {
-        [result setValue:[self message] forKey:@"message"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.code = [dictionary objectForKey:@"code"];
-    self.message = [dictionary objectForKey:@"message"];
-    return self;
-} 
-
-@end
-  
-@implementation IpantiCreateWhiteListRuleOfWebRuleResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-IpantiCreateWhiteListRuleOfWebRuleResult* result = [[IpantiCreateWhiteListRuleOfWebRuleResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(IpantiCreateWhiteListRuleOfWebRuleResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
-@implementation IpantiModifyWebRuleResult
--(id) initWithCode:(NSNumber*) code
-        message:(NSString*)message { 
-    self.code = code;               
-    self.message = message;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self code])
-    {
-        [result setValue:[self code] forKey:@"code"];
-    }
-    if([self message])
-    {
-        [result setValue:[self message] forKey:@"message"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.code = [dictionary objectForKey:@"code"];
-    self.message = [dictionary objectForKey:@"message"];
-    return self;
-} 
-
-@end
-  
-@implementation IpantiModifyWebRuleResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-IpantiModifyWebRuleResult* result = [[IpantiModifyWebRuleResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(IpantiModifyWebRuleResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
-  
-@implementation IpantiDisableWebRuleCCResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-IpantiDisableWebRuleCCResult* result = [[IpantiDisableWebRuleCCResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(IpantiDisableWebRuleCCResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
 @implementation IpantiSwitchWebRuleProtectRequest
 -(id) initWithRegion:(NSString *)regionId
 instanceId:(NSString*)instanceId
@@ -2840,50 +1240,6 @@ webRuleId:(NSString*)webRuleId {
 } 
 
 @end
-  
-@implementation IpantiDescribeWebRuleBlackListGeoAreasResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-IpantiDescribeWebRuleBlackListGeoAreasResult* result = [[IpantiDescribeWebRuleBlackListGeoAreasResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(IpantiDescribeWebRuleBlackListGeoAreasResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
 @implementation IpantiEnableWebRuleCCResult
 -(id) initWithCode:(NSNumber*) code
         message:(NSString*)message { 
@@ -2911,65 +1267,29 @@ IpantiDescribeWebRuleBlackListGeoAreasResult* result = [[IpantiDescribeWebRuleBl
 } 
 
 @end
-@implementation IpantiModifyBlackListRuleOfWebRuleRequest
--(id) initWithRegion:(NSString *)regionId
-webBlackListRuleSpec:(WebBlackListRuleSpec*)webBlackListRuleSpec
-instanceId:(NSString*)instanceId
-webRuleId:(NSString*)webRuleId
-webBlackListRuleId:(NSString*)webBlackListRuleId { 
-    self.regionId = regionId;
-    self.webBlackListRuleSpec = webBlackListRuleSpec;
-    self.instanceId = instanceId;
-    self.webRuleId = webRuleId;
-    self.webBlackListRuleId = webBlackListRuleId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-webBlackListRuleSpec:(WebBlackListRuleSpec*)webBlackListRuleSpec
-instanceId:(NSString*)instanceId
-webRuleId:(NSString*)webRuleId
-webBlackListRuleId:(NSString*)webBlackListRuleId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.webBlackListRuleSpec = webBlackListRuleSpec;
-    self.instanceId = instanceId;
-    self.webRuleId = webRuleId;
-    self.webBlackListRuleId = webBlackListRuleId;
+@implementation IpantiCreateWhiteListRuleOfWebRuleResult
+-(id) initWithCode:(NSNumber*) code
+        message:(NSString*)message { 
+    self.code = code;               
+    self.message = message;               
     return self;
 }
 -(NSMutableDictionary*) dictionary{
     NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
+    if([self code])
     {
-        [result addEntriesFromDictionary:superObjectDic];
+        [result setValue:[self code] forKey:@"code"];
     }
-    if([self webBlackListRuleSpec])
+    if([self message])
     {
-        [result setValue:[[self webBlackListRuleSpec] dictionary]forKey:@"webBlackListRuleSpec"];
-    }
-    if([self instanceId])
-    {
-        [result setValue:[self instanceId] forKey:@"instanceId"];
-    }
-    if([self webRuleId])
-    {
-        [result setValue:[self webRuleId] forKey:@"webRuleId"];
-    }
-    if([self webBlackListRuleId])
-    {
-        [result setValue:[self webBlackListRuleId] forKey:@"webBlackListRuleId"];
+        [result setValue:[self message] forKey:@"message"];
     }
     return result;
 }
 
 -(id) initWithDic:(NSDictionary*)dictionary{
-    self.webBlackListRuleSpec = [[WebBlackListRuleSpec alloc]initWithDic:[dictionary objectForKey:@"webBlackListRuleSpec"]];
-    self.instanceId = [dictionary objectForKey:@"instanceId"];
-    self.webRuleId = [dictionary objectForKey:@"webRuleId"];
-    self.webBlackListRuleId = [dictionary objectForKey:@"webBlackListRuleId"];
+    self.code = [dictionary objectForKey:@"code"];
+    self.message = [dictionary objectForKey:@"message"];
     return self;
 } 
 
@@ -2997,184 +1317,6 @@ webBlackListRuleId:(NSString*)webBlackListRuleId {
 -(id) initWithDic:(NSDictionary*)dictionary{
     self.code = [dictionary objectForKey:@"code"];
     self.message = [dictionary objectForKey:@"message"];
-    return self;
-} 
-
-@end
-  
-@implementation IpantiModifyBlackListRuleOfWebRuleResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-IpantiModifyBlackListRuleOfWebRuleResult* result = [[IpantiModifyBlackListRuleOfWebRuleResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(IpantiModifyBlackListRuleOfWebRuleResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
-@implementation IpantiDisableWhiteListRuleOfWebRuleResult
--(id) initWithCode:(NSNumber*) code
-        message:(NSString*)message { 
-    self.code = code;               
-    self.message = message;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self code])
-    {
-        [result setValue:[self code] forKey:@"code"];
-    }
-    if([self message])
-    {
-        [result setValue:[self message] forKey:@"message"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.code = [dictionary objectForKey:@"code"];
-    self.message = [dictionary objectForKey:@"message"];
-    return self;
-} 
-
-@end
-  
-@implementation IpantiDisableWhiteListRuleOfWebRuleResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-IpantiDisableWhiteListRuleOfWebRuleResult* result = [[IpantiDisableWhiteListRuleOfWebRuleResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(IpantiDisableWhiteListRuleOfWebRuleResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
-@implementation IpantiModifyWhiteListRuleOfWebRuleRequest
--(id) initWithRegion:(NSString *)regionId
-webWhiteListRuleSpec:(WebWhiteListRuleSpec*)webWhiteListRuleSpec
-instanceId:(NSString*)instanceId
-webRuleId:(NSString*)webRuleId
-webWhiteListRuleId:(NSString*)webWhiteListRuleId { 
-    self.regionId = regionId;
-    self.webWhiteListRuleSpec = webWhiteListRuleSpec;
-    self.instanceId = instanceId;
-    self.webRuleId = webRuleId;
-    self.webWhiteListRuleId = webWhiteListRuleId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-webWhiteListRuleSpec:(WebWhiteListRuleSpec*)webWhiteListRuleSpec
-instanceId:(NSString*)instanceId
-webRuleId:(NSString*)webRuleId
-webWhiteListRuleId:(NSString*)webWhiteListRuleId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.webWhiteListRuleSpec = webWhiteListRuleSpec;
-    self.instanceId = instanceId;
-    self.webRuleId = webRuleId;
-    self.webWhiteListRuleId = webWhiteListRuleId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self webWhiteListRuleSpec])
-    {
-        [result setValue:[[self webWhiteListRuleSpec] dictionary]forKey:@"webWhiteListRuleSpec"];
-    }
-    if([self instanceId])
-    {
-        [result setValue:[self instanceId] forKey:@"instanceId"];
-    }
-    if([self webRuleId])
-    {
-        [result setValue:[self webRuleId] forKey:@"webRuleId"];
-    }
-    if([self webWhiteListRuleId])
-    {
-        [result setValue:[self webWhiteListRuleId] forKey:@"webWhiteListRuleId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.webWhiteListRuleSpec = [[WebWhiteListRuleSpec alloc]initWithDic:[dictionary objectForKey:@"webWhiteListRuleSpec"]];
-    self.instanceId = [dictionary objectForKey:@"instanceId"];
-    self.webRuleId = [dictionary objectForKey:@"webRuleId"];
-    self.webWhiteListRuleId = [dictionary objectForKey:@"webWhiteListRuleId"];
     return self;
 } 
 
@@ -3220,56 +1362,29 @@ webWhiteListRuleId:(NSString*)webWhiteListRuleId {
 } 
 
 @end
-@implementation IpantiModifyWebRuleRequest
--(id) initWithRegion:(NSString *)regionId
-webRuleSpec:(WebRuleSpec*)webRuleSpec
-instanceId:(NSString*)instanceId
-webRuleId:(NSString*)webRuleId { 
-    self.regionId = regionId;
-    self.webRuleSpec = webRuleSpec;
-    self.instanceId = instanceId;
-    self.webRuleId = webRuleId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-webRuleSpec:(WebRuleSpec*)webRuleSpec
-instanceId:(NSString*)instanceId
-webRuleId:(NSString*)webRuleId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.webRuleSpec = webRuleSpec;
-    self.instanceId = instanceId;
-    self.webRuleId = webRuleId;
+@implementation IpantiDisableWebRuleBlackListResult
+-(id) initWithCode:(NSNumber*) code
+        message:(NSString*)message { 
+    self.code = code;               
+    self.message = message;               
     return self;
 }
 -(NSMutableDictionary*) dictionary{
     NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
+    if([self code])
     {
-        [result addEntriesFromDictionary:superObjectDic];
+        [result setValue:[self code] forKey:@"code"];
     }
-    if([self webRuleSpec])
+    if([self message])
     {
-        [result setValue:[[self webRuleSpec] dictionary]forKey:@"webRuleSpec"];
-    }
-    if([self instanceId])
-    {
-        [result setValue:[self instanceId] forKey:@"instanceId"];
-    }
-    if([self webRuleId])
-    {
-        [result setValue:[self webRuleId] forKey:@"webRuleId"];
+        [result setValue:[self message] forKey:@"message"];
     }
     return result;
 }
 
 -(id) initWithDic:(NSDictionary*)dictionary{
-    self.webRuleSpec = [[WebRuleSpec alloc]initWithDic:[dictionary objectForKey:@"webRuleSpec"]];
-    self.instanceId = [dictionary objectForKey:@"instanceId"];
-    self.webRuleId = [dictionary objectForKey:@"webRuleId"];
+    self.code = [dictionary objectForKey:@"code"];
+    self.message = [dictionary objectForKey:@"message"];
     return self;
 } 
 
@@ -3328,115 +1443,6 @@ ccProtectionRuleId:(NSString*)ccProtectionRuleId {
 } 
 
 @end
-@implementation IpantiDescribeCCProtectionConfigOfWebRuleResult
--(id) initWithData:(CCProtectionConfig*) data { 
-    self.data = data;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self data])
-    {
-        [result setValue:[[self data] dictionary]forKey:@"data"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.data = [[CCProtectionConfig alloc]initWithDic:[dictionary objectForKey:@"data"]];
-    return self;
-} 
-
-@end
-  
-@implementation IpantiDeleteWebRuleResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-IpantiDeleteWebRuleResult* result = [[IpantiDeleteWebRuleResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(IpantiDeleteWebRuleResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
-@implementation IpantiCreateWebRuleRequest
--(id) initWithRegion:(NSString *)regionId
-webRuleSpec:(WebRuleSpec*)webRuleSpec
-instanceId:(NSString*)instanceId { 
-    self.regionId = regionId;
-    self.webRuleSpec = webRuleSpec;
-    self.instanceId = instanceId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-webRuleSpec:(WebRuleSpec*)webRuleSpec
-instanceId:(NSString*)instanceId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.webRuleSpec = webRuleSpec;
-    self.instanceId = instanceId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self webRuleSpec])
-    {
-        [result setValue:[[self webRuleSpec] dictionary]forKey:@"webRuleSpec"];
-    }
-    if([self instanceId])
-    {
-        [result setValue:[self instanceId] forKey:@"instanceId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.webRuleSpec = [[WebRuleSpec alloc]initWithDic:[dictionary objectForKey:@"webRuleSpec"]];
-    self.instanceId = [dictionary objectForKey:@"instanceId"];
-    return self;
-} 
-
-@end
 @implementation IpantiEnableWebRuleCCRequest
 -(id) initWithRegion:(NSString *)regionId
 instanceId:(NSString*)instanceId
@@ -3478,22 +1484,6 @@ webRuleId:(NSString*)webRuleId {
 -(id) initWithDic:(NSDictionary*)dictionary{
     self.instanceId = [dictionary objectForKey:@"instanceId"];
     self.webRuleId = [dictionary objectForKey:@"webRuleId"];
-    return self;
-} 
-
-@end
-@implementation IpantiDescribeWebRuleBlackListGeoAreasRequest
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
     return self;
 } 
 
@@ -3597,18 +1587,29 @@ ccProtectionRuleId:(NSString*)ccProtectionRuleId {
 } 
 
 @end
-@implementation IpantiDescribeWebRuleWhiteListGeoAreasRequest
+@implementation IpantiEnableCCProtectionRuleOfWebRuleResult
+-(id) initWithCode:(NSNumber*) code
+        message:(NSString*)message { 
+    self.code = code;               
+    self.message = message;               
+    return self;
+}
 -(NSMutableDictionary*) dictionary{
     NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
+    if([self code])
     {
-        [result addEntriesFromDictionary:superObjectDic];
+        [result setValue:[self code] forKey:@"code"];
+    }
+    if([self message])
+    {
+        [result setValue:[self message] forKey:@"message"];
     }
     return result;
 }
 
 -(id) initWithDic:(NSDictionary*)dictionary{
+    self.code = [dictionary objectForKey:@"code"];
+    self.message = [dictionary objectForKey:@"message"];
     return self;
 } 
 
@@ -3658,6 +1659,33 @@ webRuleId:(NSString*)webRuleId {
 } 
 
 @end
+@implementation IpantiDisableWhiteListRuleOfWebRuleResult
+-(id) initWithCode:(NSNumber*) code
+        message:(NSString*)message { 
+    self.code = code;               
+    self.message = message;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self code])
+    {
+        [result setValue:[self code] forKey:@"code"];
+    }
+    if([self message])
+    {
+        [result setValue:[self message] forKey:@"message"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.code = [dictionary objectForKey:@"code"];
+    self.message = [dictionary objectForKey:@"message"];
+    return self;
+} 
+
+@end
 @implementation IpantiDisableWebRuleCCRequest
 -(id) initWithRegion:(NSString *)regionId
 instanceId:(NSString*)instanceId
@@ -3703,48 +1731,31 @@ webRuleId:(NSString*)webRuleId {
 } 
 
 @end
-  
-@implementation IpantiCreateBlackListRuleOfWebRuleResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
+@implementation IpantiDeleteWhiteListRuleOfWebRuleResult
+-(id) initWithCode:(NSNumber*) code
+        message:(NSString*)message { 
+    self.code = code;               
+    self.message = message;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self code])
     {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
+        [result setValue:[self code] forKey:@"code"];
     }
-    if([self error])
+    if([self message])
     {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
+        [result setValue:[self message] forKey:@"message"];
     }
     return result;
 }
 
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-IpantiCreateBlackListRuleOfWebRuleResult* result = [[IpantiCreateBlackListRuleOfWebRuleResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.code = [dictionary objectForKey:@"code"];
+    self.message = [dictionary objectForKey:@"message"];
     return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(IpantiCreateBlackListRuleOfWebRuleResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
+} 
 
 @end
 @implementation IpantiDescribeWebRulesRequest
@@ -3819,138 +1830,6 @@ instanceId:(NSString*)instanceId {
 } 
 
 @end
-  
-@implementation IpantiDescribeCCProtectionConfigOfWebRuleResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-IpantiDescribeCCProtectionConfigOfWebRuleResult* result = [[IpantiDescribeCCProtectionConfigOfWebRuleResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(IpantiDescribeCCProtectionConfigOfWebRuleResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
-  
-@implementation IpantiDescribeBlackListRuleOfWebRuleResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-IpantiDescribeBlackListRuleOfWebRuleResult* result = [[IpantiDescribeBlackListRuleOfWebRuleResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(IpantiDescribeBlackListRuleOfWebRuleResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
-  
-@implementation IpantiDescribeWebRuleWhiteListUsageResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-IpantiDescribeWebRuleWhiteListUsageResult* result = [[IpantiDescribeWebRuleWhiteListUsageResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(IpantiDescribeWebRuleWhiteListUsageResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
 @implementation IpantiDisableWebRuleWhiteListRequest
 -(id) initWithRegion:(NSString *)regionId
 instanceId:(NSString*)instanceId
@@ -3990,60 +1869,6 @@ webRuleId:(NSString*)webRuleId {
 }
 
 -(id) initWithDic:(NSDictionary*)dictionary{
-    self.instanceId = [dictionary objectForKey:@"instanceId"];
-    self.webRuleId = [dictionary objectForKey:@"webRuleId"];
-    return self;
-} 
-
-@end
-@implementation IpantiModifyCCProtectionConfigOfWebRuleRequest
--(id) initWithRegion:(NSString *)regionId
-ccProtectionConfigSpec:(CCProtectionConfigSpec*)ccProtectionConfigSpec
-instanceId:(NSString*)instanceId
-webRuleId:(NSString*)webRuleId { 
-    self.regionId = regionId;
-    self.ccProtectionConfigSpec = ccProtectionConfigSpec;
-    self.instanceId = instanceId;
-    self.webRuleId = webRuleId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-ccProtectionConfigSpec:(CCProtectionConfigSpec*)ccProtectionConfigSpec
-instanceId:(NSString*)instanceId
-webRuleId:(NSString*)webRuleId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.ccProtectionConfigSpec = ccProtectionConfigSpec;
-    self.instanceId = instanceId;
-    self.webRuleId = webRuleId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self ccProtectionConfigSpec])
-    {
-        [result setValue:[[self ccProtectionConfigSpec] dictionary]forKey:@"ccProtectionConfigSpec"];
-    }
-    if([self instanceId])
-    {
-        [result setValue:[self instanceId] forKey:@"instanceId"];
-    }
-    if([self webRuleId])
-    {
-        [result setValue:[self webRuleId] forKey:@"webRuleId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.ccProtectionConfigSpec = [[CCProtectionConfigSpec alloc]initWithDic:[dictionary objectForKey:@"ccProtectionConfigSpec"]];
     self.instanceId = [dictionary objectForKey:@"instanceId"];
     self.webRuleId = [dictionary objectForKey:@"webRuleId"];
     return self;
@@ -4122,112 +1947,58 @@ webRuleId:(NSString*)webRuleId {
 } 
 
 @end
-  
-@implementation IpantiCreateWebRuleResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-IpantiCreateWebRuleResult* result = [[IpantiCreateWebRuleResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(IpantiCreateWebRuleResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
-@implementation IpantiDescribeCCProtectionRuleOfWebRuleResult
--(id) initWithData:(CCProtectionRule*) data { 
-    self.data = data;               
+@implementation IpantiModifyCertInfoResult
+-(id) initWithCode:(NSNumber*) code
+        message:(NSString*)message { 
+    self.code = code;               
+    self.message = message;               
     return self;
 }
 -(NSMutableDictionary*) dictionary{
     NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self data])
+    if([self code])
     {
-        [result setValue:[[self data] dictionary]forKey:@"data"];
+        [result setValue:[self code] forKey:@"code"];
+    }
+    if([self message])
+    {
+        [result setValue:[self message] forKey:@"message"];
     }
     return result;
 }
 
 -(id) initWithDic:(NSDictionary*)dictionary{
-    self.data = [[CCProtectionRule alloc]initWithDic:[dictionary objectForKey:@"data"]];
+    self.code = [dictionary objectForKey:@"code"];
+    self.message = [dictionary objectForKey:@"message"];
     return self;
 } 
 
 @end
-  
-@implementation IpantiDescribeCCProtectionRuleOfWebRuleResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
+@implementation IpantiDisableWebRuleCCObserverModeResult
+-(id) initWithCode:(NSNumber*) code
+        message:(NSString*)message { 
+    self.code = code;               
+    self.message = message;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self code])
     {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
+        [result setValue:[self code] forKey:@"code"];
     }
-    if([self error])
+    if([self message])
     {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
+        [result setValue:[self message] forKey:@"message"];
     }
     return result;
 }
 
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-IpantiDescribeCCProtectionRuleOfWebRuleResult* result = [[IpantiDescribeCCProtectionRuleOfWebRuleResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.code = [dictionary objectForKey:@"code"];
+    self.message = [dictionary objectForKey:@"message"];
     return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(IpantiDescribeCCProtectionRuleOfWebRuleResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
+} 
 
 @end
 @implementation IpantiDeleteBlackListRuleOfWebRuleRequest
@@ -4401,70 +2172,6 @@ webRuleId:(NSString*)webRuleId {
 } 
 
 @end
-@implementation IpantiDescribeCCProtectionDefaultConfigOfWebRuleResult
--(id) initWithData:(CCProtectionDefaultConfig*) data { 
-    self.data = data;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self data])
-    {
-        [result setValue:[[self data] dictionary]forKey:@"data"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.data = [[CCProtectionDefaultConfig alloc]initWithDic:[dictionary objectForKey:@"data"]];
-    return self;
-} 
-
-@end
-  
-@implementation IpantiDescribeCCProtectionDefaultConfigOfWebRuleResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-IpantiDescribeCCProtectionDefaultConfigOfWebRuleResult* result = [[IpantiDescribeCCProtectionDefaultConfigOfWebRuleResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(IpantiDescribeCCProtectionDefaultConfigOfWebRuleResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
 @implementation IpantiEnableWebRuleBlackListResult
 -(id) initWithCode:(NSNumber*) code
         message:(NSString*)message { 
@@ -4492,239 +2199,31 @@ IpantiDescribeCCProtectionDefaultConfigOfWebRuleResult* result = [[IpantiDescrib
 } 
 
 @end
-  
-@implementation IpantiDescribeWhiteListRuleOfWebRuleResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-IpantiDescribeWhiteListRuleOfWebRuleResult* result = [[IpantiDescribeWhiteListRuleOfWebRuleResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(IpantiDescribeWhiteListRuleOfWebRuleResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
-  
-@implementation IpantiModifyWhiteListRuleOfWebRuleResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-IpantiModifyWhiteListRuleOfWebRuleResult* result = [[IpantiModifyWhiteListRuleOfWebRuleResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(IpantiModifyWhiteListRuleOfWebRuleResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
-  
-@implementation IpantiDisableBlackListRuleOfWebRuleResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-IpantiDisableBlackListRuleOfWebRuleResult* result = [[IpantiDisableBlackListRuleOfWebRuleResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(IpantiDisableBlackListRuleOfWebRuleResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
-@implementation IpantiDescribeBlackListRulesOfWebRuleResult
--(id) initWithDataList:(NSArray<WebBlackListRule*>*) dataList
-        currentCount:(NSNumber*)currentCount
-        totalCount:(NSNumber*)totalCount
-        totalPage:(NSNumber*)totalPage { 
-    self.dataList = dataList;               
-    self.currentCount = currentCount;               
-    self.totalCount = totalCount;               
-    self.totalPage = totalPage;               
+@implementation IpantiDisableCCProtectionRuleOfWebRuleResult
+-(id) initWithCode:(NSNumber*) code
+        message:(NSString*)message { 
+    self.code = code;               
+    self.message = message;               
     return self;
 }
 -(NSMutableDictionary*) dictionary{
     NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self dataList])
+    if([self code])
     {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self dataList] count]; i++) {
-            WebBlackListRule* item = [[self dataList] objectAtIndex:i];
-            [arrayDic addObject:[item dictionary]];
-        }
-        [result setValue:arrayDic forKey:@"dataList"];
+        [result setValue:[self code] forKey:@"code"];
     }
-    if([self currentCount])
+    if([self message])
     {
-        [result setValue:[self currentCount] forKey:@"currentCount"];
-    }
-    if([self totalCount])
-    {
-        [result setValue:[self totalCount] forKey:@"totalCount"];
-    }
-    if([self totalPage])
-    {
-        [result setValue:[self totalPage] forKey:@"totalPage"];
+        [result setValue:[self message] forKey:@"message"];
     }
     return result;
 }
 
 -(id) initWithDic:(NSDictionary*)dictionary{
-    NSArray* dataListArray = [dictionary objectForKey:@"dataList"];
-    if(dataListArray&&![dataListArray isKindOfClass:[NSNull class]])
-    {
-        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
-        for(int i = 0 ; i< [dataListArray count];i++)
-        {
-            WebBlackListRule* item = [[WebBlackListRule alloc]initWithDic:[dataListArray objectAtIndex:i]];
-            if(item)
-            {
-                [propertyArray addObject:item];
-            }
-        }
-        self.dataList = propertyArray;
-    }
-    self.currentCount = [dictionary objectForKey:@"currentCount"];
-    self.totalCount = [dictionary objectForKey:@"totalCount"];
-    self.totalPage = [dictionary objectForKey:@"totalPage"];
+    self.code = [dictionary objectForKey:@"code"];
+    self.message = [dictionary objectForKey:@"message"];
     return self;
 } 
-
-@end
-  
-@implementation IpantiSwitchWebRuleOriginResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-IpantiSwitchWebRuleOriginResult* result = [[IpantiSwitchWebRuleOriginResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(IpantiSwitchWebRuleOriginResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
 
 @end
 @implementation IpantiEnableBlackListRuleOfWebRuleResult
@@ -4754,265 +2253,31 @@ IpantiSwitchWebRuleOriginResult* result = [[IpantiSwitchWebRuleOriginResult allo
 } 
 
 @end
-  
-@implementation IpantiEnableWebRuleCCResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-IpantiEnableWebRuleCCResult* result = [[IpantiEnableWebRuleCCResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(IpantiEnableWebRuleCCResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
-  
-@implementation IpantiDisableWebRuleWhiteListResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-IpantiDisableWebRuleWhiteListResult* result = [[IpantiDisableWebRuleWhiteListResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(IpantiDisableWebRuleWhiteListResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
-@implementation IpantiDescribeWebRuleBlackListUsageResult
--(id) initWithAllocatedNum:(NSNumber*) ipantiAllocatedNum
-        activeNum:(NSNumber*)activeNum
-        surplusAllocateNum:(NSNumber*)surplusAllocateNum
-        maxAllocateNum:(NSNumber*)maxAllocateNum { 
-    self.ipantiAllocatedNum = ipantiAllocatedNum;               
-    self.activeNum = activeNum;               
-    self.surplusAllocateNum = surplusAllocateNum;               
-    self.maxAllocateNum = maxAllocateNum;               
+@implementation IpantiModifyWebRuleResult
+-(id) initWithCode:(NSNumber*) code
+        message:(NSString*)message { 
+    self.code = code;               
+    self.message = message;               
     return self;
 }
 -(NSMutableDictionary*) dictionary{
     NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self ipantiAllocatedNum])
+    if([self code])
     {
-        [result setValue:[self ipantiAllocatedNum] forKey:@"allocatedNum"];
+        [result setValue:[self code] forKey:@"code"];
     }
-    if([self activeNum])
+    if([self message])
     {
-        [result setValue:[self activeNum] forKey:@"activeNum"];
-    }
-    if([self surplusAllocateNum])
-    {
-        [result setValue:[self surplusAllocateNum] forKey:@"surplusAllocateNum"];
-    }
-    if([self maxAllocateNum])
-    {
-        [result setValue:[self maxAllocateNum] forKey:@"maxAllocateNum"];
+        [result setValue:[self message] forKey:@"message"];
     }
     return result;
 }
 
 -(id) initWithDic:(NSDictionary*)dictionary{
-    self.ipantiAllocatedNum = [dictionary objectForKey:@"allocatedNum"];
-    self.activeNum = [dictionary objectForKey:@"activeNum"];
-    self.surplusAllocateNum = [dictionary objectForKey:@"surplusAllocateNum"];
-    self.maxAllocateNum = [dictionary objectForKey:@"maxAllocateNum"];
+    self.code = [dictionary objectForKey:@"code"];
+    self.message = [dictionary objectForKey:@"message"];
     return self;
 } 
-
-@end
-  
-@implementation IpantiDescribeWebRuleBlackListUsageResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-IpantiDescribeWebRuleBlackListUsageResult* result = [[IpantiDescribeWebRuleBlackListUsageResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(IpantiDescribeWebRuleBlackListUsageResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
-  
-@implementation IpantiDescribeBlackListRulesOfWebRuleResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-IpantiDescribeBlackListRulesOfWebRuleResult* result = [[IpantiDescribeBlackListRulesOfWebRuleResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(IpantiDescribeBlackListRulesOfWebRuleResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
-  
-@implementation IpantiEnableWebRuleBlackListResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-IpantiEnableWebRuleBlackListResult* result = [[IpantiEnableWebRuleBlackListResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(IpantiEnableWebRuleBlackListResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
 
 @end
 @implementation IpantiEnableBlackListRuleOfWebRuleRequest
@@ -5069,138 +2334,6 @@ webBlackListRuleId:(NSString*)webBlackListRuleId {
 } 
 
 @end
-  
-@implementation IpantiDescribeWebRuleResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-IpantiDescribeWebRuleResult* result = [[IpantiDescribeWebRuleResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(IpantiDescribeWebRuleResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
-  
-@implementation IpantiEnableBlackListRuleOfWebRuleResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-IpantiEnableBlackListRuleOfWebRuleResult* result = [[IpantiEnableBlackListRuleOfWebRuleResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(IpantiEnableBlackListRuleOfWebRuleResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
-  
-@implementation IpantiCreateCCProtectionRuleOfWebRuleResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-IpantiCreateCCProtectionRuleOfWebRuleResult* result = [[IpantiCreateCCProtectionRuleOfWebRuleResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(IpantiCreateCCProtectionRuleOfWebRuleResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
 @implementation IpantiDescribeBlackListRuleOfWebRuleRequest
 -(id) initWithRegion:(NSString *)regionId
 instanceId:(NSString*)instanceId
@@ -5255,136 +2388,45 @@ webBlackListRuleId:(NSString*)webBlackListRuleId {
 } 
 
 @end
-  
-@implementation IpantiSwitchWebRuleProtectResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-IpantiSwitchWebRuleProtectResult* result = [[IpantiSwitchWebRuleProtectResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
+@implementation IpantiDescribeWebRuleBlackListUsageResult
+-(id) initWithAllocatedNum:(NSNumber*) ipantiAllocatedNum
+        activeNum:(NSNumber*)activeNum
+        surplusAllocateNum:(NSNumber*)surplusAllocateNum
+        maxAllocateNum:(NSNumber*)maxAllocateNum { 
+    self.ipantiAllocatedNum = ipantiAllocatedNum;               
+    self.activeNum = activeNum;               
+    self.surplusAllocateNum = surplusAllocateNum;               
+    self.maxAllocateNum = maxAllocateNum;               
     return self;
 }
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(IpantiSwitchWebRuleProtectResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
-  
-@implementation IpantiDescribeCCProtectionRulesOfWebRuleResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self ipantiAllocatedNum])
     {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
+        [result setValue:[self ipantiAllocatedNum] forKey:@"allocatedNum"];
     }
-    if([self error])
+    if([self activeNum])
     {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
+        [result setValue:[self activeNum] forKey:@"activeNum"];
+    }
+    if([self surplusAllocateNum])
+    {
+        [result setValue:[self surplusAllocateNum] forKey:@"surplusAllocateNum"];
+    }
+    if([self maxAllocateNum])
+    {
+        [result setValue:[self maxAllocateNum] forKey:@"maxAllocateNum"];
     }
     return result;
 }
 
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-IpantiDescribeCCProtectionRulesOfWebRuleResult* result = [[IpantiDescribeCCProtectionRulesOfWebRuleResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.ipantiAllocatedNum = [dictionary objectForKey:@"allocatedNum"];
+    self.activeNum = [dictionary objectForKey:@"activeNum"];
+    self.surplusAllocateNum = [dictionary objectForKey:@"surplusAllocateNum"];
+    self.maxAllocateNum = [dictionary objectForKey:@"maxAllocateNum"];
     return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(IpantiDescribeCCProtectionRulesOfWebRuleResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
-  
-@implementation IpantiModifyCCProtectionRuleOfWebRuleResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-IpantiModifyCCProtectionRuleOfWebRuleResult* result = [[IpantiModifyCCProtectionRuleOfWebRuleResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(IpantiModifyCCProtectionRuleOfWebRuleResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
+} 
 
 @end
 @implementation IpantiDisableWhiteListRuleOfWebRuleRequest
@@ -5558,77 +2600,6 @@ instanceId:(NSString*)instanceId {
 } 
 
 @end
-@implementation IpantiEnableBlackListRuleOfForwardRuleResult
--(id) initWithCode:(NSNumber*) code
-        message:(NSString*)message { 
-    self.code = code;               
-    self.message = message;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self code])
-    {
-        [result setValue:[self code] forKey:@"code"];
-    }
-    if([self message])
-    {
-        [result setValue:[self message] forKey:@"message"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.code = [dictionary objectForKey:@"code"];
-    self.message = [dictionary objectForKey:@"message"];
-    return self;
-} 
-
-@end
-  
-@implementation IpantiEnableBlackListRuleOfForwardRuleResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-IpantiEnableBlackListRuleOfForwardRuleResult* result = [[IpantiEnableBlackListRuleOfForwardRuleResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(IpantiEnableBlackListRuleOfForwardRuleResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
 @implementation IpantiDescribeForwardRuleRequest
 -(id) initWithRegion:(NSString *)regionId
 instanceId:(NSString*)instanceId
@@ -5699,159 +2670,6 @@ forwardRuleId:(NSString*)forwardRuleId {
     self.message = [dictionary objectForKey:@"message"];
     return self;
 } 
-
-@end
-@implementation IpantiCreateForwardRuleResult
--(id) initWithCode:(NSNumber*) code
-        message:(NSString*)message { 
-    self.code = code;               
-    self.message = message;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self code])
-    {
-        [result setValue:[self code] forKey:@"code"];
-    }
-    if([self message])
-    {
-        [result setValue:[self message] forKey:@"message"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.code = [dictionary objectForKey:@"code"];
-    self.message = [dictionary objectForKey:@"message"];
-    return self;
-} 
-
-@end
-  
-@implementation IpantiCreateForwardRuleResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-IpantiCreateForwardRuleResult* result = [[IpantiCreateForwardRuleResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(IpantiCreateForwardRuleResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
-@implementation IpantiDescribeGeoAreasResult
--(id) initWithDataList:(NSArray<Country*>*) dataList { 
-    self.dataList = dataList;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self dataList])
-    {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self dataList] count]; i++) {
-            Country* item = [[self dataList] objectAtIndex:i];
-            [arrayDic addObject:[item dictionary]];
-        }
-        [result setValue:arrayDic forKey:@"dataList"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    NSArray* dataListArray = [dictionary objectForKey:@"dataList"];
-    if(dataListArray&&![dataListArray isKindOfClass:[NSNull class]])
-    {
-        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
-        for(int i = 0 ; i< [dataListArray count];i++)
-        {
-            Country* item = [[Country alloc]initWithDic:[dataListArray objectAtIndex:i]];
-            if(item)
-            {
-                [propertyArray addObject:item];
-            }
-        }
-        self.dataList = propertyArray;
-    }
-    return self;
-} 
-
-@end
-  
-@implementation IpantiDescribeGeoAreasResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-IpantiDescribeGeoAreasResult* result = [[IpantiDescribeGeoAreasResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(IpantiDescribeGeoAreasResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
 
 @end
 @implementation IpantiDescribeWhiteListRuleOfForwardRuleRequest
@@ -5926,22 +2744,29 @@ forwardRuleId:(NSString*)forwardRuleId {
 } 
 
 @end
-@implementation IpantiDescribeProtectionRuleOfForwardRuleResult
--(id) initWithProtectionRule:(ForwardProtectionRule*) protectionRule { 
-    self.protectionRule = protectionRule;               
+@implementation IpantiEnableBlackListRuleOfForwardRuleResult
+-(id) initWithCode:(NSNumber*) code
+        message:(NSString*)message { 
+    self.code = code;               
+    self.message = message;               
     return self;
 }
 -(NSMutableDictionary*) dictionary{
     NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self protectionRule])
+    if([self code])
     {
-        [result setValue:[[self protectionRule] dictionary]forKey:@"protectionRule"];
+        [result setValue:[self code] forKey:@"code"];
+    }
+    if([self message])
+    {
+        [result setValue:[self message] forKey:@"message"];
     }
     return result;
 }
 
 -(id) initWithDic:(NSDictionary*)dictionary{
-    self.protectionRule = [[ForwardProtectionRule alloc]initWithDic:[dictionary objectForKey:@"protectionRule"]];
+    self.code = [dictionary objectForKey:@"code"];
+    self.message = [dictionary objectForKey:@"message"];
     return self;
 } 
 
@@ -5971,77 +2796,6 @@ forwardRuleId:(NSString*)forwardRuleId {
     self.message = [dictionary objectForKey:@"message"];
     return self;
 } 
-
-@end
-@implementation IpantiModifyWhiteListRuleOfForwardRuleResult
--(id) initWithCode:(NSNumber*) code
-        message:(NSString*)message { 
-    self.code = code;               
-    self.message = message;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self code])
-    {
-        [result setValue:[self code] forKey:@"code"];
-    }
-    if([self message])
-    {
-        [result setValue:[self message] forKey:@"message"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.code = [dictionary objectForKey:@"code"];
-    self.message = [dictionary objectForKey:@"message"];
-    return self;
-} 
-
-@end
-  
-@implementation IpantiModifyWhiteListRuleOfForwardRuleResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-IpantiModifyWhiteListRuleOfForwardRuleResult* result = [[IpantiModifyWhiteListRuleOfForwardRuleResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(IpantiModifyWhiteListRuleOfForwardRuleResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
 
 @end
 @implementation IpantiEnableWhiteListRuleOfForwardRuleRequest
@@ -6134,6 +2888,249 @@ forwardRuleId:(NSString*)forwardRuleId {
 } 
 
 @end
+@implementation IpantiDeleteForwardRuleResult
+-(id) initWithCode:(NSNumber*) code
+        message:(NSString*)message { 
+    self.code = code;               
+    self.message = message;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self code])
+    {
+        [result setValue:[self code] forKey:@"code"];
+    }
+    if([self message])
+    {
+        [result setValue:[self message] forKey:@"message"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.code = [dictionary objectForKey:@"code"];
+    self.message = [dictionary objectForKey:@"message"];
+    return self;
+} 
+
+@end
+@implementation IpantiSwitchForwardRuleOriginRequest
+-(id) initWithRegion:(NSString *)regionId
+instanceId:(NSString*)instanceId
+forwardRuleId:(NSString*)forwardRuleId { 
+    self.regionId = regionId;
+    self.instanceId = instanceId;
+    self.forwardRuleId = forwardRuleId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+instanceId:(NSString*)instanceId
+forwardRuleId:(NSString*)forwardRuleId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.instanceId = instanceId;
+    self.forwardRuleId = forwardRuleId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self instanceId])
+    {
+        [result setValue:[self instanceId] forKey:@"instanceId"];
+    }
+    if([self forwardRuleId])
+    {
+        [result setValue:[self forwardRuleId] forKey:@"forwardRuleId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.instanceId = [dictionary objectForKey:@"instanceId"];
+    self.forwardRuleId = [dictionary objectForKey:@"forwardRuleId"];
+    return self;
+} 
+
+@end
+@implementation IpantiSwitchForwardRuleOriginResult
+-(id) initWithCode:(NSNumber*) code
+        message:(NSString*)message { 
+    self.code = code;               
+    self.message = message;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self code])
+    {
+        [result setValue:[self code] forKey:@"code"];
+    }
+    if([self message])
+    {
+        [result setValue:[self message] forKey:@"message"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.code = [dictionary objectForKey:@"code"];
+    self.message = [dictionary objectForKey:@"message"];
+    return self;
+} 
+
+@end
+@implementation IpantiCreateForwardRuleResult
+-(id) initWithCode:(NSNumber*) code
+        message:(NSString*)message { 
+    self.code = code;               
+    self.message = message;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self code])
+    {
+        [result setValue:[self code] forKey:@"code"];
+    }
+    if([self message])
+    {
+        [result setValue:[self message] forKey:@"message"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.code = [dictionary objectForKey:@"code"];
+    self.message = [dictionary objectForKey:@"message"];
+    return self;
+} 
+
+@end
+@implementation IpantiSwitchForwardRuleProtectRequest
+-(id) initWithRegion:(NSString *)regionId
+instanceId:(NSString*)instanceId
+forwardRuleId:(NSString*)forwardRuleId { 
+    self.regionId = regionId;
+    self.instanceId = instanceId;
+    self.forwardRuleId = forwardRuleId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+instanceId:(NSString*)instanceId
+forwardRuleId:(NSString*)forwardRuleId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.instanceId = instanceId;
+    self.forwardRuleId = forwardRuleId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self instanceId])
+    {
+        [result setValue:[self instanceId] forKey:@"instanceId"];
+    }
+    if([self forwardRuleId])
+    {
+        [result setValue:[self forwardRuleId] forKey:@"forwardRuleId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.instanceId = [dictionary objectForKey:@"instanceId"];
+    self.forwardRuleId = [dictionary objectForKey:@"forwardRuleId"];
+    return self;
+} 
+
+@end
+@implementation IpantiDescribeBlackListRuleOfForwardRuleRequest
+-(id) initWithRegion:(NSString *)regionId
+instanceId:(NSString*)instanceId
+forwardRuleId:(NSString*)forwardRuleId { 
+    self.regionId = regionId;
+    self.instanceId = instanceId;
+    self.forwardRuleId = forwardRuleId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+instanceId:(NSString*)instanceId
+forwardRuleId:(NSString*)forwardRuleId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.instanceId = instanceId;
+    self.forwardRuleId = forwardRuleId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self instanceId])
+    {
+        [result setValue:[self instanceId] forKey:@"instanceId"];
+    }
+    if([self forwardRuleId])
+    {
+        [result setValue:[self forwardRuleId] forKey:@"forwardRuleId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.instanceId = [dictionary objectForKey:@"instanceId"];
+    self.forwardRuleId = [dictionary objectForKey:@"forwardRuleId"];
+    return self;
+} 
+
+@end
+@implementation IpantiSwitchForwardRuleProtectResult
+-(id) initWithCode:(NSNumber*) code
+        message:(NSString*)message { 
+    self.code = code;               
+    self.message = message;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self code])
+    {
+        [result setValue:[self code] forKey:@"code"];
+    }
+    if([self message])
+    {
+        [result setValue:[self message] forKey:@"message"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.code = [dictionary objectForKey:@"code"];
+    self.message = [dictionary objectForKey:@"message"];
+    return self;
+} 
+
+@end
 @implementation IpantiModifyBlackListRuleOfForwardRuleResult
 -(id) initWithCode:(NSNumber*) code
         message:(NSString*)message { 
@@ -6159,6 +3156,4822 @@ forwardRuleId:(NSString*)forwardRuleId {
     self.message = [dictionary objectForKey:@"message"];
     return self;
 } 
+
+@end
+@implementation IpantiDeleteForwardRuleRequest
+-(id) initWithRegion:(NSString *)regionId
+instanceId:(NSString*)instanceId
+forwardRuleId:(NSString*)forwardRuleId { 
+    self.regionId = regionId;
+    self.instanceId = instanceId;
+    self.forwardRuleId = forwardRuleId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+instanceId:(NSString*)instanceId
+forwardRuleId:(NSString*)forwardRuleId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.instanceId = instanceId;
+    self.forwardRuleId = forwardRuleId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self instanceId])
+    {
+        [result setValue:[self instanceId] forKey:@"instanceId"];
+    }
+    if([self forwardRuleId])
+    {
+        [result setValue:[self forwardRuleId] forKey:@"forwardRuleId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.instanceId = [dictionary objectForKey:@"instanceId"];
+    self.forwardRuleId = [dictionary objectForKey:@"forwardRuleId"];
+    return self;
+} 
+
+@end
+@implementation IpantiModifyWhiteListRuleOfForwardRuleResult
+-(id) initWithCode:(NSNumber*) code
+        message:(NSString*)message { 
+    self.code = code;               
+    self.message = message;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self code])
+    {
+        [result setValue:[self code] forKey:@"code"];
+    }
+    if([self message])
+    {
+        [result setValue:[self message] forKey:@"message"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.code = [dictionary objectForKey:@"code"];
+    self.message = [dictionary objectForKey:@"message"];
+    return self;
+} 
+
+@end
+@implementation IpantiDescribeProtectionRuleOfForwardRuleRequest
+-(id) initWithRegion:(NSString *)regionId
+instanceId:(NSString*)instanceId
+forwardRuleId:(NSString*)forwardRuleId { 
+    self.regionId = regionId;
+    self.instanceId = instanceId;
+    self.forwardRuleId = forwardRuleId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+instanceId:(NSString*)instanceId
+forwardRuleId:(NSString*)forwardRuleId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.instanceId = instanceId;
+    self.forwardRuleId = forwardRuleId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self instanceId])
+    {
+        [result setValue:[self instanceId] forKey:@"instanceId"];
+    }
+    if([self forwardRuleId])
+    {
+        [result setValue:[self forwardRuleId] forKey:@"forwardRuleId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.instanceId = [dictionary objectForKey:@"instanceId"];
+    self.forwardRuleId = [dictionary objectForKey:@"forwardRuleId"];
+    return self;
+} 
+
+@end
+@implementation IpantiDisableWhiteListRuleOfForwardRuleResult
+-(id) initWithCode:(NSNumber*) code
+        message:(NSString*)message { 
+    self.code = code;               
+    self.message = message;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self code])
+    {
+        [result setValue:[self code] forKey:@"code"];
+    }
+    if([self message])
+    {
+        [result setValue:[self message] forKey:@"message"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.code = [dictionary objectForKey:@"code"];
+    self.message = [dictionary objectForKey:@"message"];
+    return self;
+} 
+
+@end
+@implementation IpantiDisableBlackListRuleOfForwardRuleRequest
+-(id) initWithRegion:(NSString *)regionId
+instanceId:(NSString*)instanceId
+forwardRuleId:(NSString*)forwardRuleId { 
+    self.regionId = regionId;
+    self.instanceId = instanceId;
+    self.forwardRuleId = forwardRuleId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+instanceId:(NSString*)instanceId
+forwardRuleId:(NSString*)forwardRuleId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.instanceId = instanceId;
+    self.forwardRuleId = forwardRuleId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self instanceId])
+    {
+        [result setValue:[self instanceId] forKey:@"instanceId"];
+    }
+    if([self forwardRuleId])
+    {
+        [result setValue:[self forwardRuleId] forKey:@"forwardRuleId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.instanceId = [dictionary objectForKey:@"instanceId"];
+    self.forwardRuleId = [dictionary objectForKey:@"forwardRuleId"];
+    return self;
+} 
+
+@end
+@implementation IpantiDisableBlackListRuleOfForwardRuleResult
+-(id) initWithCode:(NSNumber*) code
+        message:(NSString*)message { 
+    self.code = code;               
+    self.message = message;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self code])
+    {
+        [result setValue:[self code] forKey:@"code"];
+    }
+    if([self message])
+    {
+        [result setValue:[self message] forKey:@"message"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.code = [dictionary objectForKey:@"code"];
+    self.message = [dictionary objectForKey:@"message"];
+    return self;
+} 
+
+@end
+@implementation IpantiDisableWhiteListRuleOfForwardRuleRequest
+-(id) initWithRegion:(NSString *)regionId
+instanceId:(NSString*)instanceId
+forwardRuleId:(NSString*)forwardRuleId { 
+    self.regionId = regionId;
+    self.instanceId = instanceId;
+    self.forwardRuleId = forwardRuleId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+instanceId:(NSString*)instanceId
+forwardRuleId:(NSString*)forwardRuleId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.instanceId = instanceId;
+    self.forwardRuleId = forwardRuleId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self instanceId])
+    {
+        [result setValue:[self instanceId] forKey:@"instanceId"];
+    }
+    if([self forwardRuleId])
+    {
+        [result setValue:[self forwardRuleId] forKey:@"forwardRuleId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.instanceId = [dictionary objectForKey:@"instanceId"];
+    self.forwardRuleId = [dictionary objectForKey:@"forwardRuleId"];
+    return self;
+} 
+
+@end
+@implementation IpantiDescribeCCAttackLogDetailsRequest
+-(id) initWithRegion:(NSString *)regionId
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+startTime:(NSString*)startTime
+endTime:(NSString*)endTime
+instanceId:(NSString*)instanceId
+subDomain:(NSArray<NSString*>*)subDomain
+attackId:(NSString*)attackId { 
+    self.regionId = regionId;
+    self.pageNumber = pageNumber;
+    self.pageSize = pageSize;
+    self.startTime = startTime;
+    self.endTime = endTime;
+    self.instanceId = instanceId;
+    self.subDomain = subDomain;
+    self.attackId = attackId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+startTime:(NSString*)startTime
+endTime:(NSString*)endTime
+instanceId:(NSString*)instanceId
+subDomain:(NSArray<NSString*>*)subDomain
+attackId:(NSString*)attackId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.pageNumber = pageNumber;
+    self.pageSize = pageSize;
+    self.startTime = startTime;
+    self.endTime = endTime;
+    self.instanceId = instanceId;
+    self.subDomain = subDomain;
+    self.attackId = attackId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self pageNumber])
+    {
+        [result setValue:[self pageNumber] forKey:@"pageNumber"];
+    }
+    if([self pageSize])
+    {
+        [result setValue:[self pageSize] forKey:@"pageSize"];
+    }
+    if([self startTime])
+    {
+        [result setValue:[self startTime] forKey:@"startTime"];
+    }
+    if([self endTime])
+    {
+        [result setValue:[self endTime] forKey:@"endTime"];
+    }
+    if([self instanceId])
+    {
+        [result setValue:[self instanceId] forKey:@"instanceId"];
+    }
+    if([self subDomain])
+    {
+        [result setValue:[self subDomain] forKey:@"subDomain"];
+    }
+    if([self attackId])
+    {
+        [result setValue:[self attackId] forKey:@"attackId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.pageNumber = [dictionary objectForKey:@"pageNumber"];
+    self.pageSize = [dictionary objectForKey:@"pageSize"];
+    self.startTime = [dictionary objectForKey:@"startTime"];
+    self.endTime = [dictionary objectForKey:@"endTime"];
+    self.instanceId = [dictionary objectForKey:@"instanceId"];
+    self.subDomain = [dictionary objectForKey:@"subDomain"];
+    self.attackId = [dictionary objectForKey:@"attackId"];
+    return self;
+} 
+
+@end
+@implementation IpantiDescribeCCAttackLogsRequest
+-(id) initWithRegion:(NSString *)regionId
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+startTime:(NSString*)startTime
+endTime:(NSString*)endTime
+instanceId:(NSArray<NSString*>*)instanceId { 
+    self.regionId = regionId;
+    self.pageNumber = pageNumber;
+    self.pageSize = pageSize;
+    self.startTime = startTime;
+    self.endTime = endTime;
+    self.instanceId = instanceId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+startTime:(NSString*)startTime
+endTime:(NSString*)endTime
+instanceId:(NSArray<NSString*>*)instanceId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.pageNumber = pageNumber;
+    self.pageSize = pageSize;
+    self.startTime = startTime;
+    self.endTime = endTime;
+    self.instanceId = instanceId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self pageNumber])
+    {
+        [result setValue:[self pageNumber] forKey:@"pageNumber"];
+    }
+    if([self pageSize])
+    {
+        [result setValue:[self pageSize] forKey:@"pageSize"];
+    }
+    if([self startTime])
+    {
+        [result setValue:[self startTime] forKey:@"startTime"];
+    }
+    if([self endTime])
+    {
+        [result setValue:[self endTime] forKey:@"endTime"];
+    }
+    if([self instanceId])
+    {
+        [result setValue:[self instanceId] forKey:@"instanceId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.pageNumber = [dictionary objectForKey:@"pageNumber"];
+    self.pageSize = [dictionary objectForKey:@"pageSize"];
+    self.startTime = [dictionary objectForKey:@"startTime"];
+    self.endTime = [dictionary objectForKey:@"endTime"];
+    self.instanceId = [dictionary objectForKey:@"instanceId"];
+    return self;
+} 
+
+@end
+@implementation IpantiDescribeAttackStatisticsRequest
+-(id) initWithRegion:(NSString *)regionId
+startTime:(NSString*)startTime
+endTime:(NSString*)endTime
+instanceId:(NSArray<NSString*>*)instanceId
+type:(NSNumber*)type { 
+    self.regionId = regionId;
+    self.startTime = startTime;
+    self.endTime = endTime;
+    self.instanceId = instanceId;
+    self.type = type;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+startTime:(NSString*)startTime
+endTime:(NSString*)endTime
+instanceId:(NSArray<NSString*>*)instanceId
+type:(NSNumber*)type { 
+    self.regionId = regionId;
+    self.version = version;
+    self.startTime = startTime;
+    self.endTime = endTime;
+    self.instanceId = instanceId;
+    self.type = type;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self startTime])
+    {
+        [result setValue:[self startTime] forKey:@"startTime"];
+    }
+    if([self endTime])
+    {
+        [result setValue:[self endTime] forKey:@"endTime"];
+    }
+    if([self instanceId])
+    {
+        [result setValue:[self instanceId] forKey:@"instanceId"];
+    }
+    if([self type])
+    {
+        [result setValue:[self type] forKey:@"type"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.startTime = [dictionary objectForKey:@"startTime"];
+    self.endTime = [dictionary objectForKey:@"endTime"];
+    self.instanceId = [dictionary objectForKey:@"instanceId"];
+    self.type = [dictionary objectForKey:@"type"];
+    return self;
+} 
+
+@end
+@implementation IpantiDescribeAttackStatisticsResult
+-(id) initWithFlow:(NSNumber*) flow
+        count:(NSNumber*)count
+        unit:(NSString*)unit { 
+    self.flow = flow;               
+    self.count = count;               
+    self.unit = unit;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self flow])
+    {
+        [result setValue:[self flow] forKey:@"flow"];
+    }
+    if([self count])
+    {
+        [result setValue:[self count] forKey:@"count"];
+    }
+    if([self unit])
+    {
+        [result setValue:[self unit] forKey:@"unit"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.flow = [dictionary objectForKey:@"flow"];
+    self.count = [dictionary objectForKey:@"count"];
+    self.unit = [dictionary objectForKey:@"unit"];
+    return self;
+} 
+
+@end
+@implementation IpantiDescribeAttackTypeCountRequest
+-(id) initWithRegion:(NSString *)regionId
+startTime:(NSString*)startTime
+endTime:(NSString*)endTime
+instanceId:(NSArray<NSString*>*)instanceId { 
+    self.regionId = regionId;
+    self.startTime = startTime;
+    self.endTime = endTime;
+    self.instanceId = instanceId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+startTime:(NSString*)startTime
+endTime:(NSString*)endTime
+instanceId:(NSArray<NSString*>*)instanceId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.startTime = startTime;
+    self.endTime = endTime;
+    self.instanceId = instanceId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self startTime])
+    {
+        [result setValue:[self startTime] forKey:@"startTime"];
+    }
+    if([self endTime])
+    {
+        [result setValue:[self endTime] forKey:@"endTime"];
+    }
+    if([self instanceId])
+    {
+        [result setValue:[self instanceId] forKey:@"instanceId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.startTime = [dictionary objectForKey:@"startTime"];
+    self.endTime = [dictionary objectForKey:@"endTime"];
+    self.instanceId = [dictionary objectForKey:@"instanceId"];
+    return self;
+} 
+
+@end
+@implementation IpantiDescribeDDoSAttackLogsRequest
+-(id) initWithRegion:(NSString *)regionId
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+startTime:(NSString*)startTime
+endTime:(NSString*)endTime
+instanceId:(NSArray<NSString*>*)instanceId { 
+    self.regionId = regionId;
+    self.pageNumber = pageNumber;
+    self.pageSize = pageSize;
+    self.startTime = startTime;
+    self.endTime = endTime;
+    self.instanceId = instanceId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+startTime:(NSString*)startTime
+endTime:(NSString*)endTime
+instanceId:(NSArray<NSString*>*)instanceId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.pageNumber = pageNumber;
+    self.pageSize = pageSize;
+    self.startTime = startTime;
+    self.endTime = endTime;
+    self.instanceId = instanceId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self pageNumber])
+    {
+        [result setValue:[self pageNumber] forKey:@"pageNumber"];
+    }
+    if([self pageSize])
+    {
+        [result setValue:[self pageSize] forKey:@"pageSize"];
+    }
+    if([self startTime])
+    {
+        [result setValue:[self startTime] forKey:@"startTime"];
+    }
+    if([self endTime])
+    {
+        [result setValue:[self endTime] forKey:@"endTime"];
+    }
+    if([self instanceId])
+    {
+        [result setValue:[self instanceId] forKey:@"instanceId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.pageNumber = [dictionary objectForKey:@"pageNumber"];
+    self.pageSize = [dictionary objectForKey:@"pageSize"];
+    self.startTime = [dictionary objectForKey:@"startTime"];
+    self.endTime = [dictionary objectForKey:@"endTime"];
+    self.instanceId = [dictionary objectForKey:@"instanceId"];
+    return self;
+} 
+
+@end
+@implementation IpantiDescribeCpsIpListRequest
+-(id) initWithRegion:(NSString *)regionId
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize { 
+    self.regionId = regionId;
+    self.pageNumber = pageNumber;
+    self.pageSize = pageSize;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize { 
+    self.regionId = regionId;
+    self.version = version;
+    self.pageNumber = pageNumber;
+    self.pageSize = pageSize;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self pageNumber])
+    {
+        [result setValue:[self pageNumber] forKey:@"pageNumber"];
+    }
+    if([self pageSize])
+    {
+        [result setValue:[self pageSize] forKey:@"pageSize"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.pageNumber = [dictionary objectForKey:@"pageNumber"];
+    self.pageSize = [dictionary objectForKey:@"pageSize"];
+    return self;
+} 
+
+@end
+@implementation IpantiCreateInstanceResult
+-(id) initWithCode:(NSNumber*) code
+        message:(NSString*)message { 
+    self.code = code;               
+    self.message = message;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self code])
+    {
+        [result setValue:[self code] forKey:@"code"];
+    }
+    if([self message])
+    {
+        [result setValue:[self message] forKey:@"message"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.code = [dictionary objectForKey:@"code"];
+    self.message = [dictionary objectForKey:@"message"];
+    return self;
+} 
+
+@end
+@implementation IpantiCheckNameRequest
+-(id) initWithRegion:(NSString *)regionId
+name:(NSString*)name { 
+    self.regionId = regionId;
+    self.name = name;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+name:(NSString*)name { 
+    self.regionId = regionId;
+    self.version = version;
+    self.name = name;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self name])
+    {
+        [result setValue:[self name] forKey:@"name"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.name = [dictionary objectForKey:@"name"];
+    return self;
+} 
+
+@end
+@implementation IpantiModifyInstanceNameResult
+-(id) initWithCode:(NSNumber*) code
+        message:(NSString*)message { 
+    self.code = code;               
+    self.message = message;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self code])
+    {
+        [result setValue:[self code] forKey:@"code"];
+    }
+    if([self message])
+    {
+        [result setValue:[self message] forKey:@"message"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.code = [dictionary objectForKey:@"code"];
+    self.message = [dictionary objectForKey:@"message"];
+    return self;
+} 
+
+@end
+@implementation IpantiModifyAlarmConfigResult
+-(id) initWithCode:(NSNumber*) code
+        message:(NSString*)message { 
+    self.code = code;               
+    self.message = message;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self code])
+    {
+        [result setValue:[self code] forKey:@"code"];
+    }
+    if([self message])
+    {
+        [result setValue:[self message] forKey:@"message"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.code = [dictionary objectForKey:@"code"];
+    self.message = [dictionary objectForKey:@"message"];
+    return self;
+} 
+
+@end
+@implementation IpantiModifyEPBResult
+-(id) initWithCode:(NSNumber*) code
+        message:(NSString*)message { 
+    self.code = code;               
+    self.message = message;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self code])
+    {
+        [result setValue:[self code] forKey:@"code"];
+    }
+    if([self message])
+    {
+        [result setValue:[self message] forKey:@"message"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.code = [dictionary objectForKey:@"code"];
+    self.message = [dictionary objectForKey:@"message"];
+    return self;
+} 
+
+@end
+@implementation IpantiDescribeInstancesRequest
+-(id) initWithRegion:(NSString *)regionId
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+name:(NSString*)name { 
+    self.regionId = regionId;
+    self.pageNumber = pageNumber;
+    self.pageSize = pageSize;
+    self.name = name;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+name:(NSString*)name { 
+    self.regionId = regionId;
+    self.version = version;
+    self.pageNumber = pageNumber;
+    self.pageSize = pageSize;
+    self.name = name;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self pageNumber])
+    {
+        [result setValue:[self pageNumber] forKey:@"pageNumber"];
+    }
+    if([self pageSize])
+    {
+        [result setValue:[self pageSize] forKey:@"pageSize"];
+    }
+    if([self name])
+    {
+        [result setValue:[self name] forKey:@"name"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.pageNumber = [dictionary objectForKey:@"pageNumber"];
+    self.pageSize = [dictionary objectForKey:@"pageSize"];
+    self.name = [dictionary objectForKey:@"name"];
+    return self;
+} 
+
+@end
+@implementation IpantiDescribeInstanceRequest
+-(id) initWithRegion:(NSString *)regionId
+instanceId:(NSString*)instanceId { 
+    self.regionId = regionId;
+    self.instanceId = instanceId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+instanceId:(NSString*)instanceId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.instanceId = instanceId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self instanceId])
+    {
+        [result setValue:[self instanceId] forKey:@"instanceId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.instanceId = [dictionary objectForKey:@"instanceId"];
+    return self;
+} 
+
+@end
+@implementation IpantiCheckNameResult
+-(id) initWithCode:(NSNumber*) code
+        message:(NSString*)message { 
+    self.code = code;               
+    self.message = message;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self code])
+    {
+        [result setValue:[self code] forKey:@"code"];
+    }
+    if([self message])
+    {
+        [result setValue:[self message] forKey:@"message"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.code = [dictionary objectForKey:@"code"];
+    self.message = [dictionary objectForKey:@"message"];
+    return self;
+} 
+
+@end
+@implementation IpantiDescribeVpcIpListRequest
+-(id) initWithRegion:(NSString *)regionId
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize { 
+    self.regionId = regionId;
+    self.pageNumber = pageNumber;
+    self.pageSize = pageSize;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize { 
+    self.regionId = regionId;
+    self.version = version;
+    self.pageNumber = pageNumber;
+    self.pageSize = pageSize;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self pageNumber])
+    {
+        [result setValue:[self pageNumber] forKey:@"pageNumber"];
+    }
+    if([self pageSize])
+    {
+        [result setValue:[self pageSize] forKey:@"pageSize"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.pageNumber = [dictionary objectForKey:@"pageNumber"];
+    self.pageSize = [dictionary objectForKey:@"pageSize"];
+    return self;
+} 
+
+@end
+@implementation IpantiDescribeNameListRequest
+-(id) initWithRegion:(NSString *)regionId
+idValue:(NSString*)idValue
+name:(NSString*)name
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize { 
+    self.regionId = regionId;
+    self.idValue = idValue;
+    self.name = name;
+    self.pageNumber = pageNumber;
+    self.pageSize = pageSize;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+idValue:(NSString*)idValue
+name:(NSString*)name
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize { 
+    self.regionId = regionId;
+    self.version = version;
+    self.idValue = idValue;
+    self.name = name;
+    self.pageNumber = pageNumber;
+    self.pageSize = pageSize;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self idValue])
+    {
+        [result setValue:[self idValue] forKey:@"id"];
+    }
+    if([self name])
+    {
+        [result setValue:[self name] forKey:@"name"];
+    }
+    if([self pageNumber])
+    {
+        [result setValue:[self pageNumber] forKey:@"pageNumber"];
+    }
+    if([self pageSize])
+    {
+        [result setValue:[self pageSize] forKey:@"pageSize"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.idValue = [dictionary objectForKey:@"id"];
+    self.name = [dictionary objectForKey:@"name"];
+    self.pageNumber = [dictionary objectForKey:@"pageNumber"];
+    self.pageSize = [dictionary objectForKey:@"pageSize"];
+    return self;
+} 
+
+@end
+@implementation IpantiDescribeAlarmConfigRequest
+-(id) initWithRegion:(NSString *)regionId
+instanceId:(NSString*)instanceId { 
+    self.regionId = regionId;
+    self.instanceId = instanceId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+instanceId:(NSString*)instanceId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.instanceId = instanceId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self instanceId])
+    {
+        [result setValue:[self instanceId] forKey:@"instanceId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.instanceId = [dictionary objectForKey:@"instanceId"];
+    return self;
+} 
+
+@end
+@implementation IpantiDescribeFwdGraphResult
+-(id) initWithForwardRecord:(NSArray<NSNumber*>*) forwardRecord
+        time:(NSArray<NSString*>*)time
+        unit:(NSString*)unit { 
+    self.forwardRecord = forwardRecord;               
+    self.time = time;               
+    self.unit = unit;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self forwardRecord])
+    {
+        [result setValue:[self forwardRecord] forKey:@"forwardRecord"];
+    }
+    if([self time])
+    {
+        [result setValue:[self time] forKey:@"time"];
+    }
+    if([self unit])
+    {
+        [result setValue:[self unit] forKey:@"unit"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.forwardRecord = [dictionary objectForKey:@"forwardRecord"];
+    self.time = [dictionary objectForKey:@"time"];
+    self.unit = [dictionary objectForKey:@"unit"];
+    return self;
+} 
+
+@end
+@implementation IpantiDescribeCCGraphRequest
+-(id) initWithRegion:(NSString *)regionId
+startTime:(NSString*)startTime
+endTime:(NSString*)endTime
+instanceId:(NSArray<NSString*>*)instanceId
+subDomain:(NSArray<NSString*>*)subDomain { 
+    self.regionId = regionId;
+    self.startTime = startTime;
+    self.endTime = endTime;
+    self.instanceId = instanceId;
+    self.subDomain = subDomain;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+startTime:(NSString*)startTime
+endTime:(NSString*)endTime
+instanceId:(NSArray<NSString*>*)instanceId
+subDomain:(NSArray<NSString*>*)subDomain { 
+    self.regionId = regionId;
+    self.version = version;
+    self.startTime = startTime;
+    self.endTime = endTime;
+    self.instanceId = instanceId;
+    self.subDomain = subDomain;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self startTime])
+    {
+        [result setValue:[self startTime] forKey:@"startTime"];
+    }
+    if([self endTime])
+    {
+        [result setValue:[self endTime] forKey:@"endTime"];
+    }
+    if([self instanceId])
+    {
+        [result setValue:[self instanceId] forKey:@"instanceId"];
+    }
+    if([self subDomain])
+    {
+        [result setValue:[self subDomain] forKey:@"subDomain"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.startTime = [dictionary objectForKey:@"startTime"];
+    self.endTime = [dictionary objectForKey:@"endTime"];
+    self.instanceId = [dictionary objectForKey:@"instanceId"];
+    self.subDomain = [dictionary objectForKey:@"subDomain"];
+    return self;
+} 
+
+@end
+@implementation IpantiDescribeFwdGraphRequest
+-(id) initWithRegion:(NSString *)regionId
+startTime:(NSString*)startTime
+endTime:(NSString*)endTime
+instanceId:(NSArray<NSString*>*)instanceId { 
+    self.regionId = regionId;
+    self.startTime = startTime;
+    self.endTime = endTime;
+    self.instanceId = instanceId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+startTime:(NSString*)startTime
+endTime:(NSString*)endTime
+instanceId:(NSArray<NSString*>*)instanceId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.startTime = startTime;
+    self.endTime = endTime;
+    self.instanceId = instanceId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self startTime])
+    {
+        [result setValue:[self startTime] forKey:@"startTime"];
+    }
+    if([self endTime])
+    {
+        [result setValue:[self endTime] forKey:@"endTime"];
+    }
+    if([self instanceId])
+    {
+        [result setValue:[self instanceId] forKey:@"instanceId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.startTime = [dictionary objectForKey:@"startTime"];
+    self.endTime = [dictionary objectForKey:@"endTime"];
+    self.instanceId = [dictionary objectForKey:@"instanceId"];
+    return self;
+} 
+
+@end
+@implementation IpantiDescribeCCGraphResult
+-(id) initWithPostProtect:(NSArray<NSNumber*>*) postProtect
+        preProtect:(NSArray<NSNumber*>*)preProtect
+        time:(NSArray<NSString*>*)time
+        unit:(NSString*)unit { 
+    self.postProtect = postProtect;               
+    self.preProtect = preProtect;               
+    self.time = time;               
+    self.unit = unit;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self postProtect])
+    {
+        [result setValue:[self postProtect] forKey:@"postProtect"];
+    }
+    if([self preProtect])
+    {
+        [result setValue:[self preProtect] forKey:@"preProtect"];
+    }
+    if([self time])
+    {
+        [result setValue:[self time] forKey:@"time"];
+    }
+    if([self unit])
+    {
+        [result setValue:[self unit] forKey:@"unit"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.postProtect = [dictionary objectForKey:@"postProtect"];
+    self.preProtect = [dictionary objectForKey:@"preProtect"];
+    self.time = [dictionary objectForKey:@"time"];
+    self.unit = [dictionary objectForKey:@"unit"];
+    return self;
+} 
+
+@end
+@implementation IpantiDescribeDDoSGraphResult
+-(id) initWithPreProtect:(NSArray<NSNumber*>*) preProtect
+        postProtect:(NSArray<NSNumber*>*)postProtect
+        time:(NSArray<NSString*>*)time
+        unit:(NSString*)unit { 
+    self.preProtect = preProtect;               
+    self.postProtect = postProtect;               
+    self.time = time;               
+    self.unit = unit;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self preProtect])
+    {
+        [result setValue:[self preProtect] forKey:@"preProtect"];
+    }
+    if([self postProtect])
+    {
+        [result setValue:[self postProtect] forKey:@"postProtect"];
+    }
+    if([self time])
+    {
+        [result setValue:[self time] forKey:@"time"];
+    }
+    if([self unit])
+    {
+        [result setValue:[self unit] forKey:@"unit"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.preProtect = [dictionary objectForKey:@"preProtect"];
+    self.postProtect = [dictionary objectForKey:@"postProtect"];
+    self.time = [dictionary objectForKey:@"time"];
+    self.unit = [dictionary objectForKey:@"unit"];
+    return self;
+} 
+
+@end
+@implementation IpantiDescribeDDoSGraphRequest
+-(id) initWithRegion:(NSString *)regionId
+startTime:(NSString*)startTime
+endTime:(NSString*)endTime
+instanceId:(NSArray<NSString*>*)instanceId { 
+    self.regionId = regionId;
+    self.startTime = startTime;
+    self.endTime = endTime;
+    self.instanceId = instanceId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+startTime:(NSString*)startTime
+endTime:(NSString*)endTime
+instanceId:(NSArray<NSString*>*)instanceId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.startTime = startTime;
+    self.endTime = endTime;
+    self.instanceId = instanceId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self startTime])
+    {
+        [result setValue:[self startTime] forKey:@"startTime"];
+    }
+    if([self endTime])
+    {
+        [result setValue:[self endTime] forKey:@"endTime"];
+    }
+    if([self instanceId])
+    {
+        [result setValue:[self instanceId] forKey:@"instanceId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.startTime = [dictionary objectForKey:@"startTime"];
+    self.endTime = [dictionary objectForKey:@"endTime"];
+    self.instanceId = [dictionary objectForKey:@"instanceId"];
+    return self;
+} 
+
+@end
+@implementation IpantiDescribeIpSetRequest
+-(id) initWithRegion:(NSString *)regionId
+instanceId:(NSString*)instanceId
+ipSetId:(NSString*)ipSetId { 
+    self.regionId = regionId;
+    self.instanceId = instanceId;
+    self.ipSetId = ipSetId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+instanceId:(NSString*)instanceId
+ipSetId:(NSString*)ipSetId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.instanceId = instanceId;
+    self.ipSetId = ipSetId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self instanceId])
+    {
+        [result setValue:[self instanceId] forKey:@"instanceId"];
+    }
+    if([self ipSetId])
+    {
+        [result setValue:[self ipSetId] forKey:@"ipSetId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.instanceId = [dictionary objectForKey:@"instanceId"];
+    self.ipSetId = [dictionary objectForKey:@"ipSetId"];
+    return self;
+} 
+
+@end
+@implementation IpantiDescribeIpSetUsageRequest
+-(id) initWithRegion:(NSString *)regionId
+instanceId:(NSString*)instanceId { 
+    self.regionId = regionId;
+    self.instanceId = instanceId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+instanceId:(NSString*)instanceId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.instanceId = instanceId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self instanceId])
+    {
+        [result setValue:[self instanceId] forKey:@"instanceId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.instanceId = [dictionary objectForKey:@"instanceId"];
+    return self;
+} 
+
+@end
+@implementation IpantiDescribeIpSetsRequest
+-(id) initWithRegion:(NSString *)regionId
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+instanceId:(NSString*)instanceId { 
+    self.regionId = regionId;
+    self.pageNumber = pageNumber;
+    self.pageSize = pageSize;
+    self.instanceId = instanceId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+instanceId:(NSString*)instanceId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.pageNumber = pageNumber;
+    self.pageSize = pageSize;
+    self.instanceId = instanceId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self pageNumber])
+    {
+        [result setValue:[self pageNumber] forKey:@"pageNumber"];
+    }
+    if([self pageSize])
+    {
+        [result setValue:[self pageSize] forKey:@"pageSize"];
+    }
+    if([self instanceId])
+    {
+        [result setValue:[self instanceId] forKey:@"instanceId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.pageNumber = [dictionary objectForKey:@"pageNumber"];
+    self.pageSize = [dictionary objectForKey:@"pageSize"];
+    self.instanceId = [dictionary objectForKey:@"instanceId"];
+    return self;
+} 
+
+@end
+@implementation IpantiDeleteIpSetRequest
+-(id) initWithRegion:(NSString *)regionId
+instanceId:(NSString*)instanceId
+ipSetId:(NSString*)ipSetId { 
+    self.regionId = regionId;
+    self.instanceId = instanceId;
+    self.ipSetId = ipSetId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+instanceId:(NSString*)instanceId
+ipSetId:(NSString*)ipSetId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.instanceId = instanceId;
+    self.ipSetId = ipSetId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self instanceId])
+    {
+        [result setValue:[self instanceId] forKey:@"instanceId"];
+    }
+    if([self ipSetId])
+    {
+        [result setValue:[self ipSetId] forKey:@"ipSetId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.instanceId = [dictionary objectForKey:@"instanceId"];
+    self.ipSetId = [dictionary objectForKey:@"ipSetId"];
+    return self;
+} 
+
+@end
+@implementation IpantiCreateIpSetResult
+-(id) initWithCode:(NSNumber*) code
+        message:(NSString*)message { 
+    self.code = code;               
+    self.message = message;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self code])
+    {
+        [result setValue:[self code] forKey:@"code"];
+    }
+    if([self message])
+    {
+        [result setValue:[self message] forKey:@"message"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.code = [dictionary objectForKey:@"code"];
+    self.message = [dictionary objectForKey:@"message"];
+    return self;
+} 
+
+@end
+@implementation IpantiDescribeIpSetUsageResult
+-(id) initWithAllocatedNum:(NSNumber*) ipantiAllocatedNum
+        surplusAllocateNum:(NSNumber*)surplusAllocateNum
+        maxAllocateNum:(NSNumber*)maxAllocateNum { 
+    self.ipantiAllocatedNum = ipantiAllocatedNum;               
+    self.surplusAllocateNum = surplusAllocateNum;               
+    self.maxAllocateNum = maxAllocateNum;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self ipantiAllocatedNum])
+    {
+        [result setValue:[self ipantiAllocatedNum] forKey:@"allocatedNum"];
+    }
+    if([self surplusAllocateNum])
+    {
+        [result setValue:[self surplusAllocateNum] forKey:@"surplusAllocateNum"];
+    }
+    if([self maxAllocateNum])
+    {
+        [result setValue:[self maxAllocateNum] forKey:@"maxAllocateNum"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.ipantiAllocatedNum = [dictionary objectForKey:@"allocatedNum"];
+    self.surplusAllocateNum = [dictionary objectForKey:@"surplusAllocateNum"];
+    self.maxAllocateNum = [dictionary objectForKey:@"maxAllocateNum"];
+    return self;
+} 
+
+@end
+@implementation IpantiCreateWhiteListRuleOfWebRuleRequest
+-(id) initWithRegion:(NSString *)regionId
+webWhiteListRuleSpec:(WebWhiteListRuleSpec*)webWhiteListRuleSpec
+instanceId:(NSString*)instanceId
+webRuleId:(NSString*)webRuleId { 
+    self.regionId = regionId;
+    self.webWhiteListRuleSpec = webWhiteListRuleSpec;
+    self.instanceId = instanceId;
+    self.webRuleId = webRuleId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+webWhiteListRuleSpec:(WebWhiteListRuleSpec*)webWhiteListRuleSpec
+instanceId:(NSString*)instanceId
+webRuleId:(NSString*)webRuleId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.webWhiteListRuleSpec = webWhiteListRuleSpec;
+    self.instanceId = instanceId;
+    self.webRuleId = webRuleId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self webWhiteListRuleSpec])
+    {
+        [result setValue:[[self webWhiteListRuleSpec] dictionary]forKey:@"webWhiteListRuleSpec"];
+    }
+    if([self instanceId])
+    {
+        [result setValue:[self instanceId] forKey:@"instanceId"];
+    }
+    if([self webRuleId])
+    {
+        [result setValue:[self webRuleId] forKey:@"webRuleId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.webWhiteListRuleSpec = [[WebWhiteListRuleSpec alloc]initWithDic:[dictionary objectForKey:@"webWhiteListRuleSpec"]];
+    self.instanceId = [dictionary objectForKey:@"instanceId"];
+    self.webRuleId = [dictionary objectForKey:@"webRuleId"];
+    return self;
+} 
+
+@end
+  
+@implementation IpantiEnableWebRuleCCObserverModeResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+IpantiEnableWebRuleCCObserverModeResult* result = [[IpantiEnableWebRuleCCObserverModeResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(IpantiEnableWebRuleCCObserverModeResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+  
+@implementation IpantiDisableWebRuleCCObserverModeResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+IpantiDisableWebRuleCCObserverModeResult* result = [[IpantiDisableWebRuleCCObserverModeResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(IpantiDisableWebRuleCCObserverModeResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+  
+@implementation IpantiModifyCCProtectionConfigOfWebRuleResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+IpantiModifyCCProtectionConfigOfWebRuleResult* result = [[IpantiModifyCCProtectionConfigOfWebRuleResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(IpantiModifyCCProtectionConfigOfWebRuleResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+@implementation IpantiDescribeWebRuleResult
+-(id) initWithData:(WebRule*) data { 
+    self.data = data;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self data])
+    {
+        [result setValue:[[self data] dictionary]forKey:@"data"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.data = [[WebRule alloc]initWithDic:[dictionary objectForKey:@"data"]];
+    return self;
+} 
+
+@end
+  
+@implementation IpantiEnableCCProtectionRuleOfWebRuleResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+IpantiEnableCCProtectionRuleOfWebRuleResult* result = [[IpantiEnableCCProtectionRuleOfWebRuleResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(IpantiEnableCCProtectionRuleOfWebRuleResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+@implementation IpantiCreateBlackListRuleOfWebRuleRequest
+-(id) initWithRegion:(NSString *)regionId
+webBlackListRuleSpec:(WebBlackListRuleSpec*)webBlackListRuleSpec
+instanceId:(NSString*)instanceId
+webRuleId:(NSString*)webRuleId { 
+    self.regionId = regionId;
+    self.webBlackListRuleSpec = webBlackListRuleSpec;
+    self.instanceId = instanceId;
+    self.webRuleId = webRuleId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+webBlackListRuleSpec:(WebBlackListRuleSpec*)webBlackListRuleSpec
+instanceId:(NSString*)instanceId
+webRuleId:(NSString*)webRuleId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.webBlackListRuleSpec = webBlackListRuleSpec;
+    self.instanceId = instanceId;
+    self.webRuleId = webRuleId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self webBlackListRuleSpec])
+    {
+        [result setValue:[[self webBlackListRuleSpec] dictionary]forKey:@"webBlackListRuleSpec"];
+    }
+    if([self instanceId])
+    {
+        [result setValue:[self instanceId] forKey:@"instanceId"];
+    }
+    if([self webRuleId])
+    {
+        [result setValue:[self webRuleId] forKey:@"webRuleId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.webBlackListRuleSpec = [[WebBlackListRuleSpec alloc]initWithDic:[dictionary objectForKey:@"webBlackListRuleSpec"]];
+    self.instanceId = [dictionary objectForKey:@"instanceId"];
+    self.webRuleId = [dictionary objectForKey:@"webRuleId"];
+    return self;
+} 
+
+@end
+@implementation IpantiDescribeBlackListRuleOfWebRuleResult
+-(id) initWithData:(WebBlackListRule*) data { 
+    self.data = data;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self data])
+    {
+        [result setValue:[[self data] dictionary]forKey:@"data"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.data = [[WebBlackListRule alloc]initWithDic:[dictionary objectForKey:@"data"]];
+    return self;
+} 
+
+@end
+@implementation IpantiCreateCCProtectionRuleOfWebRuleRequest
+-(id) initWithRegion:(NSString *)regionId
+ccProtectionRuleSpec:(CCProtectionRuleSpec*)ccProtectionRuleSpec
+instanceId:(NSString*)instanceId
+webRuleId:(NSString*)webRuleId { 
+    self.regionId = regionId;
+    self.ccProtectionRuleSpec = ccProtectionRuleSpec;
+    self.instanceId = instanceId;
+    self.webRuleId = webRuleId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+ccProtectionRuleSpec:(CCProtectionRuleSpec*)ccProtectionRuleSpec
+instanceId:(NSString*)instanceId
+webRuleId:(NSString*)webRuleId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.ccProtectionRuleSpec = ccProtectionRuleSpec;
+    self.instanceId = instanceId;
+    self.webRuleId = webRuleId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self ccProtectionRuleSpec])
+    {
+        [result setValue:[[self ccProtectionRuleSpec] dictionary]forKey:@"ccProtectionRuleSpec"];
+    }
+    if([self instanceId])
+    {
+        [result setValue:[self instanceId] forKey:@"instanceId"];
+    }
+    if([self webRuleId])
+    {
+        [result setValue:[self webRuleId] forKey:@"webRuleId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.ccProtectionRuleSpec = [[CCProtectionRuleSpec alloc]initWithDic:[dictionary objectForKey:@"ccProtectionRuleSpec"]];
+    self.instanceId = [dictionary objectForKey:@"instanceId"];
+    self.webRuleId = [dictionary objectForKey:@"webRuleId"];
+    return self;
+} 
+
+@end
+@implementation IpantiDescribeWhiteListRuleOfWebRuleResult
+-(id) initWithData:(WebWhiteListRule*) data { 
+    self.data = data;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self data])
+    {
+        [result setValue:[[self data] dictionary]forKey:@"data"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.data = [[WebWhiteListRule alloc]initWithDic:[dictionary objectForKey:@"data"]];
+    return self;
+} 
+
+@end
+  
+@implementation IpantiEnableWhiteListRuleOfWebRuleResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+IpantiEnableWhiteListRuleOfWebRuleResult* result = [[IpantiEnableWhiteListRuleOfWebRuleResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(IpantiEnableWhiteListRuleOfWebRuleResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+@implementation IpantiDescribeWebRulesResult
+-(id) initWithDataList:(NSArray<WebRule*>*) dataList
+        currentCount:(NSNumber*)currentCount
+        totalCount:(NSNumber*)totalCount
+        totalPage:(NSNumber*)totalPage { 
+    self.dataList = dataList;               
+    self.currentCount = currentCount;               
+    self.totalCount = totalCount;               
+    self.totalPage = totalPage;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self dataList])
+    {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self dataList] count]; i++) {
+            WebRule* item = [[self dataList] objectAtIndex:i];
+            [arrayDic addObject:[item dictionary]];
+        }
+        [result setValue:arrayDic forKey:@"dataList"];
+    }
+    if([self currentCount])
+    {
+        [result setValue:[self currentCount] forKey:@"currentCount"];
+    }
+    if([self totalCount])
+    {
+        [result setValue:[self totalCount] forKey:@"totalCount"];
+    }
+    if([self totalPage])
+    {
+        [result setValue:[self totalPage] forKey:@"totalPage"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    NSArray* dataListArray = [dictionary objectForKey:@"dataList"];
+    if(dataListArray&&![dataListArray isKindOfClass:[NSNull class]])
+    {
+        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
+        for(int i = 0 ; i< [dataListArray count];i++)
+        {
+        WebRule* item = [[WebRule alloc]initWithDic:[dataListArray objectAtIndex:i]];
+            if(item)
+            {
+            [propertyArray addObject:item];
+            }
+        }
+        self.dataList = propertyArray;
+    }
+    self.currentCount = [dictionary objectForKey:@"currentCount"];
+    self.totalCount = [dictionary objectForKey:@"totalCount"];
+    self.totalPage = [dictionary objectForKey:@"totalPage"];
+    return self;
+} 
+
+@end
+  
+@implementation IpantiDescribeWebRulesResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+IpantiDescribeWebRulesResult* result = [[IpantiDescribeWebRulesResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(IpantiDescribeWebRulesResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+@implementation IpantiModifyCCProtectionRuleOfWebRuleRequest
+-(id) initWithRegion:(NSString *)regionId
+ccProtectionRuleSpec:(CCProtectionRuleSpec*)ccProtectionRuleSpec
+instanceId:(NSString*)instanceId
+webRuleId:(NSString*)webRuleId
+ccProtectionRuleId:(NSString*)ccProtectionRuleId { 
+    self.regionId = regionId;
+    self.ccProtectionRuleSpec = ccProtectionRuleSpec;
+    self.instanceId = instanceId;
+    self.webRuleId = webRuleId;
+    self.ccProtectionRuleId = ccProtectionRuleId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+ccProtectionRuleSpec:(CCProtectionRuleSpec*)ccProtectionRuleSpec
+instanceId:(NSString*)instanceId
+webRuleId:(NSString*)webRuleId
+ccProtectionRuleId:(NSString*)ccProtectionRuleId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.ccProtectionRuleSpec = ccProtectionRuleSpec;
+    self.instanceId = instanceId;
+    self.webRuleId = webRuleId;
+    self.ccProtectionRuleId = ccProtectionRuleId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self ccProtectionRuleSpec])
+    {
+        [result setValue:[[self ccProtectionRuleSpec] dictionary]forKey:@"ccProtectionRuleSpec"];
+    }
+    if([self instanceId])
+    {
+        [result setValue:[self instanceId] forKey:@"instanceId"];
+    }
+    if([self webRuleId])
+    {
+        [result setValue:[self webRuleId] forKey:@"webRuleId"];
+    }
+    if([self ccProtectionRuleId])
+    {
+        [result setValue:[self ccProtectionRuleId] forKey:@"ccProtectionRuleId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.ccProtectionRuleSpec = [[CCProtectionRuleSpec alloc]initWithDic:[dictionary objectForKey:@"ccProtectionRuleSpec"]];
+    self.instanceId = [dictionary objectForKey:@"instanceId"];
+    self.webRuleId = [dictionary objectForKey:@"webRuleId"];
+    self.ccProtectionRuleId = [dictionary objectForKey:@"ccProtectionRuleId"];
+    return self;
+} 
+
+@end
+@implementation IpantiDescribeWebRuleBlackListGeoAreasResult
+-(id) initWithDataList:(NSArray<Country*>*) dataList { 
+    self.dataList = dataList;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self dataList])
+    {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self dataList] count]; i++) {
+            Country* item = [[self dataList] objectAtIndex:i];
+            [arrayDic addObject:[item dictionary]];
+        }
+        [result setValue:arrayDic forKey:@"dataList"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    NSArray* dataListArray = [dictionary objectForKey:@"dataList"];
+    if(dataListArray&&![dataListArray isKindOfClass:[NSNull class]])
+    {
+        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
+        for(int i = 0 ; i< [dataListArray count];i++)
+        {
+        Country* item = [[Country alloc]initWithDic:[dataListArray objectAtIndex:i]];
+            if(item)
+            {
+            [propertyArray addObject:item];
+            }
+        }
+        self.dataList = propertyArray;
+    }
+    return self;
+} 
+
+@end
+@implementation IpantiModifyCertInfoRequest
+-(id) initWithRegion:(NSString *)regionId
+certInfoModifySpec:(CertInfoModifySpec*)certInfoModifySpec
+instanceId:(NSString*)instanceId
+webRuleId:(NSString*)webRuleId { 
+    self.regionId = regionId;
+    self.certInfoModifySpec = certInfoModifySpec;
+    self.instanceId = instanceId;
+    self.webRuleId = webRuleId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+certInfoModifySpec:(CertInfoModifySpec*)certInfoModifySpec
+instanceId:(NSString*)instanceId
+webRuleId:(NSString*)webRuleId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.certInfoModifySpec = certInfoModifySpec;
+    self.instanceId = instanceId;
+    self.webRuleId = webRuleId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self certInfoModifySpec])
+    {
+        [result setValue:[[self certInfoModifySpec] dictionary]forKey:@"certInfoModifySpec"];
+    }
+    if([self instanceId])
+    {
+        [result setValue:[self instanceId] forKey:@"instanceId"];
+    }
+    if([self webRuleId])
+    {
+        [result setValue:[self webRuleId] forKey:@"webRuleId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.certInfoModifySpec = [[CertInfoModifySpec alloc]initWithDic:[dictionary objectForKey:@"certInfoModifySpec"]];
+    self.instanceId = [dictionary objectForKey:@"instanceId"];
+    self.webRuleId = [dictionary objectForKey:@"webRuleId"];
+    return self;
+} 
+
+@end
+  
+@implementation IpantiDeleteBlackListRuleOfWebRuleResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+IpantiDeleteBlackListRuleOfWebRuleResult* result = [[IpantiDeleteBlackListRuleOfWebRuleResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(IpantiDeleteBlackListRuleOfWebRuleResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+  
+@implementation IpantiDeleteCCProtectionRuleOfWebRuleResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+IpantiDeleteCCProtectionRuleOfWebRuleResult* result = [[IpantiDeleteCCProtectionRuleOfWebRuleResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(IpantiDeleteCCProtectionRuleOfWebRuleResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+  
+@implementation IpantiModifyCertInfoResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+IpantiModifyCertInfoResult* result = [[IpantiModifyCertInfoResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(IpantiModifyCertInfoResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+@implementation IpantiDescribeWebRuleWhiteListGeoAreasResult
+-(id) initWithDataList:(NSArray<Country*>*) dataList { 
+    self.dataList = dataList;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self dataList])
+    {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self dataList] count]; i++) {
+            Country* item = [[self dataList] objectAtIndex:i];
+            [arrayDic addObject:[item dictionary]];
+        }
+        [result setValue:arrayDic forKey:@"dataList"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    NSArray* dataListArray = [dictionary objectForKey:@"dataList"];
+    if(dataListArray&&![dataListArray isKindOfClass:[NSNull class]])
+    {
+        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
+        for(int i = 0 ; i< [dataListArray count];i++)
+        {
+        Country* item = [[Country alloc]initWithDic:[dataListArray objectAtIndex:i]];
+            if(item)
+            {
+            [propertyArray addObject:item];
+            }
+        }
+        self.dataList = propertyArray;
+    }
+    return self;
+} 
+
+@end
+  
+@implementation IpantiDescribeWebRuleWhiteListGeoAreasResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+IpantiDescribeWebRuleWhiteListGeoAreasResult* result = [[IpantiDescribeWebRuleWhiteListGeoAreasResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(IpantiDescribeWebRuleWhiteListGeoAreasResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+@implementation IpantiDescribeCCProtectionRulesOfWebRuleResult
+-(id) initWithDataList:(NSArray<CCProtectionRule*>*) dataList
+        currentCount:(NSNumber*)currentCount
+        totalCount:(NSNumber*)totalCount
+        totalPage:(NSNumber*)totalPage { 
+    self.dataList = dataList;               
+    self.currentCount = currentCount;               
+    self.totalCount = totalCount;               
+    self.totalPage = totalPage;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self dataList])
+    {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self dataList] count]; i++) {
+            CCProtectionRule* item = [[self dataList] objectAtIndex:i];
+            [arrayDic addObject:[item dictionary]];
+        }
+        [result setValue:arrayDic forKey:@"dataList"];
+    }
+    if([self currentCount])
+    {
+        [result setValue:[self currentCount] forKey:@"currentCount"];
+    }
+    if([self totalCount])
+    {
+        [result setValue:[self totalCount] forKey:@"totalCount"];
+    }
+    if([self totalPage])
+    {
+        [result setValue:[self totalPage] forKey:@"totalPage"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    NSArray* dataListArray = [dictionary objectForKey:@"dataList"];
+    if(dataListArray&&![dataListArray isKindOfClass:[NSNull class]])
+    {
+        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
+        for(int i = 0 ; i< [dataListArray count];i++)
+        {
+        CCProtectionRule* item = [[CCProtectionRule alloc]initWithDic:[dataListArray objectAtIndex:i]];
+            if(item)
+            {
+            [propertyArray addObject:item];
+            }
+        }
+        self.dataList = propertyArray;
+    }
+    self.currentCount = [dictionary objectForKey:@"currentCount"];
+    self.totalCount = [dictionary objectForKey:@"totalCount"];
+    self.totalPage = [dictionary objectForKey:@"totalPage"];
+    return self;
+} 
+
+@end
+  
+@implementation IpantiEnableWebRuleWhiteListResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+IpantiEnableWebRuleWhiteListResult* result = [[IpantiEnableWebRuleWhiteListResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(IpantiEnableWebRuleWhiteListResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+  
+@implementation IpantiDisableWebRuleBlackListResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+IpantiDisableWebRuleBlackListResult* result = [[IpantiDisableWebRuleBlackListResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(IpantiDisableWebRuleBlackListResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+@implementation IpantiDescribeWhiteListRulesOfWebRuleResult
+-(id) initWithDataList:(NSArray<WebWhiteListRule*>*) dataList
+        currentCount:(NSNumber*)currentCount
+        totalCount:(NSNumber*)totalCount
+        totalPage:(NSNumber*)totalPage { 
+    self.dataList = dataList;               
+    self.currentCount = currentCount;               
+    self.totalCount = totalCount;               
+    self.totalPage = totalPage;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self dataList])
+    {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self dataList] count]; i++) {
+            WebWhiteListRule* item = [[self dataList] objectAtIndex:i];
+            [arrayDic addObject:[item dictionary]];
+        }
+        [result setValue:arrayDic forKey:@"dataList"];
+    }
+    if([self currentCount])
+    {
+        [result setValue:[self currentCount] forKey:@"currentCount"];
+    }
+    if([self totalCount])
+    {
+        [result setValue:[self totalCount] forKey:@"totalCount"];
+    }
+    if([self totalPage])
+    {
+        [result setValue:[self totalPage] forKey:@"totalPage"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    NSArray* dataListArray = [dictionary objectForKey:@"dataList"];
+    if(dataListArray&&![dataListArray isKindOfClass:[NSNull class]])
+    {
+        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
+        for(int i = 0 ; i< [dataListArray count];i++)
+        {
+        WebWhiteListRule* item = [[WebWhiteListRule alloc]initWithDic:[dataListArray objectAtIndex:i]];
+            if(item)
+            {
+            [propertyArray addObject:item];
+            }
+        }
+        self.dataList = propertyArray;
+    }
+    self.currentCount = [dictionary objectForKey:@"currentCount"];
+    self.totalCount = [dictionary objectForKey:@"totalCount"];
+    self.totalPage = [dictionary objectForKey:@"totalPage"];
+    return self;
+} 
+
+@end
+  
+@implementation IpantiDescribeWhiteListRulesOfWebRuleResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+IpantiDescribeWhiteListRulesOfWebRuleResult* result = [[IpantiDescribeWhiteListRulesOfWebRuleResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(IpantiDescribeWhiteListRulesOfWebRuleResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+  
+@implementation IpantiDisableCCProtectionRuleOfWebRuleResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+IpantiDisableCCProtectionRuleOfWebRuleResult* result = [[IpantiDisableCCProtectionRuleOfWebRuleResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(IpantiDisableCCProtectionRuleOfWebRuleResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+  
+@implementation IpantiDeleteWhiteListRuleOfWebRuleResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+IpantiDeleteWhiteListRuleOfWebRuleResult* result = [[IpantiDeleteWhiteListRuleOfWebRuleResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(IpantiDeleteWhiteListRuleOfWebRuleResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+  
+@implementation IpantiCreateWhiteListRuleOfWebRuleResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+IpantiCreateWhiteListRuleOfWebRuleResult* result = [[IpantiCreateWhiteListRuleOfWebRuleResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(IpantiCreateWhiteListRuleOfWebRuleResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+  
+@implementation IpantiModifyWebRuleResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+IpantiModifyWebRuleResult* result = [[IpantiModifyWebRuleResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(IpantiModifyWebRuleResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+  
+@implementation IpantiDisableWebRuleCCResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+IpantiDisableWebRuleCCResult* result = [[IpantiDisableWebRuleCCResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(IpantiDisableWebRuleCCResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+  
+@implementation IpantiDescribeWebRuleBlackListGeoAreasResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+IpantiDescribeWebRuleBlackListGeoAreasResult* result = [[IpantiDescribeWebRuleBlackListGeoAreasResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(IpantiDescribeWebRuleBlackListGeoAreasResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+@implementation IpantiModifyBlackListRuleOfWebRuleRequest
+-(id) initWithRegion:(NSString *)regionId
+webBlackListRuleSpec:(WebBlackListRuleSpec*)webBlackListRuleSpec
+instanceId:(NSString*)instanceId
+webRuleId:(NSString*)webRuleId
+webBlackListRuleId:(NSString*)webBlackListRuleId { 
+    self.regionId = regionId;
+    self.webBlackListRuleSpec = webBlackListRuleSpec;
+    self.instanceId = instanceId;
+    self.webRuleId = webRuleId;
+    self.webBlackListRuleId = webBlackListRuleId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+webBlackListRuleSpec:(WebBlackListRuleSpec*)webBlackListRuleSpec
+instanceId:(NSString*)instanceId
+webRuleId:(NSString*)webRuleId
+webBlackListRuleId:(NSString*)webBlackListRuleId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.webBlackListRuleSpec = webBlackListRuleSpec;
+    self.instanceId = instanceId;
+    self.webRuleId = webRuleId;
+    self.webBlackListRuleId = webBlackListRuleId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self webBlackListRuleSpec])
+    {
+        [result setValue:[[self webBlackListRuleSpec] dictionary]forKey:@"webBlackListRuleSpec"];
+    }
+    if([self instanceId])
+    {
+        [result setValue:[self instanceId] forKey:@"instanceId"];
+    }
+    if([self webRuleId])
+    {
+        [result setValue:[self webRuleId] forKey:@"webRuleId"];
+    }
+    if([self webBlackListRuleId])
+    {
+        [result setValue:[self webBlackListRuleId] forKey:@"webBlackListRuleId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.webBlackListRuleSpec = [[WebBlackListRuleSpec alloc]initWithDic:[dictionary objectForKey:@"webBlackListRuleSpec"]];
+    self.instanceId = [dictionary objectForKey:@"instanceId"];
+    self.webRuleId = [dictionary objectForKey:@"webRuleId"];
+    self.webBlackListRuleId = [dictionary objectForKey:@"webBlackListRuleId"];
+    return self;
+} 
+
+@end
+  
+@implementation IpantiModifyBlackListRuleOfWebRuleResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+IpantiModifyBlackListRuleOfWebRuleResult* result = [[IpantiModifyBlackListRuleOfWebRuleResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(IpantiModifyBlackListRuleOfWebRuleResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+  
+@implementation IpantiDisableWhiteListRuleOfWebRuleResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+IpantiDisableWhiteListRuleOfWebRuleResult* result = [[IpantiDisableWhiteListRuleOfWebRuleResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(IpantiDisableWhiteListRuleOfWebRuleResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+@implementation IpantiModifyWhiteListRuleOfWebRuleRequest
+-(id) initWithRegion:(NSString *)regionId
+webWhiteListRuleSpec:(WebWhiteListRuleSpec*)webWhiteListRuleSpec
+instanceId:(NSString*)instanceId
+webRuleId:(NSString*)webRuleId
+webWhiteListRuleId:(NSString*)webWhiteListRuleId { 
+    self.regionId = regionId;
+    self.webWhiteListRuleSpec = webWhiteListRuleSpec;
+    self.instanceId = instanceId;
+    self.webRuleId = webRuleId;
+    self.webWhiteListRuleId = webWhiteListRuleId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+webWhiteListRuleSpec:(WebWhiteListRuleSpec*)webWhiteListRuleSpec
+instanceId:(NSString*)instanceId
+webRuleId:(NSString*)webRuleId
+webWhiteListRuleId:(NSString*)webWhiteListRuleId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.webWhiteListRuleSpec = webWhiteListRuleSpec;
+    self.instanceId = instanceId;
+    self.webRuleId = webRuleId;
+    self.webWhiteListRuleId = webWhiteListRuleId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self webWhiteListRuleSpec])
+    {
+        [result setValue:[[self webWhiteListRuleSpec] dictionary]forKey:@"webWhiteListRuleSpec"];
+    }
+    if([self instanceId])
+    {
+        [result setValue:[self instanceId] forKey:@"instanceId"];
+    }
+    if([self webRuleId])
+    {
+        [result setValue:[self webRuleId] forKey:@"webRuleId"];
+    }
+    if([self webWhiteListRuleId])
+    {
+        [result setValue:[self webWhiteListRuleId] forKey:@"webWhiteListRuleId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.webWhiteListRuleSpec = [[WebWhiteListRuleSpec alloc]initWithDic:[dictionary objectForKey:@"webWhiteListRuleSpec"]];
+    self.instanceId = [dictionary objectForKey:@"instanceId"];
+    self.webRuleId = [dictionary objectForKey:@"webRuleId"];
+    self.webWhiteListRuleId = [dictionary objectForKey:@"webWhiteListRuleId"];
+    return self;
+} 
+
+@end
+@implementation IpantiModifyWebRuleRequest
+-(id) initWithRegion:(NSString *)regionId
+webRuleSpec:(WebRuleSpec*)webRuleSpec
+instanceId:(NSString*)instanceId
+webRuleId:(NSString*)webRuleId { 
+    self.regionId = regionId;
+    self.webRuleSpec = webRuleSpec;
+    self.instanceId = instanceId;
+    self.webRuleId = webRuleId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+webRuleSpec:(WebRuleSpec*)webRuleSpec
+instanceId:(NSString*)instanceId
+webRuleId:(NSString*)webRuleId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.webRuleSpec = webRuleSpec;
+    self.instanceId = instanceId;
+    self.webRuleId = webRuleId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self webRuleSpec])
+    {
+        [result setValue:[[self webRuleSpec] dictionary]forKey:@"webRuleSpec"];
+    }
+    if([self instanceId])
+    {
+        [result setValue:[self instanceId] forKey:@"instanceId"];
+    }
+    if([self webRuleId])
+    {
+        [result setValue:[self webRuleId] forKey:@"webRuleId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.webRuleSpec = [[WebRuleSpec alloc]initWithDic:[dictionary objectForKey:@"webRuleSpec"]];
+    self.instanceId = [dictionary objectForKey:@"instanceId"];
+    self.webRuleId = [dictionary objectForKey:@"webRuleId"];
+    return self;
+} 
+
+@end
+@implementation IpantiDescribeCCProtectionConfigOfWebRuleResult
+-(id) initWithData:(CCProtectionConfig*) data { 
+    self.data = data;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self data])
+    {
+        [result setValue:[[self data] dictionary]forKey:@"data"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.data = [[CCProtectionConfig alloc]initWithDic:[dictionary objectForKey:@"data"]];
+    return self;
+} 
+
+@end
+  
+@implementation IpantiDeleteWebRuleResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+IpantiDeleteWebRuleResult* result = [[IpantiDeleteWebRuleResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(IpantiDeleteWebRuleResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+@implementation IpantiCreateWebRuleRequest
+-(id) initWithRegion:(NSString *)regionId
+webRuleSpec:(WebRuleSpec*)webRuleSpec
+instanceId:(NSString*)instanceId { 
+    self.regionId = regionId;
+    self.webRuleSpec = webRuleSpec;
+    self.instanceId = instanceId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+webRuleSpec:(WebRuleSpec*)webRuleSpec
+instanceId:(NSString*)instanceId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.webRuleSpec = webRuleSpec;
+    self.instanceId = instanceId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self webRuleSpec])
+    {
+        [result setValue:[[self webRuleSpec] dictionary]forKey:@"webRuleSpec"];
+    }
+    if([self instanceId])
+    {
+        [result setValue:[self instanceId] forKey:@"instanceId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.webRuleSpec = [[WebRuleSpec alloc]initWithDic:[dictionary objectForKey:@"webRuleSpec"]];
+    self.instanceId = [dictionary objectForKey:@"instanceId"];
+    return self;
+} 
+
+@end
+@implementation IpantiDescribeWebRuleBlackListGeoAreasRequest
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    return self;
+} 
+
+@end
+@implementation IpantiDescribeWebRuleWhiteListGeoAreasRequest
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    return self;
+} 
+
+@end
+  
+@implementation IpantiCreateBlackListRuleOfWebRuleResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+IpantiCreateBlackListRuleOfWebRuleResult* result = [[IpantiCreateBlackListRuleOfWebRuleResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(IpantiCreateBlackListRuleOfWebRuleResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+  
+@implementation IpantiDescribeCCProtectionConfigOfWebRuleResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+IpantiDescribeCCProtectionConfigOfWebRuleResult* result = [[IpantiDescribeCCProtectionConfigOfWebRuleResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(IpantiDescribeCCProtectionConfigOfWebRuleResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+  
+@implementation IpantiDescribeBlackListRuleOfWebRuleResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+IpantiDescribeBlackListRuleOfWebRuleResult* result = [[IpantiDescribeBlackListRuleOfWebRuleResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(IpantiDescribeBlackListRuleOfWebRuleResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+  
+@implementation IpantiDescribeWebRuleWhiteListUsageResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+IpantiDescribeWebRuleWhiteListUsageResult* result = [[IpantiDescribeWebRuleWhiteListUsageResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(IpantiDescribeWebRuleWhiteListUsageResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+@implementation IpantiModifyCCProtectionConfigOfWebRuleRequest
+-(id) initWithRegion:(NSString *)regionId
+ccProtectionConfigSpec:(CCProtectionConfigSpec*)ccProtectionConfigSpec
+instanceId:(NSString*)instanceId
+webRuleId:(NSString*)webRuleId { 
+    self.regionId = regionId;
+    self.ccProtectionConfigSpec = ccProtectionConfigSpec;
+    self.instanceId = instanceId;
+    self.webRuleId = webRuleId;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+ccProtectionConfigSpec:(CCProtectionConfigSpec*)ccProtectionConfigSpec
+instanceId:(NSString*)instanceId
+webRuleId:(NSString*)webRuleId { 
+    self.regionId = regionId;
+    self.version = version;
+    self.ccProtectionConfigSpec = ccProtectionConfigSpec;
+    self.instanceId = instanceId;
+    self.webRuleId = webRuleId;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self ccProtectionConfigSpec])
+    {
+        [result setValue:[[self ccProtectionConfigSpec] dictionary]forKey:@"ccProtectionConfigSpec"];
+    }
+    if([self instanceId])
+    {
+        [result setValue:[self instanceId] forKey:@"instanceId"];
+    }
+    if([self webRuleId])
+    {
+        [result setValue:[self webRuleId] forKey:@"webRuleId"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.ccProtectionConfigSpec = [[CCProtectionConfigSpec alloc]initWithDic:[dictionary objectForKey:@"ccProtectionConfigSpec"]];
+    self.instanceId = [dictionary objectForKey:@"instanceId"];
+    self.webRuleId = [dictionary objectForKey:@"webRuleId"];
+    return self;
+} 
+
+@end
+  
+@implementation IpantiCreateWebRuleResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+IpantiCreateWebRuleResult* result = [[IpantiCreateWebRuleResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(IpantiCreateWebRuleResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+@implementation IpantiDescribeCCProtectionRuleOfWebRuleResult
+-(id) initWithData:(CCProtectionRule*) data { 
+    self.data = data;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self data])
+    {
+        [result setValue:[[self data] dictionary]forKey:@"data"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.data = [[CCProtectionRule alloc]initWithDic:[dictionary objectForKey:@"data"]];
+    return self;
+} 
+
+@end
+  
+@implementation IpantiDescribeCCProtectionRuleOfWebRuleResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+IpantiDescribeCCProtectionRuleOfWebRuleResult* result = [[IpantiDescribeCCProtectionRuleOfWebRuleResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(IpantiDescribeCCProtectionRuleOfWebRuleResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+@implementation IpantiDescribeCCProtectionDefaultConfigOfWebRuleResult
+-(id) initWithData:(CCProtectionDefaultConfig*) data { 
+    self.data = data;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self data])
+    {
+        [result setValue:[[self data] dictionary]forKey:@"data"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.data = [[CCProtectionDefaultConfig alloc]initWithDic:[dictionary objectForKey:@"data"]];
+    return self;
+} 
+
+@end
+  
+@implementation IpantiDescribeCCProtectionDefaultConfigOfWebRuleResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+IpantiDescribeCCProtectionDefaultConfigOfWebRuleResult* result = [[IpantiDescribeCCProtectionDefaultConfigOfWebRuleResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(IpantiDescribeCCProtectionDefaultConfigOfWebRuleResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+  
+@implementation IpantiDescribeWhiteListRuleOfWebRuleResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+IpantiDescribeWhiteListRuleOfWebRuleResult* result = [[IpantiDescribeWhiteListRuleOfWebRuleResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(IpantiDescribeWhiteListRuleOfWebRuleResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+  
+@implementation IpantiModifyWhiteListRuleOfWebRuleResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+IpantiModifyWhiteListRuleOfWebRuleResult* result = [[IpantiModifyWhiteListRuleOfWebRuleResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(IpantiModifyWhiteListRuleOfWebRuleResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+  
+@implementation IpantiDisableBlackListRuleOfWebRuleResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+IpantiDisableBlackListRuleOfWebRuleResult* result = [[IpantiDisableBlackListRuleOfWebRuleResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(IpantiDisableBlackListRuleOfWebRuleResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+@implementation IpantiDescribeBlackListRulesOfWebRuleResult
+-(id) initWithDataList:(NSArray<WebBlackListRule*>*) dataList
+        currentCount:(NSNumber*)currentCount
+        totalCount:(NSNumber*)totalCount
+        totalPage:(NSNumber*)totalPage { 
+    self.dataList = dataList;               
+    self.currentCount = currentCount;               
+    self.totalCount = totalCount;               
+    self.totalPage = totalPage;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self dataList])
+    {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self dataList] count]; i++) {
+            WebBlackListRule* item = [[self dataList] objectAtIndex:i];
+            [arrayDic addObject:[item dictionary]];
+        }
+        [result setValue:arrayDic forKey:@"dataList"];
+    }
+    if([self currentCount])
+    {
+        [result setValue:[self currentCount] forKey:@"currentCount"];
+    }
+    if([self totalCount])
+    {
+        [result setValue:[self totalCount] forKey:@"totalCount"];
+    }
+    if([self totalPage])
+    {
+        [result setValue:[self totalPage] forKey:@"totalPage"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    NSArray* dataListArray = [dictionary objectForKey:@"dataList"];
+    if(dataListArray&&![dataListArray isKindOfClass:[NSNull class]])
+    {
+        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
+        for(int i = 0 ; i< [dataListArray count];i++)
+        {
+        WebBlackListRule* item = [[WebBlackListRule alloc]initWithDic:[dataListArray objectAtIndex:i]];
+            if(item)
+            {
+            [propertyArray addObject:item];
+            }
+        }
+        self.dataList = propertyArray;
+    }
+    self.currentCount = [dictionary objectForKey:@"currentCount"];
+    self.totalCount = [dictionary objectForKey:@"totalCount"];
+    self.totalPage = [dictionary objectForKey:@"totalPage"];
+    return self;
+} 
+
+@end
+  
+@implementation IpantiSwitchWebRuleOriginResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+IpantiSwitchWebRuleOriginResult* result = [[IpantiSwitchWebRuleOriginResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(IpantiSwitchWebRuleOriginResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+  
+@implementation IpantiEnableWebRuleCCResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+IpantiEnableWebRuleCCResult* result = [[IpantiEnableWebRuleCCResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(IpantiEnableWebRuleCCResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+  
+@implementation IpantiDisableWebRuleWhiteListResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+IpantiDisableWebRuleWhiteListResult* result = [[IpantiDisableWebRuleWhiteListResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(IpantiDisableWebRuleWhiteListResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+  
+@implementation IpantiDescribeWebRuleBlackListUsageResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+IpantiDescribeWebRuleBlackListUsageResult* result = [[IpantiDescribeWebRuleBlackListUsageResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(IpantiDescribeWebRuleBlackListUsageResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+  
+@implementation IpantiDescribeBlackListRulesOfWebRuleResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+IpantiDescribeBlackListRulesOfWebRuleResult* result = [[IpantiDescribeBlackListRulesOfWebRuleResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(IpantiDescribeBlackListRulesOfWebRuleResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+  
+@implementation IpantiEnableWebRuleBlackListResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+IpantiEnableWebRuleBlackListResult* result = [[IpantiEnableWebRuleBlackListResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(IpantiEnableWebRuleBlackListResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+  
+@implementation IpantiDescribeWebRuleResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+IpantiDescribeWebRuleResult* result = [[IpantiDescribeWebRuleResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(IpantiDescribeWebRuleResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+  
+@implementation IpantiEnableBlackListRuleOfWebRuleResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+IpantiEnableBlackListRuleOfWebRuleResult* result = [[IpantiEnableBlackListRuleOfWebRuleResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(IpantiEnableBlackListRuleOfWebRuleResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+  
+@implementation IpantiCreateCCProtectionRuleOfWebRuleResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+IpantiCreateCCProtectionRuleOfWebRuleResult* result = [[IpantiCreateCCProtectionRuleOfWebRuleResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(IpantiCreateCCProtectionRuleOfWebRuleResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+  
+@implementation IpantiSwitchWebRuleProtectResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+IpantiSwitchWebRuleProtectResult* result = [[IpantiSwitchWebRuleProtectResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(IpantiSwitchWebRuleProtectResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+  
+@implementation IpantiDescribeCCProtectionRulesOfWebRuleResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+IpantiDescribeCCProtectionRulesOfWebRuleResult* result = [[IpantiDescribeCCProtectionRulesOfWebRuleResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(IpantiDescribeCCProtectionRulesOfWebRuleResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+  
+@implementation IpantiModifyCCProtectionRuleOfWebRuleResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+IpantiModifyCCProtectionRuleOfWebRuleResult* result = [[IpantiModifyCCProtectionRuleOfWebRuleResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(IpantiModifyCCProtectionRuleOfWebRuleResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+  
+@implementation IpantiEnableBlackListRuleOfForwardRuleResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+IpantiEnableBlackListRuleOfForwardRuleResult* result = [[IpantiEnableBlackListRuleOfForwardRuleResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(IpantiEnableBlackListRuleOfForwardRuleResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+  
+@implementation IpantiCreateForwardRuleResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+IpantiCreateForwardRuleResult* result = [[IpantiCreateForwardRuleResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(IpantiCreateForwardRuleResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+@implementation IpantiDescribeGeoAreasResult
+-(id) initWithDataList:(NSArray<Country*>*) dataList { 
+    self.dataList = dataList;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self dataList])
+    {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self dataList] count]; i++) {
+            Country* item = [[self dataList] objectAtIndex:i];
+            [arrayDic addObject:[item dictionary]];
+        }
+        [result setValue:arrayDic forKey:@"dataList"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    NSArray* dataListArray = [dictionary objectForKey:@"dataList"];
+    if(dataListArray&&![dataListArray isKindOfClass:[NSNull class]])
+    {
+        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
+        for(int i = 0 ; i< [dataListArray count];i++)
+        {
+        Country* item = [[Country alloc]initWithDic:[dataListArray objectAtIndex:i]];
+            if(item)
+            {
+            [propertyArray addObject:item];
+            }
+        }
+        self.dataList = propertyArray;
+    }
+    return self;
+} 
+
+@end
+  
+@implementation IpantiDescribeGeoAreasResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+IpantiDescribeGeoAreasResult* result = [[IpantiDescribeGeoAreasResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(IpantiDescribeGeoAreasResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+@implementation IpantiDescribeProtectionRuleOfForwardRuleResult
+-(id) initWithProtectionRule:(ForwardProtectionRule*) protectionRule { 
+    self.protectionRule = protectionRule;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self protectionRule])
+    {
+        [result setValue:[[self protectionRule] dictionary]forKey:@"protectionRule"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.protectionRule = [[ForwardProtectionRule alloc]initWithDic:[dictionary objectForKey:@"protectionRule"]];
+    return self;
+} 
+
+@end
+  
+@implementation IpantiModifyWhiteListRuleOfForwardRuleResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+IpantiModifyWhiteListRuleOfForwardRuleResult* result = [[IpantiModifyWhiteListRuleOfForwardRuleResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(IpantiModifyWhiteListRuleOfForwardRuleResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
 
 @end
   
@@ -6203,33 +8016,6 @@ IpantiModifyBlackListRuleOfForwardRuleResult* result = [[IpantiModifyBlackListRu
     self.requestId = requestId;
     return self;
 }
-
-@end
-@implementation IpantiDeleteForwardRuleResult
--(id) initWithCode:(NSNumber*) code
-        message:(NSString*)message { 
-    self.code = code;               
-    self.message = message;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self code])
-    {
-        [result setValue:[self code] forKey:@"code"];
-    }
-    if([self message])
-    {
-        [result setValue:[self message] forKey:@"message"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.code = [dictionary objectForKey:@"code"];
-    self.message = [dictionary objectForKey:@"message"];
-    return self;
-} 
 
 @end
 @implementation IpantiDescribeWhiteListRuleOfForwardRuleResult
@@ -6308,33 +8094,6 @@ IpantiDescribeWhiteListRuleOfForwardRuleResult* result = [[IpantiDescribeWhiteLi
 }
 
 -(id) initWithDic:(NSDictionary*)dictionary{
-    return self;
-} 
-
-@end
-@implementation IpantiDisableWhiteListRuleOfForwardRuleResult
--(id) initWithCode:(NSNumber*) code
-        message:(NSString*)message { 
-    self.code = code;               
-    self.message = message;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self code])
-    {
-        [result setValue:[self code] forKey:@"code"];
-    }
-    if([self message])
-    {
-        [result setValue:[self message] forKey:@"message"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.code = [dictionary objectForKey:@"code"];
-    self.message = [dictionary objectForKey:@"message"];
     return self;
 } 
 
@@ -6447,78 +8206,6 @@ IpantiDescribeForwardRuleResult* result = [[IpantiDescribeForwardRuleResult allo
 }
 
 @end
-@implementation IpantiSwitchForwardRuleOriginRequest
--(id) initWithRegion:(NSString *)regionId
-instanceId:(NSString*)instanceId
-forwardRuleId:(NSString*)forwardRuleId { 
-    self.regionId = regionId;
-    self.instanceId = instanceId;
-    self.forwardRuleId = forwardRuleId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-instanceId:(NSString*)instanceId
-forwardRuleId:(NSString*)forwardRuleId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.instanceId = instanceId;
-    self.forwardRuleId = forwardRuleId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self instanceId])
-    {
-        [result setValue:[self instanceId] forKey:@"instanceId"];
-    }
-    if([self forwardRuleId])
-    {
-        [result setValue:[self forwardRuleId] forKey:@"forwardRuleId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.instanceId = [dictionary objectForKey:@"instanceId"];
-    self.forwardRuleId = [dictionary objectForKey:@"forwardRuleId"];
-    return self;
-} 
-
-@end
-@implementation IpantiSwitchForwardRuleOriginResult
--(id) initWithCode:(NSNumber*) code
-        message:(NSString*)message { 
-    self.code = code;               
-    self.message = message;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self code])
-    {
-        [result setValue:[self code] forKey:@"code"];
-    }
-    if([self message])
-    {
-        [result setValue:[self message] forKey:@"message"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.code = [dictionary objectForKey:@"code"];
-    self.message = [dictionary objectForKey:@"message"];
-    return self;
-} 
-
-@end
 @implementation IpantiModifyForwardRuleRequest
 -(id) initWithRegion:(NSString *)regionId
 forwardRuleSpec:(ForwardRuleSpec*)forwardRuleSpec
@@ -6588,8 +8275,8 @@ forwardRuleId:(NSString*)forwardRuleId {
     NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
     if([self dataList])
     {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self dataList] count]; i++) {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self dataList] count]; i++) {
             ForwardRule* item = [[self dataList] objectAtIndex:i];
             [arrayDic addObject:[item dictionary]];
         }
@@ -6617,10 +8304,10 @@ forwardRuleId:(NSString*)forwardRuleId {
         NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
         for(int i = 0 ; i< [dataListArray count];i++)
         {
-            ForwardRule* item = [[ForwardRule alloc]initWithDic:[dataListArray objectAtIndex:i]];
+        ForwardRule* item = [[ForwardRule alloc]initWithDic:[dataListArray objectAtIndex:i]];
             if(item)
             {
-                [propertyArray addObject:item];
+            [propertyArray addObject:item];
             }
         }
         self.dataList = propertyArray;
@@ -6720,96 +8407,6 @@ IpantiDescribeProtectionRuleOfForwardRuleResult* result = [[IpantiDescribeProtec
 }
 
 @end
-@implementation IpantiSwitchForwardRuleProtectRequest
--(id) initWithRegion:(NSString *)regionId
-instanceId:(NSString*)instanceId
-forwardRuleId:(NSString*)forwardRuleId { 
-    self.regionId = regionId;
-    self.instanceId = instanceId;
-    self.forwardRuleId = forwardRuleId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-instanceId:(NSString*)instanceId
-forwardRuleId:(NSString*)forwardRuleId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.instanceId = instanceId;
-    self.forwardRuleId = forwardRuleId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self instanceId])
-    {
-        [result setValue:[self instanceId] forKey:@"instanceId"];
-    }
-    if([self forwardRuleId])
-    {
-        [result setValue:[self forwardRuleId] forKey:@"forwardRuleId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.instanceId = [dictionary objectForKey:@"instanceId"];
-    self.forwardRuleId = [dictionary objectForKey:@"forwardRuleId"];
-    return self;
-} 
-
-@end
-@implementation IpantiDescribeBlackListRuleOfForwardRuleRequest
--(id) initWithRegion:(NSString *)regionId
-instanceId:(NSString*)instanceId
-forwardRuleId:(NSString*)forwardRuleId { 
-    self.regionId = regionId;
-    self.instanceId = instanceId;
-    self.forwardRuleId = forwardRuleId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-instanceId:(NSString*)instanceId
-forwardRuleId:(NSString*)forwardRuleId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.instanceId = instanceId;
-    self.forwardRuleId = forwardRuleId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self instanceId])
-    {
-        [result setValue:[self instanceId] forKey:@"instanceId"];
-    }
-    if([self forwardRuleId])
-    {
-        [result setValue:[self forwardRuleId] forKey:@"forwardRuleId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.instanceId = [dictionary objectForKey:@"instanceId"];
-    self.forwardRuleId = [dictionary objectForKey:@"forwardRuleId"];
-    return self;
-} 
-
-@end
   
 @implementation IpantiEnableWhiteListRuleOfForwardRuleResponse
 -(NSMutableDictionary*) dictionary
@@ -6899,33 +8496,6 @@ instanceId:(NSString*)instanceId {
 } 
 
 @end
-@implementation IpantiSwitchForwardRuleProtectResult
--(id) initWithCode:(NSNumber*) code
-        message:(NSString*)message { 
-    self.code = code;               
-    self.message = message;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self code])
-    {
-        [result setValue:[self code] forKey:@"code"];
-    }
-    if([self message])
-    {
-        [result setValue:[self message] forKey:@"message"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.code = [dictionary objectForKey:@"code"];
-    self.message = [dictionary objectForKey:@"message"];
-    return self;
-} 
-
-@end
   
 @implementation IpantiModifyProtectionRuleOfForwardRuleResponse
 -(NSMutableDictionary*) dictionary
@@ -6968,51 +8538,6 @@ IpantiModifyProtectionRuleOfForwardRuleResult* result = [[IpantiModifyProtection
     self.requestId = requestId;
     return self;
 }
-
-@end
-@implementation IpantiDeleteForwardRuleRequest
--(id) initWithRegion:(NSString *)regionId
-instanceId:(NSString*)instanceId
-forwardRuleId:(NSString*)forwardRuleId { 
-    self.regionId = regionId;
-    self.instanceId = instanceId;
-    self.forwardRuleId = forwardRuleId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-instanceId:(NSString*)instanceId
-forwardRuleId:(NSString*)forwardRuleId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.instanceId = instanceId;
-    self.forwardRuleId = forwardRuleId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self instanceId])
-    {
-        [result setValue:[self instanceId] forKey:@"instanceId"];
-    }
-    if([self forwardRuleId])
-    {
-        [result setValue:[self forwardRuleId] forKey:@"forwardRuleId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.instanceId = [dictionary objectForKey:@"instanceId"];
-    self.forwardRuleId = [dictionary objectForKey:@"forwardRuleId"];
-    return self;
-} 
 
 @end
   
@@ -7113,51 +8638,6 @@ forwardRuleId:(NSString*)forwardRuleId {
 } 
 
 @end
-@implementation IpantiDescribeProtectionRuleOfForwardRuleRequest
--(id) initWithRegion:(NSString *)regionId
-instanceId:(NSString*)instanceId
-forwardRuleId:(NSString*)forwardRuleId { 
-    self.regionId = regionId;
-    self.instanceId = instanceId;
-    self.forwardRuleId = forwardRuleId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-instanceId:(NSString*)instanceId
-forwardRuleId:(NSString*)forwardRuleId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.instanceId = instanceId;
-    self.forwardRuleId = forwardRuleId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self instanceId])
-    {
-        [result setValue:[self instanceId] forKey:@"instanceId"];
-    }
-    if([self forwardRuleId])
-    {
-        [result setValue:[self forwardRuleId] forKey:@"forwardRuleId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.instanceId = [dictionary objectForKey:@"instanceId"];
-    self.forwardRuleId = [dictionary objectForKey:@"forwardRuleId"];
-    return self;
-} 
-
-@end
   
 @implementation IpantiSwitchForwardRuleProtectResponse
 -(NSMutableDictionary*) dictionary
@@ -7202,51 +8682,6 @@ IpantiSwitchForwardRuleProtectResult* result = [[IpantiSwitchForwardRuleProtectR
 }
 
 @end
-@implementation IpantiDisableBlackListRuleOfForwardRuleRequest
--(id) initWithRegion:(NSString *)regionId
-instanceId:(NSString*)instanceId
-forwardRuleId:(NSString*)forwardRuleId { 
-    self.regionId = regionId;
-    self.instanceId = instanceId;
-    self.forwardRuleId = forwardRuleId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-instanceId:(NSString*)instanceId
-forwardRuleId:(NSString*)forwardRuleId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.instanceId = instanceId;
-    self.forwardRuleId = forwardRuleId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self instanceId])
-    {
-        [result setValue:[self instanceId] forKey:@"instanceId"];
-    }
-    if([self forwardRuleId])
-    {
-        [result setValue:[self forwardRuleId] forKey:@"forwardRuleId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.instanceId = [dictionary objectForKey:@"instanceId"];
-    self.forwardRuleId = [dictionary objectForKey:@"forwardRuleId"];
-    return self;
-} 
-
-@end
   
 @implementation IpantiSwitchForwardRuleOriginResponse
 -(NSMutableDictionary*) dictionary
@@ -7289,78 +8724,6 @@ IpantiSwitchForwardRuleOriginResult* result = [[IpantiSwitchForwardRuleOriginRes
     self.requestId = requestId;
     return self;
 }
-
-@end
-@implementation IpantiDisableBlackListRuleOfForwardRuleResult
--(id) initWithCode:(NSNumber*) code
-        message:(NSString*)message { 
-    self.code = code;               
-    self.message = message;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self code])
-    {
-        [result setValue:[self code] forKey:@"code"];
-    }
-    if([self message])
-    {
-        [result setValue:[self message] forKey:@"message"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.code = [dictionary objectForKey:@"code"];
-    self.message = [dictionary objectForKey:@"message"];
-    return self;
-} 
-
-@end
-@implementation IpantiDisableWhiteListRuleOfForwardRuleRequest
--(id) initWithRegion:(NSString *)regionId
-instanceId:(NSString*)instanceId
-forwardRuleId:(NSString*)forwardRuleId { 
-    self.regionId = regionId;
-    self.instanceId = instanceId;
-    self.forwardRuleId = forwardRuleId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-instanceId:(NSString*)instanceId
-forwardRuleId:(NSString*)forwardRuleId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.instanceId = instanceId;
-    self.forwardRuleId = forwardRuleId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self instanceId])
-    {
-        [result setValue:[self instanceId] forKey:@"instanceId"];
-    }
-    if([self forwardRuleId])
-    {
-        [result setValue:[self forwardRuleId] forKey:@"forwardRuleId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.instanceId = [dictionary objectForKey:@"instanceId"];
-    self.forwardRuleId = [dictionary objectForKey:@"forwardRuleId"];
-    return self;
-} 
 
 @end
 @implementation IpantiDescribeBlackListRuleOfForwardRuleResult
@@ -7623,168 +8986,6 @@ IpantiDisableBlackListRuleOfForwardRuleResult* result = [[IpantiDisableBlackList
 }
 
 @end
-@implementation IpantiDescribeCCAttackLogDetailsRequest
--(id) initWithRegion:(NSString *)regionId
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-startTime:(NSString*)startTime
-endTime:(NSString*)endTime
-instanceId:(NSString*)instanceId
-subDomain:(NSArray<NSString*>*)subDomain
-attackId:(NSString*)attackId { 
-    self.regionId = regionId;
-    self.pageNumber = pageNumber;
-    self.pageSize = pageSize;
-    self.startTime = startTime;
-    self.endTime = endTime;
-    self.instanceId = instanceId;
-    self.subDomain = subDomain;
-    self.attackId = attackId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-startTime:(NSString*)startTime
-endTime:(NSString*)endTime
-instanceId:(NSString*)instanceId
-subDomain:(NSArray<NSString*>*)subDomain
-attackId:(NSString*)attackId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.pageNumber = pageNumber;
-    self.pageSize = pageSize;
-    self.startTime = startTime;
-    self.endTime = endTime;
-    self.instanceId = instanceId;
-    self.subDomain = subDomain;
-    self.attackId = attackId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self pageNumber])
-    {
-        [result setValue:[self pageNumber] forKey:@"pageNumber"];
-    }
-    if([self pageSize])
-    {
-        [result setValue:[self pageSize] forKey:@"pageSize"];
-    }
-    if([self startTime])
-    {
-        [result setValue:[self startTime] forKey:@"startTime"];
-    }
-    if([self endTime])
-    {
-        [result setValue:[self endTime] forKey:@"endTime"];
-    }
-    if([self instanceId])
-    {
-        [result setValue:[self instanceId] forKey:@"instanceId"];
-    }
-    if([self subDomain])
-    {
-        [result setValue:[self subDomain] forKey:@"subDomain"];
-    }
-    if([self attackId])
-    {
-        [result setValue:[self attackId] forKey:@"attackId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.pageNumber = [dictionary objectForKey:@"pageNumber"];
-    self.pageSize = [dictionary objectForKey:@"pageSize"];
-    self.startTime = [dictionary objectForKey:@"startTime"];
-    self.endTime = [dictionary objectForKey:@"endTime"];
-    self.instanceId = [dictionary objectForKey:@"instanceId"];
-    self.subDomain = [dictionary objectForKey:@"subDomain"];
-    self.attackId = [dictionary objectForKey:@"attackId"];
-    return self;
-} 
-
-@end
-@implementation IpantiDescribeCCAttackLogsRequest
--(id) initWithRegion:(NSString *)regionId
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-startTime:(NSString*)startTime
-endTime:(NSString*)endTime
-instanceId:(NSArray<NSString*>*)instanceId { 
-    self.regionId = regionId;
-    self.pageNumber = pageNumber;
-    self.pageSize = pageSize;
-    self.startTime = startTime;
-    self.endTime = endTime;
-    self.instanceId = instanceId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-startTime:(NSString*)startTime
-endTime:(NSString*)endTime
-instanceId:(NSArray<NSString*>*)instanceId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.pageNumber = pageNumber;
-    self.pageSize = pageSize;
-    self.startTime = startTime;
-    self.endTime = endTime;
-    self.instanceId = instanceId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self pageNumber])
-    {
-        [result setValue:[self pageNumber] forKey:@"pageNumber"];
-    }
-    if([self pageSize])
-    {
-        [result setValue:[self pageSize] forKey:@"pageSize"];
-    }
-    if([self startTime])
-    {
-        [result setValue:[self startTime] forKey:@"startTime"];
-    }
-    if([self endTime])
-    {
-        [result setValue:[self endTime] forKey:@"endTime"];
-    }
-    if([self instanceId])
-    {
-        [result setValue:[self instanceId] forKey:@"instanceId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.pageNumber = [dictionary objectForKey:@"pageNumber"];
-    self.pageSize = [dictionary objectForKey:@"pageSize"];
-    self.startTime = [dictionary objectForKey:@"startTime"];
-    self.endTime = [dictionary objectForKey:@"endTime"];
-    self.instanceId = [dictionary objectForKey:@"instanceId"];
-    return self;
-} 
-
-@end
 @implementation IpantiDescribeCCAttackLogsResult
 -(id) initWithDataList:(NSArray<CCAttackLog*>*) dataList
         currentCount:(NSNumber*)currentCount
@@ -7800,8 +9001,8 @@ instanceId:(NSArray<NSString*>*)instanceId {
     NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
     if([self dataList])
     {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self dataList] count]; i++) {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self dataList] count]; i++) {
             CCAttackLog* item = [[self dataList] objectAtIndex:i];
             [arrayDic addObject:[item dictionary]];
         }
@@ -7829,10 +9030,10 @@ instanceId:(NSArray<NSString*>*)instanceId {
         NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
         for(int i = 0 ; i< [dataListArray count];i++)
         {
-            CCAttackLog* item = [[CCAttackLog alloc]initWithDic:[dataListArray objectAtIndex:i]];
+        CCAttackLog* item = [[CCAttackLog alloc]initWithDic:[dataListArray objectAtIndex:i]];
             if(item)
             {
-                [propertyArray addObject:item];
+            [propertyArray addObject:item];
             }
         }
         self.dataList = propertyArray;
@@ -7903,8 +9104,8 @@ IpantiDescribeCCAttackLogsResult* result = [[IpantiDescribeCCAttackLogsResult al
     NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
     if([self dataList])
     {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self dataList] count]; i++) {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self dataList] count]; i++) {
             CCAttackLogDetail* item = [[self dataList] objectAtIndex:i];
             [arrayDic addObject:[item dictionary]];
         }
@@ -7932,10 +9133,10 @@ IpantiDescribeCCAttackLogsResult* result = [[IpantiDescribeCCAttackLogsResult al
         NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
         for(int i = 0 ; i< [dataListArray count];i++)
         {
-            CCAttackLogDetail* item = [[CCAttackLogDetail alloc]initWithDic:[dataListArray objectAtIndex:i]];
+        CCAttackLogDetail* item = [[CCAttackLogDetail alloc]initWithDic:[dataListArray objectAtIndex:i]];
             if(item)
             {
-                [propertyArray addObject:item];
+            [propertyArray addObject:item];
             }
         }
         self.dataList = propertyArray;
@@ -7943,103 +9144,6 @@ IpantiDescribeCCAttackLogsResult* result = [[IpantiDescribeCCAttackLogsResult al
     self.currentCount = [dictionary objectForKey:@"currentCount"];
     self.totalCount = [dictionary objectForKey:@"totalCount"];
     self.totalPage = [dictionary objectForKey:@"totalPage"];
-    return self;
-} 
-
-@end
-@implementation IpantiDescribeAttackStatisticsRequest
--(id) initWithRegion:(NSString *)regionId
-startTime:(NSString*)startTime
-endTime:(NSString*)endTime
-instanceId:(NSArray<NSString*>*)instanceId
-type:(NSNumber*)type { 
-    self.regionId = regionId;
-    self.startTime = startTime;
-    self.endTime = endTime;
-    self.instanceId = instanceId;
-    self.type = type;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-startTime:(NSString*)startTime
-endTime:(NSString*)endTime
-instanceId:(NSArray<NSString*>*)instanceId
-type:(NSNumber*)type { 
-    self.regionId = regionId;
-    self.version = version;
-    self.startTime = startTime;
-    self.endTime = endTime;
-    self.instanceId = instanceId;
-    self.type = type;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self startTime])
-    {
-        [result setValue:[self startTime] forKey:@"startTime"];
-    }
-    if([self endTime])
-    {
-        [result setValue:[self endTime] forKey:@"endTime"];
-    }
-    if([self instanceId])
-    {
-        [result setValue:[self instanceId] forKey:@"instanceId"];
-    }
-    if([self type])
-    {
-        [result setValue:[self type] forKey:@"type"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.startTime = [dictionary objectForKey:@"startTime"];
-    self.endTime = [dictionary objectForKey:@"endTime"];
-    self.instanceId = [dictionary objectForKey:@"instanceId"];
-    self.type = [dictionary objectForKey:@"type"];
-    return self;
-} 
-
-@end
-@implementation IpantiDescribeAttackStatisticsResult
--(id) initWithFlow:(NSNumber*) flow
-        count:(NSNumber*)count
-        unit:(NSString*)unit { 
-    self.flow = flow;               
-    self.count = count;               
-    self.unit = unit;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self flow])
-    {
-        [result setValue:[self flow] forKey:@"flow"];
-    }
-    if([self count])
-    {
-        [result setValue:[self count] forKey:@"count"];
-    }
-    if([self unit])
-    {
-        [result setValue:[self unit] forKey:@"unit"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.flow = [dictionary objectForKey:@"flow"];
-    self.count = [dictionary objectForKey:@"count"];
-    self.unit = [dictionary objectForKey:@"unit"];
     return self;
 } 
 
@@ -8103,8 +9207,8 @@ IpantiDescribeAttackStatisticsResult* result = [[IpantiDescribeAttackStatisticsR
     NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
     if([self dataList])
     {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self dataList] count]; i++) {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self dataList] count]; i++) {
             DDoSAttackLog* item = [[self dataList] objectAtIndex:i];
             [arrayDic addObject:[item dictionary]];
         }
@@ -8132,10 +9236,10 @@ IpantiDescribeAttackStatisticsResult* result = [[IpantiDescribeAttackStatisticsR
         NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
         for(int i = 0 ; i< [dataListArray count];i++)
         {
-            DDoSAttackLog* item = [[DDoSAttackLog alloc]initWithDic:[dataListArray objectAtIndex:i]];
+        DDoSAttackLog* item = [[DDoSAttackLog alloc]initWithDic:[dataListArray objectAtIndex:i]];
             if(item)
             {
-                [propertyArray addObject:item];
+            [propertyArray addObject:item];
             }
         }
         self.dataList = propertyArray;
@@ -8156,8 +9260,8 @@ IpantiDescribeAttackStatisticsResult* result = [[IpantiDescribeAttackStatisticsR
     NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
     if([self dataList])
     {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self dataList] count]; i++) {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self dataList] count]; i++) {
             AttackTypeCount* item = [[self dataList] objectAtIndex:i];
             [arrayDic addObject:[item dictionary]];
         }
@@ -8173,68 +9277,14 @@ IpantiDescribeAttackStatisticsResult* result = [[IpantiDescribeAttackStatisticsR
         NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
         for(int i = 0 ; i< [dataListArray count];i++)
         {
-            AttackTypeCount* item = [[AttackTypeCount alloc]initWithDic:[dataListArray objectAtIndex:i]];
+        AttackTypeCount* item = [[AttackTypeCount alloc]initWithDic:[dataListArray objectAtIndex:i]];
             if(item)
             {
-                [propertyArray addObject:item];
+            [propertyArray addObject:item];
             }
         }
         self.dataList = propertyArray;
     }
-    return self;
-} 
-
-@end
-@implementation IpantiDescribeAttackTypeCountRequest
--(id) initWithRegion:(NSString *)regionId
-startTime:(NSString*)startTime
-endTime:(NSString*)endTime
-instanceId:(NSArray<NSString*>*)instanceId { 
-    self.regionId = regionId;
-    self.startTime = startTime;
-    self.endTime = endTime;
-    self.instanceId = instanceId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-startTime:(NSString*)startTime
-endTime:(NSString*)endTime
-instanceId:(NSArray<NSString*>*)instanceId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.startTime = startTime;
-    self.endTime = endTime;
-    self.instanceId = instanceId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self startTime])
-    {
-        [result setValue:[self startTime] forKey:@"startTime"];
-    }
-    if([self endTime])
-    {
-        [result setValue:[self endTime] forKey:@"endTime"];
-    }
-    if([self instanceId])
-    {
-        [result setValue:[self instanceId] forKey:@"instanceId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.startTime = [dictionary objectForKey:@"startTime"];
-    self.endTime = [dictionary objectForKey:@"endTime"];
-    self.instanceId = [dictionary objectForKey:@"instanceId"];
     return self;
 } 
 
@@ -8281,78 +9331,6 @@ IpantiDescribeAttackTypeCountResult* result = [[IpantiDescribeAttackTypeCountRes
     self.requestId = requestId;
     return self;
 }
-
-@end
-@implementation IpantiDescribeDDoSAttackLogsRequest
--(id) initWithRegion:(NSString *)regionId
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-startTime:(NSString*)startTime
-endTime:(NSString*)endTime
-instanceId:(NSArray<NSString*>*)instanceId { 
-    self.regionId = regionId;
-    self.pageNumber = pageNumber;
-    self.pageSize = pageSize;
-    self.startTime = startTime;
-    self.endTime = endTime;
-    self.instanceId = instanceId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-startTime:(NSString*)startTime
-endTime:(NSString*)endTime
-instanceId:(NSArray<NSString*>*)instanceId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.pageNumber = pageNumber;
-    self.pageSize = pageSize;
-    self.startTime = startTime;
-    self.endTime = endTime;
-    self.instanceId = instanceId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self pageNumber])
-    {
-        [result setValue:[self pageNumber] forKey:@"pageNumber"];
-    }
-    if([self pageSize])
-    {
-        [result setValue:[self pageSize] forKey:@"pageSize"];
-    }
-    if([self startTime])
-    {
-        [result setValue:[self startTime] forKey:@"startTime"];
-    }
-    if([self endTime])
-    {
-        [result setValue:[self endTime] forKey:@"endTime"];
-    }
-    if([self instanceId])
-    {
-        [result setValue:[self instanceId] forKey:@"instanceId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.pageNumber = [dictionary objectForKey:@"pageNumber"];
-    self.pageSize = [dictionary objectForKey:@"pageSize"];
-    self.startTime = [dictionary objectForKey:@"startTime"];
-    self.endTime = [dictionary objectForKey:@"endTime"];
-    self.instanceId = [dictionary objectForKey:@"instanceId"];
-    return self;
-} 
 
 @end
   
@@ -8488,51 +9466,6 @@ instanceId:(NSString*)instanceId {
 } 
 
 @end
-@implementation IpantiDescribeCpsIpListRequest
--(id) initWithRegion:(NSString *)regionId
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize { 
-    self.regionId = regionId;
-    self.pageNumber = pageNumber;
-    self.pageSize = pageSize;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize { 
-    self.regionId = regionId;
-    self.version = version;
-    self.pageNumber = pageNumber;
-    self.pageSize = pageSize;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self pageNumber])
-    {
-        [result setValue:[self pageNumber] forKey:@"pageNumber"];
-    }
-    if([self pageSize])
-    {
-        [result setValue:[self pageSize] forKey:@"pageSize"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.pageNumber = [dictionary objectForKey:@"pageNumber"];
-    self.pageSize = [dictionary objectForKey:@"pageSize"];
-    return self;
-} 
-
-@end
 @implementation IpantiModifyAlarmConfigRequest
 -(id) initWithRegion:(NSString *)regionId
 alarmConfigSpec:(AlarmConfigSpec*)alarmConfigSpec
@@ -8574,69 +9507,6 @@ instanceId:(NSString*)instanceId {
 -(id) initWithDic:(NSDictionary*)dictionary{
     self.alarmConfigSpec = [[AlarmConfigSpec alloc]initWithDic:[dictionary objectForKey:@"alarmConfigSpec"]];
     self.instanceId = [dictionary objectForKey:@"instanceId"];
-    return self;
-} 
-
-@end
-@implementation IpantiCreateInstanceResult
--(id) initWithCode:(NSNumber*) code
-        message:(NSString*)message { 
-    self.code = code;               
-    self.message = message;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self code])
-    {
-        [result setValue:[self code] forKey:@"code"];
-    }
-    if([self message])
-    {
-        [result setValue:[self message] forKey:@"message"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.code = [dictionary objectForKey:@"code"];
-    self.message = [dictionary objectForKey:@"message"];
-    return self;
-} 
-
-@end
-@implementation IpantiCheckNameRequest
--(id) initWithRegion:(NSString *)regionId
-name:(NSString*)name { 
-    self.regionId = regionId;
-    self.name = name;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-name:(NSString*)name { 
-    self.regionId = regionId;
-    self.version = version;
-    self.name = name;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self name])
-    {
-        [result setValue:[self name] forKey:@"name"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.name = [dictionary objectForKey:@"name"];
     return self;
 } 
 
@@ -8725,141 +9595,6 @@ IpantiDescribeAlarmConfigResult* result = [[IpantiDescribeAlarmConfigResult allo
 }
 
 @end
-@implementation IpantiModifyInstanceNameResult
--(id) initWithCode:(NSNumber*) code
-        message:(NSString*)message { 
-    self.code = code;               
-    self.message = message;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self code])
-    {
-        [result setValue:[self code] forKey:@"code"];
-    }
-    if([self message])
-    {
-        [result setValue:[self message] forKey:@"message"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.code = [dictionary objectForKey:@"code"];
-    self.message = [dictionary objectForKey:@"message"];
-    return self;
-} 
-
-@end
-@implementation IpantiModifyAlarmConfigResult
--(id) initWithCode:(NSNumber*) code
-        message:(NSString*)message { 
-    self.code = code;               
-    self.message = message;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self code])
-    {
-        [result setValue:[self code] forKey:@"code"];
-    }
-    if([self message])
-    {
-        [result setValue:[self message] forKey:@"message"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.code = [dictionary objectForKey:@"code"];
-    self.message = [dictionary objectForKey:@"message"];
-    return self;
-} 
-
-@end
-@implementation IpantiModifyEPBResult
--(id) initWithCode:(NSNumber*) code
-        message:(NSString*)message { 
-    self.code = code;               
-    self.message = message;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self code])
-    {
-        [result setValue:[self code] forKey:@"code"];
-    }
-    if([self message])
-    {
-        [result setValue:[self message] forKey:@"message"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.code = [dictionary objectForKey:@"code"];
-    self.message = [dictionary objectForKey:@"message"];
-    return self;
-} 
-
-@end
-@implementation IpantiDescribeInstancesRequest
--(id) initWithRegion:(NSString *)regionId
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-name:(NSString*)name { 
-    self.regionId = regionId;
-    self.pageNumber = pageNumber;
-    self.pageSize = pageSize;
-    self.name = name;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-name:(NSString*)name { 
-    self.regionId = regionId;
-    self.version = version;
-    self.pageNumber = pageNumber;
-    self.pageSize = pageSize;
-    self.name = name;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self pageNumber])
-    {
-        [result setValue:[self pageNumber] forKey:@"pageNumber"];
-    }
-    if([self pageSize])
-    {
-        [result setValue:[self pageSize] forKey:@"pageSize"];
-    }
-    if([self name])
-    {
-        [result setValue:[self name] forKey:@"name"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.pageNumber = [dictionary objectForKey:@"pageNumber"];
-    self.pageSize = [dictionary objectForKey:@"pageSize"];
-    self.name = [dictionary objectForKey:@"name"];
-    return self;
-} 
-
-@end
 @implementation IpantiDescribeVpcIpListResult
 -(id) initWithDataList:(NSArray<VpcIpResource*>*) dataList
         currentCount:(NSNumber*)currentCount
@@ -8875,8 +9610,8 @@ name:(NSString*)name {
     NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
     if([self dataList])
     {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self dataList] count]; i++) {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self dataList] count]; i++) {
             VpcIpResource* item = [[self dataList] objectAtIndex:i];
             [arrayDic addObject:[item dictionary]];
         }
@@ -8904,10 +9639,10 @@ name:(NSString*)name {
         NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
         for(int i = 0 ; i< [dataListArray count];i++)
         {
-            VpcIpResource* item = [[VpcIpResource alloc]initWithDic:[dataListArray objectAtIndex:i]];
+        VpcIpResource* item = [[VpcIpResource alloc]initWithDic:[dataListArray objectAtIndex:i]];
             if(item)
             {
-                [propertyArray addObject:item];
+            [propertyArray addObject:item];
             }
         }
         self.dataList = propertyArray;
@@ -9042,8 +9777,8 @@ IpantiDescribeProtectionStatisticsResult* result = [[IpantiDescribeProtectionSta
     NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
     if([self dataList])
     {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self dataList] count]; i++) {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self dataList] count]; i++) {
             CpsIpResource* item = [[self dataList] objectAtIndex:i];
             [arrayDic addObject:[item dictionary]];
         }
@@ -9071,10 +9806,10 @@ IpantiDescribeProtectionStatisticsResult* result = [[IpantiDescribeProtectionSta
         NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
         for(int i = 0 ; i< [dataListArray count];i++)
         {
-            CpsIpResource* item = [[CpsIpResource alloc]initWithDic:[dataListArray objectAtIndex:i]];
+        CpsIpResource* item = [[CpsIpResource alloc]initWithDic:[dataListArray objectAtIndex:i]];
             if(item)
             {
-                [propertyArray addObject:item];
+            [propertyArray addObject:item];
             }
         }
         self.dataList = propertyArray;
@@ -9082,42 +9817,6 @@ IpantiDescribeProtectionStatisticsResult* result = [[IpantiDescribeProtectionSta
     self.currentCount = [dictionary objectForKey:@"currentCount"];
     self.totalCount = [dictionary objectForKey:@"totalCount"];
     self.totalPage = [dictionary objectForKey:@"totalPage"];
-    return self;
-} 
-
-@end
-@implementation IpantiDescribeInstanceRequest
--(id) initWithRegion:(NSString *)regionId
-instanceId:(NSString*)instanceId { 
-    self.regionId = regionId;
-    self.instanceId = instanceId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-instanceId:(NSString*)instanceId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.instanceId = instanceId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self instanceId])
-    {
-        [result setValue:[self instanceId] forKey:@"instanceId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.instanceId = [dictionary objectForKey:@"instanceId"];
     return self;
 } 
 
@@ -9246,33 +9945,6 @@ IpantiCreateInstanceResult* result = [[IpantiCreateInstanceResult alloc]initWith
 }
 
 @end
-@implementation IpantiCheckNameResult
--(id) initWithCode:(NSNumber*) code
-        message:(NSString*)message { 
-    self.code = code;               
-    self.message = message;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self code])
-    {
-        [result setValue:[self code] forKey:@"code"];
-    }
-    if([self message])
-    {
-        [result setValue:[self message] forKey:@"message"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.code = [dictionary objectForKey:@"code"];
-    self.message = [dictionary objectForKey:@"message"];
-    return self;
-} 
-
-@end
 @implementation IpantiDescribeInstancesResult
 -(id) initWithDataList:(NSArray<Instance*>*) dataList
         currentCount:(NSNumber*)currentCount
@@ -9288,8 +9960,8 @@ IpantiCreateInstanceResult* result = [[IpantiCreateInstanceResult alloc]initWith
     NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
     if([self dataList])
     {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self dataList] count]; i++) {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self dataList] count]; i++) {
             Instance* item = [[self dataList] objectAtIndex:i];
             [arrayDic addObject:[item dictionary]];
         }
@@ -9317,10 +9989,10 @@ IpantiCreateInstanceResult* result = [[IpantiCreateInstanceResult alloc]initWith
         NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
         for(int i = 0 ; i< [dataListArray count];i++)
         {
-            Instance* item = [[Instance alloc]initWithDic:[dataListArray objectAtIndex:i]];
+        Instance* item = [[Instance alloc]initWithDic:[dataListArray objectAtIndex:i]];
             if(item)
             {
-                [propertyArray addObject:item];
+            [propertyArray addObject:item];
             }
         }
         self.dataList = propertyArray;
@@ -9435,8 +10107,8 @@ IpantiDescribeInstanceResult* result = [[IpantiDescribeInstanceResult alloc]init
     NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
     if([self dataList])
     {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self dataList] count]; i++) {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self dataList] count]; i++) {
             InstanceIdName* item = [[self dataList] objectAtIndex:i];
             [arrayDic addObject:[item dictionary]];
         }
@@ -9464,10 +10136,10 @@ IpantiDescribeInstanceResult* result = [[IpantiDescribeInstanceResult alloc]init
         NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
         for(int i = 0 ; i< [dataListArray count];i++)
         {
-            InstanceIdName* item = [[InstanceIdName alloc]initWithDic:[dataListArray objectAtIndex:i]];
+        InstanceIdName* item = [[InstanceIdName alloc]initWithDic:[dataListArray objectAtIndex:i]];
             if(item)
             {
-                [propertyArray addObject:item];
+            [propertyArray addObject:item];
             }
         }
         self.dataList = propertyArray;
@@ -9627,114 +10299,6 @@ IpantiDescribeCpsIpListResult* result = [[IpantiDescribeCpsIpListResult alloc]in
 }
 
 @end
-@implementation IpantiDescribeVpcIpListRequest
--(id) initWithRegion:(NSString *)regionId
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize { 
-    self.regionId = regionId;
-    self.pageNumber = pageNumber;
-    self.pageSize = pageSize;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize { 
-    self.regionId = regionId;
-    self.version = version;
-    self.pageNumber = pageNumber;
-    self.pageSize = pageSize;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self pageNumber])
-    {
-        [result setValue:[self pageNumber] forKey:@"pageNumber"];
-    }
-    if([self pageSize])
-    {
-        [result setValue:[self pageSize] forKey:@"pageSize"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.pageNumber = [dictionary objectForKey:@"pageNumber"];
-    self.pageSize = [dictionary objectForKey:@"pageSize"];
-    return self;
-} 
-
-@end
-@implementation IpantiDescribeNameListRequest
--(id) initWithRegion:(NSString *)regionId
-idValue:(NSString*)idValue
-name:(NSString*)name
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize { 
-    self.regionId = regionId;
-    self.idValue = idValue;
-    self.name = name;
-    self.pageNumber = pageNumber;
-    self.pageSize = pageSize;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-idValue:(NSString*)idValue
-name:(NSString*)name
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize { 
-    self.regionId = regionId;
-    self.version = version;
-    self.idValue = idValue;
-    self.name = name;
-    self.pageNumber = pageNumber;
-    self.pageSize = pageSize;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self idValue])
-    {
-        [result setValue:[self idValue] forKey:@"id"];
-    }
-    if([self name])
-    {
-        [result setValue:[self name] forKey:@"name"];
-    }
-    if([self pageNumber])
-    {
-        [result setValue:[self pageNumber] forKey:@"pageNumber"];
-    }
-    if([self pageSize])
-    {
-        [result setValue:[self pageSize] forKey:@"pageSize"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.idValue = [dictionary objectForKey:@"id"];
-    self.name = [dictionary objectForKey:@"name"];
-    self.pageNumber = [dictionary objectForKey:@"pageNumber"];
-    self.pageSize = [dictionary objectForKey:@"pageSize"];
-    return self;
-} 
-
-@end
   
 @implementation IpantiCheckNameResponse
 -(NSMutableDictionary*) dictionary
@@ -9824,42 +10388,6 @@ instanceId:(NSString*)instanceId {
 } 
 
 @end
-@implementation IpantiDescribeAlarmConfigRequest
--(id) initWithRegion:(NSString *)regionId
-instanceId:(NSString*)instanceId { 
-    self.regionId = regionId;
-    self.instanceId = instanceId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-instanceId:(NSString*)instanceId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.instanceId = instanceId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self instanceId])
-    {
-        [result setValue:[self instanceId] forKey:@"instanceId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.instanceId = [dictionary objectForKey:@"instanceId"];
-    return self;
-} 
-
-@end
   
 @implementation IpantiModifyInstanceNameResponse
 -(NSMutableDictionary*) dictionary
@@ -9902,47 +10430,6 @@ IpantiModifyInstanceNameResult* result = [[IpantiModifyInstanceNameResult alloc]
     self.requestId = requestId;
     return self;
 }
-
-@end
-@implementation IpantiDescribeDDoSGraphResult
--(id) initWithPreProtect:(NSArray<NSNumber*>*) preProtect
-        postProtect:(NSArray<NSNumber*>*)postProtect
-        time:(NSArray<NSString*>*)time
-        unit:(NSString*)unit { 
-    self.preProtect = preProtect;               
-    self.postProtect = postProtect;               
-    self.time = time;               
-    self.unit = unit;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self preProtect])
-    {
-        [result setValue:[self preProtect] forKey:@"preProtect"];
-    }
-    if([self postProtect])
-    {
-        [result setValue:[self postProtect] forKey:@"postProtect"];
-    }
-    if([self time])
-    {
-        [result setValue:[self time] forKey:@"time"];
-    }
-    if([self unit])
-    {
-        [result setValue:[self unit] forKey:@"unit"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.preProtect = [dictionary objectForKey:@"preProtect"];
-    self.postProtect = [dictionary objectForKey:@"postProtect"];
-    self.time = [dictionary objectForKey:@"time"];
-    self.unit = [dictionary objectForKey:@"unit"];
-    return self;
-} 
 
 @end
   
@@ -9989,103 +10476,6 @@ IpantiDescribeDDoSGraphResult* result = [[IpantiDescribeDDoSGraphResult alloc]in
 }
 
 @end
-@implementation IpantiDescribeFwdGraphResult
--(id) initWithForwardRecord:(NSArray<NSNumber*>*) forwardRecord
-        time:(NSArray<NSString*>*)time
-        unit:(NSString*)unit { 
-    self.forwardRecord = forwardRecord;               
-    self.time = time;               
-    self.unit = unit;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self forwardRecord])
-    {
-        [result setValue:[self forwardRecord] forKey:@"forwardRecord"];
-    }
-    if([self time])
-    {
-        [result setValue:[self time] forKey:@"time"];
-    }
-    if([self unit])
-    {
-        [result setValue:[self unit] forKey:@"unit"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.forwardRecord = [dictionary objectForKey:@"forwardRecord"];
-    self.time = [dictionary objectForKey:@"time"];
-    self.unit = [dictionary objectForKey:@"unit"];
-    return self;
-} 
-
-@end
-@implementation IpantiDescribeCCGraphRequest
--(id) initWithRegion:(NSString *)regionId
-startTime:(NSString*)startTime
-endTime:(NSString*)endTime
-instanceId:(NSArray<NSString*>*)instanceId
-subDomain:(NSArray<NSString*>*)subDomain { 
-    self.regionId = regionId;
-    self.startTime = startTime;
-    self.endTime = endTime;
-    self.instanceId = instanceId;
-    self.subDomain = subDomain;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-startTime:(NSString*)startTime
-endTime:(NSString*)endTime
-instanceId:(NSArray<NSString*>*)instanceId
-subDomain:(NSArray<NSString*>*)subDomain { 
-    self.regionId = regionId;
-    self.version = version;
-    self.startTime = startTime;
-    self.endTime = endTime;
-    self.instanceId = instanceId;
-    self.subDomain = subDomain;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self startTime])
-    {
-        [result setValue:[self startTime] forKey:@"startTime"];
-    }
-    if([self endTime])
-    {
-        [result setValue:[self endTime] forKey:@"endTime"];
-    }
-    if([self instanceId])
-    {
-        [result setValue:[self instanceId] forKey:@"instanceId"];
-    }
-    if([self subDomain])
-    {
-        [result setValue:[self subDomain] forKey:@"subDomain"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.startTime = [dictionary objectForKey:@"startTime"];
-    self.endTime = [dictionary objectForKey:@"endTime"];
-    self.instanceId = [dictionary objectForKey:@"instanceId"];
-    self.subDomain = [dictionary objectForKey:@"subDomain"];
-    return self;
-} 
-
-@end
   
 @implementation IpantiDescribeFwdGraphResponse
 -(NSMutableDictionary*) dictionary
@@ -10130,101 +10520,6 @@ IpantiDescribeFwdGraphResult* result = [[IpantiDescribeFwdGraphResult alloc]init
 }
 
 @end
-@implementation IpantiDescribeFwdGraphRequest
--(id) initWithRegion:(NSString *)regionId
-startTime:(NSString*)startTime
-endTime:(NSString*)endTime
-instanceId:(NSArray<NSString*>*)instanceId { 
-    self.regionId = regionId;
-    self.startTime = startTime;
-    self.endTime = endTime;
-    self.instanceId = instanceId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-startTime:(NSString*)startTime
-endTime:(NSString*)endTime
-instanceId:(NSArray<NSString*>*)instanceId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.startTime = startTime;
-    self.endTime = endTime;
-    self.instanceId = instanceId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self startTime])
-    {
-        [result setValue:[self startTime] forKey:@"startTime"];
-    }
-    if([self endTime])
-    {
-        [result setValue:[self endTime] forKey:@"endTime"];
-    }
-    if([self instanceId])
-    {
-        [result setValue:[self instanceId] forKey:@"instanceId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.startTime = [dictionary objectForKey:@"startTime"];
-    self.endTime = [dictionary objectForKey:@"endTime"];
-    self.instanceId = [dictionary objectForKey:@"instanceId"];
-    return self;
-} 
-
-@end
-@implementation IpantiDescribeCCGraphResult
--(id) initWithPostProtect:(NSArray<NSNumber*>*) postProtect
-        preProtect:(NSArray<NSNumber*>*)preProtect
-        time:(NSArray<NSString*>*)time
-        unit:(NSString*)unit { 
-    self.postProtect = postProtect;               
-    self.preProtect = preProtect;               
-    self.time = time;               
-    self.unit = unit;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self postProtect])
-    {
-        [result setValue:[self postProtect] forKey:@"postProtect"];
-    }
-    if([self preProtect])
-    {
-        [result setValue:[self preProtect] forKey:@"preProtect"];
-    }
-    if([self time])
-    {
-        [result setValue:[self time] forKey:@"time"];
-    }
-    if([self unit])
-    {
-        [result setValue:[self unit] forKey:@"unit"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.postProtect = [dictionary objectForKey:@"postProtect"];
-    self.preProtect = [dictionary objectForKey:@"preProtect"];
-    self.time = [dictionary objectForKey:@"time"];
-    self.unit = [dictionary objectForKey:@"unit"];
-    return self;
-} 
-
-@end
   
 @implementation IpantiDescribeCCGraphResponse
 -(NSMutableDictionary*) dictionary
@@ -10267,105 +10562,6 @@ IpantiDescribeCCGraphResult* result = [[IpantiDescribeCCGraphResult alloc]initWi
     self.requestId = requestId;
     return self;
 }
-
-@end
-@implementation IpantiDescribeDDoSGraphRequest
--(id) initWithRegion:(NSString *)regionId
-startTime:(NSString*)startTime
-endTime:(NSString*)endTime
-instanceId:(NSArray<NSString*>*)instanceId { 
-    self.regionId = regionId;
-    self.startTime = startTime;
-    self.endTime = endTime;
-    self.instanceId = instanceId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-startTime:(NSString*)startTime
-endTime:(NSString*)endTime
-instanceId:(NSArray<NSString*>*)instanceId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.startTime = startTime;
-    self.endTime = endTime;
-    self.instanceId = instanceId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self startTime])
-    {
-        [result setValue:[self startTime] forKey:@"startTime"];
-    }
-    if([self endTime])
-    {
-        [result setValue:[self endTime] forKey:@"endTime"];
-    }
-    if([self instanceId])
-    {
-        [result setValue:[self instanceId] forKey:@"instanceId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.startTime = [dictionary objectForKey:@"startTime"];
-    self.endTime = [dictionary objectForKey:@"endTime"];
-    self.instanceId = [dictionary objectForKey:@"instanceId"];
-    return self;
-} 
-
-@end
-@implementation IpantiDescribeIpSetRequest
--(id) initWithRegion:(NSString *)regionId
-instanceId:(NSString*)instanceId
-ipSetId:(NSString*)ipSetId { 
-    self.regionId = regionId;
-    self.instanceId = instanceId;
-    self.ipSetId = ipSetId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-instanceId:(NSString*)instanceId
-ipSetId:(NSString*)ipSetId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.instanceId = instanceId;
-    self.ipSetId = ipSetId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self instanceId])
-    {
-        [result setValue:[self instanceId] forKey:@"instanceId"];
-    }
-    if([self ipSetId])
-    {
-        [result setValue:[self ipSetId] forKey:@"ipSetId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.instanceId = [dictionary objectForKey:@"instanceId"];
-    self.ipSetId = [dictionary objectForKey:@"ipSetId"];
-    return self;
-} 
 
 @end
 @implementation IpantiDescribeIpSetResult
@@ -10477,141 +10673,6 @@ instanceId:(NSString*)instanceId {
 } 
 
 @end
-@implementation IpantiDescribeIpSetUsageRequest
--(id) initWithRegion:(NSString *)regionId
-instanceId:(NSString*)instanceId { 
-    self.regionId = regionId;
-    self.instanceId = instanceId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-instanceId:(NSString*)instanceId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.instanceId = instanceId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self instanceId])
-    {
-        [result setValue:[self instanceId] forKey:@"instanceId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.instanceId = [dictionary objectForKey:@"instanceId"];
-    return self;
-} 
-
-@end
-@implementation IpantiDescribeIpSetsRequest
--(id) initWithRegion:(NSString *)regionId
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-instanceId:(NSString*)instanceId { 
-    self.regionId = regionId;
-    self.pageNumber = pageNumber;
-    self.pageSize = pageSize;
-    self.instanceId = instanceId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-instanceId:(NSString*)instanceId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.pageNumber = pageNumber;
-    self.pageSize = pageSize;
-    self.instanceId = instanceId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self pageNumber])
-    {
-        [result setValue:[self pageNumber] forKey:@"pageNumber"];
-    }
-    if([self pageSize])
-    {
-        [result setValue:[self pageSize] forKey:@"pageSize"];
-    }
-    if([self instanceId])
-    {
-        [result setValue:[self instanceId] forKey:@"instanceId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.pageNumber = [dictionary objectForKey:@"pageNumber"];
-    self.pageSize = [dictionary objectForKey:@"pageSize"];
-    self.instanceId = [dictionary objectForKey:@"instanceId"];
-    return self;
-} 
-
-@end
-@implementation IpantiDeleteIpSetRequest
--(id) initWithRegion:(NSString *)regionId
-instanceId:(NSString*)instanceId
-ipSetId:(NSString*)ipSetId { 
-    self.regionId = regionId;
-    self.instanceId = instanceId;
-    self.ipSetId = ipSetId;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-instanceId:(NSString*)instanceId
-ipSetId:(NSString*)ipSetId { 
-    self.regionId = regionId;
-    self.version = version;
-    self.instanceId = instanceId;
-    self.ipSetId = ipSetId;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self instanceId])
-    {
-        [result setValue:[self instanceId] forKey:@"instanceId"];
-    }
-    if([self ipSetId])
-    {
-        [result setValue:[self ipSetId] forKey:@"ipSetId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.instanceId = [dictionary objectForKey:@"instanceId"];
-    self.ipSetId = [dictionary objectForKey:@"ipSetId"];
-    return self;
-} 
-
-@end
 @implementation IpantiDeleteIpSetResult
 -(id) initWithData:(BatchResultDetail*) data { 
     self.data = data;               
@@ -10676,33 +10737,6 @@ IpantiDeleteIpSetResult* result = [[IpantiDeleteIpSetResult alloc]initWithDic:[d
 }
 
 @end
-@implementation IpantiCreateIpSetResult
--(id) initWithCode:(NSNumber*) code
-        message:(NSString*)message { 
-    self.code = code;               
-    self.message = message;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self code])
-    {
-        [result setValue:[self code] forKey:@"code"];
-    }
-    if([self message])
-    {
-        [result setValue:[self message] forKey:@"message"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.code = [dictionary objectForKey:@"code"];
-    self.message = [dictionary objectForKey:@"message"];
-    return self;
-} 
-
-@end
   
 @implementation IpantiCreateIpSetResponse
 -(NSMutableDictionary*) dictionary
@@ -10745,40 +10779,6 @@ IpantiCreateIpSetResult* result = [[IpantiCreateIpSetResult alloc]initWithDic:[d
     self.requestId = requestId;
     return self;
 }
-
-@end
-@implementation IpantiDescribeIpSetUsageResult
--(id) initWithAllocatedNum:(NSNumber*) ipantiAllocatedNum
-        surplusAllocateNum:(NSNumber*)surplusAllocateNum
-        maxAllocateNum:(NSNumber*)maxAllocateNum { 
-    self.ipantiAllocatedNum = ipantiAllocatedNum;               
-    self.surplusAllocateNum = surplusAllocateNum;               
-    self.maxAllocateNum = maxAllocateNum;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self ipantiAllocatedNum])
-    {
-        [result setValue:[self ipantiAllocatedNum] forKey:@"allocatedNum"];
-    }
-    if([self surplusAllocateNum])
-    {
-        [result setValue:[self surplusAllocateNum] forKey:@"surplusAllocateNum"];
-    }
-    if([self maxAllocateNum])
-    {
-        [result setValue:[self maxAllocateNum] forKey:@"maxAllocateNum"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.ipantiAllocatedNum = [dictionary objectForKey:@"allocatedNum"];
-    self.surplusAllocateNum = [dictionary objectForKey:@"surplusAllocateNum"];
-    self.maxAllocateNum = [dictionary objectForKey:@"maxAllocateNum"];
-    return self;
-} 
 
 @end
   
@@ -10840,8 +10840,8 @@ IpantiDescribeIpSetUsageResult* result = [[IpantiDescribeIpSetUsageResult alloc]
     NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
     if([self dataList])
     {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self dataList] count]; i++) {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self dataList] count]; i++) {
             IpSet* item = [[self dataList] objectAtIndex:i];
             [arrayDic addObject:[item dictionary]];
         }
@@ -10869,10 +10869,10 @@ IpantiDescribeIpSetUsageResult* result = [[IpantiDescribeIpSetUsageResult alloc]
         NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
         for(int i = 0 ; i< [dataListArray count];i++)
         {
-            IpSet* item = [[IpSet alloc]initWithDic:[dataListArray objectAtIndex:i]];
+        IpSet* item = [[IpSet alloc]initWithDic:[dataListArray objectAtIndex:i]];
             if(item)
             {
-                [propertyArray addObject:item];
+            [propertyArray addObject:item];
             }
         }
         self.dataList = propertyArray;

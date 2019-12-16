@@ -117,140 +117,6 @@ productKey:(NSString*)productKey {
 } 
 
 @end
-  
-@implementation IotcoreCreateProductTopicResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-IotcoreCreateProductTopicResult* result = [[IotcoreCreateProductTopicResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(IotcoreCreateProductTopicResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
-@implementation IotcoreListProductAbilitiesRequest
--(id) initWithRegion:(NSString *)regionId
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-filters:(NSArray<Filter*>*)filters
-instanceId:(NSString*)instanceId
-productKey:(NSString*)productKey { 
-    self.regionId = regionId;
-    self.pageNumber = pageNumber;
-    self.pageSize = pageSize;
-    self.filters = filters;
-    self.instanceId = instanceId;
-    self.productKey = productKey;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-pageNumber:(NSNumber*)pageNumber
-pageSize:(NSNumber*)pageSize
-filters:(NSArray<Filter*>*)filters
-instanceId:(NSString*)instanceId
-productKey:(NSString*)productKey { 
-    self.regionId = regionId;
-    self.version = version;
-    self.pageNumber = pageNumber;
-    self.pageSize = pageSize;
-    self.filters = filters;
-    self.instanceId = instanceId;
-    self.productKey = productKey;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self pageNumber])
-    {
-        [result setValue:[self pageNumber] forKey:@"pageNumber"];
-    }
-    if([self pageSize])
-    {
-        [result setValue:[self pageSize] forKey:@"pageSize"];
-    }
-    if([self filters])
-    {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self filters] count]; i++) {
-            Filter* item = [[self filters] objectAtIndex:i];
-            [arrayDic addObject:[item dictionary]];
-        }
-        [result setValue:arrayDic forKey:@"filters"];
-    }
-    if([self instanceId])
-    {
-        [result setValue:[self instanceId] forKey:@"instanceId"];
-    }
-    if([self productKey])
-    {
-        [result setValue:[self productKey] forKey:@"productKey"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.pageNumber = [dictionary objectForKey:@"pageNumber"];
-    self.pageSize = [dictionary objectForKey:@"pageSize"];
-    NSArray* filtersArray = [dictionary objectForKey:@"filters"];
-    if(filtersArray&&![filtersArray isKindOfClass:[NSNull class]])
-    {
-        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
-        for(int i = 0 ; i< [filtersArray count];i++)
-        {
-            Filter* item = [[Filter alloc]initWithDic:[filtersArray objectAtIndex:i]];
-            if(item)
-            {
-                [propertyArray addObject:item];
-            }
-        }
-        self.filters = propertyArray;
-    }
-    self.instanceId = [dictionary objectForKey:@"instanceId"];
-    self.productKey = [dictionary objectForKey:@"productKey"];
-    return self;
-} 
-
-@end
 @implementation IotcoreImportThingModelRequest
 -(id) initWithRegion:(NSString *)regionId
 thingModel:(NSObject*)thingModel
@@ -305,214 +171,6 @@ productKey:(NSString*)productKey {
 } 
 
 @end
-@implementation IotcoreExportThingModelResult
--(id) initWithThingModel:(NSObject*) thingModel { 
-    self.thingModel = thingModel;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self thingModel])
-    {
-        [result setValue:[self thingModel] forKey:@"thingModel"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.thingModel = [dictionary objectForKey:@"thingModel"];
-    return self;
-} 
-
-@end
-  
-@implementation IotcoreExportThingModelResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-IotcoreExportThingModelResult* result = [[IotcoreExportThingModelResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(IotcoreExportThingModelResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
-@implementation IotcoreImportThingModelResult
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    return self;
-} 
-
-@end
-  
-@implementation IotcoreImportThingModelResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-IotcoreImportThingModelResult* result = [[IotcoreImportThingModelResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(IotcoreImportThingModelResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
-@implementation IotcoreListProductAbilitiesResult
--(id) initWithPage:(PageinfoVO*) page
-        abilities:(NSArray<ProductAbility*>*)abilities { 
-    self.page = page;               
-    self.abilities = abilities;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self page])
-    {
-        [result setValue:[[self page] dictionary]forKey:@"page"];
-    }
-    if([self abilities])
-    {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self abilities] count]; i++) {
-            ProductAbility* item = [[self abilities] objectAtIndex:i];
-            [arrayDic addObject:[item dictionary]];
-        }
-        [result setValue:arrayDic forKey:@"abilities"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.page = [[PageinfoVO alloc]initWithDic:[dictionary objectForKey:@"page"]];
-    NSArray* abilitiesArray = [dictionary objectForKey:@"abilities"];
-    if(abilitiesArray&&![abilitiesArray isKindOfClass:[NSNull class]])
-    {
-        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
-        for(int i = 0 ; i< [abilitiesArray count];i++)
-        {
-            ProductAbility* item = [[ProductAbility alloc]initWithDic:[abilitiesArray objectAtIndex:i]];
-            if(item)
-            {
-                [propertyArray addObject:item];
-            }
-        }
-        self.abilities = propertyArray;
-    }
-    return self;
-} 
-
-@end
-  
-@implementation IotcoreListProductAbilitiesResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-IotcoreListProductAbilitiesResult* result = [[IotcoreListProductAbilitiesResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(IotcoreListProductAbilitiesResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
 @implementation IotcoreExportThingModelRequest
 -(id) initWithRegion:(NSString *)regionId
 instanceId:(NSString*)instanceId
@@ -558,132 +216,24 @@ productKey:(NSString*)productKey {
 } 
 
 @end
-@implementation IotcoreInvokeThingServiceResult
--(id) initWithMsgId:(NSString*) msgId { 
-    self.msgId = msgId;               
+@implementation IotcoreExportThingModelResult
+-(id) initWithThingModel:(NSObject*) thingModel { 
+    self.thingModel = thingModel;               
     return self;
 }
 -(NSMutableDictionary*) dictionary{
     NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self msgId])
+    if([self thingModel])
     {
-        [result setValue:[self msgId] forKey:@"msgId"];
+        [result setValue:[self thingModel] forKey:@"thingModel"];
     }
     return result;
 }
 
 -(id) initWithDic:(NSDictionary*)dictionary{
-    self.msgId = [dictionary objectForKey:@"msgId"];
+    self.thingModel = [dictionary objectForKey:@"thingModel"];
     return self;
 } 
-
-@end
-  
-@implementation IotcoreInvokeThingServiceResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-IotcoreInvokeThingServiceResult* result = [[IotcoreInvokeThingServiceResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(IotcoreInvokeThingServiceResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
-@implementation IotcoreInvokeThingTopicResult
--(id) initWithMsgId:(NSString*) msgId { 
-    self.msgId = msgId;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self msgId])
-    {
-        [result setValue:[self msgId] forKey:@"msgId"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.msgId = [dictionary objectForKey:@"msgId"];
-    return self;
-} 
-
-@end
-  
-@implementation IotcoreInvokeThingTopicResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-IotcoreInvokeThingTopicResult* result = [[IotcoreInvokeThingTopicResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(IotcoreInvokeThingTopicResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
 
 @end
 @implementation IotcoreDescribeThingShadowResult
@@ -725,182 +275,6 @@ IotcoreInvokeThingTopicResult* result = [[IotcoreInvokeThingTopicResult alloc]in
     self.timestamp = [dictionary objectForKey:@"timestamp"];
     return self;
 } 
-
-@end
-@implementation IotcoreQueryDeviceDetailResult
--(id) initWithDeviceId:(NSString*) deviceId
-        deviceName:(NSString*)deviceName
-        parentId:(NSString*)parentId
-        deviceType:(NSString*)deviceType
-        status:(NSNumber*)status
-        productKey:(NSString*)productKey
-        identifier:(NSString*)identifier
-        secret:(NSString*)secret
-        descriptionValue:(NSString*)descriptionValue
-        activatedTime:(NSNumber*)activatedTime
-        lastConnectedTime:(NSNumber*)lastConnectedTime
-        createdTime:(NSNumber*)createdTime
-        updatedTime:(NSNumber*)updatedTime
-        productName:(NSString*)productName
-        model:(NSString*)model
-        manufacturer:(NSString*)manufacturer
-        dynamicRegister:(NSNumber*)dynamicRegister { 
-    self.deviceId = deviceId;               
-    self.deviceName = deviceName;               
-    self.parentId = parentId;               
-    self.deviceType = deviceType;               
-    self.status = status;               
-    self.productKey = productKey;               
-    self.identifier = identifier;               
-    self.secret = secret;               
-    self.descriptionValue = descriptionValue;               
-    self.activatedTime = activatedTime;               
-    self.lastConnectedTime = lastConnectedTime;               
-    self.createdTime = createdTime;               
-    self.updatedTime = updatedTime;               
-    self.productName = productName;               
-    self.model = model;               
-    self.manufacturer = manufacturer;               
-    self.dynamicRegister = dynamicRegister;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self deviceId])
-    {
-        [result setValue:[self deviceId] forKey:@"deviceId"];
-    }
-    if([self deviceName])
-    {
-        [result setValue:[self deviceName] forKey:@"deviceName"];
-    }
-    if([self parentId])
-    {
-        [result setValue:[self parentId] forKey:@"parentId"];
-    }
-    if([self deviceType])
-    {
-        [result setValue:[self deviceType] forKey:@"deviceType"];
-    }
-    if([self status])
-    {
-        [result setValue:[self status] forKey:@"status"];
-    }
-    if([self productKey])
-    {
-        [result setValue:[self productKey] forKey:@"productKey"];
-    }
-    if([self identifier])
-    {
-        [result setValue:[self identifier] forKey:@"identifier"];
-    }
-    if([self secret])
-    {
-        [result setValue:[self secret] forKey:@"secret"];
-    }
-    if([self descriptionValue])
-    {
-        [result setValue:[self descriptionValue] forKey:@"description"];
-    }
-    if([self activatedTime])
-    {
-        [result setValue:[self activatedTime] forKey:@"activatedTime"];
-    }
-    if([self lastConnectedTime])
-    {
-        [result setValue:[self lastConnectedTime] forKey:@"lastConnectedTime"];
-    }
-    if([self createdTime])
-    {
-        [result setValue:[self createdTime] forKey:@"createdTime"];
-    }
-    if([self updatedTime])
-    {
-        [result setValue:[self updatedTime] forKey:@"updatedTime"];
-    }
-    if([self productName])
-    {
-        [result setValue:[self productName] forKey:@"productName"];
-    }
-    if([self model])
-    {
-        [result setValue:[self model] forKey:@"model"];
-    }
-    if([self manufacturer])
-    {
-        [result setValue:[self manufacturer] forKey:@"manufacturer"];
-    }
-    if([self dynamicRegister])
-    {
-        [result setValue:[self dynamicRegister] forKey:@"dynamicRegister"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.deviceId = [dictionary objectForKey:@"deviceId"];
-    self.deviceName = [dictionary objectForKey:@"deviceName"];
-    self.parentId = [dictionary objectForKey:@"parentId"];
-    self.deviceType = [dictionary objectForKey:@"deviceType"];
-    self.status = [dictionary objectForKey:@"status"];
-    self.productKey = [dictionary objectForKey:@"productKey"];
-    self.identifier = [dictionary objectForKey:@"identifier"];
-    self.secret = [dictionary objectForKey:@"secret"];
-    self.descriptionValue = [dictionary objectForKey:@"description"];
-    self.activatedTime = [dictionary objectForKey:@"activatedTime"];
-    self.lastConnectedTime = [dictionary objectForKey:@"lastConnectedTime"];
-    self.createdTime = [dictionary objectForKey:@"createdTime"];
-    self.updatedTime = [dictionary objectForKey:@"updatedTime"];
-    self.productName = [dictionary objectForKey:@"productName"];
-    self.model = [dictionary objectForKey:@"model"];
-    self.manufacturer = [dictionary objectForKey:@"manufacturer"];
-    self.dynamicRegister = [dictionary objectForKey:@"dynamicRegister"];
-    return self;
-} 
-
-@end
-  
-@implementation IotcoreQueryDeviceDetailResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-IotcoreQueryDeviceDetailResult* result = [[IotcoreQueryDeviceDetailResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(IotcoreQueryDeviceDetailResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
 
 @end
 @implementation IotcoreUpdateThingShadowRequest
@@ -964,279 +338,6 @@ productKey:(NSString*)productKey {
     self.productKey = [dictionary objectForKey:@"productKey"];
     return self;
 } 
-
-@end
-@implementation IotcoreUpdateDeviceResult
--(id) initWithDevice:(DeviceVO*) device { 
-    self.device = device;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self device])
-    {
-        [result setValue:[[self device] dictionary]forKey:@"device"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.device = [[DeviceVO alloc]initWithDic:[dictionary objectForKey:@"device"]];
-    return self;
-} 
-
-@end
-  
-@implementation IotcoreUpdateDeviceResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-IotcoreUpdateDeviceResult* result = [[IotcoreUpdateDeviceResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(IotcoreUpdateDeviceResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
-@implementation IotcoreQueryDevicePageResult
--(id) initWithPageSize:(NSNumber*) pageSize
-        nowPage:(NSNumber*)nowPage
-        totalSize:(NSNumber*)totalSize
-        totalPage:(NSNumber*)totalPage
-        data:(NSArray<DeviceVO*>*)data { 
-    self.pageSize = pageSize;               
-    self.nowPage = nowPage;               
-    self.totalSize = totalSize;               
-    self.totalPage = totalPage;               
-    self.data = data;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self pageSize])
-    {
-        [result setValue:[self pageSize] forKey:@"pageSize"];
-    }
-    if([self nowPage])
-    {
-        [result setValue:[self nowPage] forKey:@"nowPage"];
-    }
-    if([self totalSize])
-    {
-        [result setValue:[self totalSize] forKey:@"totalSize"];
-    }
-    if([self totalPage])
-    {
-        [result setValue:[self totalPage] forKey:@"totalPage"];
-    }
-    if([self data])
-    {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self data] count]; i++) {
-            DeviceVO* item = [[self data] objectAtIndex:i];
-            [arrayDic addObject:[item dictionary]];
-        }
-        [result setValue:arrayDic forKey:@"data"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.pageSize = [dictionary objectForKey:@"pageSize"];
-    self.nowPage = [dictionary objectForKey:@"nowPage"];
-    self.totalSize = [dictionary objectForKey:@"totalSize"];
-    self.totalPage = [dictionary objectForKey:@"totalPage"];
-    NSArray* dataArray = [dictionary objectForKey:@"data"];
-    if(dataArray&&![dataArray isKindOfClass:[NSNull class]])
-    {
-        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
-        for(int i = 0 ; i< [dataArray count];i++)
-        {
-            DeviceVO* item = [[DeviceVO alloc]initWithDic:[dataArray objectAtIndex:i]];
-            if(item)
-            {
-                [propertyArray addObject:item];
-            }
-        }
-        self.data = propertyArray;
-    }
-    return self;
-} 
-
-@end
-  
-@implementation IotcoreQueryDevicePageResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-IotcoreQueryDevicePageResult* result = [[IotcoreQueryDevicePageResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(IotcoreQueryDevicePageResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
-@implementation IotcoreRemoveDeviceResult
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    return self;
-} 
-
-@end
-  
-@implementation IotcoreRemoveDeviceResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-IotcoreRemoveDeviceResult* result = [[IotcoreRemoveDeviceResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(IotcoreRemoveDeviceResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
-  
-@implementation IotcoreDescribeThingShadowResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-IotcoreDescribeThingShadowResult* result = [[IotcoreDescribeThingShadowResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(IotcoreDescribeThingShadowResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
 
 @end
 @implementation IotcoreDescribeThingShadowRequest
@@ -1525,103 +626,44 @@ productKey:(NSString*)productKey {
 } 
 
 @end
-  
-@implementation IotcoreAddDeviceResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-IotcoreAddDeviceResult* result = [[IotcoreAddDeviceResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
+@implementation IotcoreInvokeThingTopicResult
+-(id) initWithMsgId:(NSString*) msgId { 
+    self.msgId = msgId;               
     return self;
 }
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(IotcoreAddDeviceResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
-@implementation IotcoreUpdateThingShadowResult
 -(NSMutableDictionary*) dictionary{
     NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self msgId])
+    {
+        [result setValue:[self msgId] forKey:@"msgId"];
+    }
     return result;
 }
 
 -(id) initWithDic:(NSDictionary*)dictionary{
+    self.msgId = [dictionary objectForKey:@"msgId"];
     return self;
 } 
 
 @end
-  
-@implementation IotcoreUpdateThingShadowResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
+@implementation IotcoreInvokeThingServiceResult
+-(id) initWithMsgId:(NSString*) msgId { 
+    self.msgId = msgId;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self msgId])
     {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
+        [result setValue:[self msgId] forKey:@"msgId"];
     }
     return result;
 }
 
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-IotcoreUpdateThingShadowResult* result = [[IotcoreUpdateThingShadowResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.msgId = [dictionary objectForKey:@"msgId"];
     return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(IotcoreUpdateThingShadowResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
+} 
 
 @end
 @implementation IotcoreRemoveDeviceRequest
@@ -1674,6 +716,138 @@ productKey:(NSString*)productKey {
     self.deviceName = [dictionary objectForKey:@"deviceName"];
     self.instanceId = [dictionary objectForKey:@"instanceId"];
     self.productKey = [dictionary objectForKey:@"productKey"];
+    return self;
+} 
+
+@end
+@implementation IotcoreQueryDeviceDetailResult
+-(id) initWithDeviceId:(NSString*) deviceId
+        deviceName:(NSString*)deviceName
+        parentId:(NSString*)parentId
+        deviceType:(NSString*)deviceType
+        status:(NSNumber*)status
+        productKey:(NSString*)productKey
+        identifier:(NSString*)identifier
+        secret:(NSString*)secret
+        descriptionValue:(NSString*)descriptionValue
+        activatedTime:(NSNumber*)activatedTime
+        lastConnectedTime:(NSNumber*)lastConnectedTime
+        createdTime:(NSNumber*)createdTime
+        updatedTime:(NSNumber*)updatedTime
+        productName:(NSString*)productName
+        model:(NSString*)model
+        manufacturer:(NSString*)manufacturer
+        dynamicRegister:(NSNumber*)dynamicRegister { 
+    self.deviceId = deviceId;               
+    self.deviceName = deviceName;               
+    self.parentId = parentId;               
+    self.deviceType = deviceType;               
+    self.status = status;               
+    self.productKey = productKey;               
+    self.identifier = identifier;               
+    self.secret = secret;               
+    self.descriptionValue = descriptionValue;               
+    self.activatedTime = activatedTime;               
+    self.lastConnectedTime = lastConnectedTime;               
+    self.createdTime = createdTime;               
+    self.updatedTime = updatedTime;               
+    self.productName = productName;               
+    self.model = model;               
+    self.manufacturer = manufacturer;               
+    self.dynamicRegister = dynamicRegister;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self deviceId])
+    {
+        [result setValue:[self deviceId] forKey:@"deviceId"];
+    }
+    if([self deviceName])
+    {
+        [result setValue:[self deviceName] forKey:@"deviceName"];
+    }
+    if([self parentId])
+    {
+        [result setValue:[self parentId] forKey:@"parentId"];
+    }
+    if([self deviceType])
+    {
+        [result setValue:[self deviceType] forKey:@"deviceType"];
+    }
+    if([self status])
+    {
+        [result setValue:[self status] forKey:@"status"];
+    }
+    if([self productKey])
+    {
+        [result setValue:[self productKey] forKey:@"productKey"];
+    }
+    if([self identifier])
+    {
+        [result setValue:[self identifier] forKey:@"identifier"];
+    }
+    if([self secret])
+    {
+        [result setValue:[self secret] forKey:@"secret"];
+    }
+    if([self descriptionValue])
+    {
+        [result setValue:[self descriptionValue] forKey:@"description"];
+    }
+    if([self activatedTime])
+    {
+        [result setValue:[self activatedTime] forKey:@"activatedTime"];
+    }
+    if([self lastConnectedTime])
+    {
+        [result setValue:[self lastConnectedTime] forKey:@"lastConnectedTime"];
+    }
+    if([self createdTime])
+    {
+        [result setValue:[self createdTime] forKey:@"createdTime"];
+    }
+    if([self updatedTime])
+    {
+        [result setValue:[self updatedTime] forKey:@"updatedTime"];
+    }
+    if([self productName])
+    {
+        [result setValue:[self productName] forKey:@"productName"];
+    }
+    if([self model])
+    {
+        [result setValue:[self model] forKey:@"model"];
+    }
+    if([self manufacturer])
+    {
+        [result setValue:[self manufacturer] forKey:@"manufacturer"];
+    }
+    if([self dynamicRegister])
+    {
+        [result setValue:[self dynamicRegister] forKey:@"dynamicRegister"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.deviceId = [dictionary objectForKey:@"deviceId"];
+    self.deviceName = [dictionary objectForKey:@"deviceName"];
+    self.parentId = [dictionary objectForKey:@"parentId"];
+    self.deviceType = [dictionary objectForKey:@"deviceType"];
+    self.status = [dictionary objectForKey:@"status"];
+    self.productKey = [dictionary objectForKey:@"productKey"];
+    self.identifier = [dictionary objectForKey:@"identifier"];
+    self.secret = [dictionary objectForKey:@"secret"];
+    self.descriptionValue = [dictionary objectForKey:@"description"];
+    self.activatedTime = [dictionary objectForKey:@"activatedTime"];
+    self.lastConnectedTime = [dictionary objectForKey:@"lastConnectedTime"];
+    self.createdTime = [dictionary objectForKey:@"createdTime"];
+    self.updatedTime = [dictionary objectForKey:@"updatedTime"];
+    self.productName = [dictionary objectForKey:@"productName"];
+    self.model = [dictionary objectForKey:@"model"];
+    self.manufacturer = [dictionary objectForKey:@"manufacturer"];
+    self.dynamicRegister = [dictionary objectForKey:@"dynamicRegister"];
     return self;
 } 
 
@@ -1966,126 +1140,6 @@ instanceId:(NSString*)instanceId {
 } 
 
 @end
-@implementation IotcoreDescribeProductResult
--(id) initWithProductName:(NSString*) productName
-        productType:(NSNumber*)productType
-        productKey:(NSString*)productKey
-        productSecret:(NSString*)productSecret
-        createdTime:(NSNumber*)createdTime
-        deviceCount:(NSNumber*)deviceCount
-        dynamicRegister:(NSNumber*)dynamicRegister
-        productDescription:(NSString*)productDescription
-        templateName:(NSString*)templateName { 
-    self.productName = productName;               
-    self.productType = productType;               
-    self.productKey = productKey;               
-    self.productSecret = productSecret;               
-    self.createdTime = createdTime;               
-    self.deviceCount = deviceCount;               
-    self.dynamicRegister = dynamicRegister;               
-    self.productDescription = productDescription;               
-    self.templateName = templateName;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self productName])
-    {
-        [result setValue:[self productName] forKey:@"productName"];
-    }
-    if([self productType])
-    {
-        [result setValue:[self productType] forKey:@"productType"];
-    }
-    if([self productKey])
-    {
-        [result setValue:[self productKey] forKey:@"productKey"];
-    }
-    if([self productSecret])
-    {
-        [result setValue:[self productSecret] forKey:@"productSecret"];
-    }
-    if([self createdTime])
-    {
-        [result setValue:[self createdTime] forKey:@"createdTime"];
-    }
-    if([self deviceCount])
-    {
-        [result setValue:[self deviceCount] forKey:@"deviceCount"];
-    }
-    if([self dynamicRegister])
-    {
-        [result setValue:[self dynamicRegister] forKey:@"dynamicRegister"];
-    }
-    if([self productDescription])
-    {
-        [result setValue:[self productDescription] forKey:@"productDescription"];
-    }
-    if([self templateName])
-    {
-        [result setValue:[self templateName] forKey:@"templateName"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.productName = [dictionary objectForKey:@"productName"];
-    self.productType = [dictionary objectForKey:@"productType"];
-    self.productKey = [dictionary objectForKey:@"productKey"];
-    self.productSecret = [dictionary objectForKey:@"productSecret"];
-    self.createdTime = [dictionary objectForKey:@"createdTime"];
-    self.deviceCount = [dictionary objectForKey:@"deviceCount"];
-    self.dynamicRegister = [dictionary objectForKey:@"dynamicRegister"];
-    self.productDescription = [dictionary objectForKey:@"productDescription"];
-    self.templateName = [dictionary objectForKey:@"templateName"];
-    return self;
-} 
-
-@end
-  
-@implementation IotcoreDescribeProductResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-IotcoreDescribeProductResult* result = [[IotcoreDescribeProductResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(IotcoreDescribeProductResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
 @implementation IotcoreCreateProductResult
 -(id) initWithProductKey:(NSString*) productKey { 
     self.productKey = productKey;               
@@ -2104,205 +1158,6 @@ IotcoreDescribeProductResult* result = [[IotcoreDescribeProductResult alloc]init
     self.productKey = [dictionary objectForKey:@"productKey"];
     return self;
 } 
-
-@end
-  
-@implementation IotcoreCreateProductResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-IotcoreCreateProductResult* result = [[IotcoreCreateProductResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(IotcoreCreateProductResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
-@implementation IotcoreListProductsResult
--(id) initWithPage:(PageinfoVO*) page
-        products:(NSArray<Product*>*)products { 
-    self.page = page;               
-    self.products = products;               
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    if([self page])
-    {
-        [result setValue:[[self page] dictionary]forKey:@"page"];
-    }
-    if([self products])
-    {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self products] count]; i++) {
-            Product* item = [[self products] objectAtIndex:i];
-            [arrayDic addObject:[item dictionary]];
-        }
-        [result setValue:arrayDic forKey:@"products"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.page = [[PageinfoVO alloc]initWithDic:[dictionary objectForKey:@"page"]];
-    NSArray* productsArray = [dictionary objectForKey:@"products"];
-    if(productsArray&&![productsArray isKindOfClass:[NSNull class]])
-    {
-        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
-        for(int i = 0 ; i< [productsArray count];i++)
-        {
-            Product* item = [[Product alloc]initWithDic:[productsArray objectAtIndex:i]];
-            if(item)
-            {
-                [propertyArray addObject:item];
-            }
-        }
-        self.products = propertyArray;
-    }
-    return self;
-} 
-
-@end
-@implementation IotcoreUpdateProductResult
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    return self;
-} 
-
-@end
-  
-@implementation IotcoreUpdateProductResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-IotcoreUpdateProductResult* result = [[IotcoreUpdateProductResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(IotcoreUpdateProductResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
-
-@end
-@implementation IotcoreDeleteProductResult
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    return self;
-} 
-
-@end
-  
-@implementation IotcoreDeleteProductResponse
--(NSMutableDictionary*) dictionary
-{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
-    if([self requestId])
-    {
-        [result setValue:[self requestId] forKey:@"requestId"];
-    } 
-    if([self result])
-    {
-        
-        [result setValue:[[self result] dictionary] forKey:@"result"];
-    }
-    if([self error])
-    {
-        
-        [result setValue:[[self error] dictionary] forKey:@"error"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary
-{
-    
-    self.requestId = [dictionary objectForKey:@"requestId"];
-IotcoreDeleteProductResult* result = [[IotcoreDeleteProductResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
-    self.result = result;
-    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
-    self.error = error;
-    return self;
-}
-
--(id) initWithRequestId:(NSString*) requestId
-                  error:(ServiceError*) error
-                 result:(IotcoreDeleteProductResult*) result
-{
-    self.error = error;
-    self.result =result;
-    self.requestId = requestId;
-    return self;
-}
 
 @end
 @implementation IotcoreUpdateProductRequest
@@ -2503,6 +1358,1196 @@ productKey:(NSString*)productKey {
 } 
 
 @end
+@implementation IotcoreDescribeProductResult
+-(id) initWithProductName:(NSString*) productName
+        productType:(NSNumber*)productType
+        productKey:(NSString*)productKey
+        productSecret:(NSString*)productSecret
+        createdTime:(NSNumber*)createdTime
+        deviceCount:(NSNumber*)deviceCount
+        dynamicRegister:(NSNumber*)dynamicRegister
+        productDescription:(NSString*)productDescription
+        templateName:(NSString*)templateName { 
+    self.productName = productName;               
+    self.productType = productType;               
+    self.productKey = productKey;               
+    self.productSecret = productSecret;               
+    self.createdTime = createdTime;               
+    self.deviceCount = deviceCount;               
+    self.dynamicRegister = dynamicRegister;               
+    self.productDescription = productDescription;               
+    self.templateName = templateName;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self productName])
+    {
+        [result setValue:[self productName] forKey:@"productName"];
+    }
+    if([self productType])
+    {
+        [result setValue:[self productType] forKey:@"productType"];
+    }
+    if([self productKey])
+    {
+        [result setValue:[self productKey] forKey:@"productKey"];
+    }
+    if([self productSecret])
+    {
+        [result setValue:[self productSecret] forKey:@"productSecret"];
+    }
+    if([self createdTime])
+    {
+        [result setValue:[self createdTime] forKey:@"createdTime"];
+    }
+    if([self deviceCount])
+    {
+        [result setValue:[self deviceCount] forKey:@"deviceCount"];
+    }
+    if([self dynamicRegister])
+    {
+        [result setValue:[self dynamicRegister] forKey:@"dynamicRegister"];
+    }
+    if([self productDescription])
+    {
+        [result setValue:[self productDescription] forKey:@"productDescription"];
+    }
+    if([self templateName])
+    {
+        [result setValue:[self templateName] forKey:@"templateName"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.productName = [dictionary objectForKey:@"productName"];
+    self.productType = [dictionary objectForKey:@"productType"];
+    self.productKey = [dictionary objectForKey:@"productKey"];
+    self.productSecret = [dictionary objectForKey:@"productSecret"];
+    self.createdTime = [dictionary objectForKey:@"createdTime"];
+    self.deviceCount = [dictionary objectForKey:@"deviceCount"];
+    self.dynamicRegister = [dictionary objectForKey:@"dynamicRegister"];
+    self.productDescription = [dictionary objectForKey:@"productDescription"];
+    self.templateName = [dictionary objectForKey:@"templateName"];
+    return self;
+} 
+
+@end
+@implementation IotcoreDeleteProductRequest
+-(id) initWithRegion:(NSString *)regionId
+instanceId:(NSString*)instanceId
+productKey:(NSString*)productKey { 
+    self.regionId = regionId;
+    self.instanceId = instanceId;
+    self.productKey = productKey;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+instanceId:(NSString*)instanceId
+productKey:(NSString*)productKey { 
+    self.regionId = regionId;
+    self.version = version;
+    self.instanceId = instanceId;
+    self.productKey = productKey;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self instanceId])
+    {
+        [result setValue:[self instanceId] forKey:@"instanceId"];
+    }
+    if([self productKey])
+    {
+        [result setValue:[self productKey] forKey:@"productKey"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.instanceId = [dictionary objectForKey:@"instanceId"];
+    self.productKey = [dictionary objectForKey:@"productKey"];
+    return self;
+} 
+
+@end
+  
+@implementation IotcoreCreateProductTopicResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+IotcoreCreateProductTopicResult* result = [[IotcoreCreateProductTopicResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(IotcoreCreateProductTopicResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+@implementation IotcoreListProductAbilitiesRequest
+-(id) initWithRegion:(NSString *)regionId
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+filters:(NSArray<Filter*>*)filters
+instanceId:(NSString*)instanceId
+productKey:(NSString*)productKey { 
+    self.regionId = regionId;
+    self.pageNumber = pageNumber;
+    self.pageSize = pageSize;
+    self.filters = filters;
+    self.instanceId = instanceId;
+    self.productKey = productKey;
+    return self;
+}
+
+-(id) initWithRegion:(NSString *)regionId
+             version:(NSString *)version
+pageNumber:(NSNumber*)pageNumber
+pageSize:(NSNumber*)pageSize
+filters:(NSArray<Filter*>*)filters
+instanceId:(NSString*)instanceId
+productKey:(NSString*)productKey { 
+    self.regionId = regionId;
+    self.version = version;
+    self.pageNumber = pageNumber;
+    self.pageSize = pageSize;
+    self.filters = filters;
+    self.instanceId = instanceId;
+    self.productKey = productKey;
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *superObjectDic = [super dictionary];
+    if(superObjectDic && [superObjectDic count]>0)
+    {
+        [result addEntriesFromDictionary:superObjectDic];
+    }
+    if([self pageNumber])
+    {
+        [result setValue:[self pageNumber] forKey:@"pageNumber"];
+    }
+    if([self pageSize])
+    {
+        [result setValue:[self pageSize] forKey:@"pageSize"];
+    }
+    if([self filters])
+    {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self filters] count]; i++) {
+            Filter* item = [[self filters] objectAtIndex:i];
+            [arrayDic addObject:[item dictionary]];
+        }
+        [result setValue:arrayDic forKey:@"filters"];
+    }
+    if([self instanceId])
+    {
+        [result setValue:[self instanceId] forKey:@"instanceId"];
+    }
+    if([self productKey])
+    {
+        [result setValue:[self productKey] forKey:@"productKey"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.pageNumber = [dictionary objectForKey:@"pageNumber"];
+    self.pageSize = [dictionary objectForKey:@"pageSize"];
+    NSArray* filtersArray = [dictionary objectForKey:@"filters"];
+    if(filtersArray&&![filtersArray isKindOfClass:[NSNull class]])
+    {
+        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
+        for(int i = 0 ; i< [filtersArray count];i++)
+        {
+        Filter* item = [[Filter alloc]initWithDic:[filtersArray objectAtIndex:i]];
+            if(item)
+            {
+            [propertyArray addObject:item];
+            }
+        }
+        self.filters = propertyArray;
+    }
+    self.instanceId = [dictionary objectForKey:@"instanceId"];
+    self.productKey = [dictionary objectForKey:@"productKey"];
+    return self;
+} 
+
+@end
+  
+@implementation IotcoreExportThingModelResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+IotcoreExportThingModelResult* result = [[IotcoreExportThingModelResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(IotcoreExportThingModelResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+@implementation IotcoreImportThingModelResult
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    return self;
+} 
+
+@end
+  
+@implementation IotcoreImportThingModelResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+IotcoreImportThingModelResult* result = [[IotcoreImportThingModelResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(IotcoreImportThingModelResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+@implementation IotcoreListProductAbilitiesResult
+-(id) initWithPage:(PageinfoVO*) page
+        abilities:(NSArray<ProductAbility*>*)abilities { 
+    self.page = page;               
+    self.abilities = abilities;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self page])
+    {
+        [result setValue:[[self page] dictionary]forKey:@"page"];
+    }
+    if([self abilities])
+    {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self abilities] count]; i++) {
+            ProductAbility* item = [[self abilities] objectAtIndex:i];
+            [arrayDic addObject:[item dictionary]];
+        }
+        [result setValue:arrayDic forKey:@"abilities"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.page = [[PageinfoVO alloc]initWithDic:[dictionary objectForKey:@"page"]];
+    NSArray* abilitiesArray = [dictionary objectForKey:@"abilities"];
+    if(abilitiesArray&&![abilitiesArray isKindOfClass:[NSNull class]])
+    {
+        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
+        for(int i = 0 ; i< [abilitiesArray count];i++)
+        {
+        ProductAbility* item = [[ProductAbility alloc]initWithDic:[abilitiesArray objectAtIndex:i]];
+            if(item)
+            {
+            [propertyArray addObject:item];
+            }
+        }
+        self.abilities = propertyArray;
+    }
+    return self;
+} 
+
+@end
+  
+@implementation IotcoreListProductAbilitiesResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+IotcoreListProductAbilitiesResult* result = [[IotcoreListProductAbilitiesResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(IotcoreListProductAbilitiesResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+  
+@implementation IotcoreInvokeThingServiceResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+IotcoreInvokeThingServiceResult* result = [[IotcoreInvokeThingServiceResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(IotcoreInvokeThingServiceResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+  
+@implementation IotcoreInvokeThingTopicResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+IotcoreInvokeThingTopicResult* result = [[IotcoreInvokeThingTopicResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(IotcoreInvokeThingTopicResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+  
+@implementation IotcoreQueryDeviceDetailResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+IotcoreQueryDeviceDetailResult* result = [[IotcoreQueryDeviceDetailResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(IotcoreQueryDeviceDetailResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+@implementation IotcoreUpdateDeviceResult
+-(id) initWithDevice:(DeviceVO*) device { 
+    self.device = device;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self device])
+    {
+        [result setValue:[[self device] dictionary]forKey:@"device"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.device = [[DeviceVO alloc]initWithDic:[dictionary objectForKey:@"device"]];
+    return self;
+} 
+
+@end
+  
+@implementation IotcoreUpdateDeviceResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+IotcoreUpdateDeviceResult* result = [[IotcoreUpdateDeviceResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(IotcoreUpdateDeviceResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+@implementation IotcoreQueryDevicePageResult
+-(id) initWithPageSize:(NSNumber*) pageSize
+        nowPage:(NSNumber*)nowPage
+        totalSize:(NSNumber*)totalSize
+        totalPage:(NSNumber*)totalPage
+        data:(NSArray<DeviceVO*>*)data { 
+    self.pageSize = pageSize;               
+    self.nowPage = nowPage;               
+    self.totalSize = totalSize;               
+    self.totalPage = totalPage;               
+    self.data = data;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self pageSize])
+    {
+        [result setValue:[self pageSize] forKey:@"pageSize"];
+    }
+    if([self nowPage])
+    {
+        [result setValue:[self nowPage] forKey:@"nowPage"];
+    }
+    if([self totalSize])
+    {
+        [result setValue:[self totalSize] forKey:@"totalSize"];
+    }
+    if([self totalPage])
+    {
+        [result setValue:[self totalPage] forKey:@"totalPage"];
+    }
+    if([self data])
+    {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self data] count]; i++) {
+            DeviceVO* item = [[self data] objectAtIndex:i];
+            [arrayDic addObject:[item dictionary]];
+        }
+        [result setValue:arrayDic forKey:@"data"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.pageSize = [dictionary objectForKey:@"pageSize"];
+    self.nowPage = [dictionary objectForKey:@"nowPage"];
+    self.totalSize = [dictionary objectForKey:@"totalSize"];
+    self.totalPage = [dictionary objectForKey:@"totalPage"];
+    NSArray* dataArray = [dictionary objectForKey:@"data"];
+    if(dataArray&&![dataArray isKindOfClass:[NSNull class]])
+    {
+        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
+        for(int i = 0 ; i< [dataArray count];i++)
+        {
+        DeviceVO* item = [[DeviceVO alloc]initWithDic:[dataArray objectAtIndex:i]];
+            if(item)
+            {
+            [propertyArray addObject:item];
+            }
+        }
+        self.data = propertyArray;
+    }
+    return self;
+} 
+
+@end
+  
+@implementation IotcoreQueryDevicePageResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+IotcoreQueryDevicePageResult* result = [[IotcoreQueryDevicePageResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(IotcoreQueryDevicePageResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+@implementation IotcoreRemoveDeviceResult
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    return self;
+} 
+
+@end
+  
+@implementation IotcoreRemoveDeviceResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+IotcoreRemoveDeviceResult* result = [[IotcoreRemoveDeviceResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(IotcoreRemoveDeviceResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+  
+@implementation IotcoreDescribeThingShadowResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+IotcoreDescribeThingShadowResult* result = [[IotcoreDescribeThingShadowResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(IotcoreDescribeThingShadowResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+  
+@implementation IotcoreAddDeviceResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+IotcoreAddDeviceResult* result = [[IotcoreAddDeviceResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(IotcoreAddDeviceResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+@implementation IotcoreUpdateThingShadowResult
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    return self;
+} 
+
+@end
+  
+@implementation IotcoreUpdateThingShadowResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+IotcoreUpdateThingShadowResult* result = [[IotcoreUpdateThingShadowResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(IotcoreUpdateThingShadowResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+  
+@implementation IotcoreDescribeProductResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+IotcoreDescribeProductResult* result = [[IotcoreDescribeProductResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(IotcoreDescribeProductResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+  
+@implementation IotcoreCreateProductResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+IotcoreCreateProductResult* result = [[IotcoreCreateProductResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(IotcoreCreateProductResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+@implementation IotcoreListProductsResult
+-(id) initWithPage:(PageinfoVO*) page
+        products:(NSArray<Product*>*)products { 
+    self.page = page;               
+    self.products = products;               
+    return self;
+}
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    if([self page])
+    {
+        [result setValue:[[self page] dictionary]forKey:@"page"];
+    }
+    if([self products])
+    {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self products] count]; i++) {
+            Product* item = [[self products] objectAtIndex:i];
+            [arrayDic addObject:[item dictionary]];
+        }
+        [result setValue:arrayDic forKey:@"products"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    self.page = [[PageinfoVO alloc]initWithDic:[dictionary objectForKey:@"page"]];
+    NSArray* productsArray = [dictionary objectForKey:@"products"];
+    if(productsArray&&![productsArray isKindOfClass:[NSNull class]])
+    {
+        NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
+        for(int i = 0 ; i< [productsArray count];i++)
+        {
+        Product* item = [[Product alloc]initWithDic:[productsArray objectAtIndex:i]];
+            if(item)
+            {
+            [propertyArray addObject:item];
+            }
+        }
+        self.products = propertyArray;
+    }
+    return self;
+} 
+
+@end
+@implementation IotcoreUpdateProductResult
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    return self;
+} 
+
+@end
+  
+@implementation IotcoreUpdateProductResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+IotcoreUpdateProductResult* result = [[IotcoreUpdateProductResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(IotcoreUpdateProductResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
+@implementation IotcoreDeleteProductResult
+-(NSMutableDictionary*) dictionary{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary{
+    return self;
+} 
+
+@end
+  
+@implementation IotcoreDeleteProductResponse
+-(NSMutableDictionary*) dictionary
+{
+    NSMutableDictionary* result = [[NSMutableDictionary alloc] init]; 
+    if([self requestId])
+    {
+        [result setValue:[self requestId] forKey:@"requestId"];
+    } 
+    if([self result])
+    {
+        
+        [result setValue:[[self result] dictionary] forKey:@"result"];
+    }
+    if([self error])
+    {
+        
+        [result setValue:[[self error] dictionary] forKey:@"error"];
+    }
+    return result;
+}
+
+-(id) initWithDic:(NSDictionary*)dictionary
+{
+    
+    self.requestId = [dictionary objectForKey:@"requestId"];
+IotcoreDeleteProductResult* result = [[IotcoreDeleteProductResult alloc]initWithDic:[dictionary objectForKey:@"result"]];
+    self.result = result;
+    ServiceError* error = [[ServiceError alloc]initWithDic:[dictionary objectForKey:@"error"]];
+    self.error = error;
+    return self;
+}
+
+-(id) initWithRequestId:(NSString*) requestId
+                  error:(ServiceError*) error
+                 result:(IotcoreDeleteProductResult*) result
+{
+    self.error = error;
+    self.result =result;
+    self.requestId = requestId;
+    return self;
+}
+
+@end
 @implementation IotcoreListProductsRequest
 -(id) initWithRegion:(NSString *)regionId
 pageNumber:(NSNumber*)pageNumber
@@ -2548,8 +2593,8 @@ instanceId:(NSString*)instanceId {
     }
     if([self filters])
     {
-        NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
-        for (int i =0 ; i< [[self filters] count]; i++) {
+            NSMutableArray<NSDictionary*>* arrayDic  = [[NSMutableArray alloc] init];
+            for (int i =0 ; i< [[self filters] count]; i++) {
             Filter* item = [[self filters] objectAtIndex:i];
             [arrayDic addObject:[item dictionary]];
         }
@@ -2571,10 +2616,10 @@ instanceId:(NSString*)instanceId {
         NSMutableArray* propertyArray = [[NSMutableArray alloc]init];
         for(int i = 0 ; i< [filtersArray count];i++)
         {
-            Filter* item = [[Filter alloc]initWithDic:[filtersArray objectAtIndex:i]];
+        Filter* item = [[Filter alloc]initWithDic:[filtersArray objectAtIndex:i]];
             if(item)
             {
-                [propertyArray addObject:item];
+            [propertyArray addObject:item];
             }
         }
         self.filters = propertyArray;
@@ -2626,51 +2671,6 @@ IotcoreListProductsResult* result = [[IotcoreListProductsResult alloc]initWithDi
     self.requestId = requestId;
     return self;
 }
-
-@end
-@implementation IotcoreDeleteProductRequest
--(id) initWithRegion:(NSString *)regionId
-instanceId:(NSString*)instanceId
-productKey:(NSString*)productKey { 
-    self.regionId = regionId;
-    self.instanceId = instanceId;
-    self.productKey = productKey;
-    return self;
-}
-
--(id) initWithRegion:(NSString *)regionId
-             version:(NSString *)version
-instanceId:(NSString*)instanceId
-productKey:(NSString*)productKey { 
-    self.regionId = regionId;
-    self.version = version;
-    self.instanceId = instanceId;
-    self.productKey = productKey;
-    return self;
-}
--(NSMutableDictionary*) dictionary{
-    NSMutableDictionary* result = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *superObjectDic = [super dictionary];
-    if(superObjectDic && [superObjectDic count]>0)
-    {
-        [result addEntriesFromDictionary:superObjectDic];
-    }
-    if([self instanceId])
-    {
-        [result setValue:[self instanceId] forKey:@"instanceId"];
-    }
-    if([self productKey])
-    {
-        [result setValue:[self productKey] forKey:@"productKey"];
-    }
-    return result;
-}
-
--(id) initWithDic:(NSDictionary*)dictionary{
-    self.instanceId = [dictionary objectForKey:@"instanceId"];
-    self.productKey = [dictionary objectForKey:@"productKey"];
-    return self;
-} 
 
 @end
  

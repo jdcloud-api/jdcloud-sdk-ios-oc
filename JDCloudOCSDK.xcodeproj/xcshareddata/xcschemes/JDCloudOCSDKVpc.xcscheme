@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1120"
+   LastUpgradeVersion = "1130"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "6C66F931D9318C8590D18168"
+               BlueprintIdentifier = "6C68BE1E2D4F8C8590D18168"
                BuildableName = "JDCloudOCSDKVpc.framework"
                BlueprintName = "JDCloudOCSDKVpc"
                ReferencedContainer = "container:JDCloudOCSDK.xcodeproj">
@@ -50,7 +50,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "6C66F931D9318C8590D18168"
+            BlueprintIdentifier = "6C68BE1E2D4F8C8590D18168"
             BuildableName = "JDCloudOCSDKVpc.framework"
             BlueprintName = "JDCloudOCSDKVpc"
             ReferencedContainer = "container:JDCloudOCSDK.xcodeproj">
