@@ -1,14 +1,13 @@
-# 京东云 Objective-C Open API SDK
+# JDCloud Objective-C Open API SDK
 
-## 说明
+## 简介
 
-* 此项目为京东云 Objective-C Open API SDK 适用于 iOS 开发，目前没有创建 Mac 环境的 Target ,如果需要请自行创建 Target 编译。
+&emsp;&emsp;欢迎使用京东云开发者  iOS 工具套件（使用 Objective-C 语言编写）。使用京东云 iOS SDK，您无需复杂编程就可以访问京东云提供的各种服务。    
+&emsp;&emsp;为了方便您理解SDK中的一些概念和参数的含义，使用SDK前建议您先查看OpenAPI使用入门。要了解每个API的具体参数和含义，请参考程序注释或参考[OpenAPI&SDK](https://www.jdcloud.com/help/faq?act=3)下具体产品线的API文档。
 
-* 目前没有自动生成 SDK 编译的环境，因此无法提供 framework 私有仓库。如果需要请联系 erp：lishijun10 生成 SDK 并编译修复问题。
+## 环境准备 & 编译
 
-* 如果在使用过程中有新的需求请联系网关组，讨论咚咚群号 6142220
-
-* 如果使用 Swift 构建项目请转到 [jcloud-sdk-ios](http://git.jd.com/jcloud-api-gateway/jcloud-sdk-ios) 项目。
+* 此代码使用 XCode 10.1 编写,打卡项目需要安装 XCode。
 
 ## 调用方法
 
@@ -47,19 +46,33 @@
   
 ```
 
-## 关于 GZIP 数据加密
-
-* 如果服务端支持请求 body 发送的数据为 gzip 可以开启此方法
-
-* 开启方法为  `[gzipClient addCustomerHeaderWithKey:CONTENT_ENCODING value:@"gzip"];` 在请求时 添加 `CONTENT_ENCODING` 头，添加以后 SDK 会自动的将请求的 body 转换为 json  然后生成 `x-jdcloud-content-sha256` 的 header 然后将已经转换为 json 的 body 内容 进行 gzip 压缩，然后发送请求。
-
-* 服务端开发 java 实现方案请查看[jdcloud-sdk-oc-gzip-java-server-demo](http://git.jd.com/jdcloud-sdk-demp/jdcloud-sdk-oc-gzip-java-server-demo) 这个项目
-
-* 客户端 gzip 调用的 demo 请查看[jdcloud-sdk-objective-c](http://git.jd.com/lishijun10/jdcloud-sdk-objective-c) 中的 `JDCloudSDKGzipTests`
-
-* 也可以自己设置 名称 `x-jdcloud-content-sha256` 的请求头，在请求的时候 会自动的忽略 使用 body 内容进行验签，body 可以发送二进制数据。
-
 ## 注意事项
 
-* 在请求参数中目前还不支持 NSArray<NSMutableDictionary*> 这种类型的 和NSMutableDictionary<NSString ，NSObject*> 这种类型的,目前需要用实体类进行描述，后期会考虑支持这种类型，如果有需要，请联系 erp：lishijun10
+* 如果需要设置额外的header，例如要调用开启了MFA操作保护的接口，需要传递x-jdcloud-security-token，则按照如下方式：
 
+```
+
+    [vmClient addCustomerHeaderWithKey:@"x-jdcloud-security-token" value:@"xxx"]
+
+```
+
+* 如果需要设置访问点，配置超时等，请参考下面的例子：
+
+```
+    
+    Credential * credential = [[Credential alloc]initWithAccessKeyId:@"ak" secretAccessKey:@"sk"];
+    // set request host
+    SDKEnvironment* sdkEnvironment = [[SDKEnvironment alloc]initWithEndPoint:@"apigw-internal.cn-north-1.jcloudcs.com"];
+    VmClient* vmClient = [[VmClient alloc] initWithCredential:credential sdkEnvironment:sdkEnvironment];
+    [GlobalConfig setDebug:true];
+    VmDescribeInstancesRequest* describeInstancesRequest = [[VmDescribeInstancesRequest alloc]initWithRegion:@"cn-north-1"];
+    vmClient.httpRequestProtocol = @"http";
+    dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+    [vmClient describeInstancesAsyncWithRequest:describeInstancesRequest completionHandler:^(int statusCode, VmDescribeInstancesResponse * _Nullable describeInstancesResponse, NSData * _Nullable responseData, NSError * _Nullable error) {
+        NSLog(@"总条数为：%@",[[describeInstancesResponse result] totalCount]);
+        dispatch_semaphore_signal(semaphore);
+    }];
+    dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+
+```
+ 
