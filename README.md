@@ -7,7 +7,7 @@
 
 ## 环境准备 & 编译
 
-* 此代码使用 XCode 10.1 编写,打卡项目需要安装 XCode。
+* 此代码使用 XCode 10.1 编写,打开项目需要安装 XCode 10.1 以上版本。
 
 ## 调用方法
 
@@ -39,7 +39,7 @@
     // call sync method , if you want call async method see "JDCloudOCSDKVmTests/JDCloudOCSDKVmTests.m"
     NSDictionary* result = [vmClient describeInstancesSyncWithRequest:describeInstancesRequest];
 
-    //get response data, the result key please see client not
+    //get response data, the result key please see client notice
     VmDescribeInstancesResponse* response = [result objectForKey:@"describeInstancesResponse"];
     NSLog(@"总条数为：%@",[[response result] totalCount]);
 }
@@ -56,7 +56,7 @@
 
 ```
 
-* 如果需要设置访问点，配置超时等，请参考下面的例子：
+* 如果需要设置访问点，使用异步请求，请参考下面的例子：
 
 ```
     
@@ -75,4 +75,4 @@
     dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
 
 ```
- 
+ * 因 ios 默认的 http 请求超时时间为 60s（IOS6+）暂时没有添加请求超时时间的设置。
