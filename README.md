@@ -56,7 +56,7 @@
 
 ```
 
-* 如果需要设置访问点，配置超时等，请参考下面的例子：
+* 如果需要设置访问点，使用异步请求，请参考下面的例子：
 
 ```
     
@@ -75,4 +75,4 @@
     dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
 
 ```
- 
+ * 因 ios 默认的 http 请求超时时间为 60s（IOS6+）暂时没有添加请求超时时间的设置。
