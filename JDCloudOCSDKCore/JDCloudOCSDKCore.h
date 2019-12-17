@@ -6,7 +6,6 @@
 //  Copyright © 2019年 李士军. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
 
 //! Project version number for JDCloudOCSDKCore.
 FOUNDATION_EXPORT double JDCloudOCSDKCoreVersionNumber;
