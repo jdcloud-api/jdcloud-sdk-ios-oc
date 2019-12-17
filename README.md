@@ -39,7 +39,7 @@
     // call sync method , if you want call async method see "JDCloudOCSDKVmTests/JDCloudOCSDKVmTests.m"
     NSDictionary* result = [vmClient describeInstancesSyncWithRequest:describeInstancesRequest];
 
-    //get response data, the result key please see client not
+    //get response data, the result key please see client notice
     VmDescribeInstancesResponse* response = [result objectForKey:@"describeInstancesResponse"];
     NSLog(@"总条数为：%@",[[response result] totalCount]);
 }
