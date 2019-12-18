@@ -1,6 +1,6 @@
 
 
-#import <UIKit/UIKit.h>
+
 
 //! Project version number for JDCloudOCSDKStreamcomputer.
 FOUNDATION_EXPORT double JDCloudOCSDKStreamcomputerVersionNumber;

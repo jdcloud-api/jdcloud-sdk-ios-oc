@@ -1,6 +1,6 @@
 
 
-#import <UIKit/UIKit.h>
+
 
 //! Project version number for JDCloudOCSDKYundingdatapush.
 FOUNDATION_EXPORT double JDCloudOCSDKYundingdatapushVersionNumber;

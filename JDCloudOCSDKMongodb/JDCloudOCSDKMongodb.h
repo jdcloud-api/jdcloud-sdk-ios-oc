@@ -1,6 +1,6 @@
 
 
-#import <UIKit/UIKit.h>
+
 
 //! Project version number for JDCloudOCSDKMongodb.
 FOUNDATION_EXPORT double JDCloudOCSDKMongodbVersionNumber;

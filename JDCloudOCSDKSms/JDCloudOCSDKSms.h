@@ -1,6 +1,6 @@
 
 
-#import <UIKit/UIKit.h>
+
 
 //! Project version number for JDCloudOCSDKSms.
 FOUNDATION_EXPORT double JDCloudOCSDKSmsVersionNumber;

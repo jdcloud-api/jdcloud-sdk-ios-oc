@@ -1,6 +1,6 @@
 
 
-#import <UIKit/UIKit.h>
+
 
 //! Project version number for JDCloudOCSDKCharge.
 FOUNDATION_EXPORT double JDCloudOCSDKChargeVersionNumber;

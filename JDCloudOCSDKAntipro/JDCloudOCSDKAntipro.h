@@ -1,7 +1,4 @@
 
-
-#import <UIKit/UIKit.h>
-
 //! Project version number for JDCloudOCSDKAntipro.
 FOUNDATION_EXPORT double JDCloudOCSDKAntiproVersionNumber;
 

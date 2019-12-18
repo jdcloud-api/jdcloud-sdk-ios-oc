@@ -1,6 +1,6 @@
 
 
-#import <UIKit/UIKit.h>
+
 
 //! Project version number for JDCloudOCSDKIotcard.
 FOUNDATION_EXPORT double JDCloudOCSDKIotcardVersionNumber;

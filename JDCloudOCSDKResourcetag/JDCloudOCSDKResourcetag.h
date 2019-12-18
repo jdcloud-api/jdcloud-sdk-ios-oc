@@ -1,6 +1,6 @@
 
 
-#import <UIKit/UIKit.h>
+
 
 //! Project version number for JDCloudOCSDKResourcetag.
 FOUNDATION_EXPORT double JDCloudOCSDKResourcetagVersionNumber;

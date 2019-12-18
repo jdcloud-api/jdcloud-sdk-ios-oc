@@ -1,6 +1,6 @@
 
 
-#import <UIKit/UIKit.h>
+
 
 //! Project version number for JDCloudOCSDKIpanti.
 FOUNDATION_EXPORT double JDCloudOCSDKIpantiVersionNumber;

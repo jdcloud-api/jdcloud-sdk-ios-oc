@@ -1,6 +1,6 @@
 
 
-#import <UIKit/UIKit.h>
+
 
 //! Project version number for JDCloudOCSDKPipeline.
 FOUNDATION_EXPORT double JDCloudOCSDKPipelineVersionNumber;

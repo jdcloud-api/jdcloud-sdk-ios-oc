@@ -1,6 +1,6 @@
 
 
-#import <UIKit/UIKit.h>
+
 
 //! Project version number for JDCloudOCSDKApigateway.
 FOUNDATION_EXPORT double JDCloudOCSDKApigatewayVersionNumber;

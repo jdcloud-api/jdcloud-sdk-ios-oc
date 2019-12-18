@@ -1,6 +1,6 @@
 
 
-#import <UIKit/UIKit.h>
+
 
 //! Project version number for JDCloudOCSDKClouddnsservice.
 FOUNDATION_EXPORT double JDCloudOCSDKClouddnsserviceVersionNumber;

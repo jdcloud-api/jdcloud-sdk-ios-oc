@@ -1,6 +1,6 @@
 
 
-#import <UIKit/UIKit.h>
+
 
 //! Project version number for JDCloudOCSDKContainerregistry.
 FOUNDATION_EXPORT double JDCloudOCSDKContainerregistryVersionNumber;

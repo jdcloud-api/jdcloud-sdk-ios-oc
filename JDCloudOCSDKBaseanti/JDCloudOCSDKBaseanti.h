@@ -1,6 +1,6 @@
 
 
-#import <UIKit/UIKit.h>
+
 
 //! Project version number for JDCloudOCSDKBaseanti.
 FOUNDATION_EXPORT double JDCloudOCSDKBaseantiVersionNumber;

@@ -1,6 +1,6 @@
 
 
-#import <UIKit/UIKit.h>
+
 
 //! Project version number for JDCloudOCSDKOssopenapi.
 FOUNDATION_EXPORT double JDCloudOCSDKOssopenapiVersionNumber;

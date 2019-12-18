@@ -1,6 +1,6 @@
 
 
-#import <UIKit/UIKit.h>
+
 
 //! Project version number for JDCloudOCSDKHttpdns.
 FOUNDATION_EXPORT double JDCloudOCSDKHttpdnsVersionNumber;
