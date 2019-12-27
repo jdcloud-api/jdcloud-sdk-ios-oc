@@ -1,5 +1,5 @@
 # JDCloud Objective-C Open API SDK
-
+[![Actions Status](https://github.com/jdcloud-api/jdcloud-sdk-ios-oc/workflows/jdcloud-sdk-oc/badge.svg)](https://github.com/jdcloud-api/jdcloud-sdk-ios-oc/actions)
 ## 简介
 
 &emsp;&emsp;欢迎使用京东云开发者  iOS 工具套件（使用 Objective-C 语言编写）。使用京东云 iOS SDK，您无需复杂编程就可以访问京东云提供的各种服务。    
