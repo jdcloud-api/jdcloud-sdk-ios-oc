@@ -1,0 +1,13 @@
+name: jdcloud-sdk-oc
+on: 
+  push:
+    branches:
+      - master
+jobs:
+  build:
+    runs-on: macOS-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: Start xcodebuild test
+      run: xcodebuild clean build -project JDCloudOCSDK.xcodeproj -scheme JDCloudOCSDKCore -destination "platform=iOS Simulator,name=iPhone 11 Pro"
+
