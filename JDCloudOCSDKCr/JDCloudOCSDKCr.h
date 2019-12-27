@@ -1,7 +1,11 @@
 
 
 
+#ifdef __OBJC__
 
+#import<Foundation/Foundation.h>
+
+#endif
 //! Project version number for JDCloudOCSDKCr.
 FOUNDATION_EXPORT double JDCloudOCSDKCrVersionNumber;
 

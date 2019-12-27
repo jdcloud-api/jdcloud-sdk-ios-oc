@@ -1,7 +1,11 @@
 
 
 
+#ifdef __OBJC__
 
+#import<Foundation/Foundation.h>
+
+#endif
 //! Project version number for JDCloudOCSDKDatastar.
 FOUNDATION_EXPORT double JDCloudOCSDKDatastarVersionNumber;
 

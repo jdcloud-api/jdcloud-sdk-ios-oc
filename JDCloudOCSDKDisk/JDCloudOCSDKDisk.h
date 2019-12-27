@@ -1,6 +1,10 @@
 
 
+#ifdef __OBJC__
 
+#import<Foundation/Foundation.h>
+
+#endif
 
 //! Project version number for JDCloudOCSDKDisk.
 FOUNDATION_EXPORT double JDCloudOCSDKDiskVersionNumber;

@@ -1,6 +1,10 @@
 
 
+#ifdef __OBJC__
 
+#import<Foundation/Foundation.h>
+
+#endif
 
 //! Project version number for JDCloudOCSDKSts.
 FOUNDATION_EXPORT double JDCloudOCSDKStsVersionNumber;

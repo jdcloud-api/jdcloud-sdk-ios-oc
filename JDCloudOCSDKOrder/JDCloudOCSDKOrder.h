@@ -1,6 +1,10 @@
 
 
+#ifdef __OBJC__
 
+#import<Foundation/Foundation.h>
+
+#endif
 
 //! Project version number for JDCloudOCSDKOrder.
 FOUNDATION_EXPORT double JDCloudOCSDKOrderVersionNumber;
