@@ -5,7 +5,11 @@
 //  Created by 李士军 on 2019/1/7.
 //  Copyright © 2019年 李士军. All rights reserved.
 //
+#ifdef __OBJC__
 
+#import<Foundation/Foundation.h>
+
+#endif
 
 //! Project version number for JDCloudOCSDKCore.
 FOUNDATION_EXPORT double JDCloudOCSDKCoreVersionNumber;
